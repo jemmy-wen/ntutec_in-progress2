@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ANGEL_NAV, MENTOR_NAV, STARTUP_NAV, ADMIN_NAV, type NavItem } from '@/lib/constants/navigation'
+import { ANGEL_NAV, ADMIN_NAV, type NavItem } from '@/lib/constants/navigation'
 import NotificationBell from '@/components/shared/NotificationBell'
 
 interface SidebarProps {
@@ -25,14 +25,9 @@ export default function Sidebar({ roles, userEmail }: SidebarProps) {
   if (roles.includes('admin') || roles.includes('staff_admin') || roles.includes('staff_accelerator')) {
     sections.push({ title: '後台管理', items: ADMIN_NAV })
   }
-  if (roles.includes('angel_member')) {
-    sections.push({ title: '天使俱樂部', items: ANGEL_NAV })
-  }
-  if (roles.includes('mentor')) {
-    sections.push({ title: '業師健診', items: MENTOR_NAV })
-  }
-  if (roles.includes('team') || roles.includes('startup_incubated') || roles.includes('startup_fundraising')) {
-    sections.push({ title: '團隊專區', items: STARTUP_NAV })
+  // Angel portal — admin-only preview until Phase 3
+  if (roles.includes('admin')) {
+    sections.push({ title: '天使俱樂部（預覽）', items: ANGEL_NAV })
   }
 
   return (
