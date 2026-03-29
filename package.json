@@ -9,7 +9,7 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "deploy": "vercel pull --yes --environment production && vercel build --prod && vercel deploy --prebuilt --prod"
+    "deploy": "vercel --prod"
   },
   "dependencies": {
     "@supabase/ssr": "^0.9.0",
