@@ -1,7 +1,13 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+import { getDefaultRoute } from '@/lib/utils/roles'
 
 /**
- * Public homepage — landing page for unauthenticated visitors.
+ * Public homepage — entry point for all visitors.
+ * - Authenticated → redirect to role-based landing page
+ * - Unauthenticated → show full public homepage
+ *
  * Three audience entries: Startups, Angel Investors, Mentors
  * (aligned with Platform Architecture v0.4 three-audience design).
  */
@@ -11,7 +17,24 @@ export const metadata = {
   description: '台灣大學創意創業中心以創業教育、育成輔導、天使投資三軌並行，打造台灣最具影響力的大學創業生態系。',
 }
 
-export default function PublicHomePage() {
+export default async function PublicHomePage() {
+  // Check if user is authenticated — redirect to role-based landing
+  try {
+    const supabase = await createClient()
+    const { data } = await supabase.auth.getUser()
+    if (data.user) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: roleRows } = await (supabase.from('module_roles') as any)
+        .select('role')
+        .eq('user_id', data.user.id)
+        .eq('is_active', true)
+      const roles = (roleRows || []).map((r: { role: string }) => r.role) as string[]
+      redirect(getDefaultRoute(roles))
+    }
+  } catch (err) {
+    // redirect() throws — rethrow it; other errors = show public page
+    if (err && typeof err === 'object' && 'digest' in err) throw err
+  }
   return (
     <div>
       {/* Hero */}
