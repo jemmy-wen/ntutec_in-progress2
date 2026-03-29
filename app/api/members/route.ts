@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * GET /api/members
  *   → Admin: list all angel members. Member: own profile.

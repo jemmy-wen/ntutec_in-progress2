@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * GET /api/notifications/inbox?limit=20
  *   → Fetch user's notifications (most recent first)

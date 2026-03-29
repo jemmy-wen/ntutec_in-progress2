@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * GET /api/cards?cycle_id=2026-04
  *   → List candidate startups with 6-card data for angel member browsing

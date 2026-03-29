@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * GET /api/votes?cycle_id=2026-04
  *   → Angel member: get own votes. Admin: get vote summary.

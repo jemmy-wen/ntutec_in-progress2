@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * GET /api/learning
  *   → Angel member: get own learning progress

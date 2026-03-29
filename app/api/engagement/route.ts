@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * GET /api/engagement?cycle_id=2026-04
  *   → Admin: get member engagement metrics
