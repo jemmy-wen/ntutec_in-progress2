@@ -17,23 +17,24 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Check admin role
+    // Check admin role (module_roles table OR app_metadata)
     const { data: roles } = await supabase
       .from('module_roles')
       .select('role')
       .eq('user_id', user.id)
 
     const userRoles = (roles as { role: string }[] | null)?.map(r => r.role) || []
-    const isAdmin = userRoles.some(r => ['admin', 'staff_admin'].includes(r))
+    const metadataRole = user.app_metadata?.platform_role
+    const isAdmin = userRoles.some(r => ['admin', 'staff_admin'].includes(r)) || metadataRole === 'admin'
 
     if (!isAdmin) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    // Fetch pipeline startups
+    // Fetch pipeline startups (pip_startups is a view with name_zh, pipeline_stage as int)
     const { data: startups, error } = await supabase
       .from('pip_startups')
-      .select('id, name, sector, pipeline_stage, tier, updated_at, notes')
+      .select('id, name_zh, sector, pipeline_stage, current_gate, tier, track, status, updated_at, notes')
       .order('updated_at', { ascending: false })
 
     if (error) {
@@ -41,12 +42,29 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Failed to fetch pipeline' }, { status: 500 })
     }
 
+    // Map pipeline_stage (int) + current_gate to frontend stage names
+    const GATE_MAP: Record<string, string> = {
+      gate0: 'gate0',
+      gate1: 'gate1',
+      gate2: 'gate2',
+      pitch: 'pitch_ready',
+      invested: 'invested',
+      pass: 'passed',
+    }
+
+    function mapStage(s: { pipeline_stage: number | null; current_gate: string | null; status: string | null }): string {
+      if (s.status === 'invested') return 'invested'
+      if (s.status === 'pass' || s.status === 'fail') return 'passed'
+      if (s.current_gate && GATE_MAP[s.current_gate]) return GATE_MAP[s.current_gate]
+      return 'observation'
+    }
+
     // Map to frontend format
     const mapped = (startups || []).map(s => ({
       id: s.id,
-      name: s.name,
+      name: s.name_zh || '',
       sector: s.sector || '',
-      stage: s.pipeline_stage || 'observation',
+      stage: mapStage(s),
       tier: s.tier || 'C',
       updated_at: s.updated_at,
       note: s.notes,
