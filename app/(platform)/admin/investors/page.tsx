@@ -82,7 +82,7 @@ export default function InvestorsAdminPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">投資人管理</h1>
-        <span className="text-sm text-gray-500">{members.length} 位天使會員</span>
+        <span className="text-sm text-gray-500">{members.length} 位天使會員（{members.filter(m => m.status === 'active').length} 位活躍）</span>
       </div>
 
       {/* Engagement Dashboard */}
@@ -90,14 +90,15 @@ export default function InvestorsAdminPage() {
         {/* Ring Chart */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col items-center justify-center">
           <EngagementRing active={summary.active} moderate={summary.moderate} low={summary.low} />
-          <div className="text-xs text-gray-500 mt-3">會員活躍度分佈</div>
+          <div className="text-xs text-gray-500 mt-3">活躍會員參與度分佈</div>
         </div>
 
         {/* Stat cards */}
-        <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <EngagementStat label="總會員" value={summary.total || members.length} color="text-gray-900" bgColor="bg-gray-50" />
-          <EngagementStat label="活躍" value={summary.active} color="text-emerald-700" bgColor="bg-emerald-50" onClick={() => setFilter(filter === 'active' ? 'all' : 'active')} active={filter === 'active'} />
-          <EngagementStat label="中度參與" value={summary.moderate} color="text-amber-700" bgColor="bg-amber-50" onClick={() => setFilter(filter === 'moderate' ? 'all' : 'moderate')} active={filter === 'moderate'} />
+        <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <EngagementStat label="總會員" value={members.length} color="text-gray-900" bgColor="bg-gray-50" />
+          <EngagementStat label="活躍會員" value={summary.total} color="text-blue-700" bgColor="bg-blue-50" />
+          <EngagementStat label="高參與" value={summary.active} color="text-emerald-700" bgColor="bg-emerald-50" onClick={() => setFilter(filter === 'active' ? 'all' : 'active')} active={filter === 'active'} />
+          <EngagementStat label="中參與" value={summary.moderate} color="text-amber-700" bgColor="bg-amber-50" onClick={() => setFilter(filter === 'moderate' ? 'all' : 'moderate')} active={filter === 'moderate'} />
           <EngagementStat label="低參與" value={summary.low} color="text-red-700" bgColor="bg-red-50" onClick={() => setFilter(filter === 'low' ? 'all' : 'low')} active={filter === 'low'} />
         </div>
       </div>
@@ -105,10 +106,10 @@ export default function InvestorsAdminPage() {
       {/* Filter pills */}
       <div className="flex gap-2">
         {[
-          { key: 'all', label: '全部' },
-          { key: 'active', label: '活躍' },
-          { key: 'moderate', label: '中度' },
-          { key: 'low', label: '低參與' },
+          { key: 'all', label: '全部', count: members.length },
+          { key: 'active', label: '高參與', count: summary.active },
+          { key: 'moderate', label: '中參與', count: summary.moderate },
+          { key: 'low', label: '低參與', count: summary.low },
         ].map(f => (
           <button
             key={f.key}
@@ -117,7 +118,7 @@ export default function InvestorsAdminPage() {
               filter === f.key ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
-            {f.label} {f.key !== 'all' && <span className="ml-1 opacity-70">({f.key === 'active' ? summary.active : f.key === 'moderate' ? summary.moderate : summary.low})</span>}
+            {f.label} <span className="ml-1 opacity-70">({f.count})</span>
           </button>
         ))}
       </div>
@@ -131,10 +132,11 @@ export default function InvestorsAdminPage() {
                 <th className="text-left px-4 py-3 font-semibold text-gray-700">姓名</th>
                 <th className="text-left px-4 py-3 font-semibold text-gray-700">公司</th>
                 <th className="text-left px-4 py-3 font-semibold text-gray-700">等級</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">狀態</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-700">卡片回應率</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-700">投票參與率</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-700">文章閱讀</th>
-                <th className="text-center px-4 py-3 font-semibold text-gray-700">活躍度</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">參與度</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -152,6 +154,15 @@ export default function InvestorsAdminPage() {
                         {TIER_LABELS[m.tier] || m.tier}
                       </span>
                     )}
+                  </td>
+                  <td className="px-4 py-3 text-center">
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                      m.status === 'active' ? 'bg-green-100 text-green-700' :
+                      m.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                      'bg-gray-100 text-gray-500'
+                    }`}>
+                      {m.status === 'active' ? '活躍' : m.status === 'pending' ? '待審核' : '停用'}
+                    </span>
                   </td>
                   <td className="px-4 py-3 text-center">
                     {m.card_response_rate != null ? <MiniBar value={m.card_response_rate} /> : '-'}
@@ -175,7 +186,7 @@ export default function InvestorsAdminPage() {
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
+                  <td colSpan={8} className="px-4 py-8 text-center text-gray-400">
                     沒有符合條件的會員
                   </td>
                 </tr>

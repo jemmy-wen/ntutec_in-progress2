@@ -15,7 +15,7 @@ interface DashboardData {
   }
   pendingActions: { type: string; label: string; count: number; href: string }[]
   meeting: { id: string; status: string; meeting_date: string; countdown: number | null } | null
-  members: { total: number; engagement: { active: number; moderate: number; low: number } }
+  members: { total: number; active: number; engagement: { active: number; moderate: number; low: number } }
   recentActivity: { id: string; name: string; sector: string; stage: string; tier: string; updated_at: string }[]
 }
 
@@ -154,7 +154,7 @@ function KPIBar({ pipeline, memberCount, engagement }: {
   const kpis = [
     { label: '總案源', value: pipeline.total, color: 'border-slate-300' },
     { label: 'Gate 0+', value: gate0Plus, color: 'border-blue-400' },
-    { label: '本月 Gate 1', value: stageCounts.gate1, color: 'border-indigo-400' },
+    { label: 'Gate 1', value: stageCounts.gate1, color: 'border-indigo-400' },
     { label: 'Pitch Ready', value: stageCounts.pitch_ready, color: 'border-amber-400' },
     { label: '已投資', value: stageCounts.invested, color: 'border-emerald-400' },
     { label: '天使會員', value: memberCount, color: 'border-teal-400' },

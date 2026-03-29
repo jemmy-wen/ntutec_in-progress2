@@ -23,11 +23,8 @@ interface PipelineStartup {
   updated_at: string
   note?: string
   tax_id?: string | null
-  founded_year?: number | null
-  capital_paid?: number | null
   gate0_score?: number | null
   gate1_score?: number | null
-  website?: string | null
   observation_pool?: boolean
   observation_reason?: string | null
 }
@@ -262,12 +259,6 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
             {startup.tax_id && (
               <DetailRow label="統編" value={startup.tax_id} />
             )}
-            {startup.founded_year && (
-              <DetailRow label="成立" value={`${startup.founded_year} 年`} />
-            )}
-            {startup.capital_paid != null && startup.capital_paid > 0 && (
-              <DetailRow label="實收資本" value={formatCapital(startup.capital_paid)} />
-            )}
             {startup.gate0_score != null && (
               <DetailRow label="Gate 0" value={`${startup.gate0_score} 分`} />
             )}
@@ -280,9 +271,6 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
               <span className="text-amber-600 font-medium">觀察池：</span>
               <span className="text-gray-500">{startup.observation_reason}</span>
             </div>
-          )}
-          {startup.website && (
-            <div className="pt-1 text-blue-500 truncate">{startup.website}</div>
           )}
         </div>
       )}
@@ -297,12 +285,6 @@ function DetailRow({ label, value }: { label: string; value: string }) {
       <span className="text-gray-700 font-medium">{value}</span>
     </>
   )
-}
-
-function formatCapital(amount: number): string {
-  if (amount >= 100000000) return `${(amount / 100000000).toFixed(1)} 億`
-  if (amount >= 10000) return `${(amount / 10000).toFixed(0)} 萬`
-  return amount.toLocaleString()
 }
 
 function TableView({ startups }: { startups: PipelineStartup[] }) {

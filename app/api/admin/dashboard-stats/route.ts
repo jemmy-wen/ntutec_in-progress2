@@ -31,9 +31,9 @@ export async function GET(req: NextRequest) {
       membersRes,
       engagementRes,
     ] = await Promise.all([
-      supabase.from('pip_startups').select('id, name_zh, sector, pipeline_stage, current_gate, tier, status, updated_at, bp_requested_at, bp_received_at, observation_pool'),
+      supabase.from('pip_startups').select('id, name_zh, sector, pipeline_stage, current_gate, tier, status, updated_at, observation_pool'),
       supabase.from('pip_meetings').select('*').order('id', { ascending: false }).limit(5),
-      supabase.from('angel_members').select('id, status').eq('status', 'active'),
+      supabase.from('angel_members').select('id, status'),
       supabase.from('v_angel_engagement').select('engagement_level'),
     ])
 
@@ -49,8 +49,8 @@ export async function GET(req: NextRequest) {
       if (s.observation_pool) return 'observation'
       if (s.current_gate === 'gate0') return 'gate0'
       if (s.current_gate === 'gate1') return 'gate1'
-      if (s.current_gate === 'gate2') return 'gate2'
-      if (s.current_gate === 'pitch') return 'pitch_ready'
+      if (s.current_gate === 'gate2' || s.current_gate === 'screening') return 'gate2'
+      if (s.current_gate === 'pitch' || s.current_gate === 'monthly_pitch') return 'pitch_ready'
       return 'radar'
     }
 
@@ -76,23 +76,8 @@ export async function GET(req: NextRequest) {
       })
     }
 
-    // BP requested but not received (>7 days)
-    const now = new Date()
-    const bpOverdue = startups.filter(s => {
-      if (!s.bp_requested_at || s.bp_received_at) return false
-      const requested = new Date(s.bp_requested_at)
-      return (now.getTime() - requested.getTime()) > 7 * 24 * 60 * 60 * 1000
-    })
-    if (bpOverdue.length > 0) {
-      pendingActions.push({
-        type: 'bp_overdue',
-        label: 'BP 逾期未回覆',
-        count: bpOverdue.length,
-        href: '/admin/pipeline',
-      })
-    }
-
     // --- Active meeting + countdown ---
+    const now = new Date()
     const activeMeeting = meetings.find(m => m.status !== 'closed' && !m.is_archived)
     let meetingCountdown: number | null = null
     if (activeMeeting?.meeting_date) {
@@ -159,6 +144,7 @@ export async function GET(req: NextRequest) {
       } : null,
       members: {
         total: members.length,
+        active: members.filter((m: { status: string }) => m.status === 'active').length,
         engagement: engagementSummary,
       },
       recentActivity,

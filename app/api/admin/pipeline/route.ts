@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 
 /**
  * GET /api/admin/pipeline — Fetch startup pipeline for admin view
@@ -10,7 +10,7 @@ import { createServerClient } from '@/lib/supabase/server'
  */
 export async function GET(req: NextRequest) {
   try {
-    const supabase = await createServerClient()
+    const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
     if (!user) {
@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
     // Fetch pipeline startups (pip_startups is a view with name_zh, pipeline_stage as int)
     const { data: startups, error } = await supabase
       .from('pip_startups')
-      .select('id, name_zh, name_en, sector, pipeline_stage, current_gate, tier, track, status, updated_at, notes, tax_id, founded_year, capital_paid, gate0_score, gate1_score, website, observation_pool, observation_reason')
+      .select('id, name_zh, name_en, sector, pipeline_stage, current_gate, tier, track, status, updated_at, notes, tax_id, gate0_score, gate1_score, observation_pool, observation_reason')
       .order('updated_at', { ascending: false })
 
     if (error) {
@@ -47,7 +47,9 @@ export async function GET(req: NextRequest) {
       gate0: 'gate0',
       gate1: 'gate1',
       gate2: 'gate2',
+      screening: 'gate2',
       pitch: 'pitch_ready',
+      monthly_pitch: 'pitch_ready',
       invested: 'invested',
       pass: 'passed',
     }
@@ -70,11 +72,8 @@ export async function GET(req: NextRequest) {
       updated_at: s.updated_at,
       note: s.notes,
       tax_id: s.tax_id || null,
-      founded_year: s.founded_year || null,
-      capital_paid: s.capital_paid || null,
-      gate0_score: s.gate0_score || null,
-      gate1_score: s.gate1_score || null,
-      website: s.website || null,
+      gate0_score: s.gate0_score != null ? Number(s.gate0_score) : null,
+      gate1_score: s.gate1_score != null ? Number(s.gate1_score) : null,
       observation_pool: s.observation_pool || false,
       observation_reason: s.observation_reason || null,
     }))
