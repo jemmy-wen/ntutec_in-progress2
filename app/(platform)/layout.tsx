@@ -1,4 +1,13 @@
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | NTUTEC Platform',
+    default: 'NTUTEC Platform',
+  },
+  robots: { index: false, follow: false },
+}
 import { headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
 import { getDefaultRoute, ROLE_ROUTE_MAP, hasAnyRole } from '@/lib/utils/roles'

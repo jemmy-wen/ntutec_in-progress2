@@ -1,9 +1,23 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
 /**
  * Public layout — shared header/footer for unauthenticated pages.
  * Routes: /, /about, /programs, /startups, /angel, /mentors, /events, /contact
  */
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | 台大創創中心 NTU TEC',
+    default: '台大創創中心 | NTU Technology & Entrepreneurship Center',
+  },
+  description: '台灣大學創意創業中心以創業教育、育成輔導、天使投資三軌並行，打造台灣最具影響力的大學創業生態系。',
+  openGraph: {
+    siteName: 'NTU TEC 台大創創中心',
+    locale: 'zh_TW',
+    type: 'website',
+  },
+}
 
 const NAV_LINKS = [
   { label: '關於我們', href: '/about' },
