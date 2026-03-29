@@ -51,7 +51,6 @@ export interface ApiHandlerConfig {
   cycleTable?: string
 }
 
-type RouteContext = { params: Promise<Record<string, string>> }
 type HandlerFn = (ctx: ApiContext) => Promise<NextResponse | Response>
 
 // ─── Validation Helpers ─────────────────────────────────
@@ -70,7 +69,7 @@ export function isValidCycleId(s: string): boolean {
 // ─── Core: withApiHandler ──────────────────────────────
 
 export function withApiHandler(config: ApiHandlerConfig, handler: HandlerFn) {
-  return async (request: Request, routeContext?: RouteContext) => {
+  return async (request: Request, routeContext: { params: Promise<Record<string, string>> }) => {
     try {
       // ── 1. Rate Limiting ──
       const category = config.rateLimit || 'api'
