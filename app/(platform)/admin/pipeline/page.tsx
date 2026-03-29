@@ -16,11 +16,20 @@ type PipelineStage = 'observation' | 'gate0' | 'gate1' | 'gate2' | 'pitch_ready'
 interface PipelineStartup {
   id: string
   name: string
+  name_en?: string
   sector: string
   stage: PipelineStage
   tier: string
   updated_at: string
   note?: string
+  tax_id?: string | null
+  founded_year?: number | null
+  capital_paid?: number | null
+  gate0_score?: number | null
+  gate1_score?: number | null
+  website?: string | null
+  observation_pool?: boolean
+  observation_reason?: string | null
 }
 
 const STAGE_CONFIG: Record<PipelineStage, { label: string; color: string; bgColor: string }> = {
@@ -211,6 +220,8 @@ function KanbanView({ grouped }: { grouped: Record<PipelineStage, PipelineStartu
 }
 
 function StartupCard({ startup }: { startup: PipelineStartup }) {
+  const [showDetail, setShowDetail] = useState(false)
+
   const tierColors: Record<string, string> = {
     S: 'bg-red-100 text-red-700',
     A: 'bg-orange-100 text-orange-700',
@@ -219,7 +230,11 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+    <div
+      className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow cursor-pointer relative"
+      onMouseEnter={() => setShowDetail(true)}
+      onMouseLeave={() => setShowDetail(false)}
+    >
       <div className="flex items-start justify-between mb-1">
         <div className="font-medium text-sm truncate flex-1">{startup.name}</div>
         <span className={`text-xs px-1.5 py-0.5 rounded font-medium ml-2 ${tierColors[startup.tier] || 'bg-gray-100'}`}>
@@ -233,8 +248,61 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
       <div className="text-xs text-gray-300 mt-2">
         {new Date(startup.updated_at).toLocaleDateString('zh-TW')}
       </div>
+
+      {/* Hover detail popover */}
+      {showDetail && (
+        <div className="absolute left-0 right-0 top-full mt-1 z-20 bg-white rounded-lg border border-gray-200 shadow-lg p-3 space-y-1.5 text-xs min-w-[220px]"
+          onMouseEnter={() => setShowDetail(true)}
+          onMouseLeave={() => setShowDetail(false)}
+        >
+          {startup.name_en && (
+            <div className="text-gray-500">{startup.name_en}</div>
+          )}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+            {startup.tax_id && (
+              <DetailRow label="統編" value={startup.tax_id} />
+            )}
+            {startup.founded_year && (
+              <DetailRow label="成立" value={`${startup.founded_year} 年`} />
+            )}
+            {startup.capital_paid != null && startup.capital_paid > 0 && (
+              <DetailRow label="實收資本" value={formatCapital(startup.capital_paid)} />
+            )}
+            {startup.gate0_score != null && (
+              <DetailRow label="Gate 0" value={`${startup.gate0_score} 分`} />
+            )}
+            {startup.gate1_score != null && (
+              <DetailRow label="Gate 1" value={`${startup.gate1_score} 分`} />
+            )}
+          </div>
+          {startup.observation_pool && startup.observation_reason && (
+            <div className="pt-1.5 border-t border-gray-100">
+              <span className="text-amber-600 font-medium">觀察池：</span>
+              <span className="text-gray-500">{startup.observation_reason}</span>
+            </div>
+          )}
+          {startup.website && (
+            <div className="pt-1 text-blue-500 truncate">{startup.website}</div>
+          )}
+        </div>
+      )}
     </div>
   )
+}
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <>
+      <span className="text-gray-400">{label}</span>
+      <span className="text-gray-700 font-medium">{value}</span>
+    </>
+  )
+}
+
+function formatCapital(amount: number): string {
+  if (amount >= 100000000) return `${(amount / 100000000).toFixed(1)} 億`
+  if (amount >= 10000) return `${(amount / 10000).toFixed(0)} 萬`
+  return amount.toLocaleString()
 }
 
 function TableView({ startups }: { startups: PipelineStartup[] }) {

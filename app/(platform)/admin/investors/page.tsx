@@ -16,6 +16,13 @@ interface MemberRow {
   engagement_level?: string
 }
 
+interface EngagementSummary {
+  total: number
+  active: number
+  moderate: number
+  low: number
+}
+
 const TIER_LABELS: Record<string, string> = {
   founding: '創始會員',
   regular: '一般會員',
@@ -24,7 +31,8 @@ const TIER_LABELS: Record<string, string> = {
 
 export default function InvestorsAdminPage() {
   const [members, setMembers] = useState<MemberRow[]>([])
-  const [engagement, setEngagement] = useState<Map<string, MemberRow>>(new Map())
+  const [engagementMap, setEngagementMap] = useState<Map<string, MemberRow>>(new Map())
+  const [summary, setSummary] = useState<EngagementSummary>({ total: 0, active: 0, moderate: 0, low: 0 })
   const [filter, setFilter] = useState<string>('all')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -46,7 +54,8 @@ export default function InvestorsAdminPage() {
         for (const m of (data.members || [])) {
           map.set(m.id, m)
         }
-        setEngagement(map)
+        setEngagementMap(map)
+        setSummary(data.summary || { total: 0, active: 0, moderate: 0, low: 0 })
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : '載入投資人資料失敗')
@@ -55,14 +64,11 @@ export default function InvestorsAdminPage() {
     }
   }
 
-  useEffect(() => {
-    loadData()
-  }, [])
+  useEffect(() => { loadData() }, [])
 
-  // Merge engagement data into members
   const enriched = members.map(m => ({
     ...m,
-    ...(engagement.get(m.id) || {}),
+    ...(engagementMap.get(m.id) || {}),
   }))
 
   const filtered = filter === 'all'
@@ -70,10 +76,7 @@ export default function InvestorsAdminPage() {
     : enriched.filter(m => m.engagement_level === filter)
 
   if (loading) return <div className="h-96 bg-gray-200 rounded-xl animate-pulse" />
-
-  if (error) {
-    return <ErrorState message={error} onRetry={() => { setError(null); setLoading(true); loadData() }} />
-  }
+  if (error) return <ErrorState message={error} onRetry={() => { setError(null); setLoading(true); loadData() }} />
 
   return (
     <div className="space-y-6">
@@ -82,13 +85,30 @@ export default function InvestorsAdminPage() {
         <span className="text-sm text-gray-500">{members.length} 位天使會員</span>
       </div>
 
-      {/* Filter */}
+      {/* Engagement Dashboard */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Ring Chart */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col items-center justify-center">
+          <EngagementRing active={summary.active} moderate={summary.moderate} low={summary.low} />
+          <div className="text-xs text-gray-500 mt-3">會員活躍度分佈</div>
+        </div>
+
+        {/* Stat cards */}
+        <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <EngagementStat label="總會員" value={summary.total || members.length} color="text-gray-900" bgColor="bg-gray-50" />
+          <EngagementStat label="活躍" value={summary.active} color="text-emerald-700" bgColor="bg-emerald-50" onClick={() => setFilter(filter === 'active' ? 'all' : 'active')} active={filter === 'active'} />
+          <EngagementStat label="中度參與" value={summary.moderate} color="text-amber-700" bgColor="bg-amber-50" onClick={() => setFilter(filter === 'moderate' ? 'all' : 'moderate')} active={filter === 'moderate'} />
+          <EngagementStat label="低參與" value={summary.low} color="text-red-700" bgColor="bg-red-50" onClick={() => setFilter(filter === 'low' ? 'all' : 'low')} active={filter === 'low'} />
+        </div>
+      </div>
+
+      {/* Filter pills */}
       <div className="flex gap-2">
         {[
           { key: 'all', label: '全部' },
-          { key: 'active', label: '活躍', color: 'text-green-600' },
-          { key: 'moderate', label: '中度', color: 'text-yellow-600' },
-          { key: 'low', label: '低參與', color: 'text-red-600' },
+          { key: 'active', label: '活躍' },
+          { key: 'moderate', label: '中度' },
+          { key: 'low', label: '低參與' },
         ].map(f => (
           <button
             key={f.key}
@@ -97,7 +117,7 @@ export default function InvestorsAdminPage() {
               filter === f.key ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
-            {f.label}
+            {f.label} {f.key !== 'all' && <span className="ml-1 opacity-70">({f.key === 'active' ? summary.active : f.key === 'moderate' ? summary.moderate : summary.low})</span>}
           </button>
         ))}
       </div>
@@ -133,8 +153,12 @@ export default function InvestorsAdminPage() {
                       </span>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-center">{m.card_response_rate != null ? `${m.card_response_rate}%` : '-'}</td>
-                  <td className="px-4 py-3 text-center">{m.vote_participation_rate != null ? `${m.vote_participation_rate}%` : '-'}</td>
+                  <td className="px-4 py-3 text-center">
+                    {m.card_response_rate != null ? <MiniBar value={m.card_response_rate} /> : '-'}
+                  </td>
+                  <td className="px-4 py-3 text-center">
+                    {m.vote_participation_rate != null ? <MiniBar value={m.vote_participation_rate} /> : '-'}
+                  </td>
                   <td className="px-4 py-3 text-center">{m.articles_read ?? '-'}</td>
                   <td className="px-4 py-3 text-center">
                     {m.engagement_level && (
@@ -149,10 +173,111 @@ export default function InvestorsAdminPage() {
                   </td>
                 </tr>
               ))}
+              {filtered.length === 0 && (
+                <tr>
+                  <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
+                    沒有符合條件的會員
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
       </div>
+    </div>
+  )
+}
+
+// ─── Engagement Ring Chart (SVG) ──────────────────────
+
+function EngagementRing({ active, moderate, low }: { active: number; moderate: number; low: number }) {
+  const total = active + moderate + low
+  if (total === 0) {
+    return (
+      <div className="w-32 h-32 flex items-center justify-center">
+        <span className="text-sm text-gray-400">無資料</span>
+      </div>
+    )
+  }
+
+  const r = 52
+  const circumference = 2 * Math.PI * r
+  const activeArc = (active / total) * circumference
+  const moderateArc = (moderate / total) * circumference
+  const lowArc = (low / total) * circumference
+
+  const activeOffset = 0
+  const moderateOffset = activeArc
+  const lowOffset = activeArc + moderateArc
+
+  return (
+    <div className="relative w-32 h-32">
+      <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
+        {/* Active — green */}
+        <circle
+          cx="60" cy="60" r={r}
+          fill="none" stroke="#10b981" strokeWidth="12"
+          strokeDasharray={`${activeArc} ${circumference - activeArc}`}
+          strokeDashoffset={-activeOffset}
+          strokeLinecap="round"
+          className="transition-all duration-700"
+        />
+        {/* Moderate — amber */}
+        <circle
+          cx="60" cy="60" r={r}
+          fill="none" stroke="#f59e0b" strokeWidth="12"
+          strokeDasharray={`${moderateArc} ${circumference - moderateArc}`}
+          strokeDashoffset={-moderateOffset}
+          strokeLinecap="round"
+          className="transition-all duration-700"
+        />
+        {/* Low — red */}
+        <circle
+          cx="60" cy="60" r={r}
+          fill="none" stroke="#ef4444" strokeWidth="12"
+          strokeDasharray={`${lowArc} ${circumference - lowArc}`}
+          strokeDashoffset={-lowOffset}
+          strokeLinecap="round"
+          className="transition-all duration-700"
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="text-2xl font-extrabold text-gray-900">{total}</span>
+        <span className="text-[10px] text-gray-500">會員</span>
+      </div>
+    </div>
+  )
+}
+
+// ─── Engagement Stat Card ─────────────────────────────
+
+function EngagementStat({ label, value, color, bgColor, onClick, active }: {
+  label: string; value: number; color: string; bgColor: string
+  onClick?: () => void; active?: boolean
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`rounded-xl p-4 text-center transition-all ${bgColor} ${
+        active ? 'ring-2 ring-blue-500' : ''
+      } ${onClick ? 'cursor-pointer hover:shadow-md' : ''}`}
+    >
+      <div className={`text-2xl font-extrabold tabular-nums ${color}`}>{value}</div>
+      <div className="text-xs text-gray-500 mt-1">{label}</div>
+    </button>
+  )
+}
+
+// ─── Mini Progress Bar ────────────────────────────────
+
+function MiniBar({ value }: { value: number }) {
+  const color = value >= 70 ? 'bg-emerald-400' : value >= 40 ? 'bg-amber-400' : 'bg-red-400'
+  return (
+    <div className="flex items-center gap-2 justify-center">
+      <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+        <div className={`h-full rounded-full ${color}`} style={{ width: `${Math.min(value, 100)}%` }} />
+      </div>
+      <span className="text-xs tabular-nums">{value}%</span>
     </div>
   )
 }

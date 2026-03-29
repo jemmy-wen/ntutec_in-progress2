@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
     // Fetch pipeline startups (pip_startups is a view with name_zh, pipeline_stage as int)
     const { data: startups, error } = await supabase
       .from('pip_startups')
-      .select('id, name_zh, sector, pipeline_stage, current_gate, tier, track, status, updated_at, notes')
+      .select('id, name_zh, name_en, sector, pipeline_stage, current_gate, tier, track, status, updated_at, notes, tax_id, founded_year, capital_paid, gate0_score, gate1_score, website, observation_pool, observation_reason')
       .order('updated_at', { ascending: false })
 
     if (error) {
@@ -63,11 +63,20 @@ export async function GET(req: NextRequest) {
     const mapped = (startups || []).map(s => ({
       id: s.id,
       name: s.name_zh || '',
+      name_en: s.name_en || '',
       sector: s.sector || '',
       stage: mapStage(s),
       tier: s.tier || 'C',
       updated_at: s.updated_at,
       note: s.notes,
+      tax_id: s.tax_id || null,
+      founded_year: s.founded_year || null,
+      capital_paid: s.capital_paid || null,
+      gate0_score: s.gate0_score || null,
+      gate1_score: s.gate1_score || null,
+      website: s.website || null,
+      observation_pool: s.observation_pool || false,
+      observation_reason: s.observation_reason || null,
     }))
 
     return NextResponse.json({ startups: mapped })
