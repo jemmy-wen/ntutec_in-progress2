@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 interface LearningItem {
   id: string
@@ -22,20 +23,33 @@ export default function LearnPage() {
   const [progress, setProgress] = useState<LearningItem[]>([])
   const [filter, setFilter] = useState('all')
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  useEffect(() => {
-    async function load() {
+  const load = useCallback(async () => {
+    try {
       const res = await fetch('/api/learning')
       if (res.ok) {
         const data = await res.json()
         setProgress(data.progress || [])
       }
       setLoading(false)
+    } catch {
+      setError(true)
+      setLoading(false)
     }
-    load()
   }, [])
 
+  useEffect(() => { load() }, [load])
+
   const filtered = filter === 'all' ? progress : progress.filter(p => p.content_type === filter)
+
+  const allStatsZero = CONTENT_CATEGORIES.slice(1).every(
+    cat => progress.filter(p => p.content_type === cat.key).length === 0
+  )
+
+  if (error) {
+    return <ErrorState message="載入失敗" onRetry={() => { setError(false); setLoading(true); load() }} />
+  }
 
   if (loading) {
     return <div className="h-96 bg-gray-200 rounded-xl animate-pulse" />
@@ -45,18 +59,20 @@ export default function LearnPage() {
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">投資學習中心</h1>
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {CONTENT_CATEGORIES.slice(1).map(cat => {
-          const count = progress.filter(p => p.content_type === cat.key).length
-          return (
-            <div key={cat.key} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">{count}</div>
-              <div className="text-sm text-gray-500">{cat.label}</div>
-            </div>
-          )
-        })}
-      </div>
+      {/* Stats — hidden when all zero */}
+      {!allStatsZero && (
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {CONTENT_CATEGORIES.slice(1).map(cat => {
+            const count = progress.filter(p => p.content_type === cat.key).length
+            return (
+              <div key={cat.key} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
+                <div className="text-2xl font-bold text-blue-600">{count}</div>
+                <div className="text-sm text-gray-500">{cat.label}</div>
+              </div>
+            )
+          })}
+        </div>
+      )}
 
       {/* Filter tabs */}
       <div className="flex gap-2 overflow-x-auto">

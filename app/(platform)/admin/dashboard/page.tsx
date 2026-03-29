@@ -1,7 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { STATUS_LABELS, STATUS_COLORS, type MeetingCycleStatus } from '@/lib/utils/state-machine'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 interface DashboardStats {
   activeMeeting: { id: string; status: string; meeting_date: string } | null
@@ -9,36 +11,52 @@ interface DashboardStats {
   engagementSummary: { active: number; moderate: number; low: number }
 }
 
+function formatCycleId(id: string): string {
+  const match = id.match(/^(\d{4})-(0[1-9]|1[0-2])$/)
+  if (match) return `${match[1]} 年 ${parseInt(match[2])} 月`
+  return id
+}
+
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function load() {
-      const [meetingsRes, membersRes, engagementRes] = await Promise.all([
-        fetch('/api/meetings'),
-        fetch('/api/members'),
-        fetch('/api/engagement'),
-      ])
+      try {
+        const [meetingsRes, membersRes, engagementRes] = await Promise.all([
+          fetch('/api/meetings'),
+          fetch('/api/members'),
+          fetch('/api/engagement'),
+        ])
 
-      const meetings = meetingsRes.ok ? (await meetingsRes.json()).meetings : []
-      const members = membersRes.ok ? (await membersRes.json()).members : []
-      const engagement = engagementRes.ok ? (await engagementRes.json()).summary : { active: 0, moderate: 0, low: 0 }
+        const meetings = meetingsRes.ok ? (await meetingsRes.json()).meetings : []
+        const members = membersRes.ok ? (await membersRes.json()).members : []
+        const engagement = engagementRes.ok ? (await engagementRes.json()).summary : { active: 0, moderate: 0, low: 0 }
 
-      const active = meetings.find((m: { status: string }) => m.status !== 'closed') || null
+        const active = meetings.find((m: { status: string }) => m.status !== 'closed') || null
 
-      setStats({
-        activeMeeting: active,
-        memberCount: members.length,
-        engagementSummary: engagement,
-      })
-      setLoading(false)
+        setStats({
+          activeMeeting: active,
+          memberCount: members.length,
+          engagementSummary: engagement,
+        })
+      } catch (err) {
+        setError(err instanceof Error ? err.message : '載入儀表板資料失敗')
+      } finally {
+        setLoading(false)
+      }
     }
     load()
   }, [])
 
   if (loading) {
     return <div className="space-y-4"><div className="h-32 bg-gray-200 rounded-xl animate-pulse" /><div className="h-64 bg-gray-200 rounded-xl animate-pulse" /></div>
+  }
+
+  if (error) {
+    return <ErrorState message={error} onRetry={() => { setError(null); setLoading(true); location.reload() }} />
   }
 
   return (
@@ -64,22 +82,22 @@ export default function AdminDashboard() {
               {STATUS_LABELS[stats.activeMeeting.status as MeetingCycleStatus] || stats.activeMeeting.status}
             </span>
           </div>
-          <p className="text-gray-600">{stats.activeMeeting.id} — {new Date(stats.activeMeeting.meeting_date).toLocaleDateString('zh-TW')}</p>
+          <p className="text-gray-600">{formatCycleId(stats.activeMeeting.id)} — {new Date(stats.activeMeeting.meeting_date).toLocaleDateString('zh-TW')}</p>
           <div className="mt-4 flex gap-3">
-            <a href="/admin/meetings" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+            <Link href="/admin/meetings" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
               管理月會 →
-            </a>
-            <a href="/admin/investors" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+            </Link>
+            <Link href="/admin/investors" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
               會員管理 →
-            </a>
+            </Link>
           </div>
         </div>
       ) : (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
           <p className="text-gray-500 mb-4">目前沒有進行中的月會</p>
-          <a href="/admin/meetings" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
+          <Link href="/admin/meetings" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
             建立新月會
-          </a>
+          </Link>
         </div>
       )}
 
@@ -104,9 +122,9 @@ function StatCard({ label, value, color }: { label: string; value: number; color
 
 function QuickLink({ href, title, desc }: { href: string; title: string; desc: string }) {
   return (
-    <a href={href} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 transition-colors">
+    <Link href={href} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 transition-colors block">
       <div className="font-semibold mb-1">{title}</div>
       <div className="text-sm text-gray-500">{desc}</div>
-    </a>
+    </Link>
   )
 }

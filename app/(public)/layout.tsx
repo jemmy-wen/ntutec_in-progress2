@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import PublicHeader from '@/components/shared/PublicHeader'
 
 /**
  * Public layout — shared header/footer for unauthenticated pages.
@@ -19,57 +20,11 @@ export const metadata: Metadata = {
   },
 }
 
-const NAV_LINKS = [
-  { label: '關於我們', href: '/about' },
-  { label: '輔導計畫', href: '/programs' },
-  { label: '新創團隊', href: '/startups' },
-  { label: '天使俱樂部', href: '/angel' },
-  { label: '業師陣容', href: '/mentors' },
-  { label: '活動', href: '/events' },
-  { label: '聯絡', href: '/contact' },
-]
-
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-gray-900">NTU TEC</span>
-              <span className="text-sm text-gray-500 hidden sm:inline">台大創創中心</span>
-            </Link>
-
-            <nav className="hidden md:flex items-center gap-6">
-              {NAV_LINKS.map(link => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-3">
-              <Link
-                href="/login"
-                className="text-sm text-gray-600 hover:text-gray-900"
-              >
-                登入
-              </Link>
-              <Link
-                href="/contact"
-                className="hidden sm:inline-block px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                聯絡我們
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      <PublicHeader />
 
       {/* Main */}
       <main className="flex-1">
@@ -110,7 +65,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
               <ul className="space-y-2 text-sm">
                 <li>台北市大安區羅斯福路四段一號</li>
                 <li>台大水源校區卓越研究大樓</li>
-                <li>tec@ntu.edu.tw</li>
+                <li><a href="mailto:tec@ntu.edu.tw" className="hover:text-white transition-colors">tec@ntu.edu.tw</a></li>
               </ul>
             </div>
           </div>

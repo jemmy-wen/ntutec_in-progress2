@@ -30,8 +30,8 @@ export default function StartupResourcesPage() {
         />
       </div>
 
-      <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-sm text-yellow-700">
-        資源中心內容將由 Ghost CMS 管理，完整功能於 CMS 整合後上線。
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-700">
+        更多資源內容持續擴充中，敬請期待。
       </div>
     </div>
   )
@@ -48,8 +48,9 @@ function ResourceCard({ icon, title, description, items }: {
       <ul className="space-y-2">
         {items.map(item => (
           <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
-            <span className="w-1.5 h-1.5 bg-gray-300 rounded-full" />
-            {item}
+            <span className="w-1.5 h-1.5 bg-gray-300 rounded-full flex-shrink-0" />
+            <span>{item}</span>
+            <span className="ml-auto px-2 py-0.5 bg-gray-100 rounded text-xs text-gray-400 flex-shrink-0">即將開放</span>
           </li>
         ))}
       </ul>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 /**
  * Admin Pipeline — Kanban-style view for startup pipeline management.
@@ -37,6 +38,7 @@ const STAGES: PipelineStage[] = ['observation', 'gate0', 'gate1', 'gate2', 'pitc
 export default function AdminPipelinePage() {
   const [startups, setStartups] = useState<PipelineStartup[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [viewMode, setViewMode] = useState<'kanban' | 'table'>('kanban')
   const [filterStage, setFilterStage] = useState<PipelineStage | 'all'>('all')
 
@@ -47,8 +49,11 @@ export default function AdminPipelinePage() {
         const data = await res.json()
         setStartups(data.startups || [])
       }
-    } catch { /* ignore */ }
-    setLoading(false)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '載入 Pipeline 資料失敗')
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
   useEffect(() => { loadPipeline() }, [loadPipeline])
@@ -73,6 +78,10 @@ export default function AdminPipelinePage() {
         </div>
       </div>
     )
+  }
+
+  if (error) {
+    return <ErrorState message={error} onRetry={() => { setError(null); setLoading(true); loadPipeline() }} />
   }
 
   return (
@@ -101,7 +110,7 @@ export default function AdminPipelinePage() {
                 viewMode === 'kanban' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
-              Kanban
+              看板
             </button>
             <button
               onClick={() => setViewMode('table')}
@@ -109,7 +118,7 @@ export default function AdminPipelinePage() {
                 viewMode === 'table' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
-              Table
+              列表
             </button>
           </div>
         </div>

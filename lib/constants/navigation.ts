@@ -13,7 +13,8 @@ export const ANGEL_NAV: NavItem[] = [
   { label: '瀏覽新創', href: '/angel/portal/cards' },
   { label: '投資意向', href: '/angel/portal/vote' },
   { label: '學習中心', href: '/angel/portal/learn' },
-  { label: 'Digest', href: '/angel/portal/digest' },
+  { label: '投資情報', href: '/angel/portal/digest' },
+  { label: '本月 Pipeline', href: '/angel/portal/pipeline' },
   { label: '投後追蹤', href: '/angel/portal/portfolio' },
   { label: '個人偏好', href: '/angel/portal/profile' },
 ]

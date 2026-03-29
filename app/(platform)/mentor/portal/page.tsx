@@ -3,10 +3,24 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import CycleProgressBar, { MENTOR_STAGES } from '@/components/shared/CycleProgressBar'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 interface Cycle {
   id: string
   status: string
+}
+
+const STATUS_LABELS: Record<string, string> = {
+  setup: '設定中',
+  mentor_submit: '業師提交',
+  supply_review: '供給檢視',
+  team_submit: '團隊填志願',
+  mentor_review: '業師篩選',
+  matching: '配對中',
+  admin_review: '管理審核',
+  round2: '第二輪',
+  finalized: '已定案',
+  feedback: '回饋中',
 }
 
 const PHASE_ACTIONS: Record<string, { label: string; href: string; description: string }> = {
@@ -19,21 +33,38 @@ const PHASE_ACTIONS: Record<string, { label: string; href: string; description: 
 export default function MentorHome() {
   const [cycles, setCycles] = useState<Cycle[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const loadCycles = useCallback(async () => {
+    setError(null)
     try {
       const res = await fetch('/api/mentor/cycles')
-      if (res.ok) {
-        const data = await res.json()
-        setCycles(Array.isArray(data) ? data : data.cycles || [])
+      if (!res.ok) {
+        throw new Error(`載入週期資料失敗（${res.status}）`)
       }
-    } catch { /* ignore */ }
-    setLoading(false)
+      const data = await res.json()
+      setCycles(Array.isArray(data) ? data : data.cycles || [])
+    } catch (err) {
+      const message = err instanceof Error ? err.message : '載入週期資料時發生未知錯誤'
+      setError(message)
+      console.error('Failed to load cycles:', err)
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
   useEffect(() => { loadCycles() }, [loadCycles])
 
   if (loading) return <div className="animate-pulse space-y-4"><div className="h-32 bg-gray-200 rounded-xl" /></div>
+
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <h1 className="text-2xl font-bold">業師首頁</h1>
+        <ErrorState message={error} onRetry={loadCycles} />
+      </div>
+    )
+  }
 
   const activeCycle = cycles.find(c => c.status !== 'setup') || cycles[0]
   const action = activeCycle ? PHASE_ACTIONS[activeCycle.status] : null
@@ -51,7 +82,7 @@ export default function MentorHome() {
           <div className="flex items-center gap-3 mb-3">
             <span className="text-lg font-semibold">{activeCycle.id}</span>
             <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
-              {activeCycle.status}
+              {STATUS_LABELS[activeCycle.status] || activeCycle.status}
             </span>
           </div>
 
@@ -76,7 +107,7 @@ export default function MentorHome() {
       )}
 
       {/* Quick links */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Link href="/mentor/portal/slots" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 transition-colors">
           <div className="font-semibold mb-1">我的時段</div>
           <div className="text-sm text-gray-500">管理可用時段與個人資料</div>

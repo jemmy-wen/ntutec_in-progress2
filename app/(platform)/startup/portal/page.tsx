@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 /**
  * Startup Portal Home — Dashboard for incubated/fundraising startups.
@@ -19,15 +20,22 @@ interface StartupProfile {
 export default function StartupHome() {
   const [profile, setProfile] = useState<StartupProfile | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   const loadProfile = useCallback(async () => {
+    setError(false)
+    setLoading(true)
     try {
       const res = await fetch('/api/startup/profile')
       if (res.ok) {
         const data = await res.json()
         setProfile(data.profile)
+      } else {
+        setError(true)
       }
-    } catch { /* ignore */ }
+    } catch {
+      setError(true)
+    }
     setLoading(false)
   }, [])
 
@@ -35,6 +43,10 @@ export default function StartupHome() {
 
   if (loading) {
     return <div className="animate-pulse space-y-4"><div className="h-32 bg-gray-200 rounded-xl" /></div>
+  }
+
+  if (error) {
+    return <ErrorState message="無法載入團隊資料，請稍後再試" onRetry={loadProfile} />
   }
 
   return (
@@ -71,20 +83,20 @@ export default function StartupHome() {
       )}
 
       {/* Quick links */}
-      <div className="grid grid-cols-2 gap-4">
-        <Link href="/startup/portal/clinic" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 transition-colors">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <Link href="/startup/portal/clinic" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-colors">
           <div className="font-semibold mb-1">業師健診</div>
           <div className="text-sm text-gray-500">預約健診、查看配對結果</div>
         </Link>
-        <Link href="/startup/portal/profile" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 transition-colors">
+        <Link href="/startup/portal/profile" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-colors">
           <div className="font-semibold mb-1">團隊資料</div>
           <div className="text-sm text-gray-500">編輯團隊介紹與募資資訊</div>
         </Link>
-        <Link href="/startup/portal/events" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-green-300 transition-colors">
+        <Link href="/startup/portal/events" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-green-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 transition-colors">
           <div className="font-semibold mb-1">活動報名</div>
           <div className="text-sm text-gray-500">查看與報名創創活動</div>
         </Link>
-        <Link href="/startup/portal/resources" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-purple-300 transition-colors">
+        <Link href="/startup/portal/resources" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-purple-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 transition-colors">
           <div className="font-semibold mb-1">資源中心</div>
           <div className="text-sm text-gray-500">輔導資源與範本下載</div>
         </Link>

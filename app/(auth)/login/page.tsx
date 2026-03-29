@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { useSearchParams } from 'next/navigation'
 
@@ -15,11 +16,13 @@ export default function LoginPage() {
   const redirectTo = searchParams.get('redirect') || '/'
 
   useEffect(() => {
-    // Debug: check if env vars are available
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    if (!url || !key) {
-      setDebugInfo(`ENV missing: URL=${url ? 'OK' : 'EMPTY'}, KEY=${key ? 'OK' : 'EMPTY'}`)
+    // Debug: check if env vars are available (dev only)
+    if (process.env.NODE_ENV === 'development') {
+      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      if (!url || !key) {
+        setDebugInfo(`ENV missing: URL=${url ? 'OK' : 'EMPTY'}, KEY=${key ? 'OK' : 'EMPTY'}`)
+      }
     }
   }, [])
 
@@ -66,11 +69,14 @@ export default function LoginPage() {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center">
-          <div className="text-4xl mb-4">📧</div>
+          <div className="text-4xl mb-4">&#x1F4E7;</div>
           <h1 className="text-2xl font-bold mb-2">驗證信已寄出</h1>
           <p className="text-gray-600">
             請查看 <span className="font-medium">{email}</span> 的收件匣，點擊連結完成登入。
           </p>
+          <Link href="/" className="inline-block mt-6 text-sm text-blue-600 hover:text-blue-700 transition-colors">
+            &larr; 返回首頁
+          </Link>
         </div>
       </main>
     )
@@ -82,7 +88,7 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold mb-2">登入 NTUTEC Platform</h1>
         <p className="text-gray-600 mb-6">台大創創中心統一平台</p>
 
-        {debugInfo && (
+        {process.env.NODE_ENV === 'development' && debugInfo && (
           <div className="text-xs text-orange-600 bg-orange-50 rounded-lg px-3 py-2 mb-4">
             {debugInfo}
           </div>
@@ -121,7 +127,7 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
+              placeholder="請輸入 Email"
               className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             />
           </div>
@@ -140,6 +146,12 @@ export default function LoginPage() {
             {loading ? '寄送中...' : '以 Email 登入'}
           </button>
         </form>
+
+        <div className="mt-6 text-center">
+          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+            &larr; 返回首頁
+          </Link>
+        </div>
       </div>
     </main>
   )

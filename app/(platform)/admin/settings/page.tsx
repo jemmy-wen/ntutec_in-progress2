@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 /**
  * Admin Settings page — platform-level configuration.
@@ -47,10 +47,16 @@ export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<PlatformSettings>(DEFAULT_SETTINGS)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [isDirty, setIsDirty] = useState(false)
   const [activeTab, setActiveTab] = useState<'notifications' | 'meeting' | 'integrations' | 'roles'>('notifications')
+  const initialSettings = useRef(DEFAULT_SETTINGS)
 
   function update<K extends keyof PlatformSettings>(key: K, value: PlatformSettings[K]) {
-    setSettings(prev => ({ ...prev, [key]: value }))
+    setSettings(prev => {
+      const next = { ...prev, [key]: value }
+      setIsDirty(JSON.stringify(next) !== JSON.stringify(initialSettings.current))
+      return next
+    })
     setSaved(false)
   }
 
@@ -60,6 +66,8 @@ export default function AdminSettingsPage() {
     await new Promise(r => setTimeout(r, 600))
     setSaving(false)
     setSaved(true)
+    setIsDirty(false)
+    initialSettings.current = { ...settings }
     setTimeout(() => setSaved(false), 3000)
   }
 
@@ -72,11 +80,16 @@ export default function AdminSettingsPage() {
 
   return (
     <div className="space-y-6">
+      {/* Development banner */}
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg px-4 py-3 text-sm text-yellow-800">
+        系統設定功能開發中，目前顯示為預設值
+      </div>
+
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">系統設定</h1>
         <button
           onClick={handleSave}
-          disabled={saving}
+          disabled={saving || !isDirty}
           className="px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors flex items-center gap-2"
         >
           {saving ? '儲存中...' : saved ? '已儲存' : '儲存設定'}
@@ -259,7 +272,7 @@ function ToggleField({ label, description, checked, onChange }: {
         }`}
       >
         <span className={`block w-5 h-5 bg-white rounded-full shadow-sm absolute top-0.5 transition-transform ${
-          checked ? 'translate-x-5.5' : 'translate-x-0.5'
+          checked ? 'translate-x-[22px]' : 'translate-x-[2px]'
         }`} />
       </button>
     </div>

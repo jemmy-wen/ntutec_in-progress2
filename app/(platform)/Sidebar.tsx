@@ -10,6 +10,12 @@ interface SidebarProps {
   userEmail: string
 }
 
+const ROLE_LABELS: Record<string, string> = {
+  admin: '管理員', staff_admin: '行政人員', staff_accelerator: '加速器同仁',
+  angel_member: '天使會員', mentor: '業師', team: '團隊',
+  startup_incubated: '育成團隊', startup_fundraising: '募資團隊',
+}
+
 export default function Sidebar({ roles, userEmail }: SidebarProps) {
   const pathname = usePathname()
 
@@ -72,10 +78,21 @@ export default function Sidebar({ roles, userEmail }: SidebarProps) {
         <div className="flex gap-1 mt-1 flex-wrap">
           {roles.map(role => (
             <span key={role} className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-              {role}
+              {ROLE_LABELS[role] || role}
             </span>
           ))}
         </div>
+        <button
+          onClick={async () => {
+            const { createClient } = await import('@/lib/supabase/client')
+            const supabase = createClient()
+            await supabase.auth.signOut()
+            window.location.href = '/login'
+          }}
+          className="w-full mt-3 text-sm text-red-600 hover:text-red-700 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
+        >
+          登出
+        </button>
       </div>
     </aside>
   )

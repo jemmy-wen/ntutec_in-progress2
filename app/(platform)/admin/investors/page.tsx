@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 interface MemberRow {
   id: string
@@ -15,14 +16,21 @@ interface MemberRow {
   engagement_level?: string
 }
 
+const TIER_LABELS: Record<string, string> = {
+  founding: '創始會員',
+  regular: '一般會員',
+  observer: '觀察員',
+}
+
 export default function InvestorsAdminPage() {
   const [members, setMembers] = useState<MemberRow[]>([])
   const [engagement, setEngagement] = useState<Map<string, MemberRow>>(new Map())
   const [filter, setFilter] = useState<string>('all')
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    async function load() {
+  async function loadData() {
+    try {
       const [membersRes, engagementRes] = await Promise.all([
         fetch('/api/members'),
         fetch('/api/engagement'),
@@ -40,9 +48,15 @@ export default function InvestorsAdminPage() {
         }
         setEngagement(map)
       }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '載入投資人資料失敗')
+    } finally {
       setLoading(false)
     }
-    load()
+  }
+
+  useEffect(() => {
+    loadData()
   }, [])
 
   // Merge engagement data into members
@@ -56,6 +70,10 @@ export default function InvestorsAdminPage() {
     : enriched.filter(m => m.engagement_level === filter)
 
   if (loading) return <div className="h-96 bg-gray-200 rounded-xl animate-pulse" />
+
+  if (error) {
+    return <ErrorState message={error} onRetry={() => { setError(null); setLoading(true); loadData() }} />
+  }
 
   return (
     <div className="space-y-6">
@@ -90,13 +108,13 @@ export default function InvestorsAdminPage() {
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">姓名</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">公司</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">等級</th>
-                <th className="text-center px-4 py-3 font-medium text-gray-500">卡片回應率</th>
-                <th className="text-center px-4 py-3 font-medium text-gray-500">投票參與率</th>
-                <th className="text-center px-4 py-3 font-medium text-gray-500">文章閱讀</th>
-                <th className="text-center px-4 py-3 font-medium text-gray-500">活躍度</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-700">姓名</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-700">公司</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-700">等級</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">卡片回應率</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">投票參與率</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">文章閱讀</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">活躍度</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -111,7 +129,7 @@ export default function InvestorsAdminPage() {
                         m.tier === 'regular' ? 'bg-blue-100 text-blue-700' :
                         'bg-gray-100 text-gray-600'
                       }`}>
-                        {m.tier}
+                        {TIER_LABELS[m.tier] || m.tier}
                       </span>
                     )}
                   </td>

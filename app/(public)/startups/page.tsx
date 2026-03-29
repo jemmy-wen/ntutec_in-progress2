@@ -22,8 +22,8 @@ export default function StartupsPublicPage() {
           <div className="text-5xl mb-4">🏢</div>
           <h2 className="text-xl font-bold mb-2">新創名錄即將上線</h2>
           <p className="text-gray-500 max-w-md mx-auto mb-6">
-            新創團隊資料將從 Supabase Pipeline 資料庫載入，
-            提供產業分類、發展階段、團隊介紹等完整資訊。
+            新創名錄資料整理中，敬請期待。<br />
+            上線後將提供產業分類、發展階段、團隊介紹等完整資訊。
           </p>
         </div>
 

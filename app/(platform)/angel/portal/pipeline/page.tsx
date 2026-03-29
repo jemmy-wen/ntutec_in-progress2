@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 interface Pitch {
   id: string
@@ -14,19 +15,32 @@ interface Pitch {
   }
 }
 
+const STAGE_LABELS: Record<number, string> = {
+  1: '初篩通過',
+  2: '深度評估',
+  3: '面審候選',
+  4: '已面審',
+  5: '決議中',
+}
+
+function formatMeetingMonth(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('zh-TW', { year: 'numeric', month: 'long' })
+}
+
 export default function PipelinePage() {
   const [pitches, setPitches] = useState<Pitch[]>([])
-  const [cycleId, setCycleId] = useState<string | null>(null)
+  const [cycleLabel, setCycleLabel] = useState<string>('')
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  useEffect(() => {
-    async function load() {
+  const load = useCallback(async () => {
+    try {
       const meetingsRes = await fetch('/api/meetings')
       if (!meetingsRes.ok) { setLoading(false); return }
       const { meetings } = await meetingsRes.json()
       const active = (meetings || []).find((m: { status: string }) => m.status !== 'closed')
       if (!active) { setLoading(false); return }
-      setCycleId(active.id)
+      setCycleLabel(formatMeetingMonth(active.meeting_date))
 
       const cardsRes = await fetch(`/api/cards?cycle_id=${active.id}`)
       if (cardsRes.ok) {
@@ -34,19 +48,31 @@ export default function PipelinePage() {
         setPitches(data.pitches || [])
       }
       setLoading(false)
+    } catch {
+      setError(true)
+      setLoading(false)
     }
-    load()
   }, [])
+
+  useEffect(() => { load() }, [load])
+
+  if (error) {
+    return <ErrorState message="載入失敗" onRetry={() => { setError(false); setLoading(true); load() }} />
+  }
 
   if (loading) return <div className="h-96 bg-gray-200 rounded-xl animate-pulse" />
 
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">本月 Pipeline</h1>
-      {cycleId && <p className="text-gray-500">{cycleId} 月會候選新創</p>}
+      {cycleLabel && <p className="text-gray-500">{cycleLabel}月會候選新創</p>}
 
       {pitches.length === 0 ? (
-        <div className="text-center py-16 text-gray-500">目前沒有候選新創</div>
+        <div className="text-center py-16">
+          <div className="text-5xl mb-4">📭</div>
+          <h2 className="text-xl font-bold mb-2">目前沒有候選新創</h2>
+          <p className="text-gray-500">新的候選新創進入 Pipeline 後會在此顯示</p>
+        </div>
       ) : (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 divide-y divide-gray-100">
           {pitches.map((pitch, i) => (
@@ -62,7 +88,7 @@ export default function PipelinePage() {
                 </div>
               </div>
               <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
-                Stage {pitch.startup.pipeline_stage}
+                {STAGE_LABELS[pitch.startup.pipeline_stage] || `Stage ${pitch.startup.pipeline_stage}`}
               </span>
             </div>
           ))}

@@ -1,7 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import Link from 'next/link'
 import { STATUS_LABELS, STATUS_COLORS, type MeetingCycleStatus } from '@/lib/utils/state-machine'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 interface Meeting {
   id: string
@@ -14,13 +16,18 @@ interface CardStats {
   responded: number
 }
 
+function formatMeetingMonth(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('zh-TW', { year: 'numeric', month: 'long' })
+}
+
 export default function UpcomingPage() {
   const [meeting, setMeeting] = useState<Meeting | null>(null)
   const [stats, setStats] = useState<CardStats>({ total: 0, responded: 0 })
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  useEffect(() => {
-    async function load() {
+  const load = useCallback(async () => {
+    try {
       const res = await fetch('/api/meetings')
       if (res.ok) {
         const data = await res.json()
@@ -29,7 +36,6 @@ export default function UpcomingPage() {
         )
         if (active) {
           setMeeting(active)
-          // Load card stats
           const cardsRes = await fetch(`/api/cards?cycle_id=${active.id}`)
           if (cardsRes.ok) {
             const cardsData = await cardsRes.json()
@@ -40,9 +46,17 @@ export default function UpcomingPage() {
         }
       }
       setLoading(false)
+    } catch {
+      setError(true)
+      setLoading(false)
     }
-    load()
   }, [])
+
+  useEffect(() => { load() }, [load])
+
+  if (error) {
+    return <ErrorState message="載入失敗" onRetry={() => { setError(false); setLoading(true); load() }} />
+  }
 
   if (loading) {
     return <div className="animate-pulse space-y-4"><div className="h-32 bg-gray-200 rounded-xl" /><div className="h-24 bg-gray-200 rounded-xl" /></div>
@@ -64,6 +78,7 @@ export default function UpcomingPage() {
   const meetingDate = new Date(meeting.meeting_date).toLocaleDateString('zh-TW', {
     year: 'numeric', month: 'long', day: 'numeric',
   })
+  const meetingMonth = formatMeetingMonth(meeting.meeting_date)
   const daysUntil = Math.ceil((new Date(meeting.meeting_date).getTime() - Date.now()) / 86400000)
 
   return (
@@ -74,7 +89,7 @@ export default function UpcomingPage() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-lg font-semibold">{meeting.id} 月會</h2>
+            <h2 className="text-lg font-semibold">{meetingMonth}月會</h2>
             <p className="text-gray-500">{meetingDate}</p>
           </div>
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColor}`}>
@@ -103,37 +118,37 @@ export default function UpcomingPage() {
       {/* Quick actions */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {(status === 'cards_ready' || status === 'vote_open') && (
-          <a
+          <Link
             href="/angel/portal/cards"
             className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 transition-colors"
           >
             <div className="text-lg font-semibold mb-1">瀏覽新創</div>
             <div className="text-sm text-gray-500">查看候選新創的 6 張資訊卡片</div>
-          </a>
+          </Link>
         )}
         {status === 'vote_open' && (
-          <a
+          <Link
             href="/angel/portal/vote"
             className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-purple-300 transition-colors"
           >
             <div className="text-lg font-semibold mb-1">投資意向</div>
             <div className="text-sm text-gray-500">確認投票（截止前必須完成）</div>
-          </a>
+          </Link>
         )}
-        <a
+        <Link
           href="/angel/portal/learn"
           className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-green-300 transition-colors"
         >
           <div className="text-lg font-semibold mb-1">學習中心</div>
           <div className="text-sm text-gray-500">產業觀察、投資知識、案例覆盤</div>
-        </a>
-        <a
+        </Link>
+        <Link
           href="/angel/portal/digest"
           className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-amber-300 transition-colors"
         >
           <div className="text-lg font-semibold mb-1">Angel Digest</div>
           <div className="text-sm text-gray-500">月度投資情報電子報</div>
-        </a>
+        </Link>
       </div>
     </div>
   )

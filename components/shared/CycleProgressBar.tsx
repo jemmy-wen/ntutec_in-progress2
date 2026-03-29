@@ -17,12 +17,13 @@ interface Props {
  * Pass different `stages` array for each module.
  */
 export default function CycleProgressBar({ stages, currentStatus, compact = false }: Props) {
-  const currentIndex = stages.findIndex(s => s.key === currentStatus)
+  const rawIndex = stages.findIndex(s => s.key === currentStatus)
+  const currentIndex = rawIndex === -1 ? 0 : rawIndex
 
   return (
     <div className="w-full bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6 mb-6 overflow-x-auto">
       <div className="text-sm text-gray-500 mb-3">
-        當前階段：<span className="font-semibold text-gray-900">{stages[currentIndex]?.label || currentStatus}</span>
+        當前階段：<span className="font-semibold text-gray-900">{stages[currentIndex]?.label || '未知階段'}</span>
       </div>
 
       <div className="flex items-center gap-0">

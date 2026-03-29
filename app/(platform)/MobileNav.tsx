@@ -86,6 +86,19 @@ export default function MobileNav({ roles }: MobileNavProps) {
                 </div>
               ))}
             </nav>
+            <div className="border-t border-gray-100 p-4">
+              <button
+                onClick={async () => {
+                  const { createClient } = await import('@/lib/supabase/client')
+                  const supabase = createClient()
+                  await supabase.auth.signOut()
+                  window.location.href = '/login'
+                }}
+                className="w-full text-sm text-red-600 hover:text-red-700 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
+              >
+                登出
+              </button>
+            </div>
           </div>
         </div>
       )}

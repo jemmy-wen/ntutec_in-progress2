@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 /**
  * Startup Clinic Page — Book mentor clinic sessions, view match results.
- * Integrates with P014 Mentor Matching system after migration.
  */
 
 interface ClinicSession {
@@ -19,20 +19,26 @@ interface ClinicSession {
 export default function StartupClinicPage() {
   const [sessions, setSessions] = useState<ClinicSession[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  useEffect(() => {
-    async function load() {
-      try {
-        const res = await fetch('/api/startup/clinic')
-        if (res.ok) {
-          const data = await res.json()
-          setSessions(data.sessions || [])
-        }
-      } catch { /* ignore */ }
-      setLoading(false)
+  async function load() {
+    setError(false)
+    setLoading(true)
+    try {
+      const res = await fetch('/api/startup/clinic')
+      if (res.ok) {
+        const data = await res.json()
+        setSessions(data.sessions || [])
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
     }
-    load()
-  }, [])
+    setLoading(false)
+  }
+
+  useEffect(() => { load() }, [])
 
   const statusConfig = {
     scheduled: { label: '已排定', color: 'bg-blue-100 text-blue-700' },
@@ -44,12 +50,20 @@ export default function StartupClinicPage() {
     return <div className="animate-pulse space-y-4"><div className="h-32 bg-gray-200 rounded-xl" /><div className="h-48 bg-gray-200 rounded-xl" /></div>
   }
 
+  if (error) {
+    return <ErrorState message="無法載入健診紀錄，請稍後再試" onRetry={load} />
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">業師健診</h1>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-          申請健診
+        <button
+          disabled
+          title="健診申請功能即將開放"
+          className="px-4 py-2 bg-gray-300 text-gray-500 rounded-lg text-sm font-medium cursor-not-allowed"
+        >
+          申請健診（即將開放）
         </button>
       </div>
 
@@ -77,10 +91,9 @@ export default function StartupClinicPage() {
       ) : (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
           <div className="text-4xl mb-3">🩺</div>
-          <h2 className="text-lg font-semibold mb-2">業師健診系統即將啟用</h2>
-          <p className="text-gray-500 text-sm">
-            健診預約功能將從 P014 Mentor Matching 系統遷入。
-            <br />您可在此申請健診、查看配對結果與健診紀錄。
+          <h2 className="text-lg font-semibold mb-2">尚無健診紀錄</h2>
+          <p className="text-gray-500 text-sm max-w-md mx-auto">
+            您可以透過申請健診預約業師一對一諮詢，配對結果與紀錄都會顯示在這裡。
           </p>
         </div>
       )}

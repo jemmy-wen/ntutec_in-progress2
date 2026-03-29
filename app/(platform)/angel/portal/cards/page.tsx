@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import StartupCardBrowser from '@/components/angel/StartupCardBrowser'
+import { ErrorState } from '@/components/shared/ErrorState'
 
 interface Pitch {
   id: string
@@ -18,25 +19,30 @@ interface Pitch {
   }
 }
 
+function formatMeetingMonth(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('zh-TW', { year: 'numeric', month: 'long' })
+}
+
 export default function CardsPage() {
   const [pitches, setPitches] = useState<Pitch[]>([])
   const [myResponses, setMyResponses] = useState<Record<string, string>>({})
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+  const [activeCycleLabel, setActiveCycleLabel] = useState<string>('')
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  useEffect(() => {
-    async function load() {
-      // Get active meeting cycle
+  const load = useCallback(async () => {
+    try {
       const meetingsRes = await fetch('/api/meetings')
       if (!meetingsRes.ok) { setLoading(false); return }
       const meetingsData = await meetingsRes.json()
       const active = (meetingsData.meetings || []).find(
-        (m: { status: string }) => m.status === 'cards_ready' || m.status === 'vote_open'
+        (m: { status: string; meeting_date: string }) => m.status === 'cards_ready' || m.status === 'vote_open'
       )
       if (!active) { setLoading(false); return }
       setActiveCycleId(active.id)
+      setActiveCycleLabel(formatMeetingMonth(active.meeting_date))
 
-      // Load cards
       const cardsRes = await fetch(`/api/cards?cycle_id=${active.id}`)
       if (cardsRes.ok) {
         const cardsData = await cardsRes.json()
@@ -44,9 +50,13 @@ export default function CardsPage() {
         setMyResponses(cardsData.myResponses || {})
       }
       setLoading(false)
+    } catch {
+      setError(true)
+      setLoading(false)
     }
-    load()
   }, [])
+
+  useEffect(() => { load() }, [load])
 
   const handleResponse = useCallback(async (
     startupId: string,
@@ -55,22 +65,30 @@ export default function CardsPage() {
   ) => {
     if (!activeCycleId) return
 
-    const res = await fetch('/api/cards', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        startup_id: startupId,
-        meeting_cycle: activeCycleId,
-        response,
-        interest_reason: reason,
-        cards_viewed: 6,
-      }),
-    })
+    try {
+      const res = await fetch('/api/cards', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          startup_id: startupId,
+          meeting_cycle: activeCycleId,
+          response,
+          interest_reason: reason,
+          cards_viewed: 6,
+        }),
+      })
 
-    if (res.ok) {
-      setMyResponses(prev => ({ ...prev, [startupId]: response }))
+      if (res.ok) {
+        setMyResponses(prev => ({ ...prev, [startupId]: response }))
+      }
+    } catch {
+      // Response submission failed silently — user can retry
     }
   }, [activeCycleId])
+
+  if (error) {
+    return <ErrorState message="載入失敗" onRetry={() => { setError(false); setLoading(true); load() }} />
+  }
 
   if (loading) {
     return (
@@ -96,7 +114,7 @@ export default function CardsPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">候選新創瀏覽</h1>
         <span className="text-sm text-gray-500">
-          {activeCycleId} 月會 | {Object.keys(myResponses).length}/{pitches.length} 已回應
+          {activeCycleLabel}月會 | {Object.keys(myResponses).length}/{pitches.length} 已回應
         </span>
       </div>
 

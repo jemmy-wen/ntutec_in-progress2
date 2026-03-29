@@ -1,51 +1,18 @@
-'use client'
-
-import { useState } from 'react'
+import { Suspense } from 'react'
+import ContactForm from './ContactForm'
 
 /**
  * Contact page — inquiry form + contact info.
- * Form submissions go to /api/contact (→ sends email to tec@ntu.edu.tw).
+ * Server Component: exports metadata properly.
+ * Form logic is in ContactForm (client component).
  */
 
-const INQUIRY_TYPES = [
-  { value: 'startup', label: '新創團隊申請' },
-  { value: 'angel', label: '天使俱樂部加入' },
-  { value: 'mentor', label: '成為業師' },
-  { value: 'partnership', label: '合作洽談' },
-  { value: 'media', label: '媒體採訪' },
-  { value: 'other', label: '其他' },
-]
+export const metadata = {
+  title: '聯絡我們 | 台大創創中心',
+  description: '有任何問題或合作想法，歡迎與台大創創中心聯繫。',
+}
 
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    type: 'startup',
-    message: '',
-  })
-  const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-
-  function update(key: string, value: string) {
-    setForm(prev => ({ ...prev, [key]: value }))
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setSubmitting(true)
-    try {
-      await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      setSubmitted(true)
-    } catch { /* ignore */ }
-    setSubmitting(false)
-  }
-
   return (
     <div>
       {/* Hero */}
@@ -62,88 +29,9 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Form */}
           <div className="lg:col-span-2">
-            {submitted ? (
-              <div className="bg-green-50 rounded-xl border border-green-200 p-8 text-center">
-                <div className="text-4xl mb-3">✅</div>
-                <h2 className="text-lg font-bold text-green-800 mb-2">已收到您的訊息</h2>
-                <p className="text-sm text-green-600">我們會在 2-3 個工作天內回覆您。</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">姓名 *</label>
-                    <input
-                      required
-                      value={form.name}
-                      onChange={e => update('name', e.target.value)}
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                    <input
-                      required
-                      type="email"
-                      value={form.email}
-                      onChange={e => update('email', e.target.value)}
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">電話</label>
-                    <input
-                      value={form.phone}
-                      onChange={e => update('phone', e.target.value)}
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">公司/團隊</label>
-                    <input
-                      value={form.company}
-                      onChange={e => update('company', e.target.value)}
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">詢問類型</label>
-                  <select
-                    value={form.type}
-                    onChange={e => update('type', e.target.value)}
-                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                  >
-                    {INQUIRY_TYPES.map(t => (
-                      <option key={t.value} value={t.value}>{t.label}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">訊息 *</label>
-                  <textarea
-                    required
-                    value={form.message}
-                    onChange={e => update('message', e.target.value)}
-                    rows={5}
-                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full px-5 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
-                >
-                  {submitting ? '送出中...' : '送出訊息'}
-                </button>
-              </form>
-            )}
+            <Suspense fallback={<div className="text-center py-8 text-gray-400">載入中...</div>}>
+              <ContactForm />
+            </Suspense>
           </div>
 
           {/* Contact info */}
@@ -157,7 +45,11 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <div className="font-medium text-gray-700">Email</div>
-                  <div className="text-gray-600">tec@ntu.edu.tw</div>
+                  <div className="text-gray-600">
+                    <a href="mailto:tec@ntu.edu.tw" className="text-blue-600 hover:text-blue-700 transition-colors">
+                      tec@ntu.edu.tw
+                    </a>
+                  </div>
                 </div>
                 <div>
                   <div className="font-medium text-gray-700">電話</div>
