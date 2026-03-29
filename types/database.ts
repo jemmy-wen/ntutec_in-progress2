@@ -99,6 +99,54 @@ export interface Database {
         Update: Partial<Omit<PipStartup, 'id' | 'created_at'>>
       }
 
+      // ─── Pipeline: Gate Evaluations ───
+      gates: {
+        Row: {
+          id: string
+          startup_id: string
+          gate_type: string          // 'gate0' | 'gate1' | 'gate2'
+          result: string | null
+          screening_result: string | null
+          evaluation_date: string | null
+          evaluator: string | null
+          notes: string | null
+          flags: string[] | null
+          fail_reasons: string[] | null
+          // Gate 1 dimension scores
+          sosv_market: number | null
+          sosv_solution: number | null
+          sosv_timing: number | null
+          sosv_team: number | null
+          sosv_traction: number | null
+          gate1_confidence: string | null
+          gate1_action: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          startup_id: string
+          gate_type: string
+          result?: string | null
+          screening_result?: string | null
+          evaluation_date?: string | null
+          evaluator?: string | null
+          notes?: string | null
+        }
+        Update: {
+          result?: string | null
+          screening_result?: string | null
+          evaluation_date?: string | null
+          notes?: string | null
+          sosv_market?: number | null
+          sosv_solution?: number | null
+          sosv_timing?: number | null
+          sosv_team?: number | null
+          sosv_traction?: number | null
+          gate1_confidence?: string | null
+          gate1_action?: string | null
+        }
+      }
+
       // ─── Pipeline: Meetings ───
       pip_meetings: {
         Row: {

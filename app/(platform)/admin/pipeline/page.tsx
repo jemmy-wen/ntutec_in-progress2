@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import { ErrorState } from '@/components/shared/ErrorState'
 
 /**
@@ -218,6 +219,7 @@ function KanbanView({ grouped }: { grouped: Record<PipelineStage, PipelineStartu
 
 function StartupCard({ startup }: { startup: PipelineStartup }) {
   const [showDetail, setShowDetail] = useState(false)
+  const router = useRouter()
 
   const tierColors: Record<string, string> = {
     S: 'bg-red-100 text-red-700',
@@ -228,9 +230,10 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
 
   return (
     <div
-      className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow cursor-pointer relative"
+      className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-pointer relative"
       onMouseEnter={() => setShowDetail(true)}
       onMouseLeave={() => setShowDetail(false)}
+      onClick={() => router.push(`/admin/pipeline/${startup.id}`)}
     >
       <div className="flex items-start justify-between mb-1">
         <div className="font-medium text-sm truncate flex-1">{startup.name}</div>
@@ -239,6 +242,24 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
         </span>
       </div>
       <div className="text-xs text-gray-500 mb-1">{startup.sector}</div>
+
+      {/* Gate score mini-bar */}
+      {startup.gate1_score != null && (
+        <div className="flex items-center gap-1.5 mb-1">
+          <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div
+              className={`h-full rounded-full ${
+                startup.gate1_score >= 40 ? 'bg-teal-500' :
+                startup.gate1_score >= 30 ? 'bg-amber-500' :
+                'bg-gray-400'
+              }`}
+              style={{ width: `${Math.min((startup.gate1_score / 50) * 100, 100)}%` }}
+            />
+          </div>
+          <span className="text-[10px] font-bold text-gray-500">{startup.gate1_score}</span>
+        </div>
+      )}
+
       {startup.note && (
         <div className="text-xs text-gray-400 truncate">{startup.note}</div>
       )}
@@ -263,7 +284,7 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
               <DetailRow label="Gate 0" value={`${startup.gate0_score} 分`} />
             )}
             {startup.gate1_score != null && (
-              <DetailRow label="Gate 1" value={`${startup.gate1_score} 分`} />
+              <DetailRow label="Gate 1" value={`${startup.gate1_score}/50`} />
             )}
           </div>
           {startup.observation_pool && startup.observation_reason && (
@@ -272,6 +293,9 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
               <span className="text-gray-500">{startup.observation_reason}</span>
             </div>
           )}
+          <div className="pt-1.5 border-t border-gray-100 text-blue-600 font-medium">
+            點擊查看詳情 &rarr;
+          </div>
         </div>
       )}
     </div>
@@ -288,6 +312,8 @@ function DetailRow({ label, value }: { label: string; value: string }) {
 }
 
 function TableView({ startups }: { startups: PipelineStartup[] }) {
+  const router = useRouter()
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       <table className="w-full text-sm">
@@ -297,12 +323,17 @@ function TableView({ startups }: { startups: PipelineStartup[] }) {
             <th className="text-left px-4 py-3 font-semibold text-gray-700">產業</th>
             <th className="text-left px-4 py-3 font-semibold text-gray-700">階段</th>
             <th className="text-left px-4 py-3 font-semibold text-gray-700">Tier</th>
+            <th className="text-left px-4 py-3 font-semibold text-gray-700">Gate 1</th>
             <th className="text-left px-4 py-3 font-semibold text-gray-700">更新日期</th>
           </tr>
         </thead>
         <tbody>
           {startups.map(s => (
-            <tr key={s.id} className="border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+            <tr
+              key={s.id}
+              className="border-b border-gray-100 hover:bg-blue-50 cursor-pointer transition-colors"
+              onClick={() => router.push(`/admin/pipeline/${s.id}`)}
+            >
               <td className="px-4 py-3 font-medium">{s.name}</td>
               <td className="px-4 py-3 text-gray-600">{s.sector}</td>
               <td className="px-4 py-3">
@@ -311,6 +342,15 @@ function TableView({ startups }: { startups: PipelineStartup[] }) {
                 </span>
               </td>
               <td className="px-4 py-3">{s.tier}</td>
+              <td className="px-4 py-3">
+                {s.gate1_score != null ? (
+                  <span className={`text-xs font-bold ${s.gate1_score >= 40 ? 'text-teal-600' : s.gate1_score >= 30 ? 'text-amber-600' : 'text-gray-500'}`}>
+                    {s.gate1_score}/50
+                  </span>
+                ) : (
+                  <span className="text-gray-300">—</span>
+                )}
+              </td>
               <td className="px-4 py-3 text-gray-500">{new Date(s.updated_at).toLocaleDateString('zh-TW')}</td>
             </tr>
           ))}

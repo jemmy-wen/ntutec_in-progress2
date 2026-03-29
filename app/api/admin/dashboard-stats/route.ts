@@ -76,6 +76,34 @@ export async function GET(req: NextRequest) {
       })
     }
 
+    // Gate 1 advance → ready for pitch scheduling
+    const gate1Advance = startups.filter(s => s.current_gate === 'gate1' && s.status === 'pass')
+    if (gate1Advance.length > 0) {
+      pendingActions.push({
+        type: 'gate1_advance',
+        label: 'Gate 1 通過待排月會',
+        count: gate1Advance.length,
+        href: '/admin/pipeline',
+      })
+    }
+
+    // Observation pool reactivation candidates (>6 months)
+    const sixMonthsAgo = new Date()
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
+    const reactivationCandidates = startups.filter(s => {
+      if (!s.observation_pool) return false
+      const entered = s.updated_at ? new Date(s.updated_at) : null
+      return entered && entered < sixMonthsAgo
+    })
+    if (reactivationCandidates.length > 0) {
+      pendingActions.push({
+        type: 'observation_reactivate',
+        label: '觀察池可重啟',
+        count: reactivationCandidates.length,
+        href: '/admin/pipeline',
+      })
+    }
+
     // --- Active meeting + countdown ---
     const now = new Date()
     const activeMeeting = meetings.find(m => m.status !== 'closed' && !m.is_archived)
