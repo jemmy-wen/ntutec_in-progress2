@@ -24,6 +24,8 @@ export const ADMIN_NAV: NavItem[] = [
   { label: 'Gate 0 評估', href: '/admin/gate0-review' },
   { label: 'Pipeline', href: '/admin/pipeline' },
   { label: '月會管理', href: '/admin/meetings' },
+  { label: '回覆分析', href: '/admin/meetings/responses' },
+  { label: '投票結果', href: '/admin/meetings/vote-results' },
   { label: '投資人管理', href: '/admin/investors' },
   { label: '系統設定', href: '/admin/settings' },
 ]

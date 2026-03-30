@@ -9,6 +9,7 @@
 
 import { NextResponse } from 'next/server'
 import { withApiHandler, requireFields } from '@/lib/api/handler'
+import { notifyMeetingLifecycle } from '@/lib/notifications/service'
 
 // GET: Fetch candidate startups with card data for a meeting cycle
 export const GET = withApiHandler({
@@ -114,6 +115,28 @@ export const POST = withApiHandler({
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
+
+  // F-008: Notify admins of card response (fire-and-forget)
+  const startupName = (startup_id as string).slice(0, 8) // Will be enriched by service
+  // Fetch startup name for notification
+  const { data: startupData } = await ctx.supabase
+    .from('startups')
+    .select('name_zh')
+    .eq('id', startup_id as string)
+    .maybeSingle()
+
+  // Fetch member display name
+  const { data: memberProfile } = await ctx.supabase
+    .from('angel_members')
+    .select('display_name')
+    .eq('id', member.id)
+    .maybeSingle()
+
+  notifyMeetingLifecycle('card_response', meeting_cycle as string, {
+    memberName: memberProfile?.display_name || ctx.auth.email || '會員',
+    startupName: startupData?.name_zh || startupName,
+    response: response as string,
+  }).catch(err => console.error('[F-008] Card response notification failed:', err))
 
   return NextResponse.json(data, { status: 200 })
 })
