@@ -21,6 +21,7 @@ export const ANGEL_NAV: NavItem[] = [
 
 export const ADMIN_NAV: NavItem[] = [
   { label: '儀表板', href: '/admin/dashboard' },
+  { label: 'Gate 0 評估', href: '/admin/gate0-review' },
   { label: 'Pipeline', href: '/admin/pipeline' },
   { label: '月會管理', href: '/admin/meetings' },
   { label: '投資人管理', href: '/admin/investors' },
