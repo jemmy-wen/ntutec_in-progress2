@@ -105,10 +105,11 @@ export function screenGate0(startup: StartupForGate0): Gate0Result {
 
   // ─── G0-2: Funding Stage ───
   const fundingStage = startup.funding_stage || ''
-  if (LATE_STAGES.some(s => fundingStage.toUpperCase().includes(s.toUpperCase()))) {
+  const normalizedStage = fundingStage.trim().toLowerCase()
+  if (LATE_STAGES.some(s => normalizedStage === s.toLowerCase() || normalizedStage.startsWith(s.toLowerCase() + ' ') || normalizedStage.startsWith('series ' + s.toLowerCase()))) {
     checks.push({ criterion: 'G0-2', label: '融資階段', type: 'hard_fail', message: `後期融資：${fundingStage}` })
     failReasons.push(`G0-2 後期融資階段：${fundingStage}`)
-  } else if (FLAGGED_STAGES.some(s => fundingStage.includes(s))) {
+  } else if (FLAGGED_STAGES.some(s => normalizedStage === s.toLowerCase() || normalizedStage === 'a-round' || normalizedStage === 'series a')) {
     checks.push({ criterion: 'G0-2', label: '融資階段', type: 'soft_flag', message: `A 輪案源，需額外評估：${fundingStage}` })
     flags.push(`G0-2 A 輪案源：${fundingStage}`)
   } else {
