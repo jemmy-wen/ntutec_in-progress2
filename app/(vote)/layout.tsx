@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: {
@@ -11,9 +12,15 @@ export default function VoteLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-purple-50 to-white">
       {/* Minimal header — logo only */}
-      <header className="py-4 px-4 text-center border-b border-purple-100 bg-white/80 backdrop-blur-sm">
-        <span className="text-lg font-bold text-gray-900">NTU TEC</span>
-        <span className="text-sm text-gray-500 ml-2">台大創創中心</span>
+      <header className="py-3 px-4 flex items-center justify-center border-b border-purple-100 bg-white/80 backdrop-blur-sm">
+        <Image
+          src="/logo-tec.png"
+          alt="NTU TEC 台大創創中心"
+          width={120}
+          height={40}
+          className="h-8 w-auto"
+          priority
+        />
       </header>
 
       {/* Main */}

@@ -12,24 +12,16 @@ const PITCHES = [
   { id: 'stellarcell', name: '星誠細胞生醫', subtitle: '外泌體再生醫療', emoji: '🧬' },
 ] as const
 
-const DIMENSIONS = [
-  { key: 'score_interest', label: '投資意願' },
-  { key: 'score_business', label: '商業模式' },
-  { key: 'score_team', label: '團隊能力' },
-  { key: 'score_market', label: '市場機會' },
-] as const
-
 const RECOMMENDATIONS = [
   { value: 'follow_up', label: '建議跟進', color: 'green', emoji: '🟢' },
   { value: 'watch', label: '觀望', color: 'yellow', emoji: '🟡' },
   { value: 'pass', label: '不建議', color: 'red', emoji: '🔴' },
 ] as const
 
-type DimensionKey = (typeof DIMENSIONS)[number]['key']
 type RecommendationValue = (typeof RECOMMENDATIONS)[number]['value']
 
 interface StartupVote {
-  scores: Record<DimensionKey, number | null>
+  score_interest: number | null
   recommendation: RecommendationValue | null
   comment: string
 }
@@ -40,14 +32,11 @@ interface StartupVote {
 
 export default function VoteForm({ cycle }: { cycle: string }) {
   const [voterName, setVoterName] = useState('')
+  const [voterCompany, setVoterCompany] = useState('')
   const [votes, setVotes] = useState<Record<string, StartupVote>>(() => {
     const init: Record<string, StartupVote> = {}
     for (const p of PITCHES) {
-      init[p.id] = {
-        scores: { score_interest: null, score_business: null, score_team: null, score_market: null },
-        recommendation: null,
-        comment: '',
-      }
+      init[p.id] = { score_interest: null, recommendation: null, comment: '' }
     }
     return init
   })
@@ -61,13 +50,10 @@ export default function VoteForm({ cycle }: { cycle: string }) {
     return localStorage.getItem(`vote_${cycle}`) === 'done'
   })
 
-  const setScore = useCallback((startupId: string, dim: DimensionKey, value: number) => {
+  const setScore = useCallback((startupId: string, value: number) => {
     setVotes(prev => ({
       ...prev,
-      [startupId]: {
-        ...prev[startupId],
-        scores: { ...prev[startupId].scores, [dim]: value },
-      },
+      [startupId]: { ...prev[startupId], score_interest: value },
     }))
   }, [])
 
@@ -85,16 +71,12 @@ export default function VoteForm({ cycle }: { cycle: string }) {
     }))
   }, [])
 
-  // Validate: name required + each startup must have at least one score
   const validate = (): string | null => {
-    if (!voterName.trim()) {
-      return '請填寫您的姓名'
-    }
+    if (!voterName.trim()) return '請填寫您的姓名'
+    if (!voterCompany.trim()) return '請填寫您的公司名稱'
     for (const pitch of PITCHES) {
-      const v = votes[pitch.id]
-      const hasScore = Object.values(v.scores).some(s => s !== null)
-      if (!hasScore) {
-        return `請至少為「${pitch.name}」填寫一項評分`
+      if (votes[pitch.id].score_interest === null) {
+        return `請為「${pitch.name}」評分投資意願`
       }
     }
     return null
@@ -112,11 +94,12 @@ export default function VoteForm({ cycle }: { cycle: string }) {
 
     try {
       const payload = {
-        voter_name: voterName.trim() || undefined,
+        voter_name: voterName.trim(),
+        voter_company: voterCompany.trim(),
         votes: PITCHES.map(p => ({
           startup_id: p.id,
           startup_name: p.name,
-          ...votes[p.id].scores,
+          score_interest: votes[p.id].score_interest,
           recommendation: votes[p.id].recommendation,
           comment: votes[p.id].comment.trim() || undefined,
         })),
@@ -133,7 +116,6 @@ export default function VoteForm({ cycle }: { cycle: string }) {
         throw new Error(data.error || '投票失敗')
       }
 
-      // Mark as voted
       localStorage.setItem(`vote_${cycle}`, 'done')
       setSubmitted(true)
     } catch (err) {
@@ -159,20 +141,36 @@ export default function VoteForm({ cycle }: { cycle: string }) {
   // ---- Form ----
   return (
     <div className="space-y-6">
-      {/* Voter name */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-        <label htmlFor="voter-name" className="block text-sm font-medium text-gray-700 mb-1">
-          您的姓名 <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="voter-name"
-          type="text"
-          value={voterName}
-          onChange={e => setVoterName(e.target.value)}
-          placeholder="請輸入您的姓名"
-          required
-          className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
-        />
+      {/* Voter info */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 space-y-3">
+        <div>
+          <label htmlFor="voter-name" className="block text-sm font-medium text-gray-700 mb-1">
+            姓名 <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="voter-name"
+            type="text"
+            value={voterName}
+            onChange={e => setVoterName(e.target.value)}
+            placeholder="請輸入您的姓名"
+            required
+            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+          />
+        </div>
+        <div>
+          <label htmlFor="voter-company" className="block text-sm font-medium text-gray-700 mb-1">
+            公司名稱 <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="voter-company"
+            type="text"
+            value={voterCompany}
+            onChange={e => setVoterCompany(e.target.value)}
+            placeholder="請輸入您的公司/機構名稱"
+            required
+            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+          />
+        </div>
       </div>
 
       {/* Pitch cards */}
@@ -191,15 +189,43 @@ export default function VoteForm({ cycle }: { cycle: string }) {
           </div>
 
           <div className="p-4 space-y-5">
-            {/* Score dimensions */}
-            {DIMENSIONS.map(dim => (
-              <ScoreRow
-                key={dim.key}
-                label={dim.label}
-                value={votes[pitch.id].scores[dim.key]}
-                onChange={v => setScore(pitch.id, dim.key, v)}
-              />
-            ))}
+            {/* Investment interest — single score */}
+            <div>
+              <p className="text-sm font-medium text-gray-700 mb-2">
+                投資意願 <span className="text-red-500">*</span>
+              </p>
+              <div className="flex items-center gap-2">
+                {[1, 2, 3, 4, 5].map(n => {
+                  const selected = votes[pitch.id].score_interest === n
+                  return (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => setScore(pitch.id, n)}
+                      className={`
+                        w-11 h-11 rounded-full text-base font-bold transition-all
+                        flex items-center justify-center
+                        ${selected
+                          ? 'bg-purple-600 text-white shadow-md scale-110'
+                          : 'bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-700'
+                        }
+                      `}
+                    >
+                      {n}
+                    </button>
+                  )
+                })}
+                <span className="ml-2 text-xs text-gray-400">
+                  {votes[pitch.id].score_interest === null
+                    ? ''
+                    : votes[pitch.id].score_interest! <= 2
+                      ? '低'
+                      : votes[pitch.id].score_interest! <= 4
+                        ? '中'
+                        : '高'}
+                </span>
+              </div>
+            </div>
 
             {/* Recommendation */}
             <div>
@@ -275,51 +301,6 @@ export default function VoteForm({ cycle }: { cycle: string }) {
       <p className="text-xs text-center text-gray-400">
         投票僅供月會決策參考，感謝您的寶貴意見
       </p>
-    </div>
-  )
-}
-
-// ---------------------------------------------------------------------------
-// ScoreRow — 5 circular buttons for 1-5 rating
-// ---------------------------------------------------------------------------
-
-function ScoreRow({
-  label,
-  value,
-  onChange,
-}: {
-  label: string
-  value: number | null
-  onChange: (v: number) => void
-}) {
-  return (
-    <div>
-      <p className="text-sm font-medium text-gray-700 mb-2">{label}</p>
-      <div className="flex items-center gap-2">
-        {[1, 2, 3, 4, 5].map(n => {
-          const selected = value === n
-          return (
-            <button
-              key={n}
-              type="button"
-              onClick={() => onChange(n)}
-              className={`
-                w-11 h-11 rounded-full text-base font-bold transition-all
-                flex items-center justify-center
-                ${selected
-                  ? 'bg-purple-600 text-white shadow-md scale-110'
-                  : 'bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-700'
-                }
-              `}
-            >
-              {n}
-            </button>
-          )
-        })}
-        <span className="ml-2 text-xs text-gray-400">
-          {value === null ? '' : value <= 2 ? '低' : value <= 4 ? '中' : '高'}
-        </span>
-      </div>
     </div>
   )
 }

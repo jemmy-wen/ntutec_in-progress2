@@ -39,9 +39,6 @@ interface VotePayload {
   startup_id: string
   startup_name: string
   score_interest?: number
-  score_business?: number
-  score_team?: number
-  score_market?: number
   recommendation?: string
   comment?: string
 }
@@ -63,17 +60,21 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  let body: { votes: VotePayload[]; voter_name?: string }
+  let body: { votes: VotePayload[]; voter_name?: string; voter_company?: string }
   try {
     body = await request.json()
   } catch {
     return NextResponse.json({ error: '無效的請求格式' }, { status: 400 })
   }
 
-  const { votes, voter_name } = body
+  const { votes, voter_name, voter_company } = body
 
   if (!voter_name || !voter_name.trim()) {
     return NextResponse.json({ error: '請填寫您的姓名' }, { status: 400 })
+  }
+
+  if (!voter_company || !voter_company.trim()) {
+    return NextResponse.json({ error: '請填寫您的公司名稱' }, { status: 400 })
   }
 
   if (!Array.isArray(votes) || votes.length === 0) {
@@ -90,28 +91,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // At least one score must be provided
-    const hasScore = isValidScore(vote.score_interest)
-      || isValidScore(vote.score_business)
-      || isValidScore(vote.score_team)
-      || isValidScore(vote.score_market)
-
-    if (!hasScore) {
+    if (!isValidScore(vote.score_interest)) {
       return NextResponse.json(
-        { error: `${vote.startup_name} 至少需要一項評分` },
+        { error: `請為「${vote.startup_name}」評分投資意願` },
         { status: 400 }
       )
-    }
-
-    // Validate individual scores if provided
-    for (const key of ['score_interest', 'score_business', 'score_team', 'score_market'] as const) {
-      const val = vote[key]
-      if (val !== undefined && val !== null && !isValidScore(val)) {
-        return NextResponse.json(
-          { error: `${vote.startup_name} 的評分必須為 1-5 的整數` },
-          { status: 400 }
-        )
-      }
     }
 
     if (vote.recommendation && !VALID_RECOMMENDATIONS.has(vote.recommendation)) {
@@ -125,12 +109,12 @@ export async function POST(request: NextRequest) {
       meeting_cycle: '2026-04',
       startup_id: vote.startup_id,
       startup_name: vote.startup_name,
-      voter_name: voter_name?.trim() || null,
+      voter_name: `${voter_name.trim()} / ${voter_company.trim()}`,
       is_member: false,
-      score_interest: vote.score_interest ?? null,
-      score_business: vote.score_business ?? null,
-      score_team: vote.score_team ?? null,
-      score_market: vote.score_market ?? null,
+      score_interest: vote.score_interest,
+      score_business: null,
+      score_team: null,
+      score_market: null,
       recommendation: vote.recommendation ?? null,
       comment: vote.comment?.trim() || null,
     })
