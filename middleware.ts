@@ -36,6 +36,7 @@ export async function middleware(request: NextRequest) {
     '/', '/login', '/callback',
     '/about', '/contact', '/programs',
     '/startups', '/mentors', '/angel', '/events',
+    '/vote',
   ]
   const isPublicRoute = publicRoutes.some(
     (route) => pathname === route || pathname.startsWith(route + '/')
