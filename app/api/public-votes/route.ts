@@ -72,6 +72,10 @@ export async function POST(request: NextRequest) {
 
   const { votes, voter_name } = body
 
+  if (!voter_name || !voter_name.trim()) {
+    return NextResponse.json({ error: '請填寫您的姓名' }, { status: 400 })
+  }
+
   if (!Array.isArray(votes) || votes.length === 0) {
     return NextResponse.json({ error: '至少需要一組投票' }, { status: 400 })
   }

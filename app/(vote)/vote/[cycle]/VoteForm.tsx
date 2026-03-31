@@ -85,8 +85,11 @@ export default function VoteForm({ cycle }: { cycle: string }) {
     }))
   }, [])
 
-  // Validate: each startup must have at least one score
+  // Validate: name required + each startup must have at least one score
   const validate = (): string | null => {
+    if (!voterName.trim()) {
+      return '請填寫您的姓名'
+    }
     for (const pitch of PITCHES) {
       const v = votes[pitch.id]
       const hasScore = Object.values(v.scores).some(s => s !== null)
@@ -159,14 +162,15 @@ export default function VoteForm({ cycle }: { cycle: string }) {
       {/* Voter name */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
         <label htmlFor="voter-name" className="block text-sm font-medium text-gray-700 mb-1">
-          您的姓名（選填）
+          您的姓名 <span className="text-red-500">*</span>
         </label>
         <input
           id="voter-name"
           type="text"
           value={voterName}
           onChange={e => setVoterName(e.target.value)}
-          placeholder="匿名投票"
+          placeholder="請輸入您的姓名"
+          required
           className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
         />
       </div>
