@@ -7,6 +7,18 @@ import { ErrorState } from '@/components/shared/ErrorState'
 
 // ─── Types ────────────────────────────────────────────
 
+interface OgsmMeasure {
+  id: string; name: string; strategy: string; goal: string; target: string
+  current_value: string; pct: number; status: string; source_hint: string
+}
+interface CeoDecision {
+  id: string; subject: string; priority: string; deadline: string; status: string; ask: string
+}
+interface Project {
+  code: string; name: string; description: string; status: string
+  progress: number; strategy: string; next_action: string; deadline: string | null
+}
+
 interface DashboardData {
   pipeline: {
     stageCounts: Record<string, number>
@@ -17,6 +29,9 @@ interface DashboardData {
   meeting: { id: string; status: string; meeting_date: string; countdown: number | null } | null
   members: { total: number; active: number; engagement: { active: number; moderate: number; low: number } }
   recentActivity: { id: string; name: string; sector: string; stage: string; tier: string; updated_at: string }[]
+  ogsm: OgsmMeasure[]
+  ceoQueue: CeoDecision[]
+  projects: Project[]
 }
 
 // ─── Stage Config ─────────────────────────────────────
@@ -79,6 +94,15 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <MeetingStatus meeting={data.meeting} />
         <RecentActivity items={data.recentActivity} />
+      </div>
+
+      {/* ═══ Layer 3: OGSM Measures ═══ */}
+      {data.ogsm.length > 0 && <OgsmMeasures measures={data.ogsm} />}
+
+      {/* ═══ Layer 3: CEO Decision Queue + Projects ═══ */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {data.ceoQueue.length > 0 && <CeoQueue items={data.ceoQueue} />}
+        {data.projects.length > 0 && <ProjectTracker projects={data.projects} />}
       </div>
 
       {/* Quick Actions */}
@@ -298,6 +322,123 @@ function RecentActivity({ items }: { items: DashboardData['recentActivity'] }) {
           ))}
         </div>
       )}
+    </div>
+  )
+}
+
+// ─── OGSM Measures ───────────────────────────────────
+
+const STATUS_ICON: Record<string, string> = {
+  on_track: '🟢', at_risk: '🟡', blocked: '🔴', done: '✅', pending: '⏳',
+}
+
+function OgsmMeasures({ measures }: { measures: OgsmMeasure[] }) {
+  return (
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <h2 className="text-sm font-semibold text-gray-700 mb-4">OGSM Measures（M1–M8）</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {measures.map(m => (
+          <div key={m.id} className="border border-gray-100 rounded-lg p-3">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-xs font-bold text-teal-700">{m.id}</span>
+              <span className="text-xs">{STATUS_ICON[m.status] || '⏳'}</span>
+            </div>
+            <div className="text-sm font-medium text-gray-900 mb-2 line-clamp-1">{m.name}</div>
+            <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden mb-1.5">
+              <div
+                className={`h-full rounded-full transition-all duration-700 ${
+                  m.pct >= 70 ? 'bg-emerald-500' : m.pct >= 40 ? 'bg-amber-400' : 'bg-red-400'
+                }`}
+                style={{ width: `${m.pct}%` }}
+              />
+            </div>
+            <div className="flex justify-between text-[10px] text-gray-400">
+              <span>{m.current_value}</span>
+              <span>目標: {m.target}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ─── CEO Decision Queue ──────────────────────────────
+
+const PRIORITY_STYLE: Record<string, string> = {
+  critical: 'bg-red-100 text-red-800',
+  high: 'bg-orange-100 text-orange-800',
+  medium: 'bg-yellow-50 text-yellow-800',
+  low: 'bg-gray-100 text-gray-600',
+}
+
+function CeoQueue({ items }: { items: CeoDecision[] }) {
+  return (
+    <div className="bg-white rounded-xl shadow-sm border border-red-200 p-6">
+      <div className="flex items-center gap-2 mb-4">
+        <h2 className="text-sm font-semibold text-red-800">CEO 待決策</h2>
+        <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">{items.length}</span>
+      </div>
+      <div className="space-y-2">
+        {items.map(d => (
+          <div key={d.id} className="border-l-3 border-red-400 pl-3 py-2" style={{ borderLeftWidth: '3px' }}>
+            <div className="flex items-center gap-2 mb-0.5">
+              <span className="text-xs font-bold text-red-700">{d.id}</span>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${PRIORITY_STYLE[d.priority] || ''}`}>
+                {d.priority}
+              </span>
+            </div>
+            <div className="text-sm font-medium text-gray-900 line-clamp-1">{d.subject}</div>
+            {d.deadline && (
+              <div className="text-[10px] text-red-600 mt-0.5 font-medium">
+                截止: {new Date(d.deadline).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ─── Project Tracker ─────────────────────────────────
+
+const PROJECT_STATUS_STYLE: Record<string, string> = {
+  active: 'border-l-emerald-500',
+  paused: 'border-l-amber-400',
+  frozen: 'border-l-gray-300',
+  completed: 'border-l-blue-400',
+}
+
+function ProjectTracker({ projects }: { projects: Project[] }) {
+  const active = projects.filter(p => p.status === 'active')
+  const other = projects.filter(p => p.status !== 'active')
+
+  return (
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <h2 className="text-sm font-semibold text-gray-700 mb-4">專案進度（{projects.length} 個）</h2>
+      <div className="space-y-1.5 max-h-80 overflow-y-auto">
+        {[...active, ...other].map(p => (
+          <div key={p.code} className={`flex items-center gap-3 border-l-3 ${PROJECT_STATUS_STYLE[p.status] || 'border-l-gray-200'} pl-3 py-1.5`}
+            style={{ borderLeftWidth: '3px' }}>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-bold text-gray-400">{p.code}</span>
+                <span className="text-sm font-medium text-gray-900 truncate">{p.name}</span>
+              </div>
+              {p.next_action && <div className="text-[10px] text-gray-400 truncate mt-0.5">{p.next_action}</div>}
+            </div>
+            <div className="w-16 shrink-0">
+              <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                <div className={`h-full rounded-full ${
+                  p.progress >= 80 ? 'bg-emerald-500' : p.progress >= 40 ? 'bg-amber-400' : 'bg-gray-300'
+                }`} style={{ width: `${p.progress}%` }} />
+              </div>
+              <div className="text-[10px] text-gray-400 text-right mt-0.5">{p.progress}%</div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

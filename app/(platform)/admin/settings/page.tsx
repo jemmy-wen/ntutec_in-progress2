@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 
 /**
  * Admin Settings page — platform-level configuration.
  * Covers: notification settings, role management, meeting defaults, integrations.
  *
- * API: GET/PATCH /api/admin/settings (→ future Sprint)
- * For now, uses local state with placeholder save logic.
+ * API: GET/PATCH /api/admin/settings
+ * Persisted in sys_platform_settings (key-value store).
  */
 
 interface PlatformSettings {
@@ -43,13 +43,74 @@ const DEFAULT_SETTINGS: PlatformSettings = {
   supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || '',
 }
 
+/** Convert API key-value map to typed PlatformSettings */
+function parseSettings(raw: Record<string, string>): PlatformSettings {
+  return {
+    emailNotifications: raw.emailNotifications !== 'false',
+    notifyOnCardReady: raw.notifyOnCardReady !== 'false',
+    notifyOnVoteOpen: raw.notifyOnVoteOpen !== 'false',
+    notifyOnMeetingDay: raw.notifyOnMeetingDay !== 'false',
+    notifyOnNewMember: raw.notifyOnNewMember === 'true',
+    defaultCardBrowseDays: parseInt(raw.defaultCardBrowseDays) || 21,
+    defaultVoteDays: parseInt(raw.defaultVoteDays) || 7,
+    defaultFollowupDays: parseInt(raw.defaultFollowupDays) || 30,
+    ghostApiUrl: raw.ghostApiUrl || '',
+    ghostContentKey: raw.ghostContentKey || '',
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  }
+}
+
+/** Convert typed PlatformSettings to API key-value map (excludes read-only fields) */
+function serializeSettings(s: PlatformSettings): Record<string, string> {
+  return {
+    emailNotifications: String(s.emailNotifications),
+    notifyOnCardReady: String(s.notifyOnCardReady),
+    notifyOnVoteOpen: String(s.notifyOnVoteOpen),
+    notifyOnMeetingDay: String(s.notifyOnMeetingDay),
+    notifyOnNewMember: String(s.notifyOnNewMember),
+    defaultCardBrowseDays: String(s.defaultCardBrowseDays),
+    defaultVoteDays: String(s.defaultVoteDays),
+    defaultFollowupDays: String(s.defaultFollowupDays),
+    ghostApiUrl: s.ghostApiUrl,
+    ghostContentKey: s.ghostContentKey,
+  }
+}
+
 export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<PlatformSettings>(DEFAULT_SETTINGS)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [isDirty, setIsDirty] = useState(false)
   const [activeTab, setActiveTab] = useState<'notifications' | 'meeting' | 'integrations' | 'roles'>('notifications')
   const initialSettings = useRef(DEFAULT_SETTINGS)
+
+  const fetchSettings = useCallback(async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      const res = await fetch('/api/admin/settings')
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(body.error || `HTTP ${res.status}`)
+      }
+      const { settings: raw } = await res.json()
+      const parsed = parseSettings(raw)
+      setSettings(parsed)
+      initialSettings.current = parsed
+    } catch (err) {
+      console.error('Failed to load settings:', err)
+      setError(err instanceof Error ? err.message : 'Failed to load settings')
+      // Keep defaults on error so the page is still usable
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchSettings()
+  }, [fetchSettings])
 
   function update<K extends keyof PlatformSettings>(key: K, value: PlatformSettings[K]) {
     setSettings(prev => {
@@ -62,13 +123,27 @@ export default function AdminSettingsPage() {
 
   async function handleSave() {
     setSaving(true)
-    // TODO: PATCH /api/admin/settings
-    await new Promise(r => setTimeout(r, 600))
-    setSaving(false)
-    setSaved(true)
-    setIsDirty(false)
-    initialSettings.current = { ...settings }
-    setTimeout(() => setSaved(false), 3000)
+    setError(null)
+    try {
+      const res = await fetch('/api/admin/settings', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ settings: serializeSettings(settings) }),
+      })
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(body.error || `HTTP ${res.status}`)
+      }
+      setSaved(true)
+      setIsDirty(false)
+      initialSettings.current = { ...settings }
+      setTimeout(() => setSaved(false), 3000)
+    } catch (err) {
+      console.error('Failed to save settings:', err)
+      setError(err instanceof Error ? err.message : 'Failed to save settings')
+    } finally {
+      setSaving(false)
+    }
   }
 
   const tabs = [
@@ -80,16 +155,21 @@ export default function AdminSettingsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Development banner */}
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg px-4 py-3 text-sm text-yellow-800">
-        系統設定功能開發中，目前顯示為預設值
-      </div>
+      {/* Error banner */}
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-800 flex items-center justify-between">
+          <span>{error}</span>
+          <button onClick={fetchSettings} className="text-red-600 underline hover:text-red-800 text-xs ml-4">
+            重試
+          </button>
+        </div>
+      )}
 
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">系統設定</h1>
         <button
           onClick={handleSave}
-          disabled={saving || !isDirty}
+          disabled={saving || loading || !isDirty}
           className="px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors flex items-center gap-2"
         >
           {saving ? '儲存中...' : saved ? '已儲存' : '儲存設定'}
@@ -115,43 +195,57 @@ export default function AdminSettingsPage() {
 
       {/* Tab content */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        {activeTab === 'notifications' && (
-          <div className="space-y-6">
-            <h2 className="text-lg font-semibold">通知設定</h2>
-            <ToggleField
-              label="啟用 Email 通知"
-              description="全域 Email 通知開關"
-              checked={settings.emailNotifications}
-              onChange={v => update('emailNotifications', v)}
-            />
-            <ToggleField
-              label="卡片上架通知"
-              description="候選新創卡片上架時通知所有天使會員"
-              checked={settings.notifyOnCardReady}
-              onChange={v => update('notifyOnCardReady', v)}
-            />
-            <ToggleField
-              label="投票開放通知"
-              description="正式投票開放時通知所有天使會員"
-              checked={settings.notifyOnVoteOpen}
-              onChange={v => update('notifyOnVoteOpen', v)}
-            />
-            <ToggleField
-              label="月會當天提醒"
-              description="月會前一天與當天早上發送提醒"
-              checked={settings.notifyOnMeetingDay}
-              onChange={v => update('notifyOnMeetingDay', v)}
-            />
-            <ToggleField
-              label="新會員加入通知"
-              description="有新天使會員加入時通知管理員"
-              checked={settings.notifyOnNewMember}
-              onChange={v => update('notifyOnNewMember', v)}
-            />
+        {loading ? (
+          <div className="space-y-4 animate-pulse">
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} className="flex items-center justify-between">
+                <div>
+                  <div className="h-4 w-32 bg-gray-200 rounded mb-2" />
+                  <div className="h-3 w-48 bg-gray-100 rounded" />
+                </div>
+                <div className="h-6 w-11 bg-gray-200 rounded-full" />
+              </div>
+            ))}
           </div>
-        )}
+        ) : (
+          <>
+            {activeTab === 'notifications' && (
+              <div className="space-y-6">
+                <h2 className="text-lg font-semibold">通知設定</h2>
+                <ToggleField
+                  label="啟用 Email 通知"
+                  description="全域 Email 通知開關"
+                  checked={settings.emailNotifications}
+                  onChange={v => update('emailNotifications', v)}
+                />
+                <ToggleField
+                  label="卡片上架通知"
+                  description="候選新創卡片上架時通知所有天使會員"
+                  checked={settings.notifyOnCardReady}
+                  onChange={v => update('notifyOnCardReady', v)}
+                />
+                <ToggleField
+                  label="投票開放通知"
+                  description="正式投票開放時通知所有天使會員"
+                  checked={settings.notifyOnVoteOpen}
+                  onChange={v => update('notifyOnVoteOpen', v)}
+                />
+                <ToggleField
+                  label="月會當天提醒"
+                  description="月會前一天與當天早上發送提醒"
+                  checked={settings.notifyOnMeetingDay}
+                  onChange={v => update('notifyOnMeetingDay', v)}
+                />
+                <ToggleField
+                  label="新會員加入通知"
+                  description="有新天使會員加入時通知管理員"
+                  checked={settings.notifyOnNewMember}
+                  onChange={v => update('notifyOnNewMember', v)}
+                />
+              </div>
+            )}
 
-        {activeTab === 'meeting' && (
+            {activeTab === 'meeting' && (
           <div className="space-y-6">
             <h2 className="text-lg font-semibold">月會週期預設</h2>
             <NumberField
@@ -248,6 +342,8 @@ export default function AdminSettingsPage() {
               角色指派在 Supabase module_roles 表進行。如需變更使用者角色，請至 Supabase Dashboard 或使用 Admin API。
             </div>
           </div>
+        )}
+          </>
         )}
       </div>
     </div>

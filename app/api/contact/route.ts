@@ -1,13 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendEmail } from '@/lib/notifications/email'
+import { checkRateLimit, rateLimitResponse } from '@/lib/middleware/rate-limit'
 
 /**
  * POST /api/contact — Handle contact form submissions.
  * Sends email to tec@ntu.edu.tw + auto-reply to submitter.
+ * Rate limited: 5 req/min per IP (contact category).
  */
 export async function POST(req: NextRequest) {
+  // Rate limiting — use forwarded IP or fallback
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    || req.headers.get('x-real-ip')
+    || 'unknown'
+  const { allowed, resetAt } = checkRateLimit(ip, 'contact')
+  if (!allowed) return rateLimitResponse(resetAt)
+
   try {
-    const body = await req.json()
+    let body
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
+    }
     const { name, email, phone, company, type, message } = body
 
     if (!name || !email || !message) {

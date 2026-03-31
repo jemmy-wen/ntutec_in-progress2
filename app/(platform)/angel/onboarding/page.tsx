@@ -135,7 +135,6 @@ export default function OnboardingPage() {
   async function completeOnboarding() {
     setSaving(true)
     try {
-      // Mark onboarding as completed
       await fetch('/api/members', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -149,6 +148,7 @@ export default function OnboardingPage() {
             ticket_range: ticketRange,
             stage_preference: stagePreference,
           },
+          onboarding_completed: true,
         }),
       })
     } catch { /* ignore */ }

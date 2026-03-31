@@ -89,6 +89,8 @@ interface StartupDetail {
   city: string | null
   email: string | null
   track: string | null
+  bp_storage_path: string | null
+  bp_uploaded_at: string | null
 }
 
 interface DetailData {
@@ -309,6 +311,14 @@ function OverviewTab({ startup, enrichment, gates, pitches }: {
           ))}
         </div>
       </div>
+
+      {/* BP Document */}
+      {startup.bp_storage_path && (
+        <div>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">商業計畫書</h3>
+          <BpDownloadButton startupId={startup.id} uploadedAt={startup.bp_uploaded_at} />
+        </div>
+      )}
 
       {/* Gate Summary Cards */}
       {gates.length > 0 && (
@@ -675,6 +685,46 @@ function ResultBadge({ result }: { result: string }) {
     <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${colors[result] || 'bg-gray-100 text-gray-600'}`}>
       {result}
     </span>
+  )
+}
+
+function BpDownloadButton({ startupId, uploadedAt }: { startupId: string; uploadedAt: string | null }) {
+  const [loading, setLoading] = useState(false)
+
+  async function handleDownload() {
+    setLoading(true)
+    try {
+      const res = await fetch(`/api/admin/pipeline/${startupId}/bp`)
+      if (!res.ok) {
+        const err = await res.json()
+        alert(err.error || '下載失敗')
+        return
+      }
+      const { url } = await res.json()
+      window.open(url, '_blank')
+    } catch {
+      alert('下載失敗')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="flex items-center gap-3">
+      <button
+        onClick={handleDownload}
+        disabled={loading}
+        className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 text-teal-700 rounded-lg text-sm font-medium hover:bg-teal-100 disabled:opacity-50 transition-colors"
+      >
+        <span>{loading ? '⏳' : '📄'}</span>
+        {loading ? '產生連結中...' : '下載 BP'}
+      </button>
+      {uploadedAt && (
+        <span className="text-xs text-gray-400">
+          上傳於 {new Date(uploadedAt).toLocaleDateString('zh-TW')}
+        </span>
+      )}
+    </div>
   )
 }
 

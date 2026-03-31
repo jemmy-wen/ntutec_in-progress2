@@ -30,11 +30,17 @@ export async function GET(req: NextRequest) {
       meetingsRes,
       membersRes,
       engagementRes,
+      ogsmRes,
+      ceoQueueRes,
+      projectsRes,
     ] = await Promise.all([
       supabase.from('pip_startups').select('id, name_zh, sector, pipeline_stage, current_gate, tier, status, updated_at, observation_pool'),
       supabase.from('pip_meetings').select('*').order('id', { ascending: false }).limit(5),
       supabase.from('angel_members').select('id, status'),
       supabase.from('v_angel_engagement').select('engagement_level'),
+      supabase.from('sys_ogsm_measures').select('*').order('id'),
+      supabase.from('sys_ceo_decisions').select('*').eq('status', 'pending').order('deadline'),
+      supabase.from('sys_projects').select('*').neq('status', 'archived').order('code'),
     ])
 
     const startups = pipelineRes.data || []
@@ -176,6 +182,9 @@ export async function GET(req: NextRequest) {
         engagement: engagementSummary,
       },
       recentActivity,
+      ogsm: ogsmRes.data || [],
+      ceoQueue: ceoQueueRes.data || [],
+      projects: projectsRes.data || [],
     })
   } catch (err) {
     console.error('Dashboard stats error:', err)

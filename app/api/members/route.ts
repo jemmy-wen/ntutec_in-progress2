@@ -12,6 +12,7 @@ import { withApiHandler, filterFields } from '@/lib/api/handler'
 
 const MEMBER_UPDATABLE_FIELDS = new Set([
   'display_name', 'phone', 'company', 'title', 'investment_preferences',
+  'onboarding_completed',
 ])
 
 // GET: List members or get own profile

@@ -85,6 +85,8 @@ export interface Database {
           observation_entered_at: string | null
           reactivated_at: string | null
           reactivated_reason: string | null
+          bp_storage_path: string | null
+          bp_uploaded_at: string | null
           created_at: string
           updated_at: string
         }
@@ -202,6 +204,7 @@ export interface Database {
           status: string          // 'active' | 'inactive' | 'pending'
           tier: string | null     // 'founding' | 'regular' | 'associate'
           investment_preferences: Record<string, unknown> | null
+          onboarding_completed: boolean
           joined_at: string | null
           created_at: string
           updated_at: string
