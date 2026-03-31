@@ -14,7 +14,7 @@ export default async function VotePage({ params }: PageProps) {
   const { cycle } = await params
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+    <div>
       <div className="max-w-lg mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
