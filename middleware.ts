@@ -31,11 +31,9 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl
 
-  // Public routes — no auth required
+  // Public routes — only login/callback + vote are live; other pages not yet ready
   const publicRoutes = [
-    '/', '/login', '/callback',
-    '/about', '/contact', '/programs',
-    '/startups', '/mentors', '/angel', '/events',
+    '/login', '/callback',
     '/vote',
   ]
   const isPublicRoute = publicRoutes.some(
