@@ -75,9 +75,9 @@ export default async function LandingPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-100 text-red-700 text-sm font-medium px-3 py-1 rounded-full mb-4">
-              LIVE — 2026 年 4 月月會
+              4/23（三）14:00-17:00
             </span>
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">本月 Pitch 新創</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">4 月天使月會 Pitch 新創</h2>
             <p className="text-slate-500">三家精選新創等你評分，你的意見將影響投資決策</p>
           </div>
 
