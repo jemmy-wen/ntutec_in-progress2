@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/server'
 import { getDefaultRoute } from '@/lib/utils/roles'
 
@@ -41,14 +42,15 @@ export default async function LandingPage() {
       {/* ─── Hero ─── */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-amber-400 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-10 w-72 h-72 bg-teal-400 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28 text-center">
-          <p className="text-amber-400 font-medium tracking-[0.3em] text-sm mb-4">NTUTEC ANGELS</p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            臺大天使會
-          </h1>
+          <div className="mb-6">
+            <p className="text-teal-400 font-bold tracking-[0.25em] text-2xl sm:text-3xl">NTUTEC</p>
+            <p className="text-teal-400 font-bold tracking-[0.25em] text-2xl sm:text-3xl">ANGELS</p>
+            <p className="text-slate-400 tracking-[0.5em] text-xs mt-1">臺 大 天 使 會</p>
+          </div>
           <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10">
             台大創業生態系的投資入口。<br className="hidden sm:block" />
             與 40+ 位天使投資人，共同發掘下一個獨角獸。
@@ -56,7 +58,7 @@ export default async function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href={isLoggedIn ? portalRoute : '/login'}
-              className="px-8 py-3.5 bg-amber-500 text-slate-900 rounded-lg font-semibold hover:bg-amber-400 transition-colors text-lg"
+              className="px-8 py-3.5 bg-teal-500 text-white rounded-lg font-semibold hover:bg-teal-400 transition-colors text-lg"
             >
               {isLoggedIn ? '進入後台' : '會員登入'}
             </Link>
@@ -74,7 +76,7 @@ export default async function LandingPage() {
       <section id="vote" className="bg-gradient-to-b from-slate-50 to-white py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <span className="inline-block bg-red-100 text-red-700 text-sm font-medium px-3 py-1 rounded-full mb-4">
+            <span className="inline-block bg-teal-100 text-teal-700 text-sm font-medium px-3 py-1 rounded-full mb-4">
               本月月會 — 4/2（四）14:00-17:00
             </span>
             <h2 className="text-3xl font-bold text-slate-900 mb-3">本月 Pitch 新創</h2>
@@ -109,7 +111,7 @@ export default async function LandingPage() {
           <div className="text-center">
             <Link
               href="/vote/2026-04"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold text-lg hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/20"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-teal-600 text-white rounded-xl font-semibold text-lg hover:bg-teal-700 transition-colors shadow-lg shadow-teal-600/20"
             >
               前往投票
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -130,7 +132,7 @@ export default async function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* 個人會員 */}
-            <div className="relative bg-white border-2 border-slate-200 rounded-2xl p-8 hover:border-amber-400 transition-colors">
+            <div className="relative bg-white border-2 border-slate-200 rounded-2xl p-8 hover:border-teal-400 transition-colors">
               <div className="mb-6">
                 <h3 className="text-xl font-bold text-slate-900">個人會員</h3>
                 <p className="text-slate-500 text-sm mt-1">適合天使投資人、企業高階主管</p>
@@ -160,7 +162,7 @@ export default async function LandingPage() {
             {/* 企業會員 */}
             <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 text-white">
               <div className="absolute top-4 right-4">
-                <span className="bg-amber-400 text-slate-900 text-xs font-bold px-2.5 py-1 rounded-full">推薦</span>
+                <span className="bg-teal-400 text-white text-xs font-bold px-2.5 py-1 rounded-full">推薦</span>
               </div>
               <div className="mb-6">
                 <h3 className="text-xl font-bold">企業會員</h3>
@@ -182,7 +184,7 @@ export default async function LandingPage() {
                 href="https://forms.gle/n38sNQznLG62ypyK9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full text-center px-6 py-3 bg-amber-500 text-slate-900 rounded-lg font-semibold hover:bg-amber-400 transition-colors"
+                className="block w-full text-center px-6 py-3 bg-teal-500 text-white rounded-lg font-semibold hover:bg-teal-400 transition-colors"
               >
                 申請企業會員
               </a>
@@ -204,7 +206,7 @@ export default async function LandingPage() {
             <ValueCard
               icon="🎯"
               title="精選案源"
-              description="從 600+ 家年度新創中，篩選最具潛力的 2-3 家進入月會 Pitch"
+              description="從累計 600+ 輔導新創及台大創業生態系中，篩選最具潛力的 2-3 家進入月會 Pitch"
             />
             <ValueCard
               icon="📊"
@@ -214,7 +216,7 @@ export default async function LandingPage() {
             <ValueCard
               icon="🤝"
               title="投資人社群"
-              description="40+ 位跨領域天使投資人，76 個投資領域，共投機會豐富"
+              description="40+ 位跨領域天使投資人，橫跨多元投資領域，共投機會豐富"
             />
             <ValueCard
               icon="🏭"
@@ -251,7 +253,7 @@ export default async function LandingPage() {
       {/* ─── Footer ─── */}
       <footer className="bg-slate-900 text-slate-400 py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-amber-400 font-medium tracking-[0.2em] text-sm mb-2">NTUTEC ANGELS</p>
+          <p className="text-teal-400 font-medium tracking-[0.2em] text-sm mb-2">NTUTEC ANGELS</p>
           <p className="text-slate-500 text-sm mb-6">臺大天使會 — 台大創業生態系的投資入口</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm mb-8">
             <span>國立臺灣大學創意創業中心</span>
@@ -288,7 +290,7 @@ function StartupCard({ emoji, name, subtitle, sector, description }: {
 function Benefit({ text, light }: { text: string; light?: boolean }) {
   return (
     <li className="flex items-start gap-2.5">
-      <svg className={`w-5 h-5 mt-0.5 flex-shrink-0 ${light ? 'text-amber-400' : 'text-green-500'}`} fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+      <svg className={`w-5 h-5 mt-0.5 flex-shrink-0 ${light ? 'text-teal-400' : 'text-green-500'}`} fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
       </svg>
       <span className={`text-sm ${light ? 'text-slate-300' : 'text-slate-600'}`}>{text}</span>
@@ -312,7 +314,7 @@ function CaseCard({ name, sector, stage, description }: {
   return (
     <div className="bg-white rounded-xl border border-slate-200 p-6">
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-xs font-medium bg-amber-100 text-amber-700 px-2 py-0.5 rounded">{sector}</span>
+        <span className="text-xs font-medium bg-teal-100 text-teal-700 px-2 py-0.5 rounded">{sector}</span>
         <span className="text-xs font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded">{stage}</span>
       </div>
       <h4 className="font-bold text-slate-900 mb-2">{name}</h4>
