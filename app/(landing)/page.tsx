@@ -229,20 +229,20 @@ export default async function LandingPage() {
             <CaseCard
               name="先勁智能 AHEAD Medicine"
               sector="AI 醫療"
-              stage="Seed"
-              highlight="AI 流式細胞分析，速度提升 50-100 倍，Mayo Clinic 驗證"
+              stage="Series A"
+              description="源自台大醫院與清華大學研究團隊，以 AI 技術革新流式細胞分析領域。產品 Cyto-copilot 將血液疾病診斷速度提升 50-100 倍，已獲美國 Mayo Clinic 與 UPMC 臨床驗證，並加入 NIST 流式細胞標準聯盟。"
             />
             <CaseCard
               name="行動貝果 MoBagel"
               sector="企業 AI 數據分析"
-              stage="Series A"
-              highlight="Decanter AI 服務 11,000+ 品牌，2024 年營收年增 84%"
+              stage="Series B"
+              description="矽谷起家的 AutoML 平台公司，旗艦產品 Decanter AI 為企業提供無代碼機器學習解決方案。累計服務超過 3,000 個品牌、10 萬用戶，客戶涵蓋中華電信、太古可口可樂、New Balance 等，連續三年獲 Gartner 認可為關鍵廠商。"
             />
             <CaseCard
               name="思輔科技 SAVFE"
               sector="手術機器人"
-              stage="Early Stage"
-              highlight="術中定位 3 秒完成（傳統 15 分鐘），國家新創獎得主"
+              stage="Pre-A"
+              description="開發高精度醫療數位手臂，應用於微創脊椎手術定位。核心突破：術中定位僅需 3 秒（傳統需 15 分鐘），無需光學攝影機或標記，已於亞東醫院完成場域驗證。國家新創獎得主，目前進入醫材許可申請階段。"
             />
           </div>
         </div>
@@ -256,12 +256,12 @@ export default async function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm mb-8">
             <span>國立臺灣大學創意創業中心</span>
             <span className="hidden sm:inline text-slate-600">|</span>
-            <a href="mailto:tec@ntu.edu.tw" className="hover:text-white transition-colors">tec@ntu.edu.tw</a>
+            <a href="mailto:ntutec@ntutec.com" className="hover:text-white transition-colors">ntutec@ntutec.com</a>
             <span className="hidden sm:inline text-slate-600">|</span>
-            <span>台北市大安區羅斯福路四段一號</span>
+            <span>台北市中正區思源街 18 號 卓越研究大樓 7F</span>
           </div>
           <p className="text-xs text-slate-600">
-            &copy; {new Date().getFullYear()} NTU Technology and Entrepreneurship Center. All rights reserved.
+            &copy; {new Date().getFullYear()} Taidah Entrepreneurship Center, National Taiwan University. All rights reserved.
           </p>
         </div>
       </footer>
@@ -306,8 +306,8 @@ function ValueCard({ icon, title, description }: { icon: string; title: string; 
   )
 }
 
-function CaseCard({ name, sector, stage, highlight }: {
-  name: string; sector: string; stage: string; highlight: string
+function CaseCard({ name, sector, stage, description }: {
+  name: string; sector: string; stage: string; description: string
 }) {
   return (
     <div className="bg-white rounded-xl border border-slate-200 p-6">
@@ -315,8 +315,8 @@ function CaseCard({ name, sector, stage, highlight }: {
         <span className="text-xs font-medium bg-amber-100 text-amber-700 px-2 py-0.5 rounded">{sector}</span>
         <span className="text-xs font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded">{stage}</span>
       </div>
-      <h4 className="font-bold text-slate-900 mb-2 text-sm">{name}</h4>
-      <p className="text-sm text-slate-500 leading-relaxed">{highlight}</p>
+      <h4 className="font-bold text-slate-900 mb-2">{name}</h4>
+      <p className="text-sm text-slate-500 leading-relaxed">{description}</p>
     </div>
   )
 }
