@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { useSearchParams } from 'next/navigation'
 
@@ -74,9 +73,9 @@ export default function LoginPage() {
           <p className="text-gray-600">
             請查看 <span className="font-medium">{email}</span> 的收件匣，點擊連結完成登入。
           </p>
-          <Link href="/" className="inline-block mt-6 text-sm text-blue-600 hover:text-blue-700 transition-colors">
-            &larr; 返回首頁
-          </Link>
+          <p className="mt-6 text-sm text-gray-400">
+            登入後即可使用平台功能
+          </p>
         </div>
       </main>
     )
@@ -147,11 +146,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
-            &larr; 返回首頁
-          </Link>
-        </div>
+        <p className="mt-6 text-center text-xs text-gray-400">
+          NTUTEC ANGELS &mdash; 臺大天使會
+        </p>
       </div>
     </main>
   )

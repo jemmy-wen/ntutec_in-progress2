@@ -30,7 +30,8 @@ export const ROLE_LABELS: Record<PlatformRole, string> = {
 
 /** Route-to-role mapping for middleware/layout guards */
 export const ROLE_ROUTE_MAP: Record<string, PlatformRole[]> = {
-  '/angel/portal': ['admin'],  // Phase 3 — admin-only until launch
+  '/angel/onboarding': ['admin', 'angel_member'],
+  '/angel/portal': ['admin', 'angel_member'],
   '/admin': ['admin', 'staff_admin', 'staff_accelerator'],
 }
 
@@ -38,8 +39,9 @@ export const ROLE_ROUTE_MAP: Record<string, PlatformRole[]> = {
 export function getDefaultRoute(roles: string[]): string {
   if (roles.includes('admin') || roles.includes('staff_admin')) return '/admin/dashboard'
   if (roles.includes('staff_accelerator')) return '/admin/dashboard'
-  // mentor, team, angel_member, vc_partner → public homepage (portals moved to separate apps)
-  return '/'
+  if (roles.includes('angel_member')) return '/angel/portal/upcoming'
+  // Other roles → angel portal as default (public pages hidden)
+  return '/angel/portal/upcoming'
 }
 
 /** Check if user has any of the required roles */

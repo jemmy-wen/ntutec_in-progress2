@@ -42,11 +42,19 @@ export async function middleware(request: NextRequest) {
   // API routes handle their own auth via withApiHandler
   const isApiRoute = pathname.startsWith('/api/')
 
-  // Redirect unauthenticated users to login
-  if (!user && !isPublicRoute && !isApiRoute) {
+  // Redirect unauthenticated users to login (except homepage landing page)
+  if (!user && !isPublicRoute && !isApiRoute && pathname !== '/') {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     url.searchParams.set('redirect', pathname)
+    return NextResponse.redirect(url)
+  }
+
+  // Authenticated user on public pages (homepage, /about, etc.) → redirect to portal
+  // Public pages are hidden until design is confirmed; homepage is landing page for non-auth only
+  if (user && !isApiRoute && !pathname.startsWith('/admin') && !pathname.startsWith('/angel') && !pathname.startsWith('/login') && !pathname.startsWith('/callback') && !pathname.startsWith('/vote')) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/angel/portal/upcoming'
     return NextResponse.redirect(url)
   }
 

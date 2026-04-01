@@ -23,8 +23,19 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<ModuleRole, 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<Omit<ModuleRole, 'id'>>
+        Insert: {
+          user_id: string
+          module: string
+          role: string
+          is_active?: boolean
+        }
+        Update: Partial<{
+          user_id: string
+          module: string
+          role: string
+          is_active: boolean
+          updated_at: string
+        }>
       }
 
       // ─── Shared: Notifications ───
