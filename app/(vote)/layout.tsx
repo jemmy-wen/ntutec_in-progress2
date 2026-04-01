@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function VoteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-purple-50 to-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-teal-50 to-white">
       {/* Minimal header — logo only */}
-      <header className="py-3 px-4 flex items-center justify-center border-b border-purple-100 bg-white/80 backdrop-blur-sm">
+      <header className="py-3 px-4 flex items-center justify-center border-b border-teal-100 bg-white/80 backdrop-blur-sm">
         <Image
           src="/logo-tec.png"
           alt="NTU TEC 台大創創中心"
@@ -30,7 +30,7 @@ export default function VoteLayout({ children }: { children: React.ReactNode }) 
 
       {/* Minimal footer */}
       <footer className="py-4 text-center text-xs text-gray-400 border-t border-gray-100">
-        &copy; {new Date().getFullYear()} NTU Technology and Entrepreneurship Center
+        &copy; {new Date().getFullYear()} Taidah Entrepreneurship Center, National Taiwan University
       </footer>
     </div>
   )

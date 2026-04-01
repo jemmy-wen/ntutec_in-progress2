@@ -154,7 +154,7 @@ export default function VoteForm({ cycle }: { cycle: string }) {
             onChange={e => setVoterName(e.target.value)}
             placeholder="請輸入您的姓名"
             required
-            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
           />
         </div>
         <div>
@@ -168,7 +168,7 @@ export default function VoteForm({ cycle }: { cycle: string }) {
             onChange={e => setVoterCompany(e.target.value)}
             placeholder="請輸入您的公司/機構名稱"
             required
-            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
           />
         </div>
       </div>
@@ -177,12 +177,12 @@ export default function VoteForm({ cycle }: { cycle: string }) {
       {PITCHES.map((pitch, idx) => (
         <div key={pitch.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           {/* Card header */}
-          <div className="bg-purple-50 px-4 py-3 border-b border-purple-100">
+          <div className="bg-teal-50 px-4 py-3 border-b border-teal-100">
             <div className="flex items-center gap-3">
               <span className="text-3xl">{pitch.emoji}</span>
               <div>
                 <h2 className="text-lg font-bold text-gray-900">{pitch.name}</h2>
-                <p className="text-sm text-purple-600">{pitch.subtitle}</p>
+                <p className="text-sm text-teal-600">{pitch.subtitle}</p>
               </div>
               <span className="ml-auto text-xs text-gray-400 font-mono">{idx + 1}/3</span>
             </div>
@@ -206,8 +206,8 @@ export default function VoteForm({ cycle }: { cycle: string }) {
                         w-11 h-11 rounded-full text-base font-bold transition-all
                         flex items-center justify-center
                         ${selected
-                          ? 'bg-purple-600 text-white shadow-md scale-110'
-                          : 'bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-700'
+                          ? 'bg-teal-600 text-white shadow-md scale-110'
+                          : 'bg-gray-100 text-gray-600 hover:bg-teal-100 hover:text-teal-700'
                         }
                       `}
                     >
@@ -268,7 +268,7 @@ export default function VoteForm({ cycle }: { cycle: string }) {
                 onChange={e => setComment(pitch.id, e.target.value)}
                 placeholder="對這組新創的觀察或建議..."
                 rows={2}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm resize-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm resize-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
               />
             </div>
           </div>
@@ -291,7 +291,7 @@ export default function VoteForm({ cycle }: { cycle: string }) {
           w-full py-4 rounded-xl text-lg font-bold transition-all
           ${submitting
             ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            : 'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800 shadow-lg hover:shadow-xl'
+            : 'bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-800 shadow-lg hover:shadow-xl'
           }
         `}
       >

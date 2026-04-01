@@ -10,7 +10,7 @@ import PublicHeader from '@/components/shared/PublicHeader'
 export const metadata: Metadata = {
   title: {
     template: '%s | 台大創創中心 NTU TEC',
-    default: '台大創創中心 | NTU Technology & Entrepreneurship Center',
+    default: '台大創創中心 | Taidah Entrepreneurship Center',
   },
   description: '台灣大學創意創業中心以創業教育、育成輔導、天使投資三軌並行，打造台灣最具影響力的大學創業生態系。',
   openGraph: {
@@ -39,8 +39,8 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
               <h3 className="text-white font-bold text-lg mb-4">NTU TEC</h3>
               <p className="text-sm">
                 台灣大學創意創業中心
+                <br />Taidah Entrepreneurship Center
                 <br />National Taiwan University
-                <br />Technology and Entrepreneurship Center
               </p>
             </div>
             <div>
@@ -70,7 +70,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
-            &copy; {new Date().getFullYear()} NTU Technology and Entrepreneurship Center. All rights reserved.
+            &copy; {new Date().getFullYear()} Taidah Entrepreneurship Center, National Taiwan University. All rights reserved.
           </div>
         </div>
       </footer>
