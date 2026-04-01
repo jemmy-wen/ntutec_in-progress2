@@ -66,7 +66,7 @@ export default function LearnPage() {
             const count = progress.filter(p => p.content_type === cat.key).length
             return (
               <div key={cat.key} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600">{count}</div>
+                <div className="text-2xl font-bold text-teal-600">{count}</div>
                 <div className="text-sm text-gray-500">{cat.label}</div>
               </div>
             )
@@ -82,7 +82,7 @@ export default function LearnPage() {
             onClick={() => setFilter(cat.key)}
             className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               filter === cat.key
-                ? 'bg-blue-600 text-white'
+                ? 'bg-teal-600 text-white'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
@@ -91,12 +91,12 @@ export default function LearnPage() {
         ))}
       </div>
 
-      {/* Content list — placeholder for Ghost CMS integration */}
+      {/* Content list — placeholder */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
         <div className="text-4xl mb-4">📚</div>
-        <h2 className="text-lg font-semibold mb-2">學習內容即將上線</h2>
+        <h2 className="text-lg font-semibold mb-2">學習內容籌備中</h2>
         <p className="text-gray-500 text-sm">
-          學習中心將整合 Ghost CMS，提供產業觀察、DD 知識、案例覆盤等內容。
+          學習中心將提供產業觀察、盡調知識、案例覆盤等內容，敬請期待。
         </p>
         {filtered.length > 0 && (
           <div className="mt-6 text-left">

@@ -39,9 +39,9 @@ interface DashboardData {
 const FUNNEL_STAGES = [
   { key: 'radar',       label: 'Radar',   color: 'bg-slate-400' },
   { key: 'observation', label: '觀察池',   color: 'bg-gray-400' },
-  { key: 'gate0',       label: 'Gate 0',  color: 'bg-blue-500' },
+  { key: 'gate0',       label: 'Gate 0',  color: 'bg-teal-500' },
   { key: 'gate1',       label: 'Gate 1',  color: 'bg-indigo-500' },
-  { key: 'gate2',       label: 'Gate 2',  color: 'bg-purple-500' },
+  { key: 'gate2',       label: 'Gate 2',  color: 'bg-teal-500' },
   { key: 'pitch_ready', label: 'Pitch',   color: 'bg-amber-500' },
   { key: 'invested',    label: '已投資',   color: 'bg-emerald-500' },
 ] as const
@@ -49,9 +49,9 @@ const FUNNEL_STAGES = [
 const STAGE_BG: Record<string, string> = {
   radar: 'bg-slate-50 text-slate-700',
   observation: 'bg-gray-50 text-gray-700',
-  gate0: 'bg-blue-50 text-blue-700',
+  gate0: 'bg-teal-50 text-teal-700',
   gate1: 'bg-indigo-50 text-indigo-700',
-  gate2: 'bg-purple-50 text-purple-700',
+  gate2: 'bg-teal-50 text-teal-700',
   pitch_ready: 'bg-amber-50 text-amber-700',
   invested: 'bg-emerald-50 text-emerald-700',
   passed: 'bg-red-50 text-red-700',
@@ -177,7 +177,7 @@ function KPIBar({ pipeline, memberCount, engagement }: {
 
   const kpis = [
     { label: '總案源', value: pipeline.total, color: 'border-slate-300' },
-    { label: 'Gate 0+', value: gate0Plus, color: 'border-blue-400' },
+    { label: 'Gate 0+', value: gate0Plus, color: 'border-teal-400' },
     { label: 'Gate 1', value: stageCounts.gate1, color: 'border-indigo-400' },
     { label: 'Pitch Ready', value: stageCounts.pitch_ready, color: 'border-amber-400' },
     { label: '已投資', value: stageCounts.invested, color: 'border-emerald-400' },
@@ -251,7 +251,7 @@ function MeetingStatus({ meeting }: { meeting: DashboardData['meeting'] }) {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <h2 className="text-sm font-semibold text-gray-700 mb-3">月會狀態</h2>
         <p className="text-gray-400 text-sm">目前沒有進行中的月會</p>
-        <Link href="/admin/meetings" className="inline-block mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium">
+        <Link href="/admin/meetings" className="inline-block mt-3 text-sm text-teal-600 hover:text-teal-700 font-medium">
           建立新月會 →
         </Link>
       </div>
@@ -290,7 +290,7 @@ function MeetingStatus({ meeting }: { meeting: DashboardData['meeting'] }) {
         ))}
       </div>
 
-      <Link href="/admin/meetings" className="inline-block mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">
+      <Link href="/admin/meetings" className="inline-block mt-4 text-sm text-teal-600 hover:text-teal-700 font-medium">
         管理月會 →
       </Link>
     </div>
@@ -407,7 +407,7 @@ const PROJECT_STATUS_STYLE: Record<string, string> = {
   active: 'border-l-emerald-500',
   paused: 'border-l-amber-400',
   frozen: 'border-l-gray-300',
-  completed: 'border-l-blue-400',
+  completed: 'border-l-teal-400',
 }
 
 function ProjectTracker({ projects }: { projects: Project[] }) {
@@ -447,7 +447,7 @@ function ProjectTracker({ projects }: { projects: Project[] }) {
 
 function QuickLink({ href, title, desc }: { href: string; title: string; desc: string }) {
   return (
-    <Link href={href} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 transition-colors block">
+    <Link href={href} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-teal-300 transition-colors block">
       <div className="font-semibold mb-1">{title}</div>
       <div className="text-sm text-gray-500">{desc}</div>
     </Link>

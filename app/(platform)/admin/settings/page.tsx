@@ -170,7 +170,7 @@ export default function AdminSettingsPage() {
         <button
           onClick={handleSave}
           disabled={saving || loading || !isDirty}
-          className="px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors flex items-center gap-2"
+          className="px-5 py-2.5 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 disabled:opacity-50 transition-colors flex items-center gap-2"
         >
           {saving ? '儲存中...' : saved ? '已儲存' : '儲存設定'}
         </button>
@@ -364,7 +364,7 @@ function ToggleField({ label, description, checked, onChange }: {
       <button
         onClick={() => onChange(!checked)}
         className={`w-11 h-6 rounded-full transition-colors relative ${
-          checked ? 'bg-blue-600' : 'bg-gray-300'
+          checked ? 'bg-teal-600' : 'bg-gray-300'
         }`}
       >
         <span className={`block w-5 h-5 bg-white rounded-full shadow-sm absolute top-0.5 transition-transform ${
@@ -393,7 +393,7 @@ function NumberField({ label, description, value, onChange, min, max, suffix }: 
           }}
           min={min}
           max={max}
-          className="w-24 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+          className="w-24 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
         />
         <span className="text-sm text-gray-500">{suffix}</span>
       </div>
@@ -414,7 +414,7 @@ function TextField({ label, description, value, onChange, placeholder, isSecret 
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
       />
     </div>
   )
@@ -437,7 +437,7 @@ const PLATFORM_ROLES = [
   { id: 'admin', label: '系統管理員', description: '最高權限，可管理所有模組與設定' },
   { id: 'staff_admin', label: '行政管理員', description: '中心行政人員，管理月會、Pipeline、會員' },
   { id: 'staff_accelerator', label: '加速器管理', description: '加速器專員，管理輔導與活動' },
-  { id: 'angel_member', label: '天使會員', description: '天使俱樂部會員，可瀏覽新創、投票、參與月會' },
+  { id: 'angel_member', label: '天使會員', description: '臺大天使會會員，可瀏覽新創、投票、參與月會' },
   { id: 'mentor', label: '業師', description: '業師健診系統，管理時段與回饋' },
   { id: 'team', label: '團隊', description: '團隊端使用者，申請業師健診與輔導' },
   { id: 'startup_incubated', label: '育成新創', description: '育成中心進駐團隊' },

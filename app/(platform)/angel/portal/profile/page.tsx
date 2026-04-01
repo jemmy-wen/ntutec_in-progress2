@@ -109,13 +109,13 @@ export default function ProfilePage() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">個人偏好設定</h1>
         {!editing ? (
-          <button onClick={() => setEditing(true)} className="text-blue-600 text-sm font-medium hover:text-blue-700">
+          <button onClick={() => setEditing(true)} className="text-teal-600 text-sm font-medium hover:text-teal-700">
             編輯
           </button>
         ) : (
           <div className="flex gap-2">
             <button onClick={() => { setEditing(false); setForm(profile) }} className="text-gray-500 text-sm">取消</button>
-            <button onClick={handleSave} disabled={saving} className="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50">
+            <button onClick={handleSave} disabled={saving} className="bg-teal-600 text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-teal-700 disabled:opacity-50">
               {saving ? '儲存中...' : '儲存'}
             </button>
           </div>
@@ -162,7 +162,7 @@ export default function ProfilePage() {
                           }))
                         }}
                         className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-                          selected ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                          selected ? 'bg-teal-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                       >
                         {s.label}
@@ -176,7 +176,7 @@ export default function ProfilePage() {
                     ? (prefs.sectors || []).map(sv => {
                         const opt = SECTOR_OPTIONS.find(o => o.value === sv)
                         return (
-                          <span key={sv} className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">
+                          <span key={sv} className="px-3 py-1 bg-teal-50 text-teal-700 rounded-full text-sm">
                             {opt ? opt.label : sv}
                           </span>
                         )
@@ -236,7 +236,7 @@ function Field({ id, label, value, editing, onChange, placeholder }: {
           value={value}
           onChange={e => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
         />
       ) : (
         <div className="text-sm font-medium">{value || <span className="text-gray-400">-</span>}</div>

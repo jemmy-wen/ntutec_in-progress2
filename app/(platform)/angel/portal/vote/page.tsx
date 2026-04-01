@@ -144,7 +144,7 @@ export default function VotePage() {
         </span>
       </div>
 
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
+      <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 text-sm text-teal-800">
         記名投票，投票結果僅 Admin 可見。您的選擇不會影響其他會員。
       </div>
 
@@ -250,7 +250,7 @@ export default function VotePage() {
               </button>
               <button
                 onClick={executeVote}
-                className="flex-1 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+                className="flex-1 py-2 bg-teal-600 text-white rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors"
               >
                 確認
               </button>

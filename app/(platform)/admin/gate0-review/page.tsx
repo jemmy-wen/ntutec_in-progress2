@@ -215,7 +215,7 @@ export default function Gate0ReviewPage() {
           <button
             onClick={() => handleAutoScore(false)}
             disabled={scoring}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700 disabled:opacity-50"
           >
             {scoring ? '處理中...' : '⚡ 一鍵自動評分'}
           </button>
@@ -256,7 +256,7 @@ export default function Gate0ReviewPage() {
             onClick={() => setFilter(f)}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               filter === f
-                ? 'bg-blue-600 text-white'
+                ? 'bg-teal-600 text-white'
                 : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
             }`}
           >
@@ -286,7 +286,7 @@ export default function Gate0ReviewPage() {
                   key={s.id}
                   onClick={() => setSelectedIdx(idx)}
                   className={`cursor-pointer border-b border-gray-50 px-4 py-3 transition-colors ${
-                    idx === selectedIdx ? 'bg-blue-50 border-l-4 border-l-blue-500' : 'hover:bg-gray-50'
+                    idx === selectedIdx ? 'bg-teal-50 border-l-4 border-l-teal-500' : 'hover:bg-gray-50'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -340,15 +340,15 @@ export default function Gate0ReviewPage() {
 
                 {/* Gate 0 auto-score details if available */}
                 {selected.gate0 && (
-                  <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                    <div className="text-sm font-medium text-blue-800">
+                  <div className="mt-4 p-3 bg-teal-50 rounded-lg">
+                    <div className="text-sm font-medium text-teal-800">
                       自動評分結果：{selected.gate0.result}
                       {selected.gate0.evaluation_date && (
-                        <span className="ml-2 text-blue-600 font-normal">({selected.gate0.evaluation_date})</span>
+                        <span className="ml-2 text-teal-600 font-normal">({selected.gate0.evaluation_date})</span>
                       )}
                     </div>
                     {selected.gate0.notes && (
-                      <div className="mt-2 text-xs text-blue-700 whitespace-pre-line">
+                      <div className="mt-2 text-xs text-teal-700 whitespace-pre-line">
                         {selected.gate0.notes}
                       </div>
                     )}
@@ -363,7 +363,7 @@ export default function Gate0ReviewPage() {
                   onChange={e => setReviewNotes(e.target.value)}
                   placeholder="備註（選填）"
                   rows={2}
-                  className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 mb-4"
+                  className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 mb-4"
                 />
                 <div className="flex gap-3">
                   <button
@@ -404,7 +404,7 @@ export default function Gate0ReviewPage() {
                     </div>
                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-blue-500 rounded-full transition-all"
+                        className="h-full bg-teal-500 rounded-full transition-all"
                         style={{ width: `${(processed / (processed + startups.length)) * 100}%` }}
                       />
                     </div>
@@ -429,7 +429,7 @@ function InfoRow({ label, value, link }: { label: string; value: string | null |
       <span className="text-gray-500">{label}：</span>
       {value ? (
         link ? (
-          <a href={value.startsWith('http') ? value : `https://${value}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <a href={value.startsWith('http') ? value : `https://${value}`} target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:underline">
             {value}
           </a>
         ) : (

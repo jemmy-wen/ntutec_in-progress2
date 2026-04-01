@@ -260,7 +260,7 @@ export default function MeetingsAdminPage() {
             </div>
             <button
               onClick={() => { setShowCandidates(true); loadCandidates() }}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+              className="bg-teal-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors"
             >
               + 新增 Pitch 案源
             </button>
@@ -273,7 +273,7 @@ export default function MeetingsAdminPage() {
               <div className="text-gray-400 mb-2">尚未指定 Pitch 案源</div>
               <button
                 onClick={() => { setShowCandidates(true); loadCandidates() }}
-                className="text-blue-600 text-sm hover:underline"
+                className="text-teal-600 text-sm hover:underline"
               >
                 從候選名單中選擇 →
               </button>
@@ -389,7 +389,7 @@ export default function MeetingsAdminPage() {
               value={newCycleId}
               onChange={e => { setNewCycleId(e.target.value); setFormError(null) }}
               placeholder="YYYY-MM"
-              className={`w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-teal-500 ${
                 newCycleId && !isCycleIdValid ? 'border-red-400' : 'border-gray-300'
               }`}
             />
@@ -401,14 +401,14 @@ export default function MeetingsAdminPage() {
               type="date"
               value={newDate}
               onChange={e => { setNewDate(e.target.value); setFormError(null) }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-teal-500"
             />
           </div>
           <div className="flex items-end">
             <button
               onClick={handleCreate}
               disabled={creating || !isCycleIdValid || !newDate}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50"
+              className="bg-teal-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-teal-700 disabled:opacity-50"
             >
               {creating ? '建立中...' : '建立'}
             </button>
@@ -535,7 +535,7 @@ function ActiveMeetingHero({ meeting, onTransition }: {
         <div className="px-6 pb-5">
           <button
             onClick={() => onTransition(nextTransition.next, nextTransition.description)}
-            className="w-full bg-blue-600 text-white py-2.5 rounded-xl text-sm font-medium hover:bg-blue-700 transition-colors"
+            className="w-full bg-teal-600 text-white py-2.5 rounded-xl text-sm font-medium hover:bg-teal-700 transition-colors"
           >
             推進至 → {STATUS_LABELS[nextTransition.next]}
           </button>
@@ -625,11 +625,11 @@ function CandidateSelector({
                 key={c.id}
                 onClick={() => onToggle(c.id)}
                 className={`px-6 py-3 border-b border-gray-50 cursor-pointer transition-colors flex items-center gap-3 ${
-                  selected.has(c.id) ? 'bg-blue-50' : 'hover:bg-gray-50'
+                  selected.has(c.id) ? 'bg-teal-50' : 'hover:bg-gray-50'
                 }`}
               >
                 <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
-                  selected.has(c.id) ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-300'
+                  selected.has(c.id) ? 'bg-teal-600 border-teal-600 text-white' : 'border-gray-300'
                 }`}>
                   {selected.has(c.id) && <span className="text-xs">✓</span>}
                 </div>
@@ -663,7 +663,7 @@ function CandidateSelector({
           <button
             onClick={onConfirm}
             disabled={selected.size === 0}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
+            className="bg-teal-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-teal-700 disabled:opacity-50 transition-colors"
           >
             確認新增 ({selected.size})
           </button>
@@ -675,6 +675,6 @@ function CandidateSelector({
 
 function formatCycleLabel(id: string): string {
   const match = id.match(/^(\d{4})-(0[1-9]|1[0-2])$/)
-  if (match) return `${match[1]} 年 ${parseInt(match[2])} 月天使投資月會`
+  if (match) return `${match[1]} 年 ${parseInt(match[2])} 月臺大天使會月會`
   return id
 }

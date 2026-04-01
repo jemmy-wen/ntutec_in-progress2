@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: '關於我們', href: '/about' },
   { label: '輔導計畫', href: '/programs' },
   { label: '新創團隊', href: '/startups' },
-  { label: '天使俱樂部', href: '/angel' },
+  { label: '臺大天使會', href: '/angel' },
   { label: '業師陣容', href: '/mentors' },
   { label: '活動', href: '/events' },
   { label: '聯絡', href: '/contact' },
@@ -47,7 +47,7 @@ export default function PublicHeader() {
             </Link>
             <Link
               href="/contact"
-              className="hidden sm:inline-block px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
+              className="hidden sm:inline-block px-4 py-2 bg-teal-600 text-white text-sm rounded-lg hover:bg-teal-700 transition-colors"
             >
               聯絡我們
             </Link>

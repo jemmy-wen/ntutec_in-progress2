@@ -122,7 +122,7 @@ export default function ResponsesPage() {
       <div className="text-center py-16">
         <div className="text-5xl mb-4">⚠️</div>
         <p className="text-red-600">{error}</p>
-        <button onClick={() => { setError(null); setLoading(true); loadData() }} className="mt-4 text-blue-600 hover:underline">重試</button>
+        <button onClick={() => { setError(null); setLoading(true); loadData() }} className="mt-4 text-teal-600 hover:underline">重試</button>
       </div>
     )
   }
@@ -173,7 +173,7 @@ export default function ResponsesPage() {
               onClick={() => setActiveTab(tab.key)}
               className={`pb-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === tab.key
-                  ? 'border-blue-500 text-blue-700'
+                  ? 'border-teal-500 text-teal-700'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -199,7 +199,7 @@ export default function ResponsesPage() {
                     <div>
                       <span className="font-bold">{s.startup.name_zh}</span>
                       {s.startup.sector && (
-                        <span className="ml-2 text-xs px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full">{s.startup.sector}</span>
+                        <span className="ml-2 text-xs px-2 py-0.5 bg-teal-50 text-teal-600 rounded-full">{s.startup.sector}</span>
                       )}
                     </div>
                     <div className="flex items-center gap-4 text-sm">
@@ -311,7 +311,7 @@ export default function ResponsesPage() {
                 <button
                   onClick={() => handleNotify(event)}
                   disabled={notifyStatus[event] === 'sending'}
-                  className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                  className="px-4 py-2 bg-teal-600 text-white text-sm rounded-lg hover:bg-teal-700 disabled:opacity-50 transition-colors"
                 >
                   {notifyStatus[event] === 'sending' ? '發送中...' : '發送'}
                 </button>

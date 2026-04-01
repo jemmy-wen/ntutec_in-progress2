@@ -100,7 +100,7 @@ export default function VoteResultsPage() {
       <div className="text-center py-16">
         <div className="text-5xl mb-4">⚠️</div>
         <p className="text-red-600">{error}</p>
-        <button onClick={() => { setError(null); setLoading(true); loadData() }} className="mt-4 text-blue-600 hover:underline">重試</button>
+        <button onClick={() => { setError(null); setLoading(true); loadData() }} className="mt-4 text-teal-600 hover:underline">重試</button>
       </div>
     )
   }
@@ -189,7 +189,7 @@ export default function VoteResultsPage() {
                   <div className="flex items-center gap-2">
                     <span className="font-bold">{s.startup.name_zh}</span>
                     {s.startup.sector && (
-                      <span className="text-xs px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full">{s.startup.sector}</span>
+                      <span className="text-xs px-2 py-0.5 bg-teal-50 text-teal-600 rounded-full">{s.startup.sector}</span>
                     )}
                     {s.startup.gate1_score != null && (
                       <span className="text-xs text-gray-400">G1: {s.startup.gate1_score}</span>
@@ -295,14 +295,14 @@ function StatCard({ label, value, sub, color }: {
     yellow: 'bg-yellow-50 border-yellow-200',
     red: 'bg-red-50 border-red-200',
     gray: 'bg-gray-50 border-gray-200',
-    blue: 'bg-blue-50 border-blue-200',
+    blue: 'bg-teal-50 border-teal-200',
   }
   const textMap = {
     green: 'text-green-700',
     yellow: 'text-yellow-700',
     red: 'text-red-700',
     gray: 'text-gray-700',
-    blue: 'text-blue-700',
+    blue: 'text-teal-700',
   }
 
   return (

@@ -32,9 +32,9 @@ interface PipelineStartup {
 
 const STAGE_CONFIG: Record<PipelineStage, { label: string; color: string; bgColor: string }> = {
   observation:  { label: '觀察池',    color: 'text-gray-700',   bgColor: 'bg-gray-50' },
-  gate0:        { label: 'Gate 0',   color: 'text-blue-700',   bgColor: 'bg-blue-50' },
+  gate0:        { label: 'Gate 0',   color: 'text-teal-700',   bgColor: 'bg-teal-50' },
   gate1:        { label: 'Gate 1',   color: 'text-indigo-700', bgColor: 'bg-indigo-50' },
-  gate2:        { label: 'Gate 2',   color: 'text-purple-700', bgColor: 'bg-purple-50' },
+  gate2:        { label: 'Gate 2',   color: 'text-teal-700', bgColor: 'bg-teal-50' },
   pitch_ready:  { label: 'Pitch',    color: 'text-orange-700', bgColor: 'bg-orange-50' },
   invested:     { label: '已投資',    color: 'text-green-700',  bgColor: 'bg-green-50' },
   passed:       { label: 'Pass',     color: 'text-red-700',    bgColor: 'bg-red-50' },
@@ -101,7 +101,7 @@ export default function AdminPipelinePage() {
           <select
             value={filterStage}
             onChange={e => setFilterStage(e.target.value as PipelineStage | 'all')}
-            className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+            className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
           >
             <option value="all">全部階段</option>
             {STAGES.map(s => (
@@ -141,7 +141,7 @@ export default function AdminPipelinePage() {
               key={stage}
               onClick={() => setFilterStage(filterStage === stage ? 'all' : stage)}
               className={`rounded-lg p-3 text-center transition-all ${
-                filterStage === stage ? 'ring-2 ring-blue-500' : ''
+                filterStage === stage ? 'ring-2 ring-teal-500' : ''
               } ${cfg.bgColor}`}
             >
               <div className={`text-xl font-bold ${cfg.color}`}>{count}</div>
@@ -230,7 +230,7 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
 
   return (
     <div
-      className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-pointer relative"
+      className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:shadow-md hover:border-teal-300 transition-all cursor-pointer relative"
       onMouseEnter={() => setShowDetail(true)}
       onMouseLeave={() => setShowDetail(false)}
       onClick={() => router.push(`/admin/pipeline/${startup.id}`)}
@@ -293,7 +293,7 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
               <span className="text-gray-500">{startup.observation_reason}</span>
             </div>
           )}
-          <div className="pt-1.5 border-t border-gray-100 text-blue-600 font-medium">
+          <div className="pt-1.5 border-t border-gray-100 text-teal-600 font-medium">
             點擊查看詳情 &rarr;
           </div>
         </div>
@@ -331,7 +331,7 @@ function TableView({ startups }: { startups: PipelineStartup[] }) {
           {startups.map(s => (
             <tr
               key={s.id}
-              className="border-b border-gray-100 hover:bg-blue-50 cursor-pointer transition-colors"
+              className="border-b border-gray-100 hover:bg-teal-50 cursor-pointer transition-colors"
               onClick={() => router.push(`/admin/pipeline/${s.id}`)}
             >
               <td className="px-4 py-3 font-medium">{s.name}</td>

@@ -77,7 +77,7 @@ export default function PipelinePage() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 divide-y divide-gray-100">
           {pitches.map((pitch, i) => (
             <div key={pitch.id} className="p-4 flex items-center gap-4">
-              <div className="w-8 h-8 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">
+              <div className="w-8 h-8 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center text-sm font-bold">
                 {i + 1}
               </div>
               <div className="flex-1">

@@ -55,7 +55,7 @@ export default function Sidebar({ roles, userEmail }: SidebarProps) {
                   href={item.href}
                   className={`flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors mb-0.5 ${
                     isActive
-                      ? 'bg-blue-50 text-blue-700'
+                      ? 'bg-teal-50 text-teal-700'
                       : 'text-gray-700 hover:bg-gray-100'
                   }`}
                 >

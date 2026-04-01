@@ -159,7 +159,7 @@ export default function OnboardingPage() {
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin" />
+        <div className="w-12 h-12 border-4 border-teal-200 border-t-teal-600 rounded-full animate-spin" />
       </div>
     )
   }
@@ -173,7 +173,7 @@ export default function OnboardingPage() {
             <div key={i} className="flex items-center">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
                 i < step ? 'bg-green-500 text-white' :
-                i === step ? 'bg-blue-600 text-white' :
+                i === step ? 'bg-teal-600 text-white' :
                 'bg-gray-200 text-gray-500'
               }`}>
                 {i < step ? '✓' : i + 1}
@@ -188,7 +188,7 @@ export default function OnboardingPage() {
         </div>
         <div className="flex justify-between text-xs text-gray-500">
           {STEPS.map((label, i) => (
-            <span key={i} className={i === step ? 'text-blue-600 font-medium' : ''}>{label}</span>
+            <span key={i} className={i === step ? 'text-teal-600 font-medium' : ''}>{label}</span>
           ))}
         </div>
       </div>
@@ -199,7 +199,7 @@ export default function OnboardingPage() {
           <div className="space-y-6">
             <div className="text-center mb-8">
               <div className="text-5xl mb-4">👋</div>
-              <h1 className="text-2xl font-bold mb-2">歡迎加入 NTUTEC Angel Club</h1>
+              <h1 className="text-2xl font-bold mb-2">歡迎加入 NTUTEC ANGELS 臺大天使會</h1>
               <p className="text-gray-500">讓我們花 2 分鐘設定您的偏好，幫助我們推薦最合適的投資機會。</p>
             </div>
 
@@ -207,33 +207,33 @@ export default function OnboardingPage() {
               <div>
                 <label htmlFor="ob-name" className="block text-sm font-medium text-gray-700 mb-1">姓名</label>
                 <input id="ob-name" value={displayName} onChange={e => setDisplayName(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                   placeholder="您的姓名" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="ob-company" className="block text-sm font-medium text-gray-700 mb-1">公司/單位</label>
                   <input id="ob-company" value={company} onChange={e => setCompany(e.target.value)}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                     placeholder="選填" />
                 </div>
                 <div>
                   <label htmlFor="ob-title" className="block text-sm font-medium text-gray-700 mb-1">職稱</label>
                   <input id="ob-title" value={title} onChange={e => setTitle(e.target.value)}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                     placeholder="選填" />
                 </div>
               </div>
               <div>
                 <label htmlFor="ob-phone" className="block text-sm font-medium text-gray-700 mb-1">聯絡電話</label>
                 <input id="ob-phone" value={phone} onChange={e => setPhone(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none"
                   placeholder="09xx-xxx-xxx" />
               </div>
             </div>
 
             <button onClick={() => saveAndNext()} disabled={!displayName.trim() || saving}
-              className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
+              className="w-full py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 disabled:opacity-50 transition-colors">
               {saving ? '儲存中...' : '下一步'}
             </button>
           </div>
@@ -261,7 +261,7 @@ export default function OnboardingPage() {
                       )}
                       className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-left transition-all ${
                         selected
-                          ? 'bg-blue-50 border-2 border-blue-500 text-blue-700 font-medium'
+                          ? 'bg-teal-50 border-2 border-teal-500 text-teal-700 font-medium'
                           : 'bg-gray-50 border-2 border-transparent text-gray-600 hover:border-gray-300'
                       }`}
                     >
@@ -307,11 +307,11 @@ export default function OnboardingPage() {
                     onClick={() => setStagePreference(opt.value)}
                     className={`flex flex-col items-start px-4 py-3 rounded-lg text-left transition-all ${
                       stagePreference === opt.value
-                        ? 'bg-purple-50 border-2 border-purple-500'
+                        ? 'bg-teal-50 border-2 border-teal-500'
                         : 'bg-gray-50 border-2 border-transparent hover:border-gray-300'
                     }`}
                   >
-                    <div className={`font-medium ${stagePreference === opt.value ? 'text-purple-700' : 'text-gray-900'}`}>{opt.label}</div>
+                    <div className={`font-medium ${stagePreference === opt.value ? 'text-teal-700' : 'text-gray-900'}`}>{opt.label}</div>
                     <div className="text-xs text-gray-500">{opt.desc}</div>
                   </button>
                 ))}
@@ -323,7 +323,7 @@ export default function OnboardingPage() {
                 上一步
               </button>
               <button onClick={() => saveAndNext()} disabled={saving}
-                className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
+                className="flex-1 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 disabled:opacity-50 transition-colors">
                 {saving ? '儲存中...' : '下一步'}
               </button>
             </div>
@@ -366,7 +366,7 @@ export default function OnboardingPage() {
                 上一步
               </button>
               <button onClick={() => setStep(3)}
-                className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                className="flex-1 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors">
                 了解了！
               </button>
             </div>
@@ -389,7 +389,7 @@ export default function OnboardingPage() {
                   <span className="text-gray-500 w-20">產業偏好</span>
                   <span className="flex flex-wrap gap-1">
                     {sectors.slice(0, 4).map(s => (
-                      <span key={s} className="px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full text-xs">{s}</span>
+                      <span key={s} className="px-2 py-0.5 bg-teal-50 text-teal-700 rounded-full text-xs">{s}</span>
                     ))}
                     {sectors.length > 4 && <span className="text-gray-400 text-xs">+{sectors.length - 4}</span>}
                   </span>

@@ -71,7 +71,7 @@ export default function MobileNav({ roles }: MobileNavProps) {
                         href={item.href}
                         onClick={() => setIsOpen(false)}
                         className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors mb-0.5 ${
-                          isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+                          isActive ? 'bg-teal-50 text-teal-700' : 'text-gray-700 hover:bg-gray-100'
                         }`}
                       >
                         {item.label}

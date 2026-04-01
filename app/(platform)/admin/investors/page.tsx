@@ -96,7 +96,7 @@ export default function InvestorsAdminPage() {
         {/* Stat cards */}
         <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-5 gap-3">
           <EngagementStat label="總會員" value={members.length} color="text-gray-900" bgColor="bg-gray-50" />
-          <EngagementStat label="活躍會員" value={summary.total} color="text-blue-700" bgColor="bg-blue-50" />
+          <EngagementStat label="活躍會員" value={summary.total} color="text-teal-700" bgColor="bg-teal-50" />
           <EngagementStat label="高參與" value={summary.active} color="text-emerald-700" bgColor="bg-emerald-50" onClick={() => setFilter(filter === 'active' ? 'all' : 'active')} active={filter === 'active'} />
           <EngagementStat label="中參與" value={summary.moderate} color="text-amber-700" bgColor="bg-amber-50" onClick={() => setFilter(filter === 'moderate' ? 'all' : 'moderate')} active={filter === 'moderate'} />
           <EngagementStat label="低參與" value={summary.low} color="text-red-700" bgColor="bg-red-50" onClick={() => setFilter(filter === 'low' ? 'all' : 'low')} active={filter === 'low'} />
@@ -115,7 +115,7 @@ export default function InvestorsAdminPage() {
             key={f.key}
             onClick={() => setFilter(f.key)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              filter === f.key ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              filter === f.key ? 'bg-teal-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
             {f.label} <span className="ml-1 opacity-70">({f.count})</span>
@@ -147,8 +147,8 @@ export default function InvestorsAdminPage() {
                   <td className="px-4 py-3">
                     {m.tier && (
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                        m.tier === 'founding' ? 'bg-purple-100 text-purple-700' :
-                        m.tier === 'regular' ? 'bg-blue-100 text-blue-700' :
+                        m.tier === 'founding' ? 'bg-teal-100 text-teal-700' :
+                        m.tier === 'regular' ? 'bg-teal-100 text-teal-700' :
                         'bg-gray-100 text-gray-600'
                       }`}>
                         {TIER_LABELS[m.tier] || m.tier}
@@ -270,7 +270,7 @@ function EngagementStat({ label, value, color, bgColor, onClick, active }: {
     <button
       onClick={onClick}
       className={`rounded-xl p-4 text-center transition-all ${bgColor} ${
-        active ? 'ring-2 ring-blue-500' : ''
+        active ? 'ring-2 ring-teal-500' : ''
       } ${onClick ? 'cursor-pointer hover:shadow-md' : ''}`}
     >
       <div className={`text-2xl font-extrabold tabular-nums ${color}`}>{value}</div>

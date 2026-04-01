@@ -292,7 +292,7 @@ function OverviewTab({ startup, enrichment, gates, pitches }: {
     { label: '團隊規模', value: startup.team_size ? `${startup.team_size} 人` : null },
     { label: '產品階段', value: startup.product_status },
     { label: '負責人', value: startup.representative },
-    { label: '台大關聯', value: startup.ntu_affiliation },
+    { label: '臺大關聯', value: startup.ntu_affiliation },
     { label: 'Track', value: startup.track },
     { label: 'Email', value: startup.email },
   ]
@@ -455,9 +455,9 @@ function Gate1Tab({ gate }: { gate: GateRecord }) {
   const dimensions = [
     { key: 'market',    label: '市場 Market',       score: gate.sosv_market || 0 },
     { key: 'solution',  label: '產品 Solution',     score: gate.sosv_solution || 0 },
-    { key: 'team',      label: '團隊 Team',         score: gate.sosv_timing || 0 },
-    { key: 'traction',  label: '市場實績 Traction',  score: gate.sosv_team || 0 },
-    { key: 'fit',       label: '適配 Fit',           score: gate.sosv_traction || 0 },
+    { key: 'team',      label: '團隊 Team',         score: gate.sosv_team || 0 },
+    { key: 'traction',  label: '市場實績 Traction',  score: gate.sosv_traction || 0 },
+    { key: 'fit',       label: '適配 Fit',           score: gate.sosv_timing || 0 },
   ]
   const total = dimensions.reduce((sum, d) => sum + d.score, 0)
 
@@ -502,7 +502,7 @@ function Gate1Tab({ gate }: { gate: GateRecord }) {
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
                   d.score >= 8 ? 'bg-teal-500' :
-                  d.score >= 6 ? 'bg-blue-500' :
+                  d.score >= 6 ? 'bg-teal-500' :
                   d.score >= 4 ? 'bg-amber-500' :
                   'bg-red-400'
                 }`}
@@ -571,7 +571,7 @@ function EnrichmentTab({ enrichment }: { enrichment: Enrichment }) {
   }
 
   const SIGNAL_COLORS: Record<string, string> = {
-    found: 'bg-blue-100 text-blue-700',
+    found: 'bg-teal-100 text-teal-700',
     clean: 'bg-green-100 text-green-700',
     warning: 'bg-amber-100 text-amber-700',
     risk: 'bg-red-100 text-red-700',
@@ -679,7 +679,7 @@ function ResultBadge({ result }: { result: string }) {
     defer: 'bg-gray-100 text-gray-600',
     fail: 'bg-red-100 text-red-700',
     invest: 'bg-emerald-100 text-emerald-700',
-    pending: 'bg-blue-100 text-blue-600',
+    pending: 'bg-teal-100 text-teal-600',
   }
   return (
     <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${colors[result] || 'bg-gray-100 text-gray-600'}`}>

@@ -99,14 +99,14 @@ export default function UpcomingPage() {
 
         {daysUntil > 0 && (
           <div className="text-sm text-gray-600">
-            距離月會還有 <span className="font-bold text-blue-600">{daysUntil}</span> 天
+            距離月會還有 <span className="font-bold text-teal-600">{daysUntil}</span> 天
           </div>
         )}
 
         {/* Progress bar */}
         <div className="mt-4 bg-gray-100 rounded-full h-2">
           <div
-            className="bg-blue-500 h-2 rounded-full transition-all"
+            className="bg-teal-500 h-2 rounded-full transition-all"
             style={{ width: `${stats.total > 0 ? (stats.responded / stats.total) * 100 : 0}%` }}
           />
         </div>
@@ -120,7 +120,7 @@ export default function UpcomingPage() {
         {(status === 'cards_ready' || status === 'vote_open') && (
           <Link
             href="/angel/portal/cards"
-            className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-blue-300 transition-colors"
+            className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-teal-300 transition-colors"
           >
             <div className="text-lg font-semibold mb-1">瀏覽新創</div>
             <div className="text-sm text-gray-500">查看候選新創的 6 張資訊卡片</div>
@@ -129,7 +129,7 @@ export default function UpcomingPage() {
         {status === 'vote_open' && (
           <Link
             href="/angel/portal/vote"
-            className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-purple-300 transition-colors"
+            className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:border-teal-300 transition-colors"
           >
             <div className="text-lg font-semibold mb-1">投資意向</div>
             <div className="text-sm text-gray-500">確認投票（截止前必須完成）</div>
