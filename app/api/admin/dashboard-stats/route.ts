@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
       supabase.from('v_angel_engagement').select('engagement_level'),
       supabase.from('sys_ogsm_measures').select('*').order('id'),
       supabase.from('sys_ceo_decisions').select('*').eq('status', 'pending').order('deadline'),
-      supabase.from('sys_projects').select('*').neq('status', 'archived').order('code'),
+      supabase.from('sys_projects').select('*').in('status', ['active', 'paused', 'frozen', 'completed']).order('code'),
     ])
 
     const startups = pipelineRes.data || []
@@ -151,7 +151,9 @@ export async function GET(req: NextRequest) {
         updated_at: s.updated_at,
       }))
 
-    // --- Funnel conversion rates ---
+    // --- Funnel conversion rates (stage-based, for dashboard display) ---
+    // Note: These are pipeline_stage-based rates for the funnel visualization.
+    // OGSM M1 uses a different definition: pitch_count / gate0_pass (computed by dashboard_sync.py)
     const total = startups.length
     const funnelGate0Plus = stageCounts.gate0 + stageCounts.gate1 + stageCounts.gate2 + stageCounts.pitch_ready + stageCounts.invested
     const funnelGate1Plus = stageCounts.gate1 + stageCounts.gate2 + stageCounts.pitch_ready + stageCounts.invested

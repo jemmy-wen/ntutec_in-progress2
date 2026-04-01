@@ -70,13 +70,13 @@ ALTER TABLE sys_ogsm_measures ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sys_ceo_decisions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sys_projects ENABLE ROW LEVEL SECURITY;
 
--- Read: admin + staff_admin
+-- Read: admin + staff_admin (has_role takes single text arg)
 CREATE POLICY "admin_read_ogsm" ON sys_ogsm_measures FOR SELECT
-  USING (public.has_role(auth.uid(), 'admin') OR public.has_role(auth.uid(), 'staff_admin'));
+  USING (has_role('admin') OR has_role('staff_admin'));
 CREATE POLICY "admin_read_decisions" ON sys_ceo_decisions FOR SELECT
-  USING (public.has_role(auth.uid(), 'admin') OR public.has_role(auth.uid(), 'staff_admin'));
+  USING (has_role('admin') OR has_role('staff_admin'));
 CREATE POLICY "admin_read_projects" ON sys_projects FOR SELECT
-  USING (public.has_role(auth.uid(), 'admin') OR public.has_role(auth.uid(), 'staff_admin'));
+  USING (has_role('admin') OR has_role('staff_admin'));
 
 -- Write: service_role only (via API / Claude automation)
 CREATE POLICY "service_write_ogsm" ON sys_ogsm_measures FOR ALL
