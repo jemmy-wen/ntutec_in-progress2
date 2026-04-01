@@ -50,9 +50,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  // Authenticated user on public pages (homepage, /about, etc.) → redirect to portal
-  // Public pages are hidden until design is confirmed; homepage is landing page for non-auth only
-  if (user && !isApiRoute && !pathname.startsWith('/admin') && !pathname.startsWith('/angel') && !pathname.startsWith('/login') && !pathname.startsWith('/callback') && !pathname.startsWith('/vote')) {
+  // Authenticated user on public pages (/about, /programs, etc.) → redirect to portal
+  // Homepage (/) is always visible (landing page); other public pages hidden until design confirmed
+  if (user && pathname !== '/' && !isApiRoute && !pathname.startsWith('/admin') && !pathname.startsWith('/angel') && !pathname.startsWith('/login') && !pathname.startsWith('/callback') && !pathname.startsWith('/vote')) {
     const url = request.nextUrl.clone()
     url.pathname = '/angel/portal/upcoming'
     return NextResponse.redirect(url)

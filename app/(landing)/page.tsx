@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { getDefaultRoute } from '@/lib/utils/roles'
 
 /**
  * NTUTEC ANGELS Landing Page
  *
- * - Unauthenticated → show landing page (vote CTA + membership plans + join CTA)
- * - Authenticated → redirect to role-based portal
+ * Visible to everyone (authenticated and unauthenticated).
+ * - Authenticated → show "進入後台" CTA
+ * - Unauthenticated → show "會員登入" CTA
  */
 
 export const metadata = {
@@ -16,21 +16,24 @@ export const metadata = {
 }
 
 export default async function LandingPage() {
-  // Authenticated users → redirect to portal
+  // Check auth state for conditional CTA
+  let isLoggedIn = false
+  let portalRoute = '/angel/portal/upcoming'
   try {
     const supabase = await createClient()
     const { data } = await supabase.auth.getUser()
     if (data.user) {
+      isLoggedIn = true
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: roleRows } = await (supabase.from('module_roles') as any)
         .select('role')
         .eq('user_id', data.user.id)
         .eq('is_active', true)
       const roles = (roleRows || []).map((r: { role: string }) => r.role) as string[]
-      redirect(getDefaultRoute(roles))
+      portalRoute = getDefaultRoute(roles)
     }
-  } catch (err) {
-    if (err && typeof err === 'object' && 'digest' in err) throw err
+  } catch {
+    // Ignore — show public landing
   }
 
   return (
@@ -52,10 +55,10 @@ export default async function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/login"
+              href={isLoggedIn ? portalRoute : '/login'}
               className="px-8 py-3.5 bg-amber-500 text-slate-900 rounded-lg font-semibold hover:bg-amber-400 transition-colors text-lg"
             >
-              會員登入
+              {isLoggedIn ? '進入後台' : '會員登入'}
             </Link>
             <a
               href="#vote"
