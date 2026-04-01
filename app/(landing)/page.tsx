@@ -90,21 +90,21 @@ export default async function LandingPage() {
               name="士芃科技"
               subtitle="Shipeng"
               sector="建築 AI SaaS"
-              description="以 AI 優化建築工程排程與成本管理，切入營建業數位轉型痛點。"
+              description="以 AI 優化建築工程排程與成本管理，切入營建業數位轉型痛點。台灣營造業年產值超過兩兆，但數位化程度長期偏低，士芃從工程排程切入，協助營造廠即時掌握進度與成本偏差，降低工期延誤風險。"
             />
             <StartupCard
               emoji="🛩️"
               name="澤龍智能"
               subtitle="Longlink"
               sector="無人機 FPV 通訊"
-              description="突破無人機通訊距離限制，專利 FPV 低延遲傳輸技術，鎖定工業與國防市場。"
+              description="突破無人機通訊距離限制，專利 FPV 低延遲傳輸技術，鎖定工業與國防市場。在無人機操控中，通訊延遲與距離是核心瓶頸，澤龍的技術方案在長距離場景下仍能維持低延遲的即時影像回傳，適用於巡檢、測繪與特殊任務場景。"
             />
             <StartupCard
               emoji="🧬"
               name="星誠細胞生醫"
               subtitle="StellarCell"
               sector="外泌體再生醫療"
-              description="以外泌體技術開發再生醫療產品，瞄準皮膚修復與抗衰老市場。"
+              description="以外泌體技術開發再生醫療產品，瞄準皮膚修復與抗衰老市場。外泌體是細胞間溝通的天然載體，近年成為再生醫學熱門方向。星誠聚焦將實驗室技術轉化為可規模量產的產品，目標從醫美通路切入，逐步拓展至臨床醫療應用。"
             />
           </div>
 
@@ -143,11 +143,10 @@ export default async function LandingPage() {
               </div>
               <ul className="space-y-3 mb-8">
                 <Benefit text="每月精選 2-3 家新創 Pitch" />
-                <Benefit text="完整投資備忘錄與盡調資料" />
+                <Benefit text="投資備忘錄與案件分析資料" />
                 <Benefit text="月會出席與投票權" />
                 <Benefit text="40+ 天使投資人社群交流" />
-                <Benefit text="投後 Portfolio 追蹤" />
-                <Benefit text="會後新創實地參訪" />
+                <Benefit text="不定期新創實地參訪機會" />
               </ul>
               <a
                 href="https://forms.gle/zgjGP7RW7sgG911YA"
@@ -173,12 +172,10 @@ export default async function LandingPage() {
                 <span className="text-slate-400 text-sm ml-1">/年</span>
               </div>
               <ul className="space-y-3 mb-8">
-                <Benefit text="可指派 3 位代表出席" light />
+                <Benefit text="可指派最多 3 位代表出席" light />
                 <Benefit text="所有個人會員權益" light />
-                <Benefit text="優先企業參訪安排" light />
-                <Benefit text="企業品牌曝光與共投機會" light />
-                <Benefit text="專屬案源推薦通道" light />
-                <Benefit text="年度投資趨勢報告" light />
+                <Benefit text="優先安排企業參訪機會" light />
+                <Benefit text="共投與策略合作機會" light />
               </ul>
               <a
                 href="https://forms.gle/n38sNQznLG62ypyK9"
@@ -211,7 +208,7 @@ export default async function LandingPage() {
             <ValueCard
               icon="📊"
               title="決策支持"
-              description="每案提供完整投資備忘錄、產業分析、財務審查與技術評估"
+              description="每案提供投資備忘錄與案件分析，協助會員快速掌握投資要點"
             />
             <ValueCard
               icon="🤝"
@@ -221,7 +218,7 @@ export default async function LandingPage() {
             <ValueCard
               icon="🏭"
               title="實地參訪"
-              description="月會後 2-3 週安排新創實地參訪，深入了解團隊與產品"
+              description="不定期安排新創實地參訪，深入了解團隊與產品"
             />
           </div>
 
