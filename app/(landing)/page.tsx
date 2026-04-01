@@ -75,10 +75,11 @@ export default async function LandingPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-100 text-red-700 text-sm font-medium px-3 py-1 rounded-full mb-4">
-              4/23（三）14:00-17:00
+              本月月會 — 4/2 面審
             </span>
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">4 月天使月會 Pitch 新創</h2>
-            <p className="text-slate-500">三家精選新創等你評分，你的意見將影響投資決策</p>
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">本月 Pitch 新創</h2>
+            <p className="text-slate-500 mb-2">三家精選新創等你評分，你的意見將影響投資決策</p>
+            <p className="text-sm text-slate-400">下次月會：4/23（三）14:00-17:00</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
