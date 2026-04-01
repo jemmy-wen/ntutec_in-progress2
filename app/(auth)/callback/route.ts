@@ -41,6 +41,7 @@ export async function GET(request: NextRequest) {
 
       const roles = (existingRoles || []).map((r: { role: string }) => r.role)
 
+      let isNewUser = false
       if (roles.length === 0) {
         // New user — auto-assign angel_member
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -51,12 +52,17 @@ export async function GET(request: NextRequest) {
           is_active: true,
         })
         roles.push('angel_member')
+        isNewUser = true
       }
 
-      // Smart redirect: use explicit redirect param if it's a platform path,
-      // otherwise use role-based default
+      // Smart redirect:
+      // - New users → onboarding wizard first
+      // - Explicit redirect param → use it
+      // - Otherwise → role-based default
       const isExplicitRedirect = redirectParam && redirectParam !== '/' && redirectParam.startsWith('/')
-      const targetPath = isExplicitRedirect ? redirectParam : getDefaultRoute(roles)
+      const targetPath = isNewUser
+        ? '/angel/onboarding'
+        : isExplicitRedirect ? redirectParam : getDefaultRoute(roles)
 
       const response = NextResponse.redirect(new URL(targetPath, origin))
       cookiesToSetOnResponse.forEach(({ name, value, options }) => {

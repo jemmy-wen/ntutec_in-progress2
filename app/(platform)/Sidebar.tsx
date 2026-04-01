@@ -25,9 +25,9 @@ export default function Sidebar({ roles, userEmail }: SidebarProps) {
   if (roles.includes('admin') || roles.includes('staff_admin') || roles.includes('staff_accelerator')) {
     sections.push({ title: '後台管理', items: ADMIN_NAV })
   }
-  // Angel portal — admin-only preview until Phase 3
-  if (roles.includes('admin')) {
-    sections.push({ title: '天使俱樂部（預覽）', items: ANGEL_NAV })
+  // Angel portal — open for angel_member and admin
+  if (roles.includes('angel_member') || roles.includes('admin')) {
+    sections.push({ title: '天使俱樂部', items: ANGEL_NAV })
   }
 
   return (
