@@ -38,8 +38,8 @@ export const POST = withApiHandler(
     }
 
     // Check target user exists
-    const { data: existingRoles, error: fetchError } = await ctx.supabase
-      .from('module_roles')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: existingRoles, error: fetchError } = await (ctx.supabase.from('module_roles') as any)
       .select('id, role, module')
       .eq('user_id', userId)
       .eq('module', 'angel_club')
@@ -49,20 +49,21 @@ export const POST = withApiHandler(
       return NextResponse.json({ error: '查詢角色失敗' }, { status: 500 })
     }
 
-    if (!existingRoles || existingRoles.length === 0) {
+    const rows = existingRoles as { id: string; role: string; module: string }[] | null
+    if (!rows || rows.length === 0) {
       return NextResponse.json({ error: '找不到該用戶的角色記錄' }, { status: 404 })
     }
 
-    const currentRole = existingRoles[0].role
+    const currentRole = rows[0].role
     if (currentRole === newRole) {
       return NextResponse.json({ error: `用戶已是 ${newRole}` }, { status: 400 })
     }
 
     // Update role
-    const { error: updateError } = await ctx.supabase
-      .from('module_roles')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: updateError } = await (ctx.supabase.from('module_roles') as any)
       .update({ role: newRole, updated_at: new Date().toISOString() })
-      .eq('id', existingRoles[0].id)
+      .eq('id', rows[0].id)
 
     if (updateError) {
       return NextResponse.json({ error: '更新角色失敗' }, { status: 500 })
