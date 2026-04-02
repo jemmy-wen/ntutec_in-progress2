@@ -108,7 +108,7 @@ export default function AdminDashboard() {
       {/* Quick Actions */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <QuickLink href="/admin/pipeline" title="Pipeline 管理" desc="漏斗看板、Gate 評估、觀察池" />
-        <QuickLink href="/admin/meetings" title="月會管理" desc="建立週期、切換狀態、候選排程" />
+        <QuickLink href="/admin/meetings" title="天使例會管理" desc="建立週期、切換狀態、候選排程" />
         <QuickLink href="/admin/investors" title="投資人管理" desc="會員列表、活躍度、偏好分析" />
       </div>
     </div>
@@ -135,7 +135,7 @@ function Cockpit({ pendingActions, meeting }: {
             <div className="text-3xl font-bold tabular-nums">
               D{meeting.countdown > 0 ? `-${meeting.countdown}` : meeting.countdown === 0 ? '-Day' : `+${Math.abs(meeting.countdown)}`}
             </div>
-            <div className="text-xs text-white/60">{formatCycleId(meeting.id)} 月會</div>
+            <div className="text-xs text-white/60">{formatCycleId(meeting.id)} 天使例會</div>
           </div>
         )}
       </div>
@@ -249,10 +249,10 @@ function MeetingStatus({ meeting }: { meeting: DashboardData['meeting'] }) {
   if (!meeting) {
     return (
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h2 className="text-sm font-semibold text-gray-700 mb-3">月會狀態</h2>
-        <p className="text-gray-400 text-sm">目前沒有進行中的月會</p>
+        <h2 className="text-sm font-semibold text-gray-700 mb-3">天使例會狀態</h2>
+        <p className="text-gray-400 text-sm">目前沒有進行中的天使例會</p>
         <Link href="/admin/meetings" className="inline-block mt-3 text-sm text-teal-600 hover:text-teal-700 font-medium">
-          建立新月會 →
+          建立新天使例會 →
         </Link>
       </div>
     )
@@ -264,7 +264,7 @@ function MeetingStatus({ meeting }: { meeting: DashboardData['meeting'] }) {
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-sm font-semibold text-gray-700">月會進度 — {formatCycleId(meeting.id)}</h2>
+        <h2 className="text-sm font-semibold text-gray-700">天使例會進度 — {formatCycleId(meeting.id)}</h2>
         <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${STATUS_COLORS[meeting.status as MeetingCycleStatus] || 'bg-gray-100'}`}>
           {STATUS_LABELS[meeting.status as MeetingCycleStatus] || meeting.status}
         </span>
@@ -291,7 +291,7 @@ function MeetingStatus({ meeting }: { meeting: DashboardData['meeting'] }) {
       </div>
 
       <Link href="/admin/meetings" className="inline-block mt-4 text-sm text-teal-600 hover:text-teal-700 font-medium">
-        管理月會 →
+        管理天使例會 →
       </Link>
     </div>
   )

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import VoteForm from './VoteForm'
 
 export const metadata: Metadata = {
-  title: '月會投票 | 臺大天使會 NTUTEC ANGELS',
-  description: '臺大天使會月會現場投票',
+  title: '天使例會投票 | 臺大天使會 NTUTEC ANGELS',
+  description: '臺大天使會天使例會現場投票',
 }
 
 interface PageProps {
@@ -20,7 +20,7 @@ export default async function VotePage({ params }: PageProps) {
         <div className="text-center mb-8">
           <img src="/logo-angels.png" alt="NTUTEC ANGELS 臺大天使會" className="h-16 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-slate-900">
-            {formatCycle(cycle)} 月會投票
+            {formatCycle(cycle)} 天使例會投票
           </h1>
           <p className="text-sm text-gray-500 mt-2">
             請為每組 Pitch 新創評分，您的意見將協助投資決策

@@ -65,7 +65,7 @@ export default function PipelinePage() {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">本月 Pipeline</h1>
-      {cycleLabel && <p className="text-gray-500">{cycleLabel}月會候選新創</p>}
+      {cycleLabel && <p className="text-gray-500">{cycleLabel}天使例會候選新創</p>}
 
       {pitches.length === 0 ? (
         <div className="text-center py-16">

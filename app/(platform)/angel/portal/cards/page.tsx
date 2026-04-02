@@ -114,7 +114,7 @@ export default function CardsPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">候選新創瀏覽</h1>
         <span className="text-sm text-gray-500">
-          {activeCycleLabel}月會 | {Object.keys(myResponses).length}/{pitches.length} 已回應
+          {activeCycleLabel}天使例會 | {Object.keys(myResponses).length}/{pitches.length} 已回應
         </span>
       </div>
 

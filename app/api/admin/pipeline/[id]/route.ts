@@ -97,7 +97,7 @@ export async function GET(
       const meetingId = p.pip_meetings?.id || p.meeting_id
       timeline.push({
         date: p.created_at,
-        event: '月會 Pitch',
+        event: '天使例會 Pitch',
         detail: `${meetingId} | 決議: ${p.decision || '待定'}`,
       })
     }

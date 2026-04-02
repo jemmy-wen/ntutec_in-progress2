@@ -72,7 +72,7 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* ─── Section 1: 月會投票 ─── */}
+      {/* ─── Section 1: 天使例會投票 ─── */}
       <section id="vote" className="bg-gradient-to-b from-slate-50 to-white py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
@@ -152,7 +152,7 @@ export default async function LandingPage() {
               <ul className="space-y-3 mb-8">
                 <Benefit text="每月精選 2-3 家新創 Pitch" />
                 <Benefit text="投資備忘錄與案件分析資料" />
-                <Benefit text="月會出席與投票權" />
+                <Benefit text="天使例會出席與投票權" />
                 <Benefit text="40+ 天使投資人社群交流" />
                 <Benefit text="不定期新創實地參訪機會" />
               </ul>
@@ -211,7 +211,7 @@ export default async function LandingPage() {
             <ValueCard
               icon="🎯"
               title="精選案源"
-              description="從累計 600+ 輔導新創及台大創業生態系中，篩選最具潛力的 2-3 家進入月會 Pitch"
+              description="從累計 600+ 輔導新創及台大創業生態系中，篩選最具潛力的 2-3 家進入天使例會 Pitch"
             />
             <ValueCard
               icon="📊"

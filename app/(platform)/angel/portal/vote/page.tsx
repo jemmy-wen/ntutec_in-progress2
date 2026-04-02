@@ -128,7 +128,7 @@ export default function VotePage() {
       <div className="text-center py-16">
         <div className="text-5xl mb-4">🗳️</div>
         <h2 className="text-xl font-bold mb-2">投票尚未開放</h2>
-        <p className="text-gray-500">月會前 7 天開放投票，屆時會收到通知</p>
+        <p className="text-gray-500">天使例會前 7 天開放投票，屆時會收到通知</p>
       </div>
     )
   }

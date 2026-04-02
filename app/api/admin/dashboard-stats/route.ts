@@ -87,7 +87,7 @@ export async function GET(req: NextRequest) {
     if (gate1Advance.length > 0) {
       pendingActions.push({
         type: 'gate1_advance',
-        label: 'Gate 1 通過待排月會',
+        label: 'Gate 1 通過待排天使例會',
         count: gate1Advance.length,
         href: '/admin/pipeline',
       })
@@ -123,7 +123,7 @@ export async function GET(req: NextRequest) {
     if (activeMeeting && activeMeeting.status === 'setup') {
       pendingActions.push({
         type: 'meeting_setup',
-        label: '月會待啟動',
+        label: '天使例會待啟動',
         count: 1,
         href: '/admin/meetings',
       })

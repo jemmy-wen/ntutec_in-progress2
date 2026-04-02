@@ -1,6 +1,6 @@
 export const metadata = {
   title: '活動 | 台大創創中心',
-  description: '台大創創中心最新活動：投資月會、創業工作坊、Demo Day、產業論壇等。',
+  description: '台大創創中心最新活動：投資例會、創業工作坊、Demo Day、產業論壇等。',
 }
 
 export default function EventsPublicPage() {
@@ -11,7 +11,7 @@ export default function EventsPublicPage() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-4">活動</h1>
           <p className="text-lg text-gray-600">
-            投資月會、創業工作坊、Demo Day、產業論壇 — 精彩活動不錯過。
+            投資例會、創業工作坊、Demo Day、產業論壇 — 精彩活動不錯過。
           </p>
         </div>
       </section>
@@ -38,7 +38,7 @@ export default function EventsPublicPage() {
         {/* Event types */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
           {[
-            { name: '投資月會', freq: '每月', icon: '💰' },
+            { name: '投資例會', freq: '每月', icon: '💰' },
             { name: '業師健診', freq: '每月', icon: '🩺' },
             { name: 'Demo Day', freq: '每季', icon: '🎤' },
             { name: '創業工作坊', freq: '不定期', icon: '🎓' },

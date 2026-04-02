@@ -132,7 +132,7 @@ export default function VoteForm({ cycle }: { cycle: string }) {
         <div className="text-5xl mb-4">🎉</div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">感謝投票！</h2>
         <p className="text-gray-600">
-          您的意見已成功送出，感謝參與本次月會。
+          您的意見已成功送出，感謝參與本次天使例會。
         </p>
       </div>
     )
@@ -299,7 +299,7 @@ export default function VoteForm({ cycle }: { cycle: string }) {
       </button>
 
       <p className="text-xs text-center text-gray-400">
-        投票僅供月會決策參考，感謝您的寶貴意見
+        投票僅供天使例會決策參考，感謝您的寶貴意見
       </p>
     </div>
   )

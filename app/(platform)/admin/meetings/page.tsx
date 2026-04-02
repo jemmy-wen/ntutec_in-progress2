@@ -99,10 +99,10 @@ export default function MeetingsAdminPage() {
         const data = await res.json()
         setMeetings(data.meetings || [])
       } else {
-        setError('載入月會列表失敗')
+        setError('載入天使例會列表失敗')
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : '載入月會列表失敗')
+      setError(err instanceof Error ? err.message : '載入天使例會列表失敗')
     } finally {
       setLoading(false)
     }
@@ -154,7 +154,7 @@ export default function MeetingsAdminPage() {
         setFormError(data.error || `建立失敗（${res.status}）`)
       }
     } catch (err) {
-      setFormError(err instanceof Error ? err.message : '建立月會時發生錯誤')
+      setFormError(err instanceof Error ? err.message : '建立天使例會時發生錯誤')
     } finally {
       setCreating(false)
     }
@@ -243,7 +243,7 @@ export default function MeetingsAdminPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">月會管理</h1>
+      <h1 className="text-2xl font-bold">天使例會管理</h1>
 
       {/* Active meeting hero */}
       {activeMeeting && <ActiveMeetingHero meeting={activeMeeting} onTransition={(nextStatus, description) =>
@@ -379,7 +379,7 @@ export default function MeetingsAdminPage() {
 
       {/* Create new meeting */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h2 className="text-sm font-semibold text-gray-700 mb-4">建立新月會</h2>
+        <h2 className="text-sm font-semibold text-gray-700 mb-4">建立新天使例會</h2>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
             <label htmlFor="cycle-id" className="block text-xs font-medium text-gray-500 mb-1">週期 ID</label>
@@ -395,7 +395,7 @@ export default function MeetingsAdminPage() {
             />
           </div>
           <div className="flex-1">
-            <label htmlFor="meeting-date" className="block text-xs font-medium text-gray-500 mb-1">月會日期</label>
+            <label htmlFor="meeting-date" className="block text-xs font-medium text-gray-500 mb-1">天使例會日期</label>
             <input
               id="meeting-date"
               type="date"
@@ -422,7 +422,7 @@ export default function MeetingsAdminPage() {
       {/* Meeting history */}
       {meetings.filter(m => m !== activeMeeting).length > 0 && (
         <div>
-          <h2 className="text-sm font-semibold text-gray-700 mb-3">歷史月會</h2>
+          <h2 className="text-sm font-semibold text-gray-700 mb-3">歷史天使例會</h2>
           <div className="space-y-2">
             {meetings.filter(m => m !== activeMeeting).map(meeting => {
               const status = meeting.status as MeetingCycleStatus
@@ -444,7 +444,7 @@ export default function MeetingsAdminPage() {
 
       {meetings.length === 0 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
-          <p className="text-gray-500">尚無月會，請使用上方表單建立第一場月會。</p>
+          <p className="text-gray-500">尚無天使例會，請使用上方表單建立第一場天使例會。</p>
         </div>
       )}
 
@@ -481,7 +481,7 @@ function ActiveMeetingHero({ meeting, onTransition }: {
       <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-6">
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-xs text-teal-200 font-medium mb-1">進行中月會</div>
+            <div className="text-xs text-teal-200 font-medium mb-1">進行中天使例會</div>
             <h2 className="text-xl font-bold">{formatCycleLabel(meeting.id)}</h2>
             <p className="text-sm text-teal-100 mt-1">
               {meetingDate.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}
@@ -492,7 +492,7 @@ function ActiveMeetingHero({ meeting, onTransition }: {
               {daysUntil > 0 ? `D-${daysUntil}` : daysUntil === 0 ? 'TODAY' : `D+${Math.abs(daysUntil)}`}
             </div>
             <div className="text-xs text-teal-200 mt-1">
-              {daysUntil > 0 ? '距離月會' : daysUntil === 0 ? '月會當天' : '月會已過'}
+              {daysUntil > 0 ? '距離天使例會' : daysUntil === 0 ? '天使例會當天' : '天使例會已過'}
             </div>
           </div>
         </div>
@@ -675,6 +675,6 @@ function CandidateSelector({
 
 function formatCycleLabel(id: string): string {
   const match = id.match(/^(\d{4})-(0[1-9]|1[0-2])$/)
-  if (match) return `${match[1]} 年 ${parseInt(match[2])} 月臺大天使會月會`
+  if (match) return `${match[1]} 年 ${parseInt(match[2])} 月臺大天使會天使例會`
   return id
 }

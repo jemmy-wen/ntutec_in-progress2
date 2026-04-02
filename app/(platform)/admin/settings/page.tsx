@@ -148,7 +148,7 @@ export default function AdminSettingsPage() {
 
   const tabs = [
     { key: 'notifications' as const, label: '通知設定' },
-    { key: 'meeting' as const, label: '月會預設' },
+    { key: 'meeting' as const, label: '天使例會預設' },
     { key: 'integrations' as const, label: '外部整合' },
     { key: 'roles' as const, label: '角色權限' },
   ]
@@ -231,8 +231,8 @@ export default function AdminSettingsPage() {
                   onChange={v => update('notifyOnVoteOpen', v)}
                 />
                 <ToggleField
-                  label="月會當天提醒"
-                  description="月會前一天與當天早上發送提醒"
+                  label="天使例會當天提醒"
+                  description="天使例會前一天與當天早上發送提醒"
                   checked={settings.notifyOnMeetingDay}
                   onChange={v => update('notifyOnMeetingDay', v)}
                 />
@@ -247,7 +247,7 @@ export default function AdminSettingsPage() {
 
             {activeTab === 'meeting' && (
           <div className="space-y-6">
-            <h2 className="text-lg font-semibold">月會週期預設</h2>
+            <h2 className="text-lg font-semibold">天使例會週期預設</h2>
             <NumberField
               label="卡片瀏覽天數"
               description="cards_ready 階段持續天數（D-N 到 D-7）"
@@ -435,9 +435,9 @@ function IntegrationPlaceholder({ name, status }: { name: string; status: 'activ
 
 const PLATFORM_ROLES = [
   { id: 'admin', label: '系統管理員', description: '最高權限，可管理所有模組與設定' },
-  { id: 'staff_admin', label: '行政管理員', description: '中心行政人員，管理月會、Pipeline、會員' },
+  { id: 'staff_admin', label: '行政管理員', description: '中心行政人員，管理天使例會、Pipeline、會員' },
   { id: 'staff_accelerator', label: '加速器管理', description: '加速器專員，管理輔導與活動' },
-  { id: 'angel_member', label: '天使會員', description: '臺大天使會會員，可瀏覽新創、投票、參與月會' },
+  { id: 'angel_member', label: '天使會員', description: '臺大天使會會員，可瀏覽新創、投票、參與天使例會' },
   { id: 'mentor', label: '業師', description: '業師健診系統，管理時段與回饋' },
   { id: 'team', label: '團隊', description: '團隊端使用者，申請業師健診與輔導' },
   { id: 'startup_incubated', label: '育成新創', description: '育成中心進駐團隊' },

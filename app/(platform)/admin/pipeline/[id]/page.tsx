@@ -371,7 +371,7 @@ function OverviewTab({ startup, enrichment, gates, pitches }: {
       {/* Pitch History */}
       {pitches.length > 0 && (
         <div>
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">月會記錄</h3>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">天使例會記錄</h3>
           <div className="space-y-2">
             {pitches.map(p => (
               <div key={p.id} className="flex items-center justify-between text-sm border border-gray-100 rounded-lg px-3 py-2">

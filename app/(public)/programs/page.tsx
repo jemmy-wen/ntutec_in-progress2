@@ -43,7 +43,7 @@ export default function ProgramsPage() {
             cta={{ label: '了解梯次', href: '/events' }}
           />
           <ProgramCard
-            title="天使俱樂部投資月會"
+            title="天使俱樂部投資例會"
             badge="每月舉辦"
             description="NTU Angel Club 每月篩選 2-3 家優質新創進行 Pitch，天使投資人現場評估並決定投資意向。通過預審的團隊可獲得在 50+ 位投資人面前展示的機會。"
             features={['專業預審流程', '50+ 位天使聽眾', '即時投資決策', '後續對接安排']}

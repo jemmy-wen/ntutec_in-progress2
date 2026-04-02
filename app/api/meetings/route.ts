@@ -58,7 +58,7 @@ export const POST = withApiHandler({
 
   if (error) {
     if (error.code === '23505') {
-      return NextResponse.json({ error: '此月會週期已存在' }, { status: 409 })
+      return NextResponse.json({ error: '此天使例會週期已存在' }, { status: 409 })
     }
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
@@ -103,8 +103,8 @@ export const PATCH = withApiHandler({
     if (members && members.length > 0) {
       const userIds = members.map(m => m.user_id).filter(Boolean) as string[]
       const notifTitle = next_status === 'cards_ready'
-        ? `${cycle_id} 月會候選新創已上架`
-        : `${cycle_id} 月會投票已開放`
+        ? `${cycle_id} 天使例會候選新創已上架`
+        : `${cycle_id} 天使例會投票已開放`
       const notifLink = next_status === 'cards_ready'
         ? '/angel/portal/cards'
         : '/angel/portal/vote'

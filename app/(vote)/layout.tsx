@@ -4,7 +4,7 @@ import Image from 'next/image'
 export const metadata: Metadata = {
   title: {
     template: '%s | 台大創創中心 NTU TEC',
-    default: '月會投票 | 台大創創中心',
+    default: '天使例會投票 | 臺大天使會',
   },
 }
 

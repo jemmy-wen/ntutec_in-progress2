@@ -109,8 +109,8 @@ export default function VoteResultsPage() {
     return (
       <div className="text-center py-16">
         <div className="text-5xl mb-4">🗳️</div>
-        <h2 className="text-xl font-bold mb-2">尚無進行中的月會</h2>
-        <p className="text-gray-500">月會投票開始後，這裡會顯示投票結果視覺化</p>
+        <h2 className="text-xl font-bold mb-2">尚無進行中的天使例會</h2>
+        <p className="text-gray-500">天使例會投票開始後，這裡會顯示投票結果視覺化</p>
       </div>
     )
   }
@@ -122,7 +122,7 @@ export default function VoteResultsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">投票結果視覺化</h1>
-        <span className="text-sm text-gray-500">{data.meeting_id} 月會</span>
+        <span className="text-sm text-gray-500">{data.meeting_id} 天使例會</span>
       </div>
 
       {/* Summary cards */}

@@ -66,8 +66,8 @@ export default function UpcomingPage() {
     return (
       <div className="text-center py-16">
         <div className="text-5xl mb-4">📅</div>
-        <h2 className="text-xl font-bold mb-2">目前沒有進行中的月會</h2>
-        <p className="text-gray-500">下次月會安排後會收到通知</p>
+        <h2 className="text-xl font-bold mb-2">目前沒有進行中的天使例會</h2>
+        <p className="text-gray-500">下次天使例會安排後會收到通知</p>
       </div>
     )
   }
@@ -83,13 +83,13 @@ export default function UpcomingPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">下次月會</h1>
+      <h1 className="text-2xl font-bold">下次天使例會</h1>
 
       {/* Meeting info card */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-lg font-semibold">{meetingMonth}月會</h2>
+            <h2 className="text-lg font-semibold">{meetingMonth}天使例會</h2>
             <p className="text-gray-500">{meetingDate}</p>
           </div>
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColor}`}>
@@ -99,7 +99,7 @@ export default function UpcomingPage() {
 
         {daysUntil > 0 && (
           <div className="text-sm text-gray-600">
-            距離月會還有 <span className="font-bold text-teal-600">{daysUntil}</span> 天
+            距離天使例會還有 <span className="font-bold text-teal-600">{daysUntil}</span> 天
           </div>
         )}
 

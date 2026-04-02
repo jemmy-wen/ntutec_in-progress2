@@ -115,7 +115,7 @@ export async function GET(req: NextRequest) {
       ? `<div style="background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border:1px solid #F59E0B;border-radius:12px;padding:20px;margin:20px 0">
           <div style="display:flex;align-items:center;gap:16px">
             <div style="font-size:36px;font-weight:800;color:#92400E">D${countdown !== null ? (countdown > 0 ? `-${countdown}` : countdown === 0 ? '-Day' : `+${Math.abs(countdown)}`) : '?'}</div>
-            <div><div style="font-weight:700">${reportData.meeting.id} 月會</div><div style="font-size:13px;color:#78350F">${reportData.meeting.date}</div></div>
+            <div><div style="font-weight:700">${reportData.meeting.id} 天使例會</div><div style="font-size:13px;color:#78350F">${reportData.meeting.date}</div></div>
           </div>
           ${pitches.length > 0 ? `<div style="margin-top:12px;font-size:13px"><strong>Pitch 名單：</strong>${pitches.map(p => p.startup_name_zh).join(' / ')}</div>` : ''}
         </div>`

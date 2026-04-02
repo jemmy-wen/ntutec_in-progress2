@@ -137,7 +137,7 @@ export async function POST(req: NextRequest) {
         .from('startups')
         .update({
           current_gate: 'monthly_pitch',
-          pipeline_stage: '3_月會Pitch',
+          pipeline_stage: '3_天使例會Pitch',
           updated_at: new Date().toISOString(),
         })
         .eq('id', id)

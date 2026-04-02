@@ -341,11 +341,11 @@ export default function OnboardingPage() {
             <div className="space-y-4">
               <TourCard
                 icon="📋" title="瀏覽候選新創"
-                desc="每月月會前，我們會上架 3-5 家精選新創的六張資訊卡片。瀏覽後表達您的興趣偏好。"
+                desc="每月天使例會前，我們會上架 3-5 家精選新創的六張資訊卡片。瀏覽後表達您的興趣偏好。"
               />
               <TourCard
                 icon="🗳️" title="投資意向投票"
-                desc="月會後，針對 Pitch 過的新創進行記名投票（願意投資 / 保留 / 不投資），並選擇投資金額範圍。"
+                desc="天使例會後，針對 Pitch 過的新創進行記名投票（願意投資 / 保留 / 不投資），並選擇投資金額範圍。"
               />
               <TourCard
                 icon="📊" title="本月 Pipeline"
@@ -357,7 +357,7 @@ export default function OnboardingPage() {
               />
               <TourCard
                 icon="🔔" title="即時通知"
-                desc="重要事件（卡片上架、投票開放、月會提醒）會透過站內通知和 Email 提醒您。"
+                desc="重要事件（卡片上架、投票開放、天使例會提醒）會透過站內通知和 Email 提醒您。"
               />
             </div>
 

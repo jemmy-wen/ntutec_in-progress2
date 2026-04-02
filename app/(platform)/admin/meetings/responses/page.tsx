@@ -47,8 +47,8 @@ type NotifyEvent = 'cards_ready' | 'vote_open' | 'meeting_reminder' | 'meeting_c
 const EVENT_LABELS: Record<NotifyEvent, { label: string; icon: string; desc: string }> = {
   cards_ready: { label: '卡片上架通知', icon: '📋', desc: '通知全體會員新創卡片已可瀏覽' },
   vote_open: { label: '投票開啟通知', icon: '🗳️', desc: '通知全體會員投票/回覆已開放' },
-  meeting_reminder: { label: '月會提醒', icon: '⏰', desc: '通知所有人明天開會（含 email）' },
-  meeting_complete: { label: '月會結束通知', icon: '✅', desc: '通知會員月會已結束' },
+  meeting_reminder: { label: '天使例會提醒', icon: '⏰', desc: '通知所有人明天開會（含 email）' },
+  meeting_complete: { label: '天使例會結束通知', icon: '✅', desc: '通知會員天使例會已結束' },
   followup_started: { label: '會後追蹤啟動', icon: '📬', desc: '通知會員後續追蹤流程開始' },
 }
 
@@ -131,8 +131,8 @@ export default function ResponsesPage() {
     return (
       <div className="text-center py-16">
         <div className="text-5xl mb-4">📊</div>
-        <h2 className="text-xl font-bold mb-2">尚無進行中的月會</h2>
-        <p className="text-gray-500">建立月會並加入 Pitch 新創後，這裡會顯示會員回覆分析</p>
+        <h2 className="text-xl font-bold mb-2">尚無進行中的天使例會</h2>
+        <p className="text-gray-500">建立天使例會並加入 Pitch 新創後，這裡會顯示會員回覆分析</p>
       </div>
     )
   }
@@ -144,7 +144,7 @@ export default function ResponsesPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">會員回覆分析</h1>
-        <span className="text-sm text-gray-500">{data.meeting_id} 月會</span>
+        <span className="text-sm text-gray-500">{data.meeting_id} 天使例會</span>
       </div>
 
       {/* Summary cards */}
@@ -296,7 +296,7 @@ export default function ResponsesPage() {
       {activeTab === 'notify' && (
         <div className="space-y-4">
           <p className="text-sm text-gray-500">
-            選擇要發送的月會通知類型。通知會依據事件類型自動發送至對應的對象（管理員/會員/全部）。
+            選擇要發送的天使例會通知類型。通知會依據事件類型自動發送至對應的對象（管理員/會員/全部）。
           </p>
           {(Object.entries(EVENT_LABELS) as [NotifyEvent, typeof EVENT_LABELS[NotifyEvent]][]).map(([event, info]) => (
             <div key={event} className="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between">

@@ -163,7 +163,7 @@ export default function AdminPipelinePage() {
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-lg mx-auto text-left">
             <FeatureItem icon="🔍" text="觀察池自動匯入" />
             <FeatureItem icon="📊" text="Gate 0-2 篩選流程" />
-            <FeatureItem icon="📋" text="月會 Pitch 排程" />
+            <FeatureItem icon="📋" text="天使例會 Pitch 排程" />
           </div>
         </div>
       ) : viewMode === 'kanban' ? (

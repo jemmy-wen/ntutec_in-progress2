@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const metadata = {
   title: '天使俱樂部 | 台大創創中心',
-  description: 'NTU Angel Club 匯聚 50+ 位天使投資人，每月舉辦投資月會，共同投資台灣最具潛力的早期新創。',
+  description: 'NTU Angel Club 匯聚 50+ 位天使投資人，每月舉辦投資例會，共同投資台灣最具潛力的早期新創。',
 }
 
 export default function AngelPublicPage() {
@@ -26,7 +26,7 @@ export default function AngelPublicPage() {
           {[
             { step: '01', title: '案源篩選', desc: '來自校園、加速器、業界推薦的案源，經三層 Gate 篩選', icon: '🔍' },
             { step: '02', title: '卡片瀏覽', desc: '天使會員提前 21 天收到候選新創 6 張資訊卡，自主研究', icon: '📋' },
-            { step: '03', title: '投資月會', desc: '通過預審的新創進行 30 分鐘 Pitch，天使現場互動提問', icon: '🎤' },
+            { step: '03', title: '投資例會', desc: '通過預審的新創進行 30 分鐘 Pitch，天使現場互動提問', icon: '🎤' },
             { step: '04', title: '共同投資', desc: '有興趣的天使組成投資群，進行盡職調查並完成投資', icon: '🤝' },
           ].map(item => (
             <div key={item.step} className="text-center">

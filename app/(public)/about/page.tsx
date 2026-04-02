@@ -40,7 +40,7 @@ export default function AboutPage() {
           <MissionCard
             icon="💰"
             title="天使投資"
-            description="NTU Angel Club 匯聚 50+ 位天使投資人，每月舉辦投資月會，為優質新創提供第一筆資金。"
+            description="NTU Angel Club 匯聚 50+ 位天使投資人，每月舉辦投資例會，為優質新創提供第一筆資金。"
           />
         </div>
       </section>
