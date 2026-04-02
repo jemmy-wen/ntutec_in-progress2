@@ -77,10 +77,11 @@ export default async function LandingPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-teal-100 text-teal-700 text-sm font-medium px-3 py-1 rounded-full mb-4">
-              下次天使例會 — 日期待定
+              本次天使例會 — 4/2（四）14:00-17:00
             </span>
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">下期 Pitch 新創</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">本期 Pitch 新創</h2>
             <p className="text-slate-500 mb-2">三家精選新創等你評分，你的意見將影響投資決策</p>
+            <p className="text-sm text-slate-400 mb-3">下次天使例會：4/23（四）14:00-17:00</p>
             <a
               href="https://luma.com/dmve0xtc"
               target="_blank"
@@ -93,25 +94,25 @@ export default async function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <StartupCard
-              emoji="📡"
-              name="星相科技"
-              subtitle="Phasetrum"
-              sector="RF IC 設計"
-              description="衛星通訊與雷達用 RF 相位陣列 IC 設計，成本僅國際大廠 1/2~1/8。陽明交大衍生新創，已與仁寶、和碩、廣達簽署 NDA，加拿大上市公司 C-COM 簽署 MOU，Pre-A 募資 USD $5M 進行中。"
+              emoji="🏗️"
+              name="士芃科技"
+              subtitle="Shipeng"
+              sector="建築 AI SaaS"
+              description="以 AI 優化建築工程排程與成本管理，切入營建業數位轉型痛點。台灣營造業年產值超過兩兆，但數位化程度長期偏低，士芃從工程排程切入，協助營造廠即時掌握進度與成本偏差，降低工期延誤風險。"
             />
             <StartupCard
-              emoji="🏪"
-              name="業安科技"
-              subtitle="Yallvend"
-              sector="IoT 智慧販賣機"
-              description="三分鐘將傳統販賣機升級為智慧販賣機的 IoT 模組，整合行動支付與雲端庫存管理。覆蓋日本、東南亞 6 國，能率集團與緯創集團已投資 NT$6,000 萬，Pre-A 募資中。"
+              emoji="🛩️"
+              name="澤龍智能"
+              subtitle="Longlink"
+              sector="無人機 FPV 通訊"
+              description="突破無人機通訊距離限制，專利 FPV 低延遲傳輸技術，鎖定工業與國防市場。在無人機操控中，通訊延遲與距離是核心瓶頸，澤龍的技術方案在長距離場景下仍能維持低延遲的即時影像回傳，適用於巡檢、測繪與特殊任務場景。"
             />
             <StartupCard
-              emoji="🤖"
-              name="睿思智慧"
-              subtitle="REAS Intelligence"
-              sector="企業 AI Agent"
-              description="企業專屬地端 AI Agent 平台，No-code 建置，NVIDIA、ASUS 合作夥伴。20-30 家付費客戶，含數發部、內政部統計處等政府機關，Angel 募資中。"
+              emoji="🧬"
+              name="星誠細胞生醫"
+              subtitle="StellarCell"
+              sector="外泌體再生醫療"
+              description="以外泌體技術開發再生醫療產品，瞄準皮膚修復與抗衰老市場。外泌體是細胞間溝通的天然載體，近年成為再生醫學熱門方向。星誠聚焦將實驗室技術轉化為可規模量產的產品，目標從醫美通路切入，逐步拓展至臨床醫療應用。"
             />
           </div>
 
