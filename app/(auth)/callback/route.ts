@@ -43,15 +43,15 @@ export async function GET(request: NextRequest) {
 
       let isNewUser = false
       if (roles.length === 0) {
-        // New user — auto-assign angel_member
+        // New user — auto-assign visitor (admin upgrades to angel_member after payment)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (admin.from('module_roles') as any).insert({
           user_id: data.user.id,
           module: 'angel_club',
-          role: 'angel_member',
+          role: 'visitor',
           is_active: true,
         })
-        roles.push('angel_member')
+        roles.push('visitor')
         isNewUser = true
       }
 

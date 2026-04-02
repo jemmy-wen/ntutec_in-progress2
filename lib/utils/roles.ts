@@ -11,7 +11,7 @@
 
 export type PlatformRole =
   | 'admin' | 'staff_admin' | 'staff_accelerator'
-  | 'angel_member'
+  | 'angel_member' | 'visitor'
   | 'mentor' | 'team'
   | 'startup_incubated' | 'startup_fundraising'
   | 'vc_partner'
@@ -21,6 +21,7 @@ export const ROLE_LABELS: Record<PlatformRole, string> = {
   staff_admin: '行政人員',
   staff_accelerator: '加速器專員',
   angel_member: '天使會員',
+  visitor: '訪客',
   mentor: '業師',
   team: '新創團隊',
   startup_incubated: '育成新創',
@@ -30,8 +31,8 @@ export const ROLE_LABELS: Record<PlatformRole, string> = {
 
 /** Route-to-role mapping for middleware/layout guards */
 export const ROLE_ROUTE_MAP: Record<string, PlatformRole[]> = {
-  '/angel/onboarding': ['admin', 'angel_member'],
-  '/angel/portal': ['admin', 'angel_member'],
+  '/angel/onboarding': ['admin', 'angel_member', 'visitor'],
+  '/angel/portal': ['admin', 'angel_member', 'visitor'],
   '/admin': ['admin', 'staff_admin', 'staff_accelerator'],
 }
 
@@ -40,8 +41,13 @@ export function getDefaultRoute(roles: string[]): string {
   if (roles.includes('admin') || roles.includes('staff_admin')) return '/admin/dashboard'
   if (roles.includes('staff_accelerator')) return '/admin/dashboard'
   if (roles.includes('angel_member')) return '/angel/portal/upcoming'
-  // Other roles → angel portal as default (public pages hidden)
+  if (roles.includes('visitor')) return '/angel/portal/upcoming'
   return '/angel/portal/upcoming'
+}
+
+/** Check if user has paid member access (angel_member or above) */
+export function isPaidMember(roles: string[]): boolean {
+  return roles.includes('admin') || roles.includes('staff_admin') || roles.includes('angel_member')
 }
 
 /** Check if user has any of the required roles */

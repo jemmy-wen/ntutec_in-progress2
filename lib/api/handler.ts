@@ -17,7 +17,7 @@ import { auditLog, extractRequestMetadata, type AuditAction, type AuditEntityTyp
 /** Platform roles across all modules */
 export type PlatformRole =
   | 'admin' | 'staff_admin' | 'staff_accelerator'  // Team backend
-  | 'angel_member'                                    // Angel Club
+  | 'angel_member' | 'visitor'                        // Angel Club
   | 'mentor' | 'team'                                 // Mentor Matching (reserved)
   | 'startup_incubated' | 'startup_fundraising'       // Startup portal (reserved)
   | 'vc_partner'                                       // VC partner (reserved)
