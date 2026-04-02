@@ -3,7 +3,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 export type AuditAction =
   | 'create' | 'update' | 'delete' | 'hard_delete'
   | 'archive' | 'unarchive' | 'transition' | 'rollback'
-  | 'login' | 'redeem'
+  | 'login' | 'redeem' | 'role_change'
   | 'view_card' | 'submit_response' | 'submit_vote'
   | 'send_notification'
   | 'add_observation' | 'reactivate'
@@ -11,7 +11,7 @@ export type AuditAction =
 export type AuditEntityType =
   | 'meeting_cycle' | 'member' | 'startup' | 'invitation'
   | 'card_response' | 'vote' | 'learning_progress'
-  | 'notification' | 'observation' | 'settings'
+  | 'notification' | 'observation' | 'settings' | 'user'
   // Mentor module (reserved)
   | 'mentor' | 'team' | 'slot' | 'wish' | 'matching' | 'decision' | 'feedback'
 
