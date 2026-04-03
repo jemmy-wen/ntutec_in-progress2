@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
       .from('startups')
       .select('id')
       .eq('tax_id', taxId)
-      .single()
+      .maybeSingle()
     if (existing?.id) {
       await db.from('startups').update(startupPayload).eq('id', existing.id)
       startupId = existing.id
@@ -143,7 +143,7 @@ export async function POST(req: NextRequest) {
       .from('form_submissions')
       .select('id')
       .eq('related_startup_id', startupId)
-      .single()
+      .maybeSingle()
     if (submission?.id) {
       await db
         .from('startups')
