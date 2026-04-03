@@ -30,6 +30,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
   }
 
+  try {
+
   const r = body.responses ?? {}
 
   // ── Field mapping ─────────────────────────────────────────────
@@ -153,4 +155,9 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ success: true, startup_id: startupId })
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err)
+    console.error('webhook unhandled error:', msg)
+    return NextResponse.json({ error: 'Internal error', detail: msg }, { status: 500 })
+  }
 }
