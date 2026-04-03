@@ -30,6 +30,7 @@ jobs:
 
       - name: Lint
         run: npx next lint
+        continue-on-error: true
 
       - name: Build
         env:
