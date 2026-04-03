@@ -32,25 +32,35 @@ export async function POST(req: NextRequest) {
 
   try {
 
-  const r = body.responses ?? {}
+  // Normalize: convert any array values (checkbox) to comma-joined strings
+  const raw = body.responses ?? {}
+  const r: Record<string, string> = {}
+  for (const [k, v] of Object.entries(raw)) {
+    r[k] = Array.isArray(v) ? (v as unknown[]).join(', ') : String(v ?? '')
+  }
+
+  const str = (key: string): string | null => {
+    const v = r[key]?.trim()
+    return v || null
+  }
 
   // ── Field mapping ─────────────────────────────────────────────
-  const companyName   = r['1. 公司名稱']?.trim() ?? ''
-  const taxId         = r['2. 統一編號']?.trim() ?? null
-  const website       = r['3. 官方網站']?.trim() ?? null
-  const contactFull   = r['4. 聯絡人姓名與職稱']?.trim() ?? ''   // e.g. "張維哲/CEO"
+  const companyName   = str('1. 公司名稱') ?? ''
+  const taxId         = str('2. 統一編號')?.replace(/\.0$/, '') ?? null
+  const website       = str('3. 官方網站')
+  const contactFull   = str('4. 聯絡人姓名與職稱') ?? ''
   const contactName   = contactFull.split('/')[0]?.trim() ?? contactFull
-  const contactEmail  = r['5. 聯絡 Email']?.trim() ?? r['電子郵件地址']?.trim() ?? null
-  const lineId        = r['6. 聯絡人 Line ID']?.trim() ?? null
-  const sector        = r['7. 主要行業別']?.trim() ?? null
-  const fundingStage  = r['8. 本輪募資輪次']?.trim() ?? null
-  const location      = r['9. 主要營運據點']?.trim() ?? null
-  const oneliner      = r['15. 一句話描述公司']?.trim() ?? null
-  const productStatus = r['18. 產品現況']?.trim() ?? null
+  const contactEmail  = str('5. 聯絡 Email') ?? str('電子郵件地址')
+  const lineId        = str('6. 聯絡人 Line ID')
+  const sector        = str('7. 主要行業別')
+  const fundingStage  = str('8. 本輪募資輪次')
+  const location      = str('9. 主要營運據點')
+  const oneliner      = str('15. 一句話描述公司')
+  const productStatus = str('18. 產品現況')
   const teamSize      = parseInt(r['21. 核心全職成員人數'] ?? '') || null
-  const ceoLinkedin   = r['22. CEO 個人頁連結']?.trim() ?? null
-  const bpUrl         = r['27. 募資簡報（Pitch Deck）連結']?.trim() ?? null
-  const referrer      = r['30. 推薦人姓名（若有）']?.trim() ?? null
+  const ceoLinkedin   = str('22. CEO 個人頁連結')
+  const bpUrl         = str('27. 募資簡報（Pitch Deck）連結')
+  const referrer      = str('30. 推薦人姓名（若有）')
   const monthlyRev    = parseInt(r['26. 目前平均月營收（若有）'] ?? '') || null
 
   const db = createAdminClient() as any // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -76,24 +86,24 @@ export async function POST(req: NextRequest) {
     source:         'google_form',
     pipeline_stage: '0_待篩選',
     status:         'active',
-    extra: {
-      taiwan_link:        r['10. 台灣連結說明（非台灣者填寫）'] ?? null,
-      funding_target:     r['11. 目標募資金額（NTD）'] ?? null,
-      valuation_pre_text: r['12. Pre-money Valuation（NTD）'] ?? null,
-      funding_raised:     r['13. 本輪已完成募資金額'] ?? null,
-      has_other_investors: r['14. 是否已有其他投資方？'] ?? null,
-      problem_solution:   r['16. 核心問題與解法'] ?? null,
-      target_customers:   r['17. 目標客群'] ?? null,
-      differentiation:    r['19. 核心差異化與護城河'] ?? null,
-      ceo_background:     r['20. CEO／創辦人背景'] ?? null,
-      team_completeness:  r['23. 團隊完整性說明'] ?? null,
-      has_paying_customers: r['24. 是否已有付費客戶？'] ?? null,
-      paying_customers_detail: r['24-1. 若有，請簡述數量及代表客戶'] ?? null,
-      key_milestone:      r['25. 近期最重要里程碑'] ?? null,
+    extra: JSON.stringify({
+      taiwan_link:        str('10. 台灣連結說明（非台灣者填寫）'),
+      funding_target:     str('11. 目標募資金額（NTD）'),
+      valuation_pre_text: str('12. Pre-money Valuation（NTD）'),
+      funding_raised:     str('13. 本輪已完成募資金額'),
+      has_other_investors: str('14. 是否已有其他投資方？'),
+      problem_solution:   str('16. 核心問題與解法'),
+      target_customers:   str('17. 目標客群'),
+      differentiation:    str('19. 核心差異化與護城河'),
+      ceo_background:     str('20. CEO／創辦人背景'),
+      team_completeness:  str('23. 團隊完整性說明'),
+      has_paying_customers: str('24. 是否已有付費客戶？'),
+      paying_customers_detail: str('24-1. 若有，請簡述數量及代表客戶'),
+      key_milestone:      str('25. 近期最重要里程碑'),
       monthly_revenue:    monthlyRev,
-      other_docs:         r['28. 其他補充文件或連結'] ?? null,
-      how_did_you_hear:   r['29. 如何得知 NTUTEC 天使俱樂部？'] ?? null,
-    },
+      other_docs:         str('28. 其他補充文件或連結'),
+      how_did_you_hear:   str('29. 如何得知 NTUTEC 天使俱樂部？'),
+    }),
   }
 
   // If tax_id exists, update existing startup; otherwise insert new
