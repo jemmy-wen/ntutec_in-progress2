@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendEmail } from '@/lib/notifications/email'
 import { checkRateLimit, rateLimitResponse } from '@/lib/middleware/rate-limit'
+import { createAdminClient } from '@/lib/supabase/admin'
 
 /**
  * POST /api/contact — Handle contact form submissions.
  * Sends email to tec@ntu.edu.tw + auto-reply to submitter.
+ * Persists to form_submissions (all types).
+ * For type=startup: also creates a startup draft record.
  * Rate limited: 5 req/min per IP (contact category).
  */
 export async function POST(req: NextRequest) {
@@ -56,6 +59,44 @@ export async function POST(req: NextRequest) {
         <br />
         <p>台大創意創業中心 NTU TEC</p>
       `,
+    })
+
+    // Persist to form_submissions + create startup draft for type=startup
+    const supabase = createAdminClient()
+
+    const submissionData = { name, email, phone, company, type, message }
+
+    let relatedStartupId: string | null = null
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const db = supabase as any
+
+    if (type === 'startup' && company) {
+      const { data: startup } = await db
+        .from('startups')
+        .insert({
+          name_zh: company,
+          email,
+          phone: phone || null,
+          representative: name,
+          source: 'website_form',
+          pipeline_stage: '0_待篩選',
+          status: 'active',
+        })
+        .select('id')
+        .single()
+      relatedStartupId = startup?.id ?? null
+    }
+
+    await db.from('form_submissions').insert({
+      form_type: type || 'other',
+      submitter_name: name,
+      submitter_email: email,
+      submitter_phone: phone || null,
+      submitter_org: company || null,
+      data: submissionData,
+      status: 'new',
+      related_startup_id: relatedStartupId,
     })
 
     return NextResponse.json({ success: true })
