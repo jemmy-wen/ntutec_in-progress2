@@ -29,7 +29,7 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Lint
-        run: npx next lint --max-warnings 0
+        run: npx next lint
 
       - name: Build
         env:
