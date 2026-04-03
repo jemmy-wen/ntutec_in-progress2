@@ -94,15 +94,30 @@ export async function POST(req: NextRequest) {
     },
   }
 
-  const { data: startup, error: startupErr } = await db
-    .from('startups')
-    .insert(startupPayload)
-    .select('id')
-    .single()
-
-  if (startupErr) {
-    console.error('startup insert error:', startupErr)
-    return NextResponse.json({ error: 'Failed to create startup' }, { status: 500 })
+  // If tax_id exists, update existing startup; otherwise insert new
+  let startupId: string | null = null
+  if (taxId) {
+    const { data: existing } = await db
+      .from('startups')
+      .select('id')
+      .eq('tax_id', taxId)
+      .single()
+    if (existing?.id) {
+      await db.from('startups').update(startupPayload).eq('id', existing.id)
+      startupId = existing.id
+    }
+  }
+  if (!startupId) {
+    const { data: startup, error: startupErr } = await db
+      .from('startups')
+      .insert(startupPayload)
+      .select('id')
+      .single()
+    if (startupErr) {
+      console.error('startup insert error:', startupErr)
+      return NextResponse.json({ error: 'Failed to create startup', detail: startupErr.message }, { status: 500 })
+    }
+    startupId = startup.id
   }
 
   // ── Insert form_submission ────────────────────────────────────
@@ -114,7 +129,7 @@ export async function POST(req: NextRequest) {
     submitter_org:    companyName || null,
     data:             r,
     status:           'new',
-    related_startup_id: startup.id,
+    related_startup_id: startupId,
   })
 
   if (formErr) {
@@ -127,15 +142,15 @@ export async function POST(req: NextRequest) {
     const { data: submission } = await db
       .from('form_submissions')
       .select('id')
-      .eq('related_startup_id', startup.id)
+      .eq('related_startup_id', startupId)
       .single()
     if (submission?.id) {
       await db
         .from('startups')
         .update({ form_submission_id: submission.id })
-        .eq('id', startup.id)
+        .eq('id', startupId)
     }
   }
 
-  return NextResponse.json({ success: true, startup_id: startup.id })
+  return NextResponse.json({ success: true, startup_id: startupId })
 }
