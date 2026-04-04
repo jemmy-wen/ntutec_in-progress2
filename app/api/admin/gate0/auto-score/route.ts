@@ -171,11 +171,9 @@ export async function POST(req: NextRequest) {
               result: result.result,
               evaluation_date: today,
               evaluator: 'platform_auto',
-              notes: [
-                ...result.flags,
-                ...result.fail_reasons,
-                ...result.notes,
-              ].join('\n') || null,
+              gate0_flags: result.flags.join('; ') || null,
+              gate0_fail_reason: result.fail_reasons.join('; ') || null,
+              notes: result.notes.join('\n') || null,
             })
 
           if (gateError) {
@@ -184,9 +182,10 @@ export async function POST(req: NextRequest) {
           }
 
           // 2. Update startup record
-          const pipelineStage = result.result === 'pass' ? 1
-            : result.result === 'fail' ? 9
-            : 0  // borderline stays at 0
+          // pipeline_stage must match DB CHECK constraint (text values)
+          const pipelineStage = result.result === 'pass' ? '1_Gate0通過'
+            : result.result === 'fail' ? '9_淘汰'
+            : '0_待篩選'  // borderline stays pending for human review
 
           const { error: startupError } = await supabase
             .from('startups')

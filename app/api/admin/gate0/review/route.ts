@@ -66,9 +66,10 @@ export async function POST(req: NextRequest) {
 
     // ─── Map decision to gate result and pipeline stage ───
     const gateResult = decision === 'watch' ? 'borderline' : decision
-    const pipelineStage = decision === 'pass' ? 1
-      : decision === 'fail' ? 9
-      : 0  // watch = borderline = stays at 0
+    // pipeline_stage must match DB CHECK constraint (text values)
+    const pipelineStage = decision === 'pass' ? '1_Gate0通過'
+      : decision === 'fail' ? '9_淘汰'
+      : '0_待篩選'  // watch = borderline = stays pending for review
 
     // ─── Check for existing gate0 record ───
     const { data: existingGate } = await supabase
