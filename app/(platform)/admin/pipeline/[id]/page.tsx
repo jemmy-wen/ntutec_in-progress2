@@ -18,12 +18,12 @@ interface GateRecord {
   // Gate 0 fields
   flags: string[] | null
   fail_reasons: string[] | null
-  // Gate 1 dimension scores (sosv_*)
-  sosv_market: number | null
-  sosv_solution: number | null
-  sosv_timing: number | null   // maps to d3_team
-  sosv_team: number | null     // maps to d4_traction
-  sosv_traction: number | null // maps to d5_fit
+  // Gate 1 dimension scores
+  sosv_market: number | null    // D1 市場
+  sosv_solution: number | null  // D2 產品
+  d3_team: number | null        // D3 團隊（原 sosv_timing，DRIFT-10 已更名）
+  d4_traction: number | null    // D4 市場實績（原 sosv_team，DRIFT-10 已更名）
+  d5_fit: number | null         // D5 適配（原 sosv_traction，DRIFT-10 已更名）
   gate1_confidence: string | null
   gate1_action: string | null
 }
@@ -329,7 +329,7 @@ function OverviewTab({ startup, enrichment, gates, pitches }: {
               const result = g.result || g.screening_result || 'pending'
               const isGate1 = g.gate_type === 'gate1'
               const total = isGate1
-                ? (g.sosv_market || 0) + (g.sosv_solution || 0) + (g.sosv_timing || 0) + (g.sosv_team || 0) + (g.sosv_traction || 0)
+                ? (g.sosv_market || 0) + (g.sosv_solution || 0) + (g.d3_team || 0) + (g.d4_traction || 0) + (g.d5_fit || 0)
                 : null
               return (
                 <div key={g.id} className="border border-gray-200 rounded-lg p-4">
@@ -455,9 +455,9 @@ function Gate1Tab({ gate }: { gate: GateRecord }) {
   const dimensions = [
     { key: 'market',    label: '市場 Market',       score: gate.sosv_market || 0 },
     { key: 'solution',  label: '產品 Solution',     score: gate.sosv_solution || 0 },
-    { key: 'team',      label: '團隊 Team',         score: gate.sosv_team || 0 },
-    { key: 'traction',  label: '市場實績 Traction',  score: gate.sosv_traction || 0 },
-    { key: 'fit',       label: '適配 Fit',           score: gate.sosv_timing || 0 },
+    { key: 'team',      label: '團隊 Team',         score: gate.d3_team || 0 },
+    { key: 'traction',  label: '市場實績 Traction',  score: gate.d4_traction || 0 },
+    { key: 'fit',       label: '適配 Fit',           score: gate.d5_fit || 0 },
   ]
   const total = dimensions.reduce((sum, d) => sum + d.score, 0)
 

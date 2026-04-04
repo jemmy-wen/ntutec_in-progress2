@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
       ceoQueueRes,
       projectsRes,
     ] = await Promise.all([
-      supabase.from('pip_startups').select('id, name_zh, sector, pipeline_stage, current_gate, tier, status, updated_at, observation_pool'),
+      supabase.from('pip_startups').select('id, name_zh, sector, pipeline_stage, current_gate, current_gate_result, tier, status, updated_at, observation_pool'),
       supabase.from('pip_meetings').select('*').order('id', { ascending: false }).limit(5),
       supabase.from('angel_members').select('id, status'),
       supabase.from('v_angel_engagement').select('engagement_level'),
@@ -83,7 +83,9 @@ export async function GET(req: NextRequest) {
     }
 
     // Gate 1 advance → ready for pitch scheduling
-    const gate1Advance = startups.filter(s => s.current_gate === 'gate1' && s.status === 'pass')
+    // Note: pip_startups.status = startups.status (stays 'active' after gate1 eval)
+    // Must use current_gate_result (= 'pass'/'fail') written by gate1_auto.py
+    const gate1Advance = startups.filter(s => s.current_gate === 'gate1' && s.current_gate_result === 'pass')
     if (gate1Advance.length > 0) {
       pendingActions.push({
         type: 'gate1_advance',

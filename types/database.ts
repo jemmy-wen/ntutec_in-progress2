@@ -90,7 +90,12 @@ export interface Database {
           pipeline_stage: number
           gate0_score: number | null
           gate1_score: number | null
-          status: string
+          status: string              // = startups.status ('active'/'invested'/'archived')
+          current_gate_result: string | null  // = startups.current_gate_result ('pass'/'fail'/'borderline')
+          current_gate: string | null
+          tier: string | null
+          track: string | null
+          notes: string | null
           observation_pool: boolean
           observation_reason: string | null
           observation_entered_at: string | null

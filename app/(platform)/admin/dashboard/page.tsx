@@ -59,10 +59,20 @@ const STAGE_BG: Record<string, string> = {
 
 // ─── Page ─────────────────────────────────────────────
 
+interface PipelineAlert {
+  id: string
+  alert_type: string
+  severity: 'critical' | 'warning' | 'info'
+  message: string
+  created_at: string
+}
+
 export default function AdminDashboard() {
   const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [alerts, setAlerts] = useState<PipelineAlert[]>([])
+  const [alertCounts, setAlertCounts] = useState({ critical: 0, warning: 0, info: 0, total: 0 })
 
   useEffect(() => {
     fetch('/api/admin/dashboard-stats')
@@ -73,7 +83,25 @@ export default function AdminDashboard() {
       .then(setData)
       .catch(err => setError(err.message))
       .finally(() => setLoading(false))
+
+    // F-013: Load pipeline alerts
+    fetch('/api/admin/alerts?limit=10')
+      .then(res => res.ok ? res.json() : null)
+      .then(d => {
+        if (d) { setAlerts(d.alerts || []); setAlertCounts(d.counts || { critical: 0, warning: 0, info: 0, total: 0 }) }
+      })
+      .catch(() => {}) // Non-blocking
   }, [])
+
+  const handleResolveAlert = async (id: string) => {
+    await fetch('/api/admin/alerts', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    })
+    setAlerts(prev => prev.filter(a => a.id !== id))
+    setAlertCounts(prev => ({ ...prev, total: prev.total - 1 }))
+  }
 
   if (loading) return <DashboardSkeleton />
   if (error) return <ErrorState message={error} onRetry={() => { setError(null); setLoading(true); location.reload() }} />
@@ -82,7 +110,13 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       {/* ═══ Layer 1: Cockpit ═══ */}
-      <Cockpit pendingActions={data.pendingActions} meeting={data.meeting} />
+      <Cockpit
+        pendingActions={data.pendingActions}
+        meeting={data.meeting}
+        alerts={alerts}
+        alertCounts={alertCounts}
+        onResolveAlert={handleResolveAlert}
+      />
 
       {/* ═══ Layer 2: KPI Bar ═══ */}
       <KPIBar pipeline={data.pipeline} memberCount={data.members.total} engagement={data.members.engagement} />
@@ -117,11 +151,15 @@ export default function AdminDashboard() {
 
 // ─── Cockpit ──────────────────────────────────────────
 
-function Cockpit({ pendingActions, meeting }: {
+function Cockpit({ pendingActions, meeting, alerts, alertCounts, onResolveAlert }: {
   pendingActions: DashboardData['pendingActions']
   meeting: DashboardData['meeting']
+  alerts: PipelineAlert[]
+  alertCounts: { critical: number; warning: number; info: number; total: number }
+  onResolveAlert: (id: string) => void
 }) {
   const hasPending = pendingActions.length > 0
+  const [showAlerts, setShowAlerts] = useState(false)
 
   return (
     <div className="bg-gradient-to-r from-slate-900 to-teal-900 rounded-2xl p-6 text-white">
@@ -130,15 +168,63 @@ function Cockpit({ pendingActions, meeting }: {
           <h1 className="text-xl font-bold">Command Center</h1>
           <p className="text-sm text-white/60">台大創創中心營運儀表板</p>
         </div>
-        {meeting && meeting.countdown !== null && (
-          <div className="text-right">
-            <div className="text-3xl font-bold tabular-nums">
-              D{meeting.countdown > 0 ? `-${meeting.countdown}` : meeting.countdown === 0 ? '-Day' : `+${Math.abs(meeting.countdown)}`}
+        <div className="flex items-center gap-4">
+          {/* F-013: Alert Bell */}
+          {alertCounts.total > 0 && (
+            <button
+              onClick={() => setShowAlerts(v => !v)}
+              className="relative flex items-center gap-1.5 bg-white/10 hover:bg-white/20 rounded-xl px-3 py-2 transition-colors"
+              title={`${alertCounts.total} 個警報`}
+            >
+              <span className="text-lg">🔔</span>
+              {alertCounts.critical > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                  {alertCounts.critical}
+                </span>
+              )}
+              <span className="text-sm text-white/80">{alertCounts.total}</span>
+            </button>
+          )}
+          {meeting && meeting.countdown !== null && (
+            <div className="text-right">
+              <div className="text-3xl font-bold tabular-nums">
+                D{meeting.countdown > 0 ? `-${meeting.countdown}` : meeting.countdown === 0 ? '-Day' : `+${Math.abs(meeting.countdown)}`}
+              </div>
+              <div className="text-xs text-white/60">{formatCycleId(meeting.id)} 天使例會</div>
             </div>
-            <div className="text-xs text-white/60">{formatCycleId(meeting.id)} 天使例會</div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+
+      {/* F-013: Alert panel */}
+      {showAlerts && alerts.length > 0 && (
+        <div className="mb-4 bg-black/30 rounded-xl overflow-hidden">
+          <div className="px-4 py-2 flex items-center justify-between border-b border-white/10">
+            <span className="text-sm font-semibold text-white/90">Pipeline 警報</span>
+            <button onClick={() => setShowAlerts(false)} className="text-white/50 hover:text-white text-sm">✕</button>
+          </div>
+          <div className="divide-y divide-white/10 max-h-56 overflow-y-auto">
+            {alerts.map(alert => (
+              <div key={alert.id} className="px-4 py-3 flex items-start gap-3">
+                <span className="text-sm mt-0.5">
+                  {alert.severity === 'critical' ? '🔴' : alert.severity === 'warning' ? '🟡' : 'ℹ️'}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-white/90">{alert.message}</p>
+                  <p className="text-[10px] text-white/40 mt-0.5">{alert.alert_type} · {new Date(alert.created_at).toLocaleDateString('zh-TW')}</p>
+                </div>
+                <button
+                  onClick={() => onResolveAlert(alert.id)}
+                  className="text-[11px] text-white/40 hover:text-white/80 shrink-0 ml-2"
+                  title="標記已處理"
+                >
+                  ✓ 處理
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {hasPending ? (
         <div className="flex flex-wrap gap-3">

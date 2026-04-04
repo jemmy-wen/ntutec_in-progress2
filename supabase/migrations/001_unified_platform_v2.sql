@@ -73,6 +73,7 @@ SELECT
   gate0_score,
   gate1_score,
   status,
+  current_gate_result,            -- gate1_auto.py 寫入 'pass'/'fail'/'borderline'
   observation_pool,
   observation_reason,
   observation_entered_at,
