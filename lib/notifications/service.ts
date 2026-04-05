@@ -105,15 +105,15 @@ const LIFECYCLE_TEMPLATES: Record<MeetingLifecycleEvent, {
     body: '本月天使俱樂部月會已結束，感謝您的參與。後續追蹤資訊將另行通知。',
     type: 'success',
     link: '/angel/portal',
-    channels: ['in_app'],
+    channels: ['in_app', 'email'],
     audience: 'members',
   },
   followup_started: {
-    title: '📬 會後追蹤已啟動',
-    body: '月會後續追蹤流程已啟動，請留意最新動態。',
+    title: '📬 月會投票結果 & 後續追蹤',
+    body: '本月月會已結束，投票結果與後續追蹤說明請見信件附件。',
     type: 'info',
     link: '/angel/portal',
-    channels: ['in_app'],
+    channels: ['in_app', 'email'],
     audience: 'members',
   },
   card_response: {
@@ -203,9 +203,18 @@ export async function notifyBulk(params: BulkNotifyParams): Promise<{ sent: numb
 
 // ─── Meeting Lifecycle Notifications ───
 
+interface MeetingPitchRow {
+  startup_name: string
+  vote_average: number | null
+  vote_recommendation: string | null
+  voter_count: number | null
+  order_index?: number | null
+}
+
 /**
  * Send notifications for a meeting lifecycle event.
  * Automatically determines audience, channels, and content.
+ * For followup_started: auto-fetches pitch results from DB and builds recap email.
  */
 export async function notifyMeetingLifecycle(
   event: MeetingLifecycleEvent,
@@ -217,6 +226,8 @@ export async function notifyMeetingLifecycle(
     memberName?: string
     startupName?: string
     response?: string
+    /** Meeting date string for recap email subject (e.g. "2026/04/02") */
+    meetingDate?: string
   }
 ): Promise<{ sent: number }> {
   const template = LIFECYCLE_TEMPLATES[event]
@@ -253,11 +264,26 @@ export async function notifyMeetingLifecycle(
 
   // Build notification content
   let body = extra?.body || template.body
+  let emailHtml: string | undefined
+
   if (event === 'card_response' && extra) {
     body = `${extra.memberName || '會員'} 對「${extra.startupName || '新創'}」回覆了「${
       extra.response === 'interested' ? '有興趣' :
       extra.response === 'thinking' ? '再想想' : '不適合我'
     }」`
+  }
+
+  // F-009: For followup_started, build recap email with vote results
+  if (event === 'followup_started' && template.channels.includes('email')) {
+    const { data: pitches } = await admin
+      .from('pip_meeting_pitches')
+      .select('startup_name, vote_average, vote_recommendation, voter_count, order_index')
+      .eq('meeting_id', meetingId)
+      .order('order_index', { ascending: true })
+
+    if (pitches && pitches.length > 0) {
+      emailHtml = buildRecapEmailHtml(pitches as MeetingPitchRow[], extra?.meetingDate)
+    }
   }
 
   return notifyBulk({
@@ -269,6 +295,7 @@ export async function notifyMeetingLifecycle(
     channels: template.channels,
     includeEmail: template.channels.includes('email'),
     emailSubject: template.title.replace(/[📋🗳️⏰✅📬]/g, '').trim(),
+    emailHtml,
   })
 }
 
@@ -314,7 +341,77 @@ export async function sendLineNotification(params: {
   }
 }
 
-// ─── Email Template Helper ───
+// ─── Email Template Helpers ───
+
+/** F-009: Build post-meeting recap email with vote results table */
+function buildRecapEmailHtml(pitches: MeetingPitchRow[], meetingDate?: string): string {
+  const REC_STYLE: Record<string, string> = {
+    'PASS':       'background:#dcfce7;color:#166534;',
+    'BORDERLINE': 'background:#fef9c3;color:#854d0e;',
+    'NO_PASS':    'background:#fee2e2;color:#991b1b;',
+  }
+  const REC_LABEL: Record<string, string> = {
+    'PASS':       '通過',
+    'BORDERLINE': '待議',
+    'NO_PASS':    '未通過',
+  }
+
+  const rows = pitches.map((p, i) => {
+    const rec = p.vote_recommendation || ''
+    const style = REC_STYLE[rec] || 'background:#f1f5f9;color:#334155;'
+    const label = REC_LABEL[rec] || rec || '—'
+    const avg = p.vote_average != null ? p.vote_average.toFixed(2) : '—'
+    const count = p.voter_count != null ? `${p.voter_count} 票` : '—'
+    return `
+    <tr style="border-bottom:1px solid #e2e8f0;">
+      <td style="padding:10px 12px;font-size:14px;color:#1e293b;">${i + 1}. ${p.startup_name}</td>
+      <td style="padding:10px 12px;font-size:14px;text-align:center;color:#475569;">${avg}</td>
+      <td style="padding:10px 12px;font-size:14px;text-align:center;color:#475569;">${count}</td>
+      <td style="padding:10px 12px;font-size:13px;text-align:center;">
+        <span style="padding:3px 10px;border-radius:20px;font-weight:600;${style}">${label}</span>
+      </td>
+    </tr>`
+  }).join('')
+
+  const dateStr = meetingDate ? ` (${meetingDate})` : ''
+
+  return `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:620px;margin:0 auto;padding:20px;">
+  <div style="background:#f8fafc;border-radius:12px;padding:28px;border:1px solid #e2e8f0;">
+    <h2 style="margin:0 0 6px;color:#1e293b;font-size:20px;">📬 月會投票結果${dateStr}</h2>
+    <p style="margin:0 0 20px;color:#64748b;font-size:14px;">感謝您參與本月天使俱樂部月會，以下為各案件投票統計結果。</p>
+
+    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;">
+      <thead>
+        <tr style="background:#f1f5f9;">
+          <th style="padding:10px 12px;font-size:13px;color:#475569;text-align:left;font-weight:600;">新創名稱</th>
+          <th style="padding:10px 12px;font-size:13px;color:#475569;text-align:center;font-weight:600;">平均分</th>
+          <th style="padding:10px 12px;font-size:13px;color:#475569;text-align:center;font-weight:600;">投票人數</th>
+          <th style="padding:10px 12px;font-size:13px;color:#475569;text-align:center;font-weight:600;">結果</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+
+    <div style="margin-top:20px;padding:16px;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+      <p style="margin:0;font-size:13px;color:#1d4ed8;">
+        <strong>後續追蹤：</strong>通過案件將由本中心安排深度訪談；如您對特定新創有進一步興趣，歡迎回覆此信聯繫我們。
+      </p>
+    </div>
+
+    <div style="margin-top:20px;text-align:center;">
+      <a href="https://ntutec-platform.vercel.app/angel/portal" style="display:inline-block;padding:10px 24px;background:#0d9488;color:white;text-decoration:none;border-radius:8px;font-size:14px;font-weight:600;">查看投資組合</a>
+    </div>
+  </div>
+  <p style="margin-top:16px;font-size:12px;color:#94a3b8;text-align:center;">
+    台大創創中心 Angel Club — 此為系統自動通知
+  </p>
+</body>
+</html>`.trim()
+}
 
 function wrapEmailHtml(title: string, body: string, link?: string): string {
   return `

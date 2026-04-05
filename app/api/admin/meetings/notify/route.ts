@@ -61,8 +61,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Send notifications
+    const meetingDate = meeting.meeting_date
+      ? new Date(meeting.meeting_date).toLocaleDateString('zh-TW')
+      : undefined
+
     const result = await notifyMeetingLifecycle(event, meeting_id, {
       body: custom_body,
+      meetingDate,
     })
 
     // Audit log
