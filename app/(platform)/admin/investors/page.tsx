@@ -10,9 +10,12 @@ interface MemberRow {
   company: string | null
   tier: string | null
   status: string
-  card_response_rate?: number
-  vote_participation_rate?: number
-  articles_read?: number
+  // v_angel_engagement fields (current schema)
+  angel_member_id?: string
+  card_responses_90d?: number
+  votes_90d?: number
+  meetings_attended_180d?: number
+  articles_read_total?: number
   engagement_level?: string
 }
 
@@ -52,7 +55,8 @@ export default function InvestorsAdminPage() {
         const data = await engagementRes.json()
         const map = new Map<string, MemberRow>()
         for (const m of (data.members || [])) {
-          map.set(m.id, m)
+          // v_angel_engagement uses angel_member_id as the key
+          map.set(m.angel_member_id || m.id, m)
         }
         setEngagementMap(map)
         setSummary(data.summary || { total: 0, active: 0, moderate: 0, low: 0 })
@@ -133,8 +137,8 @@ export default function InvestorsAdminPage() {
                 <th className="text-left px-4 py-3 font-semibold text-gray-700">公司</th>
                 <th className="text-left px-4 py-3 font-semibold text-gray-700">等級</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-700">狀態</th>
-                <th className="text-center px-4 py-3 font-semibold text-gray-700">卡片回應率</th>
-                <th className="text-center px-4 py-3 font-semibold text-gray-700">投票參與率</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">卡片回應(90d)</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">投票(90d)</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-700">文章閱讀</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-700">參與度</th>
               </tr>
@@ -164,13 +168,13 @@ export default function InvestorsAdminPage() {
                       {m.status === 'active' ? '活躍' : m.status === 'pending' ? '待審核' : '停用'}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-center">
-                    {m.card_response_rate != null ? <MiniBar value={m.card_response_rate} /> : '-'}
+                  <td className="px-4 py-3 text-center text-sm tabular-nums">
+                    {m.card_responses_90d ?? '-'}
                   </td>
-                  <td className="px-4 py-3 text-center">
-                    {m.vote_participation_rate != null ? <MiniBar value={m.vote_participation_rate} /> : '-'}
+                  <td className="px-4 py-3 text-center text-sm tabular-nums">
+                    {m.votes_90d ?? '-'}
                   </td>
-                  <td className="px-4 py-3 text-center">{m.articles_read ?? '-'}</td>
+                  <td className="px-4 py-3 text-center">{m.articles_read_total ?? '-'}</td>
                   <td className="px-4 py-3 text-center">
                     {m.engagement_level && (
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
