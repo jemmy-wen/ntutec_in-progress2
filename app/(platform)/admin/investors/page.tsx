@@ -21,6 +21,8 @@ interface MemberRow {
   referrer: string | null
   member_code: string | null
   ntu_alumni: boolean
+  company_tax_id: string | null
+  company_paid_in_capital: number | null
 }
 
 interface Summary {
@@ -150,6 +152,8 @@ export default function InvestorsAdminPage() {
                 <th className="text-right px-4 py-3 font-semibold text-gray-700">捐款</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-700">有效期間</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-700">會籍狀態</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-700">統編</th>
+                <th className="text-right px-4 py-3 font-semibold text-gray-700">實收資本額</th>
                 <th className="text-left px-4 py-3 font-semibold text-gray-700">會員編號</th>
               </tr>
             </thead>
@@ -177,12 +181,18 @@ export default function InvestorsAdminPage() {
                       {STATUS_LABEL[m.membership_status] ?? m.membership_status}
                     </span>
                   </td>
+                  <td className="px-4 py-3 text-xs text-gray-500 font-mono">{m.company_tax_id ?? '-'}</td>
+                  <td className="px-4 py-3 text-right text-xs tabular-nums text-gray-600">
+                    {m.company_paid_in_capital
+                      ? `NT$${(m.company_paid_in_capital / 1_000_000).toFixed(0)}M`
+                      : '-'}
+                  </td>
                   <td className="px-4 py-3 text-xs text-gray-400 font-mono">{m.member_code ?? '-'}</td>
                 </tr>
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
+                  <td colSpan={9} className="px-4 py-8 text-center text-gray-400">
                     沒有符合條件的會員
                   </td>
                 </tr>

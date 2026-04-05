@@ -55,7 +55,9 @@ export const GET = withApiHandler({
           annual_fee_status,
           membership_id,
           ntu_alumni,
-          status
+          status,
+          company_tax_id,
+          company_paid_in_capital
         )
       `)
       .order('status')
@@ -92,6 +94,8 @@ export const GET = withApiHandler({
       annual_fee_status: m.investors?.annual_fee_status ?? null,
       member_code: m.investors?.membership_id ?? null,
       ntu_alumni: m.investors?.ntu_alumni ?? false,
+      company_tax_id: m.investors?.company_tax_id ?? null,
+      company_paid_in_capital: m.investors?.company_paid_in_capital ?? null,
     }))
 
     // Summary counts
