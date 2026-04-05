@@ -10,6 +10,7 @@
 
 import { NextResponse } from 'next/server'
 import { withApiHandler, filterFields } from '@/lib/api/handler'
+import { createAdminClient } from '@/lib/supabase/admin'
 
 const MEMBER_UPDATABLE_FIELDS = new Set([
   'display_name', 'phone', 'company', 'title', 'investment_preferences',
@@ -21,11 +22,13 @@ export const GET = withApiHandler({
   roles: ['angel_member', 'admin', 'staff_admin'],
 }, async (ctx) => {
   if (ctx.isAdmin) {
-    // Admin: angel_memberships is SOT — JOIN investors for personal info
+    // Admin: use service role client to bypass RLS
+    // angel_memberships is SOT — JOIN investors for personal info
     // Group by membership status (active/expired/pending), NOT engagement level
     const statusFilter = ctx.searchParams.get('status') // optional filter
+    const adminSb = createAdminClient()
 
-    let query = ctx.supabase
+    let query = adminSb
       .from('angel_memberships')
       .select(`
         id,
