@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { ErrorState } from '@/components/shared/ErrorState'
+import BadgesWidget from '@/components/angel/BadgesWidget'
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -279,6 +280,11 @@ export default function ProfilePage() {
           </div>
         </Card>
       )}
+
+      {/* ── 成就徽章 F-017 ─────────────────────────────────────────── */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <BadgesWidget showHeader maxVisible={5} />
+      </div>
 
       {/* ── 投資偏好 ───────────────────────────────────────────────── */}
       <Card title="投資偏好">

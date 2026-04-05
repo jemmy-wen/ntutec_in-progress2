@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { ErrorState } from '@/components/shared/ErrorState'
+import BadgesWidget from '@/components/angel/BadgesWidget'
 
 interface Pitch {
   id: string
@@ -66,6 +67,11 @@ export default function PipelinePage() {
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">本月 Pipeline</h1>
       {cycleLabel && <p className="text-gray-500">{cycleLabel}天使例會候選新創</p>}
+
+      {/* ── F-017 成就徽章小元件 ── */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <BadgesWidget showHeader compact maxVisible={5} />
+      </div>
 
       {pitches.length === 0 ? (
         <div className="text-center py-16">
