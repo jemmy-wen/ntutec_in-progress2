@@ -109,7 +109,33 @@ interface DetailData {
   timeline: TimelineEntry[]
 }
 
-type TabKey = 'overview' | 'gate0' | 'gate1' | 'gate2' | 'enrichment' | 'timeline'
+type TabKey = 'overview' | 'gate0' | 'gate1' | 'gate2' | 'dd_report' | 'enrichment' | 'timeline'
+
+// ─── Page ─────────────────────────────────────────────
+
+// ─── DDReport Types ───────────────────────────────────
+
+interface DDReportRecord {
+  id: string
+  startup_id: string
+  evaluation_date: string | null
+  evaluator: string | null
+  notes: string | null        // markdown preview (up to 4,000 chars)
+  report_path: string | null  // Storage path for full report
+  created_at: string
+}
+
+interface Gate1Scores {
+  sosv_market: number | null
+  sosv_solution: number | null
+  d3_team: number | null
+  d4_traction: number | null
+  d5_fit: number | null
+  sosv_total: number | null
+  gate1_confidence: string | null
+  gate1_action: string | null
+  result: string | null
+}
 
 // ─── Page ─────────────────────────────────────────────
 
@@ -146,6 +172,7 @@ export default function StartupDetailPage() {
     { key: 'gate0', label: 'Gate 0', available: !!gate0 },
     { key: 'gate1', label: 'Gate 1', available: !!gate1 },
     { key: 'gate2', label: 'Gate 2', available: !!gate2 },
+    { key: 'dd_report', label: 'DD 報告', available: true },
     { key: 'enrichment', label: '盡調資料', available: !!enrichment },
     { key: 'timeline', label: '時間軸', available: timeline.length > 0 },
   ]
@@ -267,6 +294,7 @@ export default function StartupDetailPage() {
         {tab === 'gate0' && gate0 && <Gate0Tab gate={gate0} />}
         {tab === 'gate1' && gate1 && <Gate1Tab gate={gate1} />}
         {tab === 'gate2' && gate2 && <Gate2Tab gate={gate2} />}
+        {tab === 'dd_report' && <DDReportTab startupId={startup.id} />}
         {tab === 'enrichment' && enrichment && <EnrichmentTab enrichment={enrichment} />}
         {tab === 'timeline' && <TimelineTab timeline={timeline} />}
       </div>
@@ -557,6 +585,360 @@ function Gate2Tab({ gate }: { gate: GateRecord }) {
       )}
     </div>
   )
+}
+
+// ─── DD Report Tab ───────────────────────────────────
+
+function DDReportTab({ startupId }: { startupId: string }) {
+  const [report, setReport] = useState<DDReportRecord | null>(null)
+  const [gate1Scores, setGate1Scores] = useState<Gate1Scores | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [triggering, setTriggering] = useState(false)
+  const [triggerMsg, setTriggerMsg] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetch(`/api/admin/gates/${startupId}/report`)
+      .then(res => {
+        if (!res.ok) throw new Error('報告載入失敗')
+        return res.json()
+      })
+      .then(data => {
+        setReport(data.report)
+        setGate1Scores(data.gate1_scores)
+      })
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [startupId])
+
+  async function handleTrigger() {
+    setTriggering(true)
+    setTriggerMsg(null)
+    try {
+      const res = await fetch(`/api/admin/gates/${startupId}/report`, { method: 'POST' })
+      const data = await res.json()
+      if (res.status === 501) {
+        // Stub response — show manual instructions
+        setTriggerMsg(`手動執行指令：\n${data.instructions}`)
+      } else if (res.ok) {
+        setTriggerMsg('報告生成任務已排入佇列，請稍後刷新頁面。')
+      } else {
+        setTriggerMsg(`錯誤：${data.error}`)
+      }
+    } catch {
+      setTriggerMsg('觸發失敗，請手動執行 gate2_report.py')
+    } finally {
+      setTriggering(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="space-y-4">
+        <div className="h-8 bg-gray-200 rounded animate-pulse w-48" />
+        <div className="h-40 bg-gray-200 rounded animate-pulse" />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="text-sm text-red-600 bg-red-50 p-4 rounded-lg">{error}</div>
+    )
+  }
+
+  // ── Gate 1 score radar (bar chart style) ──────────────
+  const ScoreRadar = () => {
+    if (!gate1Scores) return null
+    const dimensions = [
+      { label: 'D1 市場', score: gate1Scores.sosv_market ?? 0, color: 'bg-teal-500' },
+      { label: 'D2 產品', score: gate1Scores.sosv_solution ?? 0, color: 'bg-indigo-500' },
+      { label: 'D3 團隊', score: gate1Scores.d3_team ?? 0, color: 'bg-violet-500' },
+      { label: 'D4 實績', score: gate1Scores.d4_traction ?? 0, color: 'bg-orange-500' },
+      { label: 'D5 適配', score: gate1Scores.d5_fit ?? 0, color: 'bg-emerald-500' },
+    ]
+    const total = dimensions.reduce((s, d) => s + d.score, 0)
+    return (
+      <div className="bg-gray-50 rounded-xl p-5">
+        <div className="flex items-center justify-between mb-4">
+          <h4 className="text-sm font-semibold text-gray-700">Gate 1 SOSV 評分雷達</h4>
+          <div className="text-right">
+            <span className="text-2xl font-extrabold text-gray-900">{total}</span>
+            <span className="text-sm text-gray-400">/50</span>
+            {gate1Scores.gate1_confidence && (
+              <div className="text-xs text-gray-400 mt-0.5">信心度: {gate1Scores.gate1_confidence}</div>
+            )}
+          </div>
+        </div>
+        <div className="space-y-3">
+          {dimensions.map(d => (
+            <div key={d.label}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-medium text-gray-600">{d.label}</span>
+                <span className="text-xs font-bold text-gray-800">{d.score}/10</span>
+              </div>
+              <div className="h-2.5 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full transition-all duration-500 ${d.color}`}
+                  style={{ width: `${d.score * 10}%` }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        {gate1Scores.gate1_action && (
+          <div className="mt-3 text-xs text-gray-500">
+            建議行動: <span className="font-medium text-gray-700">{gate1Scores.gate1_action}</span>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // ── No report state ────────────────────────────────────
+  if (!report) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center gap-3">
+          <h3 className="text-lg font-semibold">Gate 2 DD 報告</h3>
+        </div>
+
+        {gate1Scores && <ScoreRadar />}
+
+        <div className="border-2 border-dashed border-gray-200 rounded-xl p-10 text-center">
+          <div className="text-4xl mb-3">📋</div>
+          <p className="text-gray-500 text-sm mb-4">尚未生成 Gate 2 DD 報告</p>
+          <button
+            onClick={handleTrigger}
+            disabled={triggering}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-teal-600 text-white rounded-lg text-sm font-medium hover:bg-teal-700 disabled:opacity-50 transition-colors"
+          >
+            {triggering ? '處理中...' : '生成 DD 報告'}
+          </button>
+          {triggerMsg && (
+            <pre className="mt-4 text-xs text-left bg-gray-50 text-gray-700 p-3 rounded-lg whitespace-pre-wrap border border-gray-200">
+              {triggerMsg}
+            </pre>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  // ── Parse markdown sections ────────────────────────────
+  const content = report.notes || ''
+  // Extract section headers from markdown
+  const sections = content.split(/^## /m).filter(Boolean)
+  const parsedSections: { title: string; body: string }[] = sections.map(s => {
+    const firstNewline = s.indexOf('\n')
+    return {
+      title: firstNewline >= 0 ? s.slice(0, firstNewline).trim() : s.trim(),
+      body: firstNewline >= 0 ? s.slice(firstNewline + 1).trim() : '',
+    }
+  })
+
+  // Risk signals: look for lines with ⚠️, ❌, 🔴
+  const riskLines: string[] = []
+  content.split('\n').forEach(line => {
+    if (/⚠️|❌|🔴/.test(line) && line.trim().length > 2) {
+      riskLines.push(line.trim().replace(/^[-*]\s*/, ''))
+    }
+  })
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-lg font-semibold">Gate 2 DD 報告</h3>
+          <p className="text-xs text-gray-400 mt-0.5">
+            生成於 {report.evaluation_date
+              ? new Date(report.evaluation_date).toLocaleDateString('zh-TW')
+              : new Date(report.created_at).toLocaleDateString('zh-TW')
+            }
+            {report.evaluator && ` | ${report.evaluator}`}
+          </p>
+        </div>
+        <button
+          onClick={handleTrigger}
+          disabled={triggering}
+          className="text-xs px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 disabled:opacity-50 transition-colors"
+        >
+          {triggering ? '⏳' : '重新生成'}
+        </button>
+      </div>
+
+      {triggerMsg && (
+        <pre className="text-xs bg-gray-50 text-gray-700 p-3 rounded-lg whitespace-pre-wrap border border-gray-200">
+          {triggerMsg}
+        </pre>
+      )}
+
+      {/* Gate 1 Score Radar */}
+      {gate1Scores && <ScoreRadar />}
+
+      {/* Risk Signals (extracted from markdown) */}
+      {riskLines.length > 0 && (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+          <h4 className="text-sm font-semibold text-red-700 mb-3">風險警示</h4>
+          <div className="space-y-1.5">
+            {riskLines.slice(0, 8).map((line, i) => (
+              <div key={i} className="text-xs text-red-700 leading-relaxed">{line}</div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Markdown sections */}
+      {parsedSections.length > 0 ? (
+        <div className="space-y-4">
+          {parsedSections.map((section, i) => (
+            <details key={i} open={i < 3} className="border border-gray-200 rounded-xl overflow-hidden">
+              <summary className="px-4 py-3 bg-gray-50 font-medium text-sm text-gray-800 cursor-pointer hover:bg-gray-100 select-none">
+                {section.title}
+              </summary>
+              <div className="px-4 py-4">
+                <MarkdownBlock content={section.body} />
+              </div>
+            </details>
+          ))}
+        </div>
+      ) : (
+        /* Fallback: raw text */
+        <div className="bg-gray-50 rounded-xl p-4">
+          <pre className="text-xs text-gray-700 whitespace-pre-wrap leading-relaxed font-mono">
+            {content || '（報告內容為空）'}
+          </pre>
+        </div>
+      )}
+
+      {/* Truncation notice */}
+      {content.length >= 3900 && (
+        <div className="text-xs text-gray-400 text-center py-2 border-t border-gray-100">
+          顯示前 4,000 字預覽。
+          {report.report_path && (
+            <span> 完整報告路徑: <code className="bg-gray-100 px-1 rounded">{report.report_path}</code></span>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ─── Markdown Block (minimal renderer) ───────────────
+
+function MarkdownBlock({ content }: { content: string }) {
+  if (!content) return null
+
+  // Render markdown as structured HTML (tables, lists, code, blockquotes)
+  const lines = content.split('\n')
+  const elements: React.ReactNode[] = []
+  let i = 0
+
+  while (i < lines.length) {
+    const line = lines[i]
+
+    // Table
+    if (line.startsWith('|') && lines[i + 1]?.match(/^\|[-| :]+\|/)) {
+      const headers = line.split('|').filter(Boolean).map(h => h.trim())
+      const rows: string[][] = []
+      i += 2  // skip header + separator
+      while (i < lines.length && lines[i].startsWith('|')) {
+        rows.push(lines[i].split('|').filter(Boolean).map(c => c.trim()))
+        i++
+      }
+      elements.push(
+        <div key={i} className="overflow-x-auto my-3">
+          <table className="min-w-full text-xs border-collapse">
+            <thead>
+              <tr className="bg-gray-100">
+                {headers.map((h, hi) => (
+                  <th key={hi} className="px-3 py-2 text-left font-semibold text-gray-700 border border-gray-200">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, ri) => (
+                <tr key={ri} className={ri % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  {row.map((cell, ci) => (
+                    <td key={ci} className="px-3 py-2 text-gray-700 border border-gray-200 whitespace-pre-wrap">{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+      continue
+    }
+
+    // Heading H3/H4
+    if (line.startsWith('### ')) {
+      elements.push(<h5 key={i} className="text-xs font-bold text-gray-700 mt-4 mb-1">{line.slice(4)}</h5>)
+      i++; continue
+    }
+    if (line.startsWith('#### ')) {
+      elements.push(<h6 key={i} className="text-xs font-semibold text-gray-600 mt-3 mb-1">{line.slice(5)}</h6>)
+      i++; continue
+    }
+
+    // Blockquote
+    if (line.startsWith('> ')) {
+      elements.push(
+        <blockquote key={i} className="border-l-2 border-amber-400 pl-3 my-2 text-xs text-amber-800 bg-amber-50 py-2 pr-2 rounded-r-md">
+          {line.slice(2)}
+        </blockquote>
+      )
+      i++; continue
+    }
+
+    // Unordered list item
+    if (/^[-*] /.test(line)) {
+      const items: string[] = []
+      while (i < lines.length && /^[-*] /.test(lines[i])) {
+        items.push(lines[i].slice(2))
+        i++
+      }
+      elements.push(
+        <ul key={i} className="list-disc list-inside space-y-0.5 my-2 text-xs text-gray-700 pl-2">
+          {items.map((item, idx) => <li key={idx}>{item}</li>)}
+        </ul>
+      )
+      continue
+    }
+
+    // Ordered list item
+    if (/^\d+\. /.test(line)) {
+      const items: string[] = []
+      while (i < lines.length && /^\d+\. /.test(lines[i])) {
+        items.push(lines[i].replace(/^\d+\. /, ''))
+        i++
+      }
+      elements.push(
+        <ol key={i} className="list-decimal list-inside space-y-0.5 my-2 text-xs text-gray-700 pl-2">
+          {items.map((item, idx) => <li key={idx}>{item}</li>)}
+        </ol>
+      )
+      continue
+    }
+
+    // Bold line (standalone **text**)
+    if (line.startsWith('**') && line.endsWith('**') && line.length > 4) {
+      elements.push(<p key={i} className="text-xs font-semibold text-gray-800 mt-3 mb-1">{line.slice(2, -2)}</p>)
+      i++; continue
+    }
+
+    // Empty line — spacer
+    if (line.trim() === '') {
+      i++; continue
+    }
+
+    // Default: paragraph
+    elements.push(<p key={i} className="text-xs text-gray-700 leading-relaxed">{line}</p>)
+    i++
+  }
+
+  return <div className="space-y-1">{elements}</div>
 }
 
 // ─── Enrichment Tab ──────────────────────────────────
