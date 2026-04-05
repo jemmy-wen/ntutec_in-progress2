@@ -4,65 +4,64 @@ import { useState, useEffect } from 'react'
 import { ErrorState } from '@/components/shared/ErrorState'
 
 interface MemberRow {
-  id: string
-  display_name: string
+  membership_id: string
+  investor_id: string
+  display_name: string | null
   email: string | null
-  company: string | null
-  tier: string | null
-  status: string
-  // v_angel_engagement fields (current schema)
-  angel_member_id?: string
-  card_responses_90d?: number
-  votes_90d?: number
-  meetings_attended_180d?: number
-  articles_read_total?: number
-  engagement_level?: string
+  organization: string | null
+  title: string | null
+  member_type: string
+  company_name: string | null
+  donation_amount: number | null
+  membership_start: string | null
+  membership_expiry: string | null
+  membership_status: 'active' | 'expired' | 'pending' | 'renewed'
+  payment_date: string | null
+  payment_confirmed_by: string | null
+  referrer: string | null
+  member_code: string | null
+  ntu_alumni: boolean
 }
 
-interface EngagementSummary {
+interface Summary {
   total: number
   active: number
-  moderate: number
-  low: number
+  expired: number
+  pending: number
 }
 
-const TIER_LABELS: Record<string, string> = {
-  founding: '創始會員',
-  regular: '一般會員',
-  observer: '觀察員',
+const STATUS_LABEL: Record<string, string> = {
+  active: '付費有效',
+  expired: '歷史會員',
+  pending: '待繳費',
+  renewed: '已續費',
+}
+
+const STATUS_COLOR: Record<string, string> = {
+  active: 'bg-emerald-100 text-emerald-700',
+  expired: 'bg-gray-100 text-gray-500',
+  pending: 'bg-amber-100 text-amber-700',
+  renewed: 'bg-teal-100 text-teal-700',
 }
 
 export default function InvestorsAdminPage() {
   const [members, setMembers] = useState<MemberRow[]>([])
-  const [engagementMap, setEngagementMap] = useState<Map<string, MemberRow>>(new Map())
-  const [summary, setSummary] = useState<EngagementSummary>({ total: 0, active: 0, moderate: 0, low: 0 })
-  const [filter, setFilter] = useState<string>('all')
+  const [summary, setSummary] = useState<Summary>({ total: 0, active: 0, expired: 0, pending: 0 })
+  const [statusFilter, setStatusFilter] = useState<string>('active')
+  const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   async function loadData() {
+    setLoading(true)
     try {
-      const [membersRes, engagementRes] = await Promise.all([
-        fetch('/api/members'),
-        fetch('/api/engagement'),
-      ])
-
-      if (membersRes.ok) {
-        const data = await membersRes.json()
-        setMembers(data.members || [])
-      }
-      if (engagementRes.ok) {
-        const data = await engagementRes.json()
-        const map = new Map<string, MemberRow>()
-        for (const m of (data.members || [])) {
-          // v_angel_engagement uses angel_member_id as the key
-          map.set(m.angel_member_id || m.id, m)
-        }
-        setEngagementMap(map)
-        setSummary(data.summary || { total: 0, active: 0, moderate: 0, low: 0 })
-      }
+      const res = await fetch('/api/members')
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      setMembers(data.members || [])
+      setSummary(data.summary || { total: 0, active: 0, expired: 0, pending: 0 })
     } catch (err) {
-      setError(err instanceof Error ? err.message : '載入投資人資料失敗')
+      setError(err instanceof Error ? err.message : '載入會員資料失敗')
     } finally {
       setLoading(false)
     }
@@ -70,62 +69,74 @@ export default function InvestorsAdminPage() {
 
   useEffect(() => { loadData() }, [])
 
-  const enriched = members.map(m => ({
-    ...m,
-    ...(engagementMap.get(m.id) || {}),
-  }))
-
-  const filtered = filter === 'all'
-    ? enriched
-    : enriched.filter(m => m.engagement_level === filter)
+  const filtered = members
+    .filter(m => statusFilter === 'all' || m.membership_status === statusFilter)
+    .filter(m => {
+      if (!search) return true
+      const q = search.toLowerCase()
+      return (
+        m.display_name?.toLowerCase().includes(q) ||
+        m.email?.toLowerCase().includes(q) ||
+        m.organization?.toLowerCase().includes(q) ||
+        m.member_code?.toLowerCase().includes(q)
+      )
+    })
 
   if (loading) return <div className="h-96 bg-gray-200 rounded-xl animate-pulse" />
-  if (error) return <ErrorState message={error} onRetry={() => { setError(null); setLoading(true); loadData() }} />
+  if (error) return <ErrorState message={error} onRetry={() => { setError(null); loadData() }} />
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">投資人管理</h1>
-        <span className="text-sm text-gray-500">{members.length} 位天使會員（{members.filter(m => m.status === 'active').length} 位活躍）</span>
+        <h1 className="text-2xl font-bold">天使會員管理</h1>
+        <span className="text-sm text-gray-500">共 {summary.total} 筆會籍紀錄</span>
       </div>
 
-      {/* Engagement Dashboard */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Ring Chart */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col items-center justify-center">
-          <EngagementRing active={summary.active} moderate={summary.moderate} low={summary.low} />
-          <div className="text-xs text-gray-500 mt-3">活躍會員參與度分佈</div>
-        </div>
-
-        {/* Stat cards */}
-        <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-5 gap-3">
-          <EngagementStat label="總會員" value={members.length} color="text-gray-900" bgColor="bg-gray-50" />
-          <EngagementStat label="活躍會員" value={summary.total} color="text-teal-700" bgColor="bg-teal-50" />
-          <EngagementStat label="高參與" value={summary.active} color="text-emerald-700" bgColor="bg-emerald-50" onClick={() => setFilter(filter === 'active' ? 'all' : 'active')} active={filter === 'active'} />
-          <EngagementStat label="中參與" value={summary.moderate} color="text-amber-700" bgColor="bg-amber-50" onClick={() => setFilter(filter === 'moderate' ? 'all' : 'moderate')} active={filter === 'moderate'} />
-          <EngagementStat label="低參與" value={summary.low} color="text-red-700" bgColor="bg-red-50" onClick={() => setFilter(filter === 'low' ? 'all' : 'low')} active={filter === 'low'} />
-        </div>
+      {/* Summary cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <SummaryCard
+          label="付費有效"
+          value={summary.active}
+          color="text-emerald-700"
+          bg="bg-emerald-50"
+          active={statusFilter === 'active'}
+          onClick={() => setStatusFilter(statusFilter === 'active' ? 'all' : 'active')}
+        />
+        <SummaryCard
+          label="歷史會員"
+          value={summary.expired}
+          color="text-gray-600"
+          bg="bg-gray-50"
+          active={statusFilter === 'expired'}
+          onClick={() => setStatusFilter(statusFilter === 'expired' ? 'all' : 'expired')}
+        />
+        <SummaryCard
+          label="待繳費"
+          value={summary.pending}
+          color="text-amber-700"
+          bg="bg-amber-50"
+          active={statusFilter === 'pending'}
+          onClick={() => setStatusFilter(statusFilter === 'pending' ? 'all' : 'pending')}
+        />
+        <SummaryCard
+          label="全部"
+          value={summary.total}
+          color="text-gray-900"
+          bg="bg-white border border-gray-200"
+          active={statusFilter === 'all'}
+          onClick={() => setStatusFilter('all')}
+        />
       </div>
 
-      {/* Filter pills */}
-      <div className="flex gap-2">
-        {[
-          { key: 'all', label: '全部', count: members.length },
-          { key: 'active', label: '高參與', count: summary.active },
-          { key: 'moderate', label: '中參與', count: summary.moderate },
-          { key: 'low', label: '低參與', count: summary.low },
-        ].map(f => (
-          <button
-            key={f.key}
-            onClick={() => setFilter(f.key)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              filter === f.key ? 'bg-teal-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          >
-            {f.label} <span className="ml-1 opacity-70">({f.count})</span>
-          </button>
-        ))}
-      </div>
+      {/* Search */}
+      <input
+        type="text"
+        placeholder="搜尋姓名、Email、公司、會員編號…"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+      />
 
       {/* Table */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
@@ -135,62 +146,43 @@ export default function InvestorsAdminPage() {
               <tr>
                 <th className="text-left px-4 py-3 font-semibold text-gray-700">姓名</th>
                 <th className="text-left px-4 py-3 font-semibold text-gray-700">公司</th>
-                <th className="text-left px-4 py-3 font-semibold text-gray-700">等級</th>
-                <th className="text-center px-4 py-3 font-semibold text-gray-700">狀態</th>
-                <th className="text-center px-4 py-3 font-semibold text-gray-700">卡片回應(90d)</th>
-                <th className="text-center px-4 py-3 font-semibold text-gray-700">投票(90d)</th>
-                <th className="text-center px-4 py-3 font-semibold text-gray-700">文章閱讀</th>
-                <th className="text-center px-4 py-3 font-semibold text-gray-700">參與度</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-700">類型</th>
+                <th className="text-right px-4 py-3 font-semibold text-gray-700">捐款</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">有效期間</th>
+                <th className="text-center px-4 py-3 font-semibold text-gray-700">會籍狀態</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-700">會員編號</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {filtered.map(m => (
-                <tr key={m.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 font-medium">{m.display_name}</td>
-                  <td className="px-4 py-3 text-gray-500">{m.company || '-'}</td>
+                <tr key={m.membership_id} className="hover:bg-gray-50">
                   <td className="px-4 py-3">
-                    {m.tier && (
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                        m.tier === 'founding' ? 'bg-teal-100 text-teal-700' :
-                        m.tier === 'regular' ? 'bg-teal-100 text-teal-700' :
-                        'bg-gray-100 text-gray-600'
-                      }`}>
-                        {TIER_LABELS[m.tier] || m.tier}
-                      </span>
-                    )}
+                    <div className="font-medium">{m.display_name ?? '-'}</div>
+                    {m.email && <div className="text-xs text-gray-400">{m.email}</div>}
+                  </td>
+                  <td className="px-4 py-3 text-gray-600">{m.organization ?? m.company_name ?? '-'}</td>
+                  <td className="px-4 py-3 text-gray-500">
+                    {m.member_type === 'corporate' ? '法人' : '個人'}
+                  </td>
+                  <td className="px-4 py-3 text-right tabular-nums text-gray-700">
+                    {m.donation_amount ? `NT$${(m.donation_amount / 1000).toFixed(0)}k` : '-'}
+                  </td>
+                  <td className="px-4 py-3 text-center text-xs text-gray-500">
+                    {m.membership_start && m.membership_expiry
+                      ? `${m.membership_start.slice(0, 7)} → ${m.membership_expiry.slice(0, 7)}`
+                      : '-'}
                   </td>
                   <td className="px-4 py-3 text-center">
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                      m.status === 'active' ? 'bg-green-100 text-green-700' :
-                      m.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-gray-100 text-gray-500'
-                    }`}>
-                      {m.status === 'active' ? '活躍' : m.status === 'pending' ? '待審核' : '停用'}
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_COLOR[m.membership_status] ?? 'bg-gray-100 text-gray-500'}`}>
+                      {STATUS_LABEL[m.membership_status] ?? m.membership_status}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-center text-sm tabular-nums">
-                    {m.card_responses_90d ?? '-'}
-                  </td>
-                  <td className="px-4 py-3 text-center text-sm tabular-nums">
-                    {m.votes_90d ?? '-'}
-                  </td>
-                  <td className="px-4 py-3 text-center">{m.articles_read_total ?? '-'}</td>
-                  <td className="px-4 py-3 text-center">
-                    {m.engagement_level && (
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                        m.engagement_level === 'active' ? 'bg-green-100 text-green-700' :
-                        m.engagement_level === 'moderate' ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-red-100 text-red-700'
-                      }`}>
-                        {m.engagement_level === 'active' ? '活躍' : m.engagement_level === 'moderate' ? '中度' : '低'}
-                      </span>
-                    )}
-                  </td>
+                  <td className="px-4 py-3 text-xs text-gray-400 font-mono">{m.member_code ?? '-'}</td>
                 </tr>
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="px-4 py-8 text-center text-gray-400">
+                  <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
                     沒有符合條件的會員
                   </td>
                 </tr>
@@ -199,100 +191,26 @@ export default function InvestorsAdminPage() {
           </table>
         </div>
       </div>
+      <p className="text-xs text-gray-400">
+        資料來源：angel_memberships（付費 SOT）。活躍度不顯示於此頁。
+      </p>
     </div>
   )
 }
 
-// ─── Engagement Ring Chart (SVG) ──────────────────────
-
-function EngagementRing({ active, moderate, low }: { active: number; moderate: number; low: number }) {
-  const total = active + moderate + low
-  if (total === 0) {
-    return (
-      <div className="w-32 h-32 flex items-center justify-center">
-        <span className="text-sm text-gray-400">無資料</span>
-      </div>
-    )
-  }
-
-  const r = 52
-  const circumference = 2 * Math.PI * r
-  const activeArc = (active / total) * circumference
-  const moderateArc = (moderate / total) * circumference
-  const lowArc = (low / total) * circumference
-
-  const activeOffset = 0
-  const moderateOffset = activeArc
-  const lowOffset = activeArc + moderateArc
-
-  return (
-    <div className="relative w-32 h-32">
-      <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
-        {/* Active — green */}
-        <circle
-          cx="60" cy="60" r={r}
-          fill="none" stroke="#10b981" strokeWidth="12"
-          strokeDasharray={`${activeArc} ${circumference - activeArc}`}
-          strokeDashoffset={-activeOffset}
-          strokeLinecap="round"
-          className="transition-all duration-700"
-        />
-        {/* Moderate — amber */}
-        <circle
-          cx="60" cy="60" r={r}
-          fill="none" stroke="#f59e0b" strokeWidth="12"
-          strokeDasharray={`${moderateArc} ${circumference - moderateArc}`}
-          strokeDashoffset={-moderateOffset}
-          strokeLinecap="round"
-          className="transition-all duration-700"
-        />
-        {/* Low — red */}
-        <circle
-          cx="60" cy="60" r={r}
-          fill="none" stroke="#ef4444" strokeWidth="12"
-          strokeDasharray={`${lowArc} ${circumference - lowArc}`}
-          strokeDashoffset={-lowOffset}
-          strokeLinecap="round"
-          className="transition-all duration-700"
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-2xl font-extrabold text-gray-900">{total}</span>
-        <span className="text-[10px] text-gray-500">會員</span>
-      </div>
-    </div>
-  )
-}
-
-// ─── Engagement Stat Card ─────────────────────────────
-
-function EngagementStat({ label, value, color, bgColor, onClick, active }: {
-  label: string; value: number; color: string; bgColor: string
-  onClick?: () => void; active?: boolean
+function SummaryCard({
+  label, value, color, bg, active, onClick,
+}: {
+  label: string; value: number; color: string; bg: string
+  active?: boolean; onClick?: () => void
 }) {
   return (
     <button
       onClick={onClick}
-      className={`rounded-xl p-4 text-center transition-all ${bgColor} ${
-        active ? 'ring-2 ring-teal-500' : ''
-      } ${onClick ? 'cursor-pointer hover:shadow-md' : ''}`}
+      className={`rounded-xl p-4 text-center transition-all ${bg} ${active ? 'ring-2 ring-teal-500 shadow-md' : 'hover:shadow-sm'}`}
     >
-      <div className={`text-2xl font-extrabold tabular-nums ${color}`}>{value}</div>
+      <div className={`text-3xl font-extrabold tabular-nums ${color}`}>{value}</div>
       <div className="text-xs text-gray-500 mt-1">{label}</div>
     </button>
-  )
-}
-
-// ─── Mini Progress Bar ────────────────────────────────
-
-function MiniBar({ value }: { value: number }) {
-  const color = value >= 70 ? 'bg-emerald-400' : value >= 40 ? 'bg-amber-400' : 'bg-red-400'
-  return (
-    <div className="flex items-center gap-2 justify-center">
-      <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className={`h-full rounded-full ${color}`} style={{ width: `${Math.min(value, 100)}%` }} />
-      </div>
-      <span className="text-xs tabular-nums">{value}%</span>
-    </div>
   )
 }
