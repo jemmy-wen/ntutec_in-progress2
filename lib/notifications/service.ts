@@ -5,8 +5,8 @@
  * Orchestrates multi-channel notifications per D2 decision:
  *   ✅ In-app (站內通知) — always
  *   ✅ Email (nodemailer) — for important events
- *   🔮 LINE — interface pre-built, not connected (等待串接)
- *   ❌ Telegram — excluded by D2
+ *   ✅ Telegram — via Bot API (TELEGRAM_BOT_TOKEN + telegram_chat_id on investors)
+ *   ~~LINE~~ — removed, replaced by Telegram channel
  *
  * Usage:
  *   await notify({ ... })
@@ -19,7 +19,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 
 // ─── Types ───
 
-export type NotifyChannel = 'in_app' | 'email' | 'line'
+export type NotifyChannel = 'in_app' | 'email' | 'telegram'
 
 export interface NotifyParams {
   userId: string
@@ -34,6 +34,8 @@ export interface NotifyParams {
     subject?: string
     html?: string
   }
+  /** Telegram-specific: override chat_id (falls back to angel_members.telegram_chat_id) */
+  telegramChatId?: string
 }
 
 export interface BulkNotifyParams {
@@ -47,6 +49,8 @@ export interface BulkNotifyParams {
   includeEmail?: boolean
   emailSubject?: string
   emailHtml?: string
+  /** If true, also send Telegram to users who have telegram_chat_id set */
+  includeTelegram?: boolean
 }
 
 // ─── Meeting Lifecycle Event Definitions ───
@@ -81,7 +85,7 @@ const LIFECYCLE_TEMPLATES: Record<MeetingLifecycleEvent, {
     body: '本月月會候選新創資料已準備就緒，請前往瀏覽並回覆您的興趣偏好。',
     type: 'action',
     link: '/angel/portal/cards',
-    channels: ['in_app', 'email'],
+    channels: ['in_app', 'email', 'telegram'],
     audience: 'members',
   },
   vote_open: {
@@ -89,7 +93,7 @@ const LIFECYCLE_TEMPLATES: Record<MeetingLifecycleEvent, {
     body: '本月月會投票已開放，請在截止前完成您的回覆。',
     type: 'action',
     link: '/angel/portal/cards',
-    channels: ['in_app', 'email'],
+    channels: ['in_app', 'email', 'telegram'],
     audience: 'members',
   },
   meeting_reminder: {
@@ -97,7 +101,7 @@ const LIFECYCLE_TEMPLATES: Record<MeetingLifecycleEvent, {
     body: '天使俱樂部月會將於明天舉行，請確認出席。',
     type: 'warning',
     link: '/angel/portal',
-    channels: ['in_app', 'email'],
+    channels: ['in_app', 'email', 'telegram'],
     audience: 'all',
   },
   meeting_complete: {
@@ -151,12 +155,27 @@ export async function notify(params: NotifyParams): Promise<void> {
     })
   }
 
-  // Channel 3: LINE (pre-built interface, not connected)
-  if (channels.includes('line')) {
-    // LINE interface placeholder per D2 decision
-    // When LINE Messaging API is integrated, send via:
-    // await sendLineMessage({ userId: params.userId, message: params.title })
-    console.log('[LINE] Placeholder — not connected:', params.title)
+  // Channel 3: Telegram
+  if (channels.includes('telegram')) {
+    let chatId = params.telegramChatId
+    if (!chatId) {
+      // Look up telegram_chat_id from angel_members (investors) by user_id
+      const admin = createAdminClient()
+      const { data: member } = await admin
+        .from('angel_members')
+        .select('telegram_chat_id')
+        .eq('user_id', params.userId)
+        .maybeSingle()
+      chatId = member?.telegram_chat_id ?? undefined
+    }
+    if (chatId) {
+      const message = params.body
+        ? `*${params.title}*\n${params.body}${params.link ? `\n\nhttps://ntutec-platform.vercel.app${params.link}` : ''}`
+        : `*${params.title}*${params.link ? `\n\nhttps://ntutec-platform.vercel.app${params.link}` : ''}`
+      await sendTelegramNotification({ chatId, message })
+    } else {
+      console.log('[Telegram] No chat_id for user:', params.userId, '— skipping')
+    }
   }
 }
 
@@ -194,6 +213,27 @@ export async function notifyBulk(params: BulkNotifyParams): Promise<{ sent: numb
           subject: params.emailSubject || params.title,
           html: params.emailHtml || wrapEmailHtml(params.title, params.body || '', params.link),
         })
+      }
+    }
+  }
+
+  // Channel 3: Telegram bulk (if requested)
+  if (channels.includes('telegram') && params.includeTelegram) {
+    const admin = createAdminClient()
+    // Fetch telegram_chat_id for all target users
+    const { data: members } = await admin
+      .from('angel_members')
+      .select('user_id, telegram_chat_id')
+      .in('user_id', params.userIds)
+      .not('telegram_chat_id', 'is', null)
+
+    const message = params.body
+      ? `*${params.title}*\n${params.body}${params.link ? `\n\nhttps://ntutec-platform.vercel.app${params.link}` : ''}`
+      : `*${params.title}*${params.link ? `\n\nhttps://ntutec-platform.vercel.app${params.link}` : ''}`
+
+    for (const member of members || []) {
+      if (member.telegram_chat_id) {
+        await sendTelegramNotification({ chatId: member.telegram_chat_id, message })
       }
     }
   }
@@ -296,47 +336,51 @@ export async function notifyMeetingLifecycle(
     includeEmail: template.channels.includes('email'),
     emailSubject: template.title.replace(/[📋🗳️⏰✅📬]/g, '').trim(),
     emailHtml,
+    includeTelegram: template.channels.includes('telegram'),
   })
 }
 
-// ─── LINE Interface (Pre-built, D2 Decision) ───
+// ─── Telegram Channel (F-008, replaces LINE) ───
 
 /**
- * LINE notification interface — pre-built per D2 decision.
- * Currently a no-op. When LINE Messaging API is integrated:
- * 1. Set LINE_CHANNEL_ACCESS_TOKEN env var
- * 2. Map user_id → LINE user ID in angel_members table
- * 3. Implement pushMessage via LINE Messaging API
+ * Send a Telegram message via Bot API.
+ * Requires TELEGRAM_BOT_TOKEN env var.
+ * Per-user routing: investors.telegram_chat_id stores the user's chat ID.
+ * Admin/system-wide chat_id: 1335720750 (Howard's personal Telegram)
+ *
+ * @param params.chatId  - Telegram chat_id (user or group)
+ * @param params.message - Plain text or Markdown (parse_mode: Markdown)
  */
-export async function sendLineNotification(params: {
-  lineUserId: string
+export async function sendTelegramNotification(params: {
+  chatId: string
   message: string
-  altText?: string
 }): Promise<boolean> {
-  const token = process.env.LINE_CHANNEL_ACCESS_TOKEN
+  const token = process.env.TELEGRAM_BOT_TOKEN
   if (!token) {
-    console.log('[LINE] Not configured — skipping notification')
+    console.log('[Telegram] TELEGRAM_BOT_TOKEN not configured — skipping')
     return false
   }
 
   try {
-    const response = await fetch('https://api.line.me/v2/bot/message/push', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        to: params.lineUserId,
-        messages: [{
-          type: 'text',
+    const response = await fetch(
+      `https://api.telegram.org/bot${token}/sendMessage`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: params.chatId,
           text: params.message,
-        }],
-      }),
-    })
+          parse_mode: 'Markdown',
+        }),
+      }
+    )
+    if (!response.ok) {
+      const err = await response.text()
+      console.error('[Telegram] Send failed:', response.status, err)
+    }
     return response.ok
   } catch (err) {
-    console.error('[LINE] Send failed:', err)
+    console.error('[Telegram] Send exception:', err)
     return false
   }
 }
