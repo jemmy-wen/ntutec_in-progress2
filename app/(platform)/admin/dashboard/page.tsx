@@ -2,6 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { motion } from 'motion/react'
+import NumberFlow from '@number-flow/react'
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts'
+import { ChartContainer } from '@/components/ui/chart'
 import { STATUS_LABELS, STATUS_COLORS, type MeetingCycleStatus } from '@/lib/utils/state-machine'
 import { ErrorState } from '@/components/shared/ErrorState'
 
@@ -262,70 +266,98 @@ function KPIBar({ pipeline, memberCount, engagement }: {
   const gate0Plus = stageCounts.gate0 + stageCounts.gate1 + stageCounts.gate2 + stageCounts.pitch_ready + stageCounts.invested
 
   const kpis = [
-    { label: '總案源', value: pipeline.total, color: 'border-slate-300' },
-    { label: 'Gate 0+', value: gate0Plus, color: 'border-teal-400' },
-    { label: 'Gate 1', value: stageCounts.gate1, color: 'border-indigo-400' },
-    { label: 'Pitch Ready', value: stageCounts.pitch_ready, color: 'border-amber-400' },
-    { label: '已投資', value: stageCounts.invested, color: 'border-emerald-400' },
-    { label: '天使會員', value: memberCount, color: 'border-teal-400' },
+    { label: '總案源', value: pipeline.total, accent: '#94a3b8' },
+    { label: 'Gate 0+', value: gate0Plus, accent: '#2dd4bf' },
+    { label: 'Gate 1', value: stageCounts.gate1, accent: '#818cf8' },
+    { label: 'Pitch Ready', value: stageCounts.pitch_ready, accent: '#fbbf24' },
+    { label: '已投資', value: stageCounts.invested, accent: '#34d399' },
+    { label: '天使會員', value: memberCount, accent: '#2dd4bf' },
   ]
 
   return (
-    <div className="grid grid-cols-3 lg:grid-cols-6 gap-3">
+    <motion.div
+      className="grid grid-cols-3 lg:grid-cols-6 gap-3"
+      initial="hidden"
+      animate="show"
+      variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
+    >
       {kpis.map(kpi => (
-        <div key={kpi.label} className={`bg-white rounded-xl border-t-3 ${kpi.color} shadow-sm p-4 text-center`} style={{ borderTopWidth: '3px' }}>
-          <div className="text-2xl font-extrabold text-gray-900 tabular-nums">{kpi.value}</div>
+        <motion.div
+          key={kpi.label}
+          variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.3 } } }}
+          whileHover={{ y: -2, transition: { duration: 0.15 } }}
+          className="bg-white rounded-xl shadow-sm p-4 text-center relative overflow-hidden"
+          style={{ borderTop: `3px solid ${kpi.accent}` }}
+        >
+          <NumberFlow
+            value={kpi.value}
+            className="text-2xl font-extrabold text-gray-900 tabular-nums"
+            transformTiming={{ duration: 700, easing: 'ease-out' }}
+          />
           <div className="text-xs text-gray-500 mt-1">{kpi.label}</div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   )
 }
 
 // ─── Pipeline Funnel ──────────────────────────────────
 
+const FUNNEL_CHART_COLORS: Record<string, string> = {
+  radar: '#94a3b8', observation: '#9ca3af', gate0: '#2dd4bf',
+  gate1: '#818cf8', gate2: '#2dd4bf', pitch_ready: '#fbbf24', invested: '#34d399',
+}
+
 function PipelineFunnel({ pipeline }: { pipeline: DashboardData['pipeline'] }) {
-  const { stageCounts, conversionRates, total } = pipeline
-  const maxCount = Math.max(...FUNNEL_STAGES.map(s => stageCounts[s.key] || 0), 1)
+  const { stageCounts, conversionRates } = pipeline
+
+  const chartData = FUNNEL_STAGES.map(s => ({
+    name: s.label,
+    key: s.key,
+    value: stageCounts[s.key] || 0,
+    fill: FUNNEL_CHART_COLORS[s.key] || '#94a3b8',
+  }))
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+    <motion.div
+      className="bg-white rounded-xl shadow-sm border border-gray-200 p-6"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.15 }}
+    >
       <h2 className="text-sm font-semibold text-gray-700 mb-4">Pipeline Funnel</h2>
 
-      {/* Funnel bars */}
-      <div className="space-y-2">
-        {FUNNEL_STAGES.map(stage => {
-          const count = stageCounts[stage.key] || 0
-          const pct = total > 0 ? (count / maxCount) * 100 : 0
-          return (
-            <div key={stage.key} className="flex items-center gap-3">
-              <div className="w-16 text-right text-xs font-medium text-gray-500">{stage.label}</div>
-              <div className="flex-1 h-7 bg-gray-100 rounded-lg overflow-hidden relative">
-                <div
-                  className={`h-full ${stage.color} rounded-lg transition-all duration-700 ease-out`}
-                  style={{ width: `${Math.max(pct, count > 0 ? 2 : 0)}%` }}
-                />
-                {count > 0 && (
-                  <span className={`absolute inset-y-0 flex items-center text-xs font-bold ${pct > 15 ? 'text-white left-3' : 'text-gray-700 left-[calc(var(--w)+8px)]'}`}
-                    style={{ '--w': `${pct}%` } as React.CSSProperties}
-                  >
-                    {count}
-                  </span>
-                )}
-              </div>
-              <div className="w-10 text-right text-xs text-gray-400 tabular-nums">{count}</div>
-            </div>
-          )
-        })}
-      </div>
+      <ResponsiveContainer width="100%" height={160}>
+        <BarChart data={chartData} layout="vertical" margin={{ top: 0, right: 40, left: 48, bottom: 0 }}>
+          <XAxis type="number" hide />
+          <YAxis
+            type="category"
+            dataKey="name"
+            tick={{ fontSize: 11, fill: '#6b7280' }}
+            axisLine={false}
+            tickLine={false}
+            width={48}
+          />
+          <Tooltip
+            cursor={{ fill: 'rgba(0,0,0,0.04)' }}
+            formatter={(value) => [value ?? 0, '案件數']}
+            contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #e5e7eb' }}
+          />
+          <Bar dataKey="value" radius={[0, 4, 4, 0]} label={{ position: 'right', fontSize: 11, fill: '#374151', fontWeight: 600 }}>
+            {chartData.map((entry) => (
+              <Cell key={entry.key} fill={entry.fill} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
 
       {/* Conversion rates */}
-      <div className="flex gap-6 mt-4 pt-4 border-t border-gray-100 text-xs text-gray-500">
+      <div className="flex gap-6 mt-2 pt-4 border-t border-gray-100 text-xs text-gray-500">
         <span>Radar → G0 <strong className="text-teal-700">{conversionRates.radarToGate0}%</strong></span>
         <span>G0 → G1 <strong className="text-teal-700">{conversionRates.gate0ToGate1}%</strong></span>
         <span>G1 → Pitch <strong className="text-teal-700">{conversionRates.gate1ToPitch}%</strong></span>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

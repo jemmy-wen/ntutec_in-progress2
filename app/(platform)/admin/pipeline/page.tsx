@@ -1,7 +1,19 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import {
+  DndContext,
+  DragOverlay,
+  type DragStartEvent,
+  type DragEndEvent,
+  useDroppable,
+  useDraggable,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import { motion, AnimatePresence } from 'motion/react'
 import { ErrorState } from '@/components/shared/ErrorState'
 
 /**
@@ -48,6 +60,21 @@ export default function AdminPipelinePage() {
   const [error, setError] = useState<string | null>(null)
   const [viewMode, setViewMode] = useState<'kanban' | 'table'>('kanban')
   const [filterStage, setFilterStage] = useState<PipelineStage | 'all'>('all')
+
+  const handleStageChange = useCallback(async (id: string, newStage: PipelineStage) => {
+    // Optimistic update
+    setStartups(prev => prev.map(s => s.id === id ? { ...s, stage: newStage } : s))
+    try {
+      await fetch(`/api/admin/pipeline/${id}/stage`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ stage: newStage }),
+      })
+    } catch {
+      // Revert on failure — reload from server
+      setStartups(prev => prev.map(s => s.id === id ? { ...s, stage: (prev.find(p => p.id === id)?.stage ?? newStage) } : s))
+    }
+  }, [])
 
   const loadPipeline = useCallback(async () => {
     try {
@@ -167,7 +194,7 @@ export default function AdminPipelinePage() {
           </div>
         </div>
       ) : viewMode === 'kanban' ? (
-        <KanbanView grouped={groupedByStage} />
+        <KanbanView grouped={groupedByStage} onStageChange={handleStageChange} />
       ) : (
         <TableView startups={filtered} />
       )}
@@ -184,42 +211,104 @@ function FeatureItem({ icon, text }: { icon: string; text: string }) {
   )
 }
 
-function KanbanView({ grouped }: { grouped: Record<PipelineStage, PipelineStartup[]> }) {
+function KanbanView({ grouped, onStageChange }: {
+  grouped: Record<PipelineStage, PipelineStartup[]>
+  onStageChange: (id: string, newStage: PipelineStage) => void
+}) {
+  const [activeStartup, setActiveStartup] = useState<PipelineStartup | null>(null)
+  const allStartups = Object.values(grouped).flat()
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
+  )
+
   const activeStages = STAGES.filter(s => s !== 'passed')
 
+  function handleDragStart(event: DragStartEvent) {
+    const startup = allStartups.find(s => s.id === event.active.id)
+    if (startup) setActiveStartup(startup)
+  }
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event
+    setActiveStartup(null)
+    if (!over) return
+    const newStage = over.id as PipelineStage
+    const startup = allStartups.find(s => s.id === active.id)
+    if (startup && startup.stage !== newStage && STAGES.includes(newStage)) {
+      onStageChange(startup.id, newStage)
+    }
+  }
+
   return (
-    <div className="flex gap-4 overflow-x-auto pb-4">
-      {activeStages.map(stage => {
-        const cfg = STAGE_CONFIG[stage]
-        const items = grouped[stage] || []
-        return (
-          <div key={stage} className="flex-shrink-0 w-64">
-            <div className={`rounded-t-xl px-4 py-2 ${cfg.bgColor}`}>
-              <div className="flex items-center justify-between">
-                <span className={`font-semibold text-sm ${cfg.color}`}>{cfg.label}</span>
-                <span className={`text-xs font-medium ${cfg.color}`}>{items.length}</span>
-              </div>
-            </div>
-            <div className="bg-gray-50 rounded-b-xl border border-t-0 border-gray-200 min-h-[200px] p-2 space-y-2">
-              {items.map(startup => (
-                <StartupCard key={startup.id} startup={startup} />
-              ))}
-              {items.length === 0 && (
-                <div className="text-center text-xs text-gray-400 py-8">
-                  無案件
-                </div>
-              )}
-            </div>
+    <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+      <div className="flex gap-4 overflow-x-auto pb-4">
+        {activeStages.map(stage => (
+          <KanbanColumn
+            key={stage}
+            stage={stage}
+            items={grouped[stage] || []}
+            isDragging={activeStartup !== null}
+          />
+        ))}
+      </div>
+      <DragOverlay>
+        {activeStartup && <StartupCard startup={activeStartup} isOverlay />}
+      </DragOverlay>
+    </DndContext>
+  )
+}
+
+function KanbanColumn({ stage, items, isDragging }: {
+  stage: PipelineStage
+  items: PipelineStartup[]
+  isDragging: boolean
+}) {
+  const cfg = STAGE_CONFIG[stage]
+  const { setNodeRef, isOver } = useDroppable({ id: stage })
+
+  return (
+    <div className="flex-shrink-0 w-64">
+      <div className={`rounded-t-xl px-4 py-2 ${cfg.bgColor}`}>
+        <div className="flex items-center justify-between">
+          <span className={`font-semibold text-sm ${cfg.color}`}>{cfg.label}</span>
+          <span className={`text-xs font-medium ${cfg.color}`}>{items.length}</span>
+        </div>
+      </div>
+      <div
+        ref={setNodeRef}
+        className={`rounded-b-xl border border-t-0 min-h-[200px] p-2 space-y-2 transition-colors duration-150 ${
+          isOver ? 'bg-teal-50 border-teal-300' : 'bg-gray-50 border-gray-200'
+        }`}
+      >
+        <AnimatePresence>
+          {items.map(startup => (
+            <motion.div
+              key={startup.id}
+              layout
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.15 }}
+            >
+              <StartupCard startup={startup} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+        {items.length === 0 && (
+          <div className={`text-center text-xs py-8 transition-colors ${isOver ? 'text-teal-500' : 'text-gray-400'}`}>
+            {isDragging ? '拖曳至此' : '無案件'}
           </div>
-        )
-      })}
+        )}
+      </div>
     </div>
   )
 }
 
-function StartupCard({ startup }: { startup: PipelineStartup }) {
+function StartupCard({ startup, isOverlay }: { startup: PipelineStartup; isOverlay?: boolean }) {
   const [showDetail, setShowDetail] = useState(false)
   const router = useRouter()
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({ id: startup.id })
 
   const tierColors: Record<string, string> = {
     S: 'bg-red-100 text-red-700',
@@ -230,10 +319,19 @@ function StartupCard({ startup }: { startup: PipelineStartup }) {
 
   return (
     <div
-      className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:shadow-md hover:border-teal-300 transition-all cursor-pointer relative"
-      onMouseEnter={() => setShowDetail(true)}
+      ref={isOverlay ? undefined : setNodeRef}
+      {...(isOverlay ? {} : { ...listeners, ...attributes })}
+      className={`bg-white rounded-lg border p-3 shadow-sm transition-all relative select-none ${
+        isDragging ? 'opacity-40 border-teal-300 shadow-lg' : 'border-gray-200 hover:shadow-md hover:border-teal-300'
+      } ${isOverlay ? 'cursor-grabbing rotate-1 shadow-xl' : 'cursor-grab'}`}
+      onMouseEnter={() => !isDragging && setShowDetail(true)}
       onMouseLeave={() => setShowDetail(false)}
-      onClick={() => router.push(`/admin/pipeline/${startup.id}`)}
+      onClick={(e) => {
+        if (!isDragging && !isOverlay) {
+          e.preventDefault()
+          router.push(`/admin/pipeline/${startup.id}`)
+        }
+      }}
     >
       <div className="flex items-start justify-between mb-1">
         <div className="font-medium text-sm truncate flex-1">{startup.name}</div>
