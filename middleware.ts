@@ -37,11 +37,14 @@ export async function middleware(request: NextRequest) {
     '/programs', '/corporate-partners', '/co-events',
     '/accelerator', '/consulting', '/garage', '/angel', '/angel-apply',
     '/apply', '/faq', '/events', '/news', '/blog',
-    '/contact',
+    '/contact', '/startups',
     '/login', '/callback',
   ]
+  // SEO assets — always public, no auth check
+  const seoAssets = ['/robots.txt', '/sitemap.xml', '/favicon.ico']
   const isPublicRoute =
     pathname === '/' ||
+    seoAssets.includes(pathname) ||
     publicPaths.some((route) => pathname === route || pathname.startsWith(route + '/')) ||
     pathname.startsWith('/vote/')
   // API routes handle their own auth via withApiHandler

@@ -1,6 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
+import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
+
+const acceleratorAlumni: AlumniStory[] = [
+  {
+    name: "配客嘉 PackAge+",
+    category: "Pre-A 輪",
+    highlight: "完成 A 輪募資逾新台幣 1 億元，是 114 年報告新增的最大單筆校友募資案例。",
+    sector: "循環包裝 · ESG",
+    icon: "funding",
+  },
+  {
+    name: "AHEAD Medicine 先勁智能",
+    category: "2025 Q4 投資案",
+    highlight: "台大醫學院校友 Andrea Wang 創辦的 AI 醫療輔助診斷平台，獲台大天使俱樂部投資。",
+    sector: "生技醫療 · AI",
+    icon: "funding",
+  },
+  {
+    name: "MoBagel 行動貝果",
+    category: "2026 Q1 投資案",
+    highlight: "台大車庫與加速器校友鍾哲民創辦的 AI/數據分析平台，近期完成台大天使俱樂部投資。",
+    sector: "AI · 數據分析",
+    icon: "funding",
+  },
+];
 
 export const metadata: Metadata = {
   title: "加速器計畫 | NTUTEC",
@@ -162,6 +187,9 @@ export default function AcceleratorPage() {
           </div>
         </div>
       </section>
+
+      {/* Featured Alumni */}
+      <FeaturedAlumni stories={acceleratorAlumni} title="加速器校友成就" />
 
       {/* CTA */}
       <section className="section-spacing">

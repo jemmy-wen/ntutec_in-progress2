@@ -1,6 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
+import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
+
+const garageAlumni: AlumniStory[] = [
+  {
+    name: "Dapp Pocket",
+    category: "成功 Exit",
+    highlight: "被 Turn Capital 收購，是車庫孵化團隊重要的退場案例。",
+    sector: "區塊鏈錢包",
+    icon: "exit",
+  },
+  {
+    name: "Botbonnie",
+    category: "成功 Exit",
+    highlight: "被 Appier 收購，展現從車庫起步到策略退場的完整路徑。",
+    sector: "聊天機器人",
+    icon: "exit",
+  },
+  {
+    name: "KryptoGO",
+    category: "大額募資",
+    highlight: "完成 NT$8,970 萬募資，持續成長為區塊鏈合規領域的代表團隊。",
+    sector: "區塊鏈合規",
+    icon: "funding",
+  },
+];
 
 export const metadata: Metadata = {
   title: "車庫孵化器 | NTUTEC",
@@ -134,6 +159,9 @@ export default function GaragePage() {
           </div>
         </div>
       </section>
+
+      {/* Featured Alumni */}
+      <FeaturedAlumni stories={garageAlumni} title="車庫校友成就" />
 
       {/* CTA */}
       <section className="section-spacing bg-teal-wash">

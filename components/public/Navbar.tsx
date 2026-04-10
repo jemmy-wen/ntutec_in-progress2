@@ -24,6 +24,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "計畫總覽", href: "/programs" },
       { label: "加速器", href: "/accelerator" },
       { label: "車庫孵化器", href: "/garage" },
+      { label: "2026 新創團隊", href: "/startups" },
       { label: "常見問題", href: "/faq" },
     ],
   },
@@ -66,12 +67,18 @@ function DesktopDropdown({
   open,
   onEnter,
   onLeave,
+  onToggle,
+  onClose,
 }: {
   item: NavItem;
   open: boolean;
   onEnter: () => void;
   onLeave: () => void;
+  onToggle: () => void;
+  onClose: () => void;
 }) {
+  const menuId = `menu-${item.label}`;
+
   // Simple link (no children) — render as direct Link
   if (!item.children && item.href) {
     return (
@@ -87,12 +94,27 @@ function DesktopDropdown({
   return (
     <div className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <button
-        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
+        type="button"
+        aria-haspopup="menu"
         aria-expanded={open}
+        aria-controls={menuId}
+        onClick={onToggle}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            e.preventDefault();
+            onClose();
+          }
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (!open) onToggle();
+          }
+        }}
+        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
       >
         {item.label}
         <ChevronDown
           className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`}
+          aria-hidden="true"
         />
       </button>
 
@@ -105,12 +127,25 @@ function DesktopDropdown({
             transition={{ duration: 0.18, ease: "easeOut" }}
             className="absolute left-0 top-full pt-2 z-50"
           >
-            <div className="min-w-[200px] rounded-xl border border-border bg-white p-2 shadow-lg">
+            <div
+              id={menuId}
+              role="menu"
+              aria-label={item.label}
+              className="min-w-[200px] rounded-xl border border-border bg-white p-2 shadow-lg"
+            >
               {item.children.map((child) => (
                 <Link
                   key={child.href}
                   href={child.href}
-                  className="block rounded-lg px-4 py-2.5 text-sm text-charcoal/80 hover:bg-teal-wash hover:text-teal transition-colors"
+                  role="menuitem"
+                  onClick={onClose}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                      e.preventDefault();
+                      onClose();
+                    }
+                  }}
+                  className="block rounded-lg px-4 py-2.5 text-sm text-charcoal/80 hover:bg-teal-wash hover:text-teal focus:bg-teal-wash focus:text-teal focus:outline-none transition-colors"
                 >
                   {child.label}
                 </Link>
@@ -208,6 +243,26 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  // Close dropdown on outside click (for click-based a11y support)
+  useEffect(() => {
+    if (!activeDropdown) return;
+    const onClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("[data-navbar-root]")) {
+        setActiveDropdown(null);
+      }
+    };
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveDropdown(null);
+    };
+    document.addEventListener("click", onClick);
+    document.addEventListener("keydown", onEscape);
+    return () => {
+      document.removeEventListener("click", onClick);
+      document.removeEventListener("keydown", onEscape);
+    };
+  }, [activeDropdown]);
+
   const handleDropdownEnter = (label: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setActiveDropdown(label);
@@ -217,8 +272,21 @@ export default function Navbar() {
     timeoutRef.current = setTimeout(() => setActiveDropdown(null), 150);
   };
 
+  const handleDropdownToggle = (label: string) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveDropdown((prev) => (prev === label ? null : label));
+  };
+
+  const handleDropdownClose = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveDropdown(null);
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/80 backdrop-blur-lg">
+    <header
+      data-navbar-root
+      className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/80 backdrop-blur-lg"
+    >
       <div className="container flex h-16 items-center justify-between lg:h-[72px]">
         <Link href="/" className="flex items-center gap-2.5">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal text-white font-bold text-sm">
@@ -237,12 +305,20 @@ export default function Navbar() {
               open={activeDropdown === item.label}
               onEnter={() => handleDropdownEnter(item.label)}
               onLeave={handleDropdownLeave}
+              onToggle={() => handleDropdownToggle(item.label)}
+              onClose={handleDropdownClose}
             />
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <button className="hidden lg:inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-charcoal/60 hover:text-charcoal hover:border-charcoal/30 transition-colors">
+          <button
+            type="button"
+            aria-label="English site (coming soon)"
+            disabled
+            title="English site coming soon"
+            className="hidden lg:inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-charcoal/40 cursor-not-allowed"
+          >
             EN
           </button>
 
