@@ -7,7 +7,7 @@ const cspDirectives = [
   "img-src 'self' data: https: https://ntutec.ghost.io https://*.ghost.io",
   "font-src 'self'",
   "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://ntutec.ghost.io",
-  "frame-src https://luma.com",
+  "frame-src https://luma.com https://www.google.com https://maps.googleapis.com",
   "frame-ancestors 'none'",
 ].join('; ')
 

@@ -33,10 +33,19 @@ export default function AboutPage() {
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導近 600 支新創團隊，涵蓋 120+ 臺大學生團隊、30+ 教授團隊與 200+ 校友團隊。透過加速器、車庫孵化器、企業垂直加速器與天使投資俱樂部四大運營業務，我們支持新創從技術驗證走入市場。</p>
               <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為發掘與培育出更多未來能上市或成功出場的創業家，對標 Stanford StartX 與 Berkeley SkyDeck 等大學創業生態系，打造臺灣最具影響力的校園創業加速器。</p>
             </div>
-            <div className="flex items-center justify-center">
-              <div className="aspect-[4/3] w-full rounded-2xl bg-teal-wash flex items-center justify-center">
-                <span className="text-slate-muted text-sm">圖片更新中</span>
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { value: '600+', label: '輔導新創團隊', sub: '2013 年至今' },
+                { value: '13', label: '年深耕', sub: 'Since 2013' },
+                { value: '35+', label: '企業夥伴', sub: '垂直加速器合作' },
+                { value: '120+', label: '臺大學生團隊', sub: '含教授、校友' },
+              ].map((stat) => (
+                <div key={stat.label} className="rounded-2xl bg-teal-wash p-6 text-center">
+                  <div className="text-3xl font-bold text-teal-deep">{stat.value}</div>
+                  <div className="mt-1 text-sm font-semibold text-charcoal">{stat.label}</div>
+                  <div className="mt-0.5 text-xs text-slate-muted">{stat.sub}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -40,8 +40,17 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="mt-8 flex h-64 items-center justify-center rounded-xl bg-stone">
-                <span className="text-sm text-slate-muted">Google Map</span>
+              <div className="mt-8 overflow-hidden rounded-xl border border-stone-warm">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.4!2d121.5338!3d25.0129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9b0e00000%3A0x0!2z5Y-w5YyX5biC5Lit5q2j5Y2A5oCd5rqQ5q61MTjomZ8!5e0!3m2!1szh-TW!2stw!4v1"
+                  width="100%"
+                  height="256"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="臺大創創中心位置"
+                />
               </div>
             </div>
           </div>
