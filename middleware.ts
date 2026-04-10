@@ -31,30 +31,27 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl
 
-  // Public routes — only login/callback + vote are live; other pages not yet ready
-  const publicRoutes = [
+  // Public routes — all (public) group pages are accessible without auth
+  const publicPaths = [
+    '/about', '/team', '/mentors', '/advisory-board', '/corporate',
+    '/programs', '/corporate-partners', '/competition', '/co-events',
+    '/accelerator', '/consulting', '/garage', '/angel', '/angel-apply',
+    '/apply', '/faq', '/portfolio', '/events', '/news', '/blog',
+    '/contact', '/startups',
     '/login', '/callback',
-    '/vote',
   ]
-  const isPublicRoute = publicRoutes.some(
-    (route) => pathname === route || pathname.startsWith(route + '/')
-  )
+  const isPublicRoute =
+    pathname === '/' ||
+    publicPaths.some((route) => pathname === route || pathname.startsWith(route + '/')) ||
+    pathname.startsWith('/vote/')
   // API routes handle their own auth via withApiHandler
   const isApiRoute = pathname.startsWith('/api/')
 
-  // Redirect unauthenticated users to login (except homepage landing page)
-  if (!user && !isPublicRoute && !isApiRoute && pathname !== '/') {
+  // Redirect unauthenticated users to login (except public pages)
+  if (!user && !isPublicRoute && !isApiRoute) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     url.searchParams.set('redirect', pathname)
-    return NextResponse.redirect(url)
-  }
-
-  // Authenticated user on public pages (/about, /programs, etc.) → redirect to portal
-  // Homepage (/) is always visible (landing page); other public pages hidden until design confirmed
-  if (user && pathname !== '/' && !isApiRoute && !pathname.startsWith('/admin') && !pathname.startsWith('/angel') && !pathname.startsWith('/login') && !pathname.startsWith('/callback') && !pathname.startsWith('/vote')) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/angel/portal/upcoming'
     return NextResponse.redirect(url)
   }
 

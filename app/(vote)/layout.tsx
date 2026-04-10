@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | 台大創創中心 NTU TEC',
+    template: '%s | 台大創創中心 NTUTEC',
     default: '天使例會投票 | 臺大天使會',
   },
 }
@@ -15,7 +15,7 @@ export default function VoteLayout({ children }: { children: React.ReactNode }) 
       <header className="py-3 px-4 flex items-center justify-center border-b border-teal-100 bg-white/80 backdrop-blur-sm">
         <Image
           src="/logo-tec.png"
-          alt="NTU TEC 台大創創中心"
+          alt="NTUTEC 台大創創中心"
           width={120}
           height={40}
           className="h-8 w-auto"

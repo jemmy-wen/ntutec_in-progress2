@@ -71,6 +71,32 @@ export async function getPosts(
 }
 
 /**
+ * 依 tag 取得文章列表（分頁）
+ */
+export async function getPostsByTag(
+  tag: string,
+  page = 1,
+  limit = 10,
+): Promise<{ posts: GhostPost[]; pagination: GhostPagination }> {
+  const url = ghostApiUrl('posts', {
+    page: String(page),
+    limit: String(limit),
+    include: 'tags',
+    filter: `tag:${tag}`,
+    fields: 'id,uuid,title,slug,excerpt,feature_image,published_at,reading_time',
+  })
+
+  const res = await fetch(url, { next: { revalidate: 60 } })
+  if (!res.ok) throw new Error(`Ghost API error: ${res.status} ${res.statusText}`)
+
+  const data = await res.json()
+  return {
+    posts: data.posts as GhostPost[],
+    pagination: data.meta.pagination as GhostPagination,
+  }
+}
+
+/**
  * 依 slug 取得單篇文章（含 HTML 內文）
  */
 export async function getPostBySlug(slug: string): Promise<GhostPost | null> {

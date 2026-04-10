@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
 export const metadata = {
-  title: '登入 | 台大創創中心 NTU TEC',
+  title: '登入 | 台大創創中心 NTUTEC',
 }
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {

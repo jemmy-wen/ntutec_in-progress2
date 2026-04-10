@@ -1,103 +1,81 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+import PageHero from '@/components/public/PageHero'
 
-export const metadata = {
-  title: '天使俱樂部 | 台大創創中心',
-  description: 'NTU Angel Club 匯聚 50+ 位天使投資人，每月舉辦投資例會，共同投資台灣最具潛力的早期新創。',
+export const metadata: Metadata = {
+  title: '天使投資俱樂部 | NTUTEC',
+  description: '臺大創創中心天使投資俱樂部，匯聚頂尖天使投資人，提供優質案源、獨家活動與共同投資機會。',
 }
 
-export default function AngelPublicPage() {
+const stats = [
+  { value: '60+', label: '位會員' },
+  { value: '24', label: '場活動/年' },
+  { value: 'NT$3.2 億', label: '累計投資' },
+  { value: '85+', label: '投資案件' },
+]
+
+const benefits = [
+  { icon: '🎯', title: '優先案源', description: '搶先接觸經過嚴格篩選的優質新創團隊，獲得第一手的投資機會。所有案件皆經過臺大創創中心的 Gate 預審流程。' },
+  { icon: '🎪', title: '獨家活動', description: '每月定期舉辦天使例會、產業深度分享會與新創 Pitch Night，與志同道合的投資人交流投資心得與產業洞察。' },
+  { icon: '🤝', title: '共同投資', description: '透過俱樂部的共投機制，降低個人投資風險。由經驗豐富的領投人帶領，新手天使也能安心參與。' },
+  { icon: '📈', title: '投後管理', description: '專業的投後管理團隊定期追蹤被投企業的營運狀況，提供季度報告與重大事項即時通知。' },
+]
+
+export default function AngelPage() {
   return (
-    <div>
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-purple-50 to-white py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">NTU Angel Club</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            台大天使俱樂部匯聚 50+ 位天使投資人，每月篩選優質新創進行 Pitch，
-            共同投資台灣最具潛力的早期團隊。
-          </p>
-        </div>
-      </section>
+    <>
+      <PageHero title="天使投資俱樂部" subtitle="Angel Investment Club" description="匯聚臺大校友與產業界天使投資人，共同發掘並支持最具潛力的早期新創企業。" />
 
-      {/* How it works */}
-      <section className="max-w-5xl mx-auto px-4 py-16">
-        <h2 className="text-2xl font-bold text-center mb-10">運作方式</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {[
-            { step: '01', title: '案源篩選', desc: '來自校園、加速器、業界推薦的案源，經三層 Gate 篩選', icon: '🔍' },
-            { step: '02', title: '卡片瀏覽', desc: '天使會員提前 21 天收到候選新創 6 張資訊卡，自主研究', icon: '📋' },
-            { step: '03', title: '投資例會', desc: '通過預審的新創進行 30 分鐘 Pitch，天使現場互動提問', icon: '🎤' },
-            { step: '04', title: '共同投資', desc: '有興趣的天使組成投資群，進行盡職調查並完成投資', icon: '🤝' },
-          ].map(item => (
-            <div key={item.step} className="text-center">
-              <div className="text-4xl mb-3">{item.icon}</div>
-              <div className="text-xs text-blue-600 font-bold mb-1">STEP {item.step}</div>
-              <h3 className="font-bold mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-600">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-10">會員權益</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <BenefitCard
-              title="精選案源"
-              description="每月 2-3 家經專業預審的候選新創，節省您的篩選時間"
-            />
-            <BenefitCard
-              title="共同投資"
-              description="與其他天使共同出資，降低單一投資風險，分享盡調資源"
-            />
-            <BenefitCard
-              title="學習成長"
-              description="月度 Digest、產業報告、投資人工作坊，持續提升投資能力"
-            />
-            <BenefitCard
-              title="社群網絡"
-              description="結識來自不同產業的天使投資人，拓展人脈與合作機會"
-            />
-            <BenefitCard
-              title="優先投資"
-              description="台大相關新創優先對接，掌握校園創新第一手資訊"
-            />
-            <BenefitCard
-              title="專業支援"
-              description="投資摘要、盡職調查、法律架構等專業團隊全程支援"
-            />
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="micro-label mb-4">Why Join</p>
+            <h2 className="mb-6">為什麼加入天使俱樂部</h2>
+            <p className="text-lg leading-relaxed text-slate-muted">
+              臺大創創中心天使投資俱樂部成立於 2019 年，是臺灣最具學術底蘊的天使投資社群。我們結合臺大的研究能量與產業界的投資經驗，為會員提供經過嚴謹篩選的投資案源、深度的產業研究報告、以及專屬的投資人社群。
+            </p>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-purple-600 py-16">
-        <div className="max-w-3xl mx-auto px-4 text-center text-white">
-          <h2 className="text-2xl font-bold mb-4">成為天使投資人</h2>
-          <p className="text-purple-100 mb-8">
-            無論您是資深投資人還是初次接觸天使投資，我們都歡迎您的加入。
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="px-6 py-3 bg-white text-purple-600 rounded-lg font-medium hover:bg-purple-50 transition-colors">
-              申請加入
-            </Link>
-            <Link href="/login" className="px-6 py-3 border border-white text-white rounded-lg font-medium hover:bg-purple-700 transition-colors">
-              會員登入
-            </Link>
+      <section className="bg-teal-wash py-16">
+        <div className="container">
+          <div className="grid gap-8 md:grid-cols-4">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <p className="text-4xl font-bold text-teal-deep lg:text-5xl">{stat.value}</p>
+                <p className="mt-2 text-lg text-slate-muted">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-    </div>
-  )
-}
 
-function BenefitCard({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <h3 className="font-bold mb-2">{title}</h3>
-      <p className="text-sm text-gray-600">{description}</p>
-    </div>
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">Member Benefits</p>
+            <h2>會員權益</h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {benefits.map((benefit) => (
+              <div key={benefit.title} className="card-hover rounded-2xl bg-white p-8">
+                <span className="mb-4 block text-4xl">{benefit.icon}</span>
+                <h3 className="mb-3 text-xl font-semibold">{benefit.title}</h3>
+                <p className="text-slate-muted leading-relaxed">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-spacing bg-teal-wash">
+        <div className="container text-center">
+          <h2 className="mb-6">成為天使投資俱樂部的一員</h2>
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">與臺灣最優秀的早期投資人一起，發掘改變未來的新創企業。</p>
+          <Link href="/angel-apply" className="btn-pill-primary">立即申請加入</Link>
+        </div>
+      </section>
+    </>
   )
 }

@@ -1,95 +1,63 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+import PageHero from '@/components/public/PageHero'
 
-export const metadata = {
-  title: '輔導計畫 | 台大創創中心',
-  description: '台大創創中心提供育成、加速器、業師健診等多元輔導計畫，陪伴新創從 0 到 1。',
+export const metadata: Metadata = {
+  title: '新創輔導計畫 | NTUTEC',
+  description: '臺大創創中心提供加速器與車庫孵化器兩大計畫，針對不同階段新創團隊量身打造輔導方案。',
 }
+
+const programs = [
+  {
+    icon: '🚀', name: '加速器計畫', subtitle: 'Accelerator Program',
+    duration: '10 個月', target: '成長期新創（已有 MVP 或初期營收）',
+    features: ['一對一業師深度輔導，每月定期會議', '企業資源對接與合作機會媒合', '天使投資人 Demo Day 募資對接', '國際加速器網絡與海外市場拓展'],
+    href: '/accelerator', primary: true,
+  },
+  {
+    icon: '🏠', name: '車庫孵化器', subtitle: 'Garage Incubator',
+    duration: '彈性制（6-12 個月）', target: '早期團隊（概念驗證至 MVP 階段）',
+    features: ['免費共創空間與基礎設施', '創業社群交流與同儕學習', '技術開發與商業模式工作坊', '畢業後銜接加速器計畫的優先通道'],
+    href: '/garage', primary: false,
+  },
+]
 
 export default function ProgramsPage() {
   return (
-    <div>
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-green-50 to-white py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">輔導計畫</h1>
-          <p className="text-lg text-gray-600">
-            從概念驗證到產品上市，我們提供全方位的輔導資源。
-          </p>
-        </div>
-      </section>
+    <>
+      <PageHero title="新創輔導計畫" subtitle="Programs" description="依據新創團隊的不同階段，提供最適合的輔導資源與成長路徑。" />
 
-      {/* Programs */}
-      <section className="max-w-5xl mx-auto px-4 py-16">
-        <div className="space-y-8">
-          <ProgramCard
-            title="育成進駐"
-            badge="常態招收"
-            description="提供辦公空間、業師輔導、資源媒合。適合已有初步產品或服務的早期新創團隊。進駐期間享有台大校園資源、實驗室設備共用、及創創中心活動優先參與權。"
-            features={['共同工作空間', '業師一對一輔導', '投資人媒合', '資源與活動優先權']}
-            cta={{ label: '申請進駐', href: '/contact?type=startup' }}
-          />
-          <ProgramCard
-            title="業師健診"
-            badge="每月開放"
-            description="配對專業業師進行一對一健診，針對團隊當前最急迫的問題提供實戰建議。涵蓋行銷、技術、募資、法律等 12+ 專長領域。"
-            features={['12+ 專長領域', '智慧配對演算法', '一對一深度諮詢', '後續追蹤回饋']}
-            cta={{ label: '預約健診', href: '/contact?type=mentor' }}
-          />
-          <ProgramCard
-            title="加速器計畫"
-            badge="梯次制"
-            description="為期 3-6 個月的密集輔導計畫，包含系列課程、業師工作坊、模擬投資人 Pitch、Demo Day 成果展示。適合準備進入募資階段的團隊。"
-            features={['密集課程模組', 'Pitch 訓練', 'Demo Day 舞台', '投資人直接對接']}
-            cta={{ label: '了解梯次', href: '/events' }}
-          />
-          <ProgramCard
-            title="天使俱樂部投資例會"
-            badge="每月舉辦"
-            description="NTU Angel Club 每月篩選 2-3 家優質新創進行 Pitch，天使投資人現場評估並決定投資意向。通過預審的團隊可獲得在 50+ 位投資人面前展示的機會。"
-            features={['專業預審流程', '50+ 位天使聽眾', '即時投資決策', '後續對接安排']}
-            cta={{ label: '申請 Pitch', href: '/contact?type=angel' }}
-          />
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-green-600 py-16">
-        <div className="max-w-3xl mx-auto px-4 text-center text-white">
-          <h2 className="text-2xl font-bold mb-4">不確定適合哪個計畫？</h2>
-          <p className="text-green-100 mb-8">
-            歡迎來信或來電，我們的團隊會根據您的需求推薦最合適的方案。
-          </p>
-          <Link href="/contact" className="px-6 py-3 bg-white text-green-600 rounded-lg font-medium hover:bg-green-50 transition-colors">
-            聯絡我們
-          </Link>
-        </div>
-      </section>
-    </div>
-  )
-}
-
-function ProgramCard({ title, badge, description, features, cta }: {
-  title: string; badge: string; description: string; features: string[]
-  cta: { label: string; href: string }
-}) {
-  return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-      <div className="flex items-center gap-3 mb-4">
-        <h3 className="text-xl font-bold">{title}</h3>
-        <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">{badge}</span>
-      </div>
-      <p className="text-gray-600 mb-6">{description}</p>
-      <div className="grid grid-cols-2 gap-3 mb-6">
-        {features.map(f => (
-          <div key={f} className="flex items-center gap-2 text-sm">
-            <span className="text-green-500">✓</span>
-            <span className="text-gray-700">{f}</span>
+      <section className="section-spacing">
+        <div className="container">
+          <div className="grid gap-8 lg:grid-cols-2">
+            {programs.map((program) => (
+              <div key={program.name} className="flex flex-col rounded-2xl border bg-white p-8 card-hover">
+                <span className="text-4xl">{program.icon}</span>
+                <h3 className="mt-4">{program.name}</h3>
+                <p className="text-sm text-slate-muted">{program.subtitle}</p>
+                <div className="mt-6 space-y-3">
+                  <div className="flex items-center gap-2"><span className="micro-label">期程</span><span className="text-sm text-charcoal">{program.duration}</span></div>
+                  <div className="flex items-center gap-2"><span className="micro-label">對象</span><span className="text-sm text-charcoal">{program.target}</span></div>
+                </div>
+                <ul className="mt-6 flex-1 space-y-2">
+                  {program.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm leading-relaxed text-slate-muted">
+                      <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-teal" />{f}
+                    </li>
+                  ))}
+                </ul>
+                <Link href={program.href} className={`mt-8 ${program.primary ? 'btn-pill-primary' : 'btn-pill-outline'}`}>了解更多</Link>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <Link href={cta.href} className="inline-block px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-        {cta.label} →
-      </Link>
-    </div>
+
+          <div className="mt-16 rounded-2xl bg-teal-wash p-8 text-center">
+            <h3 className="mb-3">不確定適合哪個計畫？</h3>
+            <p className="mb-6 text-slate-muted">查看常見問題，或直接與我們聯繫，讓我們協助你找到最適合的成長路徑。</p>
+            <Link href="/faq" className="btn-pill-outline">查看常見問題</Link>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

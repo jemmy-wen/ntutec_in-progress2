@@ -8,10 +8,14 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+export const dynamic = 'force-dynamic'
+
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+}
 
 // Simple in-memory rate limiter (per serverless instance)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
@@ -120,7 +124,7 @@ export async function POST(request: NextRequest) {
     })
   }
 
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('meeting_public_votes')
     .insert(rows)
 

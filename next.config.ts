@@ -2,11 +2,12 @@ import type { NextConfig } from 'next'
 
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://luma.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https:",
+  "img-src 'self' data: https: https://ntutec.ghost.io https://*.ghost.io",
   "font-src 'self'",
-  "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://ntutec.ghost.io",
+  "frame-src https://luma.com",
   "frame-ancestors 'none'",
 ].join('; ')
 

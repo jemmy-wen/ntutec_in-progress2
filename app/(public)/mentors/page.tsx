@@ -1,90 +1,46 @@
-import Link from 'next/link'
+import type { Metadata } from 'next'
+import PageHero from '@/components/public/PageHero'
 
-export const metadata = {
-  title: '業師陣容 | 台大創創中心',
-  description: '台大創創中心擁有 100+ 位來自各產業的專業業師，提供行銷、技術、募資、法律等 12+ 領域的一對一諮詢。',
+export const metadata: Metadata = {
+  title: '業師陣容 | NTUTEC',
+  description: '臺大創創中心擁有超過百位來自各產業的資深業師，提供新創團隊一對一深度輔導與策略建議。',
 }
 
-const SPECIALTY_AREAS = [
-  { name: '行銷策略', count: 15, icon: '📣' },
-  { name: '技術架構', count: 12, icon: '⚙️' },
-  { name: '募資策略', count: 10, icon: '💰' },
-  { name: '產品開發', count: 14, icon: '🛠️' },
-  { name: '商業模式', count: 11, icon: '📊' },
-  { name: '品牌定位', count: 8, icon: '🎨' },
-  { name: '使用者研究', count: 7, icon: '🔬' },
-  { name: '業務開發', count: 9, icon: '🤝' },
-  { name: '團隊管理', count: 6, icon: '👥' },
-  { name: '法律諮詢', count: 5, icon: '⚖️' },
-  { name: '財務規劃', count: 8, icon: '📑' },
-  { name: '國際拓展', count: 4, icon: '🌏' },
+const mentors = [
+  { initials: '趙', name: '趙OO', expertise: 'SaaS', company: 'XX 科技' },
+  { initials: '孫', name: '孫OO', expertise: 'FinTech', company: 'OO 金控' },
+  { initials: '周', name: '周OO', expertise: 'AI/ML', company: 'OO 智能' },
+  { initials: '吳', name: '吳OO', expertise: 'BioTech', company: 'OO 生技' },
+  { initials: '鄭', name: '鄭OO', expertise: 'Hardware', company: 'OO 電子' },
+  { initials: '許', name: '許OO', expertise: 'Marketing', company: 'OO 顧問' },
+  { initials: '蔡', name: '蔡OO', expertise: 'Legal', company: 'OO 法律事務所' },
+  { initials: '劉', name: '劉OO', expertise: 'Supply Chain', company: 'OO 集團' },
 ]
 
-export default function MentorsPublicPage() {
+export default function MentorsPage() {
   return (
-    <div>
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-orange-50 to-white py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">業師陣容</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            100+ 位來自各產業的專業業師，涵蓋 12 大專長領域，
-            為新創團隊提供最實戰的一對一諮詢。
+    <>
+      <PageHero title="業師陣容" subtitle="Mentors" description="超過百位來自各產業的資深業師，為新創團隊提供一對一深度輔導。" />
+
+      <section className="section-spacing">
+        <div className="container">
+          <p className="mx-auto mb-12 max-w-2xl text-center text-lg leading-relaxed text-slate-muted">
+            臺大創創中心的業師網絡涵蓋科技、金融、法律、行銷等多元領域。每位業師皆具備豐富的產業實戰經驗，透過定期的一對一輔導，協助新創團隊解決從技術到商業的各種挑戰。
           </p>
-        </div>
-      </section>
-
-      {/* Specialty grid */}
-      <section className="max-w-5xl mx-auto px-4 py-16">
-        <h2 className="text-2xl font-bold text-center mb-10">專長領域</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {SPECIALTY_AREAS.map(area => (
-            <div key={area.name} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 text-center hover:border-orange-300 transition-colors">
-              <div className="text-3xl mb-2">{area.icon}</div>
-              <div className="font-semibold text-sm mb-1">{area.name}</div>
-              <div className="text-xs text-gray-500">{area.count} 位業師</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-10">健診流程</h2>
-          <div className="space-y-6">
-            {[
-              { step: 1, title: '提出需求', desc: '團隊填寫健診申請表，描述目前面臨的挑戰與期望獲得的協助方向。' },
-              { step: 2, title: '智慧配對', desc: '系統根據團隊需求、業師專長與時間，自動推薦最適配的業師人選。' },
-              { step: 3, title: '一對一健診', desc: '60 分鐘深度對談，業師針對團隊具體問題提供實戰建議與行動方案。' },
-              { step: 4, title: '回饋追蹤', desc: '健診後雙方填寫回饋，系統持續優化配對品質，團隊可追蹤執行進度。' },
-            ].map(item => (
-              <div key={item.step} className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-sm flex-shrink-0">
-                  {item.step}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {mentors.map((mentor) => (
+              <div key={mentor.name} className="rounded-xl border bg-white p-5 text-center card-hover">
+                <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-teal-wash">
+                  <span className="text-lg font-bold text-teal">{mentor.initials}</span>
                 </div>
-                <div>
-                  <h3 className="font-bold mb-1">{item.title}</h3>
-                  <p className="text-sm text-gray-600">{item.desc}</p>
-                </div>
+                <h4 className="text-lg">{mentor.name}</h4>
+                <p className="mt-1 text-sm text-slate-muted">{mentor.company}</p>
+                <span className="mt-2 inline-block rounded-full bg-teal-light px-3 py-0.5 text-xs font-semibold text-teal-deep">{mentor.expertise}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="bg-orange-600 py-16">
-        <div className="max-w-3xl mx-auto px-4 text-center text-white">
-          <h2 className="text-2xl font-bold mb-4">成為業師</h2>
-          <p className="text-orange-100 mb-8">
-            用您的專業經驗，幫助台灣新創走得更穩更遠。
-          </p>
-          <Link href="/contact" className="px-6 py-3 bg-white text-orange-600 rounded-lg font-medium hover:bg-orange-50 transition-colors">
-            申請成為業師
-          </Link>
-        </div>
-      </section>
-    </div>
+    </>
   )
 }

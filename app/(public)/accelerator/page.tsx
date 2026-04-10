@@ -1,0 +1,182 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import PageHero from "@/components/public/PageHero";
+
+export const metadata: Metadata = {
+  title: "加速器計畫 | NTUTEC",
+  description:
+    "臺大創創中心加速器計畫為期十個月，提供成長期新創深度業師輔導、企業資源對接與募資機會。",
+};
+
+const phases = [
+  {
+    phase: "Phase 1",
+    title: "診斷與定位",
+    duration: "第 1-2 個月",
+    description:
+      "深入了解團隊現況，設定成長目標與里程碑，配對最合適的業師。",
+  },
+  {
+    phase: "Phase 2",
+    title: "驗證與迭代",
+    duration: "第 3-5 個月",
+    description:
+      "聚焦產品市場契合度驗證，透過客戶訪談與數據分析持續優化商業模式。",
+  },
+  {
+    phase: "Phase 3",
+    title: "規模化準備",
+    duration: "第 6-8 個月",
+    description:
+      "建立可規模化的營運架構，深化企業合作關係，準備募資相關材料。",
+  },
+  {
+    phase: "Phase 4",
+    title: "Demo Day & 畢業",
+    duration: "第 9-10 個月",
+    description:
+      "向天使投資人與策略夥伴進行路演，完成計畫畢業並取得後續支持資源。",
+  },
+];
+
+const benefits = [
+  {
+    icon: "👥",
+    title: "業師網絡",
+    description:
+      "超過百位來自各產業的資深業師，提供一對一輔導與策略建議。",
+  },
+  {
+    icon: "🏢",
+    title: "企業資源",
+    description:
+      "與大型企業建立合作通道，獲得技術驗證場域與潛在客戶資源。",
+  },
+  {
+    icon: "💰",
+    title: "募資對接",
+    description:
+      "天使投資俱樂部與創投網絡，提供從種子輪到 A 輪的募資機會。",
+  },
+  {
+    icon: "🏠",
+    title: "共創空間",
+    description:
+      "位於臺大校園內的專屬辦公空間，享有會議室與活動場地使用權。",
+  },
+];
+
+export default function AcceleratorPage() {
+  return (
+    <>
+      <PageHero
+        title="加速器計畫"
+        subtitle="Accelerator Program"
+        description="為期十個月的深度輔導計畫，幫助成長期新創加速邁向下一個里程碑。"
+      />
+
+      {/* Program Overview */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="micro-label mb-4">Overview</p>
+            <h2 className="mb-6">計畫概覽</h2>
+            <p className="text-lg leading-relaxed text-slate-muted">
+              臺大創創中心加速器計畫自 2016
+              年啟動以來，已輔導超過百支新創團隊。計畫為期十個月，提供系統化的業師輔導、企業資源對接、以及天使投資人募資機會。我們專注於已有
+              MVP 或初期營收的成長期新創，幫助團隊在產品、商業模式與組織三個面向同步加速。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">Timeline</p>
+            <h2>計畫時程</h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {phases.map((p) => (
+              <div
+                key={p.phase}
+                className="rounded-xl border bg-white p-6 card-hover"
+              >
+                <span className="micro-label">{p.phase}</span>
+                <h4 className="mt-2 mb-1">{p.title}</h4>
+                <p className="mb-3 text-xs font-semibold text-teal">
+                  {p.duration}
+                </p>
+                <p className="text-sm leading-relaxed text-slate-muted">
+                  {p.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What We Offer */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">Benefits</p>
+            <h2>我們提供的資源</h2>
+          </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {benefits.map((b) => (
+              <div key={b.title} className="text-center">
+                <span className="text-4xl">{b.icon}</span>
+                <h4 className="mt-4 mb-2 text-lg">{b.title}</h4>
+                <p className="text-sm leading-relaxed text-slate-muted">
+                  {b.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Application Criteria */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mx-auto max-w-3xl">
+            <p className="micro-label mb-4">Criteria</p>
+            <h2 className="mb-6">申請條件</h2>
+            <ul className="space-y-3">
+              {[
+                "已完成 MVP 或原型開發，具有初期用戶或營收",
+                "團隊至少 2 人，全職投入創業",
+                "具有明確的市場機會與成長潛力",
+                "願意接受十個月的系統化輔導",
+                "產業不限，但需具備技術或模式創新",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-slate-muted"
+                >
+                  <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-teal" />
+                  <span className="leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-spacing">
+        <div className="container text-center">
+          <h2 className="mb-4">準備好加速成長了嗎？</h2>
+          <p className="mx-auto mb-8 max-w-xl text-lg text-slate-muted">
+            提交你的申請，開啟十個月的成長旅程。
+          </p>
+          <Link href="/apply" className="btn-pill-primary">
+            立即申請
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

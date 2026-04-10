@@ -54,7 +54,7 @@ export default function ContactForm() {
       }
       setSubmitted(true)
     } catch (err) {
-      setError(err instanceof Error ? err.message : '送出失敗，請稍後再試或直接來信 tec@ntu.edu.tw。')
+      setError(err instanceof Error ? err.message : '送出失敗，請稍後再試或直接來信 ntutec@ntutec.com。')
     }
     setSubmitting(false)
   }
