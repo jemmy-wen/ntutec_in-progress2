@@ -4,47 +4,72 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "執行團隊 | NTUTEC",
   description:
-    "認識臺大創創中心的執行團隊。我們結合產業經驗與學術視野，全力支持新創團隊成長。",
+    "認識臺大創創中心的執行團隊。我們結合產業經驗、學術視野與創投背景，全力支持新創團隊的成長。",
 };
 
-const teamMembers = [
+interface TeamMember {
+  initials: string;
+  name: string;
+  title: string;
+  bio: string;
+}
+
+const leadership: TeamMember[] = [
   {
-    initials: "陳",
-    name: "陳OO",
+    initials: "莊",
+    name: "莊裕澤",
     title: "中心主任",
-    bio: "臺大管理學院教授，專長創新管理與策略。致力於推動校園創業生態系的建構。",
+    bio: "臺大資訊管理學系暨研究所專任教授，具多年新創育成經驗。主任代表校方監督中心營運，負責對校層級的治理、財務、人事與組織規章。",
   },
   {
     initials: "林",
-    name: "林OO",
-    title: "副主任",
-    bio: "連續創業家，曾成功創辦兩家科技公司並完成出場。專注於新創輔導與國際連結。",
-  },
-  {
-    initials: "張",
-    name: "張OO",
-    title: "計畫經理",
-    bio: "負責加速器計畫的整體規劃與執行，具備豐富的專案管理與新創生態系經驗。",
-  },
-  {
-    initials: "王",
-    name: "王OO",
-    title: "投資經理",
-    bio: "天使投資俱樂部營運管理，協助新創團隊與投資人的媒合與溝通。",
-  },
-  {
-    initials: "李",
-    name: "李OO",
-    title: "社群經理",
-    bio: "負責校友網絡經營與活動策劃，串接創業社群的交流與合作機會。",
-  },
-  {
-    initials: "黃",
-    name: "黃OO",
-    title: "行政專員",
-    bio: "負責中心行政營運與空間管理，確保團隊與新創進駐者獲得最佳支持。",
+    name: "林文欽 Vincent",
+    title: "執行長 CEO",
+    bio: "前騰訊副總經理、京東商城副總裁，臺大 EMBA。負責中心日常營運、策略方向與投資決策，主導天使投資俱樂部與新創輔導整體規劃。",
   },
 ];
+
+const team: TeamMember[] = [
+  {
+    initials: "陳",
+    name: "陳盈盈 Yingying",
+    title: "資深經理 Senior Manager",
+    bio: "主責加速器、企業垂直加速器與中心行政營運。輔導小組帶領硬科技與先進製造組，串接企業合作夥伴資源。",
+  },
+  {
+    initials: "江",
+    name: "江旻壕 Howard",
+    title: "投資經理 Investment Manager",
+    bio: "主責天使投資俱樂部與 Gate 預審流程，協同企業垂直加速器。輔導小組帶領生技醫療組，負責投資人關係經營與案源評估。",
+  },
+  {
+    initials: "許",
+    name: "許瀞之 Raven",
+    title: "經理 Manager",
+    bio: "主責車庫孵化器與整體輔導計畫設計，含必修課程規劃。輔導小組帶領創新商模組，打造新創團隊的成長路徑。",
+  },
+  {
+    initials: "楊",
+    name: "楊智堯 Neil",
+    title: "經理 Manager",
+    bio: "主責對外行銷、活動企劃與校友關懷（歷屆團隊追蹤與關係維護）。輔導小組帶領 AI 軟體組，連結校友網絡與生態系。",
+  },
+];
+
+function TeamCard({ member, size = "default" }: { member: TeamMember; size?: "large" | "default" }) {
+  const avatarSize = size === "large" ? "h-24 w-24" : "h-20 w-20";
+  const nameSize = size === "large" ? "text-2xl" : "text-xl";
+  return (
+    <div className="rounded-xl border bg-white p-6 card-hover">
+      <div className={`mb-4 flex ${avatarSize} items-center justify-center rounded-full bg-teal-wash`}>
+        <span className="text-2xl font-bold text-teal">{member.initials}</span>
+      </div>
+      <h3 className={nameSize}>{member.name}</h3>
+      <p className="mt-1 text-sm font-semibold text-teal">{member.title}</p>
+      <p className="mt-3 text-sm leading-relaxed text-slate-muted">{member.bio}</p>
+    </div>
+  );
+}
 
 export default function TeamPage() {
   return (
@@ -52,32 +77,37 @@ export default function TeamPage() {
       <PageHero
         title="執行團隊"
         subtitle="Our Team"
-        description="一群熱愛創新、支持創業的夥伴，是臺大創創中心最重要的資產。"
+        description="結合學術視野、產業經驗與創投背景，全力支持每一支新創團隊的成長。"
       />
 
+      {/* Leadership */}
       <section className="section-spacing">
         <div className="container">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {teamMembers.map((member) => (
-              <div
-                key={member.name}
-                className="rounded-xl border bg-white p-6 card-hover"
-              >
-                {/* Avatar */}
-                <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-teal-wash">
-                  <span className="text-2xl font-bold text-teal">
-                    {member.initials}
-                  </span>
-                </div>
+          <div className="mb-10">
+            <p className="micro-label mb-2">Leadership</p>
+            <h2>中心領導</h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {leadership.map((member) => (
+              <TeamCard key={member.name} member={member} size="large" />
+            ))}
+          </div>
+        </div>
+      </section>
 
-                <h3 className="text-xl">{member.name}</h3>
-                <p className="mt-1 text-sm font-semibold text-teal">
-                  {member.title}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-muted">
-                  {member.bio}
-                </p>
-              </div>
+      {/* Core team */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mb-10">
+            <p className="micro-label mb-2">Core Team</p>
+            <h2>核心團隊</h2>
+            <p className="mt-4 max-w-2xl text-lg text-slate-muted">
+              四位經理依四大聚焦領域分工，分別帶領 AI 軟體、生技醫療、硬科技與創新商模輔導小組。
+            </p>
+          </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {team.map((member) => (
+              <TeamCard key={member.name} member={member} />
             ))}
           </div>
         </div>

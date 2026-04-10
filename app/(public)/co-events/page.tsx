@@ -14,30 +14,26 @@ const eventTypes = [
   "交流媒合會 — 促進新創團隊、企業與投資人之間的深度互動與合作機會。",
 ];
 
-const pastEvents = [
+const signatureEvents = [
   {
-    title: "2025 AI x HealthTech 產業論壇",
-    date: "2025 年 11 月 15 日",
-    partner: "國泰金控",
-    description: "探討 AI 在醫療健康領域的最新應用與商業機會，吸引超過 200 位參與者。",
+    title: "臺大創新創業嘉年華",
+    frequency: "年度旗艦",
+    description: "中心年度最大規模創新活動，邀請創新設計學院、創創學程、國際產學聯盟與產學合作總中心跨單位參與。第二屆吸引 800+ 學生、31 家企業出席，成為臺灣重量級大學創業論壇之一。",
   },
   {
-    title: "綠色科技 Demo Day",
-    date: "2025 年 9 月 20 日",
-    partner: "台達電子",
-    description: "十組綠色科技新創團隊展示成果，促成三項企業合作意向書。",
+    title: "天使俱樂部月例會",
+    frequency: "每月",
+    description: "每月定期舉辦天使投資人例會，由新創團隊 Pitch + Q&A + 參訪，結合產業深度分享會，打造高品質的投資人交流場域。",
   },
   {
-    title: "FinTech 創新工作坊",
-    date: "2025 年 7 月 8 日",
-    partner: "中華電信",
-    description: "為期兩天的密集工作坊，聚焦開放銀行與數位支付創新。",
+    title: "Demo Day",
+    frequency: "季度",
+    description: "加速器與車庫畢業團隊成果發表會，向天使投資人、創投與策略合作夥伴展示商業進展，促成後續投資與企業合作。",
   },
   {
-    title: "新創媒合之夜",
-    date: "2025 年 5 月 12 日",
-    partner: "AWS",
-    description: "超過 30 組新創與 15 家企業的一對一媒合，促進合作與投資對話。",
+    title: "產業論壇與工作坊",
+    frequency: "不定期",
+    description: "與企業夥伴共同舉辦產業論壇、技術工作坊與主題式創新競賽，聚焦 AI、半導體、生技醫療、ESG 等前沿議題。",
   },
 ];
 
@@ -71,38 +67,34 @@ export default function CoEventsPage() {
         </div>
       </section>
 
-      {/* Past Events Grid */}
+      {/* Signature Events */}
       <section className="section-spacing bg-stone">
         <div className="container">
           <div className="mb-12 text-center">
-            <p className="micro-label mb-4">Past Events</p>
-            <h2>精選活動回顧</h2>
+            <p className="micro-label mb-4">Signature Events</p>
+            <h2>旗艦活動</h2>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
-            {pastEvents.map((event) => (
+            {signatureEvents.map((event) => (
               <div
                 key={event.title}
-                className="card-hover overflow-hidden rounded-2xl bg-white"
+                className="card-hover rounded-2xl bg-white p-6"
               >
-                {/* Image placeholder */}
-                <div className="flex h-48 items-center justify-center bg-teal-wash">
-                  <span className="text-sm text-slate-muted">
-                    Event Photo
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="text-lg font-semibold">{event.title}</h3>
+                  <span className="shrink-0 rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal-deep">
+                    {event.frequency}
                   </span>
                 </div>
-                <div className="p-6">
-                  <p className="micro-label mb-1">{event.date}</p>
-                  <h3 className="mb-2 text-lg font-semibold">{event.title}</h3>
-                  <span className="mb-3 inline-block rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal-deep">
-                    {event.partner}
-                  </span>
-                  <p className="text-sm text-slate-muted leading-relaxed">
-                    {event.description}
-                  </p>
-                </div>
+                <p className="mt-3 text-sm text-slate-muted leading-relaxed">
+                  {event.description}
+                </p>
               </div>
             ))}
           </div>
+          <p className="mt-12 text-center text-sm text-slate-muted">
+            最新活動與報名資訊請見 <a href="/events" className="text-teal-deep underline underline-offset-4 hover:text-teal">活動日曆</a>。
+          </p>
         </div>
       </section>
     </>

@@ -25,15 +25,14 @@ export default function GaragePage() {
               <p className="micro-label mb-4">Overview</p>
               <h2 className="mb-6">計畫概覽</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">
-                車庫孵化器是臺大創創中心為早期創業團隊打造的孵化環境。不同於加速器的密集輔導，車庫提供更彈性的時程安排（6-12
-                個月），讓團隊在校園中安心探索、驗證與迭代。
+                NTU Garage 成立於 2013 年，是臺大創創中心為早期創業團隊打造的共享孵化空間。13 年來，超過百支新創團隊曾於此起步，從概念驗證走向 MVP 與市場驗證。不同於加速器的密集輔導，車庫提供更彈性的時程安排，讓團隊在校園中安心探索、驗證與迭代。
               </p>
               <p className="text-lg leading-relaxed text-slate-muted">
-                我們相信，好的創業需要時間醞釀。車庫提供安全的試錯空間，搭配同儕社群與基礎資源，幫助團隊在正式進入市場前，建立扎實的根基。
+                車庫由經理 Raven 主責，含必修課程規劃與整體輔導設計。我們提供安全的試錯空間，搭配同儕社群、業師諮詢與基礎資源，幫助團隊在正式進入市場前建立扎實的根基。
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {["共創工作區", "會議討論室", "活動交流空間", "原型工作坊"].map(
+              {["共創工作區", "會議討論室", "活動交流空間", "創業社群"].map(
                 (label) => (
                   <div
                     key={label}

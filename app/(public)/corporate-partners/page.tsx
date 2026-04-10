@@ -4,58 +4,62 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "合作夥伴 | NTUTEC",
   description:
-    "臺大創創中心的合作企業與機構夥伴，共同推動創新創業生態系發展。",
+    "臺大創創中心累計 35 家合作企業，含 Nvidia、Synopsys、鴻海等國際大廠。透過企業垂直加速器、技術合作、創新教育等多元模式共創。",
 };
 
-const partners = [
-  {
-    name: "台積電",
-    type: "技術合作",
-    description: "半導體前沿技術共創，支持新創團隊進行晶片設計與驗證。",
-  },
-  {
-    name: "中華電信",
-    type: "加速器共創",
-    description: "5G 與 AIoT 應用場景開發，提供新創團隊測試環境與市場通路。",
-  },
-  {
-    name: "國泰金控",
-    type: "策略投資",
-    description: "金融科技創新合作，協助新創團隊對接金融場景與資金資源。",
-  },
-  {
-    name: "台達電子",
-    type: "技術合作",
-    description: "綠能與智慧製造領域的產學合作，推動永續科技商業化。",
-  },
-  {
-    name: "緯創資通",
-    type: "加速器共創",
-    description: "AIoT 與智慧醫療解決方案共同開發，提供硬體製造資源。",
-  },
-  {
-    name: "遠傳電信",
-    type: "聯合活動",
-    description: "共同舉辦創新論壇與 Demo Day，促進新創與企業的深度交流。",
-  },
-  {
-    name: "研華科技",
-    type: "技術合作",
-    description: "工業物聯網平台合作，為新創提供邊緣運算與雲端服務資源。",
-  },
-  {
-    name: "AWS",
-    type: "資源贊助",
-    description: "提供雲端運算資源與技術培訓，加速新創團隊的產品開發。",
-  },
+interface Partner {
+  name: string;
+  type: string;
+}
+
+// Source: ntutec_report_114_annual.md §企業垂直加速器、ntutec_report_113_performance.md
+// 累計 35 家企業合作（包含企業垂直加速器 27 隻 + 其他合作模式）
+const partners: Partner[] = [
+  // 國際大廠
+  { name: "Nvidia", type: "國際科技" },
+  { name: "Synopsys 新思科技", type: "半導體" },
+  { name: "鴻海", type: "電子製造" },
+  { name: "跨國康寧", type: "材料科技" },
+  // 金融保險
+  { name: "玉山銀行", type: "金融" },
+  // 電信
+  { name: "遠傳電信", type: "電信" },
+  { name: "北捷", type: "智慧交通" },
+  // 光電/電子
+  { name: "友達光電", type: "光電" },
+  { name: "華碩", type: "資訊" },
+  { name: "宏碁", type: "資訊" },
+  { name: "神達數位", type: "資訊" },
+  { name: "圓展", type: "影音" },
+  // 台積電（創新教育）
+  { name: "台積電", type: "半導體" },
+  // 製造
+  { name: "金元福", type: "製造" },
+  { name: "東源營造（遠雄）", type: "營造" },
+  // 媒體出版
+  { name: "聯合報", type: "媒體" },
+  { name: "天下雜誌", type: "媒體" },
+  { name: "時報出版", type: "出版" },
+  { name: "親子天下", type: "出版" },
+  { name: "東方線上", type: "數據" },
 ];
 
 const badgeColor: Record<string, string> = {
-  技術合作: "bg-teal/10 text-teal-deep",
-  加速器共創: "bg-amber-100 text-amber-800",
-  策略投資: "bg-emerald-100 text-emerald-800",
-  聯合活動: "bg-purple-100 text-purple-800",
-  資源贊助: "bg-blue-100 text-blue-800",
+  國際科技: "bg-teal/10 text-teal-deep",
+  半導體: "bg-amber-100 text-amber-800",
+  電子製造: "bg-emerald-100 text-emerald-800",
+  材料科技: "bg-purple-100 text-purple-800",
+  金融: "bg-blue-100 text-blue-800",
+  電信: "bg-cyan-100 text-cyan-800",
+  智慧交通: "bg-indigo-100 text-indigo-800",
+  光電: "bg-yellow-100 text-yellow-800",
+  資訊: "bg-slate-100 text-slate-700",
+  影音: "bg-pink-100 text-pink-800",
+  製造: "bg-orange-100 text-orange-800",
+  營造: "bg-stone text-charcoal",
+  媒體: "bg-rose-100 text-rose-800",
+  出版: "bg-fuchsia-100 text-fuchsia-800",
+  數據: "bg-lime-100 text-lime-800",
 };
 
 export default function CorporatePartnersPage() {
@@ -64,35 +68,36 @@ export default function CorporatePartnersPage() {
       <PageHero
         title="合作夥伴"
         subtitle="Our Partners"
-        description="攜手產業領袖，共同打造最具影響力的創新創業生態系。"
+        description="累計 35 家合作企業，透過企業垂直加速器、技術合作、創新教育等模式共創臺灣創新生態系。"
       />
 
       <section className="section-spacing">
         <div className="container">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <p className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-slate-muted">
+            臺大創創中心自 2019 年首創企業垂直加速器，累計與 35 家知名企業合作。合作模式涵蓋由企業出題、新創解題的垂直加速器、一對一技術合作、企業創新教育，以及跨國技術驗證等。
+          </p>
+
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {partners.map((partner) => (
-              <div
-                key={partner.name}
-                className="card-hover rounded-2xl bg-white p-6"
-              >
-                {/* Logo placeholder */}
-                <div className="mb-4 flex h-20 items-center justify-center rounded-xl bg-stone">
-                  <span className="text-sm text-slate-muted">Logo</span>
+              <div key={partner.name} className="card-hover rounded-2xl border bg-white p-6 text-center">
+                <div className="mb-4 flex h-16 items-center justify-center rounded-xl bg-stone">
+                  <span className="text-xs text-slate-muted">Logo</span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold">{partner.name}</h3>
+                <h3 className="mb-2 text-base font-semibold">{partner.name}</h3>
                 <span
-                  className={`mb-3 inline-block rounded-full px-3 py-1 text-xs font-medium ${
+                  className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${
                     badgeColor[partner.type] || "bg-stone text-charcoal"
                   }`}
                 >
                   {partner.type}
                 </span>
-                <p className="text-sm text-slate-muted leading-relaxed">
-                  {partner.description}
-                </p>
               </div>
             ))}
           </div>
+
+          <p className="mt-12 text-center text-sm text-slate-muted">
+            * 以上為部分公開合作企業代表，完整 35 家名單請洽中心。
+          </p>
         </div>
       </section>
     </>

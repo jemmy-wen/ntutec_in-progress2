@@ -11,10 +11,10 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: 200, suffix: "+", label: "輔導新創團隊" },
-  { value: 30, suffix: "億+", label: "累計募資金額", prefix: "NT$" },
-  { value: 80, suffix: "+", label: "天使投資人" },
-  { value: 10, suffix: "年+", label: "加速器經驗" },
+  { value: 600, prefix: "近 ", suffix: " 支", label: "累計輔導新創團隊" },
+  { value: 150, suffix: " 隊", label: "2026 加速器申請" },
+  { value: 40, suffix: "+", label: "創業導師網絡" },
+  { value: 13, suffix: " 年", label: "深耕創業生態" },
 ];
 
 function easeOutCubic(t: number): number {

@@ -4,15 +4,18 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '關於臺大創創中心 | NTUTEC',
-  description: '了解臺大創創中心的使命、願景與發展歷程。我們致力於連結學術與產業，培育下一代創業家與創新企業。',
+  description: '臺大創創中心是台大創業生態系的實戰基地，13 年來累計輔導近 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，對標 Stanford StartX 與 Berkeley SkyDeck。',
 }
 
 const milestones = [
-  { year: '2014', title: '臺大創創中心成立', description: '由臺灣大學正式設立，以推動校園創新創業生態系為核心使命，提供新創團隊輔導與資源媒合。' },
-  { year: '2016', title: '加速器計畫啟動', description: '推出首屆加速器計畫，為成長期新創提供十個月的深度輔導，串接業師網絡與企業資源。' },
-  { year: '2019', title: '天使投資俱樂部成立', description: '成立天使投資俱樂部，匯聚校友與產業界天使投資人，為優質新創提供早期資金與策略支持。' },
-  { year: '2022', title: '企業創新合作深化', description: '擴大與企業的創新合作模式，透過企業出題、新創解題的方式，促進產學共創與技術商業化。' },
-  { year: '2025', title: '新階段啟動', description: '持續深化國際連結與跨域合作，打造更完整的創新創業生態系，培育具全球競爭力的新創企業。' },
+  { year: '2013', title: 'NTU Garage 車庫孵化器啟動', description: '於臺大水源校區設立 NTU Garage，作為學生創業共享空間，開啟台大創業生態系的基礎建設。' },
+  { year: '2014', title: '臺大創創中心正式成立', description: '由臺灣大學以校級單位正式設立創創中心，整合校內創業資源，推動校園創新創業生態系。' },
+  { year: '2016', title: 'NTU Challenge 校內創業競賽', description: '與創新設計學院合作舉辦 NTU Challenge，結合教育、業師輔導與競賽，發掘校園創業潛力。' },
+  { year: '2017', title: 'NTU Accelerator 加速器啟動', description: '推出加速器計畫，為已有原型的新創團隊提供市場驗證、商業模式迭代與募資對接資源。' },
+  { year: '2019', title: '企業垂直加速器首創', description: '首創企業垂直加速器，由企業出題、新創解題，累計與鴻海、Nvidia、Synopsys 等 35 家企業深度合作。' },
+  { year: '2020', title: '企業創新諮詢服務', description: '推出企業開放式創新諮詢服務（Consulting），協助中大型企業導入新創思維與敏捷創新方法論。' },
+  { year: '2022', title: 'Co-Creation Sandbox', description: '推出 Co-Creation Sandbox 會員制度，為新創提供安全的產品與市場驗證場域。' },
+  { year: '2026', title: '四大聚焦領域與三校聯盟', description: '聚焦 AI 軟體、生技醫療、硬科技與創新商模四大領域，攜手臺師大、台科大深化三校聯盟創業生態系。' },
 ]
 
 export default function AboutPage() {
@@ -26,13 +29,13 @@ export default function AboutPage() {
             <div>
               <p className="micro-label mb-4">Our Mission</p>
               <h2 className="mb-6">使命與願景</h2>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted">臺大創創中心以「連結學術卓越與產業創新」為使命，致力於打造一個開放、跨域的創新創業生態系。</p>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted">我們相信，最好的創新來自於學術研究與市場需求的深度對話。透過系統化的輔導機制、豐富的業師網絡，以及與企業的緊密合作，我們幫助新創團隊從概念走向市場。</p>
-              <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為亞太地區最具影響力的大學創新樞紐，培育出改變世界的創業家與企業。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted">臺大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，致力於把台大最好的技術能量與人才，轉化成可投資的新創公司。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導近 600 支新創團隊，涵蓋 120+ 臺大學生團隊、30+ 教授團隊與 200+ 校友團隊。透過加速器、車庫孵化器、企業垂直加速器與天使投資俱樂部四大運營業務，我們支持新創從技術驗證走入市場。</p>
+              <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為發掘與培育出更多未來能上市或成功出場的創業家，對標 Stanford StartX 與 Berkeley SkyDeck 等大學創業生態系，打造臺灣最具影響力的校園創業加速器。</p>
             </div>
             <div className="flex items-center justify-center">
               <div className="aspect-[4/3] w-full rounded-2xl bg-teal-wash flex items-center justify-center">
-                <span className="text-slate-muted text-sm">Image Placeholder</span>
+                <span className="text-slate-muted text-sm">圖片更新中</span>
               </div>
             </div>
           </div>

@@ -20,7 +20,7 @@ const audiences: AudienceCard[] = [
     icon: Rocket,
     title: "新創團隊",
     description:
-      "從技術驗證到市場落地，加速器與車庫孵化器提供完整的輔導資源、業師網絡與募資對接。",
+      "從技術驗證到市場擴展，加速器與車庫孵化器提供完整的輔導資源、業師網絡與募資對接。",
     href: "/programs",
     gradient: "bg-gradient-to-br from-teal/20 to-teal-deep/10",
   },

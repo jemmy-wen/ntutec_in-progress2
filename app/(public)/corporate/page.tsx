@@ -113,19 +113,21 @@ export default function CorporatePage() {
         <div className="container text-center">
           <p className="micro-label mb-4">Impact</p>
           <h2 className="mb-12">合作成果</h2>
-          <div className="grid gap-8 md:grid-cols-4">
+          <div className="grid gap-8 md:grid-cols-3">
             {[
-              { number: "50+", label: "合作企業" },
-              { number: "120+", label: "共創專案" },
-              { number: "85%", label: "專案滿意度" },
-              { number: "30+", label: "技術移轉案" },
+              { number: "35", label: "累計合作企業", suffix: " 家" },
+              { number: "27", label: "企業垂直加速器", suffix: " 隻" },
+              { number: "近 600", label: "輔導新創團隊", suffix: " 支" },
             ].map((stat) => (
               <div key={stat.label}>
-                <p className="text-4xl font-bold text-teal">{stat.number}</p>
+                <p className="text-4xl font-bold text-teal">{stat.number}{stat.suffix}</p>
                 <p className="mt-2 text-slate-muted">{stat.label}</p>
               </div>
             ))}
           </div>
+          <p className="mt-8 text-sm text-slate-muted">
+            合作對象含 Nvidia、Synopsys、鴻海、台積電、玉山銀行、友達光電等國內外知名企業
+          </p>
         </div>
       </section>
 

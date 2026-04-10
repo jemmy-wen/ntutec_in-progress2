@@ -32,17 +32,13 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "合作總覽", href: "/corporate" },
       { label: "合作夥伴", href: "/corporate-partners" },
-      { label: "創新競賽", href: "/competition" },
       { label: "聯合活動", href: "/co-events" },
       { label: "諮詢服務", href: "/consulting" },
     ],
   },
   {
     label: "天使俱樂部",
-    children: [
-      { label: "俱樂部介紹", href: "/angel" },
-      { label: "輔導新創作品集", href: "/portfolio" },
-    ],
+    href: "/angel",
   },
   {
     label: "關於我們",
@@ -76,6 +72,18 @@ function DesktopDropdown({
   onEnter: () => void;
   onLeave: () => void;
 }) {
+  // Simple link (no children) — render as direct Link
+  if (!item.children && item.href) {
+    return (
+      <Link
+        href={item.href}
+        className="px-3 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
+      >
+        {item.label}
+      </Link>
+    );
+  }
+
   return (
     <div className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <button

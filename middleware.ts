@@ -34,10 +34,10 @@ export async function middleware(request: NextRequest) {
   // Public routes — all (public) group pages are accessible without auth
   const publicPaths = [
     '/about', '/team', '/mentors', '/advisory-board', '/corporate',
-    '/programs', '/corporate-partners', '/competition', '/co-events',
+    '/programs', '/corporate-partners', '/co-events',
     '/accelerator', '/consulting', '/garage', '/angel', '/angel-apply',
-    '/apply', '/faq', '/portfolio', '/events', '/news', '/blog',
-    '/contact', '/startups',
+    '/apply', '/faq', '/events', '/news', '/blog',
+    '/contact',
     '/login', '/callback',
   ]
   const isPublicRoute =

@@ -1,47 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useInView } from "@/hooks/useInView";
-
-interface NewsItem {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  category: string;
-  href: string;
-}
-
-const news: NewsItem[] = [
-  {
-    id: "1",
-    title: "2026 春季加速器 Demo Day 圓滿落幕",
-    excerpt:
-      "本屆 Demo Day 共有 12 組新創團隊登台發表，吸引超過 50 位投資人與企業代表參與。",
-    date: "2026-04-01",
-    category: "加速器",
-    href: "/news/demo-day-2026-spring",
-  },
-  {
-    id: "2",
-    title: "天使俱樂部三月份例會精華回顧",
-    excerpt:
-      "三月例會聚焦生技醫療與 AI 兩大領域，三家新創獲得天使投資人高度關注。",
-    date: "2026-03-28",
-    category: "天使俱樂部",
-    href: "/news/angel-club-march-2026",
-  },
-  {
-    id: "3",
-    title: "攜手國際企業推動開放式創新合作計畫",
-    excerpt:
-      "與三家跨國企業簽訂合作備忘錄，共同探索新創技術在產業端的應用場景。",
-    date: "2026-03-15",
-    category: "企業合作",
-    href: "/news/corporate-innovation-partnership",
-  },
-];
+import { getPosts } from "@/lib/ghost";
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
@@ -52,8 +11,15 @@ function formatDate(dateStr: string) {
   });
 }
 
-export default function NewsSection() {
-  const { ref, isInView } = useInView();
+export default async function NewsSection() {
+  let posts: Awaited<ReturnType<typeof getPosts>>["posts"] = [];
+
+  try {
+    const result = await getPosts(1, 3);
+    posts = result.posts;
+  } catch {
+    // Ghost unreachable — render empty state gracefully
+  }
 
   return (
     <section className="section-spacing bg-white">
@@ -72,41 +38,53 @@ export default function NewsSection() {
           </Link>
         </div>
 
-        <div ref={ref} className="grid gap-8 md:grid-cols-3">
-          {news.map((item, i) => (
-            <div
-              key={item.id}
-              className={`transition-all duration-500 ${
-                isInView
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
+        {posts.length === 0 ? (
+          <div className="rounded-2xl bg-stone p-12 text-center">
+            <p className="text-slate-muted">最新動態整理中，敬請期待。</p>
+          </div>
+        ) : (
+          <div className="grid gap-8 md:grid-cols-3">
+            {posts.map((post) => (
               <Link
-                href={item.href}
+                key={post.id}
+                href={`/blog/${post.slug}`}
                 className="card-hover group block overflow-hidden rounded-xl border border-stone-warm/60 bg-white"
               >
-                <div className="h-48 bg-stone" />
+                {post.feature_image ? (
+                  <div className="aspect-[16/9] overflow-hidden bg-stone">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={post.feature_image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 bg-stone" />
+                )}
 
                 <div className="p-5">
-                  <span className="inline-block rounded-full bg-teal-wash px-2.5 py-0.5 text-xs font-medium text-teal">
-                    {item.category}
-                  </span>
-                  <h3 className="mt-3 font-semibold text-charcoal group-hover:text-teal-deep transition-colors">
-                    {item.title}
+                  {post.primary_tag && (
+                    <span className="inline-block rounded-full bg-teal-wash px-2.5 py-0.5 text-xs font-medium text-teal">
+                      {post.primary_tag.name}
+                    </span>
+                  )}
+                  <h3 className="mt-3 font-semibold text-charcoal group-hover:text-teal-deep transition-colors line-clamp-2">
+                    {post.title}
                   </h3>
                   <p className="mt-1 text-sm text-slate-muted">
-                    {formatDate(item.date)}
+                    {formatDate(post.published_at)}
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-muted line-clamp-2">
-                    {item.excerpt}
-                  </p>
+                  {post.excerpt && (
+                    <p className="mt-2 text-sm leading-relaxed text-slate-muted line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                  )}
                 </div>
               </Link>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         <div className="mt-8 text-center sm:hidden">
           <Link

@@ -19,7 +19,7 @@ export default function HeroSection() {
 
           <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">
             臺大創創中心整合校內外資源，提供加速器、天使投資、企業合作等完整創業支援，
-            協助研究團隊與新創企業從技術驗證走向市場落地。
+            協助研究團隊與新創企業從技術驗證走向市場擴展。
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">
