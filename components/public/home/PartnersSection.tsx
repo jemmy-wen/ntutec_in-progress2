@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import partnersData from "@/data/partners_historical.json";
 
 interface Company {
@@ -15,7 +17,20 @@ interface Category {
 }
 
 const categories = partnersData.categories as Category[];
-const totalCount = categories.reduce((sum, c) => sum + c.companies.length, 0);
+const allCompanies = categories.flatMap((c) => c.companies);
+const totalCount = allCompanies.length;
+
+// Split into two rows for staggered scroll
+const row1 = allCompanies.filter((_, i) => i % 2 === 0).map((c) => ({
+  name: c.name_zh,
+  name_en: c.name_en,
+  type: c.type,
+}));
+const row2 = allCompanies.filter((_, i) => i % 2 === 1).map((c) => ({
+  name: c.name_zh,
+  name_en: c.name_en,
+  type: c.type,
+}));
 
 export default function PartnersSection() {
   return (
@@ -28,47 +43,21 @@ export default function PartnersSection() {
             13 年來累計 {totalCount}+ 家企業夥伴參與垂直加速器、企業創新教育、創業競賽與案源媒合。
           </p>
         </div>
+      </div>
 
-        <div className="space-y-10">
-          {categories.map((cat) => (
-            <div key={cat.key}>
-              <div className="mb-4 flex items-baseline justify-between border-b border-stone-warm/60 pb-2">
-                <h3 className="text-base font-semibold text-charcoal">
-                  {cat.label}
-                </h3>
-                <span className="text-xs text-slate-muted">
-                  {cat.companies.length} 家
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                {cat.companies.map((co) => (
-                  <div
-                    key={co.name_en}
-                    className="flex flex-col items-center justify-center rounded-xl border border-stone-warm/40 bg-stone px-3 py-4 text-center transition-colors hover:bg-teal-wash/60"
-                    title={`${co.name_en} · ${co.type}`}
-                  >
-                    <span className="text-sm font-semibold text-charcoal line-clamp-1">
-                      {co.name_zh}
-                    </span>
-                    <span className="mt-1 text-[10px] uppercase tracking-wider text-slate-muted line-clamp-1">
-                      {co.name_en}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="space-y-4">
+        <InfiniteMovingCards items={row1} direction="left" speed="slow" />
+        <InfiniteMovingCards items={row2} direction="right" speed="slow" />
+      </div>
 
-        <div className="mt-10 text-center">
-          <Link
-            href="/corporate-partners"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-deep transition-colors hover:text-teal"
-          >
-            探索企業合作方式
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+      <div className="container mt-10 text-center">
+        <Link
+          href="/corporate-partners"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-deep transition-colors hover:text-teal"
+        >
+          探索企業合作方式
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
     </section>
   );

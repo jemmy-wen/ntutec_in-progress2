@@ -1,9 +1,18 @@
 import Link from "next/link";
+import { BackgroundBeams } from "@/components/ui/background-beams";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-charcoal/90 to-teal-deep/30" />
+      <BackgroundBeams className="z-[1]" />
+      <SparklesCore
+        particleColor="oklch(0.66 0.12 180)"
+        particleDensity={60}
+        speed={0.6}
+        className="z-[1] opacity-60"
+      />
 
       <div className="container relative z-10 py-24">
         <div className="max-w-3xl animate-[fadeUp_0.6s_ease-out_both]">

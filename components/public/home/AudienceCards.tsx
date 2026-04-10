@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Rocket, Building2, TrendingUp, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 
 interface AudienceCard {
   label: string;
@@ -46,6 +48,7 @@ const audiences: AudienceCard[] = [
 
 export default function AudienceCards() {
   const { ref, isInView } = useInView();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <section className="section-spacing bg-white">
@@ -64,36 +67,55 @@ export default function AudienceCards() {
             return (
               <div
                 key={card.label}
-                className={`card-hover group overflow-hidden rounded-2xl border border-stone-warm/60 bg-white transition-all duration-500 ${
-                  isInView
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-6"
-                }`}
-                style={{ transitionDelay: `${i * 150}ms` }}
+                className="relative"
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className={`relative h-48 lg:h-56 ${card.gradient}`}>
-                  <span className="absolute bottom-3 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold tracking-wider text-charcoal">
-                    {card.label}
-                  </span>
-                </div>
+                {/* Hover glow background */}
+                <AnimatePresence>
+                  {hoveredIndex === i && (
+                    <motion.span
+                      className="absolute inset-0 block rounded-2xl bg-teal-wash"
+                      layoutId="audienceHover"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, transition: { duration: 0.15 } }}
+                      exit={{ opacity: 0, transition: { duration: 0.15, delay: 0.05 } }}
+                    />
+                  )}
+                </AnimatePresence>
 
-                <div className="p-6">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-wash text-teal">
-                    <Icon className="h-5 w-5" />
+                <div
+                  className={`relative group overflow-hidden rounded-2xl border border-stone-warm/60 bg-white transition-all duration-500 ${
+                    isInView
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-6"
+                  }`}
+                  style={{ transitionDelay: `${i * 150}ms` }}
+                >
+                  <div className={`relative h-48 lg:h-56 ${card.gradient}`}>
+                    <span className="absolute bottom-3 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold tracking-wider text-charcoal">
+                      {card.label}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-charcoal">
-                    {card.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-muted">
-                    {card.description}
-                  </p>
-                  <Link
-                    href={card.href}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-teal transition-colors hover:text-teal-deep"
-                  >
-                    了解更多
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
+
+                  <div className="p-6">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-wash text-teal">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-charcoal">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-muted">
+                      {card.description}
+                    </p>
+                    <Link
+                      href={card.href}
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-teal transition-colors hover:text-teal-deep"
+                    >
+                      了解更多
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
