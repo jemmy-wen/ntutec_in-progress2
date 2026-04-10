@@ -1,0 +1,86 @@
+{
+  "stats": {
+    "total": 35,
+    "since_year": 2013,
+    "note": "累計合作企業，來源為 114/113/112 年成果報告 + 進行中合作"
+  },
+  "categories": [
+    {
+      "key": "tech",
+      "label": "科技 / 半導體 / AI",
+      "companies": [
+        { "name_zh": "輝達", "name_en": "NVIDIA", "type": "垂直加速器" },
+        { "name_zh": "新思科技", "name_en": "Synopsys", "type": "垂直加速器" },
+        { "name_zh": "台積電", "name_en": "TSMC", "type": "企業創新教育" },
+        { "name_zh": "華碩", "name_en": "ASUS", "type": "垂直加速器" },
+        { "name_zh": "宏碁", "name_en": "Acer", "type": "垂直加速器" },
+        { "name_zh": "神達數位", "name_en": "MiTAC", "type": "垂直加速器" },
+        { "name_zh": "圓展科技", "name_en": "AVer", "type": "垂直加速器" },
+        { "name_zh": "友達光電", "name_en": "AUO", "type": "垂直加速器" },
+        { "name_zh": "東方線上", "name_en": "Intage", "type": "垂直加速器" },
+        { "name_zh": "達人網 360", "name_en": "360 Marketplace", "type": "進行中合作" }
+      ]
+    },
+    {
+      "key": "finance",
+      "label": "金融 / 保險 / 資安",
+      "companies": [
+        { "name_zh": "玉山銀行", "name_en": "E.SUN Bank", "type": "垂直加速器" },
+        { "name_zh": "凱基人壽", "name_en": "KGI Life", "type": "進行中合作" },
+        { "name_zh": "HiTrust 網際威信", "name_en": "HiTrust", "type": "進行中合作" },
+        { "name_zh": "中華開發資本", "name_en": "CDIB Capital", "type": "策略合作" }
+      ]
+    },
+    {
+      "key": "manufacturing",
+      "label": "製造 / 硬體 / 工程",
+      "companies": [
+        { "name_zh": "鴻海", "name_en": "Foxconn", "type": "垂直加速器" },
+        { "name_zh": "康寧", "name_en": "Corning", "type": "垂直加速器" },
+        { "name_zh": "遠雄建設", "name_en": "Farglory", "type": "垂直加速器" },
+        { "name_zh": "金元福", "name_en": "Kim Yuan Fu", "type": "垂直加速器" }
+      ]
+    },
+    {
+      "key": "telecom",
+      "label": "電信 / 交通",
+      "companies": [
+        { "name_zh": "遠傳電信", "name_en": "FarEasTone", "type": "垂直加速器" },
+        { "name_zh": "台北捷運", "name_en": "Taipei Metro", "type": "垂直加速器" }
+      ]
+    },
+    {
+      "key": "media",
+      "label": "媒體 / 出版 / 內容",
+      "companies": [
+        { "name_zh": "聯合報", "name_en": "United Daily News", "type": "垂直加速器" },
+        { "name_zh": "天下雜誌", "name_en": "CommonWealth", "type": "垂直加速器" },
+        { "name_zh": "時報出版", "name_en": "China Times Publishing", "type": "垂直加速器" },
+        { "name_zh": "親子天下", "name_en": "Parenting", "type": "垂直加速器" },
+        { "name_zh": "經濟日報", "name_en": "Economic Daily News", "type": "進行中合作" },
+        { "name_zh": "凱絡媒體", "name_en": "Carat", "type": "業師協力" }
+      ]
+    },
+    {
+      "key": "biotech",
+      "label": "生技 / 醫療 / 健康",
+      "companies": [
+        { "name_zh": "秀傳醫療體系", "name_en": "Show Chwan Health System", "type": "生醫垂直合作" },
+        { "name_zh": "鼎澄生醫", "name_en": "AHEAD Medicine", "type": "天使投資案" },
+        { "name_zh": "長佳智能", "name_en": "Everfortune.AI", "type": "業師協力" },
+        { "name_zh": "智醫海量數據", "name_en": "Smart Medical Data", "type": "業師協力" }
+      ]
+    },
+    {
+      "key": "services",
+      "label": "專業服務 / 顧問",
+      "companies": [
+        { "name_zh": "德勤", "name_en": "Deloitte", "type": "財會顧問" },
+        { "name_zh": "眾達國際法律", "name_en": "Jones Day", "type": "法律顧問" },
+        { "name_zh": "活水社企投資開發", "name_en": "B Current Impact", "type": "策略合作" },
+        { "name_zh": "悅智全球顧問", "name_en": "Aetos Consulting", "type": "顧問合作" },
+        { "name_zh": "意藍資訊", "name_en": "eLand", "type": "業師協力" }
+      ]
+    }
+  ]
+}

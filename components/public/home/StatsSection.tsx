@@ -25,7 +25,7 @@ function AnimatedCounter({
   value,
   suffix,
   prefix = "",
-  duration = 2000,
+  duration = 1400,
   start,
 }: {
   value: number;
@@ -34,19 +34,22 @@ function AnimatedCounter({
   duration?: number;
   start: boolean;
 }) {
-  const [display, setDisplay] = useState(0);
+  // Start from 85% of target to avoid "near 0" flash on large numbers.
+  const startValue = Math.floor(value * 0.85);
+  const [display, setDisplay] = useState(startValue);
   const rafRef = useRef<number | null>(null);
 
   const animate = useCallback(() => {
     const startTime = performance.now();
+    const delta = value - startValue;
     const tick = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      setDisplay(Math.round(easeOutCubic(progress) * value));
+      setDisplay(startValue + Math.round(easeOutCubic(progress) * delta));
       if (progress < 1) rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
-  }, [value, duration]);
+  }, [value, startValue, duration]);
 
   useEffect(() => {
     if (start) animate();

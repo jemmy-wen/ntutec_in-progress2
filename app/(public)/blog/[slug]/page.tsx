@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getPostBySlug } from '@/lib/ghost'
 
@@ -63,9 +64,15 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         </header>
 
         {post.feature_image && (
-          <div className="mb-10 rounded-xl overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={post.feature_image} alt={post.title} className="w-full" />
+          <div className="relative mb-10 rounded-xl overflow-hidden aspect-video">
+            <Image
+              src={post.feature_image}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 800px"
+              priority
+            />
           </div>
         )}
 

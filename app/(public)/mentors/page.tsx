@@ -1,49 +1,84 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
-import cohort from "@/data/cohort_2026.json";
+import mentorsData from "@/data/mentors_all.json";
 
 export const metadata: Metadata = {
   title: "業師陣容 | NTUTEC",
   description:
-    "2026 年度 39 位業師，涵蓋創投、半導體、AI、生技醫療、金融、法律、行銷、供應鏈等領域。結合產業實戰經驗與台大學術視野，為新創團隊提供一對一深度輔導。",
+    "NTUTEC 歷年累計 56+ 位業師，依背景分為創投家、連續創業家、企業高管、產業專家四大類。結合產業實戰經驗與台大學術視野，為新創團隊提供一對一深度輔導。",
 };
 
 interface Mentor {
   name: string;
-  display_name?: string;
-  title?: string | null;
-  specialties: string[];
-  industries: string | null;
-  biz_model: string | null;
-  market: string[] | null;
-  bio: string;
-  wp_description?: string | null;
-  avatar: string | null;
-  wp_photo?: string | null;
+  title: string | null;
+  highlight: string | null;
+  photo: string | null;
+  is_new_2026: boolean;
 }
 
-const mentors = cohort.mentors as Mentor[];
-
-// Pick best photo: WP photo (higher quality) > Supabase avatar > null
-function getPhoto(m: Mentor): string | null {
-  return m.wp_photo || m.avatar || null;
+interface Category {
+  key: string;
+  title: string;
+  subtitle: string;
+  emoji: string;
+  description: string;
+  mentors: Mentor[];
 }
 
-const domains = [
-  "創投與早期投資",
-  "半導體與硬科技",
-  "AI / 機器學習",
-  "網路科技與 SaaS",
-  "生技醫療",
-  "金融創投",
-  "國際市場拓展",
-  "法律與智財",
-  "供應鏈與製造",
-  "品牌與行銷",
-  "商業模式設計",
-  "募資與退場",
-];
+const categories = mentorsData.categories as Category[];
+const stats = mentorsData.stats;
+
+function MentorCard({ mentor }: { mentor: Mentor }) {
+  const initial = mentor.name.charAt(0);
+  return (
+    <div
+      className="card-hover relative flex flex-col rounded-2xl border border-stone-warm/60 bg-white p-5"
+      title={mentor.title || undefined}
+    >
+      {mentor.is_new_2026 && (
+        <span className="absolute right-3 top-3 rounded-full bg-teal px-2 py-0.5 text-[10px] font-semibold text-white">
+          2026 新任
+        </span>
+      )}
+
+      <div className="flex items-start gap-4">
+        {mentor.photo ? (
+          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-stone">
+            <Image
+              src={mentor.photo}
+              alt={`${mentor.name} 照片`}
+              fill
+              sizes="64px"
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-teal-wash">
+            <span className="text-xl font-bold text-teal">{initial}</span>
+          </div>
+        )}
+
+        <div className="min-w-0 flex-1">
+          <h3 className="text-base font-semibold text-charcoal line-clamp-1">
+            {mentor.name}
+          </h3>
+          {mentor.title && (
+            <p className="mt-1 text-xs leading-snug text-slate-muted line-clamp-2">
+              {mentor.title}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {mentor.highlight && (
+        <p className="mt-3 border-t border-stone-warm/40 pt-3 text-xs leading-relaxed text-slate-muted line-clamp-3">
+          {mentor.highlight}
+        </p>
+      )}
+    </div>
+  );
+}
 
 export default function MentorsPage() {
   return (
@@ -51,95 +86,84 @@ export default function MentorsPage() {
       <PageHero
         title="業師陣容"
         subtitle="Mentors"
-        description={`2026 年度 ${mentors.length} 位業師，平均具備豐富的產業實戰經驗，為新創團隊提供一對一深度輔導與策略建議。`}
+        description={`累計 ${stats.total}+ 位業師，依背景類型分為創投家、連續創業家、企業高管與產業專家四大類，為新創團隊提供全方位的深度輔導。`}
       />
 
-      {/* Intro */}
+      {/* Intro + Stats */}
       <section className="section-spacing">
         <div className="container">
-          <p className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-slate-muted">
-            臺大創創中心業師網絡涵蓋創投、半導體、AI、生技醫療、金融、法律、供應鏈等多元領域。每位業師皆具備豐富的產業實戰經驗，透過定期的一對一輔導，協助新創團隊解決從技術驗證到市場擴展的各種挑戰。
-          </p>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-lg leading-relaxed text-slate-muted">
+              NTUTEC 業師網絡以「背景類型」劃分，幫助新創團隊快速找到最適合的諮詢對象——
+              找創投家談融資、找連續創業家學實戰、找企業高管開通路、找產業專家補深度。
+              每位業師皆具備豐富的產業實戰經驗，為 2026 年度 43 支新創團隊提供一對一深度輔導。
+            </p>
+          </div>
 
-          {/* Mentor grid — minimal cards */}
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {mentors.map((mentor) => {
-              const photo = getPhoto(mentor);
-              const displayName = mentor.display_name || mentor.name;
-              return (
-                <div
-                  key={mentor.name}
-                  className="card-hover flex flex-col items-center rounded-2xl border border-stone-warm/60 bg-white p-5 text-center"
-                  title={mentor.title || undefined}
-                >
-                  {photo ? (
-                    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full bg-stone">
-                      <Image
-                        src={photo}
-                        alt={`${displayName} 照片`}
-                        fill
-                        sizes="96px"
-                        className="object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-teal-wash">
-                      <span className="text-2xl font-bold text-teal">
-                        {displayName.charAt(0)}
-                      </span>
-                    </div>
-                  )}
-
-                  <h3 className="mt-4 text-base font-semibold text-charcoal line-clamp-2">
-                    {displayName}
-                  </h3>
-
-                  {mentor.title && (
-                    <p className="mt-1 text-xs leading-snug text-slate-muted line-clamp-2">
-                      {mentor.title}
-                    </p>
-                  )}
-
-                  {mentor.specialties.length > 0 && (
-                    <div className="mt-3 flex flex-wrap justify-center gap-1">
-                      {mentor.specialties.slice(0, 3).map((sp) => (
-                        <span
-                          key={sp}
-                          className="rounded-full bg-stone px-2 py-0.5 text-[11px] text-charcoal"
-                        >
-                          {sp}
-                        </span>
-                      ))}
-                      {mentor.specialties.length > 3 && (
-                        <span className="rounded-full bg-stone px-2 py-0.5 text-[11px] text-slate-muted">
-                          +{mentor.specialties.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  )}
+          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
+            {categories.map((cat) => (
+              <a
+                key={cat.key}
+                href={`#${cat.key}`}
+                className="card-hover rounded-xl border border-stone-warm/60 bg-stone p-4 text-center transition-colors"
+              >
+                <div className="text-3xl">{cat.emoji}</div>
+                <div className="mt-2 text-sm font-semibold text-charcoal">
+                  {cat.title}
                 </div>
-              );
-            })}
+                <div className="text-xs text-slate-muted">
+                  {cat.mentors.length} 位 · {cat.subtitle}
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Coverage */}
-      <section className="section-spacing bg-stone">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="micro-label mb-4">Coverage</p>
-            <h2 className="mb-6">涵蓋領域</h2>
-            <div className="flex flex-wrap justify-center gap-3">
-              {domains.map((domain) => (
-                <span
-                  key={domain}
-                  className="rounded-full bg-white px-4 py-2 text-sm font-medium text-charcoal"
-                >
-                  {domain}
-                </span>
+      {/* Categories */}
+      {categories.map((cat, idx) => (
+        <section
+          key={cat.key}
+          id={cat.key}
+          className={`section-spacing scroll-mt-20 ${idx % 2 === 0 ? "bg-stone" : "bg-white"}`}
+        >
+          <div className="container">
+            <div className="mb-10 flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="micro-label mb-2 text-teal">{cat.subtitle}</p>
+                <h2 className="flex items-center gap-3">
+                  <span className="text-4xl">{cat.emoji}</span>
+                  <span>{cat.title}</span>
+                  <span className="text-lg font-normal text-slate-muted">
+                    · {cat.mentors.length} 位
+                  </span>
+                </h2>
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-muted">
+                  {cat.description}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {cat.mentors.map((mentor) => (
+                <MentorCard key={mentor.name} mentor={mentor} />
               ))}
             </div>
+          </div>
+        </section>
+      ))}
+
+      {/* Footer Note */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mx-auto max-w-3xl rounded-2xl border border-stone-warm/60 bg-stone p-8 text-center">
+            <p className="text-sm leading-relaxed text-slate-muted">
+              <span className="font-semibold text-charcoal">關於業師陣容</span>
+              <br />
+              本頁呈現 NTUTEC 歷年業師累計名單（2025–2026），實際 2026 年度主動輔導業師為 39 位。
+              業師背景分類依其主要身份判斷，部分業師可能具備跨類型經驗。
+              業師配對由中心依新創團隊需求與業師專長安排，非公開申請制。
+            </p>
           </div>
         </div>
       </section>

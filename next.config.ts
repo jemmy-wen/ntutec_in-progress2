@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
   // Skip ESLint during build — re-enable after SQL migration + @ts-nocheck removal
   eslint: { ignoreDuringBuilds: true },
   serverExternalPackages: ['nodemailer'],
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'ntutec.ghost.io' },
+      { protocol: 'https', hostname: '*.ghost.io' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'static.ghost.org' },
+    ],
+  },
   async headers() {
     return [
       {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Calendar, Send } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
 import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
 
@@ -191,15 +192,91 @@ export default function AcceleratorPage() {
       {/* Featured Alumni */}
       <FeaturedAlumni stories={acceleratorAlumni} title="加速器校友成就" />
 
-      {/* CTA */}
+      {/* Batch Timeline */}
       <section className="section-spacing">
+        <div className="container">
+          <div className="mx-auto max-w-3xl">
+            <div className="mb-8 text-center">
+              <p className="micro-label mb-2">Batch Schedule</p>
+              <h2>梯次時程</h2>
+              <p className="mt-3 text-base text-slate-muted">
+                加速器每年僅開放一次，採用年度梯次制。現行梯次進行中，2027 梯次預計 2026 年 12 月開放申請。
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-stone-warm/60 bg-stone p-8">
+              <ul className="space-y-5">
+                <li className="flex items-start gap-4">
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-wash text-teal-deep">
+                    <Calendar className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-charcoal">
+                      2026 年度梯次（進行中）
+                    </p>
+                    <p className="text-sm text-slate-muted">
+                      2026 年 3 月 ~ 2026 年 12 月 · 現有團隊輔導中，不開放插班
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-wash text-teal-deep">
+                    <Calendar className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-charcoal">
+                      2027 年度梯次申請期
+                    </p>
+                    <p className="text-sm text-slate-muted">
+                      2026 年 12 月 ~ 2027 年 1 月 · 正式開放線上申請
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-wash text-teal-deep">
+                    <Calendar className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-charcoal">
+                      2027 年度梯次公布結果
+                    </p>
+                    <p className="text-sm text-slate-muted">
+                      2027 年 2 月 · 入選團隊名單公告
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                    <Calendar className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-charcoal">
+                      2027 年度梯次正式開始
+                    </p>
+                    <p className="text-sm text-slate-muted">
+                      2027 年 3 月 ~ 2027 年 12 月 · 為期十個月
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-spacing bg-stone">
         <div className="container text-center">
-          <h2 className="mb-4">準備好加速成長了嗎？</h2>
-          <p className="mx-auto mb-8 max-w-xl text-lg text-slate-muted">
-            提交你的申請，開啟十個月的成長旅程。
+          <h2 className="mb-4">有興趣加入 2027 梯次？</h2>
+          <p className="mx-auto mb-6 max-w-xl text-lg text-slate-muted">
+            提前登記案源，12 月正式申請開放時，我們將第一時間通知你。登記不等同申請，正式申請仍需依流程提交。
           </p>
-          <Link href="/apply" className="btn-pill-primary">
-            立即申請
+          <Link
+            href="/apply"
+            className="btn-pill-primary inline-flex items-center gap-2"
+          >
+            <Send className="h-4 w-4" />
+            預約 2027 梯次通知
           </Link>
         </div>
       </section>

@@ -1,9 +1,16 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Geist } from "next/font/google";
+import { Geist, Noto_Sans_TC } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+
+const notoSansTC = Noto_Sans_TC({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-zh',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'NTUTEC Platform',
@@ -16,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-TW" className={cn("font-sans", geist.variable)}>
+    <html lang="zh-TW" className={cn("font-sans", geist.variable, notoSansTC.variable)}>
       <body className="antialiased">
         {children}
       </body>

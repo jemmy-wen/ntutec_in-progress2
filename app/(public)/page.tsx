@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import HeroSection from '@/components/public/home/HeroSection'
 import ThreeConnectionsSection from '@/components/public/home/ThreeConnectionsSection'
+import FocusAreasSection from '@/components/public/home/FocusAreasSection'
 import AudienceCards from '@/components/public/home/AudienceCards'
 import StatsSection from '@/components/public/home/StatsSection'
 import NewsSection from '@/components/public/home/NewsSection'
@@ -27,6 +28,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ThreeConnectionsSection />
+      <FocusAreasSection />
       <AudienceCards />
       <StatsSection />
       <NewsSection />

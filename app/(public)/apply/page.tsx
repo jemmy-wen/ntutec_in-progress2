@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AlertCircle } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
-  title: "立即申請 | NTUTEC",
+  title: "申請與提前登記 | NTUTEC",
   description:
-    "申請加入臺大創創中心的加速器計畫或車庫孵化器，開啟你的創業成長之旅。",
+    "臺大創創中心加速器與車庫採年度梯次制，2027 梯次申請期為 2026 年 12 月至 2027 年 1 月。現在可先提前登記，正式開放時優先通知。",
 };
 
 const tracks = [
@@ -14,18 +15,18 @@ const tracks = [
     name: "申請加速器",
     subtitle: "Accelerator Program",
     description:
-      "適合已有 MVP 或初期營收的成長期新創。為期十個月，提供業師輔導、企業對接與募資機會。",
+      "適合已有 MVP 或初期營收的成長期新創。為期十個月（每年 3 月 ~ 12 月），提供業師輔導、企業對接與募資機會。",
     href: "#",
-    note: "外部申請表單（即將開放）",
+    note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",
   },
   {
     icon: "🏠",
     name: "申請車庫",
     subtitle: "Garage Incubator",
     description:
-      "適合概念驗證至 MVP 階段的早期團隊。彈性六至十二個月，提供共創空間與社群資源。",
+      "適合概念驗證至 MVP 階段的早期團隊。年度梯次制（每年 3 月 ~ 12 月），提供共創空間與社群資源。",
     href: "#",
-    note: "外部申請表單（即將開放）",
+    note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",
   },
 ];
 
@@ -40,10 +41,39 @@ export default function ApplyPage() {
   return (
     <>
       <PageHero
-        title="立即申請"
-        subtitle="Apply Now"
-        description="選擇最適合你的計畫，踏出創業的下一步。"
+        title="申請與提前登記"
+        subtitle="Apply / Pre-register"
+        description="加速器與車庫採年度梯次制，非隨時招生。2027 梯次正式申請於 2026 年 12 月開放。"
       />
+
+      {/* Batch Notice */}
+      <section className="section-spacing pb-0">
+        <div className="container">
+          <div className="mx-auto max-w-3xl rounded-2xl border border-teal/30 bg-teal-wash/50 p-6">
+            <div className="flex items-start gap-4">
+              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+                <AlertCircle className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-base font-semibold text-charcoal">
+                  關於申請時程
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-muted">
+                  臺大創創中心的加速器與車庫採用<strong className="text-charcoal">年度梯次制</strong>，每年 3 月進駐、12 月結束，<strong className="text-charcoal">不接受隨時插班</strong>。
+                </p>
+                <ul className="mt-3 space-y-1 text-sm text-slate-muted">
+                  <li>• <strong className="text-charcoal">2026 梯次</strong>：進行中（3 月 ~ 12 月），現有 43 支團隊輔導中</li>
+                  <li>• <strong className="text-charcoal">2027 梯次申請期</strong>：2026 年 12 月 ~ 2027 年 1 月</li>
+                  <li>• <strong className="text-charcoal">2027 梯次公布結果</strong>：2027 年 2 月</li>
+                </ul>
+                <p className="mt-3 text-sm leading-relaxed text-slate-muted">
+                  若你有興趣加入下一梯次，歡迎先<strong className="text-charcoal">提前登記</strong>——正式申請開放時，我們將第一時間通知你。提前登記<strong className="text-charcoal">不等同申請</strong>，正式申請仍須在申請期內提交完整文件。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Two-path Selection */}
       <section className="section-spacing">
@@ -63,7 +93,7 @@ export default function ApplyPage() {
                 </p>
                 <div className="mt-6">
                   <span className="btn-pill-primary group-hover:bg-teal-deep">
-                    前往申請
+                    預約 2027 梯次通知
                   </span>
                 </div>
                 <p className="mt-3 text-xs text-slate-muted">{track.note}</p>
