@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
@@ -161,6 +162,48 @@ export default function AboutPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Activity Photo Grid */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mb-10 text-center">
+            <p className="micro-label mb-4">In Action</p>
+            <h2 className="mb-4">活動現場</h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-muted">
+              從課程工作坊、講者分享到年度 Demo Day，每一個活動現場都是新創成長的印記。
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/photos/activity-lecture-hall.jpg"
+                alt="臺大創創中心活動現場 — 工作坊全場"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/photos/activity-speaker.jpg"
+                alt="臺大創創中心活動現場 — 講者分享"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:col-span-2 lg:col-span-1">
+              <Image
+                src="/images/photos/activity-team-photo.jpg"
+                alt="臺大創創中心團隊活動合照"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"
+              />
             </div>
           </div>
         </div>
