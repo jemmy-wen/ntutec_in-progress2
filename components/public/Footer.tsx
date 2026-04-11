@@ -184,7 +184,7 @@ export default function Footer() {
             台大創新生態系
           </p>
           <div className="flex flex-wrap gap-3">
-            [
+            {[
               { label: "國立臺灣大學", href: "https://www.ntu.edu.tw" },
               { label: "研究發展處", href: "https://ord.ntu.edu.tw" },
               { label: "國際產學聯盟 ILO", href: "https://homepage.ntu.edu.tw/~ntuilo/ntuilo/Default.html" },
