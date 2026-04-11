@@ -108,6 +108,42 @@ export default function CorporatePage() {
         </div>
       </section>
 
+      {/* Success Story */}
+      <section className="section-spacing bg-white">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">Success Story</p>
+            <h2>真實案例：1,000 萬營收共創</h2>
+          </div>
+          <div className="mx-auto max-w-3xl rounded-2xl border border-stone-warm bg-stone p-8 md:p-10">
+            <div className="mb-6 flex flex-wrap items-center gap-3">
+              <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">
+                企業垂直加速器
+              </span>
+              <span className="text-sm text-slate-muted">2022 梯次</span>
+            </div>
+            <h3 className="mb-2 text-xl font-bold text-charcoal">
+              聯經出版 × SAT. 知識衛星
+            </h3>
+            <p className="mb-6 text-sm font-medium text-teal-deep">
+              出版業老字號 × 線上課程新創，共創藝文教育市場新藍海
+            </p>
+            <p className="mb-4 leading-relaxed text-slate-muted">
+              創立近半世紀的聯經出版，長期深耕人文藝術優質內容，卻苦於找不到數位延伸的突破口。透過台大創創中心企業垂直加速器，聯經與線上課程平台 SAT. 知識衛星在六個月輔導期間深度共創，共同發現藝文線上課程的未開發市場。
+            </p>
+            <p className="mb-6 leading-relaxed text-slate-muted">
+              雙方聯手推出「故事 × 聆賞 × 生活｜焦元溥的 37 堂古典音樂課」，上線約一年內達成 <strong className="text-charcoal">NT$1,000 萬營收</strong>，驗證了藝文教育市場的強勁需求，也開啟了聯經數位轉型的新篇章。
+            </p>
+            <blockquote className="border-l-4 border-teal pl-4 italic text-charcoal/80">
+              「外部創新能加速異業合作，對本業的優劣勢帶來全新眼光，幫助我們找到可驗證的新商機。」
+              <footer className="mt-2 text-sm not-italic text-slate-muted">
+                — 聯經出版總經理 陳芝宇
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
       {/* Success Metrics */}
       <section className="section-spacing">
         <div className="container text-center">

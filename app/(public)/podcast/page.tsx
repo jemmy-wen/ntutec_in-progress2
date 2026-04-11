@@ -15,6 +15,7 @@ const episodes = [
     title: "探索創新與影響力投資",
     subtitle: "專訪活水影響力投資共同創辦人 陳一強",
     desc: "深入探討影響力投資的本質，以及如何在追求財務回報的同時，創造社會與環境的正面影響。",
+    href: "https://open.firstory.me/story/clyijgdvc07da01zs7xz0h9t8/platforms",
   },
   {
     date: "2023-02-06",
@@ -135,8 +136,17 @@ export default function PodcastPage() {
             {episodes.map((ep) => (
               <div
                 key={ep.title}
-                className="rounded-2xl bg-white p-6 hover:shadow-md transition-shadow"
+                className={`rounded-2xl bg-white p-6 hover:shadow-md transition-shadow${ep.href ? " relative" : ""}`}
               >
+                {ep.href && (
+                  <Link
+                    href={ep.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 z-10 rounded-2xl"
+                    aria-label={`收聽 ${ep.title}`}
+                  />
+                )}
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <div className="flex-1">
                     {ep.series && (
@@ -156,6 +166,11 @@ export default function PodcastPage() {
                 <p className="text-sm text-slate-muted leading-relaxed">
                   {ep.desc}
                 </p>
+                {ep.href && (
+                  <p className="mt-3 text-xs font-semibold text-teal">
+                    ▶ 點擊收聽
+                  </p>
+                )}
               </div>
             ))}
           </div>
