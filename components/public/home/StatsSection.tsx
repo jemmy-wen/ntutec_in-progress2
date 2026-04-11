@@ -59,7 +59,7 @@ function AnimatedCounter({
   }, [start, animate]);
 
   return (
-    <span className="font-mono text-4xl font-bold tabular-nums text-charcoal md:text-5xl lg:text-6xl">
+    <span className="font-mono text-4xl font-bold tabular-nums text-white md:text-5xl lg:text-6xl">
       {prefix}{display}{suffix}
     </span>
   );
@@ -69,11 +69,15 @@ export default function StatsSection() {
   const { ref, isInView } = useInView();
 
   return (
-    <section className="section-spacing bg-stone">
-      <div className="container">
+    <section className="section-spacing relative overflow-hidden bg-charcoal">
+      {/* Background ambient orbs */}
+      <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-teal/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-20 right-10 h-64 w-64 rounded-full bg-teal-deep/15 blur-3xl" />
+
+      <div className="container relative">
         <div className="mb-12 text-center">
-          <p className="micro-label mb-2">Social Proof</p>
-          <h2>用數據說話</h2>
+          <p className="micro-label mb-2 text-teal-light">Social Proof</p>
+          <h2 className="text-white">用數據說話</h2>
         </div>
 
         <div
@@ -82,8 +86,15 @@ export default function StatsSection() {
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center text-center">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className="group relative flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 px-6 py-8 text-center backdrop-blur-sm hover:bg-white/10 transition-colors duration-300"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              {/* Glow ring on hover */}
+              <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 ring-1 ring-teal/40 shadow-[0_0_30px_oklch(0.66_0.12_180/0.15)]" />
+
               <AnimatedCounter
                 value={stat.value}
                 suffix={stat.suffix}
@@ -91,7 +102,7 @@ export default function StatsSection() {
                 start={isInView}
               />
               <span className="mt-3 inline-block h-1.5 w-1.5 rounded-full bg-teal" />
-              <p className="mt-2 text-sm font-medium text-slate-muted">
+              <p className="mt-2 text-sm font-medium text-stone/70">
                 {stat.label}
               </p>
             </div>
