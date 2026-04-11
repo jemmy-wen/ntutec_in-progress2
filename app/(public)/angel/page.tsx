@@ -131,6 +131,44 @@ export default function AngelPage() {
         </div>
       </section>
 
+      {/* Investor Insights */}
+      <section className="section-spacing bg-teal-wash">
+        <div className="container">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="micro-label mb-4">Investor Insights</p>
+            <h2 className="mb-4">天使投資人在看什麼？</h2>
+            <p className="text-lg text-slate-muted">
+              從 350+ 位投資人網絡與歷年月會互動中，提煉天使投資人最重視的三個核心指標。
+            </p>
+          </div>
+          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+            {[
+              {
+                icon: '💪',
+                title: '團隊執行力',
+                description: '點子可以複製，執行力不行。投資人首重創辦人韌性與行動速度——從想法到第一個客戶的時間，就是最好的證明。',
+              },
+              {
+                icon: '📐',
+                title: '市場規模清晰度',
+                description: '能說清楚市場夠不夠大，且有具體數字支撐。SAM / SOM 要有依據，而不只是「台灣有 2,300 萬人」。',
+              },
+              {
+                icon: '🛡️',
+                title: '差異化護城河',
+                description: '技術壁壘、數據優勢或網絡效應，至少要有一個。投資人評估的是三年後競爭對手難以複製的核心能力。',
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl bg-white p-6 card-hover">
+                <span className="text-3xl">{item.icon}</span>
+                <h4 className="mt-3 mb-2 text-lg font-semibold">{item.title}</h4>
+                <p className="text-sm leading-relaxed text-slate-muted">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Demo Day */}
       <section className="section-spacing">
         <div className="container">

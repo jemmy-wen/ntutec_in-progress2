@@ -93,6 +93,40 @@ export default function ProgramsPage() {
             </div>
           </section>
 
+          <section className="mt-16 rounded-2xl bg-stone p-8">
+            <p className="micro-label mb-4 text-center">Coaching Mechanism</p>
+            <h2 className="text-center mb-8">如何輔導你的新創？</h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  icon: '🎯',
+                  title: 'AO 陪跑制度',
+                  badge: '台大車庫',
+                  description: '專任輔導經理（AO）全程陪跑，每月定期 check-in，協助 MVP 驗證與用戶訪談，確保里程碑按節奏推進。',
+                },
+                {
+                  icon: '🤝',
+                  title: '業師 1-on-1 諮詢',
+                  badge: '台大加速器',
+                  description: '配對 20+ 位具 Yahoo、TSMC、微軟、BCG 背景業師，依需求安排一對一深度諮詢，精準解決成長瓶頸。',
+                },
+                {
+                  icon: '🏢',
+                  title: '企業場域驗證',
+                  badge: '企業垂直加速器',
+                  description: '媒合大企業提供真實市場驗證場域，企業 PM 共同推動專案，協助新創跨越死亡之谷、加速商模落地。',
+                },
+              ].map((item) => (
+                <div key={item.title} className="bg-white rounded-xl p-6">
+                  <span className="text-3xl">{item.icon}</span>
+                  <div className="mt-3 mb-1 inline-block rounded-full bg-teal/10 px-2.5 py-0.5 text-xs font-medium text-teal">{item.badge}</div>
+                  <h4 className="mb-2">{item.title}</h4>
+                  <p className="text-sm leading-relaxed text-slate-muted">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
           <section className="mt-16">
             <div className="text-center mb-8">
               <p className="micro-label mb-4">Application Timeline</p>
