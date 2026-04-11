@@ -23,9 +23,9 @@ export default function HeroSection() {
             </p>
 
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl animate-[fadeUp_0.6s_ease-out_0.1s_both]">
-              把台大最硬的研究
+              Bridging NTU Deep Tech
               <br />
-              打造成世界級的新創
+              to Global Impact
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">
