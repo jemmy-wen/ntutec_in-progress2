@@ -184,13 +184,13 @@ export default function Footer() {
             台大創新生態系
           </p>
           <div className="flex flex-wrap gap-3">
-            {[
+            [
               { label: "國立臺灣大學", href: "https://www.ntu.edu.tw" },
               { label: "研究發展處", href: "https://ord.ntu.edu.tw" },
               { label: "國際產學聯盟 ILO", href: "https://homepage.ntu.edu.tw/~ntuilo/ntuilo/Default.html" },
               { label: "創新育成中心", href: "https://ntuiic.ntu.edu.tw" },
               { label: "台大校友創投", href: "https://ntu.vc" },
-              { label: "U-Start 計畫", href: "https://ustart.sme.gov.tw" },
+              { label: "創新設計學院 D-School", href: "https://dschool.ntu.edu.tw" },
             ].map((partner) => (
               <a
                 key={partner.href}
