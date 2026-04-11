@@ -6,6 +6,7 @@ import AudienceCards from '@/components/public/home/AudienceCards'
 import StatsSection from '@/components/public/home/StatsSection'
 import NewsSection from '@/components/public/home/NewsSection'
 import PartnersSection from '@/components/public/home/PartnersSection'
+import NTUEcosystemSection from '@/components/public/home/NTUEcosystemSection'
 
 export const metadata: Metadata = {
   title: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',
@@ -32,6 +33,7 @@ export default function HomePage() {
       <AudienceCards />
       <StatsSection />
       <NewsSection />
+      <NTUEcosystemSection />
       <PartnersSection />
     </>
   )
