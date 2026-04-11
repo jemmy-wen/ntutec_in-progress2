@@ -22,8 +22,8 @@ const NAV_ITEMS: NavItem[] = [
     label: "計畫方案",
     children: [
       { label: "計畫總覽", href: "/programs" },
-      { label: "加速器", href: "/accelerator" },
-      { label: "車庫孵化器", href: "/garage" },
+      { label: "台大加速器", href: "/accelerator" },
+      { label: "台大車庫", href: "/garage" },
       { label: "2026 新創團隊", href: "/startups" },
       { label: "進駐資源", href: "/tec-deals" },
       { label: "校友新創", href: "/alumni" },
@@ -58,6 +58,7 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "消息", href: "/news" },
       { label: "活動", href: "/events" },
+      { label: "Demo Day", href: "/demo-day" },
       { label: "部落格", href: "/blog" },
       { label: "TEC Talk Podcast", href: "/podcast" },
     ],

@@ -10,7 +10,7 @@ import PartnersSection from '@/components/public/home/PartnersSection'
 export const metadata: Metadata = {
   title: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',
   description:
-    '13 年來累計輔導近 600 支新創團隊。台大創創中心以加速器、車庫孵化器、企業垂直加速器與天使投資俱樂部四大業務，連結台大、連結產業、連結資本，把最好的技術與人才轉化為可投資的新創。',
+    '13 年來累計輔導近 600 支新創團隊。台大創創中心以台大加速器、台大車庫、企業垂直加速器與天使投資俱樂部四大業務，連結台大、連結產業、連結資本，把最好的技術與人才轉化為可投資的新創。',
   alternates: {
     canonical: '/',
   },

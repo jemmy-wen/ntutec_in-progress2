@@ -29,17 +29,17 @@ const garageAlumni: AlumniStory[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "車庫孵化器 | NTUTEC",
+  title: "台大車庫 | NTUTEC",
   description:
-    "臺大創創中心車庫孵化器為早期團隊提供免費共創空間、創業社群與技術資源，助你從概念走向 MVP。",
+    "臺大創創中心台大車庫為早期團隊提供免費共創空間、創業社群與技術資源，助你從概念走向 MVP。",
 };
 
 export default function GaragePage() {
   return (
     <>
       <PageHero
-        title="車庫孵化器"
-        subtitle="Garage Incubator"
+        title="台大車庫"
+        subtitle="NTU Garage"
         description="專為早期團隊設計的彈性孵化空間，從概念驗證到 MVP，陪你走過最關鍵的第一步。"
       />
 
@@ -51,7 +51,7 @@ export default function GaragePage() {
               <p className="micro-label mb-4">Overview</p>
               <h2 className="mb-6">計畫概覽</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">
-                NTU Garage 成立於 2013 年，是臺大創創中心為早期創業團隊打造的共享孵化空間。13 年來，超過百支新創團隊曾於此起步，從概念驗證走向 MVP 與市場驗證。不同於加速器的密集輔導，車庫提供更彈性的時程安排，讓團隊在校園中安心探索、驗證與迭代。
+                台大車庫成立於 2013 年，是臺大創創中心為早期創業團隊打造的共享孵化空間。13 年來，超過百支新創團隊曾於此起步，從概念驗證走向 MVP 與市場驗證。不同於加速器的密集輔導，車庫提供更彈性的時程安排，讓團隊在校園中安心探索、驗證與迭代。
               </p>
               <p className="text-lg leading-relaxed text-slate-muted">
                 車庫由經理 Raven 主責，含必修課程規劃與整體輔導設計。我們提供安全的試錯空間，搭配同儕社群、業師諮詢與基礎資源，幫助團隊在正式進入市場前建立扎實的根基。
@@ -110,7 +110,7 @@ export default function GaragePage() {
                 icon: "🔗",
                 title: "加速器銜接",
                 description:
-                  "畢業後優先銜接加速器計畫，延續成長動能。",
+                  "畢業後優先銜接台大加速器，延續成長動能。",
               },
               {
                 icon: "🎓",
@@ -162,7 +162,7 @@ export default function GaragePage() {
       </section>
 
       {/* Featured Alumni */}
-      <FeaturedAlumni stories={garageAlumni} title="車庫校友成就" />
+      <FeaturedAlumni stories={garageAlumni} title="台大車庫校友成就" />
 
       {/* Batch Timeline */}
       <section className="section-spacing">

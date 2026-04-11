@@ -38,8 +38,8 @@ function YouTubeIcon() {
 
 const FOOTER_LINKS = {
   programs: [
-    { label: "加速器", href: "/accelerator" },
-    { label: "車庫孵化器", href: "/garage" },
+    { label: "台大加速器", href: "/accelerator" },
+    { label: "台大車庫", href: "/garage" },
     { label: "企業合作", href: "/corporate" },
     { label: "天使俱樂部", href: "/angel" },
   ],

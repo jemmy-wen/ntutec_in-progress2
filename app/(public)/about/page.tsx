@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 }
 
 const milestones = [
-  { year: '2013', title: 'NTU Garage 車庫孵化器啟動', description: '於臺大水源校區設立 NTU Garage，作為學生創業共享空間，開啟台大創業生態系的基礎建設。' },
+  { year: '2013', title: '台大車庫（NTU Garage）啟動', description: '於臺大水源校區設立 NTU Garage，作為學生創業共享空間，開啟台大創業生態系的基礎建設。' },
   { year: '2014', title: '臺大創創中心正式成立', description: '由臺灣大學以校級單位正式設立創創中心，整合校內創業資源，推動校園創新創業生態系。' },
   { year: '2016', title: 'NTU Challenge 校內創業競賽', description: '與創新設計學院合作舉辦 NTU Challenge，結合教育、業師輔導與競賽，發掘校園創業潛力。' },
-  { year: '2017', title: 'NTU Accelerator 加速器啟動', description: '推出加速器計畫，為已有原型的新創團隊提供市場驗證、商業模式迭代與募資對接資源。' },
+  { year: '2017', title: '台大加速器（NTU Accelerator）啟動', description: '推出台大加速器，為已有原型的新創團隊提供市場驗證、商業模式迭代與募資對接資源。' },
   { year: '2019', title: '企業垂直加速器首創', description: '首創企業垂直加速器，由企業出題、新創解題，累計與鴻海、Nvidia、Synopsys 等 35 家企業深度合作。' },
   { year: '2020', title: '企業創新諮詢服務', description: '推出企業開放式創新諮詢服務（Consulting），協助中大型企業導入新創思維與敏捷創新方法論。' },
   { year: '2022', title: 'Co-Creation Sandbox', description: '推出 Co-Creation Sandbox 會員制度，為新創提供安全的產品與市場驗證場域。' },
@@ -30,7 +30,7 @@ export default function AboutPage() {
               <p className="micro-label mb-4">Our Mission</p>
               <h2 className="mb-6">使命與願景</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">臺大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，致力於把台大最好的技術能量與人才，轉化成可投資的新創公司。</p>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導近 600 支新創團隊，涵蓋 120+ 臺大學生團隊、30+ 教授團隊與 200+ 校友團隊。透過加速器、車庫孵化器、企業垂直加速器與天使投資俱樂部四大運營業務，我們支持新創從技術驗證走入市場。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導近 600 支新創團隊，涵蓋 120+ 臺大學生團隊、30+ 教授團隊與 200+ 校友團隊。透過台大加速器、台大車庫、企業垂直加速器與天使投資俱樂部四大運營業務，我們支持新創從技術驗證走入市場。</p>
               <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為發掘與培育出更多未來能上市或成功出場的創業家，對標 Stanford StartX 與 Berkeley SkyDeck 等大學創業生態系，打造臺灣最具影響力的校園創業加速器。</p>
             </div>
             <div className="grid grid-cols-2 gap-4">

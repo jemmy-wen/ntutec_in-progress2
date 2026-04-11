@@ -124,7 +124,7 @@ export default function AlumniPage() {
             <p className="micro-label mb-4">Featured Alumni</p>
             <h2 className="mb-4">知名校友新創</h2>
             <p className="mb-12 mx-auto max-w-2xl text-lg text-slate-muted text-center">
-              以下校友團隊曾參與台大創創中心加速器或車庫孵化器，並在各自領域取得突出成就。
+              以下校友團隊曾參與台大加速器或台大車庫，並在各自領域取得突出成就。
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -157,7 +157,7 @@ export default function AlumniPage() {
           <p className="micro-label mb-4">More Alumni</p>
           <h2 className="mb-4">更多輔導校友</h2>
           <p className="mb-10 text-slate-muted">
-            以下是部分歷屆參與台大創創加速器與車庫孵化器的校友團隊：
+            以下是部分歷屆參與台大加速器與台大車庫的校友團隊：
           </p>
           <div className="flex flex-wrap gap-2 max-w-3xl mx-auto justify-center">
             {moreAlumni.map((name) => (
@@ -209,7 +209,7 @@ export default function AlumniPage() {
         <div className="container text-center">
           <h2 className="mb-6">成為下一個成功校友</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
-            每年兩梯次招募，加入台大創創加速器或車庫孵化器，獲得導師輔導、資金媒合與生態系支持。
+            每年兩梯次招募，加入台大加速器或台大車庫，獲得導師輔導、資金媒合與生態系支持。
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/apply" className="btn-pill-primary">

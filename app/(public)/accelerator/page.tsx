@@ -29,9 +29,9 @@ const acceleratorAlumni: AlumniStory[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "加速器計畫 | NTUTEC",
+  title: "台大加速器 | NTUTEC",
   description:
-    "臺大創創中心加速器計畫為期十個月，提供成長期新創深度業師輔導、企業資源對接與募資機會。",
+    "臺大創創中心台大加速器為期十個月，提供成長期新創深度業師輔導、企業資源對接與募資機會。",
 };
 
 const phases = [
@@ -96,9 +96,9 @@ export default function AcceleratorPage() {
   return (
     <>
       <PageHero
-        title="加速器計畫"
-        subtitle="Accelerator Program"
-        description="為期十個月的深度輔導計畫，幫助成長期新創加速邁向下一個里程碑。"
+        title="台大加速器"
+        subtitle="NTU Accelerator"
+        description="為期十個月的深度輔導計畫，幫助成長期新創加速邁向下一個里程碑。無台大身分亦可申請，有台大身分者優先。"
       />
 
       {/* Program Overview */}
@@ -108,7 +108,7 @@ export default function AcceleratorPage() {
             <p className="micro-label mb-4">Overview</p>
             <h2 className="mb-6">計畫概覽</h2>
             <p className="text-lg leading-relaxed text-slate-muted">
-              NTU Accelerator 自 2017 年啟動，專為已完成原型、進入市場驗證階段的成長期新創設計。計畫為期十個月，由 40+ 位業師提供一對一深度輔導，串接企業合作資源、天使投資俱樂部與創投網絡。2026 年加速器吸引 150 隊報名，是臺灣報名最踴躍的大學加速器之一。
+              台大加速器自 2017 年啟動，專為已完成原型、進入市場驗證階段的成長期新創設計。計畫為期十個月，由 40+ 位業師提供一對一深度輔導，串接企業合作資源、天使投資俱樂部與創投網絡。2026 年加速器吸引 150 隊報名，是臺灣報名最踴躍的大學加速器之一。
             </p>
           </div>
         </div>
@@ -170,6 +170,7 @@ export default function AcceleratorPage() {
             <h2 className="mb-6">申請條件</h2>
             <ul className="space-y-3">
               {[
+                "不限台大身分；有台大在校生、校友或教職員背景者優先錄取",
                 "已完成 MVP 或原型開發，具有初期用戶或營收",
                 "團隊至少 2 人，全職投入創業",
                 "具有明確的市場機會與成長潛力",
@@ -190,7 +191,7 @@ export default function AcceleratorPage() {
       </section>
 
       {/* Featured Alumni */}
-      <FeaturedAlumni stories={acceleratorAlumni} title="加速器校友成就" />
+      <FeaturedAlumni stories={acceleratorAlumni} title="台大加速器校友成就" />
 
       {/* Batch Timeline */}
       <section className="section-spacing">

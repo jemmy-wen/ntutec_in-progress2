@@ -131,6 +131,40 @@ export default function AngelPage() {
         </div>
       </section>
 
+      {/* Demo Day */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="micro-label mb-4">Demo Day</p>
+            <h2 className="mb-4">一年一度的投資媒合盛會</h2>
+            <p className="text-lg text-slate-muted">
+              每年 12 月，台大創創中心在台大校園舉辦年度 Demo Day，由精選新創向投資人 Pitch，
+              現場設置互動攤位與媒合機制。天使俱樂部會員可優先取得名額並參與投後追蹤。
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+            {[
+              { value: '74', unit: '位', label: '投資人單場到場', sub: 'VC 44 位 + 天使 30 位' },
+              { value: '51', unit: '件', label: '媒合意向', sub: '18 自行聯繫 + 33 中心協助' },
+              { value: '9,775', unit: '次', label: 'Accupass 瀏覽', sub: '近 7 屆最高紀錄' },
+              { value: '9.06', unit: '/10', label: '活動滿意度', sub: '51 份現場問卷' },
+            ].map((stat) => (
+              <div key={stat.label} className="rounded-2xl border bg-white p-6 text-center card-hover">
+                <div className="flex items-baseline justify-center gap-1">
+                  <span className="text-4xl font-bold text-teal">{stat.value}</span>
+                  <span className="text-xl font-semibold text-teal">{stat.unit}</span>
+                </div>
+                <p className="mt-2 font-semibold text-charcoal">{stat.label}</p>
+                <p className="mt-1 text-xs text-slate-muted">{stat.sub}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link href="/demo-day" className="btn-pill-outline">了解更多 Demo Day</Link>
+          </div>
+        </div>
+      </section>
+
       {/* Platform Features */}
       <section className="section-spacing bg-stone">
         <div className="container">

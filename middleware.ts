@@ -39,6 +39,7 @@ export async function middleware(request: NextRequest) {
     '/apply', '/faq', '/events', '/news', '/blog',
     '/contact', '/startups',
     '/tec-deals', '/podcast', '/alumni', '/careers',
+    '/demo-day',
     '/login', '/callback',
   ]
   // SEO assets — always public, no auth check

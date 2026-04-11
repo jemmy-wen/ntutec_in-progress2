@@ -4,21 +4,33 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '新創輔導計畫 | NTUTEC',
-  description: '臺大創創中心提供加速器與車庫孵化器兩大計畫，針對不同階段新創團隊量身打造輔導方案。',
+  description: '台大車庫與台大加速器兩大計畫，依需台大身分與否分流，共同框架為 OKR Tracker + Hot Seat + 三大 Checkpoint，每年 3 月開始，12 月 Demo Day 畢業。',
 }
 
 const programs = [
   {
-    icon: '🚀', name: '加速器計畫', subtitle: 'Accelerator Program',
-    duration: '10 個月', target: '成長期新創（已有 MVP 或初期營收）',
-    features: ['一對一業師深度輔導，每月定期會議', '企業資源對接與合作機會媒合', '天使投資人 Demo Day 募資對接', '國際加速器網絡與海外市場拓展'],
-    href: '/accelerator', primary: true,
+    icon: '🏠', name: '台大車庫', subtitle: 'NTU Garage',
+    duration: '10 個月（3月至12月）',
+    target: '早期創業團隊（需具台大在校生、校友或教職員身分）',
+    features: [
+      '領域業師小組諮詢（4-5 隊同領域共學）',
+      '免費虛擬進駐，共創空間與校園資源',
+      '3 大 Checkpoint：PSF / BMV / Traction 驗證',
+      '銜接台大加速器的優先通道',
+    ],
+    href: '/garage', primary: false,
   },
   {
-    icon: '🏠', name: '車庫孵化器', subtitle: 'Garage Incubator',
-    duration: '彈性制（6-12 個月）', target: '早期團隊（概念驗證至 MVP 階段）',
-    features: ['免費共創空間與基礎設施', '創業社群交流與同儕學習', '技術開發與商業模式工作坊', '畢業後銜接加速器計畫的優先通道'],
-    href: '/garage', primary: false,
+    icon: '🚀', name: '台大加速器', subtitle: 'NTU Accelerator',
+    duration: '10 個月（3月至12月）',
+    target: '成長期新創（不限台大身分，有台大身分者優先）',
+    features: [
+      '陪跑業師每月一對一深度輔導',
+      'OKR Tracker 追蹤進度，每月 Office Hour 預約制',
+      '企業資源對接與 Demo Day 募資路演',
+      '350+ 投資人網絡，天使俱樂部媒合',
+    ],
+    href: '/accelerator', primary: true,
   },
 ]
 
@@ -50,6 +62,58 @@ export default function ProgramsPage() {
               </div>
             ))}
           </div>
+
+          <section className="mt-16 rounded-2xl bg-stone p-8">
+            <p className="micro-label mb-4 text-center">Methodology</p>
+            <h2 className="text-center mb-8">輔導框架</h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  icon: '📊',
+                  title: 'OKR Tracker',
+                  description: '所有輔導圍繞關鍵結果與進度狀態展開，每次會議前繳交報告。',
+                },
+                {
+                  icon: '🔥',
+                  title: 'Hot Seat 焦點會診',
+                  description: '3 分鐘報告 + 12 分鐘業師追問 + 5 分鐘同儕分享，20 分鐘高強度診斷。',
+                },
+                {
+                  icon: '🎯',
+                  title: '三大 Checkpoint',
+                  description: 'PSF 問題驗證 → BMV 商業模式驗證 → Traction 成長牽引，逐關遞進。',
+                },
+              ].map((item) => (
+                <div key={item.title} className="bg-white rounded-xl p-6">
+                  <span className="text-3xl">{item.icon}</span>
+                  <h4 className="mt-3 mb-2">{item.title}</h4>
+                  <p className="text-sm leading-relaxed text-slate-muted">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16">
+            <div className="text-center mb-8">
+              <p className="micro-label mb-4">Application Timeline</p>
+              <h2>申請時程</h2>
+              <p className="mt-3 text-base text-slate-muted">每年招募一梯次，申請至畢業共約 13 個月</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { month: '12–1 月', label: '開放申請', desc: '線上提交報名表' },
+                { month: '2 月', label: '公布結果', desc: '入選團隊名單公告' },
+                { month: '3–11 月', label: '輔導進行', desc: '業師諮詢 + Checkpoint 驗證' },
+                { month: '12 月', label: 'Demo Day', desc: '向投資人路演，完成畢業' },
+              ].map((step) => (
+                <div key={step.month} className="rounded-xl border bg-white p-5 text-center">
+                  <p className="text-sm font-bold text-teal">{step.month}</p>
+                  <p className="mt-1 font-semibold text-charcoal">{step.label}</p>
+                  <p className="mt-1 text-xs text-slate-muted">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
 
           <div className="mt-16 rounded-2xl bg-teal-wash p-8 text-center">
             <h3 className="mb-3">不確定適合哪個計畫？</h3>
