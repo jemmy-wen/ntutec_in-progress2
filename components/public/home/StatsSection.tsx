@@ -12,9 +12,9 @@ interface Stat {
 
 const stats: Stat[] = [
   { value: 600, prefix: "近 ", suffix: " 支", label: "累計輔導新創團隊" },
-  { value: 150, suffix: " 隊", label: "2026 加速器申請" },
-  { value: 40, suffix: "+", label: "創業導師網絡" },
-  { value: 13, suffix: " 年", label: "深耕創業生態" },
+  { value: 350, suffix: "+", label: "投資人與天使網絡" },
+  { value: 35, suffix: " 家", label: "企業合作夥伴" },
+  { value: 13, suffix: " 年", label: "深耕台大創業生態" },
 ];
 
 function easeOutCubic(t: number): number {
