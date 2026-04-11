@@ -108,6 +108,151 @@ export default function CorporatePage() {
         </div>
       </section>
 
+      {/* Section A: 旗艦案例深挖 */}
+      <section className="section-spacing bg-white">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">FEATURED CASES</p>
+            <h2>企業合作成功案例</h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {/* Card 1: 宏碁 × 律果科技 */}
+            <div className="rounded-2xl border border-stone-warm p-6">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">
+                  企業垂直加速器
+                </span>
+                <span className="rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold text-teal-deep">
+                  外部創新顧問
+                </span>
+              </div>
+              <h3 className="mb-1 text-xl font-bold text-charcoal">
+                宏碁 Acer Foundation × 律果科技 LegalSign.ai
+              </h3>
+              <p className="mb-4 text-sm font-medium text-teal-deep">
+                企業贊助加速器 × AI 法務科技新創，共創法律合約智慧化
+              </p>
+              <ul className="mb-5 space-y-2 text-sm leading-relaxed text-slate-muted">
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  獲《哈佛商業評論》HBR 專文報導
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  榮獲經濟部「白科技獎」潛力新創
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  宏碁作為企業導師協助市場驗證，加速商業落地
+                </li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["#LegalTech", "#AI", "#HBR報導", "#宏碁"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-stone px-2.5 py-1 text-xs text-slate-muted"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 2: 聯經 × SAT */}
+            <div className="rounded-2xl border border-stone-warm p-6">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">
+                  企業垂直加速器
+                </span>
+                <span className="rounded-full bg-stone px-3 py-1 text-xs font-semibold text-charcoal">
+                  永續主題
+                </span>
+              </div>
+              <h3 className="mb-1 text-xl font-bold text-charcoal">
+                聯經出版 Linking Publishing × SAT. Knowledge 知識衛星
+              </h3>
+              <p className="mb-4 text-sm font-medium text-teal-deep">
+                出版業老字號 × 線上課程新創，共創藝文教育市場新藍海
+              </p>
+              <ul className="mb-5 space-y-2 text-sm leading-relaxed text-slate-muted">
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  企業新創互補共生典範案例，達成 NT$1,000 萬營收
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  年度企業外部創新旗艦合作，被評為 Score 5 / AEO High
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  協助聯經拓展數位知識服務版圖，開啟數位轉型新篇章
+                </li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["#知識科技", "#永續發展", "#外部創新"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-stone px-2.5 py-1 text-xs text-slate-muted"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section B: 外部創新顧問四大機制 */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">How We Help</p>
+            <h2>我們如何協助企業創新？</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-slate-muted">
+              台大創創中心以外部創新顧問角色，全程陪跑企業與新創的合作歷程
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-4">
+            {[
+              {
+                icon: "🎯",
+                title: "對接決策者",
+                description: "直接連結企業高階決策層，確保合作案獲得內部支持",
+              },
+              {
+                icon: "🏭",
+                title: "產業實務傳授",
+                description: "企業提供第一線產業知識，助新創快速理解市場脈絡",
+              },
+              {
+                icon: "🤝",
+                title: "企業 PM 共創",
+                description: "企業 PM 與新創定期工作會議，共同推動合作案進展",
+              },
+              {
+                icon: "📊",
+                title: "每月進展追蹤",
+                description: "台大創創擔任陪跑角色，每月追蹤合作狀況確保成果",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl bg-white p-6 text-center"
+              >
+                <span className="mb-4 block text-4xl">{item.icon}</span>
+                <h3 className="mb-2 text-base font-semibold text-charcoal">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-muted">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Success Story */}
       <section className="section-spacing bg-white">
         <div className="container">
@@ -163,6 +308,9 @@ export default function CorporatePage() {
           </div>
           <p className="mt-8 text-sm text-slate-muted">
             合作對象含 Nvidia、Synopsys、鴻海、台積電、玉山銀行、友達光電等國內外知名企業
+          </p>
+          <p className="mt-3 text-xs text-slate-muted/70">
+            歷年逾 35 家合作企業，累計啟動 27 期企業垂直加速器（來源：114年成果報告）
           </p>
         </div>
       </section>
