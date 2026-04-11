@@ -25,6 +25,8 @@ const NAV_ITEMS: NavItem[] = [
       { label: "加速器", href: "/accelerator" },
       { label: "車庫孵化器", href: "/garage" },
       { label: "2026 新創團隊", href: "/startups" },
+      { label: "進駐資源", href: "/tec-deals" },
+      { label: "校友新創", href: "/alumni" },
       { label: "常見問題", href: "/faq" },
     ],
   },
@@ -48,6 +50,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "團隊", href: "/team" },
       { label: "業師", href: "/mentors" },
       { label: "諮詢委員會", href: "/advisory-board" },
+      { label: "加入我們", href: "/careers" },
     ],
   },
   {
@@ -56,6 +59,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "消息", href: "/news" },
       { label: "活動", href: "/events" },
       { label: "部落格", href: "/blog" },
+      { label: "TEC Talk Podcast", href: "/podcast" },
     ],
   },
 ];
