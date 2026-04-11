@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { AlertCircle } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
+import PreRegisterForm from "@/components/public/PreRegisterForm";
 
 export const metadata: Metadata = {
   title: "申請與提前登記 | NTUTEC",
@@ -16,7 +18,7 @@ const tracks = [
     subtitle: "Accelerator Program",
     description:
       "適合已有 MVP 或初期營收的成長期新創。為期十個月（每年 3 月 ~ 12 月），提供業師輔導、企業對接與募資機會。",
-    href: "#",
+    href: "#preregister",
     note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",
   },
   {
@@ -25,7 +27,7 @@ const tracks = [
     subtitle: "Garage Incubator",
     description:
       "適合概念驗證至 MVP 階段的早期團隊。年度梯次制（每年 3 月 ~ 12 月），提供共創空間與社群資源。",
-    href: "#",
+    href: "#preregister",
     note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",
   },
 ];
@@ -93,12 +95,28 @@ export default function ApplyPage() {
                 </p>
                 <div className="mt-6">
                   <span className="btn-pill-primary group-hover:bg-teal-deep">
-                    預約 2027 梯次通知
+                    提前登記通知
                   </span>
                 </div>
                 <p className="mt-3 text-xs text-slate-muted">{track.note}</p>
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pre-register Form */}
+      <section id="preregister" className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mx-auto max-w-xl">
+            <p className="micro-label mb-4 text-center">Pre-register</p>
+            <h2 className="mb-2 text-center">提前登記</h2>
+            <p className="mb-8 text-center text-slate-muted">
+              2027 梯次申請將於 2026 年 12 月開放。提前登記不等同申請，正式開放時優先通知。
+            </p>
+            <Suspense>
+              <PreRegisterForm />
+            </Suspense>
           </div>
         </div>
       </section>

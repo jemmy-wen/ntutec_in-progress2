@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/public/PageHero";
+import AngelApplyForm from "@/components/public/AngelApplyForm";
 
 export const metadata: Metadata = {
   title: "加入天使俱樂部 | NTUTEC",
@@ -46,15 +47,13 @@ export default function AngelApplyPage() {
         </div>
       </section>
 
-      {/* Application Form Placeholder */}
+      {/* Application Form */}
       <section className="section-spacing bg-stone">
         <div className="container">
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-xl">
             <p className="micro-label mb-4">Application</p>
             <h2 className="mb-8">申請表單</h2>
-            <div className="rounded-xl bg-stone-warm p-8 text-center">
-              <p className="text-slate-muted">申請表單將在此處</p>
-            </div>
+            <AngelApplyForm />
           </div>
         </div>
       </section>
