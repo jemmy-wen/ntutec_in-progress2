@@ -29,6 +29,11 @@ const CORPORATE_PARTNERS = [
   { name: "東方線上", logo: "/images/partners/eastern-online.png", width: 120, height: 28 },
   { name: "友達光電 AUO", logo: "/images/partners/auo.svg", width: 100, height: 40 },
   { name: "遠傳電信 FET", logo: "/images/partners/fetnet.png", width: 100, height: 32 },
+  { name: "康寧 Corning", logo: "/images/partners/corning.svg", width: 110, height: 32 },
+  { name: "宏碁 Acer", logo: "/images/partners/acer.svg", width: 90, height: 30 },
+  { name: "玉山銀行 E.SUN", logo: "/images/partners/esun-bank.svg", width: 110, height: 36 },
+  { name: "AmazingTalker", logo: "/images/partners/amazingtalker.png", width: 130, height: 18 },
+  { name: "天下雜誌 CommonWealth", logo: "/images/partners/commonwealth.svg", width: 120, height: 36 },
 ];
 
 const categories = partnersData.categories as Category[];
