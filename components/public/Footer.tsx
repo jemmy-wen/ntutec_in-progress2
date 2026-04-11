@@ -66,6 +66,26 @@ export default function Footer() {
             <p className="text-sm leading-relaxed text-slate-muted">
               臺大創創中心連結新創團隊、企業夥伴與天使投資人，打造台灣最具影響力的大學加速器生態系。
             </p>
+            <p className="text-xs text-slate-muted/70">
+              隸屬{" "}
+              <a
+                href="https://www.ntu.edu.tw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-teal transition-colors underline underline-offset-2"
+              >
+                國立臺灣大學
+              </a>
+              {" "}·{" "}
+              <a
+                href="https://ord.ntu.edu.tw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-teal transition-colors underline underline-offset-2"
+              >
+                研究發展處
+              </a>
+            </p>
             <div className="flex items-center gap-3 pt-2">
               <a
                 href="https://www.facebook.com/ntutec.fanpage/"
@@ -167,8 +187,35 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ── 台大生態系夥伴 ── */}
+        <div className="mt-12 border-t border-border pt-8">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-muted/60">
+            台大創新生態系
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { label: "國立臺灣大學", href: "https://www.ntu.edu.tw" },
+              { label: "研究發展處", href: "https://ord.ntu.edu.tw" },
+              { label: "國際產學聯盟 ILO", href: "https://homepage.ntu.edu.tw/~ntuilo/ntuilo/Default.html" },
+              { label: "創新育成中心", href: "https://ntuiic.ntu.edu.tw" },
+              { label: "台大校友創投", href: "https://ntu.vc" },
+              { label: "U-Start 計畫", href: "https://ustart.sme.gov.tw" },
+            ].map((partner) => (
+              <a
+                key={partner.href}
+                href={partner.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-border px-3 py-1.5 text-xs text-slate-muted transition-colors hover:border-teal hover:text-teal"
+              >
+                {partner.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
         {/* ── Bottom bar ── */}
-        <div className="mt-12 border-t border-border pt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+        <div className="mt-8 border-t border-border pt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
           <p className="text-xs text-slate-muted">
             &copy; {new Date().getFullYear()} 國立臺灣大學創意創業中心. All
             rights reserved.
