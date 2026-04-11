@@ -53,6 +53,15 @@ const alumniHighlights = [
   },
 ]
 
+const keyMilestones = [
+  { year: "2012", event: "台大車庫創立，首屆新創進駐" },
+  { year: "2017", event: "企業垂直加速器首創，首家合作企業加入" },
+  { year: "2021", event: "天使俱樂部成立，投資人網絡突破 300 位" },
+  { year: "2023", event: "Botbonnie 被日本 Appier 收購，首個 Exit 案例" },
+  { year: "2024", event: "艾斯創生醫奪 SelectUSA MedTech 冠軍，獲 US$250 萬" },
+  { year: "2025", event: "配客嘉完成 A 輪逾 NT$1 億，Demo Day 300+ 人出席" },
+]
+
 const milestones = [
   { year: '2013', title: '台大車庫（NTU Garage）啟動', description: '於臺大水源校區設立 NTU Garage，作為學生創業共享空間，開啟台大創業生態系的基礎建設。' },
   { year: '2014', title: '臺大創創中心正式成立', description: '由臺灣大學以校級單位正式設立創創中心，整合校內創業資源，推動校園創新創業生態系。' },
@@ -114,6 +123,24 @@ export default function AboutPage() {
                 <div className="mb-1 text-xs font-semibold uppercase tracking-widest text-teal">{item.en}</div>
                 <h3 className="mb-3 text-xl font-bold text-charcoal">{item.label}</h3>
                 <p className="text-slate-muted leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Key Milestones Timeline */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">Timeline</p>
+            <h2 className="mb-4">重要里程碑</h2>
+          </div>
+          <div className="mx-auto max-w-2xl space-y-6">
+            {keyMilestones.map((m) => (
+              <div key={m.year} className="flex gap-4 items-start border-l-2 border-teal pl-6">
+                <span className="w-12 shrink-0 text-sm font-bold text-teal">{m.year}</span>
+                <p className="text-slate-muted leading-relaxed">{m.event}</p>
               </div>
             ))}
           </div>

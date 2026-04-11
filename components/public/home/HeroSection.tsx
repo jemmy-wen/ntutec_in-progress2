@@ -29,7 +29,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">
-              13 年來累計輔導近 600 支新創團隊。以台大加速器、台大車庫、企業垂直加速器與天使投資俱樂部四大業務，幫助技術團隊從實驗室走進市場、對接產業與資本。
+              13 年 HI3 模型深耕，累計輔導近 600 支新創。2 案國際 Exit、校友奪 SelectUSA MedTech 冠軍、Angel Club 連結 350+ 投資人，助技術團隊從實驗室走向全球市場。
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">
