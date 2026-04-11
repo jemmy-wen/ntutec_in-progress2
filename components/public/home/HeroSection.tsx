@@ -1,29 +1,27 @@
-import Link from "next/link";
-import { BackgroundBeams } from "@/components/ui/background-beams";
-import { SparklesCore } from "@/components/ui/sparkles";
+'use client'
+import Link from 'next/link'
+import { BackgroundBeams } from '@/components/ui/background-beams'
+import { CursorSpotlight } from '@/components/ui/cursor-spotlight'
+import { MagneticButton } from '@/components/ui/magnetic-button'
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+      {/* Layers: gradient → beams → sparkles → spotlight → content */}
       <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-charcoal/90 to-teal-deep/30" />
       <BackgroundBeams className="z-[1]" />
-      <SparklesCore
-        particleColor="oklch(0.66 0.12 180)"
-        particleDensity={60}
-        speed={0.6}
-        className="z-[1] opacity-60"
-      />
+      <CursorSpotlight />
 
       <div className="container relative z-10 py-24">
-        <div className="max-w-3xl animate-[fadeUp_0.6s_ease-out_both]">
-          <p className="micro-label text-teal-light mb-4">
+        <div className="max-w-3xl">
+          <p className="micro-label text-teal-light mb-4 animate-[fadeUp_0.6s_ease-out_both]">
             NTU TAIDAH ENTREPRENEURSHIP CENTER · 台大創業生態系實戰基地
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl animate-[fadeUp_0.6s_ease-out_0.1s_both]">
             把台大最硬的研究
             <br />
-            <span className="text-teal">打造成世界級的新創</span>
+            打造成世界級的新創
           </h1>
 
           <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">
@@ -31,17 +29,24 @@ export default function HeroSection() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">
-            <Link href="/apply" className="btn-pill-primary px-8 py-4 text-base">
-              申請加入輔導計畫
-            </Link>
-            <Link href="/about" className="btn-pill-outline px-8 py-4 text-base border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white/50">
-              認識 NTUTEC
-            </Link>
+            <MagneticButton strength={0.4}>
+              <Link href="/apply" className="btn-pill-primary px-8 py-4 text-base block">
+                申請加入輔導計畫
+              </Link>
+            </MagneticButton>
+            <MagneticButton strength={0.25}>
+              <Link
+                href="/about"
+                className="btn-pill-outline px-8 py-4 text-base block border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white/50"
+              >
+                認識 NTUTEC
+              </Link>
+            </MagneticButton>
           </div>
         </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
     </section>
-  );
+  )
 }

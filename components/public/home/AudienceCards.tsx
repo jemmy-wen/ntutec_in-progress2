@@ -4,8 +4,15 @@ import Link from "next/link";
 import { Rocket, Building2, TrendingUp, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useMotionTemplate,
+  useReducedMotion,
+} from "motion/react";
+import { useRef } from "react";
 
 interface AudienceCard {
   label: string;
@@ -46,9 +53,96 @@ const audiences: AudienceCard[] = [
   },
 ];
 
+function TiltCard({
+  card,
+  i,
+  isInView,
+}: {
+  card: AudienceCard;
+  i: number;
+  isInView: boolean;
+}) {
+  const Icon = card.icon;
+  const cardRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = useReducedMotion();
+
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, { stiffness: 200, damping: 25, mass: 0.5 });
+  const springY = useSpring(rotateY, { stiffness: 200, damping: 25, mass: 0.5 });
+
+  // Dynamic shadow moves opposite to tilt — creates convincing light-source illusion
+  const shadowX = useTransform(springY, (v) => -v * 2.5);
+  const shadowY = useTransform(springX, (v) => v * 2.5);
+  const boxShadow = useMotionTemplate`${shadowX}px ${shadowY}px 32px oklch(0 0 0 / 0.12), 0 2px 8px oklch(0 0 0 / 0.06)`;
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (prefersReduced) return;
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    rotateY.set(((e.clientX - cx) / (rect.width / 2)) * 8);
+    rotateX.set(-((e.clientY - cy) / (rect.height / 2)) * 6);
+  };
+
+  const onMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{
+        rotateX: prefersReduced ? 0 : springX,
+        rotateY: prefersReduced ? 0 : springY,
+        boxShadow,
+        transformPerspective: 1000,
+      }}
+      initial={{ opacity: 0, y: 28 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+      transition={{ duration: 0.55, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      className="group relative overflow-hidden rounded-2xl border border-stone-warm/60 bg-white will-change-transform"
+    >
+      {/* Specular shine overlay — top-left light source */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: "linear-gradient(135deg, oklch(1 0 0 / 0.08) 0%, transparent 55%)",
+        }}
+      />
+
+      <div className={`relative h-48 lg:h-56 ${card.gradient}`}>
+        <span className="absolute bottom-3 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold tracking-wider text-charcoal">
+          {card.label}
+        </span>
+      </div>
+
+      <div className="p-6">
+        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-wash text-teal transition-transform duration-200 group-hover:scale-110">
+          <Icon className="h-5 w-5" />
+        </div>
+        <h3 className="text-xl font-semibold text-charcoal">{card.title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-slate-muted">
+          {card.description}
+        </p>
+        <Link
+          href={card.href}
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-teal transition-colors hover:text-teal-deep"
+        >
+          了解更多
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function AudienceCards() {
   const { ref, isInView } = useInView();
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <section className="section-spacing bg-white">
@@ -62,64 +156,9 @@ export default function AudienceCards() {
         </div>
 
         <div ref={ref} className="grid gap-8 md:grid-cols-3">
-          {audiences.map((card, i) => {
-            const Icon = card.icon;
-            return (
-              <div
-                key={card.label}
-                className="relative"
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                {/* Hover glow background */}
-                <AnimatePresence>
-                  {hoveredIndex === i && (
-                    <motion.span
-                      className="absolute inset-0 block rounded-2xl bg-teal-wash"
-                      layoutId="audienceHover"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1, transition: { duration: 0.15 } }}
-                      exit={{ opacity: 0, transition: { duration: 0.15, delay: 0.05 } }}
-                    />
-                  )}
-                </AnimatePresence>
-
-                <div
-                  className={`relative group overflow-hidden rounded-2xl border border-stone-warm/60 bg-white transition-all duration-500 ${
-                    isInView
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-6"
-                  }`}
-                  style={{ transitionDelay: `${i * 150}ms` }}
-                >
-                  <div className={`relative h-48 lg:h-56 ${card.gradient}`}>
-                    <span className="absolute bottom-3 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold tracking-wider text-charcoal">
-                      {card.label}
-                    </span>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-wash text-teal">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-charcoal">
-                      {card.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-muted">
-                      {card.description}
-                    </p>
-                    <Link
-                      href={card.href}
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-teal transition-colors hover:text-teal-deep"
-                    >
-                      了解更多
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {audiences.map((card, i) => (
+            <TiltCard key={card.label} card={card} i={i} isInView={isInView} />
+          ))}
         </div>
       </div>
     </section>

@@ -24,10 +24,19 @@ export function InfiniteMovingCards({
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollerRef = useRef<HTMLUListElement>(null)
   const [start, setStart] = useState(false)
+  const [prefersReduced, setPrefersReduced] = useState(false)
 
   useEffect(() => {
-    addAnimation()
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReduced(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
   }, [])
+
+  useEffect(() => {
+    if (!prefersReduced) addAnimation()
+  }, [prefersReduced]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
@@ -56,6 +65,27 @@ export function InfiniteMovingCards({
       const durations = { fast: '20s', normal: '40s', slow: '60s' }
       containerRef.current.style.setProperty('--animation-duration', durations[speed])
     }
+  }
+
+  // Reduced motion: show static grid instead of scrolling
+  if (prefersReduced) {
+    return (
+      <div className={cn('flex flex-wrap gap-3 py-4', className)}>
+        {items.map((item, idx) => (
+          <div
+            key={idx}
+            className="rounded-xl border border-stone-warm bg-white px-5 py-3 shadow-sm"
+          >
+            <div className="text-sm font-semibold text-charcoal">{item.name}</div>
+            {item.name_en && (
+              <div className="mt-0.5 text-[10px] font-medium uppercase tracking-widest text-slate-muted">
+                {item.name_en}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    )
   }
 
   return (

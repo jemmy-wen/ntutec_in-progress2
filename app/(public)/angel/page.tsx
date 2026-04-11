@@ -3,9 +3,9 @@ import Link from 'next/link'
 import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
-  title: '天使投資俱樂部 | NTUTEC',
+  title: 'NTUTEC ANGELS 臺大天使會 | NTUTEC',
   description:
-    '台大創創中心天使投資俱樂部成立於 2023 年，以 Gate 0/1/2 三段預審、每月例會與生態系支持，為會員提供經過嚴謹篩選的優質早期案源。',
+    'NTUTEC ANGELS 臺大天使會成立於 2023 年，以 Gate 0/1/2 三段預審、每月例會與生態系支持，為會員提供經過嚴謹篩選的優質早期案源。',
 }
 
 const highlights = [
@@ -57,7 +57,7 @@ export default function AngelPage() {
   return (
     <>
       <PageHero
-        title="天使投資俱樂部"
+        title="NTUTEC ANGELS 臺大天使會"
         subtitle="Angel Investment Club"
         description="以台大創業生態系為核心的天使投資社群，結合 13 年輔導經驗、Gate 預審系統與業師網絡，為會員提供經過嚴謹篩選的投資案源。"
       />
@@ -125,6 +125,36 @@ export default function AngelPage() {
                     <div className="text-2xl text-teal/40">→</div>
                   </div>
                 )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Features */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="micro-label mb-4">Member Platform</p>
+            <h2 className="mb-4">入會後，你可以做什麼</h2>
+            <p className="text-lg text-slate-muted">
+              NTUTEC ANGELS 提供專屬會員平台，從案源瀏覽到投資決策，一站完成。
+            </p>
+          </div>
+          <div className="mx-auto grid max-w-3xl gap-4">
+            {[
+              { icon: '📋', title: '瀏覽候選新創', desc: '每月天使例會前，上架 3–5 家精選新創的六張資訊卡片，完整呈現團隊、市場與競爭優勢。' },
+              { icon: '🗳️', title: '投資意向投票', desc: '天使例會後針對 Pitch 過的新創進行記名投票，並選擇投資金額範圍（50萬以下 / 50–100萬 / 100–200萬 / 200萬以上）。' },
+              { icon: '📊', title: '本月 Pipeline', desc: '即時查看當月評估中的新創列表，了解 Gate 篩選進度與案源品質。' },
+              { icon: '📚', title: '學習中心', desc: '天使投資入門、產業趨勢、盡職調查方法論等學習資源，持續更新。' },
+              { icon: '🔔', title: '即時通知', desc: '卡片上架、投票開放、天使例會提醒——重要事件第一時間通知到你。' },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-4 rounded-2xl bg-white p-5">
+                <div className="text-2xl mt-0.5">{item.icon}</div>
+                <div>
+                  <h4 className="font-semibold text-charcoal">{item.title}</h4>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-muted">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
