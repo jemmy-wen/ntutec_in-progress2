@@ -164,7 +164,6 @@ export default function AngelPage() {
           </div>
         </div>
       </section>
-
       {/* Platform Features */}
       <section className="section-spacing bg-stone">
         <div className="container">
