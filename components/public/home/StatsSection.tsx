@@ -69,10 +69,12 @@ export default function StatsSection() {
   const { ref, isInView } = useInView();
 
   return (
-    <section className="section-spacing relative overflow-hidden bg-charcoal">
+    <section className="section-spacing relative overflow-hidden bg-charcoal pb-24">
       {/* Background ambient orbs */}
       <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-teal/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-20 right-10 h-64 w-64 rounded-full bg-teal-deep/15 blur-3xl" />
+      {/* Fade to white for next section */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
 
       <div className="container relative">
         <div className="mb-12 text-center">

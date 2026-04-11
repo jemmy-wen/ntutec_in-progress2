@@ -1,9 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { BackgroundBeams } from '@/components/ui/background-beams'
-import { SparklesCore } from '@/components/ui/sparkles'
 import { CursorSpotlight } from '@/components/ui/cursor-spotlight'
-import { TextScramble } from '@/components/ui/text-scramble'
 import { MagneticButton } from '@/components/ui/magnetic-button'
 
 export default function HeroSection() {
@@ -12,12 +10,6 @@ export default function HeroSection() {
       {/* Layers: gradient → beams → sparkles → spotlight → content */}
       <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-charcoal/90 to-teal-deep/30" />
       <BackgroundBeams className="z-[1]" />
-      <SparklesCore
-        particleColor="oklch(0.66 0.12 180)"
-        particleDensity={50}
-        speed={0.5}
-        className="z-[1] opacity-50"
-      />
       <CursorSpotlight />
 
       <div className="container relative z-10 py-24">
@@ -27,11 +19,9 @@ export default function HeroSection() {
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl animate-[fadeUp_0.6s_ease-out_0.1s_both]">
-            <TextScramble
-              text={'把台大最硬的研究\n打造成世界級的新創'}
-              delay={300}
-              duration={1600}
-            />
+            把台大最硬的研究
+            <br />
+            打造成世界級的新創
           </h1>
 
           <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">

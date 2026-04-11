@@ -1,7 +1,9 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { useReducedMotion } from 'motion/react'
 
-const CHARS = '台大研究新創科技投資加速生技醫療硬體軟體ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$&'
+// ASCII-only chars — no Chinese, so scrambled state reads as "cipher/terminal" not "broken CJK"
+const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$&*+=-~'
 
 export function TextScramble({
   text,
@@ -14,11 +16,14 @@ export function TextScramble({
   delay?: number
   duration?: number
 }) {
-  const [display, setDisplay] = useState(text) // start with real text
-  const [animating, setAnimating] = useState(false)
+  const [display, setDisplay] = useState(text)
   const mountedRef = useRef(false)
+  const prefersReduced = useReducedMotion()
 
   useEffect(() => {
+    // Skip animation entirely for reduced-motion users
+    if (prefersReduced) return
+
     // Prevent double-run in React Strict Mode
     if (mountedRef.current) return
     mountedRef.current = true
@@ -28,8 +33,8 @@ export function TextScramble({
     const STEPS = 30
     const stepDuration = duration / STEPS
     let step = 0
+    let interval: ReturnType<typeof setInterval> | null = null
 
-    // Start with fully scrambled
     const scrambled = (progress: number) =>
       lines
         .map((line) =>
@@ -37,9 +42,8 @@ export function TextScramble({
             .split('')
             .map((char, i) => {
               if (char === ' ') return ' '
-              const globalIdx = lines
-                .slice(0, lines.indexOf(line))
-                .join('').length + i
+              const globalIdx =
+                lines.slice(0, lines.indexOf(line)).join('').length + i
               const threshold = Math.floor(progress * totalChars)
               if (globalIdx < threshold) return char
               return CHARS[Math.floor(Math.random() * CHARS.length)]
@@ -49,25 +53,25 @@ export function TextScramble({
         .join('\n')
 
     const delayTimer = setTimeout(() => {
-      setAnimating(true)
       setDisplay(scrambled(0))
 
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         step++
         const progress = step / STEPS
         if (progress >= 1) {
-          clearInterval(interval)
+          clearInterval(interval!)
+          interval = null
           setDisplay(text)
-          setAnimating(false)
         } else {
           setDisplay(scrambled(progress))
         }
       }, stepDuration)
-
-      return () => clearInterval(interval)
     }, delay)
 
-    return () => clearTimeout(delayTimer)
+    return () => {
+      clearTimeout(delayTimer)
+      if (interval !== null) clearInterval(interval)
+    }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

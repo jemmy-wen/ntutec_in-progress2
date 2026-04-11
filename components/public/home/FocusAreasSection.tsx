@@ -22,7 +22,7 @@ const focusAreas: FocusArea[] = [
     description:
       "從基礎模型到垂直應用，涵蓋企業生成式 AI、Agent、資料基礎設施與 SaaS 平台。連結台大資工、電機、資管領域研究能量。",
     examples: "MoBagel · AmazingTalker · KryptoGO",
-    accentColor: "from-teal/20 to-teal-deep/5",
+    accentColor: "from-teal/30 to-teal-deep/10",
   },
   {
     icon: HeartPulse,
@@ -31,7 +31,7 @@ const focusAreas: FocusArea[] = [
     description:
       "醫材、AI 輔助診斷、精準醫療、數位健康與藥物開發。串接台大醫學院、醫院臨床場域與台大天使俱樂部生醫投資網絡。",
     examples: "AHEAD Medicine · 優照護",
-    accentColor: "from-rose-100/60 to-pink-50/30",
+    accentColor: "from-teal-wash to-stone-warm",
   },
   {
     icon: CircuitBoard,
@@ -40,7 +40,7 @@ const focusAreas: FocusArea[] = [
     description:
       "半導體、先進製造、材料科學、機器人與物聯網。連結台大工學院與國內半導體產業鏈，提供硬體開發與量產驗證資源。",
     examples: "PackAge+ · 循環材料新創",
-    accentColor: "from-indigo-100/50 to-blue-50/20",
+    accentColor: "from-teal-deep/20 to-teal/10",
   },
   {
     icon: Lightbulb,
@@ -49,7 +49,7 @@ const focusAreas: FocusArea[] = [
     description:
       "永續、循環經濟、ESG、社會創新與平台經濟。以創新商業模式解決產業痛點，接軌企業垂直加速器出題場域。",
     examples: "活水社企投資開發 · 循環經濟團隊",
-    accentColor: "from-amber-100/50 to-yellow-50/20",
+    accentColor: "from-stone-warm to-stone",
   },
 ];
 

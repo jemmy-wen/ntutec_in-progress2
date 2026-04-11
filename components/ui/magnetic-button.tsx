@@ -1,6 +1,6 @@
 'use client'
 import React, { useRef } from 'react'
-import { motion, useMotionValue, useSpring } from 'motion/react'
+import { motion, useMotionValue, useSpring, useReducedMotion } from 'motion/react'
 import { cn } from '@/lib/utils'
 
 export function MagneticButton({
@@ -15,18 +15,23 @@ export function MagneticButton({
   [key: string]: unknown
 }) {
   const ref = useRef<HTMLDivElement>(null)
+  const prefersReduced = useReducedMotion()
   const x = useMotionValue(0)
   const y = useMotionValue(0)
   const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 })
   const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 })
 
   const onMove = (e: React.MouseEvent) => {
+    if (prefersReduced) return
     const rect = ref.current?.getBoundingClientRect()
     if (!rect) return
     const cx = rect.left + rect.width / 2
     const cy = rect.top + rect.height / 2
-    x.set((e.clientX - cx) * strength)
-    y.set((e.clientY - cy) * strength)
+    // Cap displacement to 12px max so button stays within click zone
+    const dx = Math.min(Math.max((e.clientX - cx) * strength, -12), 12)
+    const dy = Math.min(Math.max((e.clientY - cy) * strength, -12), 12)
+    x.set(dx)
+    y.set(dy)
   }
 
   const onLeave = () => {
