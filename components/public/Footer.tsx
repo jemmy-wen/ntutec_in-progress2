@@ -76,15 +76,6 @@ export default function Footer() {
               >
                 國立臺灣大學
               </a>
-              {" "}·{" "}
-              <a
-                href="https://ord.ntu.edu.tw"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-teal transition-colors underline underline-offset-2"
-              >
-                研究發展處
-              </a>
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
