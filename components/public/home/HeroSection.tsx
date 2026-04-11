@@ -29,7 +29,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">
-              13 年 HI3 模型深耕，累計輔導近 600 支新創。2 案國際 Exit、校友奪 SelectUSA MedTech 冠軍、Angel Club 連結 350+ 投資人，助技術團隊從實驗室走向全球市場。
+              13 年 HI3 模型深耕，累計輔導逾 600 支新創。2 案國際 Exit、校友奪 SelectUSA MedTech 冠軍、Angel Club 連結 350+ 投資人，助技術團隊從實驗室走向全球市場。
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">

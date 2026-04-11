@@ -5,7 +5,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '關於臺大創創中心 | NTUTEC',
-  description: '臺大創創中心是台大創業生態系的實戰基地，13 年來累計輔導近 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，對標 Stanford StartX 與 Berkeley SkyDeck。',
+  description: '臺大創創中心是台大創業生態系的實戰基地，13 年來累計輔導逾 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，對標 Stanford StartX 與 Berkeley SkyDeck。',
 }
 
 const hi3Model = [
@@ -25,7 +25,7 @@ const hi3Model = [
   },
   {
     key: 'Ignition',
-    label: '點火起飛',
+    label: '加速起飛',
     en: 'Ignition',
     icon: '🚀',
     description: '舉辦 Demo Day（74 位投資人到場）、閉門投資媒合、天使投資俱樂部，為準備好的團隊引燃第一桶資本，走向市場起飛。',
@@ -85,8 +85,8 @@ export default function AboutPage() {
               <p className="micro-label mb-4">Our Mission</p>
               <h2 className="mb-6">使命與願景</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">臺大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，致力於把台大最好的技術能量與人才，轉化成可投資的新創公司。</p>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導近 600 支新創團隊，涵蓋 120+ 臺大學生團隊、30+ 教授團隊與 200+ 校友團隊。透過台大加速器、台大車庫、企業垂直加速器與天使投資俱樂部四大運營業務，我們支持新創從技術驗證走入市場。</p>
-              <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈最具吸引力與影響力的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 點火起飛）系統性支持新創，對標 Stanford StartX 與 Berkeley SkyDeck。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導逾 600 支新創團隊，涵蓋 120+ 臺大學生團隊、30+ 教授團隊與 200+ 校友團隊。透過台大加速器、台大車庫、企業垂直加速器與天使投資俱樂部四大運營業務，我們支持新創從技術驗證走入市場。</p>
+              <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈最具吸引力與影響力的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 加速起飛）系統性支持新創，對標 Stanford StartX 與 Berkeley SkyDeck。</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[

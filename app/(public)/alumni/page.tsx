@@ -82,7 +82,7 @@ const moreAlumni = [
   "精拓生技",
   "SHOWHUE 選優科技",
   "SURREAL 超現實科技",
-  "Astron Medtech 艾斯創生醫",
+  "Aistrom 艾斯創生醫",
   "澔心科技",
   "Encore 安可日子",
   "Amago Trip",
