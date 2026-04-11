@@ -7,6 +7,51 @@ export const metadata: Metadata = {
   description: '臺大創創中心是台大創業生態系的實戰基地，13 年來累計輔導近 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，對標 Stanford StartX 與 Berkeley SkyDeck。',
 }
 
+const hi3Model = [
+  {
+    key: 'Incubation',
+    label: '輔導培育',
+    en: 'Incubation',
+    icon: '🌱',
+    description: '透過 AO 陪跑制度、國際業師一對一諮詢、專業課程（商業模式、募資、法務），陪伴教授與學生團隊從構想走到原型驗證。',
+  },
+  {
+    key: 'Integration',
+    label: '對接整合',
+    en: 'Integration',
+    icon: '🔗',
+    description: '銜接台大各院系資源、企業垂直加速器、EiMBA 創業學程，連結政府計畫（FITI、TTA）與國際夥伴，讓新創快速接軌真實場域。',
+  },
+  {
+    key: 'Ignition',
+    label: '點火起飛',
+    en: 'Ignition',
+    icon: '🚀',
+    description: '舉辦 Demo Day（74 位投資人到場）、閉門投資媒合、天使投資俱樂部，為準備好的團隊引燃第一桶資本，走向市場起飛。',
+  },
+]
+
+const alumniHighlights = [
+  {
+    name: '配客嘉 PackAge+',
+    tag: '循環包裝 × ESG',
+    result: 'A 輪逾 NT$1 億',
+    detail: '獲國發基金 + 策略投資人入股，將循環包裝帶入台灣主流電商供應鏈。',
+  },
+  {
+    name: '艾斯創生醫 Aistrom',
+    tag: '醫療器材 × 國際',
+    result: '募資 USD 250 萬',
+    detail: 'SelectUSA MedTech 冠軍，NBA 球隊指定名醫等國際骨科權威投資。',
+  },
+  {
+    name: 'Botbonnie',
+    tag: '聊天機器人 × AI',
+    result: '被 Appier 收購',
+    detail: '台大創創校友團隊，成功被日本上市 AI 公司 Appier 收購，實現完整 Exit。',
+  },
+]
+
 const milestones = [
   { year: '2013', title: '台大車庫（NTU Garage）啟動', description: '於臺大水源校區設立 NTU Garage，作為學生創業共享空間，開啟台大創業生態系的基礎建設。' },
   { year: '2014', title: '臺大創創中心正式成立', description: '由臺灣大學以校級單位正式設立創創中心，整合校內創業資源，推動校園創新創業生態系。' },
@@ -31,7 +76,7 @@ export default function AboutPage() {
               <h2 className="mb-6">使命與願景</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">臺大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，致力於把台大最好的技術能量與人才，轉化成可投資的新創公司。</p>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導近 600 支新創團隊，涵蓋 120+ 臺大學生團隊、30+ 教授團隊與 200+ 校友團隊。透過台大加速器、台大車庫、企業垂直加速器與天使投資俱樂部四大運營業務，我們支持新創從技術驗證走入市場。</p>
-              <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為發掘與培育出更多未來能上市或成功出場的創業家，對標 Stanford StartX 與 Berkeley SkyDeck 等大學創業生態系，打造臺灣最具影響力的校園創業加速器。</p>
+              <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈最具吸引力與影響力的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 點火起飛）系統性支持新創，對標 Stanford StartX 與 Berkeley SkyDeck。</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
@@ -47,6 +92,52 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HI3 Model Section */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">Our Approach</p>
+            <h2 className="mb-4">HI3 培育模型</h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-muted">
+              以人為本（Human-centric），透過三階段系統性支持，陪伴新創從構想走向市場起飛。
+            </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            {hi3Model.map((item) => (
+              <div key={item.key} className="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
+                <div className="mb-4 text-4xl">{item.icon}</div>
+                <div className="mb-1 text-xs font-semibold uppercase tracking-widest text-teal">{item.en}</div>
+                <h3 className="mb-3 text-xl font-bold text-charcoal">{item.label}</h3>
+                <p className="text-slate-muted leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Alumni Success Highlights */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <p className="micro-label mb-4">Alumni Impact</p>
+            <h2 className="mb-4">校友成功案例</h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-muted">
+              從台大車庫與加速器起步，這些團隊已完成募資、收購或國際市場驗證。
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {alumniHighlights.map((alumni) => (
+              <div key={alumni.name} className="rounded-2xl bg-teal-wash p-8">
+                <div className="mb-3 inline-block rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold text-teal">{alumni.tag}</div>
+                <h4 className="mb-2 text-lg font-bold text-charcoal">{alumni.name}</h4>
+                <div className="mb-3 text-2xl font-bold text-teal-deep">{alumni.result}</div>
+                <p className="text-sm text-slate-muted leading-relaxed">{alumni.detail}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
