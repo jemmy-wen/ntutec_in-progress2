@@ -5,7 +5,7 @@ import PageHero from '@/components/public/PageHero'
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS 臺大天使會 | NTUTEC',
   description:
-    'NTUTEC ANGELS 臺大天使會：每月精選 3–5 家台大生態系新創、三段嚴格盡調、記名投票機制，與 40+ 位天使投資人共同佈局早期新創。個人會員 NT$50,000/年。',
+    'NTUTEC ANGELS 臺大天使會：每月精選台大生態系優質新創、三段嚴格盡調、記名投票機制，與 40+ 位天使投資人共同佈局早期新創。個人會員 NT$50,000/年。',
 }
 
 /* ───────── data ───────── */
@@ -51,7 +51,7 @@ const highlights = [
     icon: '🤝',
     title: '彈性個人直接投資',
     description:
-      '會員以個人資金直接投資，不受機構共投限制，投資金額從 50 萬以下至 200 萬以上自主選擇，完全掌握決策時機。',
+      '會員以個人資金直接投資，不受機構共投限制，投資金額自主決定，完全掌握決策時機與規模。',
   },
   {
     icon: '📈',
@@ -99,7 +99,7 @@ const membershipTiers = [
     period: '/年',
     featured: false,
     benefits: [
-      '每月精選 3–5 家新創資訊卡片',
+      '每月精選新創資訊卡片',
       '完整 DD 備忘錄與盡調資料',
       '月會出席與記名投票權',
       '40+ 天使投資人社群交流',
@@ -115,7 +115,7 @@ const membershipTiers = [
     featured: true,
     badge: '推薦',
     benefits: [
-      '可指派 3 位代表出席',
+      '可指派多位代表出席',
       '包含所有個人會員權益',
       '優先企業參訪安排',
       '企業品牌曝光與共投機會',
@@ -141,7 +141,7 @@ export default function AngelPage() {
       <PageHero
         title="NTUTEC ANGELS 臺大天使會"
         subtitle="Angel Investment Club"
-        description="以台大創業生態系為核心的天使投資社群。每月精選 3–5 家新創、三段嚴格盡調、記名投票，與 40+ 位投資人共同佈局早期新創。"
+        description="以台大創業生態系為核心的天使投資社群。每月精選優質新創、三段嚴格盡調、記名投票，與 40+ 位投資人共同佈局早期新創。"
       />
 
       {/* ── Stat bar ── */}
@@ -266,7 +266,7 @@ export default function AngelPage() {
             <p className="micro-label mb-4">Screening Process</p>
             <h2 className="mb-4">三段嚴格篩選機制</h2>
             <p className="text-lg text-slate-muted">
-              每個上架到月例會的案件，都經過投資經理的完整盡調——通過率不到 10%。
+              每個上架到月例會的案件，都經過投資經理的完整盡調，嚴格篩選，不輕易上架。
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
@@ -297,7 +297,7 @@ export default function AngelPage() {
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Membership</p>
             <h2 className="mb-4">會員方案</h2>
-            <p className="text-lg text-slate-muted">年費制，每年一月開放新會員申請。</p>
+            <p className="text-lg text-slate-muted">年費制，每年定期開放新會員申請。</p>
           </div>
           <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
             {membershipTiers.map((tier) => (
@@ -476,7 +476,7 @@ export default function AngelPage() {
           <h2 className="mb-4">成為天使投資俱樂部的一員</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
             與台大創業生態系的天使投資人一起，發掘改變未來的早期新創。
-            個人會員 NT$50,000/年，企業會員 NT$100,000/年，每年一月開放申請。
+            個人會員 NT$50,000/年，企業會員 NT$100,000/年，每年定期開放申請。
           </p>
           <Link href="/angel-apply" className="btn-pill-primary">
             預約入會諮詢
