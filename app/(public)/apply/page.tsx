@@ -19,6 +19,7 @@ const tracks = [
     description:
       "適合已有 MVP 或初期營收的成長期新創。為期十個月（每年 3 月 ~ 12 月），提供業師輔導、企業對接與募資機會。",
     href: "#preregister",
+    learnHref: "/accelerator",
     note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",
   },
   {
@@ -28,6 +29,7 @@ const tracks = [
     description:
       "適合概念驗證至 MVP 階段的早期團隊。年度梯次制（每年 3 月 ~ 12 月），提供共創空間與社群資源。",
     href: "#preregister",
+    learnHref: "/garage",
     note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",
   },
 ];
@@ -82,10 +84,9 @@ export default function ApplyPage() {
         <div className="container">
           <div className="grid gap-8 lg:grid-cols-2">
             {tracks.map((track) => (
-              <a
+              <div
                 key={track.name}
-                href={track.href}
-                className="group flex flex-col rounded-2xl border-2 border-transparent bg-white p-8 shadow-sm transition-all hover:border-teal hover:shadow-lg"
+                className="flex flex-col rounded-2xl border-2 border-transparent bg-white p-8 shadow-sm"
               >
                 <span className="text-4xl">{track.icon}</span>
                 <h3 className="mt-4">{track.name}</h3>
@@ -93,13 +94,16 @@ export default function ApplyPage() {
                 <p className="mt-4 flex-1 leading-relaxed text-slate-muted">
                   {track.description}
                 </p>
-                <div className="mt-6">
-                  <span className="btn-pill-primary group-hover:bg-teal-deep">
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href={track.href} className="btn-pill-primary">
                     提前登記通知
-                  </span>
+                  </a>
+                  <a href={track.learnHref} className="btn-pill-outline text-sm">
+                    先了解計畫細節
+                  </a>
                 </div>
                 <p className="mt-3 text-xs text-slate-muted">{track.note}</p>
-              </a>
+              </div>
             ))}
           </div>
         </div>

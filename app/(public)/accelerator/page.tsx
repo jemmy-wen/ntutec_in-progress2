@@ -297,6 +297,16 @@ export default function AcceleratorPage() {
         </div>
       </section>
 
+      {/* FAQ diversion */}
+      <section className="py-6 text-center">
+        <div className="container">
+          <p className="text-sm text-slate-muted">
+            申請條件有疑問？{' '}
+            <a href="/faq" className="text-teal-deep underline underline-offset-4 font-medium">查看常見問題 →</a>
+          </p>
+        </div>
+      </section>
+
       {/* Audience diversion */}
       <section className="py-10 bg-gray-50 text-center border-t">
         <p className="text-gray-600 mb-6">你是企業或投資人？我們有更適合你的合作方式</p>

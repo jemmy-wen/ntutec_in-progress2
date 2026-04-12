@@ -42,6 +42,7 @@ const FOOTER_LINKS = {
     { label: "天使俱樂部", href: "/angel" },
     { label: "台大加速器", href: "/accelerator" },
     { label: "台大車庫", href: "/garage" },
+    { label: "提前登記申請", href: "/apply" },
   ],
   about: [
     { label: "關於 TEC", href: "/about" },

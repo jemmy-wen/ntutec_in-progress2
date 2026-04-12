@@ -40,7 +40,11 @@ export default async function NewsPage() {
         <div className="container">
           {posts.length === 0 ? (
             <div className="rounded-2xl bg-stone p-12 text-center">
-              <p className="text-slate-muted">目前沒有最新消息，敬請期待。</p>
+              <p className="mb-4 text-slate-muted">目前沒有最新消息，敬請期待。</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <a href="/blog" className="btn-pill-outline text-sm">瀏覽部落格</a>
+                <a href="/podcast" className="btn-pill-outline text-sm">收聽 Podcast</a>
+              </div>
             </div>
           ) : (
             <div className="mx-auto max-w-3xl space-y-6">

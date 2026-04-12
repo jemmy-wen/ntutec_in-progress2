@@ -103,7 +103,11 @@ export default function AdvisoryBoardPage() {
 
       <section className="section-spacing bg-stone text-center">
         <div className="container">
-          <Link href="/about" className="btn-pill-outline">了解台大創創中心</Link>
+          <h2 className="mb-6">準備好了嗎？</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/apply" className="btn-pill-primary">申請輔導計畫</Link>
+            <Link href="/corporate" className="btn-pill-outline">企業合作洽談</Link>
+          </div>
         </div>
       </section>
     </>

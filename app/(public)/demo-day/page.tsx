@@ -295,7 +295,10 @@ export default function DemoDayPage() {
               <p className="mt-3 leading-relaxed text-slate-muted">
                 想出席下一屆 Demo Day？名額有限，採邀請制。歡迎聯繫我們取得出席邀請。
               </p>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href="/angel-apply" className="btn-pill-primary">
+                  申請天使入會
+                </Link>
                 <Link href="/contact" className="btn-pill-outline">
                   聯繫我們
                 </Link>

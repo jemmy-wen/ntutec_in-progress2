@@ -137,6 +137,31 @@ export default function StartupsPage() {
           </p>
         </div>
       </section>
+
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="grid gap-6 md:grid-cols-3 text-center">
+            <div className="rounded-2xl bg-white p-6">
+              <p className="mb-2 text-2xl">🚀</p>
+              <h3 className="mb-2 text-base font-semibold">我也想加入</h3>
+              <p className="mb-4 text-sm text-slate-muted">申請 2027 梯次台大加速器或台大車庫</p>
+              <a href="/apply" className="btn-pill-outline text-sm">提前登記申請</a>
+            </div>
+            <div className="rounded-2xl bg-white p-6">
+              <p className="mb-2 text-2xl">💼</p>
+              <h3 className="mb-2 text-base font-semibold">我是投資人</h3>
+              <p className="mb-4 text-sm text-slate-muted">了解天使投資俱樂部，參與早期案件媒合</p>
+              <a href="/angel" className="btn-pill-outline text-sm">了解天使俱樂部</a>
+            </div>
+            <div className="rounded-2xl bg-white p-6">
+              <p className="mb-2 text-2xl">🏢</p>
+              <h3 className="mb-2 text-base font-semibold">我是企業</h3>
+              <p className="mb-4 text-sm text-slate-muted">探索企業垂直加速器與新創合作機會</p>
+              <a href="/corporate" className="btn-pill-outline text-sm">探索企業合作</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

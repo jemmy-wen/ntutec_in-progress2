@@ -205,13 +205,13 @@ export default function PodcastPage() {
       {/* CTA */}
       <section className="section-spacing bg-teal-wash">
         <div className="container text-center">
-          <h2 className="mb-6">不想錯過最新集數？</h2>
+          <h2 className="mb-6">收聽最新集數</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
-            訂閱台大創創中心電子報，每月收到新集數通知與創業相關資訊。
+            在 Firstory、Spotify、Apple Podcasts 訂閱 TEC Talk，第一時間收到新集數通知。
           </p>
-          <Link href="/contact" className="btn-pill-primary">
-            訂閱電子報
-          </Link>
+          <a href="https://open.firstory.me/user/ntutec" target="_blank" rel="noopener noreferrer" className="btn-pill-primary">
+            在 Firstory 訂閱
+          </a>
         </div>
       </section>
     </>

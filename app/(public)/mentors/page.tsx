@@ -192,6 +192,10 @@ export default function MentorsPage() {
       <section className="py-12 bg-gray-50 text-center">
         <p className="text-lg text-gray-600 mb-4">與頂尖業師並肩創業</p>
         <a href="/apply" className="inline-block bg-teal text-white px-6 py-3 rounded-lg hover:bg-teal-deep transition-colors">立即申請</a>
+        <div className="mt-8 border-t border-gray-200 pt-8">
+          <p className="text-base text-gray-600 mb-4">有意成為 NTUTEC 業師？</p>
+          <a href="/contact?type=mentor" className="inline-block border border-teal text-teal px-6 py-3 rounded-lg hover:bg-teal hover:text-white transition-colors">業師申請洽詢</a>
+        </div>
       </section>
 
       {/* Footer Note */}

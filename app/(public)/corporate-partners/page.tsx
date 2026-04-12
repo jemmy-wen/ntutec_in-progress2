@@ -100,6 +100,16 @@ export default function CorporatePartnersPage() {
           </p>
         </div>
       </section>
+
+      <section className="section-spacing bg-teal-wash text-center">
+        <div className="container">
+          <h2 className="mb-4">有合作提案？</h2>
+          <p className="mx-auto mb-6 max-w-xl text-slate-muted">
+            台大創創中心持續歡迎有意與新創生態系共創的企業夥伴加入合作行列。
+          </p>
+          <a href="/corporate" className="btn-pill-primary">了解企業合作方案</a>
+        </div>
+      </section>
     </>
   );
 }

@@ -154,7 +154,7 @@ export default function TecDealsPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA for startups */}
       <section className="section-spacing bg-teal-wash">
         <div className="container text-center">
           <h2 className="mb-6 text-3xl font-bold md:text-4xl">
@@ -166,6 +166,22 @@ export default function TecDealsPage() {
           <Link href="/apply" className="btn-pill-primary">
             提前登記 2027 梯次
           </Link>
+        </div>
+      </section>
+
+      {/* CTA for vendors/partners */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mx-auto max-w-2xl rounded-2xl border border-stone-warm/60 bg-white p-8 text-center">
+            <p className="micro-label mb-4">For Partners</p>
+            <h2 className="mb-4">想成為 TEC Deals 合作夥伴？</h2>
+            <p className="mb-6 text-slate-muted leading-relaxed">
+              如果你的產品或服務希望提供優惠方案給台大創創中心進駐新創，歡迎隨時與我們洽談。合作模式彈性，無固定申請期，雙方議定後即可上架。
+            </p>
+            <Link href="/contact?type=partnership" className="btn-pill-outline">
+              洽談合作夥伴方案
+            </Link>
+          </div>
         </div>
       </section>
     </>

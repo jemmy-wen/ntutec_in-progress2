@@ -70,7 +70,7 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero title="關於台大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人——台大創業生態系的完整版圖。" />
+      <PageHero title="關於台大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人網絡（含 40+ 付費天使會員）——台大創業生態系的完整版圖。" />
 
       <section className="section-spacing">
         <div className="container">

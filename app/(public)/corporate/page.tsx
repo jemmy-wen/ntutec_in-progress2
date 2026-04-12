@@ -374,7 +374,7 @@ export default function CorporatePage() {
             無論是探索新技術、尋找創新解決方案，或建立人才管道，台大創創中心都能量身打造合作方案。
           </p>
           <Link href="/consulting" className="btn-pill-outline mr-4">
-            預約企業創新診斷
+            了解諮詢服務
           </Link>
           <Link href="/contact" className="btn-pill-primary">
             聯繫我們
