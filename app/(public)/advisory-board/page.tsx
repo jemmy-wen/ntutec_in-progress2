@@ -88,36 +88,26 @@ export default function AdvisoryBoardPage() {
             {advisors.map((advisor) => (
               <div
                 key={advisor.name}
-                className="group overflow-hidden rounded-2xl border border-stone-warm/50 bg-white shadow-sm transition-shadow hover:shadow-md"
+                className="group flex flex-col items-center rounded-2xl border border-stone-warm/60 bg-white px-6 py-8 text-center shadow-sm transition-shadow hover:shadow-md"
               >
-                {/* Logo emblem area — charcoal background */}
-                <div className="relative flex flex-col items-center justify-center bg-charcoal py-8 gap-3">
-                  {/* Thin teal accent line at top */}
-                  <div className="absolute inset-x-0 top-0 h-[3px] bg-teal" />
+                {/* NTUTEC logo */}
+                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-teal-wash">
                   <Image
                     src="/logo-tec-icon.png"
                     alt="NTUTEC"
-                    width={56}
-                    height={56}
-                    className="opacity-90"
+                    width={64}
+                    height={64}
+                    className="rounded-full"
                   />
-                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
-                    Advisory Board
-                  </span>
                 </div>
 
-                {/* Info area */}
-                <div className="px-5 py-5">
-                  <p className="text-[10px] font-bold tracking-widest text-teal uppercase mb-2">
-                    {advisor.title}
-                  </p>
-                  <h3 className="text-lg font-bold leading-snug text-charcoal">
-                    {advisor.name}
-                  </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-muted">
-                    {advisor.organization}
-                  </p>
-                </div>
+                {/* Divider */}
+                <div className="mb-5 h-px w-10 bg-teal/30" />
+
+                {/* Info */}
+                <h3 className="text-xl font-bold text-charcoal">{advisor.name}</h3>
+                <p className="mt-1.5 text-sm font-semibold text-teal">{advisor.title}</p>
+                <p className="mt-2 text-xs leading-relaxed text-slate-muted">{advisor.organization}</p>
               </div>
             ))}
           </div>
