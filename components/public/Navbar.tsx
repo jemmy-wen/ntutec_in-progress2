@@ -24,7 +24,6 @@ const NAV_ITEMS: NavItem[] = [
       { label: "台大加速器", href: "/accelerator" },
       { label: "台大車庫", href: "/garage" },
       { label: "校友新創", href: "/alumni" },
-      { label: "常見問題", href: "/faq" },
     ],
   },
   {
@@ -59,6 +58,10 @@ const NAV_ITEMS: NavItem[] = [
       { label: "部落格", href: "/blog" },
       { label: "TEC Talk Podcast", href: "/podcast" },
     ],
+  },
+  {
+    label: "常見問題",
+    href: "/faq",
   },
 ];
 
