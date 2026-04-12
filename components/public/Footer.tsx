@@ -205,6 +205,19 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ── Featured In ── */}
+        <div className="mt-8 border-t border-border pt-6">
+          <p className="text-xs text-slate-muted mb-3">媒體報導</p>
+          <div className="flex flex-wrap gap-4 items-center">
+            {[
+              { name: "Harvard Business Review", src: "/images/partners/hbr.svg" },
+              { name: "數位時代", src: "/images/partners/bnext.svg" },
+            ].map((m) => (
+              <img key={m.name} src={m.src} alt={m.name} className="h-5 w-auto object-contain grayscale opacity-50 hover:opacity-80 transition-opacity" />
+            ))}
+          </div>
+        </div>
+
         {/* ── Bottom bar ── */}
         <div className="mt-8 border-t border-border pt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
           <p className="text-xs text-slate-muted">

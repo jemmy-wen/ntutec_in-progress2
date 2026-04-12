@@ -165,6 +165,22 @@ export default function DemoDayPage() {
               <p className="mt-1 text-sm text-slate-muted">共 356 人報名到場</p>
             </div>
           </div>
+
+          {/* VC / CVC 代表機構 */}
+          <div className="mt-10 text-center">
+            <p className="micro-label mb-6">Representative Investors</p>
+            <div className="flex flex-wrap justify-center gap-6 items-center">
+              {[
+                { name: "CDIB 中華開發", src: "/images/partners/cdib.svg" },
+                { name: "基石創投", src: "/images/partners/cornerstone.svg" },
+                { name: "活水影響力投資", src: "/images/partners/bcurrent.png" },
+              ].map((vc) => (
+                <div key={vc.name} className="flex h-12 items-center justify-center rounded-lg border border-stone-warm/60 bg-white px-5 py-2">
+                  <img src={vc.src} alt={vc.name} className="h-7 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all" />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
