@@ -64,19 +64,46 @@ const team: TeamMember[] = [
   },
 ];
 
-function TeamCard({ member, size = "default" }: { member: TeamMember; size?: "large" | "default" }) {
-  const avatarSize = size === "large" ? "h-24 w-24" : "h-20 w-20";
-  const nameSize = size === "large" ? "text-2xl" : "text-xl";
+function LeadershipCard({ member }: { member: TeamMember }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-stone-warm/40 bg-white shadow-sm card-hover">
+      {/* Large portrait photo */}
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-stone">
+        {member.photo ? (
+          <Image
+            src={member.photo}
+            alt={`${member.name}，${member.title}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover object-top"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-teal-wash">
+            <span className="text-6xl font-bold text-teal/40">{member.initials}</span>
+          </div>
+        )}
+      </div>
+      {/* Info */}
+      <div className="p-6">
+        <p className="text-xs font-bold tracking-widest text-teal uppercase mb-1">{member.title}</p>
+        <h3 className="text-2xl font-bold text-charcoal">{member.name}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-slate-muted">{member.bio}</p>
+      </div>
+    </div>
+  );
+}
+
+function TeamCard({ member }: { member: TeamMember }) {
   return (
     <div className="rounded-xl border bg-white p-6 card-hover">
-      <div className={`mb-4 flex ${avatarSize} shrink-0 items-center justify-center overflow-hidden rounded-full bg-teal-wash`}>
+      <div className="mb-4 flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full bg-teal-wash">
         {member.photo ? (
-          <Image src={member.photo} alt={`${member.name}，${member.title}`} width={96} height={96} className="h-full w-full object-cover" />
+          <Image src={member.photo} alt={`${member.name}，${member.title}`} width={80} height={80} className="h-full w-full object-cover" />
         ) : (
           <span className="text-2xl font-bold text-teal">{member.initials}</span>
         )}
       </div>
-      <h3 className={nameSize}>{member.name}</h3>
+      <h3 className="text-xl">{member.name}</h3>
       <p className="mt-1 text-sm font-semibold text-teal">{member.title}</p>
       <p className="mt-3 text-sm leading-relaxed text-slate-muted">{member.bio}</p>
     </div>
@@ -101,7 +128,7 @@ export default function TeamPage() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {leadership.map((member) => (
-              <TeamCard key={member.name} member={member} size="large" />
+              <LeadershipCard key={member.name} member={member} />
             ))}
           </div>
         </div>
@@ -121,6 +148,7 @@ export default function TeamPage() {
             {team.map((member) => (
               <TeamCard key={member.name} member={member} />
             ))}
+
           </div>
         </div>
       </section>
