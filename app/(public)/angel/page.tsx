@@ -30,7 +30,7 @@ const recentInvestments = [
     round: '早期股東',
     sector: '循環包裝 · ESG',
     description:
-      '台大加速器校友，2025 年完成 A 輪募資逾新台幣 1 億元，是天使俱樂部持股校友中首個完成 A 輪的案件。',
+      '台大加速器校友，天使俱樂部為早期股東並持股至 A 輪。2025 年完成逾新台幣 1 億元 A 輪募資。',
   },
 ]
 
@@ -67,7 +67,7 @@ const monthlySteps = [
   { icon: '📋', title: '上架資訊卡', desc: '月會前開放閱覽，附完整投資評估摘要' },
   { icon: '🎤', title: '天使例會', desc: '新創 Pitch 與 Q&A，會員現場互動提問' },
   { icon: '🗳️', title: '記名投票', desc: '針對有意投資的案件表態與說明偏好' },
-  { icon: '💼', title: '個人直接投資', desc: '中心協助後續撮合，會員自主決策' },
+  { icon: '💼', title: '個人直接投資', desc: '會員以個人名義直接持股，中心協助撮合文件流程' },
 ]
 
 const gateProcess = [
@@ -130,7 +130,7 @@ const requirements = [
   '對早期新創投資有興趣，願意投入時間與資源',
   '認同臺大創創中心的使命與價值觀',
   '願意參與每月天使例會及相關活動',
-  '經兩位現有會員推薦，或由臺大創創中心邀請',
+  '經兩位現有會員推薦，或直接來信申請由中心審核引薦',
 ]
 
 /* ───────── page ───────── */
@@ -406,7 +406,7 @@ export default function AngelPage() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
             {[
-              { value: '74', unit: '位', label: '投資人單場到場', sub: 'VC 44 位 + 天使 30 位' },
+              { value: '74', unit: '位', label: '投資人單場到場', sub: '創投與天使投資人' },
               { value: '51', unit: '件', label: '媒合意向', sub: '18 自行聯繫 + 33 中心協助' },
               { value: '9,775', unit: '次', label: 'Accupass 瀏覽', sub: '近 7 屆最高紀錄' },
               { value: '9.06', unit: '/10', label: '活動滿意度', sub: '51 份現場問卷' },
@@ -425,47 +425,6 @@ export default function AngelPage() {
             <Link href="/demo-day" className="btn-pill-outline">
               了解更多 Demo Day
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Investor Insights ── */}
-      <section className="section-spacing bg-teal-wash">
-        <div className="container">
-          <div className="mx-auto mb-12 max-w-2xl text-center">
-            <p className="micro-label mb-4">Investor Insights</p>
-            <h2 className="mb-4">天使投資人在看什麼？</h2>
-            <p className="text-lg text-slate-muted">
-              從 150+ 位投資人網絡與歷年月會互動中，提煉天使投資人最重視的三個核心指標。
-            </p>
-          </div>
-          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
-            {[
-              {
-                icon: '💪',
-                title: '團隊執行力',
-                description:
-                  '點子可以複製，執行力不行。投資人首重創辦人韌性與行動速度——從想法到第一個客戶的時間，就是最好的證明。',
-              },
-              {
-                icon: '📐',
-                title: '市場規模清晰度',
-                description:
-                  '能說清楚市場夠不夠大，且有具體數字支撐。SAM / SOM 要有依據，而不只是「台灣有 2,300 萬人」。',
-              },
-              {
-                icon: '🛡️',
-                title: '差異化護城河',
-                description:
-                  '技術壁壘、數據優勢或網絡效應，至少要有一個。投資人評估的是三年後競爭對手難以複製的核心能力。',
-              },
-            ].map((item) => (
-              <div key={item.title} className="rounded-2xl bg-white p-6 card-hover">
-                <span className="text-3xl">{item.icon}</span>
-                <h4 className="mt-3 mb-2 text-lg font-semibold">{item.title}</h4>
-                <p className="text-sm leading-relaxed text-slate-muted">{item.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
