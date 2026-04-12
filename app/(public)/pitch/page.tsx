@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
+import TrackClick from "@/components/TrackClick";
 import { ogImageUrl } from "@/lib/og";
-import PitchForm from "./PitchForm";
 
 export const metadata: Metadata = {
   title: "新創投遞 | NTUTEC ANGELS 台大天使會",
@@ -261,7 +261,16 @@ export default function PitchPage() {
             <p className="mb-8 text-center text-slate-muted">
               提交後，投資經理將逐一審閱並主動與你聯繫。
             </p>
-            <PitchForm />
+            <TrackClick eventName="cta_pitch_click" eventParams={{ location: 'pitch_page_submit' }}>
+              <a
+                href="https://forms.gle/yu4ftYfVdsWaynxY8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pill-primary flex w-full items-center justify-center gap-2 py-4 text-base"
+              >
+                填寫新創投遞表單 →
+              </a>
+            </TrackClick>
           </div>
         </div>
       </section>

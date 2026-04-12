@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
-import ConsultingForm from "./ConsultingForm";
 
 export const metadata: Metadata = {
   title: "諮詢服務 | NTUTEC",
@@ -97,15 +96,23 @@ export default function ConsultingPage() {
       </section>
 
       {/* Contact CTA */}
-      <section id="inquiry" className="section-spacing bg-stone">
+      <section className="section-spacing bg-stone">
         <div className="container">
-          <div className="mx-auto max-w-xl">
-            <p className="micro-label mb-4 text-center">Get in Touch</p>
-            <h2 className="mb-3 text-center">洽詢諮詢服務</h2>
-            <p className="mb-8 text-center text-slate-muted">
-              填寫表單說明您的需求，我們評估後安排合適窗口與您聯繫。
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="micro-label mb-4">Get in Touch</p>
+            <h2 className="mb-4">洽詢諮詢服務</h2>
+            <p className="mb-8 text-lg text-slate-muted">
+              請來信說明您的需求（企業規模、創新議題、期望時程），我們評估後安排合適窗口與您聯繫。通常於 3 個工作日內回覆。
             </p>
-            <ConsultingForm />
+            <a
+              href="mailto:ntutec@ntutec.com?subject=諮詢服務洽詢"
+              className="btn-pill-primary inline-flex items-center gap-2"
+            >
+              來信洽詢
+            </a>
+            <p className="mt-6 text-sm text-slate-muted">
+              ntutec@ntutec.com　·　週一至週五 9:00–18:00
+            </p>
           </div>
         </div>
       </section>
