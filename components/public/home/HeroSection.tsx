@@ -29,7 +29,8 @@ export default function HeroSection() {
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">
-              13 年 HI3 模型深耕，累計輔導逾 600 支新創。2 案國際 Exit、校友奪 SelectUSA MedTech 冠軍、Angel Club 連結 350+ 投資人，助技術團隊從實驗室走向全球市場。
+              把台大最好的技術能量，轉化為可投資的新創公司。
+              連結學術、連結產業、連結資本。
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">
