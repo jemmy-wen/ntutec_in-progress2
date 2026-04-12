@@ -437,7 +437,7 @@ const PLATFORM_ROLES = [
   { id: 'admin', label: '系統管理員', description: '最高權限，可管理所有模組與設定' },
   { id: 'staff_admin', label: '行政管理員', description: '中心行政人員，管理天使例會、Pipeline、會員' },
   { id: 'staff_accelerator', label: '加速器管理', description: '加速器專員，管理輔導與活動' },
-  { id: 'angel_member', label: '天使會員', description: '臺大天使會會員，可瀏覽新創、投票、參與天使例會' },
+  { id: 'angel_member', label: '天使會員', description: '台大天使會會員，可瀏覽新創、投票、參與天使例會' },
   { id: 'mentor', label: '業師', description: '業師健診系統，管理時段與回饋' },
   { id: 'team', label: '團隊', description: '團隊端使用者，申請業師健診與輔導' },
   { id: 'startup_incubated', label: '育成新創', description: '育成中心進駐團隊' },

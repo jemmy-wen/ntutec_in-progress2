@@ -64,7 +64,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-muted">
-              臺大創創中心連結新創團隊、企業夥伴與天使投資人，打造台灣最具影響力的大學加速器生態系。
+              台大創創中心連結新創團隊、企業夥伴與天使投資人，打造台灣最具影響力的大學加速器生態系。
             </p>
             <p className="text-xs text-slate-muted/70">
               隸屬{" "}

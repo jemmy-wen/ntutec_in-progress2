@@ -4,7 +4,7 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "諮詢服務 | NTUTEC",
   description:
-    "臺大創創中心提供企業創新策略、技術商業化與新創輔導等專業諮詢服務。",
+    "台大創創中心提供企業創新策略、技術商業化與新創輔導等專業諮詢服務。",
 };
 
 const services = [

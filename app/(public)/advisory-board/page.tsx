@@ -4,7 +4,7 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "諮詢委員會 | NTUTEC",
   description:
-    "臺大創創中心諮詢委員會由產學界重量級人士組成，為中心策略方向提供指引。",
+    "台大創創中心諮詢委員會由產學界重量級人士組成，為中心策略方向提供指引。",
 };
 
 interface Advisor {

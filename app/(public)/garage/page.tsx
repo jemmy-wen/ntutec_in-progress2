@@ -31,7 +31,7 @@ const garageAlumni: AlumniStory[] = [
 export const metadata: Metadata = {
   title: "台大車庫 | NTUTEC",
   description:
-    "臺大創創中心台大車庫為早期團隊提供免費共創空間、創業社群與技術資源，助你從概念走向 MVP。",
+    "台大創創中心台大車庫為早期團隊提供免費共創空間、創業社群與技術資源，助你從概念走向 MVP。",
 };
 
 export default function GaragePage() {
@@ -51,7 +51,7 @@ export default function GaragePage() {
               <p className="micro-label mb-4">Overview</p>
               <h2 className="mb-6">計畫概覽</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">
-                台大車庫成立於 2013 年，是臺大創創中心為早期創業團隊打造的共享孵化空間。13 年來，超過百支新創團隊曾於此起步，從概念驗證走向 MVP 與市場驗證。不同於加速器的密集輔導，車庫提供更彈性的時程安排，讓團隊在校園中安心探索、驗證與迭代。
+                台大車庫成立於 2013 年，是台大創創中心為早期創業團隊打造的共享孵化空間。13 年來，超過百支新創團隊曾於此起步，從概念驗證走向 MVP 與市場驗證。不同於加速器的密集輔導，車庫提供更彈性的時程安排，讓團隊在校園中安心探索、驗證與迭代。
               </p>
               <p className="text-lg leading-relaxed text-slate-muted">
                 車庫由經理 Raven 主責，含必修課程規劃與整體輔導設計。我們提供安全的試錯空間，搭配同儕社群、業師諮詢與基礎資源，幫助團隊在正式進入市場前建立扎實的根基。
@@ -86,7 +86,7 @@ export default function GaragePage() {
                 icon: "🏠",
                 title: "免費共創空間",
                 description:
-                  "位於臺大水源校區，24/7 專屬工作座位、會議室預約、活動場地使用權，台大校內最近距離接觸各院系資源。",
+                  "位於台大水源校區，24/7 專屬工作座位、會議室預約、活動場地使用權，台大校內最近距離接觸各院系資源。",
               },
               {
                 icon: "🤝",
@@ -142,7 +142,7 @@ export default function GaragePage() {
             <h2 className="mb-6">誰可以申請？</h2>
             <ul className="space-y-3">
               {[
-                "臺大在校生、校友或教職員組成的創業團隊",
+                "台大在校生、校友或教職員組成的創業團隊",
                 "處於概念驗證至 MVP 開發階段",
                 "團隊至少 2 人，願意定期使用車庫空間",
                 "具備創新技術或商業模式構想",

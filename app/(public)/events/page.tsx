@@ -3,13 +3,13 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '活動 | NTUTEC',
-  description: '臺大創創中心最新活動資訊，包含產業論壇、Demo Day、工作坊與交流活動。',
+  description: '台大創創中心最新活動資訊，包含產業論壇、Demo Day、工作坊與交流活動。',
 }
 
 export default function EventsPage() {
   return (
     <>
-      <PageHero title="活動" subtitle="Events" description="掌握臺大創創中心最新活動資訊，與創新生態系保持連結。" />
+      <PageHero title="活動" subtitle="Events" description="掌握台大創創中心最新活動資訊，與創新生態系保持連結。" />
 
       <section className="section-spacing">
         <div className="container">

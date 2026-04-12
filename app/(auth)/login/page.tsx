@@ -147,7 +147,7 @@ export default function LoginPage() {
         </form>
 
         <p className="mt-6 text-center text-xs text-gray-400">
-          NTUTEC ANGELS &mdash; 臺大天使會
+          NTUTEC ANGELS &mdash; 台大天使會
         </p>
       </div>
     </main>

@@ -5,14 +5,14 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "企業合作方案 | NTUTEC",
   description:
-    "臺大創創中心企業合作方案：加速器共創、創新競賽、聯合活動與顧問諮詢，助企業對接前沿新創技術。",
+    "台大創創中心企業合作方案：加速器共創、創新競賽、聯合活動與顧問諮詢，助企業對接前沿新創技術。",
 };
 
 const valueProps = [
   {
     title: "前沿技術對接",
     description:
-      "直接接觸臺大校內最新研究成果與新創團隊，搶先佈局未來技術趨勢，加速企業創新轉型。",
+      "直接接觸台大校內最新研究成果與新創團隊，搶先佈局未來技術趨勢，加速企業創新轉型。",
   },
   {
     title: "第一手人才管道",
@@ -59,7 +59,7 @@ export default function CorporatePage() {
       <PageHero
         title="企業合作方案"
         subtitle="Corporate Innovation"
-        description="與臺大創創中心攜手，共同推動企業創新轉型，對接最前沿的技術與人才。"
+        description="與台大創創中心攜手，共同推動企業創新轉型，對接最前沿的技術與人才。"
       />
 
       {/* Why partner with TEC */}
@@ -67,7 +67,7 @@ export default function CorporatePage() {
         <div className="container">
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Why Partner With Us</p>
-            <h2>為什麼選擇臺大創創中心</h2>
+            <h2>為什麼選擇台大創創中心</h2>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
             {valueProps.map((prop) => (

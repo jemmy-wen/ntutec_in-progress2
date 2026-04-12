@@ -31,7 +31,7 @@ const acceleratorAlumni: AlumniStory[] = [
 export const metadata: Metadata = {
   title: "台大加速器 | NTUTEC",
   description:
-    "臺大創創中心台大加速器為期十個月，提供成長期新創深度業師輔導、企業資源對接與募資機會。",
+    "台大創創中心台大加速器為期十個月，提供成長期新創深度業師輔導、企業資源對接與募資機會。",
 };
 
 const phases = [
@@ -88,7 +88,7 @@ const benefits = [
     icon: "🏠",
     title: "共創空間",
     description:
-      "位於臺大水源校區卓越研究大樓的專屬辦公空間，享有會議室與活動場地使用權。",
+      "位於台大水源校區卓越研究大樓的專屬辦公空間，享有會議室與活動場地使用權。",
   },
 ];
 

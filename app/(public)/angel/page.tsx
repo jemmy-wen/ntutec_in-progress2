@@ -3,9 +3,9 @@ import Link from 'next/link'
 import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
-  title: 'NTUTEC ANGELS 臺大天使會 | NTUTEC',
+  title: 'NTUTEC ANGELS 台大天使會 | NTUTEC',
   description:
-    'NTUTEC ANGELS 臺大天使會：每月精選台大生態系優質新創、三段嚴格盡調、記名投票機制，與 40+ 位天使投資人共同佈局早期新創。個人會員 NT$50,000/年。',
+    'NTUTEC ANGELS 台大天使會：每月精選台大生態系優質新創、三段嚴格盡調、記名投票機制，與 40+ 位天使投資人共同佈局早期新創。個人會員 NT$50,000/年。',
 }
 
 /* ───────── data ───────── */
@@ -128,7 +128,7 @@ const membershipTiers = [
 const requirements = [
   '具備合格投資人資格（依金管會規定）',
   '對早期新創投資有興趣，願意投入時間與資源',
-  '認同臺大創創中心的使命與價值觀',
+  '認同台大創創中心的使命與價值觀',
   '願意參與每月天使例會及相關活動',
   '經兩位現有會員推薦，或直接來信申請由中心審核引薦',
 ]
@@ -139,7 +139,7 @@ export default function AngelPage() {
   return (
     <>
       <PageHero
-        title="NTUTEC ANGELS 臺大天使會"
+        title="NTUTEC ANGELS 台大天使會"
         subtitle="Angel Investment Club"
         description="以台大創業生態系為核心的天使投資社群。每月精選優質新創、三段嚴格盡調、記名投票，與 40+ 位投資人共同佈局早期新創。"
       />

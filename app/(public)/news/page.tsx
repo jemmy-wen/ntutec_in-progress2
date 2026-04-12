@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "最新消息 | NTUTEC",
   description:
-    "臺大創創中心最新消息、活動公告與媒體報導。",
+    "台大創創中心最新消息、活動公告與媒體報導。",
 };
 
 export default async function NewsPage() {
@@ -33,7 +33,7 @@ export default async function NewsPage() {
       <PageHero
         title="最新消息"
         subtitle="News"
-        description="掌握臺大創創中心的最新動態與重要公告。"
+        description="掌握台大創創中心的最新動態與重要公告。"
       />
 
       <section className="section-spacing">

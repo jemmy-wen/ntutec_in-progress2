@@ -199,7 +199,7 @@ export default function OnboardingPage() {
           <div className="space-y-6">
             <div className="text-center mb-8">
               <div className="text-5xl mb-4">👋</div>
-              <h1 className="text-2xl font-bold mb-2">歡迎加入 NTUTEC ANGELS 臺大天使會</h1>
+              <h1 className="text-2xl font-bold mb-2">歡迎加入 NTUTEC ANGELS 台大天使會</h1>
               <p className="text-gray-500">讓我們花 2 分鐘設定您的偏好，幫助我們推薦最合適的投資機會。</p>
             </div>
 

@@ -675,6 +675,6 @@ function CandidateSelector({
 
 function formatCycleLabel(id: string): string {
   const match = id.match(/^(\d{4})-(0[1-9]|1[0-2])$/)
-  if (match) return `${match[1]} 年 ${parseInt(match[2])} 月臺大天使會天使例會`
+  if (match) return `${match[1]} 年 ${parseInt(match[2])} 月台大天使會天使例會`
   return id
 }

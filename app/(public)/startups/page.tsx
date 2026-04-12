@@ -4,7 +4,7 @@ import cohort from "@/data/cohort_2026.json";
 
 export const metadata: Metadata = {
   title: "2026 年度新創團隊 | NTUTEC",
-  description: `2026 年度臺大創創中心輔導的 ${cohort.teams.length} 個新創團隊，涵蓋 AI 軟體、生技醫療、硬科技與創新商模四大聚焦領域。`,
+  description: `2026 年度台大創創中心輔導的 ${cohort.teams.length} 個新創團隊，涵蓋 AI 軟體、生技醫療、硬科技與創新商模四大聚焦領域。`,
 };
 
 interface Team {

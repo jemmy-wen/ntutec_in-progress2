@@ -5,7 +5,7 @@ import ContactForm from './ContactForm'
 
 export const metadata: Metadata = {
   title: '聯絡我們 | NTUTEC',
-  description: '聯絡臺大創創中心，取得地址、電話、Email 及辦公時間等資訊。',
+  description: '聯絡台大創創中心，取得地址、電話、Email 及辦公時間等資訊。',
 }
 
 export default function ContactPage() {
@@ -49,7 +49,7 @@ export default function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="臺大創創中心位置"
+                  title="台大創創中心位置"
                 />
               </div>
             </div>

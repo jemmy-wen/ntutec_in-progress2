@@ -4,7 +4,7 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "執行團隊 | NTUTEC",
   description:
-    "認識臺大創創中心的執行團隊。我們結合產業經驗、學術視野與創投背景，全力支持新創團隊的成長。",
+    "認識台大創創中心的執行團隊。我們結合產業經驗、學術視野與創投背景，全力支持新創團隊的成長。",
 };
 
 interface TeamMember {
@@ -19,13 +19,13 @@ const leadership: TeamMember[] = [
     initials: "莊",
     name: "莊裕澤",
     title: "中心主任",
-    bio: "臺大資訊管理學系暨研究所專任教授，具多年新創育成經驗。主任代表校方監督中心營運，負責對校層級的治理、財務、人事與組織規章。",
+    bio: "台大資訊管理學系暨研究所專任教授，具多年新創育成經驗。主任代表校方監督中心營運，負責對校層級的治理、財務、人事與組織規章。",
   },
   {
     initials: "林",
     name: "林文欽 Vincent",
     title: "執行長 CEO",
-    bio: "前騰訊副總經理、京東商城副總裁，臺大 EMBA。負責中心日常營運、策略方向與投資決策，主導天使投資俱樂部與新創輔導整體規劃。",
+    bio: "前騰訊副總經理、京東商城副總裁，台大 EMBA。負責中心日常營運、策略方向與投資決策，主導天使投資俱樂部與新創輔導整體規劃。",
   },
 ];
 

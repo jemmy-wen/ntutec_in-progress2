@@ -4,7 +4,7 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "合作夥伴 | NTUTEC",
   description:
-    "臺大創創中心累計 35 家合作企業，含 Nvidia、Synopsys、鴻海等國際大廠。透過企業垂直加速器、技術合作、創新教育等多元模式共創。",
+    "台大創創中心累計 35 家合作企業，含 Nvidia、Synopsys、鴻海等國際大廠。透過企業垂直加速器、技術合作、創新教育等多元模式共創。",
 };
 
 interface Partner {
@@ -74,7 +74,7 @@ export default function CorporatePartnersPage() {
       <section className="section-spacing">
         <div className="container">
           <p className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-slate-muted">
-            臺大創創中心自 2019 年首創企業垂直加速器，累計與 35 家知名企業合作。合作模式涵蓋由企業出題、新創解題的垂直加速器、一對一技術合作、企業創新教育，以及跨國技術驗證等。
+            台大創創中心自 2019 年首創企業垂直加速器，累計與 35 家知名企業合作。合作模式涵蓋由企業出題、新創解題的垂直加速器、一對一技術合作、企業創新教育，以及跨國技術驗證等。
           </p>
 
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

@@ -4,8 +4,8 @@ import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
-  title: '關於臺大創創中心 | NTUTEC',
-  description: '臺大創創中心是台大創業生態系的實戰基地，13 年來累計輔導逾 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，深耕台灣 13 年的大學創業基地。',
+  title: '關於台大創創中心 | NTUTEC',
+  description: '台大創創中心是台大創業生態系的實戰基地，13 年來累計輔導逾 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，深耕台灣 13 年的大學創業基地。',
 }
 
 const hi3Model = [
@@ -63,8 +63,8 @@ const keyMilestones = [
 ]
 
 const milestones = [
-  { year: '2013', title: '台大車庫（NTU Garage）啟動', description: '於臺大水源校區設立 NTU Garage，作為學生創業共享空間，開啟台大創業生態系的基礎建設。' },
-  { year: '2014', title: '臺大創創中心正式成立', description: '由臺灣大學以校級單位正式設立創創中心，整合校內創業資源，推動校園創新創業生態系。' },
+  { year: '2013', title: '台大車庫（NTU Garage）啟動', description: '於台大水源校區設立 NTU Garage，作為學生創業共享空間，開啟台大創業生態系的基礎建設。' },
+  { year: '2014', title: '台大創創中心正式成立', description: '由臺灣大學以校級單位正式設立創創中心，整合校內創業資源，推動校園創新創業生態系。' },
   { year: '2016', title: 'NTU Challenge 校內創業競賽', description: '與創新設計學院合作舉辦 NTU Challenge，結合教育、業師輔導與競賽，發掘校園創業潛力。' },
   { year: '2017', title: '台大加速器（NTU Accelerator）啟動', description: '推出台大加速器，為已有原型的新創團隊提供市場驗證、商業模式迭代與募資對接資源。' },
   { year: '2019', title: '企業垂直加速器首創', description: '首創企業垂直加速器，由企業出題、新創解題，累計與鴻海、Nvidia、Synopsys 等 35 家企業深度合作。' },
@@ -76,7 +76,7 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero title="關於臺大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人——台大創業生態系的完整版圖。" />
+      <PageHero title="關於台大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人——台大創業生態系的完整版圖。" />
 
       <section className="section-spacing">
         <div className="container">
@@ -84,7 +84,7 @@ export default function AboutPage() {
             <div>
               <p className="micro-label mb-4">Our Mission</p>
               <h2 className="mb-6">使命與願景</h2>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted">臺大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，將台大最好的技術能量與人才，轉化為可投資的新創公司。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted">台大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，將台大最好的技術能量與人才，轉化為可投資的新創公司。</p>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導逾 600 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（27 期、35 家企業）與天使投資俱樂部（150+ 投資人），我們支持新創從技術驗證走入市場。</p>
               <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈受新創信賴的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 加速起飛）系統性支持新創，深耕台灣 13 年的大學創業基地。</p>
             </div>
@@ -208,7 +208,7 @@ export default function AboutPage() {
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
                 src="/images/photos/activity-lecture-hall.jpg"
-                alt="臺大創創中心活動現場 — 工作坊全場"
+                alt="台大創創中心活動現場 — 工作坊全場"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -217,7 +217,7 @@ export default function AboutPage() {
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
                 src="/images/photos/activity-speaker.jpg"
-                alt="臺大創創中心活動現場 — 講者分享"
+                alt="台大創創中心活動現場 — 講者分享"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -226,7 +226,7 @@ export default function AboutPage() {
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:col-span-2 lg:col-span-1">
               <Image
                 src="/images/photos/activity-team-photo.jpg"
-                alt="臺大創創中心團隊活動合照"
+                alt="台大創創中心團隊活動合照"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"

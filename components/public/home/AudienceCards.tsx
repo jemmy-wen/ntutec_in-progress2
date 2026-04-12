@@ -47,7 +47,7 @@ const audiences: AudienceCard[] = [
     icon: TrendingUp,
     title: "投資人",
     description:
-      "加入天使俱樂部，優先接觸臺大頂尖硬科技新創，參與早期投資機會與獨家交流活動。",
+      "加入天使俱樂部，優先接觸台大頂尖硬科技新創，參與早期投資機會與獨家交流活動。",
     href: "/angel",
     gradient: "bg-gradient-to-br from-teal-deep/15 to-charcoal/5",
   },

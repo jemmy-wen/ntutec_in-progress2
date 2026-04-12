@@ -8,7 +8,7 @@ import PreRegisterForm from "@/components/public/PreRegisterForm";
 export const metadata: Metadata = {
   title: "申請與提前登記 | NTUTEC",
   description:
-    "臺大創創中心加速器與車庫採年度梯次制，2027 梯次申請期為 2026 年 12 月至 2027 年 1 月。現在可先提前登記，正式開放時優先通知。",
+    "台大創創中心加速器與車庫採年度梯次制，2027 梯次申請期為 2026 年 12 月至 2027 年 1 月。現在可先提前登記，正式開放時優先通知。",
 };
 
 const tracks = [
@@ -61,7 +61,7 @@ export default function ApplyPage() {
                   關於申請時程
                 </h3>
                 <p className="text-sm leading-relaxed text-slate-muted">
-                  臺大創創中心的加速器與車庫採用<strong className="text-charcoal">年度梯次制</strong>，每年 3 月進駐、12 月結束，<strong className="text-charcoal">不接受隨時插班</strong>。
+                  台大創創中心的加速器與車庫採用<strong className="text-charcoal">年度梯次制</strong>，每年 3 月進駐、12 月結束，<strong className="text-charcoal">不接受隨時插班</strong>。
                 </p>
                 <ul className="mt-3 space-y-1 text-sm text-slate-muted">
                   <li>• <strong className="text-charcoal">2026 梯次</strong>：進行中（3 月 ~ 12 月），現有團隊輔導中</li>

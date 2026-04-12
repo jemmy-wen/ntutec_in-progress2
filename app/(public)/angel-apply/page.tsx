@@ -3,17 +3,17 @@ import PageHero from "@/components/public/PageHero";
 import AngelApplyForm from "@/components/public/AngelApplyForm";
 
 export const metadata: Metadata = {
-  title: "加入 NTUTEC ANGELS 臺大天使會 | NTUTEC",
+  title: "加入 NTUTEC ANGELS 台大天使會 | NTUTEC",
   description:
-    "申請加入 NTUTEC ANGELS 臺大天使會，瞭解入會資格、平台功能與申請流程。",
+    "申請加入 NTUTEC ANGELS 台大天使會，瞭解入會資格、平台功能與申請流程。",
 };
 
 const requirements = [
   "具備合格投資人資格（依金管會規定）",
   "對早期新創投資有興趣，願意投入時間與資源",
-  "認同臺大創創中心的使命與價值觀",
+  "認同台大創創中心的使命與價值觀",
   "願意參與每月天使例會及相關活動",
-  "經兩位現有會員推薦，或由臺大創創中心邀請",
+  "經兩位現有會員推薦，或由台大創創中心邀請",
   "繳納年度會費（詳情請洽詢）",
 ];
 
@@ -21,7 +21,7 @@ export default function AngelApplyPage() {
   return (
     <>
       <PageHero
-        title="加入 NTUTEC ANGELS 臺大天使會"
+        title="加入 NTUTEC ANGELS 台大天使會"
         subtitle="Apply to Join"
         description="歡迎有志參與早期新創投資的投資人，一同加入以台大創業生態系為核心的天使投資社群。"
       />

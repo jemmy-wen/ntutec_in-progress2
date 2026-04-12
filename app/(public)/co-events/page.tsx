@@ -4,7 +4,7 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "聯合活動 | NTUTEC",
   description:
-    "臺大創創中心與企業夥伴共同舉辦的創新活動，促進產學交流與新創媒合。",
+    "台大創創中心與企業夥伴共同舉辦的創新活動，促進產學交流與新創媒合。",
 };
 
 const eventTypes = [
@@ -16,9 +16,9 @@ const eventTypes = [
 
 const signatureEvents = [
   {
-    title: "臺大創新創業嘉年華",
+    title: "台大創新創業嘉年華",
     frequency: "年度旗艦",
-    description: "中心年度最大規模創新活動，邀請創新設計學院、創創學程、國際產學聯盟與產學合作總中心跨單位參與，吸引眾多學生與企業夥伴出席，是臺大校內重量級年度創業論壇。",
+    description: "中心年度最大規模創新活動，邀請創新設計學院、創創學程、國際產學聯盟與產學合作總中心跨單位參與，吸引眾多學生與企業夥伴出席，是台大校內重量級年度創業論壇。",
   },
   {
     title: "天使俱樂部月例會",

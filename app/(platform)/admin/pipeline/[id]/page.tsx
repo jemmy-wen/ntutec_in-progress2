@@ -320,7 +320,7 @@ function OverviewTab({ startup, enrichment, gates, pitches }: {
     { label: '團隊規模', value: startup.team_size ? `${startup.team_size} 人` : null },
     { label: '產品階段', value: startup.product_status },
     { label: '負責人', value: startup.representative },
-    { label: '臺大關聯', value: startup.ntu_affiliation },
+    { label: '台大關聯', value: startup.ntu_affiliation },
     { label: 'Track', value: startup.track },
     { label: 'Email', value: startup.email },
   ]
