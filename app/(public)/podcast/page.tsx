@@ -107,7 +107,7 @@ export default function PodcastPage() {
             <div>
               <p className="text-slate-muted leading-relaxed">
                 TEC Talk 是台大創創中心的官方 Podcast，自 2021
-                年開播，節目邀請台大創創中心的業師、知名創業者與產業專家，分享第一線的創業經驗、投資觀點與產業趨勢。
+                年開播，節目邀請台大創創中心的導師、知名創業者與產業專家，分享第一線的創業經驗、投資觀點與產業趨勢。
               </p>
               <p className="mt-4 text-slate-muted leading-relaxed">
                 無論你是正在考慮創業的在校生、尋求突破的創業者，或是對新創生態系感興趣的從業者，TEC

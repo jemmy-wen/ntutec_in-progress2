@@ -197,10 +197,10 @@ export default function DemoDayPage() {
         </div>
       </section>
 
-      {/* 雙 CTA */}
+      {/* 三方 CTA */}
       <section className="section-spacing">
         <div className="container">
-          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
             {/* 新創 CTA */}
             <div className="rounded-2xl bg-teal p-8 text-white">
               <p className="text-sm font-semibold uppercase tracking-wider text-white/70">
@@ -232,6 +232,22 @@ export default function DemoDayPage() {
               <div className="mt-6">
                 <Link href="/contact" className="btn-pill-outline">
                   聯繫我們
+                </Link>
+              </div>
+            </div>
+
+            {/* 企業贊助 CTA */}
+            <div className="rounded-2xl border-2 border-teal/30 bg-teal-wash p-8">
+              <p className="text-sm font-semibold uppercase tracking-wider text-teal">
+                For Enterprises
+              </p>
+              <h3 className="mt-3 text-2xl font-bold text-charcoal">企業贊助洽詢</h3>
+              <p className="mt-3 leading-relaxed text-slate-muted">
+                想共同主辦 Demo Day 或企業垂直加速器？我們提供冠名、攤位與論壇講台，直接對接 600+ 校友新創生態。
+              </p>
+              <div className="mt-6">
+                <Link href="/corporate" className="btn-pill-outline">
+                  了解企業合作
                 </Link>
               </div>
             </div>

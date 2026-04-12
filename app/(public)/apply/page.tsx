@@ -17,7 +17,7 @@ const tracks = [
     name: "申請加速器",
     subtitle: "Accelerator Program",
     description:
-      "適合已有 MVP 或初期營收的成長期新創。為期十個月（每年 3 月 ~ 12 月），提供業師輔導、企業對接與募資機會。",
+      "適合已有 MVP 或初期營收的成長期新創。為期十個月（每年 3 月 ~ 12 月），提供導師輔導、企業對接與募資機會。",
     href: "#preregister",
     note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",
   },

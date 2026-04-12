@@ -87,10 +87,10 @@ export const ANGEL_STAGES: Stage[] = [
 
 export const MENTOR_STAGES: Stage[] = [
   { key: 'setup', label: '設定中', icon: '\u2699\uFE0F' },
-  { key: 'mentor_submit', label: '業師提交', icon: '\uD83D\uDCDD' },
+  { key: 'mentor_submit', label: '導師提交', icon: '\uD83D\uDCDD' },
   { key: 'supply_review', label: '供給檢視', icon: '\uD83D\uDCCA' },
   { key: 'team_submit', label: '團隊填志願', icon: '\uD83C\uDFAF' },
-  { key: 'mentor_review', label: '業師篩選', icon: '\uD83D\uDD0D' },
+  { key: 'mentor_review', label: '導師篩選', icon: '\uD83D\uDD0D' },
   { key: 'matching', label: '配對中', icon: '\uD83D\uDD04' },
   { key: 'admin_review', label: '管理審核', icon: '\u2705' },
   { key: 'round2', label: '第二輪', icon: '\uD83D\uDD01' },

@@ -4,7 +4,7 @@
  * Ported from P014 Mentor Matching, adapted for multi-module platform.
  * All API routes share one pipeline: Rate Limit → Auth → Role → Body Parse → Cycle/Phase → Handler → Audit
  *
- * Modules: angel (天使會員), mentor (業師健診), admin (後台)
+ * Modules: angel (天使會員), mentor (導師健診), admin (後台)
  */
 
 import { NextResponse } from 'next/server'
