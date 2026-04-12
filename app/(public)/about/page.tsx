@@ -6,6 +6,9 @@ import PageHero from '@/components/public/PageHero'
 export const metadata: Metadata = {
   title: '關於台大創創中心 | NTUTEC',
   description: '台大創創中心以 HI3 培育模型（輔導培育 × 對接整合 × 加速起飛）系統性支持新創。從 2013 年台大車庫到 35 家企業合作、27 期垂直加速器，深耕台大創業生態系 13 年。',
+  alternates: {
+    canonical: 'https://tec.ntu.edu.tw/about',
+  },
 }
 
 const hi3Model = [

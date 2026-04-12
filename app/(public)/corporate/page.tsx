@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "企業合作方案 | NTUTEC",
   description:
     "台大創創中心企業合作方案：加速器共創、創新競賽、聯合活動與顧問諮詢，助企業對接前沿新創技術。",
+  alternates: {
+    canonical: "https://tec.ntu.edu.tw/corporate",
+  },
 };
 
 const valueProps = [

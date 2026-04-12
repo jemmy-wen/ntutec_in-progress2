@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Navbar from '@/components/public/Navbar'
 import Footer from '@/components/public/Footer'
-import OrganizationSchema from '@/components/public/OrganizationSchema'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://tec.ntu.edu.tw'),
@@ -15,6 +14,14 @@ export const metadata: Metadata = {
     siteName: 'NTUTEC 台大創創中心',
     locale: 'zh_TW',
     type: 'website',
+    images: [
+      {
+        url: 'https://tec.ntu.edu.tw/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: '台大創創中心 NTUTEC',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -24,7 +31,6 @@ export const metadata: Metadata = {
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
-      <OrganizationSchema />
       <Navbar />
       <main className="flex-1">
         {children}
