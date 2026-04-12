@@ -24,7 +24,7 @@
           "title": "天使投資人",
           "highlight": "前大潤發 CTO；前蘇寧零售技術研究院院長",
           "photo": "/mentors/wang-junjie.jpg",
-          "is_new_2026": false,
+          "is_new_2026": true,
           "social_url": null
         },
         {
@@ -156,7 +156,7 @@
           "title": "ITIC 創新工業技術移轉 總經理／VSense 董事長",
           "highlight": "前 Acorn Taiwan 創辦人；橡子園創投合夥人",
           "photo": "/mentors/wp/3165.jpg",
-          "is_new_2026": true,
+          "is_new_2026": false,
           "social_url": "https://www.linkedin.com/in/michel-chu-a1368124"
         }
       ],
@@ -344,7 +344,7 @@
           "title": "科技業顧問",
           "highlight": "前長佳智能 Everfortune.AI 執行長；前 Zoom 亞太副總；前 Oriente 台灣總經理",
           "photo": "/mentors/wp/4243.jpg",
-          "is_new_2026": false,
+          "is_new_2026": true,
           "social_url": "https://www.linkedin.com/in/robertlo"
         },
         {
@@ -396,7 +396,7 @@
           "title": "企業顧問 / 兼任教授",
           "highlight": null,
           "photo": "/mentors/wp/3153.jpg",
-          "is_new_2026": true,
+          "is_new_2026": false,
           "social_url": null
         },
         {
