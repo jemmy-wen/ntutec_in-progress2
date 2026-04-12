@@ -23,6 +23,14 @@ export const metadata: Metadata = {
       '13 年來累計輔導近 600 支新創團隊，35 家企業合作，40+ 位業師網絡。連結台大、連結產業、連結資本。',
     url: 'https://tec.ntu.edu.tw',
     type: 'website',
+    images: [
+      {
+        url: 'https://tec.ntu.edu.tw/images/events/opening-2026-biggroup.jpg',
+        width: 1200,
+        height: 630,
+        alt: '台大創創中心 2026 開幕式全體大合照',
+      },
+    ],
   },
 }
 

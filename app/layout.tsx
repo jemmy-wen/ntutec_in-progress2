@@ -20,6 +20,16 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  openGraph: {
+    images: [
+      {
+        url: 'https://tec.ntu.edu.tw/images/events/opening-2026-biggroup.jpg',
+        width: 1200,
+        height: 630,
+        alt: '台大創創中心 2026 開幕式全體大合照',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
