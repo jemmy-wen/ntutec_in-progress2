@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
 import Image from "next/image";
+import TrackClick from "@/components/TrackClick";
 
 export const metadata: Metadata = {
   title: "企業合作方案 | NTUTEC",
@@ -373,12 +374,16 @@ export default function CorporatePage() {
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
             無論是探索新技術、尋找創新解決方案，或建立人才管道，台大創創中心都能量身打造合作方案。
           </p>
-          <Link href="/consulting" className="btn-pill-outline mr-4">
-            了解諮詢服務
-          </Link>
-          <Link href="/contact" className="btn-pill-primary">
-            聯繫我們
-          </Link>
+          <TrackClick eventName="cta_consulting_click" eventParams={{ location: 'corporate_page_cta' }}>
+            <Link href="/consulting" className="btn-pill-outline mr-4">
+              了解諮詢服務
+            </Link>
+          </TrackClick>
+          <TrackClick eventName="cta_contact_click" eventParams={{ location: 'corporate_page_cta' }}>
+            <Link href="/contact" className="btn-pill-primary">
+              聯繫我們
+            </Link>
+          </TrackClick>
         </div>
       </section>
     </>

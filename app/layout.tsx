@@ -1,10 +1,20 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Geist } from "next/font/google";
+import { Noto_Sans_TC } from "next/font/google";
 import { cn } from "@/lib/utils";
 import OrganizationSchema from '@/components/public/OrganizationSchema'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+
+const notoSansTC = Noto_Sans_TC({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-zh',
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: 'NTUTEC Platform',
@@ -12,6 +22,9 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
   },
   openGraph: {
     images: [
@@ -31,18 +44,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-TW" className={cn("font-sans", geist.variable)}>
+    <html lang="zh-TW" className={cn("font-sans", geist.variable, notoSansTC.variable)}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        {/* DNS prefetch for third-party services */}
+        <link rel="dns-prefetch" href="https://ntutec.ghost.io" />
+        <link rel="dns-prefetch" href="https://nofhimlnrmltaktzkhbw.supabase.co" />
         <OrganizationSchema />
       </head>
       <body className="antialiased">
         {children}
+        <GoogleAnalytics />
       </body>
     </html>
   )

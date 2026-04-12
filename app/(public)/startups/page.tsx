@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/public/PageHero";
 import cohort from "@/data/cohort_2026.json";
+import TrackClick from "@/components/TrackClick";
 
 export const metadata: Metadata = {
   title: "2026 年度新創團隊 | NTUTEC",
@@ -145,7 +146,9 @@ export default function StartupsPage() {
               <p className="mb-2 text-2xl">🚀</p>
               <h3 className="mb-2 text-base font-semibold">我也想加入</h3>
               <p className="mb-4 text-sm text-slate-muted">申請 2027 梯次台大加速器或台大車庫</p>
-              <a href="/apply" className="btn-pill-outline text-sm">提前登記申請</a>
+              <TrackClick eventName="cta_apply_click" eventParams={{ location: 'startups_page' }}>
+                <a href="/apply" className="btn-pill-outline text-sm">提前登記申請</a>
+              </TrackClick>
             </div>
             <div className="rounded-2xl bg-white p-6">
               <p className="mb-2 text-2xl">💼</p>

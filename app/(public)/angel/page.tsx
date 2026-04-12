@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/public/PageHero'
 import Image from 'next/image'
+import TrackClick from '@/components/TrackClick'
+import { ogImageUrl } from '@/lib/og'
 
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS 台大天使會 | NTUTEC',
@@ -9,6 +11,33 @@ export const metadata: Metadata = {
     'NTUTEC ANGELS 台大天使會：每月精選台大生態系優質新創、三段嚴格盡調、記名投票機制，與 40+ 位天使投資人共同佈局早期新創。個人會員 NT$50,000/年。',
   alternates: {
     canonical: 'https://tec.ntu.edu.tw/angel',
+  },
+  openGraph: {
+    title: 'NTUTEC ANGELS 台大天使會',
+    description: '40+ 位天使投資人，每月例會，三段嚴格盡調。台大生態系最活躍的早期投資社群。',
+    url: 'https://tec.ntu.edu.tw/angel',
+    images: [
+      {
+        url: ogImageUrl(
+          'NTUTEC ANGELS 台大天使會',
+          '40+ 位天使投資人 · 每月例會 · 三段盡調',
+          'angel'
+        ),
+        width: 1200,
+        height: 630,
+        alt: 'NTUTEC ANGELS 台大天使會',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [
+      ogImageUrl(
+        'NTUTEC ANGELS 台大天使會',
+        '40+ 位天使投資人 · 每月例會 · 三段盡調',
+        'angel'
+      ),
+    ],
   },
 }
 
@@ -467,9 +496,11 @@ export default function AngelPage() {
             與台大創業生態系的天使投資人一起，發掘改變未來的早期新創。
             個人會員 NT$50,000/年，企業會員 NT$100,000/年，隨時開放申請，採審核制。
           </p>
-          <Link href="/angel-apply" className="btn-pill-primary">
-            申請入會審核
-          </Link>
+          <TrackClick eventName="cta_angel_apply_click" eventParams={{ location: 'angel_page_cta' }}>
+            <Link href="/angel-apply" className="btn-pill-primary">
+              申請入會審核
+            </Link>
+          </TrackClick>
           <p className="text-xs text-slate-muted text-center mt-3">
             天使投資具有高度風險。以上投資案例為歷史績效，不代表未來投資結果之保證。
           </p>
