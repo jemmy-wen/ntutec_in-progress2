@@ -10,24 +10,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://tec.ntu.edu.tw/pitch" },
 };
 
-const gateProcess = [
+const afterSubmit = [
   {
-    stage: "第一關",
-    title: "初篩",
-    description:
-      "投資經理審閱投遞資料，確認新創符合聚焦領域與基本門檻。通過者進入下一階段，未通過者收到簡短回覆說明。",
+    step: "01",
+    title: "投資經理審閱",
+    description: "投資經理逐一審閱投遞資料，主動與符合條件的新創聯繫，安排進一步了解。",
   },
   {
-    stage: "第二關",
-    title: "深度評估",
-    description:
-      "針對團隊背景、商業模式、市場規模與競爭優勢進行評估，通過者安排與投資經理一對一面談，深入了解現況與需求。",
+    step: "02",
+    title: "一對一面談",
+    description: "與投資經理進行面談，深入討論產品現況、市場策略與融資需求，雙方確認契合度。",
   },
   {
-    stage: "第三關",
-    title: "完整 DD 報告",
-    description:
-      "投資經理撰寫完整盡調報告，涵蓋市場分析、競爭格局與投資建議。通過後安排上架天使月例會，向 40+ 位天使投資人現場 Pitch。",
+    step: "03",
+    title: "上架天使月例會",
+    description: "通過評估後，安排在天使月例會向 40+ 位天使投資人現場 Pitch，進入正式媒合流程。",
   },
 ];
 
@@ -172,28 +169,26 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* 3-stage process */}
+      {/* After submit */}
       <section className="section-spacing bg-stone">
         <div className="container">
           <div className="mx-auto mb-12 max-w-2xl text-center">
-            <p className="micro-label mb-4">Screening Process</p>
-            <h2 className="mb-4">三段嚴格篩選機制</h2>
+            <p className="micro-label mb-4">What Happens Next</p>
+            <h2 className="mb-4">投遞之後</h2>
             <p className="text-lg text-slate-muted">
-              投遞後，每個案件都由投資經理親自主導審查。我們不輕易上架，確保進入天使例會的案件具備足夠品質。
+              投遞沒有截止日。每份資料都會由投資經理親自看過，符合條件的新創我們會主動聯繫。
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
-            {gateProcess.map((gate, idx) => (
+            {afterSubmit.map((item, idx) => (
               <div
-                key={gate.stage}
+                key={item.step}
                 className="relative rounded-2xl border border-stone-warm/60 bg-white p-6"
               >
-                <div className="mb-4 inline-flex h-10 items-center justify-center rounded-full bg-teal px-4 text-sm font-bold text-white">
-                  {gate.stage}
-                </div>
-                <h4 className="mb-2 text-lg font-semibold">{gate.title}</h4>
-                <p className="text-sm leading-relaxed text-slate-muted">{gate.description}</p>
-                {idx < gateProcess.length - 1 && (
+                <div className="mb-4 text-3xl font-bold text-teal/30">{item.step}</div>
+                <h4 className="mb-2 text-lg font-semibold">{item.title}</h4>
+                <p className="text-sm leading-relaxed text-slate-muted">{item.description}</p>
+                {idx < afterSubmit.length - 1 && (
                   <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 translate-x-1/2 md:block">
                     <div className="text-2xl text-teal/40">→</div>
                   </div>
