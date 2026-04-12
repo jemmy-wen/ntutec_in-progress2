@@ -6,7 +6,7 @@ import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 export const metadata: Metadata = {
   title: "新創投遞 | NTUTEC ANGELS 台大天使會",
   description:
-    "將你的新創提交給 NTUTEC ANGELS 台大天使會。40+ 位付費天使投資人，每月定期例會，三段嚴格盡調。台大創創中心校友優先推薦。",
+    "將你的新創提交給 NTUTEC ANGELS 台大天使會。40+ 位天使投資人，每月定期例會，三段嚴格盡調。台大創創中心校友優先推薦。",
   alternates: { canonical: "https://tec.ntu.edu.tw/pitch" },
 };
 
@@ -36,7 +36,7 @@ const whatYouGet = [
     icon: "🎤",
     title: "天使例會 Pitch 機會",
     description:
-      "通過三段篩選後，在每月天使例會向 40+ 位付費天使投資人進行現場 Pitch 與 Q&A，直接接觸有意投資早期新創的專業投資人。",
+      "通過三段篩選後，在每月天使例會向 40+ 位天使投資人進行現場 Pitch 與 Q&A，直接接觸有意投資早期新創的專業投資人。",
   },
   {
     icon: "📋",
@@ -103,7 +103,7 @@ export default function PitchPage() {
       <PageHero
         title="投遞你的新創"
         subtitle="Pitch to NTUTEC ANGELS"
-        description="將你的新創提交給 NTUTEC ANGELS 台大天使會。通過三段嚴格審查，在每月天使例會向 40+ 位付費天使投資人現場 Pitch，接觸真正有意投資早期新創的專業買方。"
+        description="將你的新創提交給 NTUTEC ANGELS 台大天使會。通過三段嚴格審查，在每月天使例會向 40+ 位天使投資人現場 Pitch，接觸真正有意投資早期新創的專業買方。"
       />
 
       {/* Stats */}
@@ -111,7 +111,7 @@ export default function PitchPage() {
         <div className="container">
           <div className="grid grid-cols-2 divide-x divide-border/40 md:grid-cols-4">
             {[
-              { value: "40+", label: "付費天使會員" },
+              { value: "40+", label: "天使會員" },
               { value: "每月", label: "定期天使例會" },
               { value: "3 關", label: "嚴格盡調篩選" },
               { value: "隨時", label: "開放投遞，無截止日" },

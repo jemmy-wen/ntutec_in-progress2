@@ -70,7 +70,7 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero title="關於台大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人網絡（含 40+ 付費天使會員）——台大創業生態系的完整版圖。" />
+      <PageHero title="關於台大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人網絡（含 40+ 天使會員）——台大創業生態系的完整版圖。" />
 
       <section className="section-spacing">
         <div className="container">
@@ -87,7 +87,7 @@ export default function AboutPage() {
                 { value: '600+', label: '輔導新創團隊', sub: '2013 年至今' },
                 { value: '13', label: '年深耕', sub: 'Since 2013' },
                 { value: '35+', label: '企業夥伴', sub: '垂直加速器合作' },
-                { value: '150+', label: '投資人網絡', sub: '含 40+ 付費天使會員' },
+                { value: '150+', label: '投資人網絡', sub: '含 40+ 天使會員' },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl bg-teal-wash p-6 text-center">
                   <div className="text-3xl font-bold text-teal-deep">{stat.value}</div>
