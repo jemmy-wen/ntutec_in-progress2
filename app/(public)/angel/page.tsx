@@ -115,7 +115,7 @@ const membershipTiers = [
     featured: true,
     badge: '推薦',
     benefits: [
-      '可指派多位代表出席',
+      '可指派 3 位代表出席',
       '包含所有個人會員權益',
       '優先企業參訪安排',
       '企業品牌曝光與共投機會',
@@ -297,7 +297,7 @@ export default function AngelPage() {
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Membership</p>
             <h2 className="mb-4">會員方案</h2>
-            <p className="text-lg text-slate-muted">年費制，每年定期開放新會員申請。</p>
+            <p className="text-lg text-slate-muted">年費制，申請隨時開放，採審核制。</p>
           </div>
           <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
             {membershipTiers.map((tier) => (
@@ -476,7 +476,7 @@ export default function AngelPage() {
           <h2 className="mb-4">成為天使投資俱樂部的一員</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
             與台大創業生態系的天使投資人一起，發掘改變未來的早期新創。
-            個人會員 NT$50,000/年，企業會員 NT$100,000/年，每年定期開放申請。
+            個人會員 NT$50,000/年，企業會員 NT$100,000/年，隨時開放申請，採審核制。
           </p>
           <Link href="/angel-apply" className="btn-pill-primary">
             預約入會諮詢
