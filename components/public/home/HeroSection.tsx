@@ -22,14 +22,17 @@ export default function HeroSection() {
               NTU TAIDAH ENTREPRENEURSHIP CENTER · 台大創業生態系實戰基地
             </p>
 
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl animate-[fadeUp_0.6s_ease-out_0.1s_both]">
-              Bridging NTU Innovation
-              <br />
-              to Global Impact
+            <h1 className="animate-[fadeUp_0.6s_ease-out_0.1s_both]">
+              <span className="block text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                台大創創中心
+              </span>
+              <span className="mt-2 block text-xl font-medium tracking-wide text-stone/70 sm:text-2xl">
+                Bridging NTU Innovation to Global Impact
+              </span>
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">
-              13 年、600+ 團隊。從台大出發，走向市場。
+              從台大出發。連結產業。走向市場。
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">

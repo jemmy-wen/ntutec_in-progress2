@@ -69,7 +69,7 @@ export default function FocusAreasSection() {
           <p className="micro-label mb-2">Focus Areas</p>
           <h2>2026 四大聚焦領域</h2>
           <p className="mt-4 text-lg text-slate-muted">
-            聚焦台灣最有機會的四個新創垂直，搭配校內跨院系資源與業界合作網絡，把最硬的研究打造成可投資的公司。
+            AI 軟體、生技醫療、硬科技、創新商模——結合台大跨院系研究能量與業界合作網絡，陪伴新創從概念走向市場。
           </p>
         </motion.div>
 

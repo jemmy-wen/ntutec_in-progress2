@@ -38,16 +38,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <div className="bg-charcoal border-t border-white/10 py-6">
-        <div className="container flex flex-wrap justify-center gap-4">
-          <Link href="/corporate" className="btn-pill-outline border-white/30 text-white hover:bg-white/10 hover:border-white/50">
-            企業轉型合作
-          </Link>
-          <Link href="/angel" className="btn-pill-outline border-white/30 text-white hover:bg-white/10 hover:border-white/50">
-            早期投資入會
-          </Link>
-        </div>
-      </div>
       <ThreeConnectionsSection />
 
       {/* Activity Highlight */}
@@ -56,7 +46,7 @@ export default function HomePage() {
           <div className="mb-8 text-center">
             <p className="micro-label mb-4">Community</p>
             <h2 className="mb-4">600+ 新創，一起走向市場</h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-muted">2026 輔導計畫開幕式，逾 60 位創業者齊聚台大水源校區，展開為期十個月的創業加速之旅。</p>
+            <p className="mx-auto max-w-2xl text-lg text-slate-muted">2026 輔導計畫開幕式，逾 80 位創業者與輔導業師齊聚台大，展開為期十個月的創業加速之旅。</p>
           </div>
           <div className="relative overflow-hidden rounded-2xl" style={{aspectRatio:'21/9'}}>
             <Image

@@ -16,6 +16,13 @@ const ECOSYSTEM_PARTNERS = [
     height: 24,
   },
   {
+    label: "創新設計學院 D-School",
+    href: "https://dschool.ntu.edu.tw",
+    logo: "/images/ecosystem/dschool.png",
+    width: 120,
+    height: 29,
+  },
+  {
     label: "國際產學聯盟 ILO",
     href: "https://homepage.ntu.edu.tw/~ntuilo/ntuilo/Default.html",
     logo: "/images/ecosystem/ilo.png",
@@ -36,13 +43,6 @@ const ECOSYSTEM_PARTNERS = [
     width: 40,
     height: 40,
   },
-  {
-    label: "創新設計學院 D-School",
-    href: "https://dschool.ntu.edu.tw",
-    logo: "/images/ecosystem/dschool.png",
-    width: 120,
-    height: 29,
-  },
 ];
 
 export default function NTUEcosystemSection() {
@@ -62,7 +62,7 @@ export default function NTUEcosystemSection() {
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-2 opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+              className="group flex flex-col items-center gap-2 opacity-85 transition-all hover:opacity-100"
               aria-label={p.label}
             >
               <Image
