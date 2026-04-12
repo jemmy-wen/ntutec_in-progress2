@@ -29,7 +29,7 @@ const audiences: AudienceCard[] = [
     icon: Rocket,
     title: "新創團隊",
     description:
-      "從技術驗證到市場擴展，台大加速器與台大車庫提供完整的輔導資源、導師網絡與募資對接。",
+      "從技術驗證到市場擴展，台大加速器與台大車庫提供完整的輔導資源、業師網絡與募資對接。",
     href: "/programs",
     gradient: "bg-gradient-to-br from-teal/20 to-teal-deep/10",
   },

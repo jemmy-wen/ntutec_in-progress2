@@ -14,7 +14,7 @@ const notoSansTC = Noto_Sans_TC({
 
 export const metadata: Metadata = {
   title: 'NTUTEC Platform',
-  description: '台大創創中心統一平台 — 天使俱樂部、導師健診、新創服務',
+  description: '台大創創中心統一平台 — 天使俱樂部、業師健診、新創服務',
 }
 
 export default function RootLayout({

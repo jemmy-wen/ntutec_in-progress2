@@ -14,7 +14,7 @@ const hi3Model = [
     label: '輔導培育',
     en: 'Incubation',
     icon: '🌱',
-    description: '透過 AO 陪跑制度、導師一對一諮詢、專業課程（商業模式、募資、法務），陪伴早期創業團隊從構想走到原型驗證。',
+    description: '透過輔導經理陪跑、業師一對一諮詢、專業課程（商業模式、募資、法務），陪伴早期創業團隊從構想走到原型驗證。',
   },
   {
     key: 'Integration',
@@ -65,7 +65,7 @@ const keyMilestones = [
 const milestones = [
   { year: '2013', title: '台大車庫（NTU Garage）啟動', description: '於台大水源校區設立 NTU Garage，作為學生創業共享空間，開啟台大創業生態系的基礎建設。' },
   { year: '2014', title: '台大創創中心正式成立', description: '由臺灣大學以校級單位正式設立創創中心，整合校內創業資源，推動校園創新創業生態系。' },
-  { year: '2016', title: 'NTU Challenge 校內創業競賽', description: '與創新設計學院合作舉辦 NTU Challenge，結合教育、導師輔導與競賽，發掘校園創業潛力。' },
+  { year: '2016', title: 'NTU Challenge 校內創業競賽', description: '與創新設計學院合作舉辦 NTU Challenge，結合教育、業師輔導與競賽，發掘校園創業潛力。' },
   { year: '2017', title: '台大加速器（NTU Accelerator）啟動', description: '推出台大加速器，為已有原型的新創團隊提供市場驗證、商業模式迭代與募資對接資源。' },
   { year: '2019', title: '企業垂直加速器首創', description: '首創企業垂直加速器，由企業出題、新創解題，累計與鴻海、Nvidia、Synopsys 等 35 家企業深度合作。' },
   { year: '2020', title: '企業創新諮詢服務', description: '推出企業開放式創新諮詢服務（Consulting），協助中大型企業導入新創思維與敏捷創新方法論。' },
@@ -240,7 +240,7 @@ export default function AboutPage() {
         <div className="container text-center">
           <p className="micro-label mb-4">Our People</p>
           <h2 className="mb-6">認識我們的團隊</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">投資經理、產業經理、AO 陪跑顧問——每位成員都是新創的第一線戰友，不只給建議，更一起把關鍵路上每個節點走完。</p>
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">投資經理、產業經理、輔導經理——每位成員都是新創的第一線戰友，不只給建議，更一起把關鍵路上每個節點走完。</p>
           <Link href="/team" className="btn-pill-primary">查看完整團隊</Link>
         </div>
       </section>

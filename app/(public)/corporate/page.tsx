@@ -143,7 +143,7 @@ export default function CorporatePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-0.5 text-teal">✓</span>
-                  宏碁作為企業導師協助市場驗證，加速商業落地
+                  宏碁作為企業業師協助市場驗證，加速商業落地
                 </li>
               </ul>
               <div className="flex flex-wrap gap-2">

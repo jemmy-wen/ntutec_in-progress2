@@ -4,9 +4,9 @@ import PageHero from "@/components/public/PageHero";
 import mentorsData from "@/data/mentors_all.json";
 
 export const metadata: Metadata = {
-  title: "導師陣容 | NTUTEC",
+  title: "業師陣容 | NTUTEC",
   description:
-    "NTUTEC 40+ 位導師，依背景分為創投家、連續創業家、企業高管、產業專家四大類。結合產業實戰經驗與台大學術視野，為新創團隊提供一對一深度輔導。",
+    "NTUTEC 40+ 位業師，依背景分為創投家、連續創業家、企業高管、產業專家四大類。結合產業實戰經驗與台大學術視野，為新創團隊提供一對一深度輔導。",
 };
 
 interface Mentor {
@@ -84,9 +84,9 @@ export default function MentorsPage() {
   return (
     <>
       <PageHero
-        title="導師陣容"
+        title="業師陣容"
         subtitle="Mentors"
-        description={`累計 ${stats.total}+ 位導師，依背景類型分為創投家、連續創業家、企業高管與產業專家四大類，為新創團隊提供全方位的深度輔導。`}
+        description={`累計 ${stats.total}+ 位業師，依背景類型分為創投家、連續創業家、企業高管與產業專家四大類，為新創團隊提供全方位的深度輔導。`}
       />
 
       {/* Intro + Stats */}
@@ -94,9 +94,9 @@ export default function MentorsPage() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-lg leading-relaxed text-slate-muted">
-              NTUTEC 導師網絡以「背景類型」劃分，幫助新創團隊快速找到最適合的諮詢對象——
+              NTUTEC 業師網絡以「背景類型」劃分，幫助新創團隊快速找到最適合的諮詢對象——
               找創投家談融資、找連續創業家學實戰、找企業高管開通路、找產業專家補深度。
-              每位導師皆具備豐富的產業實戰經驗，為眾多新創團隊提供一對一深度輔導。
+              每位業師皆具備豐富的產業實戰經驗，為眾多新創團隊提供一對一深度輔導。
             </p>
           </div>
 
@@ -158,11 +158,11 @@ export default function MentorsPage() {
         <div className="container">
           <div className="mx-auto max-w-3xl rounded-2xl border border-stone-warm/60 bg-stone p-8 text-center">
             <p className="text-sm leading-relaxed text-slate-muted">
-              <span className="font-semibold text-charcoal">關於導師陣容</span>
+              <span className="font-semibold text-charcoal">關於業師陣容</span>
               <br />
-              本頁呈現 NTUTEC 歷年導師累計名單（2025–2026）。
-              導師背景分類依其主要身份判斷，部分導師可能具備跨類型經驗。
-              導師配對由中心依新創團隊需求與導師專長安排，非公開申請制。
+              本頁呈現 NTUTEC 歷年業師累計名單（2025–2026）。
+              業師背景分類依其主要身份判斷，部分業師可能具備跨類型經驗。
+              業師配對由中心依新創團隊需求與業師專長安排，非公開申請制。
             </p>
           </div>
         </div>

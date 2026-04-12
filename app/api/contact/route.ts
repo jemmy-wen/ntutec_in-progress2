@@ -110,7 +110,7 @@ function typeLabel(type: string): string {
   const labels: Record<string, string> = {
     startup: '新創團隊申請',
     angel: '天使俱樂部加入',
-    mentor: '成為導師',
+    mentor: '成為業師',
     partnership: '合作洽談',
     media: '媒體採訪',
     other: '其他',

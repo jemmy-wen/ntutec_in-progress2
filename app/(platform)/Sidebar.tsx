@@ -12,7 +12,7 @@ interface SidebarProps {
 
 const ROLE_LABELS: Record<string, string> = {
   admin: '管理員', staff_admin: '行政人員', staff_accelerator: '加速器同仁',
-  angel_member: '天使會員', mentor: '導師', team: '團隊',
+  angel_member: '天使會員', mentor: '業師', team: '團隊',
   startup_incubated: '育成團隊', startup_fundraising: '募資團隊',
 }
 

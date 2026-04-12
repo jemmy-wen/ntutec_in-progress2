@@ -44,7 +44,7 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "關於 TEC", href: "/about" },
       { label: "團隊", href: "/team" },
-      { label: "導師", href: "/mentors" },
+      { label: "業師", href: "/mentors" },
       { label: "諮詢委員會", href: "/advisory-board" },
       { label: "加入我們", href: "/careers" },
     ],

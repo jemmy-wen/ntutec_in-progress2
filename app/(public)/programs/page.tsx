@@ -4,7 +4,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '新創輔導計畫 | NTUTEC',
-  description: '台大車庫與台大加速器兩大計畫，依需台大身分與否分流，共同框架為 OKR Tracker + 導師診斷會 + 三個關鍵審查節點，每年 3 月開始，12 月 Demo Day 畢業。',
+  description: '台大車庫與台大加速器兩大計畫，依需台大身分與否分流，共同框架為 OKR Tracker + 業師診斷會 + 三個關鍵審查節點，每年 3 月開始，12 月 Demo Day 畢業。',
 }
 
 const programs = [
@@ -13,7 +13,7 @@ const programs = [
     duration: '10 個月（3月至12月）',
     target: '早期創業團隊（需具台大在校生、校友或教職員身分）',
     features: [
-      '領域導師小組諮詢（4-5 隊同領域共學）',
+      '領域業師小組諮詢（4-5 隊同領域共學）',
       '免費虛擬進駐，共創空間與校園資源',
       '3 大 Checkpoint：PSF / BMV / Traction 驗證',
       '銜接台大加速器的優先通道',
@@ -25,7 +25,7 @@ const programs = [
     duration: '10 個月（3月至12月）',
     target: '成長期新創（不限台大身分，有台大身分者優先）',
     features: [
-      '陪跑導師每月一對一深度輔導',
+      '陪跑業師每月一對一深度輔導',
       'OKR Tracker 追蹤進度，每月 Office Hour 預約制',
       '企業資源對接與 Demo Day 募資路演',
       '150+ 投資人網絡，天使俱樂部媒合',
@@ -75,8 +75,8 @@ export default function ProgramsPage() {
                 },
                 {
                   icon: '🔥',
-                  title: '導師診斷會',
-                  description: '3 分鐘報告 + 12 分鐘導師追問 + 5 分鐘同儕分享，20 分鐘高強度診斷。',
+                  title: '業師診斷會',
+                  description: '3 分鐘報告 + 12 分鐘業師追問 + 5 分鐘同儕分享，20 分鐘高強度診斷。',
                 },
                 {
                   icon: '🎯',
@@ -100,15 +100,15 @@ export default function ProgramsPage() {
               {[
                 {
                   icon: '🎯',
-                  title: 'AO 陪跑制度',
+                  title: '輔導經理陪跑',
                   badge: '台大車庫',
-                  description: '專任輔導經理（AO）全程陪跑，每月定期 check-in，協助 MVP 驗證與用戶訪談，確保里程碑按節奏推進。',
+                  description: '專任輔導經理全程陪跑，每月定期 check-in，協助 MVP 驗證與用戶訪談，確保里程碑按節奏推進。',
                 },
                 {
                   icon: '🤝',
-                  title: '導師 1-on-1 諮詢',
+                  title: '業師 1-on-1 諮詢',
                   badge: '台大加速器',
-                  description: '配對 20+ 位具 Yahoo、TSMC、微軟、BCG 背景導師，依需求安排一對一深度諮詢，精準解決成長瓶頸。',
+                  description: '配對 20+ 位具 Yahoo、TSMC、微軟、BCG 背景業師，依需求安排一對一深度諮詢，精準解決成長瓶頸。',
                 },
                 {
                   icon: '🏢',
@@ -137,7 +137,7 @@ export default function ProgramsPage() {
               {[
                 { month: '12–1 月', label: '開放申請', desc: '線上提交報名表' },
                 { month: '2 月', label: '公布結果', desc: '入選團隊名單公告' },
-                { month: '3–11 月', label: '輔導進行', desc: '導師諮詢 + Checkpoint 驗證' },
+                { month: '3–11 月', label: '輔導進行', desc: '業師諮詢 + Checkpoint 驗證' },
                 { month: '12 月', label: 'Demo Day', desc: '向投資人路演，完成畢業' },
               ].map((step) => (
                 <div key={step.month} className="rounded-xl border bg-white p-5 text-center">

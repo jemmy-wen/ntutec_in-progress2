@@ -245,7 +245,7 @@ export default function AlumniPage() {
         <div className="container text-center">
           <h2 className="mb-6">成為下一個成功校友</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
-            加入台大加速器或台大車庫，獲得導師輔導、資金媒合與生態系支持。
+            加入台大加速器或台大車庫，獲得業師輔導、資金媒合與生態系支持。
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-pill-primary">

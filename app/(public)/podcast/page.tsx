@@ -5,7 +5,7 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "TEC Talk Podcast | NTUTEC",
   description:
-    "TEC Talk 是台大創創中心的 Podcast 頻道，專訪創業導師、新創創辦人與產業專家，分享創業心法與產業洞察。",
+    "TEC Talk 是台大創創中心的 Podcast 頻道，專訪創業業師、新創創辦人與產業專家，分享創業心法與產業洞察。",
 };
 
 const episodes = [
@@ -42,7 +42,7 @@ const episodes = [
     date: "2022-04-01",
     series: "S2 EP.8",
     title: "新創的組織運作心法",
-    subtitle: "專訪創業導師、ITIC 總經理 瞿志豪",
+    subtitle: "專訪創業業師、ITIC 總經理 瞿志豪",
     desc: "從大企業高管到創業顧問，談新創在快速成長期如何建立有效的組織架構與決策機制。",
   },
   {
@@ -50,34 +50,34 @@ const episodes = [
     series: "S2 EP.7",
     title: "揭開新創加速器的神秘面紗",
     subtitle: "專訪 LINE 前總經理 陶韻智 Sting 與循環經濟新創 ECOCO 創辦人 Andrew",
-    desc: "加速器能為新創帶來什麼？從導師與新創兩個角度，深度解析加速器的運作模式與價值。",
+    desc: "加速器能為新創帶來什麼？從業師與新創兩個角度，深度解析加速器的運作模式與價值。",
   },
   {
     date: "2022-01-05",
     series: "S2 EP.6",
     title: "如何建立高效率的新創團隊？（下）",
-    subtitle: "專訪創業導師、亞馬遜前全球副總裁 洪小玲 Charlene",
+    subtitle: "專訪創業業師、亞馬遜前全球副總裁 洪小玲 Charlene",
     desc: "延續上集，深入探討新創在擴張期面臨的團隊管理挑戰，以及如何建立健康的組織文化。",
   },
   {
     date: "2022-01-04",
     series: "S2 EP.5",
     title: "如何打造偉大的團隊？（上）",
-    subtitle: "專訪創業導師、亞馬遜前全球副總裁 洪小玲 Charlene",
+    subtitle: "專訪創業業師、亞馬遜前全球副總裁 洪小玲 Charlene",
     desc: "從亞馬遜全球副總裁的視角，分享打造高效新創團隊的核心原則與實戰方法。",
   },
   {
     date: "2021-11-16",
     series: "S2 EP.4",
     title: "產品的市場機會在哪裡？",
-    subtitle: "專訪創業導師、亞馬遜前全球副總裁 洪小玲 Charlene",
+    subtitle: "專訪創業業師、亞馬遜前全球副總裁 洪小玲 Charlene",
     desc: "如何從市場中找到真正的痛點？如何驗證產品假設？洪小玲分享她在亞馬遜學到的市場洞察方法。",
   },
   {
     date: "2021-10-20",
     series: "S2 EP.3",
     title: "如何進行使用者洞察？",
-    subtitle: "專訪創業導師、LINE 前總經理 陶韻智",
+    subtitle: "專訪創業業師、LINE 前總經理 陶韻智",
     desc: "使用者洞察是產品開發的核心。陶韻智分享他在 LINE 的實戰經驗，以及如何系統性地理解用戶需求。",
   },
 ];
@@ -95,7 +95,7 @@ export default function PodcastPage() {
       <PageHero
         title="TEC Talk"
         subtitle="Podcast"
-        description="由台大創創中心製作，深度專訪創業導師、新創創辦人與產業專家，帶你探索創業的每一個面向。"
+        description="由台大創創中心製作，深度專訪創業業師、新創創辦人與產業專家，帶你探索創業的每一個面向。"
       />
 
       {/* About Section */}
@@ -107,7 +107,7 @@ export default function PodcastPage() {
             <div>
               <p className="text-slate-muted leading-relaxed">
                 TEC Talk 是台大創創中心的官方 Podcast，自 2021
-                年開播，節目邀請台大創創中心的導師、知名創業者與產業專家，分享第一線的創業經驗、投資觀點與產業趨勢。
+                年開播，節目邀請台大創創中心的業師、知名創業者與產業專家，分享第一線的創業經驗、投資觀點與產業趨勢。
               </p>
               <p className="mt-4 text-slate-muted leading-relaxed">
                 無論你是正在考慮創業的在校生、尋求突破的創業者，或是對新創生態系感興趣的從業者，TEC

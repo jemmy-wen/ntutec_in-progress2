@@ -5,7 +5,7 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "加入我們 | NTUTEC",
   description:
-    "加入台大創創中心團隊或實習計畫，在台大創業生態系的核心，與創業者、投資人和導師並肩工作。",
+    "加入台大創創中心團隊或實習計畫，在台大創業生態系的核心，與創業者、投資人和業師並肩工作。",
 };
 
 const whyJoinCards = [
@@ -13,7 +13,7 @@ const whyJoinCards = [
     emoji: "🌱",
     title: "深度接觸創業生態系",
     description:
-      "每天與新創創辦人、天使投資人和導師互動，學習課堂學不到的實戰知識。",
+      "每天與新創創辦人、天使投資人和業師互動，學習課堂學不到的實戰知識。",
   },
   {
     emoji: "🚀",

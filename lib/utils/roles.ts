@@ -22,7 +22,7 @@ export const ROLE_LABELS: Record<PlatformRole, string> = {
   staff_accelerator: '加速器專員',
   angel_member: '天使會員',
   visitor: '訪客',
-  mentor: '導師',
+  mentor: '業師',
   team: '新創團隊',
   startup_incubated: '育成新創',
   startup_fundraising: '募資新創',

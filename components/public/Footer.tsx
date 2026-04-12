@@ -46,7 +46,7 @@ const FOOTER_LINKS = {
   about: [
     { label: "關於 TEC", href: "/about" },
     { label: "團隊", href: "/team" },
-    { label: "導師", href: "/mentors" },
+    { label: "業師", href: "/mentors" },
     { label: "最新動態", href: "/news" },
   ],
 };

@@ -31,7 +31,7 @@ const acceleratorAlumni: AlumniStory[] = [
 export const metadata: Metadata = {
   title: "台大加速器 | NTUTEC",
   description:
-    "台大創創中心台大加速器為期十個月，提供成長期新創深度導師輔導、企業資源對接與募資機會。",
+    "台大創創中心台大加速器為期十個月，提供成長期新創深度業師輔導、企業資源對接與募資機會。",
 };
 
 const phases = [
@@ -40,7 +40,7 @@ const phases = [
     title: "診斷與定位",
     duration: "第 1-2 個月",
     description:
-      "深入了解團隊現況，設定成長目標與里程碑，配對最合適的導師。",
+      "深入了解團隊現況，設定成長目標與里程碑，配對最合適的業師。",
   },
   {
     phase: "Phase 2",
@@ -68,9 +68,9 @@ const phases = [
 const benefits = [
   {
     icon: "👥",
-    title: "導師網絡",
+    title: "業師網絡",
     description:
-      "40+ 位平均 20 年經驗的導師，涵蓋創投、半導體、AI、生技等領域，提供一對一深度輔導。",
+      "40+ 位平均 20 年經驗的業師，涵蓋創投、半導體、AI、生技等領域，提供一對一深度輔導。",
   },
   {
     icon: "🏢",
@@ -108,7 +108,7 @@ export default function AcceleratorPage() {
             <p className="micro-label mb-4">Overview</p>
             <h2 className="mb-6">計畫概覽</h2>
             <p className="text-lg leading-relaxed text-slate-muted">
-              台大加速器自 2017 年啟動，專為已完成原型、進入市場驗證階段的成長期新創設計。計畫為期十個月，由 40+ 位導師提供一對一深度輔導，串接企業合作資源、天使投資俱樂部與創投網絡。2026 梯次進行中（3 月 ~ 12 月），現有團隊輔導中。
+              台大加速器自 2017 年啟動，專為已完成原型、進入市場驗證階段的成長期新創設計。計畫為期十個月，由 40+ 位業師提供一對一深度輔導，串接企業合作資源、天使投資俱樂部與創投網絡。2026 梯次進行中（3 月 ~ 12 月），現有團隊輔導中。
             </p>
           </div>
         </div>

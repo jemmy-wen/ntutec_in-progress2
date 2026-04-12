@@ -133,7 +133,7 @@ export default function StartupsPage() {
           </div>
 
           <p className="mt-12 text-center text-sm text-slate-muted">
-            * 以上為 2026 年度正在輔導的新創團隊。資料來源：台大創創中心 2026 導師健診媒合系統。
+            * 以上為 2026 年度正在輔導的新創團隊。資料來源：台大創創中心 2026 業師健診媒合系統。
           </p>
         </div>
       </section>
