@@ -19,6 +19,7 @@ export default function EventsPage() {
               width="100%"
               height="600"
               frameBorder="0"
+              loading="lazy"
               style={{ border: '1px solid #bfcbda88', borderRadius: '12px' }}
               allowFullScreen
               role="application"

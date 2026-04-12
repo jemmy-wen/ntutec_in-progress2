@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/public/PageHero'
 import Image from 'next/image'
+import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   title: 'Demo Day | NTUTEC',
@@ -41,6 +42,11 @@ const stats2025 = [
 export default function DemoDayPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "首頁", url: "https://tec.ntu.edu.tw" },
+        { name: "活動", url: "https://tec.ntu.edu.tw/events" },
+        { name: "Demo Day", url: "https://tec.ntu.edu.tw/demo-day" }
+      ]} />
       <PageHero
         title="Demo Day 年度路演日"
         subtitle="Annual Demo Day"
@@ -72,6 +78,9 @@ export default function DemoDayPage() {
               </div>
             ))}
           </div>
+          <p className="text-xs text-slate-muted text-center mt-2">
+            *數據以當屆實際為準，歷屆規模持續成長。
+          </p>
         </div>
       </section>
 
@@ -177,7 +186,7 @@ export default function DemoDayPage() {
                 { name: "活水影響力投資", src: "/images/partners/bcurrent.png" },
               ].map((vc) => (
                 <div key={vc.name} className="flex h-12 items-center justify-center rounded-lg border border-stone-warm/60 bg-white px-5 py-2">
-                  <img src={vc.src} alt={`${vc.name} 標誌`} className="h-7 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all" />
+                  <img src={vc.src} alt={`${vc.name} 標誌`} loading="lazy" className="h-7 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all" />
                 </div>
               ))}
             </div>

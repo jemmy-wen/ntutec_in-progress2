@@ -97,7 +97,7 @@ export default function AdvisoryBoardPage() {
           </div>
 
           <p className="mt-12 text-center text-xs text-slate-muted">
-            * 以上為 2025 年諮詢委員會名單，職稱依任職時資料為準。
+            本頁資料依最新任職資訊更新，職稱以實際任職時為準。
           </p>
         </div>
       </section>

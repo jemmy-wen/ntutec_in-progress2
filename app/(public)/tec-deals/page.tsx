@@ -108,6 +108,9 @@ export default function TecDealsPage() {
             <p className="micro-label mb-4">Partner Deals</p>
             <h2 className="text-3xl font-bold md:text-4xl">合作夥伴優惠方案</h2>
           </div>
+          <p className="text-xs text-slate-muted text-center mb-6">
+            合作方案內容以實際簽約為準，中心保留調整合作夥伴之權利。
+          </p>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {partners.map((partner) => (
               <div

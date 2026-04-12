@@ -31,6 +31,29 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   if (!post) notFound()
 
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": post.title,
+          "datePublished": post.published_at,
+          "dateModified": post.published_at,
+          "author": {
+            "@type": "Person",
+            "name": "NTUTEC 編輯部"
+          },
+          "image": post.feature_image || "https://tec.ntu.edu.tw/images/events/opening-2026-biggroup.jpg",
+          "publisher": {
+            "@id": "https://tec.ntu.edu.tw"
+          },
+          "description": post.excerpt || post.title,
+          "url": `https://tec.ntu.edu.tw/blog/${post.slug}`
+        })
+      }}
+    />
     <article className="section-spacing">
       <div className="container max-w-3xl">
         <Link
@@ -94,5 +117,6 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         )}
       </div>
     </article>
+    </>
   )
 }

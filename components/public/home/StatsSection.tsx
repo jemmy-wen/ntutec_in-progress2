@@ -111,8 +111,13 @@ export default function StatsSection() {
           ))}
         </div>
 
+        {/* 150+ footnote */}
+        <p className="mt-4 text-xs text-stone/50 text-center">
+          *含付費天使會員、歷屆出席投資人與策略合作夥伴
+        </p>
+
         {/* Exit Badge Row */}
-        <div className="mt-10 flex flex-wrap justify-center gap-6 text-center">
+        <div className="mt-6 flex flex-wrap justify-center gap-6 text-center">
           <div className="flex items-center gap-2 text-sm text-stone/70">
             <span className="text-teal">✦</span>
             <span>校友最高單筆募資 <strong className="text-white">NT$1 億+</strong></span>

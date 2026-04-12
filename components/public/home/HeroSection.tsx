@@ -58,6 +58,7 @@ export default function HeroSection() {
               height={300}
               className="rounded-2xl opacity-90 shadow-2xl"
               priority
+              fetchPriority="high"
             />
           </div>
 

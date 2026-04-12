@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import mentorsData from "@/data/mentors_all.json";
+import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "業師陣容 | NTUTEC",
@@ -83,6 +84,10 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
 export default function MentorsPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "首頁", url: "https://tec.ntu.edu.tw" },
+        { name: "業師陣容", url: "https://tec.ntu.edu.tw/mentors" }
+      ]} />
       <PageHero
         title="業師陣容"
         subtitle="Mentors"

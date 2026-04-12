@@ -151,7 +151,7 @@ export default function ProgramsPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { month: '12–1 月（2027 梯次）', label: '開放申請', desc: '線上提交報名表' },
+                { month: '2026 年 12 月 ~ 2027 年 1 月（2027 梯次）', label: '開放申請', desc: '線上提交報名表' },
                 { month: '2 月', label: '公布結果', desc: '入選團隊名單公告' },
                 { month: '3–12 月', label: '輔導進行', desc: '業師諮詢 + Checkpoint 驗證' },
                 { month: '12 月', label: 'Demo Day', desc: '向投資人路演，完成畢業' },

@@ -472,6 +472,9 @@ export default function AngelPage() {
           <Link href="/angel-apply" className="btn-pill-primary">
             申請入會審核
           </Link>
+          <p className="text-xs text-slate-muted text-center mt-3">
+            天使投資具有高度風險。以上投資案例為歷史績效，不代表未來投資結果之保證。
+          </p>
           <p className="mt-4 text-sm text-slate-muted">
             有疑問？{' '}
             <Link href="/faq" className="underline underline-offset-4 hover:text-teal">

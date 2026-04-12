@@ -142,7 +142,8 @@ export default function CareersPage() {
           </div>
 
           {/* Testimonials */}
-          <h3 className="mb-8 mt-12 text-center text-xl font-semibold text-charcoal">
+          <p className="micro-label text-center mt-12 mb-2">近期實習生反饋</p>
+          <h3 className="mb-8 text-center text-xl font-semibold text-charcoal">
             前輩實習心得（歷屆）
           </h3>
           <div className="grid gap-6 md:grid-cols-2">

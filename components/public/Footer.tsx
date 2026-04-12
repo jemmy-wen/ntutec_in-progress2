@@ -214,7 +214,7 @@ export default function Footer() {
               { name: "Harvard Business Review", src: "/images/partners/hbr.svg" },
               { name: "數位時代", src: "/images/partners/bnext.svg" },
             ].map((m) => (
-              <img key={m.name} src={m.src} alt={m.name} className="h-5 w-auto object-contain grayscale opacity-50 hover:opacity-80 transition-opacity" />
+              <img key={m.name} src={m.src} alt={m.name} loading="lazy" className="h-5 w-auto object-contain grayscale opacity-50 hover:opacity-80 transition-opacity" />
             ))}
           </div>
         </div>

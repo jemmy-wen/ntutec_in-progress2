@@ -74,7 +74,7 @@ export default function PreRegisterForm() {
       <div className="rounded-xl border border-green-200 bg-green-50 px-6 py-8 text-center">
         <p className="text-lg font-semibold text-green-800">已登記！</p>
         <p className="mt-2 text-sm leading-relaxed text-green-700">
-          2026 年 12 月開放申請時，我們會第一時間通知你。
+          2026 年 12 月開放申請時，我們將以 Email 通知您。
         </p>
       </div>
     );

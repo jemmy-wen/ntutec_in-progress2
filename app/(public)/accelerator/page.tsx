@@ -4,6 +4,7 @@ import { Calendar, Send } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
 import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
 import Image from "next/image";
+import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 
 const acceleratorAlumni: AlumniStory[] = [
   {
@@ -97,6 +98,11 @@ const benefits = [
 export default function AcceleratorPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: "首頁", url: "https://tec.ntu.edu.tw" },
+        { name: "輔導計畫", url: "https://tec.ntu.edu.tw/programs" },
+        { name: "台大加速器", url: "https://tec.ntu.edu.tw/accelerator" }
+      ]} />
       <PageHero
         title="台大加速器"
         subtitle="NTU Accelerator"
