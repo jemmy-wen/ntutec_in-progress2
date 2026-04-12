@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 
@@ -310,9 +311,13 @@ export default function Navbar() {
     >
       <div className="container flex h-16 items-center justify-between lg:h-[72px]">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal text-white font-bold text-sm">
-            TEC
-          </div>
+          <Image
+            src="/logo-tec-icon.png"
+            alt="NTUTEC"
+            width={36}
+            height={36}
+            className="rounded-lg"
+          />
           <span className="text-lg font-bold tracking-tight text-charcoal">
             NTUTEC
           </span>

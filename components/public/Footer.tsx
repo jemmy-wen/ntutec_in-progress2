@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 /* ── Social icons (inline SVG to avoid extra deps) ── */
 
@@ -59,7 +60,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* ── Brand ── */}
           <div className="space-y-4">
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-flex items-center gap-2.5">
+              <Image
+                src="/logo-tec-icon.png"
+                alt="NTUTEC"
+                width={32}
+                height={32}
+                className="rounded-lg"
+              />
               <span className="text-xl font-bold tracking-tight text-charcoal">
                 NTUTEC
               </span>
