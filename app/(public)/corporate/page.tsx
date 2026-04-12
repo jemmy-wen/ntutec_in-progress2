@@ -35,7 +35,7 @@ const collaborationModels = [
     icon: "🚀",
     title: "企業加速器共創",
     description:
-      "由企業出題、新創解題，透過十個月深度輔導計畫，共同開發創新解決方案。",
+      "由企業出題、新創解題，透過十個月深度輔導計畫（每年 3–12 月），共同開發創新解決方案。",
   },
   {
     icon: "🏆",
@@ -341,7 +341,7 @@ export default function CorporatePage() {
             {[
               { number: "35", label: "累計合作企業", suffix: " 家" },
               { number: "27", label: "企業垂直加速器", suffix: " 期" },
-              { number: "近 600", label: "輔導新創團隊", suffix: " 支" },
+              { number: "逾 600", label: "輔導新創團隊", suffix: " 支" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-4xl font-bold text-teal">{stat.number}{stat.suffix}</p>
@@ -376,7 +376,7 @@ export default function CorporatePage() {
           <Link href="/consulting" className="btn-pill-outline mr-4">
             預約企業創新診斷
           </Link>
-          <Link href="/consulting" className="btn-pill-primary">
+          <Link href="/contact" className="btn-pill-primary">
             聯繫我們
           </Link>
         </div>

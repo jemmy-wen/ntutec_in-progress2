@@ -34,7 +34,7 @@ export default function PrivacyPage() {
             <p className="text-slate-muted leading-relaxed">
               本中心依據《個人資料保護法》採取合理的技術與管理措施，保護您的個人資料不遭未授權存取、洩漏或濫用。
             </p>
-            <p className="mt-4 text-gray-700">依據《個人資料保護法》第 11 條，您有權要求查閱、更正或刪除您的個人資料。如需行使上述權利，請來信至 tec@ntu.edu.tw。本中心所蒐集之個人資料，於服務關係終止後保存期限為 5 年，期滿後將予以銷毀。</p>
+            <p className="mt-4 text-gray-700">依據《個人資料保護法》第 11 條，您有權要求查閱、更正或刪除您的個人資料。如需行使上述權利，請來信至 ntutec@ntutec.com。本中心所蒐集之個人資料，於服務關係終止後保存期限為 5 年，期滿後將予以銷毀。</p>
 
             <h2 className="text-xl font-semibold text-charcoal mt-8 mb-4">四、Cookie</h2>
             <p className="text-slate-muted leading-relaxed">

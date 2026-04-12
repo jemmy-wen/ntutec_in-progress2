@@ -182,7 +182,7 @@ export default function PodcastPage() {
         <div className="container">
           <p className="micro-label mb-4">Listen</p>
           <h2 className="mb-8">收聽平台</h2>
-          <div className="grid gap-4 grid-cols-2 md:grid-cols-4 mx-auto max-w-2xl">
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 mx-auto max-w-2xl">
             {platforms.map((platform) => (
               <a
                 key={platform.name}

@@ -31,7 +31,7 @@ const hi3Model = [
     label: '加速起飛',
     en: 'Ignition',
     icon: '🚀',
-    description: '舉辦 Demo Day（74 位投資人到場）、閉門投資媒合、天使投資俱樂部，為準備好的團隊引燃第一桶資本，走向市場起飛。',
+    description: '舉辦 Demo Day（74 位投資人到場，2025）、閉門投資媒合、天使投資俱樂部，為準備好的團隊引燃第一桶資本，走向市場起飛。',
   },
 ]
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
               <p className="micro-label mb-4">Our Mission</p>
               <h2 className="mb-6">使命與願景</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">台大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，將台大最好的技術能量與人才，轉化為可投資的新創公司。</p>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted"><strong className="text-charcoal">13 年</strong>來，我們累計輔導逾 <strong className="text-charcoal">600+</strong> 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（<strong className="text-charcoal">27 期</strong>、<strong className="text-charcoal">35 家企業</strong>）與天使投資俱樂部（<strong className="text-charcoal">150+</strong> 投資人），我們支持新創從技術驗證走入市場。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted"><strong className="text-charcoal">13 年</strong>來，我們累計輔導逾 <strong className="text-charcoal">600+</strong> 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（<strong className="text-charcoal">27 期</strong>、<strong className="text-charcoal">35 家企業</strong>）與天使投資俱樂部（<strong className="text-charcoal">150+</strong> 投資人網絡），我們支持新創從技術驗證走入市場。</p>
               <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈受新創信賴的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 加速起飛）系統性支持新創，深耕台灣 13 年的大學創業基地。</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -87,7 +87,7 @@ export default function AboutPage() {
                 { value: '600+', label: '輔導新創團隊', sub: '2013 年至今' },
                 { value: '13', label: '年深耕', sub: 'Since 2013' },
                 { value: '35+', label: '企業夥伴', sub: '垂直加速器合作' },
-                { value: '150+', label: '天使投資人', sub: 'Angel Club 網絡' },
+                { value: '150+', label: '投資人網絡', sub: '含 40+ 付費天使會員' },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl bg-teal-wash p-6 text-center">
                   <div className="text-3xl font-bold text-teal-deep">{stat.value}</div>
@@ -254,7 +254,7 @@ export default function AboutPage() {
         <div className="container text-center">
           <p className="micro-label mb-4">Our People</p>
           <h2 className="mb-6">認識我們的團隊</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">投資經理、產業經理、輔導經理——每位成員都是新創的第一線戰友，不只給建議，更一起把關鍵路上每個節點走完。</p>
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">投資經理、輔導經理——每位成員都是新創的第一線戰友，不只給建議，更一起把關鍵路上每個節點走完。</p>
           <Link href="/team" className="btn-pill-primary">查看完整團隊</Link>
         </div>
       </section>
