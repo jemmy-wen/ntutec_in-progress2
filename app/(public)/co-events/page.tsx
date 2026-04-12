@@ -105,7 +105,7 @@ export default function CoEventsPage() {
       <section className="section-spacing">
         <div className="container">
           <div className="mt-6 text-center">
-            <p className="text-gray-600 mb-3">想成為活動贊助或合辦夥伴？</p>
+            <p className="text-slate-muted mb-3">有企業合作提案？歡迎與我們洽談。</p>
             <Link href="/corporate" className="btn-pill-outline">企業合作洽談</Link>
           </div>
         </div>

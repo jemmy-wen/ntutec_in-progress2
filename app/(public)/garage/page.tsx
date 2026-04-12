@@ -237,10 +237,13 @@ export default function GaragePage() {
       </section>
 
       {/* Angel investor diversion */}
-      <section className="py-10 bg-teal/5 text-center border-t">
-        <p className="text-gray-700 font-medium mb-2">尋找下一個投資機會？</p>
-        <p className="text-gray-500 mb-6">台大車庫孵育的早期新創，往往是天使俱樂部的優先觀察對象</p>
-        <Link href="/angel" className="btn-pill-primary">了解天使俱樂部</Link>
+      <section className="section-spacing bg-stone">
+        <div className="container text-center">
+          <p className="micro-label mb-4">Investor Access</p>
+          <h2 className="mb-4">天使俱樂部優先觀察對象</h2>
+          <p className="mx-auto mb-6 max-w-xl text-lg text-slate-muted">台大車庫孵育的早期新創，為天使投資俱樂部優先觀察與媒合的來源之一。</p>
+          <Link href="/angel" className="btn-pill-outline">了解天使俱樂部</Link>
+        </div>
       </section>
 
       {/* CTA */}

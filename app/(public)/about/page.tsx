@@ -242,11 +242,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-gray-50 text-center">
-        <p className="text-lg text-gray-600 mb-6">準備好了嗎？</p>
-        <div className="flex justify-center gap-4 flex-wrap">
-          <Link href="/apply" className="btn-pill-primary">啟動創業之旅</Link>
-          <Link href="/corporate" className="btn-pill-outline">企業夥伴合作</Link>
+      <section className="section-spacing bg-stone text-center">
+        <div className="container">
+          <h2 className="mb-6">立即探索計畫</h2>
+          <div className="flex justify-center gap-4 flex-wrap">
+            <Link href="/apply" className="btn-pill-primary">啟動創業之旅</Link>
+            <Link href="/corporate" className="btn-pill-outline">企業夥伴合作</Link>
+          </div>
         </div>
       </section>
 

@@ -248,7 +248,7 @@ export default function AcceleratorPage() {
                       2026 年度梯次（進行中）
                     </p>
                     <p className="text-sm text-slate-muted">
-                      2026 年 3 月 ~ 2026 年 12 月 · 現有團隊輔導中，不開放插班
+                      2026 年 3 月 ~ 12 月 · 年度梯次進行中，次梯次申請於 2026 年 12 月開放
                     </p>
                   </div>
                 </li>
@@ -299,7 +299,7 @@ export default function AcceleratorPage() {
 
       {/* Audience diversion */}
       <section className="py-10 bg-gray-50 text-center border-t">
-        <p className="text-gray-600 mb-6">您是企業或投資人？我們有更適合您的合作方式</p>
+        <p className="text-gray-600 mb-6">你是企業或投資人？我們有更適合你的合作方式</p>
         <div className="flex justify-center gap-4 flex-wrap">
           <Link href="/corporate" className="btn-pill-outline">企業垂直加速器合作</Link>
           <Link href="/angel" className="btn-pill-outline">加入天使俱樂部</Link>

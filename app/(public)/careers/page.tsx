@@ -143,7 +143,7 @@ export default function CareersPage() {
 
           {/* Testimonials */}
           <h3 className="mb-8 mt-12 text-center text-xl font-semibold text-charcoal">
-            前輩實習心得
+            前輩實習心得（歷屆）
           </h3>
           <div className="grid gap-6 md:grid-cols-2">
             {testimonials.map((t) => (

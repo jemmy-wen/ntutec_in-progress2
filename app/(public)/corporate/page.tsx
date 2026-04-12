@@ -26,7 +26,7 @@ const valueProps = [
   {
     title: "Demo Day 與論壇曝光",
     description:
-      "共同舉辦 Demo Day（74 位投資人到場）、產業論壇，在台大指標性的新創場合與新創圈、投資圈同台——不只品牌，更是真實的合作信號。",
+      "共同舉辦 Demo Day（2025 年 74 位投資人到場，創歷屆最高）、產業論壇，在台大指標性的新創場合與新創圈、投資圈同台——不只品牌，更是真實的合作信號。",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function CorporatePage() {
             <p className="micro-label mb-4">Why Partner With Us</p>
             <h2>為什麼選擇台大創創中心</h2>
             <p className="mx-auto mt-4 max-w-2xl text-slate-muted">
-              全台唯一直接對接國立臺灣大學頂尖研究技術與人才的企業創新加速平台
+              台灣少數直接連結國立臺灣大學頂尖研究技術與人才的企業創新加速平台
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
@@ -251,7 +251,7 @@ export default function CorporatePage() {
         <div className="container">
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">How We Help</p>
-            <h2>我們如何協助企業創新？</h2>
+            <h2>台大創創中心如何協助企業創新？</h2>
             <p className="mx-auto mt-4 max-w-2xl text-slate-muted">
               台大創創中心以外部創新顧問角色，全程陪跑企業與新創的合作歷程
             </p>
@@ -371,7 +371,7 @@ export default function CorporatePage() {
         <div className="container text-center">
           <h2 className="mb-6">準備開啟合作了嗎？</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
-            無論您是想探索新技術、尋找創新解決方案，或是建立人才管道，我們都能為您量身打造合作方案。
+            無論是探索新技術、尋找創新解決方案，或建立人才管道，台大創創中心都能量身打造合作方案。
           </p>
           <Link href="/consulting" className="btn-pill-outline mr-4">
             預約企業創新診斷
