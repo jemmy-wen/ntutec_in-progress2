@@ -27,7 +27,7 @@ const signatureEvents = [
   },
   {
     title: "Demo Day",
-    frequency: "季度",
+    frequency: "每年 12 月",
     description: "加速器與車庫畢業團隊成果發表會，向天使投資人、創投與策略合作夥伴展示商業進展，促成後續投資與企業合作。",
   },
   {

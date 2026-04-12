@@ -270,7 +270,7 @@ export default function AcceleratorPage() {
         <div className="container text-center">
           <h2 className="mb-4">有興趣加入 2027 梯次？</h2>
           <p className="mx-auto mb-6 max-w-xl text-lg text-slate-muted">
-            提前登記案源，12 月正式申請開放時，我們將第一時間通知你。登記不等同申請，正式申請仍需依流程提交。
+            提前登記你的團隊，12 月正式申請開放時，我們將第一時間通知你。登記不等同申請，正式申請仍需依流程提交。
           </p>
           <Link
             href="/apply"

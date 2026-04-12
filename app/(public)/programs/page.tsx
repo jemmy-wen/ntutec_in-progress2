@@ -131,7 +131,7 @@ export default function ProgramsPage() {
             <div className="text-center mb-8">
               <p className="micro-label mb-4">Application Timeline</p>
               <h2>申請時程</h2>
-              <p className="mt-3 text-base text-slate-muted">每年招募一梯次，申請至畢業共約 13 個月</p>
+              <p className="mt-3 text-base text-slate-muted">計畫為期十個月（3月至12月），申請期另計</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[

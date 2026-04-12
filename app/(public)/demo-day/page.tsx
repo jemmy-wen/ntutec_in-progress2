@@ -35,13 +35,6 @@ const stats2025 = [
   },
 ]
 
-const vipComposition = [
-  { value: '93', label: 'CVC / VC' },
-  { value: '49', label: '天使投資人' },
-  { value: '73', label: '新創創辦人' },
-  { value: '36', label: '育成 / 加速器' },
-  { value: '33', label: '企業代表' },
-]
 
 export default function DemoDayPage() {
   return (
@@ -149,26 +142,27 @@ export default function DemoDayPage() {
         </div>
       </section>
 
-      {/* VIP 組成 */}
+      {/* 出席組成 */}
       <section className="section-spacing">
         <div className="container">
           <div className="mb-12 text-center">
-            <p className="micro-label mb-4">VIP Composition</p>
+            <p className="micro-label mb-4">Who Attends</p>
             <h2 className="mb-4">誰會出席</h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-muted">
               Demo Day 吸引橫跨投資、產業、學術的多元生態系夥伴，形成高密度的媒合場域。
             </p>
           </div>
-          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {vipComposition.map((item) => (
-              <div
-                key={item.label}
-                className="card-hover rounded-2xl border bg-white p-5 text-center"
-              >
-                <p className="text-3xl font-bold text-teal">{item.value}</p>
-                <p className="mt-2 text-sm font-semibold text-charcoal">{item.label}</p>
-              </div>
-            ))}
+          <div className="mx-auto grid max-w-3xl grid-cols-2 gap-6">
+            <div className="card-hover rounded-2xl border bg-white p-8 text-center">
+              <p className="text-4xl font-bold text-teal">74</p>
+              <p className="mt-2 font-semibold text-charcoal">投資人到場</p>
+              <p className="mt-1 text-sm text-slate-muted">VC 44 位 + 天使 30 位</p>
+            </div>
+            <div className="card-hover rounded-2xl border bg-white p-8 text-center">
+              <p className="text-4xl font-bold text-teal">233</p>
+              <p className="mt-2 font-semibold text-charcoal">出席者</p>
+              <p className="mt-1 text-sm text-slate-muted">共 356 人報名到場</p>
+            </div>
           </div>
         </div>
       </section>

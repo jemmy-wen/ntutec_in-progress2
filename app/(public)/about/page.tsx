@@ -54,12 +54,12 @@ const alumniHighlights = [
 ]
 
 const keyMilestones = [
-  { year: "2012", event: "台大車庫創立，首屆新創進駐" },
+  { year: "2013", event: "台大車庫創立，首屆新創進駐" },
   { year: "2017", event: "企業垂直加速器首創，首家合作企業加入" },
-  { year: "2021", event: "建立 150+ 專業投資人網絡，天使俱樂部正式成立" },
+  { year: "2023", event: "NTUTEC ANGELS 台大天使會正式成立" },
   { year: "2023", event: "Botbonnie 被日本 Appier 收購，首個 Exit 案例" },
   { year: "2024", event: "艾斯創生醫奪 SelectUSA MedTech 冠軍，獲 US$250 萬" },
-  { year: "2025", event: "配客嘉完成 A 輪逾 NT$1 億，Demo Day 300+ 人出席" },
+  { year: "2025", event: "配客嘉完成 A 輪逾 NT$1 億，Demo Day 356 人報名、233 人出席，創 7 屆最高" },
 ]
 
 const milestones = [

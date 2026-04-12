@@ -85,7 +85,7 @@ const episodes = [
 const platforms = [
   { emoji: "🎵", name: "Apple Podcasts" },
   { emoji: "🎵", name: "Spotify" },
-  { emoji: "🎵", name: "Google Podcasts" },
+  { emoji: "🎵", name: "Firstory" },
   { emoji: "🎵", name: "YouTube" },
 ];
 

@@ -141,7 +141,7 @@ export default function AngelPage() {
       <PageHero
         title="NTUTEC ANGELS 台大天使會"
         subtitle="Angel Investment Club"
-        description="以台大創業生態系為核心的天使投資社群。每月精選優質新創、三段嚴格盡調、記名投票，與 40+ 位投資人共同佈局早期新創。"
+        description="以台大創業生態系為核心的天使投資社群。每月精選優質新創、三段嚴格盡調、記名投票，與 40+ 位付費天使會員（150+ 位投資人網絡）共同佈局早期新創。"
       />
 
       {/* ── Stat bar ── */}
@@ -149,7 +149,7 @@ export default function AngelPage() {
         <div className="container">
           <div className="grid grid-cols-2 divide-x divide-border/40 md:grid-cols-4">
             {[
-              { value: '40+', label: '天使投資人' },
+              { value: '40+', label: '付費會員' },
               { value: '每月', label: '定期天使例會' },
               { value: '2023', label: '俱樂部成立年' },
               { value: '3 關', label: '嚴格篩選機制' },
