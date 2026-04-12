@@ -26,6 +26,7 @@ const RATE_LIMITS: Record<string, RateLimitConfig> = {
   'export':     { windowMs: 60_000, maxRequests: 3 },
   'invitation': { windowMs: 60_000, maxRequests: 20 },
   'contact':    { windowMs: 60_000, maxRequests: 5 },
+  'chat':       { windowMs: 60_000, maxRequests: 10 },
 }
 
 export function checkRateLimit(

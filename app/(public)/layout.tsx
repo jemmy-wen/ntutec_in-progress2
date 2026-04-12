@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Navbar from '@/components/public/Navbar'
 import Footer from '@/components/public/Footer'
+import ChatProvider from '@/components/chat/ChatProvider'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://tec.ntu.edu.tw'),
@@ -44,6 +45,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         {children}
       </main>
       <Footer />
+      <ChatProvider />
     </div>
   )
 }
