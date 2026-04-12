@@ -103,7 +103,7 @@ export default function AboutPage() {
       {/* NTU Affiliation Badge */}
       <div className="bg-stone border-b border-stone-warm/60">
         <div className="container py-4 flex items-center gap-3">
-          <img src="/images/partners/ntu.svg" alt="國立臺灣大學" className="h-8 w-auto" />
+          <Image src="/images/partners/ntu.svg" alt="國立臺灣大學校徽" width={32} height={32} className="h-8 w-auto" />
           <p className="text-sm text-slate-muted">國立臺灣大學創意創業中心 — 校級單位，隸屬研究發展處</p>
         </div>
       </div>
@@ -193,7 +193,7 @@ export default function AboutPage() {
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3] lg:col-span-2">
               <Image
                 src="/images/events/opening-2026-group.jpg"
-                alt="2026 輔導計畫開幕式 — 全體學員大合照"
+                alt="2026 輔導計畫開幕式 — 逾 60 位學員大合照"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"

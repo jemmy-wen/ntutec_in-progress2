@@ -5,7 +5,7 @@ import PageHero from "@/components/public/PageHero";
 export const metadata: Metadata = {
   title: "執行團隊 | NTUTEC",
   description:
-    "認識台大創創中心的執行團隊。我們結合產業經驗、學術視野與創投背景，全力支持新創團隊的成長。",
+    "台大創創中心執行團隊，由中心主任、CEO、輔導經理與投資經理組成，結合產業經驗、學術視野與創投背景，全力支持新創成長。",
 };
 
 interface TeamMember {
@@ -66,7 +66,7 @@ function TeamCard({ member, size = "default" }: { member: TeamMember; size?: "la
     <div className="rounded-xl border bg-white p-6 card-hover">
       <div className={`mb-4 flex ${avatarSize} shrink-0 items-center justify-center overflow-hidden rounded-full bg-teal-wash`}>
         {member.photo ? (
-          <Image src={member.photo} alt={member.name} width={96} height={96} className="h-full w-full object-cover" />
+          <Image src={member.photo} alt={`${member.name}，${member.title}`} width={96} height={96} className="h-full w-full object-cover" />
         ) : (
           <span className="text-2xl font-bold text-teal">{member.initials}</span>
         )}

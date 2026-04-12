@@ -21,6 +21,8 @@ export default function EventsPage() {
               frameBorder="0"
               style={{ border: '1px solid #bfcbda88', borderRadius: '12px' }}
               allowFullScreen
+              role="application"
+              aria-label="NTUTEC 2026 活動日曆（由 Luma 提供）"
               aria-hidden="false"
               tabIndex={0}
               title="NTUTEC 活動日曆"

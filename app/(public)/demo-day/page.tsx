@@ -6,7 +6,8 @@ import Image from 'next/image'
 export const metadata: Metadata = {
   title: 'Demo Day | NTUTEC',
   description:
-    '台大創創中心年度 Demo Day，精選新創向 74 位投資人路演，51 件媒合意向，9.06/10 滿意度。每年 12 月，台大校園。',
+    '台大創創中心年度 Demo Day：台灣最大校園新創投資媒合活動，7 屆累計，每年 12 月台大校園。精選新創向 74 位投資人路演，51 件媒合意向，9.06/10 滿意度。',
+  alternates: { canonical: 'https://tec.ntu.edu.tw/demo-day' },
 }
 
 const stats2025 = [
@@ -176,7 +177,7 @@ export default function DemoDayPage() {
                 { name: "活水影響力投資", src: "/images/partners/bcurrent.png" },
               ].map((vc) => (
                 <div key={vc.name} className="flex h-12 items-center justify-center rounded-lg border border-stone-warm/60 bg-white px-5 py-2">
-                  <img src={vc.src} alt={vc.name} className="h-7 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all" />
+                  <img src={vc.src} alt={`${vc.name} 標誌`} className="h-7 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all" />
                 </div>
               ))}
             </div>

@@ -47,7 +47,7 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
           <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-stone">
             <Image
               src={mentor.photo}
-              alt={`${mentor.name} 照片`}
+              alt={`${mentor.name}${mentor.title ? `，${mentor.title}` : ""}`}
               fill
               sizes="64px"
               className="object-cover"

@@ -47,11 +47,13 @@ export default async function BlogListPage() {
                 >
                   {post.feature_image ? (
                     <div className="aspect-[16/9] overflow-hidden bg-stone">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={post.feature_image}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        alt={`${post.primary_tag?.name || "文章"} 封面：${post.title.slice(0, 60)}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        unoptimized
                       />
                     </div>
                   ) : (

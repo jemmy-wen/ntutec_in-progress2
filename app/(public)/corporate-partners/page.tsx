@@ -79,9 +79,9 @@ export default function CorporatePartnersPage() {
 
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {partners.map((partner) => (
-              <div key={partner.name} className="card-hover rounded-2xl border bg-white p-6 text-center">
+              <div key={partner.name} className="card-hover rounded-2xl border bg-white p-6 text-center" aria-label={partner.name}>
                 <div className="mb-4 flex h-16 items-center justify-center rounded-xl bg-stone">
-                  <span className="text-xs text-slate-muted">Logo</span>
+                  <span className="text-xs text-slate-muted" aria-hidden="true">Logo</span>
                 </div>
                 <h3 className="mb-2 text-base font-semibold">{partner.name}</h3>
                 <span

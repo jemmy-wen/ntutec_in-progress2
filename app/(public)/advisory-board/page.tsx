@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "諮詢委員會 | NTUTEC",
   description:
     "台大創創中心諮詢委員會由產學界重量級人士組成，為中心策略方向提供指引。",
+  alternates: { canonical: "https://tec.ntu.edu.tw/advisory-board" },
 };
 
 interface Advisor {

@@ -47,7 +47,7 @@ export default function ProgramsPage() {
       <div className="relative w-full overflow-hidden" style={{aspectRatio:'21/8'}}>
         <Image
           src="/images/events/opening-2026-biggroup.jpg"
-          alt="2026 輔導計畫開幕式 — 學員大合照"
+          alt="2026 輔導計畫開幕式 — 逾 60 位學員大合照"
           fill
           className="object-cover object-top"
           sizes="100vw"
