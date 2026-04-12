@@ -298,6 +298,7 @@ export default function AngelPage() {
             <p className="micro-label mb-4">Membership</p>
             <h2 className="mb-4">會員方案</h2>
             <p className="text-lg text-slate-muted">年費制，申請隨時開放，採審核制。</p>
+            <p className="mt-2 text-sm text-slate-muted">來信申請後，投資團隊將審核資料，通過者安排面談，確認雙方契合度後正式入會。</p>
           </div>
           <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
             {membershipTiers.map((tier) => (

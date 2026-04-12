@@ -5,7 +5,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '關於臺大創創中心 | NTUTEC',
-  description: '臺大創創中心是台大創業生態系的實戰基地，13 年來累計輔導逾 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，對標 Stanford StartX 與 Berkeley SkyDeck。',
+  description: '臺大創創中心是台大創業生態系的實戰基地，13 年來累計輔導逾 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，深耕台灣 13 年的大學創業基地。',
 }
 
 const hi3Model = [
@@ -56,7 +56,7 @@ const alumniHighlights = [
 const keyMilestones = [
   { year: "2012", event: "台大車庫創立，首屆新創進駐" },
   { year: "2017", event: "企業垂直加速器首創，首家合作企業加入" },
-  { year: "2021", event: "天使俱樂部成立，投資人網絡突破 150 位" },
+  { year: "2021", event: "建立 150+ 專業投資人網絡，天使俱樂部正式成立" },
   { year: "2023", event: "Botbonnie 被日本 Appier 收購，首個 Exit 案例" },
   { year: "2024", event: "艾斯創生醫奪 SelectUSA MedTech 冠軍，獲 US$250 萬" },
   { year: "2025", event: "配客嘉完成 A 輪逾 NT$1 億，Demo Day 300+ 人出席" },
@@ -86,7 +86,7 @@ export default function AboutPage() {
               <h2 className="mb-6">使命與願景</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">臺大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，將台大最好的技術能量與人才，轉化為可投資的新創公司。</p>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導逾 600 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（27 期、35 家企業）與天使投資俱樂部（150+ 投資人），我們支持新創從技術驗證走入市場。</p>
-              <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈受新創信賴的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 加速起飛）系統性支持新創，對標 Stanford StartX 與 Berkeley SkyDeck。</p>
+              <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈受新創信賴的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 加速起飛）系統性支持新創，深耕台灣 13 年的大學創業基地。</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[

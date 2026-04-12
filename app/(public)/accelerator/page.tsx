@@ -98,7 +98,7 @@ export default function AcceleratorPage() {
       <PageHero
         title="台大加速器"
         subtitle="NTU Accelerator"
-        description="為期十個月的深度輔導計畫，幫助成長期新創加速邁向下一個里程碑。無台大身分亦可申請，有台大身分者優先。"
+        description="為期十個月的深度輔導計畫，幫助成長期新創加速邁向下一個里程碑。無台大身分亦可申請，有台大身分者優先。我們重視技術創新與市場潛力，不限台大背景。"
       />
 
       {/* Program Overview */}
@@ -279,7 +279,13 @@ export default function AcceleratorPage() {
             <Send className="h-4 w-4" />
             預約 2027 梯次通知
           </Link>
-          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-slate-muted">
+          <p className="mt-6 text-sm text-slate-muted">
+            申請期尚未開放？{' '}
+            <Link href="/contact" className="text-teal-deep underline underline-offset-4 hover:text-teal">
+              預約諮詢，了解你的團隊是否適合 →
+            </Link>
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm text-slate-muted">
             <Link href="/tec-deals" className="hover:text-teal underline underline-offset-4">進駐資源方案 →</Link>
             <Link href="/startups" className="hover:text-teal underline underline-offset-4">2026 現役新創團隊 →</Link>
           </div>

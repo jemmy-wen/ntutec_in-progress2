@@ -4,7 +4,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '新創輔導計畫 | NTUTEC',
-  description: '台大車庫與台大加速器兩大計畫，依需台大身分與否分流，共同框架為 OKR Tracker + Hot Seat + 三個關鍵審查節點，每年 3 月開始，12 月 Demo Day 畢業。',
+  description: '台大車庫與台大加速器兩大計畫，依需台大身分與否分流，共同框架為 OKR Tracker + 業師診斷會 + 三個關鍵審查節點，每年 3 月開始，12 月 Demo Day 畢業。',
 }
 
 const programs = [
@@ -75,7 +75,7 @@ export default function ProgramsPage() {
                 },
                 {
                   icon: '🔥',
-                  title: 'Hot Seat 焦點會診',
+                  title: '業師診斷會',
                   description: '3 分鐘報告 + 12 分鐘業師追問 + 5 分鐘同儕分享，20 分鐘高強度診斷。',
                 },
                 {

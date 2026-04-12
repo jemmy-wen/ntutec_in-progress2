@@ -29,8 +29,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-stone/80 animate-[fadeUp_0.6s_ease-out_0.2s_both]">
-              把台大最好的技術能量，轉化為可投資的新創公司。
-              連結學術、連結產業、連結資本。
+              13 年、600+ 團隊。從台大出發，走向市場。
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">
