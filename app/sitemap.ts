@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { getAllPostSlugs } from '@/lib/ghost'
 
 const BASE_URL = 'https://tec.ntu.edu.tw'
 
@@ -34,12 +35,26 @@ const publicRoutes: Array<{
   { path: '/events', changeFrequency: 'weekly', priority: 0.7 },
 ]
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
-  return publicRoutes.map(({ path, changeFrequency, priority }) => ({
-    url: `${BASE_URL}${path}`,
+
+  const staticRoutes: MetadataRoute.Sitemap = publicRoutes.map(
+    ({ path, changeFrequency, priority }) => ({
+      url: `${BASE_URL}${path}`,
+      lastModified: now,
+      changeFrequency,
+      priority,
+    }),
+  )
+
+  // Dynamically add blog post URLs from Ghost
+  const blogSlugs = await getAllPostSlugs()
+  const blogRoutes: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+    url: `${BASE_URL}/blog/${slug}`,
     lastModified: now,
-    changeFrequency,
-    priority,
+    changeFrequency: 'monthly',
+    priority: 0.6,
   }))
+
+  return [...staticRoutes, ...blogRoutes]
 }
