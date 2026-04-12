@@ -121,6 +121,14 @@
           "photo": null,
           "is_new_2026": false,
           "social_url": null
+        },
+        {
+          "name": "陳一強",
+          "title": "活水社企投資開發公司 總經理/共同創辦人",
+          "highlight": "活水創投 共同創辦人",
+          "photo": "/mentors/wp/3152.jpg",
+          "is_new_2026": false,
+          "social_url": null
         }
       ]
     },
@@ -152,14 +160,6 @@
           "title": "MoBagel 美商行動貝果 執行長暨共同創辦人",
           "highlight": "MoBagel 美商行動貝果 共同創辦人",
           "photo": "/mentors/wp/18816.jpeg",
-          "is_new_2026": false,
-          "social_url": null
-        },
-        {
-          "name": "陳一強",
-          "title": "活水社企投資開發公司 總經理/共同創辦人",
-          "highlight": "活水社企投資開發 共同創辦人",
-          "photo": "/mentors/wp/3152.jpg",
           "is_new_2026": false,
           "social_url": null
         },
