@@ -3,9 +3,9 @@ import type { NextConfig } from 'next'
 const cspDirectives = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://luma.com",
-  "style-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: https: https://ntutec.ghost.io https://*.ghost.io",
-  "font-src 'self'",
+  "font-src 'self' https://fonts.gstatic.com",
   "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://ntutec.ghost.io",
   "frame-src https://luma.com https://www.google.com https://maps.googleapis.com",
   "frame-ancestors 'none'",

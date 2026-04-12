@@ -27,7 +27,7 @@ const tracks = [
     name: "申請車庫",
     subtitle: "Garage Incubator",
     description:
-      "適合概念驗證至 MVP 階段的早期團隊。年度梯次制（每年 3 月 ~ 12 月），提供共創空間與社群資源。",
+      "適合概念驗證至 MVP 階段的早期團隊。年度梯次制（每年 3 月 ~ 12 月），虛擬進駐、會議室使用與創業社群資源。",
     href: "#preregister",
     learnHref: "/garage",
     note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",

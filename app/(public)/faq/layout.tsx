@@ -74,7 +74,7 @@ export default function FaqLayout({ children }: { children: React.ReactNode }) {
         "name": "輔導計畫有辦公空間可以使用嗎？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "台大加速器提供虛擬進駐（不含固定座位）；台大車庫提供共創工作空間，學員可彈性使用。"
+          "text": "兩者均採虛擬進駐模式（不含固定座位），學員可預約使用中心會議室與活動場地，彈性配合創業節奏。"
         }
       }
     ]

@@ -31,7 +31,7 @@ const garageAlumni: AlumniStory[] = [
 export const metadata: Metadata = {
   title: "台大車庫 | NTUTEC",
   description:
-    "台大創創中心台大車庫為早期團隊提供免費共創空間、創業社群與業師諮詢，助你從概念走向 MVP。",
+    "台大創創中心台大車庫為早期團隊提供虛擬進駐、創業社群與業師諮詢，助你從概念走向 MVP。",
 };
 
 export default function GaragePage() {
@@ -40,7 +40,7 @@ export default function GaragePage() {
       <PageHero
         title="台大車庫"
         subtitle="NTU Garage"
-        description="專為早期團隊設計的彈性孵化空間，從概念驗證到 MVP，陪你走過最關鍵的第一步。"
+        description="專為早期團隊設計的彈性孵化計畫，虛擬進駐、社群共學，從概念驗證到 MVP，陪你走過最關鍵的第一步。"
       />
 
       {/* Overview */}
@@ -83,10 +83,10 @@ export default function GaragePage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: "🏠",
-                title: "免費共創空間",
+                icon: "🏢",
+                title: "虛擬進駐",
                 description:
-                  "位於台大水源校區，提供會議室預約與活動場地使用權，台大校內最近距離接觸各院系資源。",
+                  "免費虛擬進駐台大水源校區，享有中心會議室預約與活動場地使用權，彈性配合創業節奏。",
               },
               {
                 icon: "🤝",
