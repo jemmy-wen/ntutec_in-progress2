@@ -8,7 +8,7 @@ const acceleratorAlumni: AlumniStory[] = [
   {
     name: "配客嘉 PackAge+",
     category: "Pre-A 輪",
-    highlight: "完成 A 輪募資逾新台幣 1 億元，是 114 年報告新增的最大單筆校友募資案例。",
+    highlight: "完成 A 輪募資逾新台幣 1 億元，是 2025 年最大單筆校友募資案例。",
     sector: "循環包裝 · ESG",
     icon: "funding",
   },
@@ -108,7 +108,7 @@ export default function AcceleratorPage() {
             <p className="micro-label mb-4">Overview</p>
             <h2 className="mb-6">計畫概覽</h2>
             <p className="text-lg leading-relaxed text-slate-muted">
-              台大加速器自 2017 年啟動，專為已完成原型、進入市場驗證階段的成長期新創設計。計畫為期十個月，由 40+ 位業師提供一對一深度輔導，串接企業合作資源、天使投資俱樂部與創投網絡。2026 年加速器吸引 150 隊報名，是臺灣報名最踴躍的大學加速器之一。
+              台大加速器自 2017 年啟動，專為已完成原型、進入市場驗證階段的成長期新創設計。計畫為期十個月，由 40+ 位業師提供一對一深度輔導，串接企業合作資源、天使投資俱樂部與創投網絡。2026 年加速器吸引 150 隊報名。
             </p>
           </div>
         </div>

@@ -5,7 +5,7 @@ import PageHero from '@/components/public/PageHero'
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS 臺大天使會 | NTUTEC',
   description:
-    'NTUTEC ANGELS 臺大天使會成立於 2023 年，以三段嚴格篩選機制、每月例會與生態系支持，為會員提供經過嚴謹篩選的優質早期案源。',
+    'NTUTEC ANGELS 臺大天使會成立於 2023 年，以三段篩選機制、每月例會與生態系支持，為會員提供經過驗證的優質早期案源。',
 }
 
 const highlights = [

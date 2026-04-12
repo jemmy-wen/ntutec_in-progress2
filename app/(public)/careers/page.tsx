@@ -122,7 +122,7 @@ export default function CareersPage() {
             <p className="micro-label mb-4">Internship Program</p>
             <h2 className="mb-4">實習計畫</h2>
             <p className="mx-auto max-w-xl text-center text-slate-muted">
-              每學期招募少量實習生，加入事業發展暨行銷部門，深度參與中心日常運營。
+              每學期招募 2–3 位實習生，加入事業發展暨行銷部門，深度參與中心日常運營。
             </p>
           </div>
 

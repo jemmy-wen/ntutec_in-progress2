@@ -81,7 +81,7 @@ export default function ProgramsPage() {
                 {
                   icon: '🎯',
                   title: '三大 Checkpoint',
-                  description: 'PSF 問題驗證 → BMV 商業模式驗證 → Traction 成長牽引，逐關遞進。',
+                  description: 'Problem-Solution Fit 問題驗證 → Business Model Validation 商業模式驗證 → Traction 成長牽引，逐關遞進。',
                 },
               ].map((item) => (
                 <div key={item.title} className="bg-white rounded-xl p-6">

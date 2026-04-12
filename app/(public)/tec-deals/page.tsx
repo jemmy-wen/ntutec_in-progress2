@@ -84,7 +84,7 @@ export default function TecDealsPage() {
       <PageHero
         title="進駐資源"
         subtitle="TEC Deals"
-        description="錄取台大創創台大加速器或台大車庫的新創，可享下列合作夥伴提供的獨家優惠方案，降低創業成本、加速成長。"
+        description="錄取台大加速器或台大車庫的新創，可享下列合作夥伴提供的獨家優惠方案，降低創業成本、加速成長。"
       />
 
       {/* Intro Banner */}
@@ -161,7 +161,7 @@ export default function TecDealsPage() {
             還沒申請？現在開始
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
-            台大加速器與台大車庫每年招募兩梯次，進駐即可享受上述所有資源。
+            台大加速器與台大車庫每年招募一梯次，進駐即可享受上述所有資源。
           </p>
           <Link href="/apply" className="btn-pill-primary">
             提前登記 2026 梯次

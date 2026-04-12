@@ -63,7 +63,7 @@ const milestoneCases = [
     companyEn: "GUGU",
     domain: "FinTech GenZ",
     highlight: "美股開戶破 2 萬",
-    desc: "Gen Z 美股免手續費平台，月活 28% 留存，已布局新馬港市場。",
+    desc: "Gen Z 美股免手續費平台，已布局新馬港市場。",
     source: "2024 梯次健診",
   },
   {
@@ -108,7 +108,7 @@ export default function AlumniPage() {
       <PageHero
         title="成功校友"
         subtitle="Success Stories"
-        description="13 年、逾 600 支團隊，從台大走向世界。以下是部分令我們驕傲的校友里程碑。"
+        description="13 年、逾 600 支團隊，從台大走向世界。以下是部分校友里程碑。"
       />
 
       {/* Section 2: Stats Banner */}

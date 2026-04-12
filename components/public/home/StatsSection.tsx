@@ -12,7 +12,7 @@ interface Stat {
 
 const stats: Stat[] = [
   { value: 600, prefix: "近 ", suffix: " 支", label: "累計輔導新創團隊" },
-  { value: 350, suffix: "+", label: "投資人與天使網絡" },
+  { value: 150, suffix: "+", label: "投資人與天使網絡" },
   { value: 35, suffix: " 家", label: "企業合作夥伴" },
   { value: 13, suffix: " 年", label: "深耕台大創業生態" },
 ];
@@ -113,10 +113,6 @@ export default function StatsSection() {
 
         {/* Exit Badge Row */}
         <div className="mt-10 flex flex-wrap justify-center gap-6 text-center">
-          <div className="flex items-center gap-2 text-sm text-stone/70">
-            <span className="text-teal">✦</span>
-            <span>成功協助 <strong className="text-white">2 案</strong> 國際 Exit</span>
-          </div>
           <div className="flex items-center gap-2 text-sm text-stone/70">
             <span className="text-teal">✦</span>
             <span>校友最高單筆募資 <strong className="text-white">NT$1 億+</strong></span>
