@@ -24,7 +24,7 @@
   --color-foreground: var(--foreground);
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
-  --font-zh: var(--font-zh);
+  --font-zh: 'Noto Sans TC', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
