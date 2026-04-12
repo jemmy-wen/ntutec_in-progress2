@@ -235,7 +235,7 @@ export default function PitchPage() {
             <p className="micro-label mb-4 text-center">Submit</p>
             <h2 className="mb-3 text-center">立即投遞</h2>
             <p className="mb-8 text-center text-slate-muted">
-              填寫表單約需 10–15 分鐘。提交後投資經理將於 5 個工作日內回覆，說明是否進入下一審查階段。
+              提交後，投資經理將逐一審閱並主動與你聯繫。
             </p>
             <a
               href="https://forms.gle/yu4ftYfVdsWaynxY8"
@@ -245,10 +245,6 @@ export default function PitchPage() {
             >
               填寫新創投遞表單 →
             </a>
-            <p className="mt-4 text-center text-xs text-slate-muted">
-              台大創創中心校友（加速器、車庫畢業生）享優先審查資格。<br />
-              投遞不代表保證進入天使例會，所有案件均需通過完整三關篩選。
-            </p>
           </div>
         </div>
       </section>
