@@ -63,11 +63,11 @@ const highlights = [
 
 const monthlySteps = [
   { icon: '📥', title: '案源進入', desc: '申請、業師推薦或校友引薦' },
-  { icon: '🔬', title: '三段篩選', desc: '通過率不到 10%，投資經理親自盡調' },
-  { icon: '📋', title: '上架卡片', desc: '月會前一週，DD 備忘錄全文開放閱讀' },
-  { icon: '🎤', title: '天使例會', desc: '每月第四週，15 分鐘 Pitch + Q&A' },
-  { icon: '🗳️', title: '記名投票', desc: '選擇金額範圍（50萬以下 → 200萬以上）' },
-  { icon: '💼', title: '個人直接投資', desc: '中心協助撮合，個人名義直接持股' },
+  { icon: '🔬', title: '三段篩選', desc: '投資經理全程主導盡職調查' },
+  { icon: '📋', title: '上架資訊卡', desc: '月會前開放閱覽，附完整投資評估摘要' },
+  { icon: '🎤', title: '天使例會', desc: '新創 Pitch 與 Q&A，會員現場互動提問' },
+  { icon: '🗳️', title: '記名投票', desc: '針對有意投資的案件表態與說明偏好' },
+  { icon: '💼', title: '個人直接投資', desc: '中心協助後續撮合，會員自主決策' },
 ]
 
 const gateProcess = [
@@ -215,7 +215,7 @@ export default function AngelPage() {
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">How It Works</p>
             <h2 className="mb-4">每月如何運作</h2>
-            <p className="text-lg text-slate-muted">從案源進入到投資決策，每個月都有固定節奏。</p>
+            <p className="text-lg text-slate-muted">從案源進入到投資決策，每一步都有清楚的流程。</p>
           </div>
 
           {/* Desktop: horizontal flow */}
