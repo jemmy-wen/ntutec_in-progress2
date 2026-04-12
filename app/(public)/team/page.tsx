@@ -29,7 +29,7 @@ const leadership: TeamMember[] = [
     name: "林文欽 Vincent",
     title: "執行長 CEO",
     bio: "前騰訊副總經理、京東商城副總裁，台大 EMBA。負責中心日常營運、策略方向與投資決策，主導天使投資俱樂部與新創輔導整體規劃。",
-    photo: "/images/events/opening-2026-vincent.jpg",
+    photo: "/images/team/vincent-lin.png",
   },
 ];
 
