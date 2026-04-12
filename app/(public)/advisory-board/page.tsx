@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from "next";
 import PageHero from "@/components/public/PageHero";
 
@@ -83,15 +84,40 @@ export default function AdvisoryBoardPage() {
             諮詢委員會成員橫跨金融、半導體、科技、政府、學術等領域，提供中心跨領域的戰略視野與產業洞察，共同推動臺灣創新創業生態系的長期發展。
           </p>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {advisors.map((advisor) => (
-              <div key={advisor.name} className="rounded-xl border bg-white p-6 card-hover">
-                <div className="mb-4 aspect-square w-24 rounded-xl bg-teal-wash flex items-center justify-center">
-                  <span className="text-3xl font-bold text-teal">{advisor.initials}</span>
+              <div
+                key={advisor.name}
+                className="group overflow-hidden rounded-2xl border border-stone-warm/50 bg-white shadow-sm transition-shadow hover:shadow-md"
+              >
+                {/* Logo emblem area — charcoal background */}
+                <div className="relative flex flex-col items-center justify-center bg-charcoal py-8 gap-3">
+                  {/* Thin teal accent line at top */}
+                  <div className="absolute inset-x-0 top-0 h-[3px] bg-teal" />
+                  <Image
+                    src="/logo-tec-icon.png"
+                    alt="NTUTEC"
+                    width={56}
+                    height={56}
+                    className="opacity-90"
+                  />
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
+                    Advisory Board
+                  </span>
                 </div>
-                <h3 className="text-xl">{advisor.name}</h3>
-                <p className="mt-1 text-sm font-semibold text-teal">{advisor.title}</p>
-                <p className="mt-1 text-sm text-slate-muted">{advisor.organization}</p>
+
+                {/* Info area */}
+                <div className="px-5 py-5">
+                  <p className="text-[10px] font-bold tracking-widest text-teal uppercase mb-2">
+                    {advisor.title}
+                  </p>
+                  <h3 className="text-lg font-bold leading-snug text-charcoal">
+                    {advisor.name}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-muted">
+                    {advisor.organization}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
