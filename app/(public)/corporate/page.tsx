@@ -22,7 +22,7 @@ const valueProps = [
   {
     title: "Demo Day 與論壇曝光",
     description:
-      "共同舉辦 Demo Day（74 位投資人到場）、產業論壇，在台大最具影響力的場合與新創圈、投資圈同台——不只品牌，更是真實的合作信號。",
+      "共同舉辦 Demo Day（74 位投資人到場）、產業論壇，在台大指標性的新創場合與新創圈、投資圈同台——不只品牌，更是真實的合作信號。",
   },
 ];
 
@@ -181,7 +181,7 @@ export default function CorporatePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-0.5 text-teal">✓</span>
-                  年度企業外部創新旗艦合作，被評為 Score 5 / AEO High
+                  年度企業外部創新旗艦合作，獲企業高度評價
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-0.5 text-teal">✓</span>

@@ -14,7 +14,7 @@ interface Advisor {
   organization: string;
 }
 
-// Source: ntutec_advisory_committee_111.md (111 年諮詢委員會名單)
+// Source: ntutec_advisory_committee_111.md (2022 年諮詢委員會名單)
 const advisors: Advisor[] = [
   {
     initials: "蔡",

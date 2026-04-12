@@ -48,7 +48,7 @@ const milestoneCases = [
     domain: "ContentTool",
     highlight: "獲投 US$35萬",
     desc: "Link-in-bio 數位名片平台，2022 Demo Day Pitch 後獲 AVA Angels 投資。",
-    source: "112年報 / 2022 Demo Day",
+    source: "2022 Demo Day",
   },
   {
     company: "律果科技",

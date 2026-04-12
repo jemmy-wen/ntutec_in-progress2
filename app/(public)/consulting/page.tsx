@@ -78,16 +78,16 @@ export default function ConsultingPage() {
             <p className="micro-label mb-4">Get in Touch</p>
             <h2 className="mb-4">洽詢諮詢服務</h2>
             <p className="mb-8 text-lg text-slate-muted">
-              請來信說明您的需求（企業規模、創新議題、期望時程），我們將於兩個工作天內安排專人回覆。
+              請來信說明您的需求（企業規模、創新議題、期望時程），我們將於儘速安排專人回覆。
             </p>
             <a
-              href="mailto:ntutec@ntu.edu.tw?subject=諮詢服務洽詢"
+              href="mailto:ntutec@ntutec.com?subject=諮詢服務洽詢"
               className="btn-pill-primary inline-flex items-center gap-2"
             >
               來信洽詢
             </a>
             <p className="mt-6 text-sm text-slate-muted">
-              ntutec@ntu.edu.tw　·　週一至週五 9:00–18:00
+              ntutec@ntutec.com　·　週一至週五 9:00–18:00
             </p>
           </div>
         </div>

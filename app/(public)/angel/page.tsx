@@ -259,7 +259,7 @@ export default function AngelPage() {
         </div>
       </section>
 
-      {/* ── Gate Process ── */}
+      {/* ── 三段篩選流程 ── */}
       <section className="section-spacing">
         <div className="container">
           <div className="mx-auto mb-12 max-w-2xl text-center">
@@ -445,7 +445,7 @@ export default function AngelPage() {
             <Link href="/faq" className="underline underline-offset-4 hover:text-teal">
               查看常見問題
             </Link>
-            {' '}或來信 ntutec@ntu.edu.tw
+            {' '}或來信 ntutec@ntutec.com
           </p>
         </div>
       </section>

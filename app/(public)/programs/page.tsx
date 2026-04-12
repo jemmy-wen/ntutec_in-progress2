@@ -4,7 +4,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '新創輔導計畫 | NTUTEC',
-  description: '台大車庫與台大加速器兩大計畫，依需台大身分與否分流，共同框架為 OKR Tracker + Hot Seat + 三大 Checkpoint，每年 3 月開始，12 月 Demo Day 畢業。',
+  description: '台大車庫與台大加速器兩大計畫，依需台大身分與否分流，共同框架為 OKR Tracker + Hot Seat + 三個關鍵審查節點，每年 3 月開始，12 月 Demo Day 畢業。',
 }
 
 const programs = [
@@ -80,7 +80,7 @@ export default function ProgramsPage() {
                 },
                 {
                   icon: '🎯',
-                  title: '三大 Checkpoint',
+                  title: '三個關鍵審查節點',
                   description: 'Problem-Solution Fit 問題驗證 → Business Model Validation 商業模式驗證 → Traction 成長牽引，逐關遞進。',
                 },
               ].map((item) => (

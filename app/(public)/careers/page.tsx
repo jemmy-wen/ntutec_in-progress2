@@ -174,7 +174,7 @@ export default function CareersPage() {
               目前無固定職缺開放，如對加入台大創創中心有強烈意願，歡迎主動投遞履歷。
             </p>
             <Link
-              href="mailto:ntutec@ntu.edu.tw"
+              href="mailto:ntutec@ntutec.com"
               className="btn-pill-outline mt-4 inline-flex text-sm"
             >
               主動投遞履歷
@@ -190,7 +190,7 @@ export default function CareersPage() {
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
             歡迎來信告訴我們你的背景與興趣，我們將在下一梯次招募時優先通知你。
           </p>
-          <Link href="mailto:ntutec@ntu.edu.tw" className="btn-pill-primary">
+          <Link href="mailto:ntutec@ntutec.com" className="btn-pill-primary">
             聯繫我們
           </Link>
           <p className="mt-4 text-sm text-slate-muted">

@@ -97,10 +97,10 @@ export default function AngelApplyPage() {
             <p className="text-slate-muted">
               Email：
               <a
-                href="mailto:ntutec@ntu.edu.tw"
+                href="mailto:ntutec@ntutec.com"
                 className="font-medium text-teal-deep underline underline-offset-4"
               >
-                ntutec@ntu.edu.tw
+                ntutec@ntutec.com
               </a>
             </p>
           </div>
