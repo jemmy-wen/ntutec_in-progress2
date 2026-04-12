@@ -1,6 +1,6 @@
 {
   "stats": {
-    "total": 56,
+    "total": 40,
     "by_category": {
       "vc": 12,
       "founder": 14,
@@ -102,6 +102,14 @@
           "social_url": null
         },
         {
+          "name": "陳怡如",
+          "title": "生醫專家",
+          "highlight": "創投 10+ 年經驗；醫材背景",
+          "photo": "/mentors/wp/17125.png",
+          "is_new_2026": false,
+          "social_url": null
+        },
+        {
           "name": "張家銘",
           "title": "東安投資 副總經理",
           "highlight": null,
@@ -150,7 +158,8 @@
           "is_new_2026": false,
           "social_url": "https://www.linkedin.com/in/michel-chu-a1368124"
         }
-      ]
+      ],
+      "display_count": "10+"
     },
     {
       "key": "founder",
@@ -224,6 +233,14 @@
           "social_url": null
         },
         {
+          "name": "鄧耀中",
+          "title": "VOCAL MIDDLE 布爾喬亞公關顧問 創辦人暨執行長",
+          "highlight": "VOCAL MIDDLE 創辦人暨執行長；艾思智創 共同創辦人",
+          "photo": "/mentors/deng-yaozhong.jpg",
+          "is_new_2026": false,
+          "social_url": "https://www.linkedin.com/in/tangyaochung"
+        },
+        {
           "name": "鍾哲民",
           "title": "MoBagel 美商行動貝果 執行長暨共同創辦人",
           "highlight": "MoBagel 美商行動貝果 共同創辦人",
@@ -231,7 +248,8 @@
           "is_new_2026": false,
           "social_url": null
         }
-      ]
+      ],
+      "display_count": "10+"
     },
     {
       "key": "exec",
@@ -289,14 +307,6 @@
           "social_url": "https://www.linkedin.com/in/stingtao/"
         },
         {
-          "name": "黃世貝",
-          "title": "台大醫師",
-          "highlight": "台大醫師",
-          "photo": "/mentors/wp/3158.jpg",
-          "is_new_2026": false,
-          "social_url": null
-        },
-        {
           "name": "楊本豫",
           "title": "友達光電集團策略長室顧問 Corporate Adviser, Group Strategy Office, AUO",
           "highlight": "友達光電集團 策略長室顧問",
@@ -344,7 +354,8 @@
           "is_new_2026": false,
           "social_url": "https://www.linkedin.com/in/ching-fong-cf-su-0245b63"
         }
-      ]
+      ],
+      "display_count": "10+"
     },
     {
       "key": "expert",
@@ -388,14 +399,6 @@
           "social_url": null
         },
         {
-          "name": "陳怡如",
-          "title": "生醫專家",
-          "highlight": "創投 10+ 年經驗；醫材背景",
-          "photo": "/mentors/wp/17125.png",
-          "is_new_2026": false,
-          "social_url": null
-        },
-        {
           "name": "陳琚安",
           "title": "安智管理顧問 管理顧問 (J Know Consulting, Consultant)",
           "highlight": "安智管理顧問",
@@ -420,6 +423,14 @@
           "is_new_2026": false,
           "social_url": null,
           "hidden": true
+        },
+        {
+          "name": "黃世貝",
+          "title": "台大醫師",
+          "highlight": "台大醫師",
+          "photo": "/mentors/wp/3158.jpg",
+          "is_new_2026": false,
+          "social_url": null
         },
         {
           "name": "黃沛聲",
@@ -474,14 +485,6 @@
           "hidden": true
         },
         {
-          "name": "鄧耀中",
-          "title": "VOCAL MIDDLE 布爾喬亞公關顧問 創辦人暨執行長",
-          "highlight": "VOCAL MIDDLE 創辦人暨執行長；艾思智創 共同創辦人",
-          "photo": "/mentors/deng-yaozhong.jpg",
-          "is_new_2026": false,
-          "social_url": "https://www.linkedin.com/in/tangyaochung"
-        },
-        {
           "name": "薛峻泯",
           "title": "德勤會計師 合夥人",
           "highlight": null,
@@ -508,7 +511,8 @@
           "social_url": null,
           "hidden": true
         }
-      ]
+      ],
+      "display_count": "5+"
     }
   ]
 }

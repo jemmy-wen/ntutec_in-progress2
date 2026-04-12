@@ -26,6 +26,7 @@ interface Category {
   subtitle: string;
   emoji: string;
   description: string;
+  display_count?: string;
   mentors: Mentor[];
 }
 
@@ -143,7 +144,7 @@ export default function MentorsPage() {
               <a
                 key={cat.key}
                 href={`#${cat.key}`}
-                aria-label={`${cat.title}：${cat.mentors.length} 位`}
+                aria-label={`${cat.title}：${cat.display_count ?? cat.mentors.length} 位`}
                 className="card-hover rounded-xl border border-stone-warm/60 bg-stone p-4 text-center transition-colors"
               >
                 <div className="text-3xl" aria-hidden="true">{cat.emoji}</div>
@@ -151,7 +152,7 @@ export default function MentorsPage() {
                   {cat.title}
                 </div>
                 <div className="text-xs text-slate-muted">
-                  {cat.mentors.length} 位 · {cat.subtitle}
+                  {cat.display_count ?? cat.mentors.length} 位 · {cat.subtitle}
                 </div>
               </a>
             ))}
@@ -205,7 +206,7 @@ export default function MentorsPage() {
                   <span className="text-4xl" aria-hidden="true">{cat.emoji}</span>
                   <span>{cat.title}</span>
                   <span className="text-lg font-normal text-slate-muted">
-                    · {cat.mentors.length} 位
+                    · {cat.display_count ?? cat.mentors.length} 位
                   </span>
                 </h2>
                 <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-muted">
