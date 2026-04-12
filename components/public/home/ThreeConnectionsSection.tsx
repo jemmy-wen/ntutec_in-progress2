@@ -24,7 +24,7 @@ const connections: Connection[] = [
     title: "連結台大",
     description:
       "整合台大工學院、醫學院、電機資訊、管理等跨院系資源，串接校內 D-School、ILO、EiMBA 等五大合作單位，把研究能量轉化為可投資的新創。",
-    proof: "120+ 台大學生團隊 · 30+ 教授團隊 · 200+ 校友團隊",
+    proof: "逾 600 支輔導團隊（2013 至今）· 台大四院系跨領域",
     href: "/programs",
     cta: "了解輔導計畫",
     glowColor: "oklch(0.66 0.12 180 / 0.15)",
@@ -35,7 +35,7 @@ const connections: Connection[] = [
     title: "連結產業",
     description:
       "累計 35 家企業合作，首創企業垂直加速器，以企業出題、新創解題的模式共創。合作夥伴含 Nvidia、Synopsys、鴻海、玉山銀行、遠傳電信等國內外大廠。",
-    proof: "35 家企業合作 · 27 隻企業垂直加速器",
+    proof: "35 家企業合作 · 27 期企業垂直加速器",
     href: "/corporate",
     cta: "探索企業合作",
     glowColor: "oklch(0.66 0.12 180 / 0.12)",
