@@ -23,7 +23,7 @@ export default function HeroSection() {
             </p>
 
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl animate-[fadeUp_0.6s_ease-out_0.1s_both]">
-              Bridging NTU Deep Tech
+              Bridging NTU Innovation
               <br />
               to Global Impact
             </h1>
