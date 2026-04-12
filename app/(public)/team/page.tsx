@@ -64,11 +64,11 @@ function TeamCard({ member, size = "default" }: { member: TeamMember; size?: "la
   const nameSize = size === "large" ? "text-2xl" : "text-xl";
   return (
     <div className="rounded-xl border bg-white p-6 card-hover">
-      <div className={`mb-4 relative ${avatarSize} shrink-0 overflow-hidden rounded-full bg-teal-wash`}>
+      <div className={`mb-4 flex ${avatarSize} shrink-0 items-center justify-center overflow-hidden rounded-full bg-teal-wash`}>
         {member.photo ? (
-          <Image src={member.photo} alt={member.name} fill className="object-cover" sizes="96px" />
+          <Image src={member.photo} alt={member.name} width={96} height={96} className="h-full w-full object-cover" />
         ) : (
-          <span className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-teal">{member.initials}</span>
+          <span className="text-2xl font-bold text-teal">{member.initials}</span>
         )}
       </div>
       <h3 className={nameSize}>{member.name}</h3>
