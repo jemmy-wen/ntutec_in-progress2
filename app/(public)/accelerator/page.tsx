@@ -84,7 +84,13 @@ export const metadata: Metadata = {
   title: "台大加速器 | NTUTEC",
   description:
     "台大創創中心台大加速器為期十個月，提供成長期新創深度業師輔導、企業資源對接與募資機會。",
-  alternates: { canonical: "https://tec.ntu.edu.tw/accelerator" },
+  alternates: {
+    canonical: "https://tec.ntu.edu.tw/accelerator",
+    languages: {
+      'zh-TW': 'https://tec.ntu.edu.tw/accelerator',
+      'en': 'https://tec.ntu.edu.tw/en/accelerator',
+    },
+  },
   openGraph: {
     title: "台大加速器 | NTUTEC",
     description: "為期十個月，業師深度輔導 + 企業資源對接 + 募資機會。成長期新創最強後盾。",

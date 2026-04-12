@@ -34,6 +34,12 @@ const publicRoutes: Array<{
   { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/news', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/events', changeFrequency: 'weekly', priority: 0.7 },
+  // English pages
+  { path: '/en', changeFrequency: 'weekly', priority: 0.9 },
+  { path: '/en/about', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/en/accelerator', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/en/angel', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/en/contact', changeFrequency: 'yearly', priority: 0.5 },
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

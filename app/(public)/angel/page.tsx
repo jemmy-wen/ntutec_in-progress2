@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     'NTUTEC ANGELS 台大天使會：每月精選台大生態系優質新創、三段嚴格盡調、記名投票機制，與 40+ 位天使投資人共同佈局早期新創。個人會員 NT$50,000/年。',
   alternates: {
     canonical: 'https://tec.ntu.edu.tw/angel',
+    languages: {
+      'zh-TW': 'https://tec.ntu.edu.tw/angel',
+      'en': 'https://tec.ntu.edu.tw/en/angel',
+    },
   },
   openGraph: {
     title: 'NTUTEC ANGELS 台大天使會',

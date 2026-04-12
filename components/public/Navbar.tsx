@@ -7,6 +7,19 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import SearchDialog, { useSearchDialog, SearchButton } from "@/components/search/SearchDialog";
 import NavbarAuthButton, { MobileNavbarAuthButton } from "@/components/public/NavbarAuthButton";
+import { usePathname } from "next/navigation";
+
+/** Map English /en/* paths back to Chinese equivalents and vice versa. */
+function useLanguageSwitcher() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/en")) {
+    const zhPath = pathname.replace(/^\/en/, "") || "/";
+    return { href: zhPath, label: "中文" };
+  }
+  const enPages = ["/", "/about", "/accelerator", "/angel", "/contact"];
+  const enPath = enPages.includes(pathname) ? `/en${pathname === "/" ? "" : pathname}` : "/en";
+  return { href: enPath, label: "EN" };
+}
 
 /* ────────────────────────────── nav data ────────────────────────────── */
 
@@ -242,6 +255,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { open: searchOpen, setOpen: setSearchOpen } = useSearchDialog();
+  const langSwitch = useLanguageSwitcher();
 
   useEffect(() => {
     const onResize = () => {
@@ -344,15 +358,13 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <SearchButton onClick={() => setSearchOpen(true)} />
 
-          <button
-            type="button"
-            aria-label="English site (coming soon)"
-            disabled
-            title="English site coming soon"
-            className="hidden lg:inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-charcoal/40 cursor-not-allowed"
+          <Link
+            href={langSwitch.href}
+            className="hidden lg:inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
+            aria-label={langSwitch.label === "EN" ? "Switch to English" : "切換至中文"}
           >
-            EN
-          </button>
+            {langSwitch.label}
+          </Link>
 
           <Link
             href="/pitch"
@@ -420,7 +432,13 @@ export default function Navbar() {
                 >
                   預約 2027 申請
                 </Link>
-                <button className="btn-pill-outline text-center">EN</button>
+                <Link
+                  href={langSwitch.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="btn-pill-outline text-center"
+                >
+                  {langSwitch.label}
+                </Link>
 
                 {/* Mobile auth section */}
                 <div className="border-t border-border/60 pt-3">

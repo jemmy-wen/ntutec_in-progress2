@@ -1,0 +1,544 @@
+{
+  "common": {
+    "nav": {
+      "programs": "Programs",
+      "accelerator": "NTU Accelerator",
+      "garage": "NTU Garage",
+      "alumni": "Alumni Startups",
+      "corporate": "Corporate Partners",
+      "corporateOverview": "Corporate Overview",
+      "corporatePartners": "Partner Companies",
+      "coEvents": "Joint Events",
+      "consulting": "Consulting",
+      "angels": "Angels Club",
+      "angelsOverview": "Angels Club Overview",
+      "applyAngel": "Membership Application",
+      "pitchStartup": "Startup Pitch",
+      "about": "About Us",
+      "aboutTEC": "About NTUTEC",
+      "team": "Team",
+      "mentors": "Mentors",
+      "advisoryBoard": "Advisory Board",
+      "careers": "Careers",
+      "news": "News & Updates",
+      "newsTab": "News",
+      "events": "Events",
+      "demoDay": "Demo Day",
+      "blog": "Blog",
+      "podcast": "TEC Talk Podcast",
+      "faq": "FAQ",
+      "pitchBtn": "Pitch Your Startup",
+      "joinAngel": "Join Angels Club",
+      "preRegister": "Pre-register for 2027"
+    },
+    "footer": {
+      "tagline": "NTUTEC connects startup teams, corporate partners, and angel investors — 13 years cultivating NTU's most enduring campus entrepreneurship ecosystem.",
+      "affiliate": "Affiliated with",
+      "ntu": "National Taiwan University",
+      "programsTitle": "Programs & Services",
+      "corporate": "Corporate Partners",
+      "angelsClub": "Angels Club",
+      "accelerator": "NTU Accelerator",
+      "garage": "NTU Garage",
+      "preRegister": "Pre-register Application",
+      "aboutTitle": "About Us",
+      "aboutTEC": "About NTUTEC",
+      "team": "Team",
+      "mentors": "Mentors",
+      "latestNews": "News",
+      "contactTitle": "Contact",
+      "address": "7F, Excellence Research Building\nNTU Shiyuan Campus\n18 Siyuan St, Zhongzheng District, Taipei",
+      "ecosystemTitle": "NTU Innovation Ecosystem",
+      "partnerNTU": "National Taiwan University",
+      "partnerRD": "Office of Research & Development",
+      "partnerILO": "Industry-Academia Alliance ILO",
+      "partnerIIC": "NTU Innovation Incubation Center",
+      "partnerVC": "NTU Alumni Ventures",
+      "partnerDSchool": "D-School Innovation Design",
+      "mediaLabel": "Featured In",
+      "copyright": "National Taiwan University Innovation & Entrepreneurship Center. All rights reserved.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
+    "cta": {
+      "applyAccelerator": "Apply for Accelerator Program",
+      "learnNTUTEC": "Learn About NTUTEC",
+      "joinAngels": "Join Angels Club",
+      "contactUs": "Contact Us"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "NTUTEC — NTU's Entrepreneurship Ecosystem Hub",
+      "description": "Over 600 startup teams mentored in 13 years. NTUTEC connects NTU innovation to global impact through the NTU Accelerator, NTU Garage, Corporate Vertical Accelerator, and Angels Club."
+    },
+    "hero": {
+      "label": "NTU TAIDAH ENTREPRENEURSHIP CENTER · NTU's Entrepreneurship Ecosystem Hub",
+      "title": "NTUTEC",
+      "subtitle": "Bridging NTU Innovation to Global Impact",
+      "description": "From NTU to the world. Connecting industry. Reaching markets.",
+      "ctaApply": "Apply for Incubation Program",
+      "ctaAbout": "Learn About NTUTEC"
+    },
+    "community": {
+      "label": "Community",
+      "title": "600+ Startups, Growing Together",
+      "description": "At the 2026 Incubation Program Launch, over 80 founders and mentors gathered at NTU to begin a ten-month entrepreneurship acceleration journey.",
+      "imageAlt": "2026 Incubation Program Launch — Group Photo"
+    },
+    "connections": {
+      "label": "Three Connections",
+      "title": "What We Do — Three Connections",
+      "description": "Connecting NTU, industry, and capital. With 13 years of accumulated experience, we transform the best technologies and talents into investable startups.",
+      "ntu": {
+        "label": "Connect to NTU",
+        "title": "NTU Connection",
+        "description": "Bridging NTU's research energy and campus innovation units across all departments. No domain restrictions — transforming the best technologies and talents into investable startups.",
+        "proof": "600+ mentored teams (since 2013) · Open to all NTU departments",
+        "cta": "Learn About Programs",
+        "ctaRegister": "Pre-register for 2027 Batch"
+      },
+      "industry": {
+        "label": "Connect to Industry",
+        "title": "Industry Connection",
+        "description": "35 corporate partnerships and counting. Pioneer of the Corporate Vertical Accelerator model — corporations define challenges, startups solve them. Partners include Nvidia, Synopsys, Foxconn, E.SUN Bank, and more.",
+        "proof": "35 corporate partners · 27 batches of Corporate Vertical Accelerator",
+        "cta": "Explore Corporate Partnerships",
+        "ctaConsult": "Discuss Corporate Partnership"
+      },
+      "capital": {
+        "label": "Connect to Capital",
+        "title": "Capital Connection",
+        "description": "NTUTEC Angels Club provides members with curated deal flow, a rigorous three-stage due diligence process, and monthly investment meetings. All deals are thoroughly evaluated by investment managers, with access to 150+ investor network and VC connections.",
+        "proof": "Three-stage screening · Monthly meetings · 150+ investor network",
+        "cta": "Access Deal Flow & Capital",
+        "ctaApply": "Apply for Angel Membership"
+      }
+    },
+    "stats": {
+      "label": "Social Proof",
+      "title": "By the Numbers",
+      "teamsLabel": "Startup Teams Mentored",
+      "investorsLabel": "Investors & Angels Network",
+      "corporateLabel": "Corporate Partners",
+      "yearsLabel": "Years at NTU",
+      "alumniRaise": "Largest alumni fundraise",
+      "alumniRaiseValue": "NT$100M+",
+      "acceleratorBatches": "Corporate accelerator batches",
+      "acceleratorBatchesValue": "27 batches"
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "About NTUTEC | NTUTEC",
+      "description": "NTUTEC supports startups through the HI3 cultivation model (Incubation × Integration × Ignition). From NTU Garage in 2013 to 35 corporate partners and 27 batches of vertical accelerators — 13 years deepening NTU's entrepreneurship ecosystem."
+    },
+    "hero": {
+      "title": "About NTUTEC",
+      "subtitle": "About NTUTEC",
+      "description": "13 Years · 600+ Startups · 35 Corporate Partners · 150+ Investor Network (including 40+ Angel Members) — the complete picture of NTU's entrepreneurship ecosystem."
+    },
+    "mission": {
+      "label": "Our Mission",
+      "title": "Mission & Vision",
+      "p1": "NTUTEC is the operational hub of NTU's entrepreneurship ecosystem. Our core mission — \"Connecting NTU, Connecting Industry, Connecting Capital\" — transforms NTU's best technological capabilities and talent into investable startups.",
+      "p2": "Over <strong>13 years</strong>, we have cumulatively mentored over <strong>600+</strong> startup teams. Through the NTU Accelerator, NTU Garage, Corporate Vertical Accelerator (<strong>27 batches</strong>, <strong>35 companies</strong>), and Angels Club (<strong>150+</strong> investor network), we support startups from technical validation to market entry.",
+      "p3": "Our vision is to become Taiwan's most trusted campus-based startup accelerator — systematically supporting startups through the HI3 model (Incubation → Integration → Ignition), rooted in 13 years of university entrepreneurship development in Taiwan.",
+      "stats": {
+        "teams": "Startup Teams Mentored",
+        "teamsSub": "Since 2013",
+        "years": "Years of Experience",
+        "yearsSub": "Since 2013",
+        "corporate": "Corporate Partners",
+        "corporateSub": "Vertical Accelerator Partners",
+        "investors": "Investor Network",
+        "investorsSub": "Including 40+ Angel Members"
+      }
+    },
+    "affiliation": "National Taiwan University Innovation & Entrepreneurship Center — University-level unit under the Office of Research & Development",
+    "hi3": {
+      "label": "Our Approach",
+      "title": "HI3 Cultivation Model",
+      "description": "Human-centric approach — three-stage systematic support guiding startups from concept to market launch.",
+      "incubation": {
+        "label": "Incubation",
+        "title": "Incubation",
+        "description": "Through dedicated program managers, one-on-one mentor consultations, and professional workshops (business models, fundraising, legal), we accompany early-stage teams from idea to prototype validation."
+      },
+      "integration": {
+        "label": "Integration",
+        "title": "Integration",
+        "description": "Connecting NTU's multi-disciplinary resources, corporate vertical accelerators, and EiMBA entrepreneurship programs — linking government initiatives (FITI, TTA) and international partners to help startups quickly engage with real-world environments."
+      },
+      "ignition": {
+        "label": "Ignition",
+        "title": "Ignition",
+        "description": "Hosting Demo Day (74 investors attended, 2025), closed-door investment matching, and the Angels Club — igniting the first round of capital for ready teams and propelling them to market."
+      }
+    },
+    "alumni": {
+      "label": "Alumni Impact",
+      "title": "Alumni Success Stories",
+      "description": "Starting from NTU Garage and Accelerator, these teams have completed fundraising, acquisitions, or international market validation.",
+      "packagePlus": {
+        "tag": "Circular Packaging · ESG",
+        "result": "Series A over NT$100M (2025)",
+        "detail": "With National Development Fund and strategic investors on board, bringing circular packaging into Taiwan's mainstream e-commerce supply chain."
+      },
+      "aistrom": {
+        "tag": "Medical Devices · International",
+        "result": "Raised USD $2.5M (2024)",
+        "detail": "SelectUSA MedTech champion, with investment from NBA team-designated physicians and international orthopedic authorities."
+      },
+      "botbonnie": {
+        "tag": "Chatbot · AI",
+        "result": "Acquired by Appier (2023)",
+        "detail": "NTU alumni team successfully acquired by Appier, a Japanese publicly-listed AI company, achieving a complete exit."
+      }
+    },
+    "milestones": {
+      "label": "History",
+      "title": "Our Journey",
+      "2013": {
+        "title": "NTU Garage Launches",
+        "description": "Established NTU Garage at NTU Shiyuan Campus as a shared entrepreneurship space for students, building the foundation of NTU's entrepreneurship ecosystem."
+      },
+      "2014": {
+        "title": "NTUTEC Officially Established",
+        "description": "National Taiwan University officially established the Innovation & Entrepreneurship Center as a university-level unit, integrating campus entrepreneurship resources."
+      },
+      "2016": {
+        "title": "NTU Challenge Campus Competition",
+        "description": "Co-hosted NTU Challenge with the College of Design, combining education, mentorship, and competition to discover campus entrepreneurship potential."
+      },
+      "2017": {
+        "title": "NTU Accelerator Launches",
+        "description": "Launched the NTU Accelerator, providing growth-stage startup teams with market validation, business model iteration, and fundraising resources."
+      },
+      "2019": {
+        "title": "Corporate Vertical Accelerator Pioneer",
+        "description": "Pioneered the Corporate Vertical Accelerator model, where corporations pose challenges and startups solve them — cumulatively partnering deeply with 35 companies including Foxconn, Nvidia, and Synopsys."
+      },
+      "2020": {
+        "title": "Corporate Innovation Consulting",
+        "description": "Launched corporate open innovation consulting services, helping medium and large enterprises adopt startup thinking and agile innovation methodologies."
+      },
+      "2022": {
+        "title": "Co-Creation Sandbox",
+        "description": "Launched the Co-Creation Sandbox membership program, providing startups with a safe product and market validation environment."
+      },
+      "2026": {
+        "title": "Four Focus Areas & Three-University Alliance",
+        "description": "Focusing on AI software, biotech & healthcare, hard tech, and innovative business models — deepening the three-university entrepreneurship ecosystem alliance with NTNU and NTUST."
+      }
+    },
+    "explore": {
+      "title": "Explore Our Programs",
+      "ctaApply": "Start Your Entrepreneurship Journey",
+      "ctaCorporate": "Corporate Partnership"
+    },
+    "team": {
+      "label": "Our People",
+      "title": "Meet Our Team",
+      "description": "Investment managers, program managers — every team member is a frontline partner for startups, not just giving advice, but walking through every critical milestone together.",
+      "cta": "View Full Team"
+    }
+  },
+  "accelerator": {
+    "meta": {
+      "title": "NTU Accelerator | NTUTEC",
+      "description": "NTUTEC's NTU Accelerator is a ten-month intensive program providing growth-stage startups with deep mentorship, corporate resource connections, and fundraising opportunities."
+    },
+    "hero": {
+      "title": "NTU Accelerator",
+      "subtitle": "NTU Accelerator",
+      "description": "A ten-month intensive mentorship program helping growth-stage startups accelerate toward their next milestone. NTU affiliation not required — NTU-affiliated applicants receive priority. We value technological innovation and market potential."
+    },
+    "overview": {
+      "label": "Overview",
+      "title": "Program Overview",
+      "description": "The NTU Accelerator, launched in 2017, is designed for growth-stage startups that have completed prototyping and entered market validation. The ten-month program offers one-on-one deep mentorship from 40+ active mentors in the 2026 cohort (backed by a database of 80+ mentors over the years), corporate partnership resources, the Angels Club, and VC network connections. The 2026 cohort is currently in progress (March–December)."
+    },
+    "timeline": {
+      "label": "Timeline",
+      "title": "Program Schedule",
+      "phase1": {
+        "phase": "Phase 1",
+        "title": "Diagnosis & Positioning",
+        "duration": "Months 1–2",
+        "description": "Deep understanding of team's current situation, setting growth goals and milestones, and matching with the most suitable mentors."
+      },
+      "phase2": {
+        "phase": "Phase 2",
+        "title": "Validation & Iteration",
+        "duration": "Months 3–5",
+        "description": "Focused on product-market fit validation, continuously optimizing the business model through customer interviews and data analysis."
+      },
+      "phase3": {
+        "phase": "Phase 3",
+        "title": "Scaling Preparation",
+        "duration": "Months 6–8",
+        "description": "Building scalable operational frameworks, deepening corporate partnerships, and preparing fundraising materials."
+      },
+      "phase4": {
+        "phase": "Phase 4",
+        "title": "Demo Day & Graduation",
+        "duration": "Months 9–10",
+        "description": "Pitching to angel investors and strategic partners, completing the program and securing ongoing support resources."
+      }
+    },
+    "campusLife": {
+      "label": "Campus Life",
+      "title": "Program in Action",
+      "description": "Workshops, mentorship sessions, discussions — ten months of startup acceleration begins here.",
+      "classroomAlt": "2026 Incubation Program — Full Class",
+      "coachingAlt": "2026 Incubation Program — Group Coaching Session"
+    },
+    "benefits": {
+      "label": "Benefits",
+      "title": "Resources We Provide",
+      "mentors": {
+        "title": "Mentor Network",
+        "description": "An extensive roster of 80+ mentors accumulated over the years, with 40+ active in 2026. Averaging over 20 years of industry experience covering venture capital, AI, biotech, semiconductors, and more — one-on-one deep mentorship."
+      },
+      "corporate": {
+        "title": "Corporate Resources",
+        "description": "35 partner companies (including Nvidia, Synopsys, Foxconn, and others), providing technology validation environments and potential customer resources."
+      },
+      "funding": {
+        "title": "Fundraising Connections",
+        "description": "Angels Club and 300+ investor network covering fundraising opportunities from seed to Series A rounds."
+      },
+      "virtual": {
+        "title": "Virtual Residency",
+        "description": "Free virtual residency at NTU Shiyuan Campus, with access to the center's meeting rooms and event spaces — flexible to fit your startup's pace."
+      }
+    },
+    "criteria": {
+      "label": "Criteria",
+      "title": "Application Requirements",
+      "items": [
+        "NTU affiliation not required; applicants with NTU student, alumni, or faculty background receive priority",
+        "Completed MVP or prototype development with initial users or revenue",
+        "Team of at least 2 members, fully committed to the startup",
+        "Clear market opportunity and growth potential",
+        "Willing to commit to a ten-month systematic mentorship program",
+        "No industry restrictions, but must demonstrate technological or model innovation"
+      ]
+    },
+    "batchSchedule": {
+      "label": "Batch Schedule",
+      "title": "Cohort Schedule",
+      "description": "The accelerator opens applications once per year on an annual cohort basis. The current cohort is in progress; the 2027 cohort applications are expected to open in December 2026.",
+      "current": {
+        "title": "2026 Annual Cohort (In Progress)",
+        "detail": "March – December 2026 · Annual cohort in progress; next batch applications open in December 2026"
+      },
+      "next": {
+        "title": "2027 Annual Cohort Application Period",
+        "detail": "December 2026 – January 2027 · Online applications open"
+      },
+      "results": {
+        "title": "2027 Annual Cohort Results",
+        "detail": "February 2027 · Selected team list announced"
+      },
+      "start": {
+        "title": "2027 Annual Cohort Officially Begins",
+        "detail": "March – December 2027 · Ten months"
+      }
+    },
+    "alumni": {
+      "title": "NTU Accelerator Alumni Achievements"
+    },
+    "faq": {
+      "question": "Questions about requirements?",
+      "link": "View FAQ →"
+    },
+    "audience": {
+      "description": "Are you a corporation or investor? We have more suitable partnership options for you.",
+      "ctaCorporate": "Corporate Vertical Accelerator Partnership",
+      "ctaAngel": "Join Angels Club"
+    },
+    "cta": {
+      "title": "Interested in the 2027 Cohort?",
+      "description": "Pre-register your team now, and we'll notify you as soon as official applications open in December. Pre-registration does not constitute an application — formal applications must still be submitted following the process.",
+      "button": "Pre-register for 2027 Cohort Notification"
+    }
+  },
+  "angel": {
+    "meta": {
+      "title": "NTUTEC ANGELS | NTUTEC",
+      "description": "NTUTEC ANGELS: monthly curated deals from NTU's ecosystem, three-stage rigorous due diligence, named voting mechanism — join 40+ angel investors co-investing in early-stage startups. Individual membership NT$50,000/year."
+    },
+    "hero": {
+      "title": "NTUTEC ANGELS",
+      "subtitle": "Angel Investment Club",
+      "description": "An angel investment community centered on NTU's entrepreneurship ecosystem. Monthly curated quality deals, three-stage rigorous due diligence, named voting — co-invest with 40+ angel members (150+ investor network) in early-stage startups."
+    },
+    "stats": {
+      "members": "Angel Members",
+      "meetings": "Monthly",
+      "meetingsLabel": "Regular Angel Meetings",
+      "founded": "2023",
+      "foundedLabel": "Club Founded",
+      "gates": "3 Gates",
+      "gatesLabel": "Rigorous Screening"
+    },
+    "trackRecord": {
+      "label": "TRACK RECORD",
+      "title": "Recent Investments"
+    },
+    "benefits": {
+      "label": "Member Benefits",
+      "title": "Why Join the Angels Club",
+      "curated": {
+        "title": "Curated Quality Deals",
+        "description": "Every deal goes through three rigorous screening stages, personally due-diligenced by investment managers. Skip the time cost of self-screening and directly access quality startups that have passed high-threshold evaluation."
+      },
+      "memo": {
+        "title": "Complete Investment Memos",
+        "description": "Every startup presented at monthly meetings comes with a complete DD memo: market analysis, financial models, competitive advantages, risk assessment, and Term Sheet recommendations to support your investment decisions."
+      },
+      "flexible": {
+        "title": "Flexible Direct Investment",
+        "description": "Members invest directly with personal funds, unconstrained by institutional co-investment restrictions. Investment amounts are self-determined with complete control over timing and scale."
+      },
+      "ecosystem": {
+        "title": "Long-term Ecosystem Support",
+        "description": "Connected to 13 years of accumulated mentor networks, alumni resources, and 35 corporate partners — portfolio companies receive not just capital, but sustained ecosystem momentum."
+      }
+    },
+    "howItWorks": {
+      "label": "How It Works",
+      "title": "Monthly Process",
+      "description": "From deal sourcing to investment decision — every step has a clear process.",
+      "steps": {
+        "dealflow": { "title": "Deal Sourcing", "desc": "Applications, mentor referrals, or alumni introductions" },
+        "screening": { "title": "Three-Stage Screening", "desc": "Investment managers lead the full due diligence process" },
+        "infoCard": { "title": "Information Cards", "desc": "Available before monthly meeting with complete investment summary" },
+        "meeting": { "title": "Angel Meeting", "desc": "Startup pitch and Q&A with real-time member interaction" },
+        "voting": { "title": "Named Voting", "desc": "Members indicate interest in investing and explain their preferences" },
+        "investment": { "title": "Direct Investment", "desc": "Members invest directly as individuals; center assists with documentation" }
+      }
+    },
+    "screening": {
+      "label": "Screening Process",
+      "title": "Three-Stage Rigorous Screening",
+      "description": "Every deal presented at monthly meetings has undergone complete due diligence by investment managers — rigorous screening, never presented lightly.",
+      "gate1": {
+        "stage": "Gate 1",
+        "title": "Initial Screening (Hard Filter)",
+        "description": "Basic qualification and domain fit screening — confirming deals align with focus areas (AI software, biotech & healthcare, hard tech, innovative business models)."
+      },
+      "gate2": {
+        "stage": "Gate 2",
+        "title": "Rapid Scoring",
+        "description": "Multi-dimensional scoring on team, business model, market size, competitive advantages, execution capability — investment managers evaluate readiness for the next stage."
+      },
+      "gate3": {
+        "stage": "Gate 3",
+        "title": "Full DD Report",
+        "description": "Complete investment evaluation report including market analysis, financial models, and Term Sheet recommendations. Approved deals proceed to pitch at monthly meetings."
+      }
+    },
+    "membership": {
+      "label": "Membership",
+      "title": "Membership Plans",
+      "description": "Annual fee structure, applications accepted at any time, subject to review.",
+      "note": "After submitting an application, the investment team will review your materials. Approved applicants will be scheduled for an interview to confirm mutual fit before formal membership.",
+      "individual": {
+        "name": "Individual Member",
+        "subtitle": "Angel Investor · Corporate Executive",
+        "price": "NT$50,000",
+        "period": "/year",
+        "benefits": [
+          "Monthly curated startup information cards",
+          "Complete DD memos and due diligence materials",
+          "Monthly meeting attendance and named voting rights",
+          "40+ angel investor community networking",
+          "Post-investment portfolio tracking updates",
+          "Post-meeting startup site visits"
+        ],
+        "cta": "Apply for Membership Review"
+      },
+      "corporate": {
+        "name": "Corporate Member",
+        "subtitle": "CVC · VC · Financial Institutions · Corporate Groups",
+        "price": "NT$100,000",
+        "period": "/year",
+        "badge": "Recommended",
+        "benefits": [
+          "Up to 3 designated representatives",
+          "All individual member benefits included",
+          "Priority corporate visit arrangements",
+          "Brand exposure and co-investment opportunities",
+          "Dedicated deal referral channel",
+          "Annual investment trend report"
+        ],
+        "cta": "Apply for Membership Review"
+      }
+    },
+    "requirements": {
+      "label": "Requirements",
+      "title": "Membership Eligibility",
+      "items": [
+        "Interest in early-stage startup investment and willingness to invest time and resources",
+        "Alignment with NTUTEC's mission and values",
+        "Willingness to participate in monthly angel meetings and related activities"
+      ],
+      "note": "For payment details and further information, please see the application page or contact us directly."
+    },
+    "corporateCrossLink": "Corporations may also participate in the early-stage investment ecosystem through the Corporate Vertical Accelerator program.",
+    "corporateLinkText": "Learn about corporate partnership options",
+    "demoDay": {
+      "label": "Demo Day",
+      "title": "Annual Investment Matching Event",
+      "description": "Every December at NTU campus, selected startups pitch to investors. Angels Club members receive priority seats and post-investment tracking.",
+      "stats": {
+        "investors": { "value": "74", "unit": "", "label": "Investors in Attendance", "sub": "VCs and Angel Investors" },
+        "matches": { "value": "51", "unit": "", "label": "Investment Matches", "sub": "18 self-initiated + 33 center-facilitated" },
+        "views": { "value": "9,775", "unit": "", "label": "Accupass Views", "sub": "Highest record in 7 editions" },
+        "satisfaction": { "value": "9.06", "unit": "/10", "label": "Event Satisfaction", "sub": "51 on-site surveys" }
+      },
+      "groupAlt": "Demo Day 2025 — Group Photo",
+      "panelAlt": "Demo Day 2025 — Investor Panel",
+      "learnMore": "Learn More About Demo Day"
+    },
+    "cta": {
+      "title": "Become a Member of the Angels Club",
+      "description": "Join NTU's entrepreneurship ecosystem angels and discover early-stage startups that will shape the future. Individual membership NT$50,000/year, corporate membership NT$100,000/year — applications accepted at any time, subject to review.",
+      "button": "Apply for Membership Review",
+      "disclaimer": "Angel investing carries significant risks. The investment cases above represent historical performance and do not guarantee future investment results.",
+      "questions": "Have questions?",
+      "faqLink": "View FAQ",
+      "or": "or email",
+      "email": "ntutec@ntutec.com"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact Us | NTUTEC",
+      "description": "Contact NTUTEC — address, phone, email, and office hours."
+    },
+    "hero": {
+      "title": "Contact Us",
+      "subtitle": "Contact",
+      "description": "For inquiries or partnership proposals, we welcome you to get in touch."
+    },
+    "sendMessage": "Send a Message",
+    "loading": "Loading...",
+    "contactInfo": "Contact Information",
+    "address": {
+      "label": "Address",
+      "value": "7F, Excellence Research Building\nNTU Shiyuan Campus\n18 Siyuan St, Zhongzheng District, Taipei"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "hours": {
+      "label": "Office Hours",
+      "value": "Monday–Friday 09:00–18:00\nClosed on weekends and public holidays"
+    },
+    "mapTitle": "NTUTEC Location"
+  }
+}

@@ -20,6 +20,10 @@ export const metadata: Metadata = {
     '13 年來累計輔導逾 600 支新創團隊。台大創創中心以台大加速器、台大車庫、企業垂直加速器與天使投資俱樂部四大業務，連結台大、連結產業、連結資本，把最好的技術與人才轉化為可投資的新創。',
   alternates: {
     canonical: 'https://tec.ntu.edu.tw',
+    languages: {
+      'zh-TW': 'https://tec.ntu.edu.tw',
+      'en': 'https://tec.ntu.edu.tw/en',
+    },
   },
   openGraph: {
     title: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',
