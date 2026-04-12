@@ -249,7 +249,7 @@ export default function AlumniPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-pill-primary">
-              提前登記申請
+              成為下一個里程碑案例
             </Link>
             <Link href="/programs" className="btn-pill-outline">
               了解計畫方案

@@ -365,7 +365,7 @@ export default function AngelPage() {
                       : 'bg-charcoal text-white hover:bg-charcoal/90'
                   }`}
                 >
-                  預約入會諮詢
+                  申請入會審核
                 </Link>
               </div>
             ))}
@@ -439,7 +439,7 @@ export default function AngelPage() {
             個人會員 NT$50,000/年，企業會員 NT$100,000/年，隨時開放申請，採審核制。
           </p>
           <Link href="/angel-apply" className="btn-pill-primary">
-            預約入會諮詢
+            申請入會審核
           </Link>
           <p className="mt-4 text-sm text-slate-muted">
             有疑問？{' '}

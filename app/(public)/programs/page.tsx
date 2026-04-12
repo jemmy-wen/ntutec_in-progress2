@@ -18,7 +18,7 @@ const programs = [
       '3 大 Checkpoint：PSF / BMV / Traction 驗證',
       '銜接台大加速器的優先通道',
     ],
-    href: '/garage', primary: false, cta: '深入了解車庫計畫',
+    href: '/garage', primary: false, cta: '立即預約 2027 梯次',
   },
   {
     icon: '🚀', name: '台大加速器', subtitle: 'NTU Accelerator',
@@ -30,7 +30,7 @@ const programs = [
       '企業資源對接與 Demo Day 募資路演',
       '150+ 投資人網絡，天使俱樂部媒合',
     ],
-    href: '/accelerator', primary: true, cta: '深入了解加速器計畫',
+    href: '/accelerator', primary: true, cta: '立即預約 2027 梯次',
   },
 ]
 

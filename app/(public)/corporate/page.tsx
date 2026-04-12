@@ -322,6 +322,9 @@ export default function CorporatePage() {
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
             無論您是想探索新技術、尋找創新解決方案，或是建立人才管道，我們都能為您量身打造合作方案。
           </p>
+          <Link href="/consulting" className="btn-pill-outline mr-4">
+            預約企業創新診斷
+          </Link>
           <Link href="/consulting" className="btn-pill-primary">
             聯繫我們
           </Link>

@@ -112,6 +112,10 @@ export default function TeamPage() {
           </div>
         </div>
       </section>
+      <section className="py-12 bg-gray-50 text-center">
+        <p className="text-lg text-gray-600 mb-4">有任何問題，歡迎聯繫我們的輔導團隊</p>
+        <a href="/contact" className="inline-block bg-teal text-white px-6 py-3 rounded-lg hover:bg-teal-deep transition-colors">聯繫輔導經理</a>
+      </section>
     </>
   );
 }

@@ -279,16 +279,7 @@ export default function AcceleratorPage() {
             <Send className="h-4 w-4" />
             預約 2027 梯次通知
           </Link>
-          <p className="mt-6 text-sm text-slate-muted">
-            申請期尚未開放？{' '}
-            <Link href="/contact" className="text-teal-deep underline underline-offset-4 hover:text-teal">
-              預約諮詢，了解你的團隊是否適合 →
-            </Link>
-          </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm text-slate-muted">
-            <Link href="/tec-deals" className="hover:text-teal underline underline-offset-4">進駐資源方案 →</Link>
-            <Link href="/startups" className="hover:text-teal underline underline-offset-4">2026 現役新創團隊 →</Link>
-          </div>
+
         </div>
       </section>
     </>

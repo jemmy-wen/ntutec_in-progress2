@@ -209,6 +209,11 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="py-12 bg-gray-50 text-center">
+        <p className="text-lg text-gray-600 mb-4">準備好了嗎？</p>
+        <a href="/apply" className="inline-block bg-teal text-white px-6 py-3 rounded-lg hover:bg-teal-deep transition-colors">啟動你的創業第一步</a>
+      </section>
+
       <section className="section-spacing">
         <div className="container text-center">
           <p className="micro-label mb-4">Our People</p>

@@ -331,7 +331,7 @@ export default function Navbar() {
             href="/apply"
             className="hidden lg:inline-flex btn-pill-primary text-sm"
           >
-            立即申請
+            預約 2027 申請
           </Link>
 
           <button
@@ -368,7 +368,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="btn-pill-primary text-center"
                 >
-                  立即申請
+                  預約 2027 申請
                 </Link>
                 <button className="btn-pill-outline text-center">EN</button>
               </div>

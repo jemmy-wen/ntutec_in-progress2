@@ -34,7 +34,7 @@ export default function ConsultingPage() {
       <PageHero
         title="諮詢服務"
         subtitle="Consulting"
-        description="結合學術研究與產業實務經驗，提供專業的創新與創業諮詢服務。"
+        description="突破企業創新卡點，結合 13 年台大加速器 know-how 與產業實務經驗，提供專業的創新轉型諮詢服務。"
       />
 
       {/* Services */}

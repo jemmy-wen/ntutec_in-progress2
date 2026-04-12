@@ -191,7 +191,7 @@ export default function CareersPage() {
             歡迎來信告訴我們你的背景與興趣，我們將在下一梯次招募時優先通知你。
           </p>
           <Link href="mailto:ntutec@ntutec.com" className="btn-pill-primary">
-            聯繫我們
+            登記下一梯次招募通知
           </Link>
           <p className="mt-4 text-sm text-slate-muted">
             地址：台北市中正區思源街 18 號，台大水源校區卓越研究大樓 7 樓

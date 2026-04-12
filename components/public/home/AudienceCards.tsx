@@ -20,6 +20,7 @@ interface AudienceCard {
   title: string;
   description: string;
   href: string;
+  cta: string;
   gradient: string;
 }
 
@@ -31,6 +32,7 @@ const audiences: AudienceCard[] = [
     description:
       "從技術驗證到市場擴展，台大加速器與台大車庫提供完整的輔導資源、業師網絡與募資對接。",
     href: "/programs",
+    cta: "立即預約 2027 登記",
     gradient: "bg-gradient-to-br from-teal/20 to-teal-deep/10",
   },
   {
@@ -40,6 +42,7 @@ const audiences: AudienceCard[] = [
     description:
       "透過創新競賽、聯合活動與諮詢服務，與頂尖新創團隊共創，驅動企業創新轉型。",
     href: "/corporate",
+    cta: "啟動企業外部創新",
     gradient: "bg-gradient-to-br from-stone-warm to-stone",
   },
   {
@@ -49,6 +52,7 @@ const audiences: AudienceCard[] = [
     description:
       "加入天使俱樂部，優先接觸台大頂尖硬科技新創，參與早期投資機會與獨家交流活動。",
     href: "/angel",
+    cta: "了解更多",
     gradient: "bg-gradient-to-br from-teal-deep/15 to-charcoal/5",
   },
 ];
@@ -133,7 +137,7 @@ function TiltCard({
           href={card.href}
           className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-teal transition-colors hover:text-teal-deep"
         >
-          了解更多
+          {card.cta}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </div>

@@ -153,6 +153,12 @@ export default function MentorsPage() {
         </section>
       ))}
 
+      {/* Mentor CTA */}
+      <section className="py-12 bg-gray-50 text-center">
+        <p className="text-lg text-gray-600 mb-4">與頂尖業師並肩創業</p>
+        <a href="/apply" className="inline-block bg-teal text-white px-6 py-3 rounded-lg hover:bg-teal-deep transition-colors">立即申請</a>
+      </section>
+
       {/* Footer Note */}
       <section className="section-spacing">
         <div className="container">
