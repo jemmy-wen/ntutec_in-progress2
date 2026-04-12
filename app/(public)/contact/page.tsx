@@ -32,7 +32,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 className="mb-1 font-semibold">Email</h4>
-                  <p><a href="mailto:ntutec@ntutec.com" className="text-teal-deep underline underline-offset-4">ntutec@ntutec.com</a></p>
+                  <p><a href="mailto:ntutec@ntu.edu.tw" className="text-teal-deep underline underline-offset-4">ntutec@ntu.edu.tw</a></p>
                 </div>
                 <div>
                   <h4 className="mb-1 font-semibold">辦公時間</h4>
