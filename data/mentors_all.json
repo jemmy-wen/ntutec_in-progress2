@@ -21,15 +21,15 @@
         {
           "name": "王俊傑",
           "title": "天使投資人",
-          "highlight": "前蘇寧零售技術研究院院長",
+          "highlight": "前大潤發 CTO；前蘇寧零售技術研究院院長",
           "photo": "/mentors/wang-junjie.jpg",
           "is_new_2026": false,
           "social_url": null
         },
         {
           "name": "江旻峻",
-          "title": "NTU.VC 合夥人",
-          "highlight": "AI 與軟體領域早期投資",
+          "title": "富旌創投 創始合夥人 / 台大校友創投 總裁",
+          "highlight": "富旌創投 (Addin Ventures) 創始合夥人；台大校友創投 President",
           "photo": "/mentors/jiang-minjun.jpg",
           "is_new_2026": true,
           "social_url": "https://www.linkedin.com/in/brandon-chiang-addinvc/"
@@ -95,8 +95,8 @@
         },
         {
           "name": "陳一強",
-          "title": "活水社企投資開發公司 總經理/共同創辦人",
-          "highlight": "活水創投 共同創辦人",
+          "title": "活水影響力投資 (B Current Impact Investment) 共同創辦人暨總經理",
+          "highlight": "活水影響力投資 共同創辦人",
           "photo": "/mentors/wp/3152.jpg",
           "is_new_2026": false,
           "social_url": null
@@ -136,8 +136,8 @@
         },
         {
           "name": "蕭一白",
-          "title": "資深科技投資顧問",
-          "highlight": "跨產業天使投資人；前業界顧問",
+          "title": "BonHope Capital 管理合夥人 / 喬治華盛頓大學客座教授",
+          "highlight": "BonHope Capital Managing Partner；跨產業天使投資人",
           "photo": "/mentors/wp/17935.jpg",
           "is_new_2026": false,
           "social_url": "https://www.linkedin.com/in/terryhsiao"
@@ -194,15 +194,15 @@
         {
           "name": "梁幸堯",
           "title": "甲尚科技（Reallusion）獨立董事",
-          "highlight": "甲尚科技（Reallusion, TPE:6667）獨立董事",
+          "highlight": "甲尚科技（Reallusion, TPE:6882）獨立董事",
           "photo": "/mentors/wp/6309.jpeg",
           "is_new_2026": false,
           "social_url": "https://www.linkedin.com/in/micliang3000"
         },
         {
           "name": "黃逸甫",
-          "title": "cacaFly 執行長",
-          "highlight": "cacaFly 執行長",
+          "title": "cacaFly 聖洋科技 執行董事",
+          "highlight": "cacaFly 執行董事",
           "photo": "/mentors/wp/3168.jpg",
           "is_new_2026": false,
           "social_url": null
@@ -250,8 +250,8 @@
         },
         {
           "name": "卓政宏",
-          "title": "亞太貿易便捷化及電子商務理事會 / 團長暨中華民國國家代表 Asia Pacific Council for Trade Facilitation and Electronic Business(AFACT) / Head of Delegation(HoD)",
-          "highlight": "AFACT 亞太貿易便捷化及電子商務理事會 團長",
+          "title": "前資策會執行長 / AFACT 前亞太代表",
+          "highlight": "前 AFACT 亞太貿易便捷化及電子商務理事會 團長",
           "photo": "/mentors/wp/20036.jpg",
           "is_new_2026": false,
           "social_url": null
@@ -322,16 +322,16 @@
         },
         {
           "name": "魏資文",
-          "title": "秀傳集團鼎澄生醫 總經理",
-          "highlight": "前中華開發投資部資深副理",
+          "title": "Addin Ventures 富旌創投 合夥人",
+          "highlight": "富旌創投 (Addin Ventures) 合夥人；前秀傳集團鼎澄生醫 總經理",
           "photo": "/mentors/wei-ziwen.jpg",
           "is_new_2026": true,
           "social_url": null
         },
         {
           "name": "羅子亮",
-          "title": "長佳智能Everfortune.AI 平台產品事業處執行長",
-          "highlight": "前 Zoom 亞太副總；前 Oriente 台灣總經理",
+          "title": "科技業顧問",
+          "highlight": "前長佳智能 Everfortune.AI 執行長；前 Zoom 亞太副總；前 Oriente 台灣總經理",
           "photo": "/mentors/wp/4243.jpg",
           "is_new_2026": false,
           "social_url": "https://www.linkedin.com/in/robertlo"
@@ -423,8 +423,8 @@
         },
         {
           "name": "黃沛聲",
-          "title": "法律顧問",
-          "highlight": "股權架構設計專家",
+          "title": "立勤國際法律事務所 主持律師",
+          "highlight": "立勤國際法律事務所 主持律師；TGA Taiwan Global Angels 共同創辦人",
           "photo": "/mentors/huang-peisheng.jpg",
           "is_new_2026": false,
           "social_url": null
@@ -458,8 +458,8 @@
         },
         {
           "name": "楊志偉",
-          "title": "交通大學科技管理研究所 助理教授",
-          "highlight": "陽明交通大學科技管理研究所 助理教授",
+          "title": "陽明交通大學 經營管理研究所 兼任助理教授",
+          "highlight": "陽明交通大學 經營管理研究所（IBM）兼任助理教授",
           "photo": "/mentors/wp/3161.jpg",
           "is_new_2026": false,
           "social_url": "https://www.linkedin.com/in/brianyangcam"
@@ -475,8 +475,8 @@
         },
         {
           "name": "鄧耀中",
-          "title": "新創公關顧問",
-          "highlight": null,
+          "title": "VOCAL MIDDLE 布爾喬亞公關顧問 創辦人暨執行長",
+          "highlight": "VOCAL MIDDLE 創辦人暨執行長；艾思智創 共同創辦人",
           "photo": "/mentors/deng-yaozhong.jpg",
           "is_new_2026": false,
           "social_url": "https://www.linkedin.com/in/tangyaochung"
