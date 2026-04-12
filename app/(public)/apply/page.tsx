@@ -64,7 +64,7 @@ export default function ApplyPage() {
                   臺大創創中心的加速器與車庫採用<strong className="text-charcoal">年度梯次制</strong>，每年 3 月進駐、12 月結束，<strong className="text-charcoal">不接受隨時插班</strong>。
                 </p>
                 <ul className="mt-3 space-y-1 text-sm text-slate-muted">
-                  <li>• <strong className="text-charcoal">2026 梯次</strong>：進行中（3 月 ~ 12 月），現有 43 支團隊輔導中</li>
+                  <li>• <strong className="text-charcoal">2026 梯次</strong>：進行中（3 月 ~ 12 月），現有團隊輔導中</li>
                   <li>• <strong className="text-charcoal">2027 梯次申請期</strong>：2026 年 12 月 ~ 2027 年 1 月</li>
                   <li>• <strong className="text-charcoal">2027 梯次公布結果</strong>：2027 年 2 月</li>
                 </ul>

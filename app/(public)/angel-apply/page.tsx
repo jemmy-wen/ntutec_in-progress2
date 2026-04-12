@@ -55,7 +55,7 @@ export default function AngelApplyPage() {
             <h2 className="mb-8">入會後，你可以做什麼</h2>
             <div className="space-y-3">
               {[
-                { icon: '📋', title: '瀏覽候選新創', desc: '每月天使例會前，上架 3–5 家精選新創的六張資訊卡片。' },
+                { icon: '📋', title: '瀏覽候選新創', desc: '每月天使例會前，上架精選新創的六張資訊卡片。' },
                 { icon: '🗳️', title: '投資意向投票', desc: '天使例會後進行記名投票，可選擇 50萬以下 / 50–100萬 / 100–200萬 / 200萬以上投資金額。' },
                 { icon: '📊', title: '本月 Pipeline', desc: '即時查看當月評估中的新創列表與各階段篩選進度。' },
                 { icon: '📚', title: '學習中心', desc: '天使投資入門、盡職調查方法論與產業趨勢資源。' },
@@ -97,10 +97,10 @@ export default function AngelApplyPage() {
             <p className="text-slate-muted">
               Email：
               <a
-                href="mailto:ntutec@ntutec.com"
+                href="mailto:ntutec@ntu.edu.tw"
                 className="font-medium text-teal-deep underline underline-offset-4"
               >
-                ntutec@ntutec.com
+                ntutec@ntu.edu.tw
               </a>
             </p>
           </div>

@@ -32,7 +32,7 @@ const milestoneCases = [
     domain: "循環經濟 ESG",
     highlight: "A 輪逾 NT$1 億",
     desc: "台灣首創循環包裝平台，獲國發基金投資，推動網購零廢棄。",
-    source: "114年年報",
+    source: "2025年年報",
   },
   {
     company: "艾斯創生醫",
@@ -40,7 +40,7 @@ const milestoneCases = [
     domain: "MedTech 骨科",
     highlight: "SelectUSA MedTech 冠軍 · US$250萬",
     desc: "骨科微創手術器材，獲美國最大投資促進賽冠軍，完成 250 萬美元募資。",
-    source: "114年年報",
+    source: "2025年年報",
   },
   {
     company: "真實引擎",
@@ -56,7 +56,7 @@ const milestoneCases = [
     domain: "LegalTech AI",
     highlight: "HBR 哈佛商業評論報導",
     desc: "AI 合約管理平台，獲《哈佛商業評論》專文，榮獲經濟部白科技獎。",
-    source: "114年報",
+    source: "2025年年報",
   },
   {
     company: "股股",
@@ -245,7 +245,7 @@ export default function AlumniPage() {
         <div className="container text-center">
           <h2 className="mb-6">成為下一個成功校友</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
-            每年兩梯次招募，加入台大加速器或台大車庫，獲得導師輔導、資金媒合與生態系支持。
+            加入台大加速器或台大車庫，獲得導師輔導、資金媒合與生態系支持。
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/apply" className="btn-pill-primary">

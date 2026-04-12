@@ -297,7 +297,7 @@ export default function CorporatePage() {
           <div className="grid gap-8 md:grid-cols-3">
             {[
               { number: "35", label: "累計合作企業", suffix: " 家" },
-              { number: "27", label: "企業垂直加速器", suffix: " 隻" },
+              { number: "27", label: "企業垂直加速器", suffix: " 期" },
               { number: "近 600", label: "輔導新創團隊", suffix: " 支" },
             ].map((stat) => (
               <div key={stat.label}>
@@ -310,7 +310,7 @@ export default function CorporatePage() {
             合作對象含 Nvidia、Synopsys、鴻海、台積電、玉山銀行、友達光電等國內外知名企業
           </p>
           <p className="mt-3 text-xs text-slate-muted/70">
-            歷年逾 35 家合作企業，累計啟動 27 期企業垂直加速器（來源：114年成果報告）
+            歷年逾 35 家合作企業，累計啟動 27 期企業垂直加速器（來源：2025年成果報告）
           </p>
         </div>
       </section>

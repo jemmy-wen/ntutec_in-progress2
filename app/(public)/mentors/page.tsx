@@ -6,7 +6,7 @@ import mentorsData from "@/data/mentors_all.json";
 export const metadata: Metadata = {
   title: "業師陣容 | NTUTEC",
   description:
-    "NTUTEC 歷年累計 56+ 位業師，依背景分為創投家、連續創業家、企業高管、產業專家四大類。結合產業實戰經驗與台大學術視野，為新創團隊提供一對一深度輔導。",
+    "NTUTEC 40+ 位業師，依背景分為創投家、連續創業家、企業高管、產業專家四大類。結合產業實戰經驗與台大學術視野，為新創團隊提供一對一深度輔導。",
 };
 
 interface Mentor {
@@ -96,7 +96,7 @@ export default function MentorsPage() {
             <p className="text-lg leading-relaxed text-slate-muted">
               NTUTEC 業師網絡以「背景類型」劃分，幫助新創團隊快速找到最適合的諮詢對象——
               找創投家談融資、找連續創業家學實戰、找企業高管開通路、找產業專家補深度。
-              每位業師皆具備豐富的產業實戰經驗，為 2026 年度 43 支新創團隊提供一對一深度輔導。
+              每位業師皆具備豐富的產業實戰經驗，為眾多新創團隊提供一對一深度輔導。
             </p>
           </div>
 
@@ -160,7 +160,7 @@ export default function MentorsPage() {
             <p className="text-sm leading-relaxed text-slate-muted">
               <span className="font-semibold text-charcoal">關於業師陣容</span>
               <br />
-              本頁呈現 NTUTEC 歷年業師累計名單（2025–2026），實際 2026 年度主動輔導業師為 39 位。
+              本頁呈現 NTUTEC 歷年業師累計名單（2025–2026）。
               業師背景分類依其主要身份判斷，部分業師可能具備跨類型經驗。
               業師配對由中心依新創團隊需求與業師專長安排，非公開申請制。
             </p>

@@ -39,7 +39,7 @@ const internInfoCards = [
   {
     emoji: "📅",
     title: "招募時間",
-    description: "每學期開學前招募，春季（2月）與秋季（9月）各一梯次。",
+    description: "依學期滾動開放招募，正式開放時以 Email 通知。",
   },
   {
     emoji: "⏱️",
@@ -122,7 +122,7 @@ export default function CareersPage() {
             <p className="micro-label mb-4">Internship Program</p>
             <h2 className="mb-4">實習計畫</h2>
             <p className="mx-auto max-w-xl text-center text-slate-muted">
-              每學期招募 2–3 位實習生，加入事業發展暨行銷部門，深度參與中心日常運營。
+              每學期招募實習生，加入事業發展暨行銷部門，深度參與中心日常運營。
             </p>
           </div>
 
@@ -174,7 +174,7 @@ export default function CareersPage() {
               目前無固定職缺開放，如對加入台大創創中心有強烈意願，歡迎主動投遞履歷。
             </p>
             <Link
-              href="mailto:ntutec@ntutec.com"
+              href="mailto:ntutec@ntu.edu.tw"
               className="btn-pill-outline mt-4 inline-flex text-sm"
             >
               主動投遞履歷
@@ -190,7 +190,7 @@ export default function CareersPage() {
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
             歡迎來信告訴我們你的背景與興趣，我們將在下一梯次招募時優先通知你。
           </p>
-          <Link href="mailto:ntutec@ntutec.com" className="btn-pill-primary">
+          <Link href="mailto:ntutec@ntu.edu.tw" className="btn-pill-primary">
             聯繫我們
           </Link>
           <p className="mt-4 text-sm text-slate-muted">
