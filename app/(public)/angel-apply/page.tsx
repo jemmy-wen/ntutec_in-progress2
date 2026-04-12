@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "加入 NTUTEC ANGELS 台大天使會 | NTUTEC",
   description:
     "申請加入 NTUTEC ANGELS 台大天使會，瞭解入會資格、平台功能與申請流程。",
+  robots: { index: false, follow: false },
 };
 
 const requirements = [
@@ -14,7 +15,7 @@ const requirements = [
   "認同台大創創中心的使命與價值觀",
   "願意參與每月天使例會及相關活動",
   "經兩位現有會員推薦，或直接來信申請，由中心審核後引薦",
-  "繳納年度會費（詳情請洽詢）",
+  "繳納年度會費（個人會員 NT$50,000/年；企業會員 NT$100,000/年）",
 ];
 
 export default function AngelApplyPage() {

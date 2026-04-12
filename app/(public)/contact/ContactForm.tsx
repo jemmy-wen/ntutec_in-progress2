@@ -64,7 +64,7 @@ export default function ContactForm() {
       <div className="bg-green-50 rounded-xl border border-green-200 p-8 text-center">
         <div className="text-4xl mb-3">&#x2705;</div>
         <h2 className="text-lg font-bold text-green-800 mb-2">已收到您的訊息</h2>
-        <p className="text-sm text-green-600">我們會在 2-3 個工作天內回覆您。</p>
+        <p className="text-sm text-green-600">{form.type === 'angel' ? '投資團隊將於 3 個工作日內以 Email 與您聯繫。' : '我們會在 2-3 個工作天內回覆您。'}</p>
       </div>
     )
   }
@@ -158,6 +158,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
+        aria-label={submitting ? '送出中，請稍候' : undefined}
         className="w-full px-5 py-3 bg-teal text-white rounded-lg font-medium hover:bg-teal-deep disabled:opacity-50 transition-colors"
       >
         {submitting ? '送出中...' : '送出訊息'}

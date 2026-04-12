@@ -25,6 +25,12 @@ export default function EventsPage() {
               tabIndex={0}
               title="NTUTEC 活動日曆"
             />
+            <p className="mt-4 text-center text-sm text-slate-muted">
+              若活動日曆無法顯示，請來信{' '}
+              <a href="mailto:ntutec@ntutec.com" className="text-teal-deep underline underline-offset-4">ntutec@ntutec.com</a>
+              {' '}或查看{' '}
+              <a href="https://www.facebook.com/ntutec" target="_blank" rel="noopener noreferrer" className="text-teal-deep underline underline-offset-4">Facebook 活動頁</a>。
+            </p>
           </div>
         </div>
       </section>

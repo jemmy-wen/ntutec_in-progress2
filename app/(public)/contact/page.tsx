@@ -6,6 +6,7 @@ import ContactForm from './ContactForm'
 export const metadata: Metadata = {
   title: '聯絡我們 | NTUTEC',
   description: '聯絡台大創創中心，取得地址、電話、Email 及辦公時間等資訊。',
+  robots: { index: false, follow: false },
 }
 
 export default function ContactPage() {

@@ -59,7 +59,7 @@ export default function AngelApplyForm() {
       <div className="rounded-xl border border-teal/30 bg-teal-wash px-6 py-8 text-center">
         <p className="text-lg font-semibold text-charcoal">感謝您的申請！</p>
         <p className="mt-2 text-sm leading-relaxed text-slate-muted">
-          我們會在 5 個工作天內與您聯繫。
+          投資經理將於 3 個工作日內以 Email 與您聯繫，進行下一步面談說明。
         </p>
       </div>
     );
@@ -78,6 +78,7 @@ export default function AngelApplyForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          placeholder="請輸入中文全名"
           className={inputClass}
           autoComplete="name"
         />
@@ -94,6 +95,7 @@ export default function AngelApplyForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          placeholder="example@email.com"
           className={inputClass}
           autoComplete="email"
         />

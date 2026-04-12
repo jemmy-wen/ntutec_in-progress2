@@ -171,7 +171,7 @@ export default function CareersPage() {
           </div>
           <div className="rounded-2xl border border-stone-warm bg-stone p-8 text-center">
             <p className="text-slate-muted">
-              目前無固定職缺開放，如對加入台大創創中心有強烈意願，歡迎主動投遞履歷。
+              目前無固定職缺開放。台大創創中心通常每學期評估一次人力需求，歡迎提前投遞履歷，有機會時將優先聯繫。
             </p>
             <Link
               href="mailto:ntutec@ntutec.com"

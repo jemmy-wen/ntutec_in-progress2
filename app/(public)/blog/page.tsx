@@ -30,7 +30,12 @@ export default async function BlogListPage() {
         <div className="container">
           {posts.length === 0 ? (
             <div className="rounded-2xl bg-stone p-12 text-center">
-              <p className="text-slate-muted">目前沒有文章，敬請期待。</p>
+              <p className="mb-4 text-slate-muted">內容即將上線，敬請期待。</p>
+              <p className="text-sm text-slate-muted">
+                在此之前，歡迎{' '}
+                <a href="/podcast" className="text-teal-deep underline underline-offset-4">收聽 TEC Talk Podcast</a>
+                {' '}或關注我們的社群媒體。
+              </p>
             </div>
           ) : (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

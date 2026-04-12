@@ -6,9 +6,9 @@ import PageHero from "@/components/public/PageHero";
 import PreRegisterForm from "@/components/public/PreRegisterForm";
 
 export const metadata: Metadata = {
-  title: "申請與提前登記 | NTUTEC",
+  title: "提前登記 2027 梯次 | NTUTEC",
   description:
-    "台大創創中心加速器與車庫採年度梯次制，2027 梯次申請期為 2026 年 12 月至 2027 年 1 月。現在可先提前登記，正式開放時優先通知。",
+    "目前開放 2027 梯次提前登記，正式申請將於 2026 年 12 月開放。提前登記不等同申請，正式開放時第一時間通知你。",
 };
 
 const tracks = [
@@ -114,7 +114,16 @@ export default function ApplyPage() {
             <p className="mb-8 text-center text-slate-muted">
               2027 梯次申請將於 2026 年 12 月開放。提前登記不等同申請，正式開放時優先通知。
             </p>
-            <Suspense>
+            <div className="mb-6 rounded-xl border border-stone-warm/60 bg-white p-4 text-sm">
+              <p className="mb-2 text-xs font-semibold text-charcoal">正式申請後流程</p>
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-slate-muted">
+                <span>① 線上申請</span><span className="text-stone-warm/60">→</span>
+                <span>② 書面審查</span><span className="text-stone-warm/60">→</span>
+                <span>③ 面試邀約</span><span className="text-stone-warm/60">→</span>
+                <span>④ 三週內通知</span>
+              </div>
+            </div>
+            <Suspense fallback={<div className="text-center py-8 text-slate-muted">正在載入登記表單...</div>}>
               <PreRegisterForm />
             </Suspense>
           </div>

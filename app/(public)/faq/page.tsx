@@ -6,6 +6,7 @@ import PageHero from "@/components/public/PageHero";
 interface FaqItem {
   question: string;
   answer: string;
+  answerLink?: { text: string; href: string };
   category: string;
 }
 
@@ -104,6 +105,7 @@ const faqs: FaqItem[] = [
     question: "如何成為天使會會員？",
     answer:
       "有意加入者可透過官網填寫入會諮詢表單，或直接聯繫投資經理。中心將安排一對一諮詢，說明入會條件、年費結構與會員權益。天使俱樂部以質量為優先，名額有限。",
+    answerLink: { text: "立即填寫入會申請表", href: "/angel-apply" },
   },
   {
     category: "天使投資俱樂部",
@@ -243,6 +245,14 @@ function AccordionItem({
         }`}
       >
         <p className="leading-relaxed text-slate-muted">{item.answer}</p>
+        {item.answerLink && (
+          <a
+            href={item.answerLink.href}
+            className="mt-3 inline-block text-sm font-medium text-teal-deep underline underline-offset-4 hover:text-teal"
+          >
+            {item.answerLink.text} →
+          </a>
+        )}
       </div>
     </div>
   );
