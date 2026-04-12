@@ -36,7 +36,7 @@ const timeline = [
   { step: "1", label: "線上申請", description: "填寫申請表單，提交團隊與計畫資料" },
   { step: "2", label: "書面審查", description: "中心團隊進行初步書面審核（約 2 週）" },
   { step: "3", label: "面試邀約", description: "通過書審者將受邀進行線上或實體面談" },
-  { step: "4", label: "結果通知", description: "面試後一週內通知錄取結果並安排入駐" },
+  { step: "4", label: "結果通知", description: "面試後三週內通知錄取結果並安排入駐" },
 ];
 
 export default function ApplyPage() {
