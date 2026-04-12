@@ -186,7 +186,7 @@ export default function DemoDayPage() {
                 { name: "活水影響力投資", src: "/images/partners/bcurrent.png" },
               ].map((vc) => (
                 <div key={vc.name} className="flex h-12 items-center justify-center rounded-lg border border-stone-warm/60 bg-white px-5 py-2">
-                  <img src={vc.src} alt={`${vc.name} 標誌`} loading="lazy" className="h-7 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all" />
+                  <Image src={vc.src} alt={`${vc.name} 標誌`} width={120} height={28} loading="lazy" className="h-7 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all" />
                 </div>
               ))}
             </div>
@@ -235,6 +235,7 @@ export default function DemoDayPage() {
                 src="/images/events/demo-day-2025-group.jpg"
                 alt="2025 Demo Day — 投資人與新創大合照"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"
               />
@@ -244,6 +245,7 @@ export default function DemoDayPage() {
                 src="/images/events/demo-day-2025-01.jpg"
                 alt="台大創創中心主任 林文欽開幕致詞"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
@@ -256,6 +258,7 @@ export default function DemoDayPage() {
                 src="/images/events/demo-day-2025-04.jpg"
                 alt="2025 Demo Day — 主舞台路演現場"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
@@ -265,6 +268,7 @@ export default function DemoDayPage() {
                 src="/images/events/demo-day-2025-05.jpg"
                 alt="2025 Demo Day — 論壇對談"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />

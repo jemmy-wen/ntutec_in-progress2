@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { AlertCircle } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
 import PreRegisterForm from "@/components/public/PreRegisterForm";
+import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import { ogImageUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
@@ -71,6 +72,10 @@ const timeline = [
 export default function ApplyPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: '首頁', url: 'https://tec.ntu.edu.tw' },
+        { name: '申請加速器', url: 'https://tec.ntu.edu.tw/apply' },
+      ]} />
       <PageHero
         title="申請與提前登記"
         subtitle="Apply / Pre-register"

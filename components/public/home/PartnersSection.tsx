@@ -52,6 +52,7 @@ function LogoRow({
               alt={p.name}
               width={p.w}
               height={p.h}
+              loading="lazy"
               className="object-contain"
             />
           </li>

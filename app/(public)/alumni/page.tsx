@@ -255,6 +255,7 @@ export default function AlumniPage() {
                 src="/images/events/demo-day-2025-booth1.jpg"
                 alt="Demo Day 2025 — 新創展示攤位"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
@@ -264,6 +265,7 @@ export default function AlumniPage() {
                 src="/images/events/demo-day-2025-booth2.jpg"
                 alt="Demo Day 2025 — 新創創辦人"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />

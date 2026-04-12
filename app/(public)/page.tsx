@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ogImageUrl } from '@/lib/og'
+import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
+
+export const revalidate = 3600 // ISR: revalidate every hour (NewsSection fetches from Ghost)
 import HeroSection from '@/components/public/home/HeroSection'
 import ThreeConnectionsSection from '@/components/public/home/ThreeConnectionsSection'
 import FocusAreasSection from '@/components/public/home/FocusAreasSection'
@@ -50,6 +53,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: '首頁', url: 'https://tec.ntu.edu.tw' },
+      ]} />
       <HeroSection />
       <ThreeConnectionsSection />
 

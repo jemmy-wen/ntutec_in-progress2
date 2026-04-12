@@ -3,7 +3,7 @@ import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
 import { getPostsByTag } from "@/lib/ghost";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: revalidate every hour
 
 export const metadata: Metadata = {
   title: "最新消息 | NTUTEC",

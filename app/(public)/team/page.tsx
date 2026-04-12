@@ -74,6 +74,7 @@ function LeadershipCard({ member }: { member: TeamMember }) {
             src={member.photo}
             alt={`${member.name}，${member.title}`}
             fill
+            loading="lazy"
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-top"
           />
@@ -98,7 +99,7 @@ function TeamCard({ member }: { member: TeamMember }) {
     <div className="rounded-xl border bg-white p-6 card-hover">
       <div className="mb-4 flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full bg-teal-wash">
         {member.photo ? (
-          <Image src={member.photo} alt={`${member.name}，${member.title}`} width={80} height={80} className="h-full w-full object-cover" />
+          <Image src={member.photo} alt={`${member.name}，${member.title}`} width={80} height={80} loading="lazy" className="h-full w-full object-cover" />
         ) : (
           <span className="text-2xl font-bold text-teal">{member.initials}</span>
         )}

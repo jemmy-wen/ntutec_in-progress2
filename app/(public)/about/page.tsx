@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
+import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   title: '關於台大創創中心 | NTUTEC',
@@ -70,6 +71,10 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: '首頁', url: 'https://tec.ntu.edu.tw' },
+        { name: '關於台大創創中心', url: 'https://tec.ntu.edu.tw/about' },
+      ]} />
       <PageHero title="關於台大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人網絡（含 40+ 天使會員）——台大創業生態系的完整版圖。" />
 
       <section className="section-spacing">
@@ -195,6 +200,7 @@ export default function AboutPage() {
                 src="/images/events/opening-2026-group.jpg"
                 alt="2026 輔導計畫開幕式 — 逾 60 位學員大合照"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"
               />
@@ -204,6 +210,7 @@ export default function AboutPage() {
                 src="/images/events/opening-2026-vincent.jpg"
                 alt="台大創創中心主任 林文欽致詞"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
@@ -216,6 +223,7 @@ export default function AboutPage() {
                 src="/images/events/opening-2026-audience.jpg"
                 alt="2026 輔導計畫開幕式 — 全場聆聽"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
@@ -225,6 +233,7 @@ export default function AboutPage() {
                 src="/images/events/opening-2026-01.jpg"
                 alt="2026 輔導計畫開幕式 — 小組討論"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
@@ -234,6 +243,7 @@ export default function AboutPage() {
                 src="/images/events/opening-2026-03.jpg"
                 alt="2026 輔導計畫開幕式 — 業師分享"
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"
               />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
+import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "諮詢服務 | NTUTEC",
@@ -32,6 +33,10 @@ const services = [
 export default function ConsultingPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: '首頁', url: 'https://tec.ntu.edu.tw' },
+        { name: '諮詢服務', url: 'https://tec.ntu.edu.tw/consulting' },
+      ]} />
       <PageHero
         title="諮詢服務"
         subtitle="Consulting"

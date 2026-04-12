@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import PageHero from '@/components/public/PageHero'
 import ContactForm from './ContactForm'
+import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   title: '聯絡我們 | NTUTEC',
@@ -12,6 +13,10 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: '首頁', url: 'https://tec.ntu.edu.tw' },
+        { name: '聯絡我們', url: 'https://tec.ntu.edu.tw/contact' },
+      ]} />
       <PageHero title="聯絡我們" subtitle="Contact" description="有任何問題或合作提案，歡迎與我們聯繫。" />
 
       <section className="section-spacing">

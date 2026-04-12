@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { getPosts } from '@/lib/ghost'
 import PageHero from '@/components/public/PageHero'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // ISR: revalidate every hour
 
 export const metadata: Metadata = {
   title: '部落格 | NTUTEC',

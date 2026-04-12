@@ -1,0 +1,135 @@
+# NTUTEC 台大創創中心 — Full Reference
+> National Taiwan University Innovation and Entrepreneurship Center
+> Last updated: 2026
+
+## Organization Overview
+
+NTUTEC (NTU Taidah Entrepreneurship Center / 台大創創中心) is National Taiwan University's official innovation and entrepreneurship center. Founded in 2013, NTUTEC has grown into the central hub of NTU's startup ecosystem, supporting over 600 startup teams over 13 years. The center bridges university research, industry collaboration, and investment capital through four core business lines: the NTU Accelerator, NTU Garage, Corporate Vertical Accelerator, and Angels Club.
+
+NTUTEC operates under the HI3 model — Incubation (輔導培育), Integration (對接整合), and Ignition (加速起飛) — providing end-to-end support from early ideation through fundraising and market entry.
+
+**Mission**: Convert the best NTU technologies and talent into investable startups.
+
+**Core Metrics (2026)**:
+- 600+ startup teams supported since 2013
+- 80+ lifetime mentors; 40+ active 2026 mentors
+- 35 corporate innovation partners
+- 27 vertical accelerator cohorts completed
+- NTUTEC ANGELS: 40+ angel investors, monthly deal flow reviews
+
+## Accelerator Programs
+
+### NTU Accelerator (台大加速器)
+A 10-month intensive program for early-stage startups. Open to all applicants (NTU affiliation not required, but prioritized). Each cohort admits approximately 20 teams. The program provides:
+- One-on-one mentor matching with 40+ industry experts
+- Business model validation and refinement workshops
+- Legal, IP, and fundraising support
+- Demo Day at year end (December), with 350+ investors and VIPs attending
+- Access to NTU research labs and facilities
+- Connection to corporate partners for pilot projects
+
+Application timeline: Registration opens December–January; cohort announced February; program runs March–December.
+
+### NTU Garage (台大車庫)
+Virtual incubation space for NTU-affiliated startups (students, alumni, faculty). Provides workspace access, networking events, and entry-level program benefits. Requires NTU affiliation.
+
+### Corporate Vertical Accelerator (企業垂直加速器)
+Industry-specific acceleration programs co-run with enterprise partners. 27 cohorts completed across sectors including healthcare, fintech, sustainability, and smart manufacturing. Startups receive corporate pilot opportunities and direct procurement pathways.
+
+## Angels Club — NTUTEC ANGELS 台大天使會
+
+NTUTEC ANGELS is a curated angel investment club for high-net-worth investors interested in NTU-ecosystem startups. Key features:
+
+- Membership: Individual NT$50,000/year; Corporate NT$100,000/year; invitation + screening required
+- Deal Flow: 3–5 pre-screened startups presented per monthly meeting
+- Due Diligence: Three-stage screening (Gate 0 prescreening → Gate 1 deep DD → Gate 2 face review)
+- Investment: Named voting mechanism; co-investment with other members
+- Focus: Pre-A and Seed stage; deep-tech, life sciences, AI, sustainability preferred
+- Track Record: Multiple portfolio companies in AI, medtech, and climate tech
+
+Monthly meetings feature startup pitches, Q&A, and member networking. Past portfolio companies include AHEAD Medicine (先勁智能) and others in AI diagnostics, digital health, and enterprise software.
+
+## Mentor Network
+
+NTUTEC maintains an active roster of 40+ mentors for the 2026 cohort, drawn from four categories:
+
+### Investors (投資人) — 13 active mentors
+Venture capitalists and angel investors including partners from Addin Ventures, Astra Partners, BonHope Capital, and active angel investors with deep experience in early-stage deep-tech investing.
+
+### Entrepreneurs (創業家) — 10 active mentors
+Serial founders and operators with exits and growth-stage experience across SaaS, AI, healthcare, and consumer tech. Mentors include founders of 91APP, MoBagel, cacaFly, and other notable Taiwanese tech companies.
+
+### Corporate Executives (企業高管) — 12 active mentors
+C-suite and senior executives from major corporations including AUO, Philips Greater China, and international tech companies. Specialties include corporate strategy, go-to-market, and enterprise partnerships.
+
+### Industry Experts (產業專家) — 6 active mentors
+Specialists in law (IP, corporate), academic research commercialization, medical/life sciences, and organizational leadership coaching.
+
+All mentors are matched to startups based on industry, stage, and specific challenges. Mentorship includes monthly 1-on-1 sessions plus ad-hoc consultation.
+
+## Corporate Innovation Consulting
+
+NTUTEC offers consulting services for enterprises seeking to:
+- Identify and partner with relevant startups for pilot projects
+- Build internal innovation culture and processes
+- Navigate co-investment and strategic partnership structures
+- Access NTU research and faculty expertise
+
+35 corporate partners have worked with NTUTEC across industries including semiconductor, healthcare, media, financial services, and manufacturing.
+
+## Demo Day
+
+Annual Demo Day (年度成果展) held each December brings together the year's cohort of accelerator graduates for public pitches. Key facts:
+- 350+ attendees including investors, corporate partners, media, and alumni
+- 74+ investors typically in attendance
+- Startups pitch to investors and receive public exposure
+- Companion events include workshops, networking, and alumni panels
+
+## Key Programs & Events
+
+- **Mentor Matching (業師健診)**: One-on-one diagnostic sessions between mentors and startups. Any NTU-affiliated team can apply; not limited to accelerator participants.
+- **Monthly Angel Meetings**: NTUTEC ANGELS convenes monthly for startup pitches and member discussions.
+- **Annual Deal Flow Report**: Internal tracking of 600+ NTU-affiliated companies with investment readiness tiers.
+- **NTU Tech Day Collaboration**: Cross-faculty innovation showcase coordinating with NTU's six colleges.
+
+## Technology and Platform
+
+NTUTEC operates an internal platform (ntutec-platform) for:
+- Deal flow management and startup tracking
+- Angel club member portal and voting system
+- Mentor matching and scheduling
+- Program application processing
+
+The platform is built on Next.js 15, Supabase, and deployed on Vercel at https://tec.ntu.edu.tw.
+
+## Contact & Location
+
+- **Website**: https://tec.ntu.edu.tw
+- **Email**: ntutec@ntutec.com
+- **Address**: 台北市中正區思源街 18 號 台大水源校區卓越研究大樓 7 樓
+- **Parent Institution**: National Taiwan University (國立臺灣大學), https://www.ntu.edu.tw
+- **Founded**: 2013
+
+## Social Media
+
+- **Facebook**: https://www.facebook.com/ntutec.fanpage/
+- **LinkedIn**: https://www.linkedin.com/company/ntutec/
+- **Instagram**: https://www.instagram.com/ntu_tec/
+- **YouTube**: https://www.youtube.com/@ntutec9874/
+
+## Frequently Asked Questions
+
+**Who can apply to the NTU Accelerator?**
+Anyone can apply; NTU affiliation (student, alumni, faculty) is preferred but not required for the NTU Accelerator. NTU Garage requires NTU affiliation.
+
+**What stage does NTUTEC target?**
+Primarily pre-seed to Seed stage. Angels Club focuses on Seed to Pre-A. The accelerator accepts idea-stage through early traction.
+
+**Is there an equity requirement?**
+No equity is taken from accelerator participants. The Angels Club investment terms are set per deal by the member group.
+
+**How does the mentor matching work?**
+After acceptance, each startup is matched to 2–3 primary mentors based on industry, challenge area, and personal fit. Matches are confirmed with both parties before engagement begins.
+
+**How do I contact NTUTEC?**
+Email ntutec@ntutec.com or visit the contact page at https://tec.ntu.edu.tw/contact.

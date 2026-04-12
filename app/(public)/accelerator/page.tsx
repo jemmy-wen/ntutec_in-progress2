@@ -240,6 +240,7 @@ export default function AcceleratorPage() {
                 src="/images/events/opening-2026-classroom.jpg"
                 alt="2026 輔導計畫 — 課堂全體學員"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
@@ -249,6 +250,7 @@ export default function AcceleratorPage() {
                 src="/images/events/opening-2026-coaching.jpg"
                 alt="2026 輔導計畫 — 小組輔導討論"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />

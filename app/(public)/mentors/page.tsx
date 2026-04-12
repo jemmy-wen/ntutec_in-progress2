@@ -3,6 +3,7 @@ import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import mentorsData from "@/data/mentors_all.json";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
+import { JsonLd } from "@/components/JsonLd";
 import { ogImageUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
@@ -140,12 +141,41 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
 }
 
 export default function MentorsPage() {
+  // Build ItemList JSON-LD with Person schema for all visible mentors
+  const allVisibleMentors = categories.flatMap((cat) => cat.mentors)
+  const mentorsItemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'NTUTEC 台大創創中心業師陣容',
+    description: '台大創創中心 2026 陪跑業師名單，涵蓋投資人、創業家、企業高管與產業專家',
+    url: 'https://tec.ntu.edu.tw/mentors',
+    numberOfItems: allVisibleMentors.length,
+    itemListElement: allVisibleMentors.map((mentor, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Person',
+        name: mentor.name,
+        ...(mentor.title || mentor.highlight
+          ? { jobTitle: mentor.highlight ?? mentor.title }
+          : {}),
+        worksFor: {
+          '@type': 'Organization',
+          name: 'NTUTEC 台大創創中心',
+          url: 'https://tec.ntu.edu.tw',
+        },
+        ...(mentor.social_url ? { sameAs: [mentor.social_url] } : {}),
+      },
+    })),
+  }
+
   return (
     <>
       <BreadcrumbSchema items={[
         { name: "首頁", url: "https://tec.ntu.edu.tw" },
         { name: "業師陣容", url: "https://tec.ntu.edu.tw/mentors" }
       ]} />
+      <JsonLd data={mentorsItemListJsonLd} />
       <PageHero
         title="業師陣容"
         subtitle="Mentors"

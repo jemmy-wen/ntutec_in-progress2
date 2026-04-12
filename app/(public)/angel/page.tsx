@@ -4,6 +4,7 @@ import PageHero from '@/components/public/PageHero'
 import Image from 'next/image'
 import TrackClick from '@/components/TrackClick'
 import { ogImageUrl } from '@/lib/og'
+import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS 台大天使會 | NTUTEC',
@@ -169,6 +170,10 @@ const requirements = [
 export default function AngelPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: '首頁', url: 'https://tec.ntu.edu.tw' },
+        { name: 'NTUTEC ANGELS 台大天使會', url: 'https://tec.ntu.edu.tw/angel' },
+      ]} />
       <PageHero
         title="NTUTEC ANGELS 台大天使會"
         subtitle="Angel Investment Club"
@@ -466,6 +471,7 @@ export default function AngelPage() {
                 src="/images/events/demo-day-2025-group.jpg"
                 alt="Demo Day 2025 — 與會者大合照"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
@@ -475,6 +481,7 @@ export default function AngelPage() {
                 src="/images/events/demo-day-2025-05.jpg"
                 alt="Demo Day 2025 — 投資人座談"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />

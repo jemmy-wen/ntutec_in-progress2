@@ -71,6 +71,7 @@ export default function NTUEcosystemSection() {
                   alt={p.label}
                   width={p.width}
                   height={p.height}
+                  loading="lazy"
                   className="max-h-14 w-auto object-contain"
                 />
               </div>

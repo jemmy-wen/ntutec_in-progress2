@@ -133,6 +133,7 @@ function TiltCard({
           src={card.photo}
           alt={card.photoAlt}
           fill
+          loading="lazy"
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 33vw"
         />

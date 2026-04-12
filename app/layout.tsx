@@ -48,7 +48,9 @@ export default function RootLayout({
       <head>
         {/* DNS prefetch for third-party services */}
         <link rel="dns-prefetch" href="https://ntutec.ghost.io" />
-        <link rel="dns-prefetch" href="https://nofhimlnrmltaktzkhbw.supabase.co" />
+        <link rel="dns-prefetch" href="https://axsgvuxcxwjdtnqgmwsf.supabase.co" />
+        {/* GEO: machine-readable summary for AI crawlers */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
         <OrganizationSchema />
       </head>
       <body className="antialiased">

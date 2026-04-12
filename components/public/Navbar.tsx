@@ -316,6 +316,7 @@ export default function Navbar() {
             alt="NTUTEC"
             width={36}
             height={36}
+            priority
             className="rounded-lg"
           />
           <span className="text-lg font-bold tracking-tight text-charcoal">

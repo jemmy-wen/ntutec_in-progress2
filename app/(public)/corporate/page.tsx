@@ -130,6 +130,7 @@ export default function CorporatePage() {
                 src="/images/events/opening-2026-networking.jpg"
                 alt="2026 開幕式 — 交流現場"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
@@ -139,6 +140,7 @@ export default function CorporatePage() {
                 src="/images/events/opening-2026-pitching.jpg"
                 alt="2026 開幕式 — 新創展示成果"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />

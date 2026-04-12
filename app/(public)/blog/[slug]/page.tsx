@@ -4,7 +4,7 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getPostBySlug } from '@/lib/ghost'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // ISR: revalidate every hour
 
 type Params = Promise<{ slug: string }>
 

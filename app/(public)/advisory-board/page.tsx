@@ -97,6 +97,7 @@ export default function AdvisoryBoardPage() {
                     alt="NTUTEC"
                     width={64}
                     height={64}
+                    loading="lazy"
                     className="rounded-full"
                   />
                 </div>
