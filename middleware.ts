@@ -44,7 +44,7 @@ export async function middleware(request: NextRequest) {
   const publicPaths = [
     '/about', '/team', '/mentors', '/advisory-board', '/corporate',
     '/programs', '/corporate-partners', '/co-events',
-    '/accelerator', '/consulting', '/garage', '/angel', '/angel-apply',
+    '/accelerator', '/consulting', '/garage', '/angel', '/angel-apply', '/pitch',
     '/apply', '/faq', '/events', '/news', '/blog',
     '/contact', '/startups',
     '/tec-deals', '/podcast', '/alumni', '/careers',

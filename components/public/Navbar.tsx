@@ -37,7 +37,11 @@ const NAV_ITEMS: NavItem[] = [
   },
   {
     label: "天使俱樂部",
-    href: "/angel",
+    children: [
+      { label: "天使俱樂部總覽", href: "/angel" },
+      { label: "申請入會", href: "/angel-apply" },
+      { label: "新創投遞", href: "/pitch" },
+    ],
   },
   {
     label: "關於我們",
@@ -339,14 +343,12 @@ export default function Navbar() {
             EN
           </button>
 
-          <a
-            href="https://forms.gle/yu4ftYfVdsWaynxY8"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/pitch"
             className="hidden lg:inline-flex btn-pill-outline text-sm"
           >
             新創投遞
-          </a>
+          </Link>
           <Link
             href="/angel"
             className="hidden lg:inline-flex btn-pill-primary text-sm"
@@ -383,15 +385,13 @@ export default function Navbar() {
               ))}
 
               <div className="mt-8 flex flex-col gap-3 px-4">
-                <a
-                  href="https://forms.gle/yu4ftYfVdsWaynxY8"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/pitch"
                   onClick={() => setMobileOpen(false)}
                   className="btn-pill-outline text-center"
                 >
                   新創投遞
-                </a>
+                </Link>
                 <Link
                   href="/angel"
                   onClick={() => setMobileOpen(false)}
