@@ -80,7 +80,7 @@ export default function AngelApplyPage() {
             <p className="micro-label mb-4 text-center">Application</p>
             <h2 className="mb-3 text-center">申請入會</h2>
             <p className="mb-8 text-center text-slate-muted">
-              依據您的身分選擇對應申請表，填寫後中心將於 3 個工作日內聯繫您安排說明。
+              依據您的身分選擇對應申請表，填寫後中心將主動聯繫您安排說明。
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
               <a

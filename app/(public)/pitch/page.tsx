@@ -23,35 +23,35 @@ const afterSubmit = [
   },
   {
     step: "03",
-    title: "上架天使月例會",
-    description: "通過評估後，安排在天使月例會向 40+ 位天使投資人現場 Pitch，進入正式媒合流程。",
+    title: "天使月例會 Pitch",
+    description: "通過評估後，安排在天使月例會向 40+ 位天使投資人現場 Pitch。例會後若有投資人表達意向，中心協助雙方建立後續聯繫。",
   },
 ];
 
-const whatYouGet = [
+const whyPitch = [
   {
-    icon: "🎤",
-    title: "天使例會 Pitch 機會",
+    icon: "🎯",
+    title: "接觸認真的投資人",
     description:
-      "通過三段篩選後，在每月天使例會向 40+ 位天使投資人進行現場 Pitch 與 Q&A，直接接觸有意投資早期新創的專業投資人。",
+      "40+ 位天使會員每月定期出席例會，帶著明確投資意圖。這不是瀏覽履歷的平台，而是有人主動為你的案件背書、安排上台的機制。",
   },
   {
-    icon: "📋",
-    title: "完整 DD 備忘錄",
+    icon: "🧑‍💼",
+    title: "投資經理全程主導",
     description:
-      "中心投資經理協助撰寫完整投資備忘錄，梳理你的市場定位、競爭優勢與財務預測，讓投資人快速理解你的價值主張。",
+      "有投資經理親自審閱、安排面談、撰寫評估報告並向天使會員呈現。你不是自己冷投，而是有人幫你把案件帶進對的場合。",
   },
   {
-    icon: "🤝",
-    title: "投資人媒合協助",
+    icon: "🎓",
+    title: "台大校友網絡加持",
     description:
-      "例會後若投資人表達興趣，中心協助撮合後續洽談流程，包含文件準備與 Term Sheet 討論，減少早期新創的法律摩擦。",
+      "進入 NTUTEC 評估流程，即接觸超過 13 年累積的台大創業校友網絡。獲投後除資金外，可對接業師與企業合作夥伴。",
   },
   {
-    icon: "🌐",
-    title: "生態系資源對接",
+    icon: "📅",
+    title: "隨時投遞，無截止日",
     description:
-      "獲得天使俱樂部投資的新創，除資金外，同步獲得中心業師網絡、企業合作夥伴與校友資源的對接機會。資源對接以完成投資為前提，不保證進入評估流程即享有。",
+      "不設申請梯次或截止日，隨時投遞隨時進入評估。符合條件的新創，投資經理會主動聯繫，不需要等待。",
   },
 ];
 
@@ -100,7 +100,7 @@ export default function PitchPage() {
       <PageHero
         title="投遞你的新創"
         subtitle="Pitch to NTUTEC ANGELS"
-        description="將你的新創提交給 NTUTEC ANGELS 台大天使會。通過三段嚴格審查，在每月天使例會向 40+ 位天使投資人現場 Pitch，接觸真正有意投資早期新創的專業買方。"
+        description="將你的新創提交給 NTUTEC ANGELS 台大天使會。投資經理親自審閱，符合條件者安排面談，通過評估後在每月天使例會向 40+ 位天使投資人現場 Pitch。"
       />
 
       {/* Stats */}
@@ -110,7 +110,7 @@ export default function PitchPage() {
             {[
               { value: "40+", label: "天使會員" },
               { value: "每月", label: "定期天使例會" },
-              { value: "3 關", label: "嚴格盡調篩選" },
+              { value: "3 步", label: "投遞到Pitch流程" },
               { value: "隨時", label: "開放投遞，無截止日" },
             ].map((s) => (
               <div key={s.label} className="px-6 py-5 text-center">
@@ -150,15 +150,15 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* What you get */}
+      {/* Why pitch here */}
       <section className="section-spacing">
         <div className="container">
           <div className="mb-12 text-center">
-            <p className="micro-label mb-4">What You Get</p>
-            <h2>投遞後，你可以獲得什麼</h2>
+            <p className="micro-label mb-4">Why NTUTEC ANGELS</p>
+            <h2>為什麼選擇這裡</h2>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
-            {whatYouGet.map((item) => (
+            {whyPitch.map((item) => (
               <div key={item.title} className="card-hover rounded-2xl bg-white p-8">
                 <span className="mb-4 block text-4xl">{item.icon}</span>
                 <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
@@ -249,7 +249,7 @@ export default function PitchPage() {
         <div className="container text-center">
           <h3 className="mb-4">還沒準備好投遞？</h3>
           <p className="mb-6 text-slate-muted mx-auto max-w-lg">
-            先加入台大車庫或台大加速器計畫，接受完整輔導後再接觸天使俱樂部，成功率更高。
+            先加入台大車庫或台大加速器計畫，接受完整輔導後再接觸天使俱樂部，準備更充分。
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/programs" className="btn-pill-outline">
