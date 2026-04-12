@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Calendar, Send } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
 import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
+import Image from "next/image";
 
 const acceleratorAlumni: AlumniStory[] = [
   {
@@ -137,6 +138,37 @@ export default function AcceleratorPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Activity Photos */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mb-8 text-center">
+            <p className="micro-label mb-4">Campus Life</p>
+            <h2 className="mb-3">輔導計畫現場</h2>
+            <p className="text-slate-muted">課程、輔導、討論——十個月的創業加速，從這裡開始。</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/opening-2026-classroom.jpg"
+                alt="2026 輔導計畫 — 課堂全體學員"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/opening-2026-coaching.jpg"
+                alt="2026 輔導計畫 — 小組輔導討論"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </div>
       </section>

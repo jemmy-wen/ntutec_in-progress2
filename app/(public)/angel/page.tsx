@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/public/PageHero'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS 台大天使會 | NTUTEC',
@@ -431,6 +432,26 @@ export default function AngelPage() {
                 <p className="mt-1 text-xs text-slate-muted">{stat.sub}</p>
               </div>
             ))}
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 mb-8">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/demo-day-2025-group.jpg"
+                alt="Demo Day 2025 — 與會者大合照"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/demo-day-2025-05.jpg"
+                alt="Demo Day 2025 — 投資人座談"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
           </div>
           <div className="text-center">
             <Link href="/demo-day" className="btn-pill-outline">

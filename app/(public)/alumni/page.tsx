@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "成功校友 | NTUTEC",
@@ -236,6 +237,37 @@ export default function AlumniPage() {
                 {name}
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Demo Day Booth Photos */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mb-8 text-center">
+            <p className="micro-label mb-4">Demo Day 2025</p>
+            <h2 className="mb-3">新創展示現場</h2>
+            <p className="text-slate-muted">每年 12 月，校友團隊在 Demo Day 向投資人展示成果，開啟下一輪資本旅程。</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/demo-day-2025-booth1.jpg"
+                alt="Demo Day 2025 — 新創展示攤位"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/demo-day-2025-booth2.jpg"
+                alt="Demo Day 2025 — 新創創辦人"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </div>
       </section>

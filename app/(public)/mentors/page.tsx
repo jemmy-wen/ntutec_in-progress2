@@ -124,6 +124,37 @@ export default function MentorsPage() {
         </div>
       </section>
 
+      {/* Mentoring Photos */}
+      <section className="section-spacing bg-teal-wash">
+        <div className="container">
+          <div className="mb-8 text-center">
+            <p className="micro-label mb-4">Mentoring in Action</p>
+            <h2 className="mb-3">業師輔導現場</h2>
+            <p className="text-slate-muted">一對一深度諮詢，從策略到執行，業師全程陪跑。</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/opening-2026-mentoring.jpg"
+                alt="業師輔導現場 — 新創展示產品給業師"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/opening-2026-mentor-session.jpg"
+                alt="業師輔導現場 — 深度討論"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Categories */}
       {categories.map((cat, idx) => (
         <section

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "企業合作方案 | NTUTEC",
@@ -110,6 +111,37 @@ export default function CorporatePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Activity Photos */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mb-8 text-center">
+            <p className="micro-label mb-4">場景實錄</p>
+            <h2 className="mb-3">企業合作現場</h2>
+            <p className="text-slate-muted">新創交流、成果展示、跨界媒合——每場活動都是深度合作的起點。</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/opening-2026-networking.jpg"
+                alt="2026 開幕式 — 交流現場"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/opening-2026-pitching.jpg"
+                alt="2026 開幕式 — 新創展示成果"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </div>
       </section>
