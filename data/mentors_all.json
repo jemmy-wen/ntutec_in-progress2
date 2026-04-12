@@ -112,7 +112,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": true,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "張提提",
@@ -120,7 +121,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": true,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "林子樸",
@@ -128,7 +130,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "王俊傑",
@@ -144,7 +147,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         }
       ]
     },
@@ -411,7 +415,8 @@
           "highlight": "前台大創創中心執行長",
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "游森楨",
@@ -419,7 +424,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "呂志宏",
@@ -427,7 +433,8 @@
           "highlight": "中華開發資本顧問",
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "Kevin Huang",
@@ -435,7 +442,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "黃慧雯 Anita",
@@ -443,7 +451,8 @@
           "highlight": "矽谷、中國海外連結",
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "李彥樞",
@@ -451,7 +460,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "簡榮宗",
@@ -459,7 +469,8 @@
           "highlight": "股權架構設計專家",
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "劉偉立",
@@ -467,7 +478,8 @@
           "highlight": "股權架構設計專家",
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "陳全正",
@@ -475,7 +487,8 @@
           "highlight": "股權架構設計專家",
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "張鼎聲",
@@ -483,7 +496,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         },
         {
           "name": "薛峻泯",
@@ -491,7 +505,8 @@
           "highlight": null,
           "photo": null,
           "is_new_2026": false,
-          "social_url": null
+          "social_url": null,
+          "hidden": true
         }
       ]
     }

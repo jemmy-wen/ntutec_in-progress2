@@ -17,6 +17,7 @@ interface Mentor {
   photo: string | null;
   social_url: string | null;
   is_new_2026: boolean;
+  hidden?: boolean;
 }
 
 interface Category {
@@ -28,7 +29,10 @@ interface Category {
   mentors: Mentor[];
 }
 
-const categories = mentorsData.categories as Category[];
+const categories = (mentorsData.categories as Category[]).map((cat) => ({
+  ...cat,
+  mentors: cat.mentors.filter((m) => !m.hidden),
+}));
 const stats = mentorsData.stats;
 
 function MentorCard({ mentor }: { mentor: Mentor }) {
