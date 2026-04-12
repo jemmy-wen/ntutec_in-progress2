@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getAllPostSlugs } from '@/lib/ghost'
+import { createClient } from '@/lib/supabase/server'
 
 const BASE_URL = 'https://tec.ntu.edu.tw'
 
@@ -56,5 +57,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...blogRoutes]
+  // Dynamically add individual mentor pages
+  let mentorRoutes: MetadataRoute.Sitemap = []
+  try {
+    const supabase = await createClient()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: mentorSlugs } = await (supabase.from('mentors') as any)
+      .select('slug, updated_at')
+      .eq('is_active', true)
+      .not('slug', 'is', null)
+    if (mentorSlugs) {
+      mentorRoutes = (mentorSlugs as { slug: string; updated_at: string }[]).map((m) => ({
+        url: `${BASE_URL}/mentors/${m.slug}`,
+        lastModified: new Date(m.updated_at),
+        changeFrequency: 'monthly' as const,
+        priority: 0.5,
+      }))
+    }
+  } catch {
+    // Supabase unavailable at build time — skip mentor routes gracefully
+  }
+
+  return [...staticRoutes, ...blogRoutes, ...mentorRoutes]
 }

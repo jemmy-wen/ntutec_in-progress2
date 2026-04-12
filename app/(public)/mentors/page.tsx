@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
-import mentorsData from "@/data/mentors_all.json";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import { JsonLd } from "@/components/JsonLd";
 import { ogImageUrl } from "@/lib/og";
+import { createClient } from "@/lib/supabase/server";
+
+export const revalidate = 3600; // ISR: revalidate every hour
 
 export const metadata: Metadata = {
   title: "業師陣容 | NTUTEC",
@@ -39,13 +41,15 @@ export const metadata: Metadata = {
 };
 
 interface Mentor {
+  id: string;
   name: string;
   title: string | null;
   highlight: string | null;
-  photo: string | null;
+  photo_url: string | null;
   social_url: string | null;
   is_new_2026: boolean;
-  hidden?: boolean;
+  category: string;
+  slug: string | null;
 }
 
 interface Category {
@@ -55,14 +59,44 @@ interface Category {
   emoji: string;
   description: string;
   display_count?: string;
-  mentors: Mentor[];
 }
 
-const categories = (mentorsData.categories as Category[]).map((cat) => ({
-  ...cat,
-  mentors: cat.mentors.filter((m) => !m.hidden),
-}));
-const stats = mentorsData.stats;
+const CATEGORY_META: Record<string, Category> = {
+  vc: {
+    key: "vc",
+    title: "投資人",
+    subtitle: "VC Partners",
+    emoji: "🎯",
+    description: "現職或前創投 / 天使 / 加速器主理人。能投資、能介紹 LP、能提供融資策略。",
+    display_count: "10+",
+  },
+  founder: {
+    key: "founder",
+    title: "創業家",
+    subtitle: "Serial Founders",
+    emoji: "🚀",
+    description: "有 exit 經驗或正在經營第二、第三家公司的實戰派。踩過的坑都能告訴你。",
+    display_count: "10+",
+  },
+  exec: {
+    key: "exec",
+    title: "企業高管",
+    subtitle: "Corporate Executives",
+    emoji: "🏢",
+    description: "大企業 C-level / VP / 集團策略主管。打開客戶、通路、策略合作的入口。",
+    display_count: "10+",
+  },
+  expert: {
+    key: "expert",
+    title: "產業專家",
+    subtitle: "Domain Experts",
+    emoji: "🔬",
+    description: "深度技術 / 法律 / 財會 / 營運 know-how。特定領域的顧問深度。",
+    display_count: "5+",
+  },
+};
+
+const CATEGORY_ORDER = ["vc", "founder", "exec", "expert"];
 
 function MentorCard({ mentor }: { mentor: Mentor }) {
   const initial = mentor.name.charAt(0);
@@ -73,9 +107,9 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
     <div className="card-hover group relative flex flex-col overflow-hidden rounded-2xl border border-stone-warm/50 bg-white shadow-sm transition-shadow hover:shadow-md">
       {/* Photo area — 4:5 portrait ratio */}
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-stone">
-        {mentor.photo ? (
+        {mentor.photo_url ? (
           <Image
-            src={mentor.photo}
+            src={mentor.photo_url}
             alt={`${mentor.name}${mentor.title ? `，${mentor.title}` : ""}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -102,10 +136,10 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
             {mentor.name}
           </h3>
           {mentor.social_url && (() => {
-            const isFacebook = mentor.social_url.includes("facebook.com");
+            const isFacebook = mentor.social_url!.includes("facebook.com");
             return (
               <a
-                href={mentor.social_url}
+                href={mentor.social_url!}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${mentor.name} ${isFacebook ? "Facebook" : "LinkedIn"}`}
@@ -140,34 +174,62 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
   );
 }
 
-export default function MentorsPage() {
-  // Build ItemList JSON-LD with Person schema for all visible mentors
-  const allVisibleMentors = categories.flatMap((cat) => cat.mentors)
+export default async function MentorsPage() {
+  const supabase = await createClient();
+
+  // Fetch all active mentors ordered by category priority + sort_order
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: mentorRows } = await (supabase.from("mentors") as any)
+    .select("id, name, title, highlight, photo_url, social_url, is_new_2026, category, slug")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+
+  const allMentors: Mentor[] = mentorRows || [];
+
+  // Group mentors by category
+  const grouped: Record<string, Mentor[]> = {};
+  for (const m of allMentors) {
+    if (!grouped[m.category]) grouped[m.category] = [];
+    grouped[m.category].push(m);
+  }
+
+  // Build categories in fixed order, only include non-empty ones
+  const categories = CATEGORY_ORDER
+    .map((key) => ({
+      ...CATEGORY_META[key],
+      mentors: grouped[key] || [],
+    }))
+    .filter((cat) => cat.mentors.length > 0);
+
+  // Stats
+  const totalActive = allMentors.length;
+
+  // Build ItemList JSON-LD
   const mentorsItemListJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'NTUTEC 台大創創中心業師陣容',
-    description: '台大創創中心 2026 陪跑業師名單，涵蓋投資人、創業家、企業高管與產業專家',
-    url: 'https://tec.ntu.edu.tw/mentors',
-    numberOfItems: allVisibleMentors.length,
-    itemListElement: allVisibleMentors.map((mentor, i) => ({
-      '@type': 'ListItem',
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "NTUTEC 台大創創中心業師陣容",
+    description: "台大創創中心 2026 陪跑業師名單，涵蓋投資人、創業家、企業高管與產業專家",
+    url: "https://tec.ntu.edu.tw/mentors",
+    numberOfItems: totalActive,
+    itemListElement: allMentors.map((mentor, i) => ({
+      "@type": "ListItem",
       position: i + 1,
       item: {
-        '@type': 'Person',
+        "@type": "Person",
         name: mentor.name,
         ...(mentor.title || mentor.highlight
           ? { jobTitle: mentor.highlight ?? mentor.title }
           : {}),
         worksFor: {
-          '@type': 'Organization',
-          name: 'NTUTEC 台大創創中心',
-          url: 'https://tec.ntu.edu.tw',
+          "@type": "Organization",
+          name: "NTUTEC 台大創創中心",
+          url: "https://tec.ntu.edu.tw",
         },
         ...(mentor.social_url ? { sameAs: [mentor.social_url] } : {}),
       },
     })),
-  }
+  };
 
   return (
     <>
@@ -179,7 +241,7 @@ export default function MentorsPage() {
       <PageHero
         title="業師陣容"
         subtitle="Mentors"
-        description={`歷年累計 ${stats.total_historical}+ 位業師，${stats.total}+ 位活躍陪跑 2026，涵蓋投資人、創業家、企業高管與產業專家，為新創團隊提供一對一深度輔導。`}
+        description={`歷年累計 80+ 位業師，${totalActive}+ 位活躍陪跑 2026，涵蓋投資人、創業家、企業高管與產業專家，為新創團隊提供一對一深度輔導。`}
       />
 
       {/* Intro + Stats */}
@@ -277,12 +339,21 @@ export default function MentorsPage() {
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {cat.mentors.map((mentor) => (
-                <MentorCard key={mentor.name} mentor={mentor} />
+                <MentorCard key={mentor.id} mentor={mentor} />
               ))}
             </div>
           </div>
         </section>
       ))}
+
+      {/* Empty state */}
+      {categories.length === 0 && (
+        <section className="section-spacing">
+          <div className="container">
+            <p className="text-center text-slate-muted">業師資料載入中，請稍後再試。</p>
+          </div>
+        </section>
+      )}
 
       {/* Mentor CTA */}
       <section className="section-spacing bg-charcoal text-white">

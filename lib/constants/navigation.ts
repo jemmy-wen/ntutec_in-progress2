@@ -26,6 +26,7 @@ export const ADMIN_NAV: NavItem[] = [
   { label: '月會管理', href: '/admin/meetings' },
   { label: '回覆分析', href: '/admin/meetings/responses' },
   { label: '投票結果', href: '/admin/meetings/vote-results' },
+  { label: '業師管理', href: '/admin/mentors' },
   { label: '投資人管理', href: '/admin/investors' },
   { label: '表單提交', href: '/admin/forms' },
   { label: '系統設定', href: '/admin/settings' },
