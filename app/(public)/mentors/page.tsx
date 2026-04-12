@@ -96,7 +96,10 @@ export default function MentorsPage() {
             <p className="text-lg leading-relaxed text-slate-muted">
               NTUTEC 業師網絡以「背景類型」劃分，幫助新創團隊快速找到最適合的諮詢對象——
               找創投家談融資、找連續創業家學實戰、找企業高管開通路、找產業專家補深度。
-              每位業師皆具備豐富的產業實戰經驗，為眾多新創團隊提供一對一深度輔導。
+              每位業師皆具備豐富的產業實戰經驗，平均逾 20 年產業深耕，為眾多新創團隊提供一對一深度輔導。
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-slate-muted">
+              陣容涵蓋 Yahoo VP、微軟研究院副院長、台積電研發主管等頂尖產業領袖，帶來第一手的市場洞察與人脈資源。
             </p>
           </div>
 

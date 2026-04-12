@@ -80,10 +80,10 @@ export default function PartnersSection() {
     <section className="section-spacing bg-white">
       <div className="container">
         <div className="mx-auto mb-12 max-w-2xl text-center">
-          <p className="micro-label mb-2">35+ Corporate Partners</p>
-          <h2>合作企業夥伴</h2>
+          <p className="micro-label mb-2">Corporate Partners</p>
+          <h2>精選合作企業夥伴</h2>
           <p className="mt-4 text-lg text-slate-muted">
-            累計 35 家企業夥伴——從半導體、金融科技、媒體到消費品，
+            35 家歷年合作企業——從半導體、金融科技、媒體到消費品，
             以企業垂直加速器、創新競賽與案源媒合深度共創。
           </p>
         </div>

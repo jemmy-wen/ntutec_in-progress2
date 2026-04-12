@@ -71,6 +71,9 @@ export default function CorporatePage() {
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Why Partner With Us</p>
             <h2>為什麼選擇台大創創中心</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-slate-muted">
+              全台唯一直接對接國立臺灣大學頂尖研究技術與人才的企業創新加速平台
+            </p>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
             {valueProps.map((prop) => (
@@ -117,6 +120,11 @@ export default function CorporatePage() {
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">FEATURED CASES</p>
             <h2>企業合作成功案例</h2>
+          </div>
+          <div className="mb-6 text-center">
+            <p className="text-sm text-slate-muted">
+              累計 27 期、35 家企業夥伴的深度共創實績，涵蓋科技、媒體、金融等多元產業。
+            </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {/* Card 1: 宏碁 × 律果科技 */}

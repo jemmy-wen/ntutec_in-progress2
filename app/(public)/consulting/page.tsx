@@ -44,6 +44,11 @@ export default function ConsultingPage() {
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Our Services</p>
             <h2>服務項目</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-slate-muted">
+              自 2019 年首創企業垂直加速器，累計 27 期、35 家企業夥伴，涵蓋科技、媒體、金融等多元產業。
+              從設計思考工作坊、商業模式共創，到場域驗證與新創媒合，提供端對端的企業創新解決方案。
+              合作企業包含台積電、宏碁、友達等領導品牌。
+            </p>
           </div>
           <div className="grid gap-8 lg:grid-cols-3">
             {services.map((service) => (

@@ -18,9 +18,9 @@ const exitCases = [
   },
   {
     company: "Dapp Pocket",
-    acquirer: "",
+    acquirer: "→ Turn Capital",
     domain: "區塊鏈錢包應用",
-    desc: "完成國際 Exit，進入加密貨幣生態系",
+    desc: "被 Turn Capital 收購，進入加密貨幣生態系",
     tags: ["#Web3", "#Blockchain", "#Exit"],
   },
 ];
