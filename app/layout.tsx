@@ -7,7 +7,7 @@ import OrganizationSchema from '@/components/public/OrganizationSchema'
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const notoSansTC = Noto_Sans_TC({
-  subsets: ['latin', 'chinese-traditional'],
+  subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-zh',
   display: 'swap',
