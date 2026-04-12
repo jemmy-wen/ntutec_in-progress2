@@ -31,6 +31,8 @@ export const metadata: Metadata = {
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Preload the hero image for LCP improvement */}
+      {/* Note: Next.js Image with priority handles preload automatically for hero-main.jpg */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:text-teal focus:font-medium"

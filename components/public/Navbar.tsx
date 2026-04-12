@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import SearchDialog, { useSearchDialog, SearchButton } from "@/components/search/SearchDialog";
 
 /* ────────────────────────────── nav data ────────────────────────────── */
 
@@ -239,6 +240,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { open: searchOpen, setOpen: setSearchOpen } = useSearchDialog();
 
   useEffect(() => {
     const onResize = () => {
@@ -339,6 +341,8 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <SearchButton onClick={() => setSearchOpen(true)} />
+
           <button
             type="button"
             aria-label="English site (coming soon)"
@@ -418,6 +422,9 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Site-wide search dialog — rendered inside Navbar so it shares search state */}
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </header>
   );
 }
