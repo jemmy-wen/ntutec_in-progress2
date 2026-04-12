@@ -202,32 +202,45 @@ export default function DemoDayPage() {
               2025 年 12 月 10 日，正大講堂 × 國學講堂，356 人次見證台大年度最大新創投資媒合盛事。
             </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+          {/* Row 1: 大合照（寬）+ 林文欽致詞 */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3] lg:col-span-2">
               <Image
-                src="/images/events/demo-day-2025-04.jpg"
-                alt="2025 Demo Day — 新創路演舞台"
+                src="/images/events/demo-day-2025-group.jpg"
+                alt="2025 Demo Day — 投資人與新創大合照"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"
               />
             </div>
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
                 src="/images/events/demo-day-2025-01.jpg"
-                alt="2025 Demo Day — 投資人媒合現場"
+                alt="台大創創中心主任 林文欽開幕致詞"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
-            <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:col-span-2 lg:col-span-1">
+          </div>
+          {/* Row 2: stage + panel */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
-                src="/images/events/demo-day-2025-03.jpg"
-                alt="2025 Demo Day — 團隊攤位交流"
+                src="/images/events/demo-day-2025-04.jpg"
+                alt="2025 Demo Day — 主舞台路演現場"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/demo-day-2025-05.jpg"
+                alt="2025 Demo Day — 論壇對談"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, 50vw"
               />
             </div>
           </div>

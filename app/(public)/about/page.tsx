@@ -180,11 +180,33 @@ export default function AboutPage() {
               2026 年 3 月，第一批輔導團隊在台大水源校區正式啟動——這是他們的起點。
             </p>
           </div>
+          {/* Row 1: 大合照（寬）+ Vincent */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3] lg:col-span-2">
+              <Image
+                src="/images/events/opening-2026-group.jpg"
+                alt="2026 輔導計畫開幕式 — 全體學員大合照"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/opening-2026-vincent.jpg"
+                alt="台大創創中心主任 林文欽致詞"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+          </div>
+          {/* Row 2: 3 activity shots */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
-                src="/images/events/opening-2026-01.jpg"
-                alt="2026 輔導計畫開幕式 — 全場活動"
+                src="/images/events/opening-2026-audience.jpg"
+                alt="2026 輔導計畫開幕式 — 全場聆聽"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -192,8 +214,8 @@ export default function AboutPage() {
             </div>
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
-                src="/images/events/opening-2026-03.jpg"
-                alt="2026 輔導計畫開幕式 — 業師分享"
+                src="/images/events/opening-2026-01.jpg"
+                alt="2026 輔導計畫開幕式 — 小組討論"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -201,8 +223,8 @@ export default function AboutPage() {
             </div>
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:col-span-2 lg:col-span-1">
               <Image
-                src="/images/events/opening-2026-05.jpg"
-                alt="2026 輔導計畫開幕式 — 新創團隊"
+                src="/images/events/opening-2026-03.jpg"
+                alt="2026 輔導計畫開幕式 — 業師分享"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"
