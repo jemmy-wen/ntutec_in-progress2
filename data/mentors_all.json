@@ -129,6 +129,22 @@
           "photo": "/mentors/wp/3152.jpg",
           "is_new_2026": false,
           "social_url": null
+        },
+        {
+          "name": "蕭一白",
+          "title": "資深科技投資顧問",
+          "highlight": "跨產業天使投資人；前業界顧問",
+          "photo": "/mentors/wp/17935.jpg",
+          "is_new_2026": false,
+          "social_url": "https://www.linkedin.com/in/terryhsiao"
+        },
+        {
+          "name": "林文欽",
+          "title": "微曦投資 董事長 ／ 蜂行資本 Venture Partner",
+          "highlight": "前騰訊副總；前京東副總裁；前大疆全球電商負責人",
+          "photo": "/mentors/wp/20489.jpg",
+          "is_new_2026": false,
+          "social_url": null
         }
       ]
     },
@@ -277,14 +293,6 @@
           "social_url": null
         },
         {
-          "name": "蕭一白",
-          "title": "資深業界顧問",
-          "highlight": null,
-          "photo": "/mentors/wp/17935.jpg",
-          "is_new_2026": false,
-          "social_url": "https://www.linkedin.com/in/terryhsiao"
-        },
-        {
           "name": "王同年",
           "title": "前黛安芬台灣 董事總經理",
           "highlight": "前黛安芬台灣 董事總經理",
@@ -306,14 +314,6 @@
           "highlight": "前中華開發投資部資深副理",
           "photo": null,
           "is_new_2026": true,
-          "social_url": null
-        },
-        {
-          "name": "林文欽",
-          "title": "微曦投資董事長 / Digit Spark策略長兼董事 / 光速火箭獨立董事 / Blueseeds董事 / 蜂行資本Venture Partner / Facebook台灣新創投資社團創辦人",
-          "highlight": "前騰訊副總；前京東副總裁；前大疆全球電商負責人",
-          "photo": "/mentors/wp/20489.jpg",
-          "is_new_2026": false,
           "social_url": null
         },
         {
