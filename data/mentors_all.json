@@ -8,7 +8,7 @@
       "expert": 18
     },
     "with_photo": 33,
-    "with_social": 16
+    "with_social": 19
   },
   "categories": [
     {
@@ -24,7 +24,7 @@
           "highlight": "宏誠創投 總經理",
           "photo": null,
           "is_new_2026": true,
-          "social_url": null
+          "social_url": "https://www.linkedin.com/in/kris-peng-b12ba2147/"
         },
         {
           "name": "江旻峻",
@@ -32,7 +32,7 @@
           "highlight": "AI 與軟體領域早期投資",
           "photo": null,
           "is_new_2026": true,
-          "social_url": null
+          "social_url": "https://www.linkedin.com/in/brandon-chiang-addinvc/"
         },
         {
           "name": "林宇聲",
@@ -209,7 +209,7 @@
           "highlight": "前 LINE 台灣總經理",
           "photo": "/mentors/wp/4024.png",
           "is_new_2026": false,
-          "social_url": null
+          "social_url": "https://www.linkedin.com/in/stingtao/"
         },
         {
           "name": "梁幸堯",
