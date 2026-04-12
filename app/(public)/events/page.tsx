@@ -3,7 +3,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '活動 | NTUTEC',
-  description: '台大創創中心最新活動資訊，包含產業論壇、Demo Day、工作坊與交流活動。',
+  description: 'NTUTEC 活動日曆：天使例會、Demo Day、工作坊、產業論壇。查看 2026 年度活動並線上報名。',
 }
 
 export default function EventsPage() {

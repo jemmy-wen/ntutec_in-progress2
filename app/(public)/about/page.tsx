@@ -5,7 +5,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '關於台大創創中心 | NTUTEC',
-  description: '台大創創中心是台大創業生態系的實戰基地，13 年來累計輔導逾 600 支新創團隊。以「連結台大、連結產業、連結資本」為核心，深耕台灣 13 年的大學創業基地。',
+  description: '台大創創中心以 HI3 培育模型（輔導培育 × 對接整合 × 加速起飛）系統性支持新創。從 2013 年台大車庫到 35 家企業夥伴，深耕台大創業生態系 13 年。',
 }
 
 const hi3Model = [
@@ -36,30 +36,21 @@ const alumniHighlights = [
   {
     name: '配客嘉 PackAge+',
     tag: '循環包裝 × ESG',
-    result: 'A 輪逾 NT$1 億',
+    result: 'A 輪逾 NT$1 億（2025）',
     detail: '獲國發基金 + 策略投資人入股，將循環包裝帶入台灣主流電商供應鏈。',
   },
   {
     name: '艾斯創生醫 Aistrom',
     tag: '醫療器材 × 國際',
-    result: '募資 USD 250 萬',
+    result: '募資 USD 250 萬（2024）',
     detail: 'SelectUSA MedTech 冠軍，NBA 球隊指定名醫等國際骨科權威投資。',
   },
   {
     name: 'Botbonnie',
     tag: '聊天機器人 × AI',
-    result: '被 Appier 收購',
+    result: '被 Appier 收購（2023）',
     detail: '台大創創校友團隊，成功被日本上市 AI 公司 Appier 收購，實現完整 Exit。',
   },
-]
-
-const keyMilestones = [
-  { year: "2013", event: "台大車庫創立，首屆新創進駐" },
-  { year: "2017", event: "企業垂直加速器首創，首家合作企業加入" },
-  { year: "2023", event: "NTUTEC ANGELS 台大天使會正式成立" },
-  { year: "2023", event: "Botbonnie 被日本 Appier 收購，首個 Exit 案例" },
-  { year: "2024", event: "艾斯創生醫奪 SelectUSA MedTech 冠軍，獲 US$250 萬" },
-  { year: "2025", event: "配客嘉完成 A 輪逾 NT$1 億，Demo Day 356 人報名、233 人出席，創 7 屆最高" },
 ]
 
 const milestones = [
@@ -123,24 +114,6 @@ export default function AboutPage() {
                 <div className="mb-1 text-xs font-semibold uppercase tracking-widest text-teal">{item.en}</div>
                 <h3 className="mb-3 text-xl font-bold text-charcoal">{item.label}</h3>
                 <p className="text-slate-muted leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Key Milestones Timeline */}
-      <section className="section-spacing bg-stone">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">Timeline</p>
-            <h2 className="mb-4">重要里程碑</h2>
-          </div>
-          <div className="mx-auto max-w-2xl space-y-6">
-            {keyMilestones.map((m) => (
-              <div key={m.year} className="flex gap-4 items-start border-l-2 border-teal pl-6">
-                <span className="w-12 shrink-0 text-sm font-bold text-teal">{m.year}</span>
-                <p className="text-slate-muted leading-relaxed">{m.event}</p>
               </div>
             ))}
           </div>

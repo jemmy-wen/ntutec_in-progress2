@@ -4,7 +4,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '新創輔導計畫 | NTUTEC',
-  description: '台大車庫與台大加速器兩大計畫，依需台大身分與否分流，共同框架為 OKR Tracker + 業師診斷會 + 三個關鍵審查節點，每年 3 月開始，12 月 Demo Day 畢業。',
+  description: '想把技術變成新創？台大加速器（不限身分）與台大車庫（台大身分優先）提供免費十個月輔導，40+ 位業師、35 家企業夥伴、150+ 投資人網絡。',
 }
 
 const programs = [

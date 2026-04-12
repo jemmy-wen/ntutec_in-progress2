@@ -78,7 +78,7 @@ export default function ConsultingPage() {
             <p className="micro-label mb-4">Get in Touch</p>
             <h2 className="mb-4">洽詢諮詢服務</h2>
             <p className="mb-8 text-lg text-slate-muted">
-              請來信說明您的需求（企業規模、創新議題、期望時程），我們將於儘速安排專人回覆。
+              請來信說明您的需求（企業規模、創新議題、期望時程），我們評估後安排合適窗口與您聯繫。
             </p>
             <a
               href="mailto:ntutec@ntutec.com?subject=諮詢服務洽詢"

@@ -82,11 +82,13 @@ const episodes = [
   },
 ];
 
+const FIRSTORY_URL = 'https://open.firstory.me/user/ntutec'
+
 const platforms = [
-  { emoji: "🎵", name: "Apple Podcasts" },
-  { emoji: "🎵", name: "Spotify" },
-  { emoji: "🎵", name: "Firstory" },
-  { emoji: "🎵", name: "YouTube" },
+  { emoji: "🎙️", name: "Firstory", href: FIRSTORY_URL },
+  { emoji: "🎵", name: "Apple Podcasts", href: FIRSTORY_URL },
+  { emoji: "💚", name: "Spotify", href: FIRSTORY_URL },
+  { emoji: "▶️", name: "YouTube", href: 'https://www.youtube.com/results?search_query=TEC+Talk+NTUTEC' },
 ];
 
 export default function PodcastPage() {
@@ -183,16 +185,19 @@ export default function PodcastPage() {
           <h2 className="mb-8">收聽平台</h2>
           <div className="grid gap-4 grid-cols-2 md:grid-cols-4 mx-auto max-w-2xl">
             {platforms.map((platform) => (
-              <div
+              <a
                 key={platform.name}
-                className="rounded-xl border border-stone-warm bg-stone p-5 text-center"
+                href={platform.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl border border-stone-warm bg-stone p-5 text-center block hover:border-teal/40 hover:bg-teal-wash transition-colors"
               >
                 <p className="text-3xl mb-2">{platform.emoji}</p>
                 <p className="text-sm font-semibold text-charcoal">
                   {platform.name}
                 </p>
-                <p className="text-xs text-slate-muted">搜尋 TEC Talk</p>
-              </div>
+                <p className="text-xs text-slate-muted">前往收聽</p>
+              </a>
             ))}
           </div>
         </div>
