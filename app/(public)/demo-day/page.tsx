@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/public/PageHero'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Demo Day | NTUTEC',
@@ -186,6 +187,48 @@ export default function DemoDayPage() {
                   {year}
                 </span>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2025 Demo Day 現場照片 */}
+      <section className="section-spacing bg-stone">
+        <div className="container">
+          <div className="mb-10 text-center">
+            <p className="micro-label mb-4">2025 現場紀實</p>
+            <h2 className="mb-4">Demo Day 現場</h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-muted">
+              2025 年 12 月 10 日，正大講堂 × 國學講堂，356 人次見證台大年度最大新創投資媒合盛事。
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/demo-day-2025-04.jpg"
+                alt="2025 Demo Day — 新創路演舞台"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <Image
+                src="/images/events/demo-day-2025-01.jpg"
+                alt="2025 Demo Day — 投資人媒合現場"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:col-span-2 lg:col-span-1">
+              <Image
+                src="/images/events/demo-day-2025-03.jpg"
+                alt="2025 Demo Day — 團隊攤位交流"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"
+              />
             </div>
           </div>
         </div>

@@ -174,17 +174,17 @@ export default function AboutPage() {
       <section className="section-spacing bg-stone">
         <div className="container">
           <div className="mb-10 text-center">
-            <p className="micro-label mb-4">In Action</p>
-            <h2 className="mb-4">活動現場</h2>
+            <p className="micro-label mb-4">2026 開幕式現場</p>
+            <h2 className="mb-4">2026 輔導計畫開幕式</h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-muted">
-              從課程工作坊、講者分享到年度 Demo Day，每一個活動現場都是新創成長的印記。
+              2026 年 3 月，第一批輔導團隊在台大水源校區正式啟動——這是他們的起點。
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
-                src="/images/photos/activity-lecture-hall.jpg"
-                alt="台大創創中心活動現場 — 工作坊全場"
+                src="/images/events/opening-2026-01.jpg"
+                alt="2026 輔導計畫開幕式 — 全場活動"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -192,8 +192,8 @@ export default function AboutPage() {
             </div>
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
-                src="/images/photos/activity-speaker.jpg"
-                alt="台大創創中心活動現場 — 講者分享"
+                src="/images/events/opening-2026-03.jpg"
+                alt="2026 輔導計畫開幕式 — 業師分享"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -201,8 +201,8 @@ export default function AboutPage() {
             </div>
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:col-span-2 lg:col-span-1">
               <Image
-                src="/images/photos/activity-team-photo.jpg"
-                alt="台大創創中心團隊活動合照"
+                src="/images/events/opening-2026-05.jpg"
+                alt="2026 輔導計畫開幕式 — 新創團隊"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"
