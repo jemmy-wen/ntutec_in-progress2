@@ -174,7 +174,7 @@ export default function DemoDayPage() {
             <p className="micro-label mb-4">Our History</p>
             <h2 className="mb-6">7 屆持續成長</h2>
             <p className="text-lg leading-relaxed text-slate-muted">
-              自 2022 年首辦，7 屆以來持續成長。2024 年起固定為每年 12 月單一 Demo Day，
+              自 2022 年以來多次舉辦，7 屆以來持續成長。2024 年起固定為每年 12 月單一 Demo Day，
               2025 年 Accupass 瀏覽 9,775 次，創近 7 屆最高。下一屆預計於 2026 年 12 月舉辦。
             </p>
             <div className="mt-8 flex justify-center gap-2 flex-wrap">

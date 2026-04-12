@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',
     description:
-      '13 年來累計輔導近 600 支新創團隊，35 家企業合作，40+ 業師網絡。連結台大、連結產業、連結資本。',
+      '13 年來累計輔導近 600 支新創團隊，35 家企業合作，40+ 位業師網絡。連結台大、連結產業、連結資本。',
     url: 'https://tec.ntu.edu.tw',
     type: 'website',
   },

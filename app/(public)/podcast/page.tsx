@@ -86,8 +86,7 @@ const FIRSTORY_URL = 'https://open.firstory.me/user/ntutec'
 
 const platforms = [
   { emoji: "🎙️", name: "Firstory", href: FIRSTORY_URL },
-  { emoji: "🎵", name: "Apple Podcasts", href: FIRSTORY_URL },
-  { emoji: "💚", name: "Spotify", href: FIRSTORY_URL },
+  { emoji: "🎵", name: "Apple Podcasts", href: "https://podcasts.apple.com/tw/podcast/tec-talk/id1581567868" },
   { emoji: "▶️", name: "YouTube", href: 'https://www.youtube.com/results?search_query=TEC+Talk+NTUTEC' },
 ];
 
@@ -118,7 +117,7 @@ export default function PodcastPage() {
             </div>
             <div className="rounded-2xl bg-teal-wash p-8">
               <p className="text-4xl text-center">🎙️</p>
-              <h3 className="text-teal font-bold text-center mt-4">10+</h3>
+              <h3 className="text-teal font-bold text-center mt-4">37</h3>
               <p className="text-center text-slate-muted">集深度訪談</p>
               <hr className="my-4 border-stone-warm" />
               <h3 className="text-teal font-bold text-center mt-4">2021</h3>

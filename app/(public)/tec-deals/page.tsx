@@ -164,7 +164,7 @@ export default function TecDealsPage() {
             台大加速器與台大車庫每年招募一梯次，進駐即可享受上述所有資源。
           </p>
           <Link href="/apply" className="btn-pill-primary">
-            提前登記 2026 梯次
+            提前登記 2027 梯次
           </Link>
         </div>
       </section>

@@ -156,7 +156,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full px-5 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
+        className="w-full px-5 py-3 bg-teal text-white rounded-lg font-medium hover:bg-teal-deep disabled:opacity-50 transition-colors"
       >
         {submitting ? '送出中...' : '送出訊息'}
       </button>

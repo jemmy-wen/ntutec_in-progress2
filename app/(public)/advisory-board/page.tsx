@@ -99,6 +99,13 @@ export default function AdvisoryBoardPage() {
           </p>
         </div>
       </section>
+
+      <section className="py-12 bg-gray-50 text-center">
+        <p className="text-gray-600 mb-4">了解更多台大創業加速器</p>
+        <a href="/about" className="inline-block bg-teal text-white px-6 py-3 rounded-lg hover:bg-teal-deep transition-colors">
+          關於我們
+        </a>
+      </section>
     </>
   );
 }

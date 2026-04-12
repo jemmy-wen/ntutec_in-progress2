@@ -93,7 +93,9 @@ export default function CoEventsPage() {
             ))}
           </div>
           <p className="mt-12 text-center text-sm text-slate-muted">
-            最新活動與報名資訊請見 <a href="/events" className="text-teal-deep underline underline-offset-4 hover:text-teal">活動日曆</a>。
+            <a href="/events" className="text-teal-deep underline underline-offset-4 hover:text-teal">查看活動日曆，了解合辦機會</a>
+            {' '}｜{' '}
+            <a href="/corporate" className="text-teal-deep underline underline-offset-4 hover:text-teal">企業合作方案</a>。
           </p>
         </div>
       </section>
