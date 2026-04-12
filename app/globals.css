@@ -140,7 +140,7 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-sans), var(--font-zh), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-sans), 'Noto Sans TC', sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
   html {
