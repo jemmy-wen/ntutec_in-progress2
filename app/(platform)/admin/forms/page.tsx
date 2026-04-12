@@ -8,7 +8,7 @@ import { useState, useEffect, useCallback } from 'react'
  * Supports filter by type/status, status updates, and full data expansion.
  */
 
-type FormType = 'contact' | 'apply' | 'angel_apply' | 'pitch' | 'consulting'
+type FormType = 'contact' | 'apply' | 'angel_apply' | 'angel_individual' | 'angel_corporate' | 'pitch' | 'consulting'
 type SubmissionStatus = 'new' | 'read' | 'replied' | 'archived'
 
 interface FormSubmission {
@@ -29,6 +29,8 @@ const TYPE_LABELS: Record<string, string> = {
   contact:              '一般聯絡',
   apply:                '加速器申請',
   angel_apply:          '天使會員申請',
+  angel_individual:     '天使個人申請',
+  angel_corporate:      '天使企業申請',
   pitch:                '新創投遞',
   consulting:           '企業諮詢',
   startup:              '新創申請',
@@ -52,8 +54,11 @@ const STATUS_ORDER: SubmissionStatus[] = ['new', 'read', 'replied', 'archived']
 const FILTER_TYPES: { value: string; label: string }[] = [
   { value: '', label: '全部類型' },
   { value: 'contact', label: '一般聯絡' },
+  { value: 'startup_application', label: '新創申請（Google Form）' },
   { value: 'apply', label: '加速器申請' },
-  { value: 'angel_apply', label: '天使會員申請' },
+  { value: 'angel_individual', label: '天使個人申請' },
+  { value: 'angel_corporate', label: '天使企業申請' },
+  { value: 'angel_apply', label: '天使會員申請（舊）' },
   { value: 'pitch', label: '新創投遞' },
   { value: 'consulting', label: '企業諮詢' },
 ]
@@ -65,6 +70,28 @@ const FILTER_STATUSES: { value: string; label: string }[] = [
   { value: 'replied', label: '已回覆' },
   { value: 'archived', label: '已封存' },
 ]
+
+// ─── Type Badge ──────────────────────────────────────────
+
+const TYPE_BADGE_COLORS: Record<string, string> = {
+  startup_application:  'bg-blue-50 text-blue-700',
+  apply:                'bg-blue-50 text-blue-700',
+  contact:              'bg-gray-100 text-gray-600',
+  angel_individual:     'bg-amber-50 text-amber-700',
+  angel_apply:          'bg-amber-50 text-amber-700',
+  angel_corporate:      'bg-purple-50 text-purple-700',
+  pitch:                'bg-blue-50 text-blue-700',
+  consulting:           'bg-indigo-50 text-indigo-700',
+}
+
+function TypeBadge({ type }: { type: string }) {
+  const colorClass = TYPE_BADGE_COLORS[type] ?? 'bg-teal-50 text-teal-700'
+  return (
+    <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${colorClass}`}>
+      {TYPE_LABELS[type] || type}
+    </span>
+  )
+}
 
 // ─── Component ───────────────────────────────────────────
 
@@ -231,9 +258,7 @@ export default function AdminFormsPage() {
                       {formatDate(submission.created_at)}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-teal-700">
-                        {TYPE_LABELS[submission.type] || submission.type}
-                      </span>
+                      <TypeBadge type={submission.type} />
                     </td>
                     <td className="px-4 py-3 text-gray-800">
                       {submission.name}

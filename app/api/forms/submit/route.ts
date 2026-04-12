@@ -14,14 +14,16 @@ import { checkRateLimit, rateLimitResponse } from '@/lib/middleware/rate-limit'
  * Body: { type, data, email, name }
  */
 
-const VALID_TYPES: FormType[] = ['contact', 'apply', 'angel_apply', 'pitch', 'consulting']
+const VALID_TYPES: FormType[] = ['contact', 'apply', 'angel_apply', 'angel_individual', 'angel_corporate', 'pitch', 'consulting']
 
 const TYPE_LABELS: Record<FormType, string> = {
-  contact:     '一般聯絡',
-  apply:       '加速器申請',
-  angel_apply: '天使會員申請',
-  pitch:       '新創投遞',
-  consulting:  '企業諮詢',
+  contact:          '一般聯絡',
+  apply:            '加速器申請',
+  angel_apply:      '天使會員申請',
+  angel_individual: '天使個人申請',
+  angel_corporate:  '天使企業申請',
+  pitch:            '新創投遞',
+  consulting:       '企業諮詢',
 }
 
 export async function POST(req: NextRequest) {
