@@ -105,9 +105,10 @@ export default function MentorsPage() {
               <a
                 key={cat.key}
                 href={`#${cat.key}`}
+                aria-label={`${cat.title}：${cat.mentors.length} 位`}
                 className="card-hover rounded-xl border border-stone-warm/60 bg-stone p-4 text-center transition-colors"
               >
-                <div className="text-3xl">{cat.emoji}</div>
+                <div className="text-3xl" aria-hidden="true">{cat.emoji}</div>
                 <div className="mt-2 text-sm font-semibold text-charcoal">
                   {cat.title}
                 </div>
@@ -132,7 +133,7 @@ export default function MentorsPage() {
               <div>
                 <p className="micro-label mb-2 text-teal">{cat.subtitle}</p>
                 <h2 className="flex items-center gap-3">
-                  <span className="text-4xl">{cat.emoji}</span>
+                  <span className="text-4xl" aria-hidden="true">{cat.emoji}</span>
                   <span>{cat.title}</span>
                   <span className="text-lg font-normal text-slate-muted">
                     · {cat.mentors.length} 位

@@ -128,19 +128,19 @@ export default function ApplyPage() {
             <p className="micro-label mb-4">Process</p>
             <h2>申請流程</h2>
           </div>
-          <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-4 list-none">
             {timeline.map((t) => (
-              <div key={t.step} className="text-center">
-                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-teal text-lg font-bold text-white">
+              <li key={t.step} className="text-center">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-teal text-lg font-bold text-white" aria-hidden="true">
                   {t.step}
                 </div>
                 <h4 className="mb-1 text-lg">{t.label}</h4>
                 <p className="text-sm leading-relaxed text-slate-muted">
                   {t.description}
                 </p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 

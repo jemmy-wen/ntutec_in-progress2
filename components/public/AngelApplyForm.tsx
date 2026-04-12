@@ -155,9 +155,13 @@ export default function AngelApplyForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           required
+          aria-describedby="angel-message-hint"
           placeholder="請簡介您的投資背景、關注領域，以及加入天使俱樂部的動機"
           className={inputClass}
         />
+        <p id="angel-message-hint" className="mt-1.5 text-xs text-slate-muted">
+          請描述您的投資背景、關注的產業領域，以及希望加入天使俱樂部的原因。
+        </p>
       </div>
 
       {/* Error */}

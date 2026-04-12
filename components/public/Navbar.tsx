@@ -190,10 +190,12 @@ function MobileAccordion({
     <div className="border-b border-border/60">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="flex w-full items-center justify-between px-4 py-3 text-lg font-semibold text-charcoal"
       >
         {item.label}
         <ChevronRight
+          aria-hidden="true"
           className={`h-5 w-5 transition-transform ${open ? "rotate-90" : ""}`}
         />
       </button>
@@ -243,8 +245,18 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+    const main = document.getElementById("main-content");
+    if (main) {
+      if (mobileOpen) {
+        main.setAttribute("aria-hidden", "true");
+      } else {
+        main.removeAttribute("aria-hidden");
+      }
+    }
     return () => {
       document.body.style.overflow = "";
+      const mainEl = document.getElementById("main-content");
+      if (mainEl) mainEl.removeAttribute("aria-hidden");
     };
   }, [mobileOpen]);
 

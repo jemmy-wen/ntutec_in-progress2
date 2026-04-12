@@ -210,19 +210,25 @@ function AccordionItem({
   item,
   isOpen,
   onToggle,
+  index,
 }: {
   item: FaqItem;
   isOpen: boolean;
   onToggle: () => void;
+  index: number;
 }) {
+  const answerId = `faq-answer-${index}`;
   return (
     <div className="border-b border-border">
       <button
         onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={answerId}
         className="flex w-full items-center justify-between py-5 text-left transition-colors hover:text-teal"
       >
         <span className="pr-4 font-semibold text-charcoal">{item.question}</span>
         <span
+          aria-hidden="true"
           className={`flex-shrink-0 text-xl text-teal transition-transform duration-200 ${
             isOpen ? "rotate-45" : ""
           }`}
@@ -231,6 +237,7 @@ function AccordionItem({
         </span>
       </button>
       <div
+        id={answerId}
         className={`overflow-hidden transition-all duration-300 ${
           isOpen ? "max-h-96 pb-5" : "max-h-0"
         }`}
@@ -266,6 +273,7 @@ export default function FaqPage() {
                   setActiveCategory(cat);
                   setOpenIndex(null);
                 }}
+                aria-pressed={activeCategory === cat}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   activeCategory === cat
                     ? "bg-teal text-white"
@@ -291,6 +299,7 @@ export default function FaqPage() {
                         openIndex === globalIndex ? null : globalIndex
                       )
                     }
+                    index={globalIndex}
                   />
                 );
               })}
