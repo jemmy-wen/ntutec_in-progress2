@@ -5,7 +5,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 
 /**
  * POST /api/contact — Handle contact form submissions.
- * Sends email to ntutec@ntutec.com + auto-reply to submitter.
+ * Sends email to ntutec@ntu.edu.tw + auto-reply to submitter.
  * Persists to form_submissions (all types).
  * For type=startup: also creates a startup draft record.
  * Rate limited: 5 req/min per IP (contact category).
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
     // Send notification to TEC team
     await sendEmail({
-      to: process.env.CONTACT_EMAIL || 'ntutec@ntutec.com',
+      to: process.env.CONTACT_EMAIL || 'ntutec@ntu.edu.tw',
       subject: `[網站聯絡] ${typeLabel(type)} — ${name}`,
       html: `
         <h2>網站聯絡表單</h2>
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
       html: `
         <p>${escapeHtml(name)} 您好，</p>
         <p>感謝您的來信！我們已收到您的訊息，會在 2-3 個工作天內回覆。</p>
-        <p>如有其他問題，歡迎來信 ntutec@ntutec.com。</p>
+        <p>如有其他問題，歡迎來信 ntutec@ntu.edu.tw。</p>
         <br />
         <p>台大創創中心 NTUTEC</p>
       `,
