@@ -14,13 +14,43 @@ interface Advisor {
   organization: string;
 }
 
-// Source: ntutec_advisory_committee_111.md (2022 年諮詢委員會名單)
+// Source: 114年成果報告書_委員意見回覆（2025 年諮詢委員會名單）
 const advisors: Advisor[] = [
   {
-    initials: "蔡",
-    name: "蔡明興",
+    initials: "江",
+    name: "江茂雄",
+    title: "工學院院長",
+    organization: "國立臺灣大學",
+  },
+  {
+    initials: "胡",
+    name: "胡星陽",
+    title: "管理學院院長",
+    organization: "國立臺灣大學",
+  },
+  {
+    initials: "張",
+    name: "張耀文",
+    title: "電機資訊學院院長",
+    organization: "國立臺灣大學",
+  },
+  {
+    initials: "趙",
+    name: "趙如媛",
+    title: "執行長",
+    organization: "時代基金會",
+  },
+  {
+    initials: "瞿",
+    name: "瞿志豪",
+    title: "總經理",
+    organization: "創新工業技術移轉股份有限公司（ITIC）",
+  },
+  {
+    initials: "李",
+    name: "李吉仁",
     title: "董事長",
-    organization: "富邦金控",
+    organization: "財團法人誠致教育基金會",
   },
   {
     initials: "陳",
@@ -33,36 +63,6 @@ const advisors: Advisor[] = [
     name: "簡立峰",
     title: "前總經理",
     organization: "前 Google 台灣董事總經理",
-  },
-  {
-    initials: "龔",
-    name: "龔明鑫",
-    title: "前主任委員",
-    organization: "前國家發展委員會主任委員",
-  },
-  {
-    initials: "曾",
-    name: "曾煜棋",
-    title: "院長",
-    organization: "臺灣大學電機資訊學院",
-  },
-  {
-    initials: "陳",
-    name: "陳銘薰",
-    title: "院長",
-    organization: "臺北大學商學院",
-  },
-  {
-    initials: "盧",
-    name: "盧超群",
-    title: "董事長",
-    organization: "鈺創科技",
-  },
-  {
-    initials: "陳",
-    name: "陳良沛",
-    title: "董事長",
-    organization: "偉康科技",
   },
 ];
 
@@ -95,7 +95,7 @@ export default function AdvisoryBoardPage() {
           </div>
 
           <p className="mt-12 text-center text-xs text-slate-muted">
-            * 諮詢委員會名單每年校友會後更新，以上為歷屆重要委員代表。
+            * 以上為 2025 年諮詢委員會名單，職稱依任職時資料為準。
           </p>
         </div>
       </section>
