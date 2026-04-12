@@ -32,51 +32,46 @@ const stats = mentorsData.stats;
 
 function MentorCard({ mentor }: { mentor: Mentor }) {
   const initial = mentor.name.charAt(0);
-  return (
-    <div
-      className="card-hover relative flex flex-col rounded-2xl border border-stone-warm/60 bg-white p-5"
-      title={mentor.title || undefined}
-    >
-      {mentor.is_new_2026 && (
-        <span className="absolute right-3 top-3 rounded-full bg-teal px-2 py-0.5 text-[10px] font-semibold text-white">
-          2026 新任
-        </span>
-      )}
+  // Use highlight as display title if available; fall back to title
+  const displayTitle = mentor.highlight || mentor.title;
 
-      <div className="flex items-start gap-4">
+  return (
+    <div className="card-hover group relative flex flex-col overflow-hidden rounded-2xl border border-stone-warm/50 bg-white shadow-sm transition-shadow hover:shadow-md">
+      {/* Photo area — 4:5 portrait ratio */}
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-stone">
         {mentor.photo ? (
-          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-stone">
-            <Image
-              src={mentor.photo}
-              alt={`${mentor.name}${mentor.title ? `，${mentor.title}` : ""}`}
-              fill
-              sizes="64px"
-              className="object-cover"
-            />
-          </div>
+          <Image
+            src={mentor.photo}
+            alt={`${mentor.name}${mentor.title ? `，${mentor.title}` : ""}`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          />
         ) : (
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-teal-wash">
-            <span className="text-xl font-bold text-teal">{initial}</span>
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-teal-wash to-stone">
+            <span className="text-5xl font-bold text-teal/40">{initial}</span>
           </div>
         )}
 
-        <div className="min-w-0 flex-1">
-          <h3 className="text-base font-semibold text-charcoal line-clamp-1">
-            {mentor.name}
-          </h3>
-          {mentor.title && (
-            <p className="mt-1 text-xs leading-snug text-slate-muted line-clamp-2">
-              {mentor.title}
-            </p>
-          )}
-        </div>
+        {/* New badge */}
+        {mentor.is_new_2026 && (
+          <span className="absolute left-3 top-3 rounded-full bg-teal px-2.5 py-0.5 text-[10px] font-semibold tracking-wide text-white shadow">
+            2026 新任
+          </span>
+        )}
       </div>
 
-      {mentor.highlight && (
-        <p className="mt-3 border-t border-stone-warm/40 pt-3 text-xs leading-relaxed text-slate-muted line-clamp-3">
-          {mentor.highlight}
-        </p>
-      )}
+      {/* Info area */}
+      <div className="flex flex-1 flex-col p-4">
+        <h3 className="text-base font-bold leading-snug text-charcoal">
+          {mentor.name}
+        </h3>
+        {displayTitle && (
+          <p className="mt-1.5 text-xs leading-relaxed text-slate-muted line-clamp-2">
+            {displayTitle}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
@@ -184,7 +179,7 @@ export default function MentorsPage() {
               </div>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {cat.mentors.map((mentor) => (
                 <MentorCard key={mentor.name} mentor={mentor} />
               ))}
@@ -194,12 +189,28 @@ export default function MentorsPage() {
       ))}
 
       {/* Mentor CTA */}
-      <section className="py-12 bg-gray-50 text-center">
-        <p className="text-lg text-gray-600 mb-4">與頂尖業師並肩創業</p>
-        <a href="/apply" className="inline-block bg-teal text-white px-6 py-3 rounded-lg hover:bg-teal-deep transition-colors">立即申請</a>
-        <div className="mt-8 border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-600 mb-4">有意成為 NTUTEC 業師？</p>
-          <a href="/contact?type=mentor" className="inline-block border border-teal text-teal px-6 py-3 rounded-lg hover:bg-teal hover:text-white transition-colors">業師申請洽詢</a>
+      <section className="section-spacing bg-charcoal text-white">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="mb-3 text-white">與頂尖業師並肩創業</h2>
+            <p className="mb-8 text-base text-white/60">
+              申請台大加速器或台大車庫，通過錄取後由中心依需求為你媒合最適合的業師。
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="/apply"
+                className="rounded-full bg-teal px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-deep"
+              >
+                立即申請輔導計畫
+              </a>
+              <a
+                href="/contact?type=mentor"
+                className="rounded-full border border-white/30 px-7 py-3 text-sm font-semibold text-white transition-colors hover:border-white/60 hover:bg-white/10"
+              >
+                有意成為業師？洽詢中心
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
