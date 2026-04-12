@@ -49,9 +49,6 @@ export default function HomePage() {
         </div>
       </div>
       <ThreeConnectionsSection />
-      <FocusAreasSection />
-      <AudienceCards />
-      <StatsSection />
 
       {/* Activity Highlight */}
       <section className="section-spacing bg-stone">
@@ -74,6 +71,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      <FocusAreasSection />
+      <AudienceCards />
+      <StatsSection />
       <NewsSection />
       <NTUEcosystemSection />
       <PartnersSection />
