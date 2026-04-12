@@ -5,7 +5,7 @@ import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
   title: '新創輔導計畫 | NTUTEC',
-  description: '想把技術變成新創？台大加速器（不限身分）與台大車庫（台大身分優先）提供免費十個月輔導，40+ 位業師、35 家企業夥伴、150+ 投資人網絡。',
+  description: '想把技術變成新創？台大加速器（不限身分）與台大車庫（台大身分優先）提供免費十個月輔導，歷年 80+ 位業師資料庫、2026 陪跑 40+、35 家企業夥伴、150+ 投資人網絡。',
   alternates: {
     canonical: 'https://tec.ntu.edu.tw/programs',
   },
