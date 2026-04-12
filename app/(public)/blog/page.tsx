@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getPosts } from '@/lib/ghost'
 import PageHero from '@/components/public/PageHero'
