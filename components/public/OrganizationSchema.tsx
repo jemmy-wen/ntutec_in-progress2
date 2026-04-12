@@ -29,7 +29,7 @@ export default function OrganizationSchema() {
       addressRegion: "台北市",
       addressCountry: "TW",
     },
-    email: "ntutec@ntu.edu.tw",
+    email: "ntutec@ntutec.com",
     sameAs: [
       "https://www.facebook.com/ntutec.fanpage/",
       "https://www.linkedin.com/company/ntutec/",

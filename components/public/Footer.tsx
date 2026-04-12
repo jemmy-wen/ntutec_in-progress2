@@ -168,10 +168,10 @@ export default function Footer() {
               </p>
               <p>
                 <a
-                  href="mailto:ntutec@ntu.edu.tw"
+                  href="mailto:ntutec@ntutec.com"
                   className="hover:text-teal transition-colors"
                 >
-                  ntutec@ntu.edu.tw
+                  ntutec@ntutec.com
                 </a>
               </p>
             </address>
