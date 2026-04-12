@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Rocket, Building2, TrendingUp, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
@@ -22,6 +23,8 @@ interface AudienceCard {
   href: string;
   cta: string;
   gradient: string;
+  photo: string;
+  photoAlt: string;
 }
 
 const audiences: AudienceCard[] = [
@@ -34,6 +37,8 @@ const audiences: AudienceCard[] = [
     href: "/programs",
     cta: "立即預約 2027 登記",
     gradient: "bg-gradient-to-br from-teal/20 to-teal-deep/10",
+    photo: "/images/events/demo-day-2025-booth2.jpg",
+    photoAlt: "Demo Day 2025 — 新創創辦人展示成果",
   },
   {
     label: "FOR CORPORATES",
@@ -44,6 +49,8 @@ const audiences: AudienceCard[] = [
     href: "/corporate",
     cta: "啟動企業外部創新",
     gradient: "bg-gradient-to-br from-stone-warm to-stone",
+    photo: "/images/events/demo-day-2025-booth1.jpg",
+    photoAlt: "Demo Day 2025 — 新創展示攤位",
   },
   {
     label: "FOR INVESTORS",
@@ -54,6 +61,8 @@ const audiences: AudienceCard[] = [
     href: "/angel",
     cta: "了解更多",
     gradient: "bg-gradient-to-br from-teal-deep/15 to-charcoal/5",
+    photo: "/images/events/demo-day-2025-03.jpg",
+    photoAlt: "Demo Day 2025 — 投資人與新創合影",
   },
 ];
 
@@ -119,8 +128,15 @@ function TiltCard({
         }}
       />
 
-      <div className={`relative h-48 lg:h-56 ${card.gradient}`}>
-        <span className="absolute bottom-3 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold tracking-wider text-charcoal">
+      <div className="relative h-48 lg:h-56 overflow-hidden">
+        <Image
+          src={card.photo}
+          alt={card.photoAlt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+        <span className="absolute bottom-3 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold tracking-wider text-charcoal z-10">
           {card.label}
         </span>
       </div>
