@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ interface TeamMember {
   name: string;
   title: string;
   bio: string;
+  photo?: string;
 }
 
 const leadership: TeamMember[] = [
@@ -26,6 +28,7 @@ const leadership: TeamMember[] = [
     name: "林文欽 Vincent",
     title: "執行長 CEO",
     bio: "前騰訊副總經理、京東商城副總裁，台大 EMBA。負責中心日常營運、策略方向與投資決策，主導天使投資俱樂部與新創輔導整體規劃。",
+    photo: "/images/events/opening-2026-vincent.jpg",
   },
 ];
 
@@ -61,8 +64,12 @@ function TeamCard({ member, size = "default" }: { member: TeamMember; size?: "la
   const nameSize = size === "large" ? "text-2xl" : "text-xl";
   return (
     <div className="rounded-xl border bg-white p-6 card-hover">
-      <div className={`mb-4 flex ${avatarSize} items-center justify-center rounded-full bg-teal-wash`}>
-        <span className="text-2xl font-bold text-teal">{member.initials}</span>
+      <div className={`mb-4 relative ${avatarSize} shrink-0 overflow-hidden rounded-full bg-teal-wash`}>
+        {member.photo ? (
+          <Image src={member.photo} alt={member.name} fill className="object-cover" sizes="96px" />
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-teal">{member.initials}</span>
+        )}
       </div>
       <h3 className={nameSize}>{member.name}</h3>
       <p className="mt-1 text-sm font-semibold text-teal">{member.title}</p>
