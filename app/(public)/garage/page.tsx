@@ -31,7 +31,7 @@ const garageAlumni: AlumniStory[] = [
 export const metadata: Metadata = {
   title: "台大車庫 | NTUTEC",
   description:
-    "台大創創中心台大車庫為早期團隊提供免費共創空間、創業社群與技術資源，助你從概念走向 MVP。",
+    "台大創創中心台大車庫為早期團隊提供免費共創空間、創業社群與業師諮詢，助你從概念走向 MVP。",
 };
 
 export default function GaragePage() {
@@ -92,13 +92,13 @@ export default function GaragePage() {
                 icon: "🤝",
                 title: "創業社群",
                 description:
-                  "與同梯 20 支團隊並肩創業，台大最活躍的早期新創社群——互介紹客戶、共解技術問題都是日常。",
+                  "與同梯團隊並肩創業，互介紹客戶、共解技術問題時常發生，是台大校園內最活躍的早期新創社群。",
               },
               {
                 icon: "📚",
                 title: "工作坊與課程",
                 description:
-                  "每月主題工作坊：技術開發、商業模式設計、財務規劃、法務實務——由業師與業界專家主講。",
+                  "不定期主題工作坊，涵蓋商業模式設計、財務規劃、法務實務等議題，由業師與業界專家主講。",
               },
               {
                 icon: "👥",
@@ -116,7 +116,7 @@ export default function GaragePage() {
                 icon: "🎓",
                 title: "校園資源",
                 description:
-                  "直通工學院、醫學院、電機資訊三院實驗室，台大師生身分優先錄取，跨領域合作觸手可及。",
+                  "台大師生身分優先錄取，可接觸校內各院系資源與研究能量，有助推動跨領域合作。",
               },
             ].map((b) => (
               <div
@@ -239,7 +239,7 @@ export default function GaragePage() {
       {/* Angel investor diversion */}
       <section className="py-10 bg-teal/5 text-center border-t">
         <p className="text-gray-700 font-medium mb-2">尋找下一個投資機會？</p>
-        <p className="text-gray-500 mb-6">台大車庫孵育的早期新創，都是天使俱樂部的優先觀察名單</p>
+        <p className="text-gray-500 mb-6">台大車庫孵育的早期新創，往往是天使俱樂部的優先觀察對象</p>
         <Link href="/angel" className="btn-pill-primary">了解天使俱樂部</Link>
       </section>
 
