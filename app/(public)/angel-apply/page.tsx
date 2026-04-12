@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/public/PageHero";
-import AngelApplyForm from "@/components/public/AngelApplyForm";
 
 export const metadata: Metadata = {
   title: "加入 NTUTEC ANGELS 台大天使會 | NTUTEC",
@@ -80,9 +79,42 @@ export default function AngelApplyPage() {
       <section className="section-spacing bg-stone">
         <div className="container">
           <div className="mx-auto max-w-xl">
-            <p className="micro-label mb-4">Application</p>
-            <h2 className="mb-8">申請表單</h2>
-            <AngelApplyForm />
+            <p className="micro-label mb-4 text-center">Application</p>
+            <h2 className="mb-3 text-center">申請入會</h2>
+            <p className="mb-8 text-center text-slate-muted">
+              依據您的身分選擇對應申請表，填寫後中心將於 3 個工作日內聯繫您安排說明。
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <a
+                href="https://forms.gle/zgjGP7RW7sgG911YA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center rounded-2xl border-2 border-teal bg-white p-8 text-center transition-colors hover:bg-teal-wash"
+              >
+                <span className="text-4xl">👤</span>
+                <h3 className="mt-4 text-lg font-bold text-charcoal">個人會員</h3>
+                <p className="mt-2 text-sm text-slate-muted">NT$50,000 / 年</p>
+                <span className="mt-6 inline-block rounded-xl bg-teal px-5 py-2 text-sm font-semibold text-white">
+                  填寫個人申請表 →
+                </span>
+              </a>
+              <a
+                href="https://forms.gle/n38sNQznLG62ypyK9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center rounded-2xl border-2 border-charcoal bg-charcoal p-8 text-center transition-colors hover:bg-charcoal/90"
+              >
+                <span className="text-4xl">🏢</span>
+                <h3 className="mt-4 text-lg font-bold text-white">企業會員</h3>
+                <p className="mt-2 text-sm text-white/60">NT$100,000 / 年 · 可指派 3 位代表</p>
+                <span className="mt-6 inline-block rounded-xl bg-white px-5 py-2 text-sm font-semibold text-charcoal">
+                  填寫企業申請表 →
+                </span>
+              </a>
+            </div>
+            <p className="mt-6 text-center text-xs text-slate-muted">
+              申請審核通過後，中心將引導您完成年費繳納流程（台大捐款平台）。
+            </p>
           </div>
         </div>
       </section>

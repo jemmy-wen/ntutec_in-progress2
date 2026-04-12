@@ -339,12 +339,14 @@ export default function Navbar() {
             EN
           </button>
 
-          <Link
-            href="/corporate"
+          <a
+            href="https://forms.gle/yu4ftYfVdsWaynxY8"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden lg:inline-flex btn-pill-outline text-sm"
           >
-            企業合作
-          </Link>
+            新創投遞
+          </a>
           <Link
             href="/angel"
             className="hidden lg:inline-flex btn-pill-primary text-sm"
@@ -381,13 +383,15 @@ export default function Navbar() {
               ))}
 
               <div className="mt-8 flex flex-col gap-3 px-4">
-                <Link
-                  href="/corporate"
+                <a
+                  href="https://forms.gle/yu4ftYfVdsWaynxY8"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}
                   className="btn-pill-outline text-center"
                 >
-                  企業合作
-                </Link>
+                  新創投遞
+                </a>
                 <Link
                   href="/angel"
                   onClick={() => setMobileOpen(false)}
