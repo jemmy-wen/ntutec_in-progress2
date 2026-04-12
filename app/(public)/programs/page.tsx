@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 
 export const metadata: Metadata = {
@@ -41,6 +42,18 @@ export default function ProgramsPage() {
   return (
     <>
       <PageHero title="新創輔導計畫" subtitle="Programs" description="依據新創團隊的不同階段，提供最適合的輔導資源與成長路徑。" />
+
+      {/* Banner Photo */}
+      <div className="relative w-full overflow-hidden" style={{aspectRatio:'21/8'}}>
+        <Image
+          src="/images/events/opening-2026-biggroup.jpg"
+          alt="2026 輔導計畫開幕式 — 學員大合照"
+          fill
+          className="object-cover object-top"
+          sizes="100vw"
+          priority
+        />
+      </div>
 
       <section className="section-spacing">
         <div className="container">
