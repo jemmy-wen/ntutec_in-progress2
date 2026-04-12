@@ -397,6 +397,13 @@ export default function AngelPage() {
         </div>
       </section>
 
+      {/* ── Corporate cross-link ── */}
+      <div className="container pb-4">
+        <div className="mt-6 p-4 border border-teal/20 rounded-lg bg-teal/5">
+          <p className="text-sm text-gray-600">企業亦可透過垂直加速器計畫參與早期投資生態系。<Link href="/corporate" className="text-teal hover:underline">了解企業合作方案</Link></p>
+        </div>
+      </div>
+
       {/* ── Demo Day ── */}
       <section className="section-spacing bg-stone">
         <div className="container">

@@ -236,6 +236,13 @@ export default function GaragePage() {
         </div>
       </section>
 
+      {/* Angel investor diversion */}
+      <section className="py-10 bg-teal/5 text-center border-t">
+        <p className="text-gray-700 font-medium mb-2">尋找下一個投資機會？</p>
+        <p className="text-gray-500 mb-6">台大車庫孵育的早期新創，都是天使俱樂部的優先觀察名單</p>
+        <Link href="/angel" className="btn-pill-primary">了解天使俱樂部</Link>
+      </section>
+
       {/* CTA */}
       <section className="section-spacing bg-teal-wash">
         <div className="container text-center">

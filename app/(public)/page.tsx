@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import HeroSection from '@/components/public/home/HeroSection'
 import ThreeConnectionsSection from '@/components/public/home/ThreeConnectionsSection'
 import FocusAreasSection from '@/components/public/home/FocusAreasSection'
@@ -28,6 +29,16 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <div className="bg-charcoal border-t border-white/10 py-6">
+        <div className="container flex flex-wrap justify-center gap-4">
+          <Link href="/corporate" className="btn-pill-outline border-white/30 text-white hover:bg-white/10 hover:border-white/50">
+            企業轉型合作
+          </Link>
+          <Link href="/angel" className="btn-pill-outline border-white/30 text-white hover:bg-white/10 hover:border-white/50">
+            早期投資入會
+          </Link>
+        </div>
+      </div>
       <ThreeConnectionsSection />
       <FocusAreasSection />
       <AudienceCards />

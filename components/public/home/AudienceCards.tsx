@@ -133,13 +133,22 @@ function TiltCard({
         <p className="mt-2 text-sm leading-relaxed text-slate-muted">
           {card.description}
         </p>
-        <Link
-          href={card.href}
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-teal transition-colors hover:text-teal-deep"
-        >
-          {card.cta}
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-        </Link>
+        {card.label === 'FOR STARTUPS' ? (
+          <Link
+            href={card.href}
+            className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-teal transition-colors hover:text-teal-deep"
+          >
+            {card.cta}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        ) : (
+          <Link
+            href={card.href}
+            className="mt-4 inline-block px-4 py-2 bg-teal text-white text-sm font-semibold rounded-lg hover:bg-teal-deep transition-colors"
+          >
+            {card.cta}
+          </Link>
+        )}
       </div>
     </motion.div>
   );

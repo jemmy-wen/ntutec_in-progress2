@@ -340,10 +340,16 @@ export default function Navbar() {
           </button>
 
           <Link
-            href="/apply"
+            href="/corporate"
+            className="hidden lg:inline-flex btn-pill-outline text-sm"
+          >
+            企業合作
+          </Link>
+          <Link
+            href="/angel"
             className="hidden lg:inline-flex btn-pill-primary text-sm"
           >
-            預約 2027 申請
+            加入天使會
           </Link>
 
           <button
@@ -376,9 +382,23 @@ export default function Navbar() {
 
               <div className="mt-8 flex flex-col gap-3 px-4">
                 <Link
-                  href="/apply"
+                  href="/corporate"
+                  onClick={() => setMobileOpen(false)}
+                  className="btn-pill-outline text-center"
+                >
+                  企業合作
+                </Link>
+                <Link
+                  href="/angel"
                   onClick={() => setMobileOpen(false)}
                   className="btn-pill-primary text-center"
+                >
+                  加入天使會
+                </Link>
+                <Link
+                  href="/apply"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-center text-sm text-slate-muted hover:text-teal py-2"
                 >
                   預約 2027 申請
                 </Link>

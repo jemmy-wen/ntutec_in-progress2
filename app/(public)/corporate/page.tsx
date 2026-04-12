@@ -318,6 +318,14 @@ export default function CorporatePage() {
         </div>
       </section>
 
+      {/* Angel investor cross-link */}
+      <div className="container pb-4">
+        <div className="mt-8 p-6 bg-gray-50 rounded-lg text-center">
+          <p className="text-gray-600 mb-3">尋找策略性投資機會？</p>
+          <Link href="/angel" className="btn-pill-outline">了解天使俱樂部</Link>
+        </div>
+      </div>
+
       {/* CTA */}
       <section className="section-spacing bg-teal-wash">
         <div className="container text-center">

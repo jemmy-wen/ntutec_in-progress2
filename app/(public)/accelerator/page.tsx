@@ -265,6 +265,15 @@ export default function AcceleratorPage() {
         </div>
       </section>
 
+      {/* Audience diversion */}
+      <section className="py-10 bg-gray-50 text-center border-t">
+        <p className="text-gray-600 mb-6">您是企業或投資人？我們有更適合您的合作方式</p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Link href="/corporate" className="btn-pill-outline">企業垂直加速器合作</Link>
+          <Link href="/angel" className="btn-pill-outline">加入天使俱樂部</Link>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="section-spacing bg-stone">
         <div className="container text-center">

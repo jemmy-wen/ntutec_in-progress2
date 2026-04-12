@@ -38,10 +38,10 @@ function YouTubeIcon() {
 
 const FOOTER_LINKS = {
   programs: [
-    { label: "台大加速器", href: "/accelerator" },
-    { label: "台大車庫", href: "/garage" },
     { label: "企業合作", href: "/corporate" },
     { label: "天使俱樂部", href: "/angel" },
+    { label: "台大加速器", href: "/accelerator" },
+    { label: "台大車庫", href: "/garage" },
   ],
   about: [
     { label: "關於 TEC", href: "/about" },

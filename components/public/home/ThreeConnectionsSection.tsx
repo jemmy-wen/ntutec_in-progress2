@@ -127,6 +127,14 @@ export default function ThreeConnectionsSection() {
                     {conn.cta}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
+                  {(conn.href === '/corporate' || conn.href === '/angel') && (
+                    <Link
+                      href={conn.href}
+                      className="mt-4 block w-full rounded-xl border border-teal text-center py-2 text-sm font-semibold text-teal hover:bg-teal hover:text-white transition-colors"
+                    >
+                      {conn.href === '/corporate' ? '立即洽談企業合作' : '申請天使入會'}
+                    </Link>
+                  )}
                 </div>
               </motion.div>
             );

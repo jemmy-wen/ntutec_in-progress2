@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
@@ -67,6 +68,19 @@ export default function ConsultingPage() {
                 </ul>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Corporate case study cross-link */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mx-auto max-w-3xl">
+            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+              <h3 className="font-semibold text-gray-800 mb-2">垂直加速器成功案例</h3>
+              <p className="text-gray-600 mb-4">透過深度共創，協助企業發現新市場、孵育新事業。</p>
+              <Link href="/corporate" className="text-teal hover:underline font-medium">查看合作案例 →</Link>
+            </div>
           </div>
         </div>
       </section>

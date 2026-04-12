@@ -156,6 +156,10 @@ export default function ProgramsPage() {
             <h3 className="mb-3">不確定適合哪個計畫？</h3>
             <p className="mb-6 text-slate-muted">查看常見問題，或直接與我們聯繫，讓我們協助你找到最適合的成長路徑。</p>
             <Link href="/faq" className="btn-pill-outline">查看常見問題</Link>
+            <div className="mt-6 flex justify-center gap-4 flex-wrap text-sm">
+              <Link href="/corporate" className="text-teal hover:underline">企業合作方案 →</Link>
+              <Link href="/angel" className="text-teal hover:underline">天使投資入會 →</Link>
+            </div>
           </div>
         </div>
       </section>

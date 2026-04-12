@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
@@ -97,6 +98,16 @@ export default function CoEventsPage() {
             {' '}｜{' '}
             <a href="/corporate" className="text-teal-deep underline underline-offset-4 hover:text-teal">企業合作方案</a>。
           </p>
+        </div>
+      </section>
+
+      {/* Corporate co-host CTA */}
+      <section className="section-spacing">
+        <div className="container">
+          <div className="mt-6 text-center">
+            <p className="text-gray-600 mb-3">想成為活動贊助或合辦夥伴？</p>
+            <Link href="/corporate" className="btn-pill-outline">企業合作洽談</Link>
+          </div>
         </div>
       </section>
     </>
