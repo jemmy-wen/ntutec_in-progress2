@@ -22,84 +22,96 @@
           "title": null,
           "highlight": "宏誠創投 總經理",
           "photo": null,
-          "is_new_2026": true
+          "is_new_2026": true,
+          "linkedin": null
         },
         {
           "name": "江旻峻",
           "title": "NTU.VC 合夥人",
           "highlight": "AI 與軟體領域早期投資",
           "photo": null,
-          "is_new_2026": true
+          "is_new_2026": true,
+          "linkedin": null
         },
         {
           "name": "林宇聲",
           "title": "台新創投 總經理",
           "highlight": null,
           "photo": null,
-          "is_new_2026": true
+          "is_new_2026": true,
+          "linkedin": null
         },
         {
           "name": "張提提",
           "title": "中華開發資本",
           "highlight": null,
           "photo": null,
-          "is_new_2026": true
+          "is_new_2026": true,
+          "linkedin": null
         },
         {
           "name": "魏資文",
           "title": "秀傳集團鼎澄生醫 總經理",
           "highlight": "前中華開發投資部資深副理",
           "photo": null,
-          "is_new_2026": true
+          "is_new_2026": true,
+          "linkedin": null
         },
         {
           "name": "瞿志豪",
           "title": "ITIC 創新工業技術移轉股份有限公司總經理 / VSense 董事長 / 行政院科技會報科技政策諮詢委員兼任生醫組副召集人 / 台大兼任教授",
           "highlight": "前 Acorn Taiwan 創辦人；橡子園創投合夥人",
           "photo": "/mentors/wp/3165.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/michel-chu-a1368124"
         },
         {
           "name": "李明哲",
           "title": "Visionary Capital 維思諾理投資有限公司 董事長",
           "highlight": null,
           "photo": "/mentors/wp/19059.png",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "李晃",
           "title": "Astra Partners Founder &amp; Managing Partner",
           "highlight": "Astra Partners Founder & Managing Partner",
           "photo": "/mentors/wp/10303.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/huanglee"
         },
         {
           "name": "江進元",
           "title": "艾新銳創業顧問 執行長",
           "highlight": "天使與 Pre-A 募資專家",
           "photo": "/mentors/wp/3145.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "黃凱祥",
           "title": "如海創業投資 總經理",
           "highlight": "FITI 業師；國科會審查委員",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "林子樸",
           "title": "基石創投 合夥人",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "王俊傑",
           "title": "天使投資人",
           "highlight": "前蘇寧零售技術研究院院長",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         }
       ]
     },
@@ -115,98 +127,112 @@
           "title": "意藍資訊股份有限公司董事總經理",
           "highlight": "意藍資訊（6925）— AI 智能數據首家掛牌新創",
           "photo": "/mentors/wp/14954.jpeg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "李昆謀",
           "title": "91APP 產品長",
           "highlight": "前宇軒數位（Nexdoor Taiwan）創辦人 / CEO",
           "photo": "/mentors/0b0fff75-0925-4144-8d64-f8bc40431dfa.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "鍾哲民",
           "title": "MoBagel 美商行動貝果 執行長暨共同創辦人",
           "highlight": "MoBagel 美商行動貝果 共同創辦人",
           "photo": "/mentors/wp/18816.jpeg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "陳一強",
           "title": "活水社企投資開發公司 總經理/共同創辦人",
           "highlight": "活水社企投資開發 共同創辦人",
           "photo": "/mentors/wp/3152.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "陳宏益",
           "title": "優照護 &amp; 優時間銀行雲 創辦人",
           "highlight": "優照護 & 優時間銀行雲 創辦人",
           "photo": "/mentors/wp/4009.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "羅子亮",
           "title": "長佳智能Everfortune.AI 平台產品事業處執行長",
           "highlight": "前 Zoom 亞太副總；前 Oriente 台灣總經理",
           "photo": "/mentors/wp/4243.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "林文欽",
           "title": "微曦投資董事長 / Digit Spark策略長兼董事 / 光速火箭獨立董事 / Blueseeds董事 / 蜂行資本Venture Partner / Facebook台灣新創投資社團創辦人",
           "highlight": "前騰訊副總；前京東副總裁；前大疆全球電商負責人",
           "photo": "/mentors/wp/20489.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "黃逸甫",
           "title": "cacaFly 執行長",
           "highlight": "cacaFly 執行長",
           "photo": "/mentors/wp/3168.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "劉政惠",
           "title": "奇創國際資訊共同創辦人",
           "highlight": "奇創國際資訊共同創辦人",
           "photo": "/mentors/wp/3163.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "任麗玲",
           "title": null,
           "highlight": "全方位諮詢：策略、商模、客戶、產品、通路、品牌",
           "photo": "/mentors/wp/3144.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "陶韻智",
           "title": "德豐管理顧問 合夥人",
           "highlight": "前 LINE 台灣總經理",
           "photo": "/mentors/wp/4024.png",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "梁幸堯",
           "title": "甲尚科技獨立董事 Independent Board Director, Reallusion Inc. (TPE: 6882)",
           "highlight": "甲尚科技（Reallusion, TPE:6667）獨立董事",
           "photo": "/mentors/wp/6309.jpeg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/micliang3000"
         },
         {
           "name": "蔡秀麗",
           "title": "前安布思沛績效行銷公司副董事長 前美庫爾數據商務顧問公司執行長",
           "highlight": "前安布思沛績效行銷 副董事長；前美庫爾數據商務顧問 執行長",
           "photo": "/mentors/wp/17134.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "洪小玲",
           "title": "新創顧問",
           "highlight": null,
           "photo": "/mentors/wp/3167.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         }
       ]
     },
@@ -222,84 +248,96 @@
           "title": "友達光電集團策略長室顧問 Corporate Adviser, Group Strategy Office, AUO",
           "highlight": "友達光電集團 策略長室顧問",
           "photo": "/mentors/wp/19352.png",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "張益肇",
           "title": "人工智慧科技基金會 常務董事",
           "highlight": "人工智慧科技基金會 常務董事",
           "photo": "/mentors/wp/15696.jpeg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/ericichaochang"
         },
         {
           "name": "張家銘",
           "title": "東安投資 副總經理",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "張安佐",
           "title": "前明基友達文教基金會 董事長",
           "highlight": "前明基友達文教基金會 董事長",
           "photo": "/mentors/wp/3928.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/adrian-chang-張安佐-74636111"
         },
         {
           "name": "卓政宏",
           "title": "亞太貿易便捷化及電子商務理事會 / 團長暨中華民國國家代表 Asia Pacific Council for Trade Facilitation and Electronic Business(AFACT) / Head of Delegation(HoD)",
           "highlight": "AFACT 亞太貿易便捷化及電子商務理事會 團長",
           "photo": "/mentors/wp/20036.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "盧人瑞",
           "title": "凱絡媒體 董事總經理",
           "highlight": "凱絡媒體 董事總經理",
           "photo": "/mentors/wp/3164.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/jjloo"
         },
         {
           "name": "柏健生",
           "title": "跨國企業 大中華區總經理",
           "highlight": "跨國企業 大中華區總經理",
           "photo": "/mentors/wp/17384.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "黃世貝",
           "title": "智醫海量數據股份有限公司 總經理",
           "highlight": "智醫海量數據 總經理",
           "photo": "/mentors/wp/3158.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "蕭一白",
           "title": "資深業界顧問",
           "highlight": null,
           "photo": "/mentors/wp/17935.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/terryhsiao"
         },
         {
           "name": "王同年",
           "title": "前黛安芬台灣 董事總經理",
           "highlight": "前黛安芬台灣 董事總經理",
           "photo": "/mentors/wp/6693.png",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "蘇欽豐",
           "title": "Hyperscience 機器學習副總 (VP Machine Learning, Hyperscience)",
           "highlight": "Hyperscience 機器學習副總；前 Quora / Yahoo / Polyvore 工程負責人",
           "photo": "/mentors/wp/4561.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/ching-fong-cf-su-0245b63"
         },
         {
           "name": "楊志偉",
           "title": "交通大學科技管理研究所 助理教授",
           "highlight": "陽明交通大學科技管理研究所 助理教授",
           "photo": "/mentors/wp/3161.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/brianyangcam"
         }
       ]
     },
@@ -315,126 +353,144 @@
           "title": "生醫專家",
           "highlight": "創投 10+ 年經驗；醫材背景",
           "photo": "/mentors/wp/17125.png",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "陳琚安",
           "title": "安智管理顧問 管理顧問 (J Know Consulting, Consultant)",
           "highlight": "安智管理顧問",
           "photo": "/mentors/wp/7893.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "陳百州",
           "title": "企業顧問 / 兼任教授",
           "highlight": null,
           "photo": "/mentors/wp/3153.jpg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "孫憶明",
           "title": "台灣大學領導學程兼任副教授",
           "highlight": "台灣大學領導學程 兼任副教授；教練式輔導專家",
           "photo": "/mentors/wp/15694.jpeg",
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": "https://www.linkedin.com/in/jim-sun-378882"
         },
         {
           "name": "鄧耀中",
           "title": "新創公關顧問",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "曾正忠",
           "title": "宏碁基金會 董事",
           "highlight": "前台大創創中心執行長",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "游森楨",
           "title": "悅智全球顧問 總經理",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "呂志宏",
           "title": "原相半導體 副總",
           "highlight": "中華開發資本顧問",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "Kevin Huang",
           "title": "英飛凌 全球行銷主管",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "黃慧雯 Anita",
           "title": "國際連結專家",
           "highlight": "矽谷、中國海外連結",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "李彥樞",
           "title": "東南亞市場專家",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "沈立平",
           "title": "益鼎創投 副總經理",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "簡榮宗",
           "title": "法律顧問",
           "highlight": "股權架構設計專家",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "黃沛聲",
           "title": "法律顧問",
           "highlight": "股權架構設計專家",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "劉偉立",
           "title": "法律顧問",
           "highlight": "股權架構設計專家",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "陳全正",
           "title": "法律顧問",
           "highlight": "股權架構設計專家",
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "張鼎聲",
           "title": "會計師 / 派遣 CFO",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         },
         {
           "name": "薛峻泯",
           "title": "德勤會計師 合夥人",
           "highlight": null,
           "photo": null,
-          "is_new_2026": false
+          "is_new_2026": false,
+          "linkedin": null
         }
       ]
     }

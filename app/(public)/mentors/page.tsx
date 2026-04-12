@@ -15,6 +15,7 @@ interface Mentor {
   title: string | null;
   highlight: string | null;
   photo: string | null;
+  linkedin: string | null;
   is_new_2026: boolean;
 }
 
@@ -63,9 +64,30 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
 
       {/* Info area */}
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="text-base font-bold leading-snug text-charcoal">
-          {mentor.name}
-        </h3>
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="text-base font-bold leading-snug text-charcoal">
+            {mentor.name}
+          </h3>
+          {mentor.linkedin && (
+            <a
+              href={mentor.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${mentor.name} LinkedIn`}
+              className="shrink-0 rounded-md p-1 text-slate-muted/60 transition-colors hover:bg-[#0077B5]/10 hover:text-[#0077B5]"
+            >
+              {/* LinkedIn "in" icon — inline SVG, no external dependency */}
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-4 w-4"
+                aria-hidden="true"
+              >
+                <path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.984V9h3.102v1.561h.046c.431-.818 1.484-1.681 3.054-1.681 3.266 0 3.867 2.149 3.867 4.944v6.627zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm1.556 13.019H3.78V9h3.113v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+          )}
+        </div>
         {displayTitle && (
           <p className="mt-1.5 text-xs leading-relaxed text-slate-muted line-clamp-2">
             {displayTitle}
