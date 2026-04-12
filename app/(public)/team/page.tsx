@@ -48,13 +48,13 @@ const team: TeamMember[] = [
   {
     initials: "許",
     name: "許瀞之 Raven",
-    title: "經理 Manager",
+    title: "輔導經理 Program Manager",
     bio: "主責台大車庫與整體輔導計畫設計，含必修課程規劃。輔導小組帶領創新商模組，打造新創團隊的成長路徑。",
   },
   {
     initials: "楊",
     name: "楊智堯 Neil",
-    title: "經理 Manager",
+    title: "營運經理 Operations Manager",
     bio: "主責對外行銷、活動企劃與校友關懷（歷屆團隊追蹤與關係維護）。輔導小組帶領 AI 軟體組，連結校友網絡與生態系。",
   },
 ];

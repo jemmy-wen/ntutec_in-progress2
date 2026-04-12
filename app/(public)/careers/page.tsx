@@ -160,26 +160,85 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Full-Time Openings */}
+      {/* Open Positions */}
       <section className="section-spacing bg-white">
         <div className="container">
           <div className="mb-10 text-center">
             <p className="micro-label mb-4">Open Positions</p>
-            <h2 className="mb-4">全職職缺</h2>
+            <h2 className="mb-4">常態開放職缺</h2>
             <p className="text-slate-muted">
-              台大創創中心不定期招募全職工作人員，歡迎對新創生態系充滿熱忱的你加入。
+              以下職缺長期徵才，歡迎隨時投遞。我們將於收到履歷後 5 個工作日內回覆。
             </p>
           </div>
-          <div className="rounded-2xl border border-stone-warm bg-stone p-8 text-center">
-            <p className="text-slate-muted">
-              目前無固定職缺開放。台大創創中心通常每學期評估一次人力需求，歡迎提前投遞履歷，有機會時將優先聯繫。
-            </p>
-            <Link
-              href="mailto:ntutec@ntutec.com"
-              className="btn-pill-outline mt-4 inline-flex text-sm"
-            >
-              主動投遞履歷
-            </Link>
+          <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+            {/* 工讀生 */}
+            <div className="rounded-2xl border border-stone-warm bg-stone p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="rounded-full bg-teal-wash px-3 py-1 text-xs font-semibold text-teal">工讀生</span>
+                <span className="text-xs text-slate-muted">1–2 位</span>
+              </div>
+              <h3 className="mb-2 text-lg font-bold text-charcoal">行政工讀生</h3>
+              <p className="mb-4 text-sm leading-relaxed text-slate-muted">
+                協助中心全體經理進行日常行政支援，包含文件整理、活動佈場協助、會議記錄與資料庫維護。適合希望深入了解新創生態系、對創業領域有熱忱的在學學生。
+              </p>
+              <ul className="mb-6 space-y-1 text-sm text-slate-muted">
+                <li>・每週 10–15 小時，可配合課堂時間</li>
+                <li>・台大水源校區卓越研究大樓 7F</li>
+                <li>・歡迎各系所在學學生投遞</li>
+              </ul>
+              <Link
+                href="mailto:ntutec@ntutec.com?subject=應徵工讀生"
+                className="btn-pill-outline inline-flex w-full justify-center text-sm"
+              >
+                投遞履歷
+              </Link>
+            </div>
+
+            {/* 輔導專員 */}
+            <div className="rounded-2xl border border-teal/20 bg-teal-wash p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">全職／兼職</span>
+                <span className="text-xs text-slate-muted">1–2 位</span>
+              </div>
+              <h3 className="mb-2 text-lg font-bold text-charcoal">輔導專員</h3>
+              <p className="mb-4 text-sm leading-relaxed text-slate-muted">
+                協助加速器與台大車庫輔導計畫的全流程執行，包含課程規劃與場務、業師媒合排程、新創團隊追蹤，以及活動籌辦與對外溝通，直接支援輔導經理與營運經理。
+              </p>
+              <ul className="mb-6 space-y-1 text-sm text-slate-muted">
+                <li>・1–2 年專案執行或新創相關經驗佳</li>
+                <li>・具強溝通與多工管理能力</li>
+                <li>・應屆畢業生亦歡迎投遞</li>
+              </ul>
+              <Link
+                href="mailto:ntutec@ntutec.com?subject=應徵輔導專員"
+                className="btn-pill-primary inline-flex w-full justify-center text-sm"
+              >
+                投遞履歷
+              </Link>
+            </div>
+
+            {/* 投資經理 */}
+            <div className="rounded-2xl border border-stone-warm bg-stone p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="rounded-full bg-teal-wash px-3 py-1 text-xs font-semibold text-teal">全職</span>
+                <span className="text-xs text-slate-muted">1 位</span>
+              </div>
+              <h3 className="mb-2 text-lg font-bold text-charcoal">投資經理（非生醫領域）</h3>
+              <p className="mb-4 text-sm leading-relaxed text-slate-muted">
+                負責天使投資俱樂部的案源開發與評估，聚焦 AI／軟體、硬科技、先進製造與創新商模等領域。主責投資案篩選、盡職調查、天使例會報告準備及投資人關係維護。
+              </p>
+              <ul className="mb-6 space-y-1 text-sm text-slate-muted">
+                <li>・2 年以上創投、顧問或新創工作經驗</li>
+                <li>・具獨立完成案件評估報告之能力</li>
+                <li>・生醫領域以外之產業背景優先</li>
+              </ul>
+              <Link
+                href="mailto:ntutec@ntutec.com?subject=應徵投資經理"
+                className="btn-pill-outline inline-flex w-full justify-center text-sm"
+              >
+                投遞履歷
+              </Link>
+            </div>
           </div>
         </div>
       </section>
