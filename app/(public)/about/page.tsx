@@ -76,7 +76,7 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero title="關於臺大創創中心" subtitle="About NTUTEC" description="13 年、逾 600 支、2 案國際 Exit——台大深科技創業的真實成績單。" />
+      <PageHero title="關於臺大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人——台大創業生態系的完整版圖。" />
 
       <section className="section-spacing">
         <div className="container">
@@ -85,7 +85,7 @@ export default function AboutPage() {
               <p className="micro-label mb-4">Our Mission</p>
               <h2 className="mb-6">使命與願景</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">臺大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，致力於把台大最好的技術能量與人才，轉化成可投資的新創公司。</p>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導逾 600 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（27 期、35 家企業）與天使投資俱樂部（350+ 投資人），我們支持新創從技術驗證走入市場。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted">13 年來，我們累計輔導逾 600 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（27 期、35 家企業）與天使投資俱樂部（150+ 投資人），我們支持新創從技術驗證走入市場。</p>
               <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈最具吸引力與影響力的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 加速起飛）系統性支持新創，對標 Stanford StartX 與 Berkeley SkyDeck。</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -93,7 +93,7 @@ export default function AboutPage() {
                 { value: '600+', label: '輔導新創團隊', sub: '2013 年至今' },
                 { value: '13', label: '年深耕', sub: 'Since 2013' },
                 { value: '35+', label: '企業夥伴', sub: '垂直加速器合作' },
-                { value: '350+', label: '天使投資人', sub: 'Angel Club 網絡' },
+                { value: '150+', label: '天使投資人', sub: 'Angel Club 網絡' },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl bg-teal-wash p-6 text-center">
                   <div className="text-3xl font-bold text-teal-deep">{stat.value}</div>

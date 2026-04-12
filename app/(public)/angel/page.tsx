@@ -5,7 +5,7 @@ import PageHero from '@/components/public/PageHero'
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS 臺大天使會 | NTUTEC',
   description:
-    'NTUTEC ANGELS 臺大天使會成立於 2023 年，以 Gate 0/1/2 三段預審、每月例會與生態系支持，為會員提供經過嚴謹篩選的優質早期案源。',
+    'NTUTEC ANGELS 臺大天使會成立於 2023 年，以三段嚴格篩選機制、每月例會與生態系支持，為會員提供經過嚴謹篩選的優質早期案源。',
 }
 
 const highlights = [
@@ -13,7 +13,7 @@ const highlights = [
     icon: '🎯',
     title: '嚴選優質案源',
     description:
-      '所有案件皆經過台大創創中心 Gate 0/1/2 三段預審流程，由投資經理親自盡調。會員搶先接觸台大校友與輔導團隊的優質早期新創。',
+      '所有案件皆經過台大創創中心三段嚴格篩選機制，由投資經理親自盡調。會員搶先接觸台大校友與輔導團隊的優質早期新創。',
   },
   {
     icon: '🎪',
@@ -37,17 +37,17 @@ const highlights = [
 
 const gateProcess = [
   {
-    stage: 'Gate 0',
+    stage: '第一關',
     title: '初篩（硬過濾）',
     description: '基本資格與領域契合度篩選，確認案件符合中心聚焦領域（AI 軟體、生技醫療、硬科技、創新商模）。',
   },
   {
-    stage: 'Gate 1',
+    stage: '第二關',
     title: '快速評分',
-    description: '團隊、商業模式、市場規模、競爭優勢、執行力等多維度評分，由投資經理評估是否進入 Gate 2。',
+    description: '團隊、商業模式、市場規模、競爭優勢、執行力等多維度評分，由投資經理評估是否進入下一階段。',
   },
   {
-    stage: 'Gate 2',
+    stage: '第三關',
     title: '完整報告',
     description: '含市場分析、財務模型、Term Sheet 建議的完整投資評估報告。通過後進入月例會向會員 Pitch。',
   },
@@ -59,7 +59,7 @@ export default function AngelPage() {
       <PageHero
         title="NTUTEC ANGELS 臺大天使會"
         subtitle="Angel Investment Club"
-        description="以台大創業生態系為核心的天使投資社群，結合 13 年輔導經驗、Gate 預審系統與業師網絡，為會員提供經過嚴謹篩選的投資案源。"
+        description="以台大創業生態系為核心的天使投資社群，結合 13 年輔導經驗、嚴格篩選機制與業師網絡，為會員提供經過深度盡調的投資案源。"
       />
 
       {/* Why Join */}
@@ -69,7 +69,7 @@ export default function AngelPage() {
             <p className="micro-label mb-4">Why Join</p>
             <h2 className="mb-6">為什麼加入天使俱樂部</h2>
             <p className="text-lg leading-relaxed text-slate-muted">
-              台大創創中心天使投資俱樂部成立於 2023 年，是以台大創業生態系為核心的天使投資社群。我們結合 13 年累積的新創輔導經驗、Gate 預審系統與業師網絡，為會員提供經過嚴謹篩選的投資案源、深度的產業洞察，以及專屬的投資人交流場域。
+              台大創創中心天使投資俱樂部成立於 2023 年，是以台大創業生態系為核心的天使投資社群。我們結合 13 年累積的新創輔導經驗、嚴格篩選機制與業師網絡，為會員提供經過深度盡調的投資案源、產業洞察，以及專屬的投資人交流場域。
             </p>
             <p className="mt-4 text-lg leading-relaxed text-slate-muted">
               近期投資活躍度與會員留存率持續創新高，涵蓋 AI 軟體、生技醫療、硬科技與創新商模四大聚焦領域。
@@ -101,8 +101,8 @@ export default function AngelPage() {
       <section className="section-spacing">
         <div className="container">
           <div className="mx-auto mb-12 max-w-2xl text-center">
-            <p className="micro-label mb-4">Gate Review</p>
-            <h2 className="mb-4">Gate 0/1/2 三段預審</h2>
+            <p className="micro-label mb-4">Screening Process</p>
+            <h2 className="mb-4">三段嚴格篩選機制</h2>
             <p className="text-lg text-slate-muted">
               從初篩到完整投資評估，每個上架到月例會的案件都經過投資經理的深度盡調。
             </p>
@@ -138,7 +138,7 @@ export default function AngelPage() {
             <p className="micro-label mb-4">Investor Insights</p>
             <h2 className="mb-4">天使投資人在看什麼？</h2>
             <p className="text-lg text-slate-muted">
-              從 350+ 位投資人網絡與歷年月會互動中，提煉天使投資人最重視的三個核心指標。
+              從 150+ 位投資人網絡與歷年月會互動中，提煉天使投資人最重視的三個核心指標。
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
@@ -216,7 +216,7 @@ export default function AngelPage() {
             {[
               { icon: '📋', title: '瀏覽候選新創', desc: '每月天使例會前，上架 3–5 家精選新創的六張資訊卡片，完整呈現團隊、市場與競爭優勢。' },
               { icon: '🗳️', title: '投資意向投票', desc: '天使例會後針對 Pitch 過的新創進行記名投票，並選擇投資金額範圍（50萬以下 / 50–100萬 / 100–200萬 / 200萬以上）。' },
-              { icon: '📊', title: '本月 Pipeline', desc: '即時查看當月評估中的新創列表，了解 Gate 篩選進度與案源品質。' },
+              { icon: '📊', title: '本月 Pipeline', desc: '即時查看當月評估中的新創列表，了解各階段篩選進度與案源品質。' },
               { icon: '📚', title: '學習中心', desc: '天使投資入門、產業趨勢、盡職調查方法論等學習資源，持續更新。' },
               { icon: '🔔', title: '即時通知', desc: '卡片上架、投票開放、天使例會提醒——重要事件第一時間通知到你。' },
             ].map((item) => (

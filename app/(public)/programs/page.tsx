@@ -28,7 +28,7 @@ const programs = [
       '陪跑業師每月一對一深度輔導',
       'OKR Tracker 追蹤進度，每月 Office Hour 預約制',
       '企業資源對接與 Demo Day 募資路演',
-      '350+ 投資人網絡，天使俱樂部媒合',
+      '150+ 投資人網絡，天使俱樂部媒合',
     ],
     href: '/accelerator', primary: true,
   },

@@ -23,8 +23,8 @@ const connections: Connection[] = [
     label: "Connect to NTU",
     title: "連結台大",
     description:
-      "整合台大工學院、醫學院、電機資訊、管理等跨院系資源，串接校內 D-School、ILO、EiMBA 等五大合作單位，把研究能量轉化為可投資的新創。",
-    proof: "逾 600 支輔導團隊（2013 至今）· 台大四院系跨領域",
+      "串接台大各院系研究能量與校內創新單位，不設領域門檻，把最好的技術與人才轉化為可投資的新創。",
+    proof: "逾 600 支輔導團隊（2013 至今）· 全校各院系開放申請",
     href: "/programs",
     cta: "了解輔導計畫",
     glowColor: "oklch(0.66 0.12 180 / 0.15)",
@@ -45,8 +45,8 @@ const connections: Connection[] = [
     label: "Connect to Capital",
     title: "連結資本",
     description:
-      "台大天使投資俱樂部提供會員優質案源、Gate 0/1/2 三段預審與每月例會。所有案件經投資經理深度盡調，串接 350+ 投資人網絡與後續創投對接。",
-    proof: "Gate 預審 · 月例會 · 350+ 投資人網絡",
+      "台大天使投資俱樂部提供會員優質案源、三段嚴格篩選機制與每月投資例會。所有案件經投資經理深度盡調，串接 150+ 投資人網絡與後續創投對接。",
+    proof: "三段嚴選 · 月例會 · 150+ 投資人網絡",
     href: "/angel",
     cta: "認識天使俱樂部",
     glowColor: "oklch(0.75 0.15 85 / 0.12)",
