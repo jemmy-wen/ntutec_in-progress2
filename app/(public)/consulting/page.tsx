@@ -71,23 +71,23 @@ export default function ConsultingPage() {
         </div>
       </section>
 
-      {/* Contact Form Placeholder */}
+      {/* Contact CTA */}
       <section className="section-spacing bg-stone">
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
             <p className="micro-label mb-4">Get in Touch</p>
-            <h2 className="mb-8">聯繫我們</h2>
-            <div className="rounded-xl bg-stone-warm p-8 text-center">
-              <p className="text-slate-muted">諮詢表單將在此處</p>
-            </div>
-            <p className="mt-8 text-slate-muted">
-              或直接來信：
-              <a
-                href="mailto:ntutec@ntutec.com"
-                className="ml-1 font-medium text-teal-deep underline underline-offset-4"
-              >
-                ntutec@ntutec.com
-              </a>
+            <h2 className="mb-4">洽詢諮詢服務</h2>
+            <p className="mb-8 text-lg text-slate-muted">
+              請來信說明您的需求（企業規模、創新議題、期望時程），我們將於兩個工作天內安排專人回覆。
+            </p>
+            <a
+              href="mailto:ntutec@ntu.edu.tw?subject=諮詢服務洽詢"
+              className="btn-pill-primary inline-flex items-center gap-2"
+            >
+              來信洽詢
+            </a>
+            <p className="mt-6 text-sm text-slate-muted">
+              ntutec@ntu.edu.tw　·　週一至週五 9:00–18:00
             </p>
           </div>
         </div>
