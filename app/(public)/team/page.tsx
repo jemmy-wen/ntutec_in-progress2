@@ -22,6 +22,7 @@ const leadership: TeamMember[] = [
     name: "莊裕澤",
     title: "中心主任",
     bio: "台大資訊管理學系暨研究所專任教授，具多年新創育成經驗。主任代表校方監督中心營運，負責對校層級的治理、財務、人事與組織規章。",
+    photo: "/images/team/chuang-yuze.jpg",
   },
   {
     initials: "林",
@@ -38,24 +39,28 @@ const team: TeamMember[] = [
     name: "陳盈盈 Yingying",
     title: "資深經理 Senior Manager",
     bio: "主責加速器、企業垂直加速器與中心行政營運。輔導小組帶領硬科技與先進製造組，串接企業合作夥伴資源。",
+    photo: "/logo-tec-icon.png",
   },
   {
     initials: "江",
     name: "江旻壕 Howard",
     title: "投資經理 Investment Manager",
     bio: "主責天使投資俱樂部與案源篩選評估，協同企業垂直加速器。輔導小組帶領生技醫療組，負責投資人關係經營與案源評估。",
+    photo: "/logo-tec-icon.png",
   },
   {
     initials: "許",
     name: "許瀞之 Raven",
     title: "輔導經理 Program Manager",
     bio: "主責台大車庫與整體輔導計畫設計，含必修課程規劃。輔導小組帶領創新商模組，打造新創團隊的成長路徑。",
+    photo: "/logo-tec-icon.png",
   },
   {
     initials: "楊",
     name: "楊智堯 Neil",
     title: "營運經理 Operations Manager",
     bio: "主責對外行銷、活動企劃與校友關懷（歷屆團隊追蹤與關係維護）。輔導小組帶領 AI 軟體組，連結校友網絡與生態系。",
+    photo: "/logo-tec-icon.png",
   },
 ];
 
