@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { ogImageUrl } from '@/lib/og'
 import HeroSection from '@/components/public/home/HeroSection'
 import ThreeConnectionsSection from '@/components/public/home/ThreeConnectionsSection'
 import FocusAreasSection from '@/components/public/home/FocusAreasSection'
@@ -25,11 +26,23 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://tec.ntu.edu.tw/images/events/opening-2026-biggroup.jpg',
+        url: ogImageUrl(
+          '台大創創中心 NTUTEC',
+          '13 年輔導逾 600 支新創，連結台大、產業、資本'
+        ),
         width: 1200,
         height: 630,
-        alt: '台大創創中心 2026 開幕式全體大合照',
+        alt: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',
       },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [
+      ogImageUrl(
+        '台大創創中心 NTUTEC',
+        '13 年輔導逾 600 支新創，連結台大、產業、資本'
+      ),
     ],
   },
 }

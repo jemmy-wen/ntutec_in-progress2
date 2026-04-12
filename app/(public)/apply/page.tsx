@@ -4,11 +4,38 @@ import { Suspense } from "react";
 import { AlertCircle } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
 import PreRegisterForm from "@/components/public/PreRegisterForm";
+import { ogImageUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "提前登記 2027 梯次 | NTUTEC",
   description:
     "目前開放 2027 梯次提前登記，正式申請將於 2026 年 12 月開放。提前登記不等同申請，正式開放時第一時間通知你。",
+  openGraph: {
+    title: "提前登記 2027 梯次 | NTUTEC",
+    description: "加速器、車庫、企業垂直加速器 2027 梯次提前登記開放中。",
+    images: [
+      {
+        url: ogImageUrl(
+          "申請 NTUTEC 2027 梯次",
+          "加速器 · 車庫 · 企業垂直加速器 · 提前登記開放",
+          "startup"
+        ),
+        width: 1200,
+        height: 630,
+        alt: "提前登記 2027 梯次 | NTUTEC",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      ogImageUrl(
+        "申請 NTUTEC 2027 梯次",
+        "加速器 · 車庫 · 企業垂直加速器 · 提前登記開放",
+        "startup"
+      ),
+    ],
+  },
 };
 
 const tracks = [

@@ -3,11 +3,38 @@ import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import mentorsData from "@/data/mentors_all.json";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
+import { ogImageUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "業師陣容 | NTUTEC",
   description:
     "NTUTEC 歷年累計 80+ 位業師，涵蓋投資人、創業家、企業高管與產業專家。2026 陪跑業師 40+，平均逾 20 年產業深耕，為新創團隊提供一對一深度輔導。",
+  openGraph: {
+    title: "業師陣容 | NTUTEC",
+    description: "80+ 位業師，涵蓋投資人、創業家、企業高管。2026 陪跑業師 40+，平均逾 20 年產業深耕。",
+    images: [
+      {
+        url: ogImageUrl(
+          "NTUTEC 業師陣容",
+          "80+ 位業師，平均逾 20 年產業深耕，一對一深度輔導",
+          "mentor"
+        ),
+        width: 1200,
+        height: 630,
+        alt: "NTUTEC 業師陣容",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      ogImageUrl(
+        "NTUTEC 業師陣容",
+        "80+ 位業師，平均逾 20 年產業深耕，一對一深度輔導",
+        "mentor"
+      ),
+    ],
+  },
 };
 
 interface Mentor {
@@ -175,6 +202,7 @@ export default function MentorsPage() {
                 src="/images/events/opening-2026-mentoring.jpg"
                 alt="業師輔導現場 — 新創展示產品給業師"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
@@ -184,6 +212,7 @@ export default function MentorsPage() {
                 src="/images/events/opening-2026-mentor-session.jpg"
                 alt="業師輔導現場 — 深度討論"
                 fill
+                loading="lazy"
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
