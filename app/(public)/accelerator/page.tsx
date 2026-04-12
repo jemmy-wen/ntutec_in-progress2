@@ -279,6 +279,10 @@ export default function AcceleratorPage() {
             <Send className="h-4 w-4" />
             預約 2027 梯次通知
           </Link>
+          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-slate-muted">
+            <Link href="/tec-deals" className="hover:text-teal underline underline-offset-4">進駐資源方案 →</Link>
+            <Link href="/startups" className="hover:text-teal underline underline-offset-4">2026 現役新創團隊 →</Link>
+          </div>
         </div>
       </section>
     </>

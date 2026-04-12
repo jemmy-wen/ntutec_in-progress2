@@ -21,11 +21,8 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "計畫方案",
     children: [
-      { label: "計畫總覽", href: "/programs" },
       { label: "台大加速器", href: "/accelerator" },
       { label: "台大車庫", href: "/garage" },
-      { label: "2026 新創團隊", href: "/startups" },
-      { label: "進駐資源", href: "/tec-deals" },
       { label: "校友新創", href: "/alumni" },
       { label: "常見問題", href: "/faq" },
     ],
