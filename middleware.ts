@@ -51,6 +51,7 @@ export async function middleware(request: NextRequest) {
     '/demo-day',
     '/privacy', '/terms',
     '/login', '/callback',
+    '/auth/signout',
   ]
   // SEO assets — always public, no auth check
   const seoAssets = ['/robots.txt', '/sitemap.xml', '/favicon.ico']

@@ -31,10 +31,24 @@ export async function GET(request: NextRequest) {
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (!error && data.user) {
-      // Auto-assign angel_member role if user has no roles
       const admin = createAdminClient()
-      const { data: existingRoles } = await admin
-        .from('module_roles')
+
+      // Auto-create profile record for new users
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (admin.from('profiles') as any).upsert(
+        {
+          id: data.user.id,
+          email: data.user.email || '',
+          display_name: data.user.user_metadata?.full_name || data.user.user_metadata?.name || null,
+          avatar_url: data.user.user_metadata?.avatar_url || null,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'id', ignoreDuplicates: false }
+      )
+
+      // Check/assign roles
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: existingRoles } = await (admin.from('module_roles') as any)
         .select('role')
         .eq('user_id', data.user.id)
         .eq('is_active', true)
@@ -47,7 +61,7 @@ export async function GET(request: NextRequest) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (admin.from('module_roles') as any).insert({
           user_id: data.user.id,
-          module: 'angel_club',
+          module: 'platform',
           role: 'visitor',
           is_active: true,
         })
@@ -57,11 +71,11 @@ export async function GET(request: NextRequest) {
 
       // Smart redirect:
       // - New users → onboarding wizard first
-      // - Explicit redirect param → use it
+      // - Explicit redirect param → use it (if safe internal path)
       // - Otherwise → role-based default
       const isExplicitRedirect = redirectParam && redirectParam !== '/' && redirectParam.startsWith('/')
       const targetPath = isNewUser
-        ? '/angel/onboarding'
+        ? '/my'
         : isExplicitRedirect ? redirectParam : getDefaultRoute(roles)
 
       const response = NextResponse.redirect(new URL(targetPath, origin))

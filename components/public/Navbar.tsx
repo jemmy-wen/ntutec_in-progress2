@@ -6,6 +6,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import SearchDialog, { useSearchDialog, SearchButton } from "@/components/search/SearchDialog";
+import NavbarAuthButton, { MobileNavbarAuthButton } from "@/components/public/NavbarAuthButton";
 
 /* ────────────────────────────── nav data ────────────────────────────── */
 
@@ -366,6 +367,9 @@ export default function Navbar() {
             加入天使會
           </Link>
 
+          {/* Auth: login button or user avatar dropdown */}
+          <NavbarAuthButton />
+
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden p-2 text-charcoal"
@@ -417,6 +421,11 @@ export default function Navbar() {
                   預約 2027 申請
                 </Link>
                 <button className="btn-pill-outline text-center">EN</button>
+
+                {/* Mobile auth section */}
+                <div className="border-t border-border/60 pt-3">
+                  <MobileNavbarAuthButton onNavigate={() => setMobileOpen(false)} />
+                </div>
               </div>
             </nav>
           </motion.div>

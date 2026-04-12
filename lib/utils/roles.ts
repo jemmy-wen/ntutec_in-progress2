@@ -34,6 +34,7 @@ export const ROLE_ROUTE_MAP: Record<string, PlatformRole[]> = {
   '/angel/onboarding': ['admin', 'angel_member', 'visitor'],
   '/angel/portal': ['admin', 'angel_member', 'visitor'],
   '/admin': ['admin', 'staff_admin', 'staff_accelerator'],
+  '/my': ['admin', 'staff_admin', 'staff_accelerator', 'angel_member', 'visitor', 'mentor', 'team', 'startup_incubated', 'startup_fundraising', 'vc_partner'],
 }
 
 /** Get the default landing page for a user based on their roles */
@@ -42,7 +43,10 @@ export function getDefaultRoute(roles: string[]): string {
   if (roles.includes('staff_accelerator')) return '/admin/dashboard'
   if (roles.includes('angel_member')) return '/angel/portal/upcoming'
   if (roles.includes('visitor')) return '/angel/portal/upcoming'
-  return '/angel/portal/upcoming'
+  if (roles.includes('mentor')) return '/my'
+  if (roles.includes('startup_incubated') || roles.includes('startup_fundraising') || roles.includes('team')) return '/my'
+  if (roles.includes('vc_partner')) return '/my'
+  return '/my'
 }
 
 /** Check if user has paid member access (angel_member or above) */

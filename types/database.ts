@@ -12,6 +12,33 @@
 export interface Database {
   public: {
     Tables: {
+      // ─── Shared: User Profiles ───
+      profiles: {
+        Row: {
+          id: string
+          email: string | null
+          display_name: string | null
+          role: string
+          avatar_url: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          email?: string | null
+          display_name?: string | null
+          role?: string
+          avatar_url?: string | null
+        }
+        Update: Partial<{
+          email: string | null
+          display_name: string | null
+          role: string
+          avatar_url: string | null
+          updated_at: string
+        }>
+      }
+
       // ─── Shared: Auth & Roles ───
       module_roles: {
         Row: {
