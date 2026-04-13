@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
+import { Plant, RocketLaunch, GraduationCap, Lightbulb, CalendarBlank } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata: Metadata = {
   title: "加入我們 | NTUTEC",
@@ -10,25 +11,25 @@ export const metadata: Metadata = {
 
 const whyJoinCards = [
   {
-    emoji: "🌱",
+    emoji: Plant,
     title: "深度接觸創業生態系",
     description:
       "每天與新創創辦人、天使投資人和業師互動，學習課堂學不到的實戰知識。",
   },
   {
-    emoji: "🚀",
+    emoji: RocketLaunch,
     title: "實際參與高影響力工作",
     description:
       "不是打雜的實習——你的工作直接影響輔導計畫的品質、天使例會的準備和對外溝通。",
   },
   {
-    emoji: "🎓",
+    emoji: GraduationCap,
     title: "台大資源與人脈",
     description:
       "深入台大創業社群，連結校內外優秀校友與產業資源，建立長期職涯人脈。",
   },
   {
-    emoji: "💡",
+    emoji: Lightbulb,
     title: "多元角色學習機會",
     description:
       "從事業發展、行銷、研究到投資評估，依你的興趣和能力發展跨域能力。",
@@ -37,18 +38,18 @@ const whyJoinCards = [
 
 const internInfoCards = [
   {
-    emoji: "📅",
+    emoji: CalendarBlank,
     title: "招募時間",
     description: "依學期滾動開放招募，正式開放時以 Email 通知。",
   },
   {
-    emoji: "⏱️",
+    emoji: CalendarBlank,
     title: "實習時數",
     description:
       "每週 2–3 天，可配合課堂時間彈性調整，優先考慮能長期配合的同學。",
   },
   {
-    emoji: "📍",
+    emoji: CalendarBlank,
     title: "工作地點",
     description:
       "台北市中正區思源街 18 號，台大水源校區卓越研究大樓 7 樓。",
@@ -104,7 +105,7 @@ export default function CareersPage() {
                 key={card.title}
                 className="rounded-2xl border border-stone-warm/60 bg-white p-6"
               >
-                <p className="mb-3 text-3xl">{card.emoji}</p>
+                <card.emoji size={28} weight="duotone" className="mb-3 text-teal" />
                 <h3 className="mb-2 font-semibold">{card.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-muted">
                   {card.description}
@@ -132,7 +133,7 @@ export default function CareersPage() {
                 key={card.title}
                 className="rounded-2xl bg-white p-6 text-center"
               >
-                <p className="mb-3 text-3xl">{card.emoji}</p>
+                <card.emoji size={28} weight="duotone" className="mb-3 mx-auto text-teal" />
                 <h3 className="mb-2 font-semibold">{card.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-muted">
                   {card.description}

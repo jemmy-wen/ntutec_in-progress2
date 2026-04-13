@@ -6,6 +6,7 @@ import PageHero from "@/components/public/PageHero";
 import PreRegisterForm from "@/components/public/PreRegisterForm";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import { ogImageUrl } from "@/lib/og";
+import { RocketLaunch, House } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata: Metadata = {
   title: "提前登記 2027 梯次 | NTUTEC",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
 
 const tracks = [
   {
-    icon: "🚀",
+    icon: RocketLaunch,
     name: "申請加速器",
     subtitle: "Accelerator Program",
     description:
@@ -51,7 +52,7 @@ const tracks = [
     note: "2027 梯次申請：2026 年 12 月 ~ 2027 年 1 月開放",
   },
   {
-    icon: "🏠",
+    icon: House,
     name: "申請車庫",
     subtitle: "Garage Incubator",
     description:
@@ -120,7 +121,7 @@ export default function ApplyPage() {
                 key={track.name}
                 className="flex flex-col rounded-2xl border-2 border-transparent bg-white p-8 shadow-sm"
               >
-                <span className="text-4xl">{track.icon}</span>
+                <track.icon size={36} weight="duotone" className="text-teal" />
                 <h3 className="mt-4">{track.name}</h3>
                 <p className="text-sm text-slate-muted">{track.subtitle}</p>
                 <p className="mt-4 flex-1 leading-relaxed text-slate-muted">

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import PageHero from '@/components/public/PageHero'
 import Image from 'next/image'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
+import { Target, ClipboardText, Handshake, TrendUp, Flask, Microphone, Briefcase } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS | NTUTEC',
@@ -45,34 +46,34 @@ const recentInvestments = [
 
 const highlights = [
   {
-    icon: '🎯',
+    icon: Target,
     title: 'Curated Quality Deals',
     description: 'Every deal goes through three rigorous screening stages, personally due-diligenced by investment managers. Skip the time cost of self-screening and directly access quality startups that have passed high-threshold evaluation.',
   },
   {
-    icon: '📋',
+    icon: ClipboardText,
     title: 'Complete Investment Memos',
     description: 'Every startup presented at monthly meetings comes with a complete DD memo: market analysis, financial models, competitive advantages, risk assessment, and Term Sheet recommendations to support your investment decisions.',
   },
   {
-    icon: '🤝',
+    icon: Handshake,
     title: 'Flexible Direct Investment',
     description: 'Members invest directly with personal funds, unconstrained by institutional co-investment restrictions. Investment amounts are self-determined with complete control over timing and scale.',
   },
   {
-    icon: '📈',
+    icon: TrendUp,
     title: 'Long-term Ecosystem Support',
     description: 'Connected to 13 years of accumulated mentor networks, alumni resources, and 35 corporate partners — portfolio companies receive not just capital, but sustained ecosystem momentum.',
   },
 ]
 
 const monthlySteps = [
-  { icon: '📥', title: 'Deal Sourcing', desc: 'Applications, mentor referrals, or alumni introductions' },
-  { icon: '🔬', title: 'Three-Stage Screening', desc: 'Investment managers lead the full due diligence process' },
-  { icon: '📋', title: 'Information Cards', desc: 'Available before monthly meeting with complete investment summary' },
-  { icon: '🎤', title: 'Angel Meeting', desc: 'Startup pitch and Q&A with real-time member interaction' },
-  { icon: '🗳️', title: 'Named Voting', desc: 'Members indicate interest in investing and explain their preferences' },
-  { icon: '💼', title: 'Direct Investment', desc: 'Members invest directly as individuals; center assists with documentation' },
+  { icon: ClipboardText, title: 'Deal Sourcing', desc: 'Applications, mentor referrals, or alumni introductions' },
+  { icon: Flask, title: 'Three-Stage Screening', desc: 'Investment managers lead the full due diligence process' },
+  { icon: ClipboardText, title: 'Information Cards', desc: 'Available before monthly meeting with complete investment summary' },
+  { icon: Microphone, title: 'Angel Meeting', desc: 'Startup pitch and Q&A with real-time member interaction' },
+  { icon: ClipboardText, title: 'Named Voting', desc: 'Members indicate interest in investing and explain their preferences' },
+  { icon: Briefcase, title: 'Direct Investment', desc: 'Members invest directly as individuals; center assists with documentation' },
 ]
 
 const gateProcess = [
@@ -200,7 +201,7 @@ export default function EnAngelPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {highlights.map((benefit) => (
               <div key={benefit.title} className="card-hover rounded-2xl bg-white p-8">
-                <span className="mb-4 block text-4xl">{benefit.icon}</span>
+                <benefit.icon size={36} weight="duotone" className="mb-4 text-teal" />
                 <h3 className="mb-3 text-xl font-semibold">{benefit.title}</h3>
                 <p className="text-slate-muted leading-relaxed">{benefit.description}</p>
               </div>
@@ -223,8 +224,8 @@ export default function EnAngelPage() {
             {monthlySteps.map((s, i) => (
               <div key={s.title} className="flex flex-1 items-start">
                 <div className="flex-1 text-center">
-                  <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm">
-                    {s.icon}
+                  <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm">
+                    <s.icon size={24} weight="duotone" className="text-teal" />
                   </div>
                   <div className="mb-1 text-xs font-bold tracking-widest text-teal">
                     {String(i + 1).padStart(2, '0')}
@@ -248,7 +249,7 @@ export default function EnAngelPage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xl">{s.icon}</span>
+                    <s.icon size={20} weight="duotone" className="text-teal shrink-0" />
                     <h4 className="font-semibold">{s.title}</h4>
                   </div>
                   <p className="mt-1 text-sm text-slate-muted">{s.desc}</p>

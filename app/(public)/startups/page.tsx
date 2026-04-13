@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/public/PageHero";
 import cohort from "@/data/cohort_2026.json";
 import TrackClick from "@/components/TrackClick";
+import { RocketLaunch, Briefcase, Buildings } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata: Metadata = {
   title: "2026 年度新創團隊 | NTUTEC",
@@ -143,7 +144,7 @@ export default function StartupsPage() {
         <div className="container">
           <div className="grid gap-6 md:grid-cols-3 text-center">
             <div className="rounded-2xl bg-white p-6">
-              <p className="mb-2 text-2xl">🚀</p>
+              <RocketLaunch size={28} weight="duotone" className="mb-2 text-teal" />
               <h3 className="mb-2 text-base font-semibold">我也想加入</h3>
               <p className="mb-4 text-sm text-slate-muted">申請 2027 梯次台大加速器或台大車庫</p>
               <TrackClick eventName="cta_apply_click" eventParams={{ location: 'startups_page' }}>
@@ -151,13 +152,13 @@ export default function StartupsPage() {
               </TrackClick>
             </div>
             <div className="rounded-2xl bg-white p-6">
-              <p className="mb-2 text-2xl">💼</p>
+              <Briefcase size={28} weight="duotone" className="mb-2 text-teal" />
               <h3 className="mb-2 text-base font-semibold">我是投資人</h3>
               <p className="mb-4 text-sm text-slate-muted">了解天使投資俱樂部，參與早期案件媒合</p>
               <a href="/angel" className="btn-pill-outline text-sm">了解天使俱樂部</a>
             </div>
             <div className="rounded-2xl bg-white p-6">
-              <p className="mb-2 text-2xl">🏢</p>
+              <Buildings size={28} weight="duotone" className="mb-2 text-teal" />
               <h3 className="mb-2 text-base font-semibold">我是企業</h3>
               <p className="mb-4 text-sm text-slate-muted">探索企業垂直加速器與新創合作機會</p>
               <a href="/corporate" className="btn-pill-outline text-sm">探索企業合作</a>

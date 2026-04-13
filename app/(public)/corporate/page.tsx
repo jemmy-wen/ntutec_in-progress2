@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
 import Image from "next/image";
 import TrackClick from "@/components/TrackClick";
+import { RocketLaunch, Trophy, Microphone, Lightbulb, Target, Handshake, ChartBar } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata: Metadata = {
   title: "企業合作方案 | NTUTEC",
@@ -33,25 +34,25 @@ const valueProps = [
 
 const collaborationModels = [
   {
-    icon: "🚀",
+    icon: RocketLaunch,
     title: "企業加速器共創",
     description:
       "由企業出題、新創解題，透過深度輔導計畫（視各期規格而定），共同開發創新解決方案。",
   },
   {
-    icon: "🏆",
+    icon: Trophy,
     title: "創新競賽合辦",
     description:
       "與企業共同舉辦主題式創新競賽，發掘潛力新創並建立合作關係。",
   },
   {
-    icon: "🎤",
+    icon: Microphone,
     title: "聯合活動",
     description:
       "共同舉辦產業論壇、Demo Day、交流活動，促進企業與新創的深度互動。",
   },
   {
-    icon: "💡",
+    icon: Lightbulb,
     title: "創新顧問諮詢",
     description:
       "嫁接 NTUTEC 13 年加速器 know-how，協助企業內部團隊診斷創新卡點、設計驗證機制，縮短從構想到市場測試的週期。",
@@ -103,7 +104,7 @@ export default function CorporatePage() {
                 key={model.title}
                 className="card-hover card-elevated flex gap-6 rounded-2xl bg-white p-8"
               >
-                <span className="text-4xl">{model.icon}</span>
+                <model.icon size={36} weight="duotone" className="shrink-0 text-teal" />
                 <div>
                   <h3 className="mb-2 text-lg font-semibold">{model.title}</h3>
                   <p className="text-slate-muted leading-relaxed">
@@ -220,22 +221,22 @@ export default function CorporatePage() {
           <div className="grid gap-6 md:grid-cols-4">
             {[
               {
-                icon: "🎯",
+                icon: Target,
                 title: "對接決策者",
                 description: "直接連結企業高階決策層，確保合作案獲得內部支持",
               },
               {
-                icon: "🏭",
+                icon: Target,
                 title: "產業實務傳授",
                 description: "企業提供第一線產業知識，助新創快速理解市場脈絡",
               },
               {
-                icon: "🤝",
+                icon: Handshake,
                 title: "企業 PM 共創",
                 description: "企業 PM 與新創定期工作會議，共同推動合作案進展",
               },
               {
-                icon: "📊",
+                icon: ChartBar,
                 title: "每月進展追蹤",
                 description: "台大創創擔任陪跑角色，每月追蹤合作狀況確保成果",
               },
@@ -244,7 +245,7 @@ export default function CorporatePage() {
                 key={item.title}
                 className="rounded-2xl bg-white p-6 text-center"
               >
-                <span className="mb-4 block text-4xl">{item.icon}</span>
+                <item.icon size={36} weight="duotone" className="mb-4 mx-auto text-teal" />
                 <h3 className="mb-2 text-base font-semibold text-charcoal">
                   {item.title}
                 </h3>

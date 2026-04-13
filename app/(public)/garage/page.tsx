@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Calendar, Send } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
 import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
+import { Buildings, Handshake, UsersThree, LinkSimple, GraduationCap } from "@phosphor-icons/react/dist/ssr";
 
 const garageAlumni: AlumniStory[] = [
   {
@@ -83,37 +84,37 @@ export default function GaragePage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: "🏢",
+                icon: Buildings,
                 title: "虛擬進駐",
                 description:
                   "免費虛擬進駐台大水源校區，享有中心會議室預約與活動場地使用權，彈性配合創業節奏。",
               },
               {
-                icon: "🤝",
+                icon: Handshake,
                 title: "創業社群",
                 description:
                   "與同梯團隊並肩創業，互介紹客戶、共解技術問題時常發生，是台大校園內最活躍的早期新創社群。",
               },
               {
-                icon: "📚",
+                icon: Buildings,
                 title: "工作坊與課程",
                 description:
                   "不定期主題工作坊，涵蓋商業模式設計、財務規劃、法務實務等議題，由業師與業界專家主講。",
               },
               {
-                icon: "👥",
+                icon: UsersThree,
                 title: "業師諮詢",
                 description:
                   "可申請業師一對一諮詢時段，針對特定議題獲得專業建議。",
               },
               {
-                icon: "🔗",
+                icon: LinkSimple,
                 title: "加速器銜接",
                 description:
                   "畢業後優先銜接台大加速器，延續成長動能。",
               },
               {
-                icon: "🎓",
+                icon: GraduationCap,
                 title: "校園資源",
                 description:
                   "台大師生身分優先錄取，可接觸校內各院系資源與研究能量，有助推動跨領域合作。",
@@ -123,7 +124,7 @@ export default function GaragePage() {
                 key={b.title}
                 className="rounded-xl border bg-white p-6 card-hover"
               >
-                <span className="text-3xl">{b.icon}</span>
+                <b.icon size={28} weight="duotone" className="text-teal" />
                 <h4 className="mt-3 mb-2">{b.title}</h4>
                 <p className="text-sm leading-relaxed text-slate-muted">
                   {b.description}

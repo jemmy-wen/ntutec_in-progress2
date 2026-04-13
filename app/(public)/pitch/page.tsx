@@ -4,6 +4,7 @@ import PageHero from "@/components/public/PageHero";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import TrackClick from "@/components/TrackClick";
 import { ogImageUrl } from "@/lib/og";
+import { Target, UserCircle, GraduationCap, CalendarBlank } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata: Metadata = {
   title: "新創投遞 | NTUTEC ANGELS 台大天使會",
@@ -59,25 +60,25 @@ const afterSubmit = [
 
 const whyPitch = [
   {
-    icon: "🎯",
+    icon: Target,
     title: "接觸認真的投資人",
     description:
       "40+ 位天使會員每月定期出席例會，帶著明確投資意圖。這不是瀏覽履歷的平台，而是有人主動為你的案件背書、安排上台的機制。",
   },
   {
-    icon: "🧑‍💼",
+    icon: UserCircle,
     title: "投資經理全程主導",
     description:
       "有投資經理親自審閱、安排面談、撰寫評估報告並向天使會員呈現。你不是自己冷投，而是有人幫你把案件帶進對的場合。",
   },
   {
-    icon: "🎓",
+    icon: GraduationCap,
     title: "台大校友網絡加持",
     description:
       "進入 NTUTEC 評估流程，即接觸超過 13 年累積的台大創業校友網絡。獲投後除資金外，可對接業師與企業合作夥伴。",
   },
   {
-    icon: "📅",
+    icon: CalendarBlank,
     title: "隨時投遞，無截止日",
     description:
       "不設申請梯次或截止日，隨時投遞隨時進入評估。符合條件的新創，投資經理會主動聯繫，不需要等待。",
@@ -189,7 +190,7 @@ export default function PitchPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {whyPitch.map((item) => (
               <div key={item.title} className="card-hover card-elevated rounded-2xl bg-white p-8">
-                <span className="mb-4 block text-4xl">{item.icon}</span>
+                <item.icon size={36} weight="duotone" className="mb-4 text-teal" />
                 <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
                 <p className="text-slate-muted leading-relaxed">{item.description}</p>
               </div>

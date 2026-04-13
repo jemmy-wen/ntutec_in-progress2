@@ -3,6 +3,7 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getPosts } from '@/lib/ghost'
 import PageHero from '@/components/public/PageHero'
+import { NotePencil } from '@phosphor-icons/react/dist/ssr'
 
 export const revalidate = 3600 // ISR: revalidate every hour
 
@@ -72,7 +73,7 @@ export default async function BlogListPage() {
                     </div>
                   ) : (
                     <div className="flex h-48 items-center justify-center bg-stone">
-                      <span className="text-4xl opacity-20">📝</span>
+                      <NotePencil size={36} weight="duotone" className="opacity-20 text-slate-muted" />
                     </div>
                   )}
 

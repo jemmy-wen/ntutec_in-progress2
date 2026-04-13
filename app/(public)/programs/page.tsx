@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
+import { House, RocketLaunch, ChartBar, Fire, Target, Handshake, Buildings } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: '新創輔導計畫 | NTUTEC',
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 const programs = [
   {
-    icon: '🏠', name: '台大車庫', subtitle: 'NTU Garage',
+    icon: House, name: '台大車庫', subtitle: 'NTU Garage',
     duration: '10 個月（3月至12月）',
     target: '早期創業團隊（需具台大在校生、校友或教職員身分）',
     features: [
@@ -25,7 +26,7 @@ const programs = [
     href: '/garage', primary: false, cta: '立即預約 2027 梯次',
   },
   {
-    icon: '🚀', name: '台大加速器', subtitle: 'NTU Accelerator',
+    icon: RocketLaunch, name: '台大加速器', subtitle: 'NTU Accelerator',
     duration: '10 個月（3月至12月）',
     target: '成長期新創（不限台大身分，有台大身分者優先）',
     features: [
@@ -60,7 +61,7 @@ export default function ProgramsPage() {
           <div className="grid gap-8 lg:grid-cols-2">
             {programs.map((program) => (
               <div key={program.name} className="flex flex-col rounded-2xl border bg-white p-8 card-hover">
-                <span className="text-4xl">{program.icon}</span>
+                <program.icon size={36} weight="duotone" className="text-teal" />
                 <h3 className="mt-4">{program.name}</h3>
                 <p className="text-sm text-slate-muted">{program.subtitle}</p>
                 <div className="mt-6 space-y-3">
@@ -85,23 +86,23 @@ export default function ProgramsPage() {
             <div className="grid gap-6 md:grid-cols-3">
               {[
                 {
-                  icon: '📊',
+                  icon: ChartBar,
                   title: 'OKR Tracker',
                   description: '所有輔導圍繞關鍵結果與進度狀態展開，每次會議前繳交報告。',
                 },
                 {
-                  icon: '🔥',
+                  icon: Fire,
                   title: '業師診斷會',
                   description: '3 分鐘報告 + 12 分鐘業師追問 + 5 分鐘同儕分享，20 分鐘高強度診斷。',
                 },
                 {
-                  icon: '🎯',
+                  icon: Target,
                   title: '三個關鍵審查節點',
                   description: 'Problem-Solution Fit 問題驗證 → Business Model Validation 商業模式驗證 → Traction 成長牽引，逐關遞進。',
                 },
               ].map((item) => (
                 <div key={item.title} className="bg-white rounded-xl p-6">
-                  <span className="text-3xl">{item.icon}</span>
+                  <item.icon size={28} weight="duotone" className="text-teal" />
                   <h4 className="mt-3 mb-2">{item.title}</h4>
                   <p className="text-sm leading-relaxed text-slate-muted">{item.description}</p>
                 </div>
@@ -115,26 +116,26 @@ export default function ProgramsPage() {
             <div className="grid gap-6 md:grid-cols-3">
               {[
                 {
-                  icon: '🎯',
+                  icon: Target,
                   title: '輔導經理陪跑',
                   badge: '台大車庫',
                   description: '專任輔導經理全程陪跑，每月定期 check-in，協助 MVP 驗證與用戶訪談，確保里程碑按節奏推進。',
                 },
                 {
-                  icon: '🤝',
+                  icon: Handshake,
                   title: '業師 1-on-1 諮詢',
                   badge: '台大加速器',
                   description: '配對 20+ 位具 Yahoo、TSMC、微軟、BCG 背景業師，依需求安排一對一深度諮詢，精準解決成長瓶頸。',
                 },
                 {
-                  icon: '🏢',
+                  icon: Buildings,
                   title: '企業場域驗證',
                   badge: '企業垂直加速器',
                   description: '媒合大企業提供真實市場驗證場域，企業 PM 共同推動專案，協助新創跨越死亡之谷、加速商模落地。',
                 },
               ].map((item) => (
                 <div key={item.title} className="bg-white rounded-xl p-6">
-                  <span className="text-3xl">{item.icon}</span>
+                  <item.icon size={28} weight="duotone" className="text-teal" />
                   <div className="mt-3 mb-1 inline-block rounded-full bg-teal/10 px-2.5 py-0.5 text-xs font-medium text-teal">{item.badge}</div>
                   <h4 className="mb-2">{item.title}</h4>
                   <p className="text-sm leading-relaxed text-slate-muted">{item.description}</p>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
+import { Plant, LinkSimple, RocketLaunch } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: 'About NTUTEC | NTUTEC',
@@ -22,7 +23,7 @@ const hi3Model = [
     key: 'Incubation',
     label: 'Incubation',
     en: 'Incubation',
-    icon: '🌱',
+    icon: Plant,
     description:
       'Through dedicated program managers, one-on-one mentor consultations, and professional workshops (business models, fundraising, legal), we accompany early-stage teams from idea to prototype validation.',
   },
@@ -30,7 +31,7 @@ const hi3Model = [
     key: 'Integration',
     label: 'Integration',
     en: 'Integration',
-    icon: '🔗',
+    icon: LinkSimple,
     description:
       "Connecting NTU's multi-disciplinary resources, corporate vertical accelerators, and EiMBA entrepreneurship programs — linking government initiatives (FITI, TTA) and international partners to help startups quickly engage with real-world environments.",
   },
@@ -38,7 +39,7 @@ const hi3Model = [
     key: 'Ignition',
     label: 'Ignition',
     en: 'Ignition',
-    icon: '🚀',
+    icon: RocketLaunch,
     description:
       'Hosting Demo Day (74 investors attended, 2025), closed-door investment matching, and the Angels Club — igniting the first round of capital for ready teams and propelling them to market.',
   },
@@ -148,7 +149,7 @@ export default function EnAboutPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {hi3Model.map((item) => (
               <div key={item.key} className="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
-                <div className="mb-4 text-4xl">{item.icon}</div>
+                <item.icon size={36} weight="duotone" className="mb-4 text-teal" />
                 <div className="mb-1 text-xs font-semibold uppercase tracking-widest text-teal">{item.en}</div>
                 <h3 className="mb-3 text-xl font-bold text-charcoal">{item.label}</h3>
                 <p className="text-slate-muted leading-relaxed">{item.description}</p>

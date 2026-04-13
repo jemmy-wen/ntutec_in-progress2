@@ -4,6 +4,7 @@ import { Calendar, Send } from 'lucide-react'
 import PageHero from '@/components/public/PageHero'
 import Image from 'next/image'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
+import { UsersThree, Buildings, CurrencyCircleDollar } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: 'NTU Accelerator | NTUTEC',
@@ -52,22 +53,22 @@ const phases = [
 
 const benefits = [
   {
-    icon: '👥',
+    icon: UsersThree,
     title: 'Mentor Network',
     description: 'An extensive roster of 80+ mentors accumulated over the years, with 40+ active in 2026. Averaging over 20 years of industry experience covering venture capital, AI, biotech, semiconductors, and more — one-on-one deep mentorship.',
   },
   {
-    icon: '🏢',
+    icon: Buildings,
     title: 'Corporate Resources',
     description: '35 partner companies (including Nvidia, Synopsys, Foxconn, and others), providing technology validation environments and potential customer resources.',
   },
   {
-    icon: '💰',
+    icon: CurrencyCircleDollar,
     title: 'Fundraising Connections',
     description: 'Angels Club and 300+ investor network covering fundraising opportunities from seed to Series A rounds.',
   },
   {
-    icon: '🏢',
+    icon: Buildings,
     title: 'Virtual Residency',
     description: 'Free virtual residency at NTU Shiyuan Campus, with access to the center\'s meeting rooms and event spaces — flexible to fit your startup\'s pace.',
   },
@@ -176,7 +177,7 @@ export default function EnAcceleratorPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b) => (
               <div key={b.title} className="text-center">
-                <span className="text-4xl">{b.icon}</span>
+                <b.icon size={36} weight="duotone" className="text-teal" />
                 <h4 className="mt-4 mb-2 text-lg">{b.title}</h4>
                 <p className="text-sm leading-relaxed text-slate-muted">{b.description}</p>
               </div>

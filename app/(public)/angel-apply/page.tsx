@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/public/PageHero";
+import { ClipboardText, ChartBar, Buildings } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata: Metadata = {
   title: "加入 NTUTEC ANGELS 台大天使會 | NTUTEC",
@@ -53,14 +54,14 @@ export default function AngelApplyPage() {
             <h2 className="mb-8">入會後，你可以做什麼</h2>
             <div className="space-y-3">
               {[
-                { icon: '📋', title: '瀏覽候選新創', desc: '每月天使例會前，上架精選新創的六張資訊卡片。' },
-                { icon: '🗳️', title: '投資意向投票', desc: '天使例會後進行記名投票，表達對各新創的投資意向。投票結果供參考，實際是否投資與金額由會員自行決定。' },
-                { icon: '📊', title: '本月 Pipeline', desc: '即時查看當月評估中的新創列表與各階段篩選進度。' },
-                { icon: '📚', title: '學習中心', desc: '天使投資入門、盡職調查方法論與產業趨勢資源。' },
-                { icon: '🔔', title: '即時通知', desc: '卡片上架、投票開放、天使例會等重要事件即時推送。' },
+                { icon: ClipboardText, title: '瀏覽候選新創', desc: '每月天使例會前，上架精選新創的六張資訊卡片。' },
+                { icon: ChartBar, title: '投資意向投票', desc: '天使例會後進行記名投票，表達對各新創的投資意向。投票結果供參考，實際是否投資與金額由會員自行決定。' },
+                { icon: ChartBar, title: '本月 Pipeline', desc: '即時查看當月評估中的新創列表與各階段篩選進度。' },
+                { icon: ClipboardText, title: '學習中心', desc: '天使投資入門、盡職調查方法論與產業趨勢資源。' },
+                { icon: ClipboardText, title: '即時通知', desc: '卡片上架、投票開放、天使例會等重要事件即時推送。' },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 rounded-xl bg-white p-4">
-                  <div className="text-xl mt-0.5">{item.icon}</div>
+                  <item.icon size={22} weight="duotone" className="mt-0.5 shrink-0 text-teal" />
                   <div>
                     <span className="font-semibold text-charcoal">{item.title}</span>
                     <span className="mx-2 text-stone-warm">·</span>
@@ -102,7 +103,7 @@ export default function AngelApplyPage() {
                 rel="noopener noreferrer"
                 className="flex flex-col items-center rounded-2xl border-2 border-charcoal bg-charcoal p-8 text-center transition-colors hover:bg-charcoal/90"
               >
-                <span className="text-4xl">🏢</span>
+                <Buildings size={36} weight="duotone" className="text-white/80" />
                 <h3 className="mt-4 text-lg font-bold text-white">企業會員</h3>
                 <p className="mt-2 text-sm text-white/60">NT$100,000 / 年 · 可指派 3 位代表</p>
                 <span className="mt-6 inline-block rounded-xl bg-white px-5 py-2 text-sm font-semibold text-charcoal">
