@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Send } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
 import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
@@ -248,10 +249,14 @@ export default function GaragePage() {
       </section>
 
       {/* CTA */}
-      <section className="section-spacing bg-teal-wash">
-        <div className="container text-center">
-          <h2 className="mb-4">有興趣加入 2027 梯次？</h2>
-          <p className="mx-auto mb-6 max-w-xl text-lg text-slate-muted">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/photos/ntu-beauty-1.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2] text-center">
+          <h2 className="mb-4 text-white">有興趣加入 2027 梯次？</h2>
+          <p className="mx-auto mb-6 max-w-xl text-lg text-white/80">
             提前登記你的團隊，12 月正式申請開放時，我們將第一時間通知你。登記不等同申請，正式申請仍需依流程提交。
           </p>
           <Link

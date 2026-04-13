@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Suspense } from "react";
 import { AlertCircle } from "lucide-react";
 import PageHero from "@/components/public/PageHero";
@@ -191,10 +192,14 @@ export default function ApplyPage() {
       </section>
 
       {/* FAQ Link */}
-      <section className="section-spacing">
-        <div className="container text-center">
-          <h3 className="mb-4">還有疑問？</h3>
-          <p className="mb-6 text-slate-muted">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/photos/ntu-fuzhong-fountain.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2] text-center">
+          <h3 className="mb-4 text-white">還有疑問？</h3>
+          <p className="mb-6 text-white/80">
             查看常見問題，了解更多關於申請條件、計畫內容與費用的細節。
           </p>
           <Link href="/faq" className="btn-pill-outline">

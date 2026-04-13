@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import { ClipboardText, ChartBar, Buildings } from "@phosphor-icons/react/dist/ssr";
 
@@ -119,18 +120,22 @@ export default function AngelApplyPage() {
       </section>
 
       {/* Contact */}
-      <section className="section-spacing">
-        <div className="container">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/events/demo-day-2025-05.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2]">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mb-4">有任何問題嗎？</h2>
-            <p className="mb-2 text-lg text-slate-muted">
+            <h2 className="mb-4 text-white">有任何問題嗎？</h2>
+            <p className="mb-2 text-lg text-white/80">
               歡迎來信或致電，我們將盡快回覆您的詢問。
             </p>
-            <p className="text-slate-muted">
+            <p className="text-white/80">
               Email：
               <a
                 href="mailto:ntutec@ntutec.com"
-                className="font-medium text-teal-deep underline underline-offset-4"
+                className="font-medium text-white underline underline-offset-4"
               >
                 ntutec@ntutec.com
               </a>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
@@ -158,12 +159,16 @@ export default function TecDealsPage() {
       </section>
 
       {/* CTA for startups */}
-      <section className="section-spacing bg-teal-wash">
-        <div className="container text-center">
-          <h2 className="mb-6 text-3xl font-bold md:text-4xl">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/photos/ntu-beauty-6.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2] text-center">
+          <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
             還沒申請？現在開始
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-white/80">
             台大加速器與台大車庫每年招募一梯次，進駐即可享受上述所有資源。
           </p>
           <Link href="/apply" className="btn-pill-primary">

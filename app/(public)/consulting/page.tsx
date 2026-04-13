@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 
@@ -96,12 +97,16 @@ export default function ConsultingPage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="section-spacing bg-stone">
-        <div className="container">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/events/opening-2026-mentor-session.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2]">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="micro-label mb-4">Get in Touch</p>
-            <h2 className="mb-4">洽詢諮詢服務</h2>
-            <p className="mb-8 text-lg text-slate-muted">
+            <p className="micro-label mb-4 text-white/60">Get in Touch</p>
+            <h2 className="mb-4 text-white">洽詢諮詢服務</h2>
+            <p className="mb-8 text-lg text-white/80">
               請來信說明您的需求（企業規模、創新議題、期望時程），我們評估後安排合適窗口與您聯繫。通常於 3 個工作日內回覆。
             </p>
             <a
@@ -110,7 +115,7 @@ export default function ConsultingPage() {
             >
               來信洽詢
             </a>
-            <p className="mt-6 text-sm text-slate-muted">
+            <p className="mt-6 text-sm text-white/60">
               ntutec@ntutec.com　·　週一至週五 9:00–18:00
             </p>
           </div>

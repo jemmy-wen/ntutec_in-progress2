@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import TrackClick from "@/components/TrackClick";
@@ -254,12 +255,16 @@ export default function PitchPage() {
       </section>
 
       {/* CTA — form */}
-      <section id="submit" className="section-spacing bg-stone">
-        <div className="container">
+      <section id="submit" className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/events/opening-2026-pitching.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2]">
           <div className="mx-auto max-w-xl">
-            <p className="micro-label mb-4 text-center">Submit</p>
-            <h2 className="mb-3 text-center">立即投遞</h2>
-            <p className="mb-8 text-center text-slate-muted">
+            <p className="micro-label mb-4 text-center text-white/60">Submit</p>
+            <h2 className="mb-3 text-center text-white">立即投遞</h2>
+            <p className="mb-8 text-center text-white/80">
               提交後，投資經理將逐一審閱並主動與你聯繫。
             </p>
             <TrackClick eventName="cta_pitch_click" eventParams={{ location: 'pitch_page_submit' }}>

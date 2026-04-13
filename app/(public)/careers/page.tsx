@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import { Plant, RocketLaunch, GraduationCap, Lightbulb, CalendarBlank } from "@phosphor-icons/react/dist/ssr";
 
@@ -245,16 +246,20 @@ export default function CareersPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-spacing bg-teal-wash">
-        <div className="container text-center">
-          <h2 className="mb-6">對實習機會有興趣？</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/events/opening-2026-networking.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2] text-center">
+          <h2 className="mb-6 text-white">對實習機會有興趣？</h2>
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-white/80">
             歡迎來信告訴我們你的背景與興趣，我們將在下一梯次招募時優先通知你。
           </p>
           <Link href="mailto:ntutec@ntutec.com" className="btn-pill-primary">
             登記下一梯次招募通知
           </Link>
-          <p className="mt-4 text-sm text-slate-muted">
+          <p className="mt-4 text-sm text-white/60">
             地址：台北市中正區思源街 18 號，台大水源校區卓越研究大樓 7 樓
           </p>
         </div>

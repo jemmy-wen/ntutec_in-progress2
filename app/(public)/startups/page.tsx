@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import cohort from "@/data/cohort_2026.json";
 import TrackClick from "@/components/TrackClick";
@@ -140,27 +141,31 @@ export default function StartupsPage() {
         </div>
       </section>
 
-      <section className="section-spacing bg-stone">
-        <div className="container">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/photos/ntu-beauty-5.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2]">
           <div className="grid gap-6 md:grid-cols-3 text-center">
-            <div className="rounded-2xl bg-white p-6">
-              <RocketLaunch size={28} weight="duotone" className="mb-2 text-teal" />
-              <h3 className="mb-2 text-base font-semibold">我也想加入</h3>
-              <p className="mb-4 text-sm text-slate-muted">申請 2027 梯次台大加速器或台大車庫</p>
+            <div className="rounded-2xl bg-white/10 border border-white/20 p-6">
+              <RocketLaunch size={28} weight="duotone" className="mb-2 text-teal mx-auto" />
+              <h3 className="mb-2 text-base font-semibold text-white">我也想加入</h3>
+              <p className="mb-4 text-sm text-white/70">申請 2027 梯次台大加速器或台大車庫</p>
               <TrackClick eventName="cta_apply_click" eventParams={{ location: 'startups_page' }}>
                 <a href="/apply" className="btn-pill-outline text-sm">提前登記申請</a>
               </TrackClick>
             </div>
-            <div className="rounded-2xl bg-white p-6">
-              <Briefcase size={28} weight="duotone" className="mb-2 text-teal" />
-              <h3 className="mb-2 text-base font-semibold">我是投資人</h3>
-              <p className="mb-4 text-sm text-slate-muted">了解天使投資俱樂部，參與早期案件媒合</p>
+            <div className="rounded-2xl bg-white/10 border border-white/20 p-6">
+              <Briefcase size={28} weight="duotone" className="mb-2 text-teal mx-auto" />
+              <h3 className="mb-2 text-base font-semibold text-white">我是投資人</h3>
+              <p className="mb-4 text-sm text-white/70">了解天使投資俱樂部，參與早期案件媒合</p>
               <a href="/angel" className="btn-pill-outline text-sm">了解天使俱樂部</a>
             </div>
-            <div className="rounded-2xl bg-white p-6">
-              <Buildings size={28} weight="duotone" className="mb-2 text-teal" />
-              <h3 className="mb-2 text-base font-semibold">我是企業</h3>
-              <p className="mb-4 text-sm text-slate-muted">探索企業垂直加速器與新創合作機會</p>
+            <div className="rounded-2xl bg-white/10 border border-white/20 p-6">
+              <Buildings size={28} weight="duotone" className="mb-2 text-teal mx-auto" />
+              <h3 className="mb-2 text-base font-semibold text-white">我是企業</h3>
+              <p className="mb-4 text-sm text-white/70">探索企業垂直加速器與新創合作機會</p>
               <a href="/corporate" className="btn-pill-outline text-sm">探索企業合作</a>
             </div>
           </div>

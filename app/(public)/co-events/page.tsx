@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
@@ -102,10 +103,14 @@ export default function CoEventsPage() {
       </section>
 
       {/* Corporate co-host CTA */}
-      <section className="section-spacing">
-        <div className="container">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/events/demo-day-2025-01.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2]">
           <div className="mt-6 text-center">
-            <p className="text-slate-muted mb-3">有企業合作提案？歡迎與我們洽談。</p>
+            <p className="text-white/80 mb-3">有企業合作提案？歡迎與我們洽談。</p>
             <Link href="/corporate" className="btn-pill-outline">企業合作洽談</Link>
           </div>
         </div>
