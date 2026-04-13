@@ -12,6 +12,7 @@ import NewsSection from '@/components/public/home/NewsSection'
 import PartnersSection from '@/components/public/home/PartnersSection'
 import NTUEcosystemSection from '@/components/public/home/NTUEcosystemSection'
 import Image from 'next/image'
+import { FadeIn } from '@/components/ui/fade-in'
 
 export const metadata: Metadata = {
   title: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',
@@ -62,13 +63,13 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Activity Highlight */}
-      <section className="section-spacing bg-stone">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
-          <div className="mb-8 text-center">
+          <FadeIn className="mb-8 text-center">
             <p className="micro-label mb-4">Community</p>
             <h2 className="mb-4">600+ 新創，一起走向市場</h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-muted">2026 輔導計畫開幕式，逾 80 位創業者與輔導業師齊聚台大，展開為期十個月的創業加速之旅。</p>
-          </div>
+          </FadeIn>
           <div className="relative overflow-hidden rounded-2xl" style={{aspectRatio:'21/9'}}>
             <Image
               src="/images/events/opening-2026-biggroup.jpg"
@@ -82,9 +83,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <FocusAreasSection />
+      <FadeIn>
+        <FocusAreasSection />
+      </FadeIn>
       <AudienceCards />
-      <StatsSection />
+      <FadeIn>
+        <StatsSection />
+      </FadeIn>
       <NewsSection />
       <NTUEcosystemSection />
       <PartnersSection />

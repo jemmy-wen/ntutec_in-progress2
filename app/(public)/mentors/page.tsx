@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import React from "react";
 import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import { JsonLd } from "@/components/JsonLd";
 import { ogImageUrl } from "@/lib/og";
 import { createClient } from "@/lib/supabase/server";
+import { Target, RocketLaunch, Buildings, Flask } from "@phosphor-icons/react/dist/ssr";
 
 export const revalidate = 3600; // ISR: revalidate every hour
 
@@ -72,7 +74,7 @@ interface Category {
   key: string;
   title: string;
   subtitle: string;
-  emoji: string;
+  Icon: React.ComponentType<{ size?: number; weight?: "thin" | "light" | "regular" | "bold" | "fill" | "duotone"; className?: string }>;
   description: string;
   display_count?: string;
 }
@@ -82,7 +84,7 @@ const CATEGORY_META: Record<string, Category> = {
     key: "vc",
     title: "投資人",
     subtitle: "VC Partners",
-    emoji: "🎯",
+    Icon: Target,
     description: "現職或前創投 / 天使 / 加速器主理人。能投資、能介紹 LP、能提供融資策略。",
     display_count: "10+",
   },
@@ -90,7 +92,7 @@ const CATEGORY_META: Record<string, Category> = {
     key: "founder",
     title: "創業家",
     subtitle: "Serial Founders",
-    emoji: "🚀",
+    Icon: RocketLaunch,
     description: "有 exit 經驗或正在經營第二、第三家公司的實戰派。踩過的坑都能告訴你。",
     display_count: "10+",
   },
@@ -98,7 +100,7 @@ const CATEGORY_META: Record<string, Category> = {
     key: "exec",
     title: "企業高管",
     subtitle: "Corporate Executives",
-    emoji: "🏢",
+    Icon: Buildings,
     description: "大企業 C-level / VP / 集團策略主管。打開客戶、通路、策略合作的入口。",
     display_count: "10+",
   },
@@ -106,7 +108,7 @@ const CATEGORY_META: Record<string, Category> = {
     key: "expert",
     title: "產業專家",
     subtitle: "Domain Experts",
-    emoji: "🔬",
+    Icon: Flask,
     description: "深度技術 / 法律 / 財會 / 營運 know-how。特定領域的顧問深度。",
     display_count: "5+",
   },
@@ -283,7 +285,7 @@ export default async function MentorsPage() {
                 aria-label={`${cat.title}：${cat.display_count ?? cat.mentors.length} 位`}
                 className="card-hover rounded-xl border border-stone-warm/60 bg-stone p-4 text-center transition-colors"
               >
-                <div className="text-3xl" aria-hidden="true">{cat.emoji}</div>
+                <div className="flex justify-center text-teal" aria-hidden="true"><cat.Icon size={32} weight="duotone" /></div>
                 <div className="mt-2 text-sm font-semibold text-charcoal">
                   {cat.title}
                 </div>
@@ -341,7 +343,7 @@ export default async function MentorsPage() {
               <div>
                 <p className="micro-label mb-2 text-teal">{cat.subtitle}</p>
                 <h2 className="flex items-center gap-3">
-                  <span className="text-4xl" aria-hidden="true">{cat.emoji}</span>
+                  <span className="text-teal" aria-hidden="true"><cat.Icon size={40} weight="duotone" /></span>
                   <span>{cat.title}</span>
                   <span className="text-lg font-normal text-slate-muted">
                     · {cat.display_count ?? cat.mentors.length} 位

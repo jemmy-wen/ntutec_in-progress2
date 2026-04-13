@@ -5,6 +5,7 @@ import Image from 'next/image'
 import TrackClick from '@/components/TrackClick'
 import { ogImageUrl } from '@/lib/og'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
+import { Target, ClipboardText, Handshake, TrendUp, DownloadSimple, Flask, ListChecks, Microphone, Scales, Briefcase } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS 台大天使會 | NTUTEC',
@@ -74,25 +75,25 @@ const recentInvestments = [
 
 const highlights = [
   {
-    icon: '🎯',
+    Icon: Target,
     title: '嚴選優質案源',
     description:
       '每案皆經三段嚴格篩選，由投資經理親自盡調。省去自行篩選的時間成本，直接接觸已通過高門檻評估的優質新創。',
   },
   {
-    icon: '📋',
+    Icon: ClipboardText,
     title: '完整投資備忘錄',
     description:
       '每個上架月會的新創均附完整 DD 備忘錄：市場分析、財務模型、競爭優勢、風險評估與 Term Sheet 建議，支援你的投資決策。',
   },
   {
-    icon: '🤝',
+    Icon: Handshake,
     title: '彈性個人直接投資',
     description:
       '會員以個人資金直接投資，不受機構共投限制，投資金額自主決定，完全掌握決策時機與規模。',
   },
   {
-    icon: '📈',
+    Icon: TrendUp,
     title: '生態系長期支持',
     description:
       '連結 13 年累積的業師網絡、校友資源與 35 家企業合作夥伴，被投企業獲得的不只是資金，而是持續成長的生態系動能。',
@@ -100,12 +101,12 @@ const highlights = [
 ]
 
 const monthlySteps = [
-  { icon: '📥', title: '案源進入', desc: '申請、業師推薦或校友引薦' },
-  { icon: '🔬', title: '三段篩選', desc: '投資經理全程主導盡職調查' },
-  { icon: '📋', title: '上架資訊卡', desc: '月會前開放閱覽，附完整投資評估摘要' },
-  { icon: '🎤', title: '天使例會', desc: '新創 Pitch 與 Q&A，會員現場互動提問' },
-  { icon: '🗳️', title: '記名投票', desc: '針對有意投資的案件表態與說明偏好' },
-  { icon: '💼', title: '個人直接投資', desc: '會員以個人名義直接持股，中心協助撮合文件流程' },
+  { Icon: DownloadSimple, title: '案源進入', desc: '申請、業師推薦或校友引薦' },
+  { Icon: Flask, title: '三段篩選', desc: '投資經理全程主導盡職調查' },
+  { Icon: ListChecks, title: '上架資訊卡', desc: '月會前開放閱覽，附完整投資評估摘要' },
+  { Icon: Microphone, title: '天使例會', desc: '新創 Pitch 與 Q&A，會員現場互動提問' },
+  { Icon: Scales, title: '記名投票', desc: '針對有意投資的案件表態與說明偏好' },
+  { Icon: Briefcase, title: '個人直接投資', desc: '會員以個人名義直接持股，中心協助撮合文件流程' },
 ]
 
 const gateProcess = [
@@ -231,7 +232,7 @@ export default function AngelPage() {
       </section>
 
       {/* ── Member Benefits ── */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Member Benefits</p>
@@ -240,7 +241,7 @@ export default function AngelPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {highlights.map((benefit) => (
               <div key={benefit.title} className="card-hover rounded-2xl bg-white p-8">
-                <span className="mb-4 block text-4xl">{benefit.icon}</span>
+                <span className="mb-4 block text-teal"><benefit.Icon size={40} weight="duotone" /></span>
                 <h3 className="mb-3 text-xl font-semibold">{benefit.title}</h3>
                 <p className="text-slate-muted leading-relaxed">{benefit.description}</p>
               </div>
@@ -263,8 +264,8 @@ export default function AngelPage() {
             {monthlySteps.map((s, i) => (
               <div key={s.title} className="flex flex-1 items-start">
                 <div className="flex-1 text-center">
-                  <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm">
-                    {s.icon}
+                  <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-white text-teal shadow-sm">
+                    <s.Icon size={28} weight="duotone" />
                   </div>
                   <div className="mb-1 text-xs font-bold tracking-widest text-teal">
                     {String(i + 1).padStart(2, '0')}
@@ -288,7 +289,7 @@ export default function AngelPage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xl">{s.icon}</span>
+                    <span className="text-teal"><s.Icon size={20} weight="duotone" /></span>
                     <h4 className="font-semibold">{s.title}</h4>
                   </div>
                   <p className="mt-1 text-sm text-slate-muted">{s.desc}</p>

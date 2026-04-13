@@ -279,3 +279,12 @@
 
 /* Elite shadow for cards */
 .shadow-elite { box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1); }
+
+/* Enhanced card hover */
+.card-elevated {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.card-elevated:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+}

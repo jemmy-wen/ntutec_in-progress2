@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
+import { Plant, LinkSimple, RocketLaunch } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: '關於台大創創中心 | NTUTEC',
@@ -21,21 +22,21 @@ const hi3Model = [
     key: 'Incubation',
     label: '輔導培育',
     en: 'Incubation',
-    icon: '🌱',
+    Icon: Plant,
     description: '透過輔導經理陪跑、業師一對一諮詢、專業課程（商業模式、募資、法務），陪伴早期創業團隊從構想走到原型驗證。',
   },
   {
     key: 'Integration',
     label: '對接整合',
     en: 'Integration',
-    icon: '🔗',
+    Icon: LinkSimple,
     description: '銜接台大各院系資源、企業垂直加速器、EiMBA 創業學程，連結政府計畫（FITI、TTA）與國際夥伴，讓新創快速接軌真實場域。',
   },
   {
     key: 'Ignition',
     label: '加速起飛',
     en: 'Ignition',
-    icon: '🚀',
+    Icon: RocketLaunch,
     description: '舉辦 Demo Day（74 位投資人到場，2025）、閉門投資媒合、天使投資俱樂部，為準備好的團隊引燃第一桶資本，走向市場起飛。',
   },
 ]
@@ -81,7 +82,7 @@ export default function AboutPage() {
       ]} />
       <PageHero title="關於台大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人網絡（含 40+ 天使會員）——台大創業生態系的完整版圖。" />
 
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
@@ -130,7 +131,7 @@ export default function AboutPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {hi3Model.map((item) => (
               <div key={item.key} className="rounded-2xl bg-white p-8 shadow-sm border border-slate-100">
-                <div className="mb-4 text-4xl">{item.icon}</div>
+                <div className="mb-4 text-teal"><item.Icon size={40} weight="duotone" /></div>
                 <div className="mb-1 text-xs font-semibold uppercase tracking-widest text-teal">{item.en}</div>
                 <h3 className="mb-3 text-xl font-bold text-charcoal">{item.label}</h3>
                 <p className="text-slate-muted leading-relaxed">{item.description}</p>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Calendar, Send } from "lucide-react";
+import { UsersThree, Buildings, CurrencyCircleDollar, MapPin } from "@phosphor-icons/react/dist/ssr";
 import PageHero from "@/components/public/PageHero";
 import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
 import Image from "next/image";
@@ -153,25 +154,25 @@ const phases = [
 
 const benefits = [
   {
-    icon: "👥",
+    Icon: UsersThree,
     title: "業師網絡",
     description:
       "歷年 80+ 位業師深厚陣容，2026 陪跑 40+ 位，平均逾 20 年產業深耕，涵蓋創投、AI、生技、半導體等領域，一對一深度輔導。",
   },
   {
-    icon: "🏢",
+    Icon: Buildings,
     title: "企業資源",
     description:
       "35 家合作企業（含 Nvidia、Synopsys、鴻海等），提供技術驗證場域與潛在客戶資源。",
   },
   {
-    icon: "💰",
+    Icon: CurrencyCircleDollar,
     title: "募資對接",
     description:
       "天使投資俱樂部與 300+ 投資人網絡，涵蓋種子輪到 A 輪的募資機會。",
   },
   {
-    icon: "🏢",
+    Icon: MapPin,
     title: "虛擬進駐",
     description:
       "免費虛擬進駐台大水源校區，享有中心會議室與活動場地使用權，彈性配合創業節奏。",
@@ -266,7 +267,7 @@ export default function AcceleratorPage() {
       </section>
 
       {/* What We Offer */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Benefits</p>
@@ -275,7 +276,7 @@ export default function AcceleratorPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b) => (
               <div key={b.title} className="text-center">
-                <span className="text-4xl">{b.icon}</span>
+                <span className="inline-block text-teal"><b.Icon size={40} weight="duotone" /></span>
                 <h4 className="mt-4 mb-2 text-lg">{b.title}</h4>
                 <p className="text-sm leading-relaxed text-slate-muted">
                   {b.description}
