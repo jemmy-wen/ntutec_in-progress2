@@ -55,7 +55,7 @@ export default function HeroSection() {
           <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">
             <MagneticButton strength={0.4}>
               <Link href="/apply" className="btn-pill-primary px-8 py-4 text-base block">
-                申請加入輔導計畫
+                申請輔導計畫
               </Link>
             </MagneticButton>
             <MagneticButton strength={0.25}>
@@ -63,7 +63,7 @@ export default function HeroSection() {
                 href="/about"
                 className="btn-pill-outline px-8 py-4 text-base block border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white/50"
               >
-                認識 NTUTEC
+                走進 NTUTEC
               </Link>
             </MagneticButton>
           </div>

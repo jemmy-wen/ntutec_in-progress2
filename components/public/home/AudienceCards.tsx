@@ -35,7 +35,7 @@ const audiences: AudienceCard[] = [
     description:
       "從技術驗證到市場擴展，台大加速器與台大車庫提供完整的輔導資源、業師網絡與募資對接。",
     href: "/programs",
-    cta: "立即預約 2027 登記",
+    cta: "搶先預約 2027 梯次",
     gradient: "bg-gradient-to-br from-teal/20 to-teal-deep/10",
     photo: "/images/events/demo-day-2025-booth2.jpg",
     photoAlt: "Demo Day 2025 — 新創創辦人展示成果",
@@ -47,7 +47,7 @@ const audiences: AudienceCard[] = [
     description:
       "透過創新競賽、聯合活動與諮詢服務，與頂尖新創團隊共創，驅動企業創新轉型。",
     href: "/corporate",
-    cta: "啟動企業外部創新",
+    cta: "開啟外部創新之路",
     gradient: "bg-gradient-to-br from-stone-warm to-stone",
     photo: "/images/events/demo-day-2025-booth1.jpg",
     photoAlt: "Demo Day 2025 — 新創展示攤位",
@@ -59,7 +59,7 @@ const audiences: AudienceCard[] = [
     description:
       "加入天使俱樂部，優先接觸台大頂尖硬科技新創，參與早期投資機會與獨家交流活動。",
     href: "/angel",
-    cta: "了解更多",
+    cta: "深入了解天使會",
     gradient: "bg-gradient-to-br from-teal-deep/15 to-charcoal/5",
     photo: "/images/events/demo-day-2025-03.jpg",
     photoAlt: "Demo Day 2025 — 投資人與新創合影",

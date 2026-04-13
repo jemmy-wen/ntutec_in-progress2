@@ -82,7 +82,7 @@ export default function AboutPage() {
         { name: '首頁', url: 'https://tec.ntu.edu.tw' },
         { name: '關於台大創創中心', url: 'https://tec.ntu.edu.tw/about' },
       ]} />
-      <PageHero title="關於台大創創中心" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人網絡（含 40+ 天使會員）——台大創業生態系的完整版圖。" />
+      <PageHero title="台大創創中心：我們的故事" subtitle="About NTUTEC" description="13 年 · 600+ 新創 · 35 家企業夥伴 · 150+ 投資人網絡（含 40+ 天使會員）——台大創業生態系的完整版圖。" />
 
       <section className="section-spacing bg-warm-stone">
         <div className="container">

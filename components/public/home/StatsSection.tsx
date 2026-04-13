@@ -79,7 +79,7 @@ export default function StatsSection() {
       <div className="container relative">
         <div className="mb-12 text-center">
           <p className="micro-label mb-2 text-teal-light">Social Proof</p>
-          <h2 className="text-white">用數據說話</h2>
+          <h2 className="text-white">數字，見證我們的影響力。</h2>
         </div>
 
         <div
