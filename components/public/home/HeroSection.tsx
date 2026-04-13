@@ -21,7 +21,8 @@ export default function HeroSection() {
       </div>
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-[#0A192F]/90 via-[#0A192F]/75 to-[#0A192F]/50" />
+      {/* Lighter overlay — let the campus photo show through clearly */}
+      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-[#0A192F]/70 via-[#0A192F]/50 to-[#0A192F]/30" />
 
       {/* Subtle background beams */}
       <BackgroundBeams className="z-[3] opacity-20" />
