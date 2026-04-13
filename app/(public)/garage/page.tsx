@@ -95,8 +95,8 @@ export default function GaragePage() {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
                 <Image
-                  src="/images/photos/ntu-beauty-5.jpg"
-                  alt="台大校園水岸環境"
+                  src="/images/events/opening-2026-biggroup.jpg"
+                  alt="2026 輔導計畫開幕式大合照"
                   fill
                   className="object-cover"
                 />
