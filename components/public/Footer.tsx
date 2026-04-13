@@ -62,15 +62,12 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="/" className="inline-flex items-center gap-2.5">
               <Image
-                src="/logo-tec-icon.png"
-                alt="NTUTEC"
-                width={32}
+                src="/images/brand/ntutec-logo-horizontal.png"
+                alt="NTUTEC 台大創創中心"
+                width={160}
                 height={32}
-                className="rounded-lg"
+                className="h-8 w-auto"
               />
-              <span className="text-xl font-bold tracking-tight text-charcoal">
-                NTUTEC
-              </span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-muted">
               台大創創中心連結新創團隊、企業夥伴與天使投資人，13 年深耕台灣最具底蘊的校園創業生態系。

@@ -22,7 +22,7 @@ export default function OrganizationSchema() {
         url: "https://tec.ntu.edu.tw",
         logo: {
           "@type": "ImageObject",
-          url: "https://tec.ntu.edu.tw/logo.png",
+          url: "https://tec.ntu.edu.tw/images/brand/ntutec-logo-horizontal.png",
           width: 200,
           height: 60,
         },

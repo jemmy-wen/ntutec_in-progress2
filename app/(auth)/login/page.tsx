@@ -102,13 +102,12 @@ export default function LoginPage() {
       <div className="text-center mb-7">
         <Link href="/" className="inline-flex items-center gap-2 mb-4">
           <Image
-            src="/logo-tec-icon.png"
+            src="/images/brand/ntutec-logo-horizontal.png"
             alt="NTUTEC"
-            width={40}
-            height={40}
-            className="rounded-lg"
+            width={160}
+            height={32}
+            className="mx-auto h-8 w-auto"
           />
-          <span className="text-xl font-bold text-gray-900">NTUTEC</span>
         </Link>
         <h1 className="text-lg font-semibold text-gray-900">登入台大創創中心平台</h1>
         <p className="text-sm text-gray-400 mt-1">天使俱樂部・業師媒合・新創申請</p>

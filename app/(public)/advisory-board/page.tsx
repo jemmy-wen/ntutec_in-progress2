@@ -93,7 +93,7 @@ export default function AdvisoryBoardPage() {
                 {/* NTUTEC logo */}
                 <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-teal-wash">
                   <Image
-                    src="/logo-tec-icon.png"
+                    src="/images/brand/ntutec-icon-teal.png"
                     alt="NTUTEC"
                     width={64}
                     height={64}

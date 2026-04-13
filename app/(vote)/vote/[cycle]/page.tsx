@@ -19,7 +19,7 @@ export default async function VotePage({ params }: PageProps) {
       <div className="max-w-lg mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <Image src="/logo-angels.png" alt="NTUTEC ANGELS 台大天使會" width={200} height={64} priority className="h-16 w-auto mx-auto mb-4" />
+          <Image src="/images/brand/ntutec-angels-zh.png" alt="NTUTEC ANGELS 台大天使會" width={240} height={127} priority className="h-16 w-auto mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-slate-900">
             {formatCycle(cycle)} 天使例會投票
           </h1>
