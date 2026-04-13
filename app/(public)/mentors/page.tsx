@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
+import MentorFilterTabs from "@/components/public/MentorFilterTabs";
 import { JsonLd } from "@/components/JsonLd";
 import { ogImageUrl } from "@/lib/og";
 import { createClient } from "@/lib/supabase/server";
@@ -279,11 +280,9 @@ export default async function MentorsPage() {
 
           <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
             {categories.map((cat) => (
-              <a
+              <div
                 key={cat.key}
-                href={`#${cat.key}`}
-                aria-label={`${cat.title}：${cat.display_count ?? cat.mentors.length} 位`}
-                className="card-hover rounded-xl border border-stone-warm/60 bg-stone p-4 text-center transition-colors"
+                className="rounded-xl border border-stone-warm/60 bg-stone p-4 text-center"
               >
                 <div className="flex justify-center text-teal" aria-hidden="true"><cat.Icon size={32} weight="duotone" /></div>
                 <div className="mt-2 text-sm font-semibold text-charcoal">
@@ -292,7 +291,7 @@ export default async function MentorsPage() {
                 <div className="text-xs text-slate-muted">
                   {cat.display_count ?? cat.mentors.length} 位 · {cat.subtitle}
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
@@ -331,38 +330,48 @@ export default async function MentorsPage() {
         </div>
       </section>
 
-      {/* Categories */}
-      {categories.map((cat, idx) => (
-        <section
-          key={cat.key}
-          id={cat.key}
-          className={`section-spacing scroll-mt-20 ${idx % 2 === 0 ? "bg-stone" : "bg-white"}`}
-        >
-          <div className="container">
-            <div className="mb-10 flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="micro-label mb-2 text-teal">{cat.subtitle}</p>
-                <h2 className="flex items-center gap-3">
-                  <span className="text-teal" aria-hidden="true"><cat.Icon size={40} weight="duotone" /></span>
-                  <span>{cat.title}</span>
-                  <span className="text-lg font-normal text-slate-muted">
-                    · {cat.display_count ?? cat.mentors.length} 位
-                  </span>
-                </h2>
-                <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-muted">
-                  {cat.description}
-                </p>
+      {/* Categories with filter tabs */}
+      <MentorFilterTabs
+        categories={categories.map((cat) => ({
+          key: cat.key,
+          title: cat.title,
+          subtitle: cat.subtitle,
+          iconName: cat.key,
+          mentorCount: cat.mentors.length,
+        }))}
+      >
+        {categories.map((cat, idx) => (
+          <section
+            key={cat.key}
+            id={cat.key}
+            className={`section-spacing scroll-mt-20 ${idx % 2 === 0 ? "bg-stone" : "bg-white"}`}
+          >
+            <div className="container">
+              <div className="mb-10 flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="micro-label mb-2 text-teal">{cat.subtitle}</p>
+                  <h2 className="flex items-center gap-3">
+                    <span className="text-teal" aria-hidden="true"><cat.Icon size={40} weight="duotone" /></span>
+                    <span>{cat.title}</span>
+                    <span className="text-lg font-normal text-slate-muted">
+                      · {cat.display_count ?? cat.mentors.length} 位
+                    </span>
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-muted">
+                    {cat.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {cat.mentors.map((mentor) => (
+                  <MentorCard key={mentor.id} mentor={mentor} />
+                ))}
               </div>
             </div>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {cat.mentors.map((mentor) => (
-                <MentorCard key={mentor.id} mentor={mentor} />
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        ))}
+      </MentorFilterTabs>
 
       {/* Empty state */}
       {categories.length === 0 && (

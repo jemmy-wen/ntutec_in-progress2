@@ -45,7 +45,7 @@ function LogoRow({
         {doubled.map((p, i) => (
           <li
             key={`${p.name}-${i}`}
-            className="shrink-0 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default"
+            className="shrink-0 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default w-[140px] h-[60px]"
           >
             <Image
               src={p.logo}
@@ -53,7 +53,7 @@ function LogoRow({
               width={p.w}
               height={p.h}
               loading="lazy"
-              className="object-contain"
+              className="object-contain max-w-full max-h-full"
             />
           </li>
         ))}
