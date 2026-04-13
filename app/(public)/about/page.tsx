@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
-import NtuEcosystemLinks from '@/components/public/NtuEcosystemLinks'
 import { Plant, LinkSimple, RocketLaunch } from '@phosphor-icons/react/dist/ssr'
 import { FadeIn } from '@/components/ui/fade-in'
 import { CountUp } from '@/components/ui/count-up'
@@ -263,8 +262,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <NtuEcosystemLinks />
 
       <section className="relative section-spacing overflow-hidden text-center">
         <div className="absolute inset-0 z-0">
