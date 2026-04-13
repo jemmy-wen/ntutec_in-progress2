@@ -36,15 +36,6 @@ function nameToSlug(name: string): string {
   return name.replace(/\s+/g, "-").toLowerCase();
 }
 
-/** Infer category from specialties */
-function inferCategory(specialties: string[] | null): string {
-  const specs = (specialties || []).join(" ").toLowerCase();
-  if (/投資|募資|vc|angel|創投|天使/.test(specs)) return "vc";
-  if (/創業|創辦|founder|exit|startup/.test(specs)) return "founder";
-  if (/企業|corporate|bd|通路|策略|管理/.test(specs)) return "exec";
-  return "expert";
-}
-
 /** Map DB row to MentorRow interface */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapDbRow(row: any): MentorRow {
@@ -53,7 +44,7 @@ function mapDbRow(row: any): MentorRow {
     name: row.name,
     title: row.title,
     highlight: row.bio,
-    category: inferCategory(row.specialties),
+    category: row.category || "expert",
     photo_url: row.photo_url,
     social_url: null,
     bio: row.bio,
@@ -68,7 +59,7 @@ async function getMentor(slug: string): Promise<MentorRow | null> {
   // DB has no slug column — fetch all active mentors and match by generated slug
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, specialties, is_active, extended_profile")
+    .select("id, name, title, bio, photo_url, category, is_active, extended_profile")
     .eq("is_active", true);
   if (!data) return null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,7 +71,7 @@ async function getRelatedMentors(category: string, excludeId: string): Promise<M
   const supabase = await createClient();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, specialties, is_active, extended_profile")
+    .select("id, name, title, bio, photo_url, category, is_active, extended_profile")
     .eq("is_active", true)
     .neq("id", excludeId);
   if (!data) return [];

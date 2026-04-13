@@ -52,23 +52,9 @@ interface Mentor {
   slug: string | null;
 }
 
-/** Map DB row (mentor-matching schema) to the Mentor interface used by the page */
-function mapDbRowToMentor(row: {
-  id: string;
-  name: string;
-  title: string | null;
-  bio: string | null;
-  photo_url: string | null;
-  specialties: string[] | null;
-  is_active: boolean;
-}): Mentor {
-  // Infer category from specialties keywords
-  const specs = (row.specialties || []).join(" ").toLowerCase();
-  let category = "expert"; // default
-  if (/投資|募資|vc|angel|創投|天使/.test(specs)) category = "vc";
-  else if (/創業|創辦|founder|exit|startup/.test(specs)) category = "founder";
-  else if (/企業|corporate|bd|通路|策略|管理/.test(specs)) category = "exec";
-
+/** Map DB row to the Mentor interface used by the page */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapDbRowToMentor(row: any): Mentor {
   return {
     id: row.id,
     name: row.name,
@@ -77,7 +63,7 @@ function mapDbRowToMentor(row: {
     photo_url: row.photo_url,
     social_url: null,
     is_new_2026: false,
-    category,
+    category: row.category || "expert",
     slug: row.name.replace(/\s+/g, "-").toLowerCase(),
   };
 }
@@ -210,7 +196,7 @@ export default async function MentorsPage() {
   // Fetch all active mentors from the mentor-matching schema
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: mentorRows } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, specialties, is_active")
+    .select("id, name, title, bio, photo_url, category, is_active")
     .eq("is_active", true)
     .order("name", { ascending: true });
 
