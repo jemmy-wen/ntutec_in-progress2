@@ -109,7 +109,7 @@ function DesktopDropdown({
     return (
       <Link
         href={item.href}
-        className="px-3 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
+        className="whitespace-nowrap px-2.5 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
       >
         {item.label}
       </Link>
@@ -134,7 +134,7 @@ function DesktopDropdown({
             if (!open) onToggle();
           }
         }}
-        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
+        className="flex items-center gap-0.5 whitespace-nowrap px-2.5 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
       >
         {item.label}
         <ChevronDown
@@ -326,19 +326,19 @@ export default function Navbar() {
       data-navbar-root
       className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/80 backdrop-blur-lg"
     >
-      <div className="container flex h-16 items-center justify-between lg:h-[72px]">
+      <div className="container flex h-16 items-center justify-between xl:h-[72px] xl:max-w-[1400px]">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/images/brand/ntutec-logo-horizontal.png"
             alt="NTUTEC 台大創創中心"
-            width={200}
-            height={40}
+            width={160}
+            height={32}
             priority
-            className="h-9 w-auto"
+            className="h-7 w-auto"
           />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-0.5">
           {NAV_ITEMS.map((item) => (
             <DesktopDropdown
               key={item.label}
@@ -352,12 +352,12 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <SearchButton onClick={() => setSearchOpen(true)} />
 
           <Link
             href={langSwitch.href}
-            className="hidden lg:inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
+            className="hidden xl:inline-flex items-center rounded-full border border-border px-2.5 py-1 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
             aria-label={langSwitch.label === "EN" ? "Switch to English" : "切換至中文"}
           >
             {langSwitch.label}
@@ -365,13 +365,13 @@ export default function Navbar() {
 
           <Link
             href="/pitch"
-            className="hidden lg:inline-flex btn-pill-outline text-sm"
+            className="hidden xl:inline-flex whitespace-nowrap btn-pill-outline text-xs px-3 py-1.5"
           >
             新創投遞
           </Link>
           <Link
             href="/angel"
-            className="hidden lg:inline-flex btn-pill-primary text-sm"
+            className="hidden xl:inline-flex whitespace-nowrap btn-pill-primary text-xs px-3 py-1.5"
           >
             加入天使會
           </Link>
@@ -381,7 +381,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-charcoal"
+            className="xl:hidden p-2 text-charcoal"
             aria-label={mobileOpen ? "關閉選單" : "開啟選單"}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -396,7 +396,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-16 z-40 bg-white overflow-y-auto lg:hidden"
+            className="fixed inset-0 top-16 z-40 bg-white overflow-y-auto xl:hidden"
           >
             <nav className="container py-6">
               {NAV_ITEMS.map((item) => (

@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: '*.ghost.io' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'static.ghost.org' },
+      { protocol: 'https', hostname: 'tec.ntu.edu.tw' },
+      { protocol: 'https', hostname: '*.supabase.co' },
     ],
   },
   async headers() {
