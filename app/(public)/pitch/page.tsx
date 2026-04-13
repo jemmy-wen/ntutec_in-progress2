@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import PageHero from "@/components/public/PageHero";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import TrackClick from "@/components/TrackClick";
+import { FadeIn } from "@/components/ui/fade-in";
 import { ogImageUrl } from "@/lib/og";
 import { Target, UserCircle, GraduationCap, CalendarBlank } from "@phosphor-icons/react/dist/ssr";
 
@@ -128,77 +128,106 @@ export default function PitchPage() {
         ]}
       />
 
-      <PageHero
-        title="投遞你的新創"
-        subtitle="Pitch to NTUTEC ANGELS"
-        description="將你的新創提交給 NTUTEC ANGELS 台大天使會。投資經理親自審閱，符合條件者安排面談，通過評估後在每月天使例會向 40+ 位天使投資人現場 Pitch。"
-      />
-
-      {/* Stats */}
-      <section className="border-b border-border/40 bg-white">
-        <div className="container">
-          <div className="grid grid-cols-2 divide-x divide-border/40 md:grid-cols-4">
-            {[
-              { value: "40+", label: "天使會員" },
-              { value: "每月", label: "定期天使例會" },
-              { value: "3 步", label: "投遞到Pitch流程" },
-              { value: "隨時", label: "開放投遞，無截止日" },
-            ].map((s) => (
-              <div key={s.label} className="px-6 py-5 text-center">
-                <div className="text-2xl font-bold text-charcoal">{s.value}</div>
-                <div className="mt-0.5 text-xs text-slate-muted">{s.label}</div>
-              </div>
-            ))}
+      {/* Hero */}
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/events/opening-2026-pitching.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/75" />
+        <div className="container relative z-[2] py-20">
+          <p className="micro-label mb-3 text-teal-light">Pitch to NTUTEC Angels</p>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">投遞你的新創</h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/80">
+            將你的新創提交給 NTUTEC ANGELS 台大天使會。投資經理親自審閱，符合條件者安排面談，通過評估後在每月天使例會向 40+ 位天使投資人現場 Pitch。
+          </p>
+          <div className="mt-8">
+            <a href="/pitch#submit" className="btn-pill-primary px-8 py-4 text-base inline-block">
+              立即投遞
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Recent Investments — dark */}
-      <section className="section-spacing bg-charcoal text-white">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <p className="mb-4 text-xs font-bold tracking-widest text-teal">TRACK RECORD</p>
-            <h2 className="text-white">天使俱樂部近期投資案例</h2>
-            <p className="mt-3 text-base text-white/60">這是進入天使例會後可能發生的事</p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {recentInvestments.map((inv) => (
-              <div
-                key={inv.name}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10"
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="rounded-full bg-teal/20 px-3 py-0.5 text-xs font-semibold text-teal">
-                    {inv.round}
-                  </span>
-                  <span className="text-xs text-white/40">{inv.sector}</span>
+      {/* Trust Signal Stats */}
+      <FadeIn>
+        <section className="border-b border-border/40 bg-white">
+          <div className="container">
+            <div className="grid grid-cols-2 divide-x divide-border/40 md:grid-cols-4">
+              {[
+                { num: "150+", label: "投資人網絡" },
+                { num: "NT$2.5億+", label: "累計投資規模" },
+                { num: "每月", label: "天使例會" },
+                { num: "3週", label: "初審回覆" },
+              ].map((s) => (
+                <div key={s.label} className="px-6 py-5 text-center">
+                  <div className="text-2xl font-bold text-charcoal">{s.num}</div>
+                  <div className="mt-0.5 text-xs text-slate-muted">{s.label}</div>
                 </div>
-                <h4 className="mb-3 text-lg font-semibold leading-snug text-white">{inv.name}</h4>
-                <p className="text-sm leading-relaxed text-white/60">{inv.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </FadeIn>
+
+      {/* Recent Investments — dark with hard tech photo as subtle background */}
+      <FadeIn>
+        <section className="relative section-spacing overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/photos/ntu-spotlight/silicon-photonics-sensor.jpg"
+              alt=""
+              fill
+              className="object-cover opacity-20"
+            />
+          </div>
+          <div className="absolute inset-0 z-[1] bg-charcoal/90" />
+          <div className="container relative z-[2]">
+            <div className="mb-12 text-center">
+              <p className="mb-4 text-xs font-bold tracking-widest text-teal">TRACK RECORD</p>
+              <h2 className="text-white">天使俱樂部近期投資案例</h2>
+              <p className="mt-3 text-base text-white/60">這是進入天使例會後可能發生的事</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {recentInvestments.map((inv) => (
+                <div
+                  key={inv.name}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10"
+                >
+                  <div className="mb-4 flex items-center justify-between">
+                    <span className="rounded-full bg-teal/20 px-3 py-0.5 text-xs font-semibold text-teal">
+                      {inv.round}
+                    </span>
+                    <span className="text-xs text-white/40">{inv.sector}</span>
+                  </div>
+                  <h4 className="mb-3 text-lg font-semibold leading-snug text-white">{inv.name}</h4>
+                  <p className="text-sm leading-relaxed text-white/60">{inv.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </FadeIn>
 
       {/* Why pitch here */}
-      <section className="section-spacing bg-warm-stone">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">Why NTUTEC ANGELS</p>
-            <h2>為什麼選擇這裡</h2>
+      <FadeIn>
+        <section className="section-spacing bg-warm-stone">
+          <div className="container">
+            <div className="mb-12 text-center">
+              <p className="micro-label mb-4">Why NTUTEC ANGELS</p>
+              <h2>為什麼選擇這裡</h2>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2">
+              {whyPitch.map((item) => (
+                <div key={item.title} className="card-hover card-elevated rounded-2xl bg-white p-8">
+                  <item.icon size={36} weight="duotone" className="mb-4 text-teal" />
+                  <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
+                  <p className="text-slate-muted leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            {whyPitch.map((item) => (
-              <div key={item.title} className="card-hover card-elevated rounded-2xl bg-white p-8">
-                <item.icon size={36} weight="duotone" className="mb-4 text-teal" />
-                <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
-                <p className="text-slate-muted leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      </FadeIn>
 
       {/* After submit */}
       <section className="section-spacing bg-stone">

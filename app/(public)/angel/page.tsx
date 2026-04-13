@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import PageHero from '@/components/public/PageHero'
 import Image from 'next/image'
 import TrackClick from '@/components/TrackClick'
 import { ogImageUrl } from '@/lib/og'
@@ -180,57 +179,72 @@ export default function AngelPage() {
         { name: '首頁', url: 'https://tec.ntu.edu.tw' },
         { name: 'NTUTEC ANGELS 台大天使會', url: 'https://tec.ntu.edu.tw/angel' },
       ]} />
-      <PageHero
-        title="NTUTEC ANGELS 台大天使會"
-        subtitle="Angel Investment Club"
-        description="以台大創業生態系為核心的天使投資社群。每月精選優質新創、三段嚴格盡調、記名投票，與 40+ 位天使會員（150+ 位投資人網絡）共同佈局早期新創。"
-      />
-
-      {/* ── Stat bar ── */}
-      <section className="border-b border-border/40 bg-white">
-        <div className="container">
-          <div className="grid grid-cols-2 divide-x divide-border/40 md:grid-cols-4">
-            {[
-              { value: '40+', label: '天使會員' },
-              { value: '每月', label: '定期天使例會' },
-              { value: '2023', label: '俱樂部成立年' },
-              { value: '3 關', label: '嚴格篩選機制' },
-            ].map((s) => (
-              <div key={s.label} className="px-6 py-5 text-center">
-                <div className="text-2xl font-bold text-charcoal">{s.value}</div>
-                <div className="mt-0.5 text-xs text-slate-muted">{s.label}</div>
-              </div>
-            ))}
-          </div>
+      {/* Hero */}
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/events/demo-day-2025-05.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2] py-20">
+          <p className="micro-label mb-3 text-teal-light">Angel Investment Club</p>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">NTUTEC ANGELS 台大天使會</h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/80">
+            以台大創業生態系為核心的天使投資社群。每月精選優質新創、三段嚴格盡調、記名投票，與 40+ 位天使會員（150+ 位投資人網絡）共同佈局早期新創。
+          </p>
         </div>
       </section>
+
+      {/* Trust signal strip */}
+      <div className="border-b border-stone-warm/40 bg-white">
+        <div className="container flex flex-wrap justify-center gap-8 py-6 text-center md:gap-16">
+          {[
+            { num: "150+", label: "投資人網絡" },
+            { num: "40+", label: "天使會員" },
+            { num: "每月", label: "天使例會" },
+            { num: "NT$2.5億+", label: "累計投資規模" },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="text-2xl font-bold text-teal">{s.num}</div>
+              <div className="mt-1 text-xs text-slate-muted">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* ── Recent Investments — dark section ── */}
-      <section className="section-spacing bg-charcoal text-white">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <p className="mb-4 text-xs font-bold tracking-widest text-teal">TRACK RECORD</p>
-            <h2 className="text-white">近期投資案例</h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {recentInvestments.map((inv) => (
-              <div
-                key={inv.name}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10"
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="rounded-full bg-teal/20 px-3 py-0.5 text-xs font-semibold text-teal">
-                    {inv.round}
-                  </span>
-                  <span className="text-xs text-white/40">{inv.sector}</span>
+      <FadeIn>
+        <section className="section-spacing bg-charcoal text-white">
+          <div className="container">
+            <div className="mb-12 text-center">
+              <p className="mb-4 text-xs font-bold tracking-widest text-teal">TRACK RECORD</p>
+              <h2 className="text-white">近期投資案例</h2>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {recentInvestments.map((inv) => (
+                <div
+                  key={inv.name}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10"
+                >
+                  <div className="mb-4 flex items-center justify-between">
+                    <span className="rounded-full bg-teal/20 px-3 py-0.5 text-xs font-semibold text-teal">
+                      {inv.round}
+                    </span>
+                    <span className="text-xs text-white/40">{inv.sector}</span>
+                  </div>
+                  <h4 className="mb-3 text-lg font-semibold leading-snug text-white">{inv.name}</h4>
+                  <p className="text-sm leading-relaxed text-white/60">{inv.description}</p>
                 </div>
-                <h4 className="mb-3 text-lg font-semibold leading-snug text-white">{inv.name}</h4>
-                <p className="text-sm leading-relaxed text-white/60">{inv.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </FadeIn>
 
       {/* ── Member Benefits ── */}
       <section className="section-spacing bg-warm-stone">

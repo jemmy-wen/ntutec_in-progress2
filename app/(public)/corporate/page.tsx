@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PageHero from "@/components/public/PageHero";
 import Image from "next/image";
 import TrackClick from "@/components/TrackClick";
+import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import { RocketLaunch, Trophy, Microphone, Lightbulb, Target, Handshake, ChartBar } from "@phosphor-icons/react/dist/ssr";
+import { FadeIn } from "@/components/ui/fade-in";
 
 export const metadata: Metadata = {
   title: "企業合作方案 | NTUTEC",
@@ -62,93 +63,135 @@ const collaborationModels = [
 export default function CorporatePage() {
   return (
     <>
-      <PageHero
-        title="企業合作方案"
-        subtitle="Corporate Innovation"
-        description="與台大創創中心攜手，共同推動企業創新轉型，對接最前沿的技術與人才。"
-      />
+      <BreadcrumbSchema items={[
+        { name: "首頁", url: "https://tec.ntu.edu.tw" },
+        { name: "企業合作方案", url: "https://tec.ntu.edu.tw/corporate" },
+      ]} />
+
+      {/* Hero */}
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/events/opening-2026-networking.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/75" />
+        <div className="container relative z-[2] py-20">
+          <p className="micro-label mb-3 text-teal-light">Corporate Innovation</p>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">企業合作方案</h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/80">
+            與台大創創中心攜手，共同推動企業創新轉型，對接最前沿的技術與人才。
+          </p>
+        </div>
+      </section>
+
+      {/* Enterprise stats strip */}
+      <div className="border-b border-stone-warm/40 bg-white">
+        <div className="container flex flex-wrap justify-center gap-8 py-6 text-center md:gap-16">
+          {[
+            { num: "35+", label: "企業合作夥伴" },
+            { num: "27", label: "梯次垂直加速器" },
+            { num: "600+", label: "新創人才庫" },
+            { num: "13年", label: "深耕台大生態系" },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="text-3xl font-bold text-teal">{s.num}</div>
+              <div className="mt-1 text-xs text-slate-muted">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Why partner with TEC */}
-      <section className="section-spacing bg-warm-stone">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">Why Partner With Us</p>
-            <h2>為什麼選擇台大創創中心</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-slate-muted">
-              台灣少數直接連結國立臺灣大學頂尖研究技術與人才的企業創新加速平台
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {valueProps.map((prop) => (
-              <div key={prop.title} className="card-hover card-elevated rounded-2xl bg-white p-8">
-                <h3 className="mb-4 text-xl font-semibold">{prop.title}</h3>
-                <p className="text-slate-muted leading-relaxed">
-                  {prop.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Collaboration Models */}
-      <section className="section-spacing bg-stone">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">Collaboration Models</p>
-            <h2>合作模式</h2>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            {collaborationModels.map((model) => (
-              <div
-                key={model.title}
-                className="card-hover card-elevated flex gap-6 rounded-2xl bg-white p-8"
-              >
-                <model.icon size={36} weight="duotone" className="shrink-0 text-teal" />
-                <div>
-                  <h3 className="mb-2 text-lg font-semibold">{model.title}</h3>
+      <FadeIn>
+        <section className="section-spacing bg-warm-stone">
+          <div className="container">
+            <div className="mb-12 text-center">
+              <p className="micro-label mb-4">Why Partner With Us</p>
+              <h2>為什麼選擇台大創創中心</h2>
+              <p className="mx-auto mt-4 max-w-2xl text-slate-muted">
+                台灣少數直接連結國立臺灣大學頂尖研究技術與人才的企業創新加速平台
+              </p>
+            </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              {valueProps.map((prop) => (
+                <div key={prop.title} className="card-hover card-elevated rounded-2xl bg-white p-8">
+                  <h3 className="mb-4 text-xl font-semibold">{prop.title}</h3>
                   <p className="text-slate-muted leading-relaxed">
-                    {model.description}
+                    {prop.description}
                   </p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </FadeIn>
 
-      {/* Activity Photos */}
-      <section className="section-spacing">
-        <div className="container">
-          <div className="mb-8 text-center">
-            <p className="micro-label mb-4">場景實錄</p>
-            <h2 className="mb-3">企業合作現場</h2>
-            <p className="text-slate-muted">新創交流、成果展示、跨界媒合——每場活動都是深度合作的起點。</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image
-                src="/images/events/opening-2026-networking.jpg"
-                alt="2026 開幕式 — 交流現場"
-                fill
-                loading="lazy"
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
+      {/* Collaboration Models — alternating split layout */}
+      <FadeIn>
+        <section className="section-spacing bg-stone">
+          <div className="container">
+            <div className="mb-12 text-center">
+              <p className="micro-label mb-4">Collaboration Models</p>
+              <h2>合作模式</h2>
             </div>
-            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image
-                src="/images/events/opening-2026-pitching.jpg"
-                alt="2026 開幕式 — 新創展示成果"
-                fill
-                loading="lazy"
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
+
+            {/* Row 1: text left + pitching photo right */}
+            <div className="grid gap-12 md:grid-cols-2 items-center mb-16">
+              <div className="space-y-8">
+                {collaborationModels.slice(0, 2).map((model) => (
+                  <div key={model.title} className="flex gap-5">
+                    <model.icon size={36} weight="duotone" className="shrink-0 text-teal mt-1" />
+                    <div>
+                      <h3 className="mb-2 text-lg font-semibold">{model.title}</h3>
+                      <p className="text-slate-muted leading-relaxed">{model.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/events/opening-2026-pitching.jpg"
+                  alt="新創 Pitch 展示成果"
+                  fill
+                  loading="lazy"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+
+            {/* Row 2: mentor photo left + text right */}
+            <div className="grid gap-12 md:grid-cols-2 items-center">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl order-last md:order-first">
+                <Image
+                  src="/images/events/opening-2026-mentor-session.jpg"
+                  alt="業師輔導現場"
+                  fill
+                  loading="lazy"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <div className="space-y-8">
+                {collaborationModels.slice(2).map((model) => (
+                  <div key={model.title} className="flex gap-5">
+                    <model.icon size={36} weight="duotone" className="shrink-0 text-teal mt-1" />
+                    <div>
+                      <h3 className="mb-2 text-lg font-semibold">{model.title}</h3>
+                      <p className="text-slate-muted leading-relaxed">{model.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </FadeIn>
 
       {/* Section A: 旗艦案例深挖 */}
       <section className="section-spacing bg-white">

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Calendar, Send } from "lucide-react";
 import { UsersThree, Buildings, CurrencyCircleDollar, MapPin } from "@phosphor-icons/react/dist/ssr";
-import PageHero from "@/components/public/PageHero";
 import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAlumni";
 import Image from "next/image";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
@@ -188,11 +187,46 @@ export default function AcceleratorPage() {
         { name: "輔導計畫", url: "https://tec.ntu.edu.tw/programs" },
         { name: "台大加速器", url: "https://tec.ntu.edu.tw/accelerator" }
       ]} />
-      <PageHero
-        title="台大加速器"
-        subtitle="NTU Accelerator"
-        description="為期十個月的深度輔導計畫，幫助成長期新創加速邁向下一個里程碑。無台大身分亦可申請，有台大身分者優先。我們重視技術創新與市場潛力，不限台大背景。"
-      />
+      {/* Hero */}
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/events/opening-2026-classroom.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/75" />
+        <div className="container relative z-[2] py-20">
+          <p className="micro-label mb-3 text-teal-light">NTU Accelerator</p>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">台大加速器</h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/80">
+            為期十個月的深度輔導計畫，幫助成長期新創加速邁向下一個里程碑。無台大身分亦可申請，有台大身分者優先。我們重視技術創新與市場潛力，不限台大背景。
+          </p>
+        </div>
+      </section>
+
+      {/* Key stats strip */}
+      <div className="border-b border-stone-warm/40 bg-white">
+        <div className="container flex flex-wrap justify-center gap-8 py-6 text-center md:gap-16">
+          {[
+            { num: "10", unit: "個月", label: "深度輔導" },
+            { num: "40+", unit: "", label: "陪跑業師" },
+            { num: "20", unit: "隊", label: "每年錄取" },
+            { num: "0", unit: "元", label: "完全免費" },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="text-3xl font-bold text-teal">
+                {s.num}
+                <span className="text-lg">{s.unit}</span>
+              </div>
+              <div className="mt-1 text-xs text-slate-muted">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Program Overview */}
       <section className="section-spacing">
@@ -234,38 +268,35 @@ export default function AcceleratorPage() {
         </div>
       </section>
 
-      {/* Activity Photos */}
-      <section className="section-spacing">
-        <div className="container">
-          <div className="mb-8 text-center">
-            <p className="micro-label mb-4">Campus Life</p>
-            <h2 className="mb-3">輔導計畫現場</h2>
-            <p className="text-slate-muted">課程、輔導、討論——十個月的創業加速，從這裡開始。</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image
-                src="/images/events/opening-2026-classroom.jpg"
-                alt="2026 輔導計畫 — 課堂全體學員"
-                fill
-                loading="lazy"
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
-            </div>
-            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image
-                src="/images/events/opening-2026-coaching.jpg"
-                alt="2026 輔導計畫 — 小組輔導討論"
-                fill
-                loading="lazy"
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
+      {/* Mid-page split: text + coaching photo */}
+      <FadeIn>
+        <section className="section-spacing">
+          <div className="container">
+            <div className="grid gap-12 md:grid-cols-2 items-center">
+              <div>
+                <p className="micro-label mb-4">Campus Life</p>
+                <h2 className="mb-6">輔導計畫現場</h2>
+                <p className="text-lg leading-relaxed text-slate-muted mb-4">
+                  課程、輔導、討論——十個月的創業加速，從這裡開始。每位創辦人都有專屬業師一對一陪跑，結合群體課程與個別輔導，全面提升創業勝率。
+                </p>
+                <p className="text-slate-muted leading-relaxed">
+                  2026 梯次進行中，共有 40+ 位資深業師輪流駐點，平均擁有逾 20 年產業深耕經驗，涵蓋創投、AI、生技、半導體等領域。
+                </p>
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/events/opening-2026-coaching.jpg"
+                  alt="一對一業師輔導"
+                  fill
+                  loading="lazy"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </FadeIn>
 
       {/* What We Offer */}
       <section className="section-spacing bg-warm-stone">
