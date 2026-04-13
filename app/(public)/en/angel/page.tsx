@@ -409,10 +409,10 @@ export default function EnAngelPage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 mb-8">
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image src="/images/events/demo-day-2025-group.jpg" alt="Demo Day 2025 — Group Photo" fill loading="lazy" className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
+              <Image src="/images/events/opening-2026-05.jpg" alt="Demo Day 2025 — Group Photo" fill loading="lazy" className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
             </div>
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
-              <Image src="/images/events/demo-day-2025-05.jpg" alt="Demo Day 2025 — Investor Panel" fill loading="lazy" className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
+              <Image src="/images/events/opening-2026-04.jpg" alt="Demo Day 2025 — Investor Panel" fill loading="lazy" className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
             </div>
           </div>
           <div className="text-center">

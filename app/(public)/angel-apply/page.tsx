@@ -122,7 +122,7 @@ export default function AngelApplyPage() {
       {/* Contact */}
       <section className="relative section-spacing overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/events/demo-day-2025-05.jpg" alt="" fill className="object-cover" />
+          <Image src="/images/events/opening-2026-05.jpg" alt="" fill className="object-cover" />
         </div>
         <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
         <div className="container relative z-[2]">

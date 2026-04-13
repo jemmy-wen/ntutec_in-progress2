@@ -155,7 +155,7 @@ export default function CorporatePage() {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
-                  src="/images/events/opening-2026-pitching.jpg"
+                  src="/images/events/opening-2026-02.jpg"
                   alt="新創 Pitch 展示成果"
                   fill
                   loading="lazy"
@@ -374,7 +374,7 @@ export default function CorporatePage() {
       {/* CTA */}
       <section className="relative section-spacing overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/events/demo-day-2025-group.jpg" alt="" fill className="object-cover" />
+          <Image src="/images/events/demo-day-2025-02.jpg" alt="" fill className="object-cover" />
         </div>
         <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
         <div className="container relative z-[2] text-center">

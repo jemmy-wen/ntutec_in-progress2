@@ -95,7 +95,7 @@ export default function GaragePage() {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
                 <Image
-                  src="/images/events/opening-2026-biggroup.jpg"
+                  src="/images/events/demo-day-2025-02.jpg"
                   alt="2026 輔導計畫開幕式大合照"
                   fill
                   className="object-cover"
