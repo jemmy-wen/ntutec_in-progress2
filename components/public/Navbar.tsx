@@ -79,10 +79,6 @@ const NAV_ITEMS: NavItem[] = [
       { label: "TEC Talk Podcast", href: "/podcast" },
     ],
   },
-  {
-    label: "常見問題",
-    href: "/faq",
-  },
 ];
 
 /* ────────────────────────── Desktop dropdown ────────────────────────── */
@@ -364,16 +360,10 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/pitch"
-            className="hidden xl:inline-flex whitespace-nowrap btn-pill-outline text-xs px-3 py-1.5"
-          >
-            新創投遞
-          </Link>
-          <Link
-            href="/angel"
+            href="/apply"
             className="hidden xl:inline-flex whitespace-nowrap btn-pill-primary text-xs px-3 py-1.5"
           >
-            加入天使會
+            立即申請
           </Link>
 
           {/* Auth: login button or user avatar dropdown */}
@@ -409,25 +399,11 @@ export default function Navbar() {
 
               <div className="mt-8 flex flex-col gap-3 px-4">
                 <Link
-                  href="/pitch"
-                  onClick={() => setMobileOpen(false)}
-                  className="btn-pill-outline text-center"
-                >
-                  新創投遞
-                </Link>
-                <Link
-                  href="/angel"
+                  href="/apply"
                   onClick={() => setMobileOpen(false)}
                   className="btn-pill-primary text-center"
                 >
-                  加入天使會
-                </Link>
-                <Link
-                  href="/apply"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-center text-sm text-slate-muted hover:text-teal py-2"
-                >
-                  預約 2027 申請
+                  立即申請
                 </Link>
                 <Link
                   href={langSwitch.href}

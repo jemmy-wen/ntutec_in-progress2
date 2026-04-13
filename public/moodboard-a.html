@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style A: Premium Editorial — NTUTEC 風格改版提案</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --teal:  #0D4F4F;
+      --navy:  #1A1A2E;
+      --gold:  #C9A962;
+      --cream: #F5F3EF;
+      --text:  #2D2D2D;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      color: var(--text);
+      background-color: var(--cream);
+    }
+
+    .font-serif-tc { font-family: 'Noto Serif TC', serif; }
+    .font-sans-tc  { font-family: 'Noto Sans TC', sans-serif; }
+
+    /* ── Grain texture ── */
+    .grain {
+      position: relative;
+    }
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.6;
+    }
+
+    /* ── Angled divider (cream → navy) ── */
+    .divider-down {
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+    .divider-up {
+      clip-path: polygon(0 6%, 100% 0, 100% 100%, 0 100%);
+    }
+    .divider-up-sm {
+      clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* ── Gold accent line on cards ── */
+    .card-gold-top {
+      border-top: 3px solid var(--gold);
+    }
+
+    /* ── Mentor photo — grayscale ── */
+    .grayscale-photo {
+      filter: grayscale(100%) contrast(1.05);
+      transition: filter 0.4s ease;
+    }
+    .grayscale-photo:hover {
+      filter: grayscale(60%) contrast(1.02);
+    }
+
+    /* ── Letter-spacing for labels ── */
+    .tracking-widest-cn { letter-spacing: 0.18em; }
+
+    /* ── Subtle stat number styling ── */
+    .stat-num {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--gold);
+    }
+
+    /* ── Hero overlay ── */
+    .hero-overlay {
+      background: linear-gradient(
+        160deg,
+        rgba(13,79,79,0.82) 0%,
+        rgba(26,26,46,0.88) 55%,
+        rgba(26,26,46,0.72) 100%
+      );
+    }
+
+    /* ── Color swatch ── */
+    .swatch {
+      width: 100%;
+      height: 72px;
+      border-radius: 4px;
+    }
+
+    /* ── Section label badge ── */
+    .section-badge {
+      display: inline-block;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,169,98,0.45);
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: rgba(13,79,79,0.3); border-radius: 3px; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- ─────────────────────────────────────────────
+       PROPOSAL HEADER STRIP
+  ───────────────────────────────────────────── -->
+  <div style="background:#0D4F4F;" class="py-4 px-6 md:px-12 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+    <div>
+      <p class="font-serif-tc text-white text-base md:text-lg font-medium tracking-wide">
+        Style A: Premium Editorial — NTUTEC 風格改版提案
+      </p>
+      <p class="font-sans-tc text-xs md:text-sm mt-0.5" style="color:rgba(201,169,98,0.85);">
+        大學 × 創投質感：serif 字型 + 暖色系 + 微粒紋理 + 金色 accent
+      </p>
+    </div>
+    <span class="font-sans-tc text-xs" style="color:rgba(245,243,239,0.45); white-space:nowrap;">
+      Mood Board · 2026
+    </span>
+  </div>
+
+
+  <!-- ─────────────────────────────────────────────
+       1. HERO SECTION
+  ───────────────────────────────────────────── -->
+  <section class="relative w-full overflow-hidden" style="min-height: 88vh;">
+
+    <!-- Background image -->
+    <img
+      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
+      alt="team working"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="object-position: center 30%;"
+    />
+
+    <!-- Overlay + grain -->
+    <div class="hero-overlay absolute inset-0"></div>
+
+    <!-- Grain texture on top of overlay -->
+    <div class="absolute inset-0 pointer-events-none" style="
+      background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 512 512\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.045\'/%3E%3C/svg%3E');
+      opacity: 0.8;
+    "></div>
+
+    <!-- Content -->
+    <div class="relative z-10 flex flex-col justify-end h-full px-8 md:px-20 pb-20 md:pb-28" style="min-height: 88vh;">
+
+      <!-- Eyebrow -->
+      <div class="mb-6">
+        <span class="section-badge">National Taiwan University</span>
+      </div>
+
+      <!-- Main headline -->
+      <h1 class="font-serif-tc text-white leading-tight mb-6" style="font-size: clamp(2.8rem, 7vw, 6.5rem); font-weight: 300; max-width: 720px; text-shadow: 0 2px 24px rgba(0,0,0,0.3);">
+        台大創創中心
+      </h1>
+
+      <!-- Subtitle line -->
+      <div class="flex items-center gap-4 mb-5">
+        <div style="width: 40px; height: 1px; background: var(--gold); flex-shrink:0;"></div>
+        <p class="font-sans-tc text-white text-base md:text-lg font-light tracking-wide" style="opacity:0.88;">
+          NTU Innovation and Entrepreneurship Center
+        </p>
+      </div>
+
+      <!-- Description -->
+      <p class="font-sans-tc text-sm md:text-base font-light max-w-xl" style="color:rgba(245,243,239,0.70); line-height:1.9;">
+        連結台大學研能量與創業生態，深耕 13 年，
+        陪伴超過 600 支新創團隊從構想走向世界。
+      </p>
+
+      <!-- CTA row -->
+      <div class="mt-10 flex flex-wrap gap-4">
+        <button class="font-sans-tc text-sm font-medium px-7 py-3 border border-white text-white hover:bg-white transition-colors duration-300" style="letter-spacing:0.1em; hover:color:var(--teal);">
+          了解計畫
+        </button>
+        <button class="font-sans-tc text-sm font-medium px-7 py-3 text-white" style="letter-spacing:0.1em; color:var(--gold); border: 1px solid rgba(201,169,98,0.5);">
+          申請進駐
+        </button>
+      </div>
+    </div>
+
+    <!-- Angled bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 pointer-events-none" style="
+      background: var(--cream);
+      clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%);
+    "></div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────────
+       2. COLOR PALETTE STRIP
+  ───────────────────────────────────────────── -->
+  <section class="grain relative px-8 md:px-20 py-16 md:py-20" style="background: var(--cream);">
+    <div class="section-badge">Color System</div>
+    <h2 class="font-serif-tc text-2xl md:text-3xl mb-10 font-normal" style="color:var(--text);">
+      色彩系統
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
+      <!-- Swatch 1 -->
+      <div>
+        <div class="swatch mb-3 rounded" style="background:#0D4F4F;"></div>
+        <p class="font-serif-tc text-xs font-medium tracking-wide" style="color:var(--text);">Primary</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#777;">#0D4F4F — Deep Teal</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#999;">主色 · 連結 · 生命力</p>
+      </div>
+      <!-- Swatch 2 -->
+      <div>
+        <div class="swatch mb-3 rounded" style="background:#1A1A2E;"></div>
+        <p class="font-serif-tc text-xs font-medium tracking-wide" style="color:var(--text);">Secondary</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#777;">#1A1A2E — Dark Navy</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#999;">輔色 · 深度 · 夜空</p>
+      </div>
+      <!-- Swatch 3 -->
+      <div>
+        <div class="swatch mb-3 rounded" style="background:#C9A962;"></div>
+        <p class="font-serif-tc text-xs font-medium tracking-wide" style="color:var(--text);">Accent</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#777;">#C9A962 — Warm Gold</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#999;">強調 · 成就 · 溫度</p>
+      </div>
+      <!-- Swatch 4 -->
+      <div>
+        <div class="swatch mb-3 rounded" style="background:#F5F3EF; border: 1px solid #e0ddd8;"></div>
+        <p class="font-serif-tc text-xs font-medium tracking-wide" style="color:var(--text);">Neutral</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#777;">#F5F3EF — Warm Cream</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#999;">底色 · 呼吸 · 紙感</p>
+      </div>
+      <!-- Swatch 5 -->
+      <div>
+        <div class="swatch mb-3 rounded" style="background:#2D2D2D;"></div>
+        <p class="font-serif-tc text-xs font-medium tracking-wide" style="color:var(--text);">Text</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#777;">#2D2D2D — Off Black</p>
+        <p class="font-sans-tc text-xs mt-0.5" style="color:#999;">內文 · 清晰 · 溫潤</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────────
+       3. TYPOGRAPHY SAMPLE
+  ───────────────────────────────────────────── -->
+  <section class="px-8 md:px-20 py-16 md:py-24 border-t" style="background:#F5F3EF; border-color:#e8e4de;">
+    <div class="section-badge">Typography</div>
+    <h2 class="font-serif-tc text-2xl md:text-3xl mb-12 font-normal" style="color:var(--text);">
+      字型系統
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-16">
+
+      <!-- Serif column -->
+      <div>
+        <p class="font-sans-tc text-xs mb-6 tracking-widest-cn" style="color:var(--gold); text-transform:uppercase; font-weight:600; letter-spacing:0.2em;">
+          Heading — Noto Serif TC
+        </p>
+
+        <p class="font-serif-tc mb-2" style="font-size:3rem; font-weight:300; color:var(--navy); line-height:1.15;">
+          大學精神
+        </p>
+        <p class="font-serif-tc mb-2" style="font-size:2rem; font-weight:400; color:var(--teal); line-height:1.2;">
+          創業能量
+        </p>
+        <p class="font-serif-tc mb-6" style="font-size:1.25rem; font-weight:500; color:var(--text); line-height:1.4;">
+          從研究室到世界市場
+        </p>
+
+        <div style="width:32px; height:1px; background:var(--gold); margin-bottom:1.5rem;"></div>
+
+        <p class="font-sans-tc text-sm font-light leading-relaxed" style="color:#666; max-width:380px;">
+          Noto Serif TC 承載台大百年底蘊，在數位介面中延續學術的重量感與可讀性，
+          適用於標題、引言與品牌主視覺。
+        </p>
+      </div>
+
+      <!-- Stats + Body column -->
+      <div>
+        <p class="font-sans-tc text-xs mb-6 tracking-widest-cn" style="color:var(--gold); text-transform:uppercase; font-weight:600; letter-spacing:0.2em;">
+          Stats + Body — Noto Sans TC
+        </p>
+
+        <!-- Number hierarchy -->
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-serif-tc" style="font-size:4rem; font-weight:300; color:var(--teal); line-height:1;">600</span>
+          <span class="font-sans-tc text-sm" style="color:#888;">新創團隊</span>
+        </div>
+        <div class="flex items-baseline gap-4 mb-4">
+          <span class="font-serif-tc" style="font-size:2.5rem; font-weight:400; color:var(--navy); line-height:1;">NT$2.5億</span>
+          <span class="font-sans-tc text-xs" style="color:#888;">投資規模</span>
+        </div>
+
+        <div style="width:32px; height:1px; background:var(--gold); margin: 1.5rem 0;"></div>
+
+        <p class="font-sans-tc text-sm leading-loose" style="color:var(--text); max-width:400px;">
+          Noto Sans TC 用於正文、說明與 UI 元件。300 字重帶來輕盈的閱讀體驗，
+          500 字重適合強調關鍵資訊，在深色背景上保持清晰的識別度。
+        </p>
+        <p class="font-sans-tc text-xs mt-3 leading-relaxed" style="color:#999;">
+          Caption / Label / Navigation — 小字級使用 300–400 字重，
+          配合 0.08–0.18em 字距提升辨識度。
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────────
+       4. PROGRAM CARDS
+  ───────────────────────────────────────────── -->
+  <section class="grain relative px-8 md:px-20 py-16 md:py-24" style="background:#F5F3EF;">
+
+    <!-- Angled top -->
+    <div class="absolute top-0 left-0 right-0 h-12 pointer-events-none" style="
+      background:#F5F3EF;
+      clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 100%);
+      margin-top: -1px;
+    "></div>
+
+    <div class="relative z-10">
+      <div class="section-badge">Programs</div>
+      <h2 class="font-serif-tc text-2xl md:text-3xl mb-12 font-normal" style="color:var(--text);">
+        三大核心計畫
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+
+        <!-- Card 1: 台大加速器 -->
+        <div class="card-gold-top relative rounded-sm px-7 py-8" style="background:#FDFCF9; border: 1px solid #e8e3db; border-top-color: var(--gold);">
+          <div class="mb-5">
+            <!-- Rocket SVG -->
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 4C18.5 4 22 6.5 22 12C22 16 20 19.5 17 21.5L15 24H13L11 21.5C8 19.5 6 16 6 12C6 6.5 9.5 4 12 4" stroke="#0D4F4F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <ellipse cx="16" cy="12" rx="2.5" ry="2.5" stroke="#C9A962" stroke-width="1.3" fill="none"/>
+              <path d="M13 24L12 29M19 24L20 29" stroke="#0D4F4F" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M9 17L6 20M23 17L26 20" stroke="#0D4F4F" stroke-width="1.1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-serif-tc text-xl mb-1 font-medium" style="color:var(--navy);">台大加速器</h3>
+          <p class="font-sans-tc text-xs mb-4 tracking-wide" style="color:var(--gold); letter-spacing:0.08em;">NTU Accelerator</p>
+          <p class="font-sans-tc text-sm leading-loose" style="color:#666;">
+            為具商業潛力的早期新創提供密集的創業加速輔導，
+            結合業師導入、資金媒合與市場驗證，協助新創快速成長。
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="font-sans-tc text-xs" style="color:var(--teal); font-weight:500;">每梯 20 隊</span>
+            <span style="color:#ccc;">·</span>
+            <span class="font-sans-tc text-xs" style="color:#999;">3–12 月輔導</span>
+          </div>
+        </div>
+
+        <!-- Card 2: 台大車庫 -->
+        <div class="card-gold-top relative rounded-sm px-7 py-8" style="background:#FDFCF9; border: 1px solid #e8e3db; border-top-color: var(--gold);">
+          <div class="mb-5">
+            <!-- House/Garage SVG -->
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 16L16 5L28 16" stroke="#0D4F4F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 13.5V27H25V13.5" stroke="#0D4F4F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="12" y="19" width="8" height="8" rx="0.5" stroke="#C9A962" stroke-width="1.2" fill="none"/>
+              <path d="M12 23H20" stroke="#C9A962" stroke-width="1" stroke-linecap="round"/>
+              <path d="M16 19V27" stroke="#C9A962" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-serif-tc text-xl mb-1 font-medium" style="color:var(--navy);">台大車庫</h3>
+          <p class="font-sans-tc text-xs mb-4 tracking-wide" style="color:var(--gold); letter-spacing:0.08em;">NTU Garage</p>
+          <p class="font-sans-tc text-sm leading-loose" style="color:#666;">
+            提供台大師生免費虛擬進駐，在創業初期的探索階段獲得資源、
+            社群與跨領域合作夥伴，讓構想有機會萌芽。
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="font-sans-tc text-xs" style="color:var(--teal); font-weight:500;">台大身分限定</span>
+            <span style="color:#ccc;">·</span>
+            <span class="font-sans-tc text-xs" style="color:#999;">免費進駐</span>
+          </div>
+        </div>
+
+        <!-- Card 3: 天使俱樂部 -->
+        <div class="card-gold-top relative rounded-sm px-7 py-8" style="background:#FDFCF9; border: 1px solid #e8e3db; border-top-color: var(--gold);">
+          <div class="mb-5">
+            <!-- Angel Wing SVG -->
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 26C16 26 6 20 6 12C6 8 9 6 12 7C13.5 7.5 15 9 16 11" stroke="#0D4F4F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M16 26C16 26 26 20 26 12C26 8 23 6 20 7C18.5 7.5 17 9 16 11" stroke="#0D4F4F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M11 10C9 10 8 12 9 14C10 16 12 17 14 18" stroke="#C9A962" stroke-width="1.1" stroke-linecap="round"/>
+              <path d="M21 10C23 10 24 12 23 14C22 16 20 17 18 18" stroke="#C9A962" stroke-width="1.1" stroke-linecap="round"/>
+              <circle cx="16" cy="7" r="2" stroke="#0D4F4F" stroke-width="1.2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="font-serif-tc text-xl mb-1 font-medium" style="color:var(--navy);">天使俱樂部</h3>
+          <p class="font-sans-tc text-xs mb-4 tracking-wide" style="color:var(--gold); letter-spacing:0.08em;">Angels Club</p>
+          <p class="font-sans-tc text-sm leading-loose" style="color:#666;">
+            匯聚台大校友投資人組成天使投資社群，以早期資金扶持
+            具潛力的新創，同時建立長期的校友投資生態系。
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="font-sans-tc text-xs" style="color:var(--teal); font-weight:500;">NT$2.5億 投資規模</span>
+            <span style="color:#ccc;">·</span>
+            <span class="font-sans-tc text-xs" style="color:#999;">80+ 天使</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────────
+       5. STATS SECTION
+  ───────────────────────────────────────────── -->
+  <section class="relative px-8 md:px-20 py-20 md:py-28 divider-up" style="background:var(--navy);">
+
+    <div class="section-badge" style="border-color:rgba(201,169,98,0.3);">Impact</div>
+    <h2 class="font-serif-tc text-2xl md:text-3xl mb-16 font-light" style="color:rgba(245,243,239,0.85);">
+      十三年深耕，數字見證
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+
+      <div class="text-center md:text-left">
+        <p class="stat-num" style="font-size:clamp(2.8rem,6vw,4.5rem);">600<span style="font-size:0.5em; vertical-align:middle; margin-left:2px; color:rgba(201,169,98,0.6);">+</span></p>
+        <div style="width:24px; height:1px; background:rgba(201,169,98,0.4); margin:10px auto 10px;" class="md:mx-0"></div>
+        <p class="font-sans-tc text-sm" style="color:rgba(245,243,239,0.65); letter-spacing:0.06em;">新創團隊</p>
+      </div>
+
+      <div class="text-center md:text-left">
+        <p class="stat-num" style="font-size:clamp(2.8rem,6vw,4.5rem);">80<span style="font-size:0.5em; vertical-align:middle; margin-left:2px; color:rgba(201,169,98,0.6);">+</span></p>
+        <div style="width:24px; height:1px; background:rgba(201,169,98,0.4); margin:10px auto 10px;" class="md:mx-0"></div>
+        <p class="font-sans-tc text-sm" style="color:rgba(245,243,239,0.65); letter-spacing:0.06em;">駐點業師</p>
+      </div>
+
+      <div class="text-center md:text-left">
+        <p class="stat-num" style="font-size:clamp(2.8rem,6vw,4.5rem);">13</p>
+        <div style="width:24px; height:1px; background:rgba(201,169,98,0.4); margin:10px auto 10px;" class="md:mx-0"></div>
+        <p class="font-sans-tc text-sm" style="color:rgba(245,243,239,0.65); letter-spacing:0.06em;">年深耕</p>
+      </div>
+
+      <div class="text-center md:text-left">
+        <p class="stat-num" style="font-size:clamp(1.8rem,4vw,3rem); padding-top:0.6rem;">NT$2.5億</p>
+        <div style="width:24px; height:1px; background:rgba(201,169,98,0.4); margin:10px auto 10px;" class="md:mx-0"></div>
+        <p class="font-sans-tc text-sm" style="color:rgba(245,243,239,0.65); letter-spacing:0.06em;">投資規模</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────────
+       6. MENTOR PREVIEW
+  ───────────────────────────────────────────── -->
+  <section class="grain relative px-8 md:px-20 py-16 md:py-24 divider-up-sm" style="background:var(--cream);">
+
+    <div class="section-badge">Mentors</div>
+    <h2 class="font-serif-tc text-2xl md:text-3xl mb-4 font-normal" style="color:var(--text);">
+      業師陣容
+    </h2>
+    <p class="font-sans-tc text-sm mb-12 font-light" style="color:#888; max-width:480px; line-height:1.8;">
+      超過 80 位來自產業界、學術界與創投圈的資深業師，
+      以第一手經驗陪伴每一位創業者。
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-2xl">
+
+      <!-- Mentor Card 1 -->
+      <div class="flex gap-5 p-5 rounded-sm" style="background:#FDFCF9; border:1px solid #e8e3db;">
+        <div class="flex-shrink-0 relative overflow-hidden rounded-sm" style="width:80px; height:100px;">
+          <img
+            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=250&fit=crop&crop=face"
+            alt="mentor"
+            class="grayscale-photo w-full h-full object-cover"
+          />
+          <!-- Subtle gold corner accent -->
+          <div class="absolute top-0 left-0" style="width:12px; height:2px; background:var(--gold);"></div>
+          <div class="absolute top-0 left-0" style="width:2px; height:12px; background:var(--gold);"></div>
+        </div>
+        <div class="flex flex-col justify-between py-0.5 flex-1">
+          <div>
+            <h4 class="font-serif-tc text-base font-medium" style="color:var(--navy);">王明宏</h4>
+            <p class="font-sans-tc text-xs mt-1 leading-relaxed" style="color:#888;">
+              系列創業家<br/>前 Appier VP of Engineering
+            </p>
+          </div>
+          <div class="flex items-center gap-3 mt-3">
+            <span class="font-sans-tc text-xs px-2 py-0.5 rounded-full" style="background:rgba(13,79,79,0.08); color:var(--teal);">AI / SaaS</span>
+            <!-- LinkedIn icon SVG -->
+            <a href="#" class="opacity-60 hover:opacity-100 transition-opacity">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="20" height="20" rx="3" stroke="#C9A962" stroke-width="1.5"/>
+                <path d="M7 10V17M7 7V7.5" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M11 17V13C11 11.343 12.343 10 14 10C15.657 10 17 11.343 17 13V17" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M11 10V17" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mentor Card 2 -->
+      <div class="flex gap-5 p-5 rounded-sm" style="background:#FDFCF9; border:1px solid #e8e3db;">
+        <div class="flex-shrink-0 relative overflow-hidden rounded-sm" style="width:80px; height:100px;">
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=250&fit=crop&crop=face"
+            alt="mentor"
+            class="grayscale-photo w-full h-full object-cover"
+          />
+          <div class="absolute top-0 left-0" style="width:12px; height:2px; background:var(--gold);"></div>
+          <div class="absolute top-0 left-0" style="width:2px; height:12px; background:var(--gold);"></div>
+        </div>
+        <div class="flex flex-col justify-between py-0.5 flex-1">
+          <div>
+            <h4 class="font-serif-tc text-base font-medium" style="color:var(--navy);">陳雅玲</h4>
+            <p class="font-sans-tc text-xs mt-1 leading-relaxed" style="color:#888;">
+              生技創業顧問<br/>台大生命科學院 兼任副教授
+            </p>
+          </div>
+          <div class="flex items-center gap-3 mt-3">
+            <span class="font-sans-tc text-xs px-2 py-0.5 rounded-full" style="background:rgba(13,79,79,0.08); color:var(--teal);">BioTech</span>
+            <a href="#" class="opacity-60 hover:opacity-100 transition-opacity">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="20" height="20" rx="3" stroke="#C9A962" stroke-width="1.5"/>
+                <path d="M7 10V17M7 7V7.5" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M11 17V13C11 11.343 12.343 10 14 10C15.657 10 17 11.343 17 13V17" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M11 10V17" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- View all CTA -->
+    <div class="mt-10 flex items-center gap-3">
+      <div style="width:24px; height:1px; background:var(--gold);"></div>
+      <a href="#" class="font-sans-tc text-sm font-medium" style="color:var(--teal); letter-spacing:0.06em;">
+        查看全部業師
+      </a>
+      <!-- Arrow SVG -->
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 7H12M8 3L12 7L8 11" stroke="#0D4F4F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────────
+       7. FOOTER
+  ───────────────────────────────────────────── -->
+  <footer class="relative px-8 md:px-20 pt-20 pb-10 divider-up" style="background:var(--navy);">
+
+    <div class="grid md:grid-cols-3 gap-12 md:gap-8 mb-14">
+
+      <!-- Brand column -->
+      <div class="md:col-span-1">
+        <h3 class="font-serif-tc text-xl font-light mb-3" style="color:rgba(245,243,239,0.92);">
+          台大創創中心
+        </h3>
+        <p class="font-sans-tc text-xs mb-6" style="color:rgba(201,169,98,0.7); letter-spacing:0.1em;">
+          NTU Innovation &amp; Entrepreneurship Center
+        </p>
+        <p class="font-sans-tc text-xs leading-loose" style="color:rgba(245,243,239,0.45); max-width:260px;">
+          台北市大安區羅斯福路四段一號<br/>
+          台大創新設計學院 3 樓<br/>
+          service@tec.ntu.edu.tw
+        </p>
+      </div>
+
+      <!-- Links column -->
+      <div>
+        <p class="font-sans-tc text-xs mb-5 tracking-widest-cn" style="color:var(--gold); font-weight:600; letter-spacing:0.18em; text-transform:uppercase;">
+          計畫
+        </p>
+        <ul class="space-y-3">
+          <li><a class="font-sans-tc text-xs hover:text-white transition-colors" style="color:rgba(245,243,239,0.55);" href="#">台大加速器</a></li>
+          <li><a class="font-sans-tc text-xs hover:text-white transition-colors" style="color:rgba(245,243,239,0.55);" href="#">台大車庫</a></li>
+          <li><a class="font-sans-tc text-xs hover:text-white transition-colors" style="color:rgba(245,243,239,0.55);" href="#">天使俱樂部</a></li>
+          <li><a class="font-sans-tc text-xs hover:text-white transition-colors" style="color:rgba(245,243,239,0.55);" href="#">業師健診</a></li>
+        </ul>
+      </div>
+
+      <!-- Social column -->
+      <div>
+        <p class="font-sans-tc text-xs mb-5 tracking-widest-cn" style="color:var(--gold); font-weight:600; letter-spacing:0.18em; text-transform:uppercase;">
+          關注我們
+        </p>
+        <div class="flex gap-4">
+
+          <!-- Facebook -->
+          <a href="#" class="p-2 rounded hover:opacity-80 transition-opacity" style="border:1px solid rgba(201,169,98,0.3);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="#" class="p-2 rounded hover:opacity-80 transition-opacity" style="border:1px solid rgba(201,169,98,0.3);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="3" stroke="#C9A962" stroke-width="1.5"/>
+              <path d="M7 10V17M7 7V7.5" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M11 17V13C11 11.343 12.343 10 14 10C15.657 10 17 11.343 17 13V17" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M11 10V17" stroke="#C9A962" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a href="#" class="p-2 rounded hover:opacity-80 transition-opacity" style="border:1px solid rgba(201,169,98,0.3);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="#C9A962" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="4" stroke="#C9A962" stroke-width="1.5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="#C9A962"/>
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a href="#" class="p-2 rounded hover:opacity-80 transition-opacity" style="border:1px solid rgba(201,169,98,0.3);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.54 6.42A2.78 2.78 0 0 0 20.59 4.46C18.88 4 12 4 12 4S5.12 4 3.41 4.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12A29 29 0 0 0 1.46 17.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20S18.88 20 20.59 19.54A2.78 2.78 0 0 0 22.54 17.58A29 29 0 0 0 23 12A29 29 0 0 0 22.54 6.42Z" stroke="#C9A962" stroke-width="1.5"/>
+              <path d="M9.75 15.02L15.5 12L9.75 8.98V15.02Z" stroke="#C9A962" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3" style="border-color:rgba(245,243,239,0.08);">
+      <p class="font-sans-tc text-xs" style="color:rgba(245,243,239,0.3);">
+        © 2026 台大創創中心 NTU Innovation and Entrepreneurship Center. All rights reserved.
+      </p>
+      <div class="flex gap-5">
+        <a class="font-sans-tc text-xs hover:text-white transition-colors" style="color:rgba(245,243,239,0.3);" href="#">隱私政策</a>
+        <a class="font-sans-tc text-xs hover:text-white transition-colors" style="color:rgba(245,243,239,0.3);" href="#">使用條款</a>
+      </div>
+    </div>
+
+  </footer>
+
+</body>
+</html>

@@ -209,8 +209,8 @@ export function SearchButton({ onClick }: { onClick: () => void }) {
       className="flex items-center gap-2 rounded-lg border border-border bg-slate-50 px-3 py-1.5 text-xs text-charcoal/50 hover:border-teal hover:text-teal transition-colors"
     >
       <Search className="h-3.5 w-3.5" aria-hidden="true" />
-      <span className="hidden sm:inline">搜尋</span>
-      <kbd className="hidden sm:inline-flex items-center gap-0.5 font-mono text-[10px]">
+      <span className="hidden sm:inline xl:hidden">搜尋</span>
+      <kbd className="hidden sm:inline-flex xl:hidden items-center gap-0.5 font-mono text-[10px]">
         <span>⌘</span>K
       </kbd>
     </button>

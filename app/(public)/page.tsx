@@ -5,7 +5,6 @@ import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 
 export const revalidate = 3600 // ISR: revalidate every hour (NewsSection fetches from Ghost)
 import HeroSection from '@/components/public/home/HeroSection'
-import ThreeConnectionsSection from '@/components/public/home/ThreeConnectionsSection'
 import FocusAreasSection from '@/components/public/home/FocusAreasSection'
 import AudienceCards from '@/components/public/home/AudienceCards'
 import StatsSection from '@/components/public/home/StatsSection'
@@ -61,7 +60,6 @@ export default function HomePage() {
         { name: '首頁', url: 'https://tec.ntu.edu.tw' },
       ]} />
       <HeroSection />
-      <ThreeConnectionsSection />
 
       {/* Activity Highlight */}
       <section className="section-spacing bg-stone">

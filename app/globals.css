@@ -20,6 +20,10 @@
   --color-stone-warm: oklch(0.95 0.008 85);
   --color-charcoal: oklch(0.20 0.005 65);
   --color-slate-muted: oklch(0.55 0.015 260);
+  /* Extended prestige palette */
+  --color-oxford: #0A192F;
+  --color-amber-gold: #D4AF37;
+  --color-warm-stone: #F8F7F2;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -269,3 +273,9 @@
     }
   }
 }
+
+/* Warm stone background for alternating sections */
+.bg-warm-stone { background-color: #F8F7F2; }
+
+/* Elite shadow for cards */
+.shadow-elite { box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1); }

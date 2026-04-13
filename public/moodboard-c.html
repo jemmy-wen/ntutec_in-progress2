@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style C: Clean Minimal Pro — NTUTEC 風格改版提案</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+            serif: ['"Noto Serif TC"', 'Georgia', 'serif'],
+          },
+          colors: {
+            teal: {
+              600: '#0D9488',
+              700: '#0F766E',
+              50:  '#F0FDFA',
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: "Plus Jakarta Sans", "Noto Sans TC", sans-serif; }
+
+    /* Card hover: left teal accent */
+    .program-card {
+      border-left: 3px solid transparent;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .program-card:hover {
+      border-left-color: #0D9488;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.10);
+    }
+
+    /* Mentor row hover */
+    .mentor-row {
+      transition: background 0.15s ease;
+    }
+    .mentor-row:hover {
+      background: #F9FAFB;
+    }
+
+    /* Feature alternating row */
+    .feature-mock {
+      background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+    }
+
+    /* Stat separator */
+    .stat-sep {
+      border-left: 1px solid #E5E7EB;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- HEADER LABEL                                       -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <div class="bg-gray-900 text-white px-6 py-4">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-xs font-semibold tracking-widest text-teal-600 uppercase mb-1">Mood Board — Style C</p>
+      <h1 class="text-lg font-bold">Style C: Clean Minimal Pro — NTUTEC 風格改版提案</h1>
+      <p class="text-sm text-gray-400 mt-1">極簡 × 專業：強字型層次 + 大留白 + 色彩節制 + Apple / Stripe 風格</p>
+    </div>
+  </div>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 1: COLOR PALETTE                          -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-gray-50 border-b border-gray-200 px-6 py-10">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6">01 — Color Palette</p>
+      <div class="flex flex-wrap gap-4">
+        <!-- Primary -->
+        <div class="flex flex-col gap-2 items-center">
+          <div class="w-20 h-20 rounded-xl" style="background:#0D9488;"></div>
+          <span class="text-xs text-gray-500">#0D9488</span>
+          <span class="text-xs font-semibold text-gray-700">Primary Teal</span>
+        </div>
+        <!-- Text -->
+        <div class="flex flex-col gap-2 items-center">
+          <div class="w-20 h-20 rounded-xl" style="background:#111827;"></div>
+          <span class="text-xs text-gray-500">#111827</span>
+          <span class="text-xs font-semibold text-gray-700">Text / Gray-900</span>
+        </div>
+        <!-- Secondary text -->
+        <div class="flex flex-col gap-2 items-center">
+          <div class="w-20 h-20 rounded-xl" style="background:#6B7280;"></div>
+          <span class="text-xs text-gray-500">#6B7280</span>
+          <span class="text-xs font-semibold text-gray-700">Secondary / Gray-500</span>
+        </div>
+        <!-- White -->
+        <div class="flex flex-col gap-2 items-center">
+          <div class="w-20 h-20 rounded-xl border border-gray-200" style="background:#FFFFFF;"></div>
+          <span class="text-xs text-gray-500">#FFFFFF</span>
+          <span class="text-xs font-semibold text-gray-700">Background</span>
+        </div>
+        <!-- Gray-50 -->
+        <div class="flex flex-col gap-2 items-center">
+          <div class="w-20 h-20 rounded-xl border border-gray-200" style="background:#F9FAFB;"></div>
+          <span class="text-xs text-gray-500">#F9FAFB</span>
+          <span class="text-xs font-semibold text-gray-700">Subtle BG / Gray-50</span>
+        </div>
+        <!-- Border -->
+        <div class="flex flex-col gap-2 items-center">
+          <div class="w-20 h-20 rounded-xl border border-gray-200" style="background:#E5E7EB;"></div>
+          <span class="text-xs text-gray-500">#E5E7EB</span>
+          <span class="text-xs font-semibold text-gray-700">Accent Border / Gray-200</span>
+        </div>
+        <!-- Teal light -->
+        <div class="flex flex-col gap-2 items-center">
+          <div class="w-20 h-20 rounded-xl" style="background:#F0FDFA;"></div>
+          <span class="text-xs text-gray-500">#F0FDFA</span>
+          <span class="text-xs font-semibold text-gray-700">Teal Tint / Teal-50</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 2: TYPOGRAPHY SCALE                       -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-white border-b border-gray-200 px-6 py-12">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-10">02 — Typography Scale</p>
+      <div class="space-y-8">
+
+        <div class="flex items-baseline gap-6">
+          <span class="text-xs text-gray-400 w-32 shrink-0">Display / 72px / 800</span>
+          <span class="font-extrabold leading-none text-gray-900" style="font-size:72px; line-height:1;">台大創創</span>
+        </div>
+
+        <div class="border-t border-gray-100 pt-6 flex items-baseline gap-6">
+          <span class="text-xs text-gray-400 w-32 shrink-0">H1 / 48px / 700</span>
+          <span class="font-bold leading-tight text-gray-900" style="font-size:48px; line-height:1.1;">連結台大 × 創造未來</span>
+        </div>
+
+        <div class="border-t border-gray-100 pt-6 flex items-baseline gap-6">
+          <span class="text-xs text-gray-400 w-32 shrink-0">H2 / 32px / 600</span>
+          <span class="font-semibold leading-snug text-gray-900" style="font-size:32px; line-height:1.2;">三大輔導計畫，找到適合你的路徑</span>
+        </div>
+
+        <div class="border-t border-gray-100 pt-6 flex items-baseline gap-6">
+          <span class="text-xs text-gray-400 w-32 shrink-0">H3 / 20px / 600</span>
+          <span class="font-semibold text-gray-900 text-xl">台大加速器 · 台大車庫 · 天使俱樂部</span>
+        </div>
+
+        <div class="border-t border-gray-100 pt-6 flex items-baseline gap-6">
+          <span class="text-xs text-gray-400 w-32 shrink-0">Body / 16px / 400</span>
+          <span class="text-base text-gray-700 leading-relaxed max-w-xl">台大創創中心（NTUTEC）是台灣大學旗下的創業生態系推進引擎，提供從 Idea 到 Series A 的全程輔導、業師網絡與資本對接服務。</span>
+        </div>
+
+        <div class="border-t border-gray-100 pt-6 flex items-baseline gap-6">
+          <span class="text-xs text-gray-400 w-32 shrink-0">Small / 14px / 400</span>
+          <span class="text-sm text-gray-500">申請截止：2026 年 1 月 31 日 ／ 錄取公布：2026 年 2 月 15 日</span>
+        </div>
+
+        <div class="border-t border-gray-100 pt-6 flex items-baseline gap-6">
+          <span class="text-xs text-gray-400 w-32 shrink-0">Label / 11px / 700</span>
+          <span class="text-xs font-bold tracking-widest text-teal-600 uppercase">NTUTEC — National Taiwan University Technology Entrepreneurship Center</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 3: HERO                                    -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-white border-b border-gray-200 px-6 py-6">
+    <div class="max-w-6xl mx-auto mb-4">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">03 — Hero Section</p>
+    </div>
+
+    <!-- Hero Preview -->
+    <div class="max-w-6xl mx-auto bg-white rounded-2xl border border-gray-200 overflow-hidden">
+      <div class="px-8 py-24 md:px-24 text-center">
+
+        <!-- Teal line accent -->
+        <div class="flex justify-center mb-8">
+          <div class="w-10 h-0.5 bg-teal-600"></div>
+        </div>
+
+        <!-- Overline -->
+        <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-6">
+          National Taiwan University Technology Entrepreneurship Center
+        </p>
+
+        <!-- Main headline -->
+        <h1 class="font-extrabold text-gray-900 leading-none mb-6"
+            style="font-size: clamp(48px, 8vw, 80px); line-height: 1.05; font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;">
+          台大創創中心
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-lg md:text-xl text-gray-500 font-normal leading-relaxed max-w-xl mx-auto mb-12">
+          連結台大頂尖研究能量，加速從 Idea 到 Series A 的每一步。
+          <br class="hidden md:block" />深耕台灣 13 年，陪伴 600+ 新創走過創業旅程。
+        </p>
+
+        <!-- CTA -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-10 py-4 rounded-full text-base transition-colors duration-200">
+            申請輔導計畫
+          </button>
+          <button class="border border-gray-300 hover:border-gray-400 text-gray-700 font-semibold px-10 py-4 rounded-full text-base transition-colors duration-200">
+            了解更多
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 4: STATS BAR                              -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-white border-b border-gray-200 px-6 py-6">
+    <div class="max-w-6xl mx-auto mb-4">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">04 — Stats Bar</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto bg-white rounded-2xl border border-gray-200 overflow-hidden">
+      <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200">
+        <div class="px-8 py-10 text-center">
+          <p class="font-extrabold text-gray-900 leading-none mb-2" style="font-size:44px;">600+</p>
+          <p class="text-sm text-gray-500">輔導新創團隊</p>
+        </div>
+        <div class="px-8 py-10 text-center">
+          <p class="font-extrabold text-gray-900 leading-none mb-2" style="font-size:44px;">80+</p>
+          <p class="text-sm text-gray-500">資深業師顧問</p>
+        </div>
+        <div class="px-8 py-10 text-center">
+          <p class="font-extrabold text-gray-900 leading-none mb-2" style="font-size:44px;">13 年</p>
+          <p class="text-sm text-gray-500">深耕創業生態系</p>
+        </div>
+        <div class="px-8 py-10 text-center">
+          <p class="font-extrabold text-gray-900 leading-none mb-2" style="font-size:44px;">NT$2.5 億</p>
+          <p class="text-sm text-gray-500">累計協助募資</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 5: PROGRAM CARDS                          -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-gray-50 border-b border-gray-200 px-6 py-6">
+    <div class="max-w-6xl mx-auto mb-4">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">05 — Program Cards</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto">
+      <!-- Section heading -->
+      <div class="mb-10 text-center">
+        <h2 class="font-bold text-gray-900 mb-3" style="font-size:32px;">三大輔導計畫</h2>
+        <p class="text-gray-500 text-base max-w-md mx-auto">無論你處於哪個創業階段，都有適合的路徑。</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Card 1: Accelerator -->
+        <div class="program-card bg-white rounded-2xl border border-gray-200 p-8 cursor-pointer">
+          <!-- Icon: Lightning bolt SVG -->
+          <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-6">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-2">Accelerator</p>
+          <h3 class="font-bold text-gray-900 text-xl mb-3">台大加速器</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+            密集 9 個月輔導，從商業模式驗證到 Demo Day 對接投資人。提供實體辦公空間、業師一對一輔導、資金媒合。
+          </p>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-teal-600">了解詳情</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 2: Garage -->
+        <div class="program-card bg-white rounded-2xl border border-gray-200 p-8 cursor-pointer">
+          <!-- Icon: Home SVG -->
+          <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-6">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-2">Garage</p>
+          <h3 class="font-bold text-gray-900 text-xl mb-3">台大車庫</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+            台大在校學生的創業起點。虛擬進駐、共學社群、每月健診，讓你在保有學籍的同時驗證你的第一個 MVP。
+          </p>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-teal-600">了解詳情</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 3: Angel Club -->
+        <div class="program-card bg-white rounded-2xl border border-gray-200 p-8 cursor-pointer">
+          <!-- Icon: Diamond SVG -->
+          <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-6">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3h12l4 6-10 13L2 9z"/>
+              <path d="M2 9h20M6 3l4 6m4 0l4-6"/>
+            </svg>
+          </div>
+          <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-2">Angel Club</p>
+          <h3 class="font-bold text-gray-900 text-xl mb-3">天使俱樂部</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-6">
+            匯聚台大系所校友投資人的早期資本平台。每月例會精選 1-2 個案件，提供 Pre-seed 至 Seed 輪媒合機會。
+          </p>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-teal-600">了解詳情</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 6: FEATURE GRID (Alternating)             -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-white border-b border-gray-200 px-6 py-6">
+    <div class="max-w-6xl mx-auto mb-4">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">06 — Feature Grid (Alternating Layout)</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto space-y-0">
+
+      <!-- Row A: Text left, Mock right -->
+      <div class="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-gray-200">
+        <!-- Text -->
+        <div class="bg-white px-10 py-14 flex flex-col justify-center">
+          <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-4">業師系統</p>
+          <h2 class="font-bold text-gray-900 mb-4 leading-tight" style="font-size:28px;">80+ 位業師，<br/>一對一深度輔導</h2>
+          <p class="text-gray-500 text-base leading-relaxed mb-6">
+            橫跨 AI、生醫、硬體、金融科技等 12 個產業領域的資深業師，
+            提供每季健診、不定期聯結，陪伴你克服成長瓶頸。
+          </p>
+          <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600">
+            瀏覽業師名單
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+        <!-- Mock UI -->
+        <div class="feature-mock px-10 py-14 flex items-center justify-center">
+          <div class="bg-white rounded-xl border border-gray-200 shadow-sm w-full max-w-xs p-5 space-y-4">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">本月推薦業師</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold text-sm">陳</div>
+              <div>
+                <p class="font-semibold text-gray-900 text-sm">陳志明</p>
+                <p class="text-xs text-gray-400">AI / SaaS · 前 Google PM</p>
+              </div>
+              <div class="ml-auto w-2 h-2 rounded-full bg-teal-500"></div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm">林</div>
+              <div>
+                <p class="font-semibold text-gray-900 text-sm">林佩瑩</p>
+                <p class="text-xs text-gray-400">生醫 · BioTech CEO</p>
+              </div>
+              <div class="ml-auto w-2 h-2 rounded-full bg-teal-500"></div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm">王</div>
+              <div>
+                <p class="font-semibold text-gray-900 text-sm">王建民</p>
+                <p class="text-xs text-gray-400">FinTech · Angel Investor</p>
+              </div>
+              <div class="ml-auto w-2 h-2 rounded-full bg-gray-300"></div>
+            </div>
+            <div class="pt-2 border-t border-gray-100">
+              <button class="w-full text-xs font-semibold text-teal-600 text-center py-1">預約健診 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row B: Mock left, Text right -->
+      <div class="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-gray-200 mt-6">
+        <!-- Mock UI -->
+        <div class="feature-mock px-10 py-14 flex items-center justify-center order-2 md:order-1">
+          <div class="bg-white rounded-xl border border-gray-200 shadow-sm w-full max-w-xs p-5">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">申請進度追蹤</p>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-teal-600 flex items-center justify-center shrink-0">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-900">表單提交</p>
+                  <p class="text-xs text-gray-400">已完成 · 2026/01/10</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-teal-600 flex items-center justify-center shrink-0">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-900">初審通過</p>
+                  <p class="text-xs text-gray-400">已完成 · 2026/01/18</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full border-2 border-teal-600 bg-white flex items-center justify-center shrink-0">
+                  <div class="w-2 h-2 rounded-full bg-teal-600"></div>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-900">面審排程中</p>
+                  <p class="text-xs text-teal-600">進行中 · 預計 02/05</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full border-2 border-gray-200 bg-white shrink-0"></div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-300">錄取公布</p>
+                  <p class="text-xs text-gray-300">2026/02/15</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Text -->
+        <div class="bg-white px-10 py-14 flex flex-col justify-center order-1 md:order-2">
+          <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-4">申請流程</p>
+          <h2 class="font-bold text-gray-900 mb-4 leading-tight" style="font-size:28px;">透明、快速、<br/>以創業者為中心</h2>
+          <p class="text-gray-500 text-base leading-relaxed mb-6">
+            線上填寫申請表單、3 週完成初審、面審結果即時通知。
+            全程無繁瑣文件，讓你把時間花在打造產品上。
+          </p>
+          <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600">
+            開始申請
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 7: MENTOR PREVIEW (List style)            -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-gray-50 border-b border-gray-200 px-6 py-6">
+    <div class="max-w-6xl mx-auto mb-4">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">07 — Mentor Preview (List Style)</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <h2 class="font-bold text-gray-900 mb-2" style="font-size:28px;">認識我們的業師</h2>
+          <p class="text-gray-500 text-base">來自產業前線的實戰經驗，直接傳授給你。</p>
+        </div>
+        <a href="#" class="hidden md:flex items-center gap-1 text-sm font-semibold text-teal-600">
+          瀏覽全部業師
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden divide-y divide-gray-100">
+
+        <!-- Mentor row -->
+        <div class="mentor-row flex items-center gap-4 px-6 py-4 cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-teal-100 flex items-center justify-center font-bold text-teal-700 text-lg shrink-0">陳</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-gray-900">陳志明</p>
+            <p class="text-sm text-gray-500 truncate">創業導師 · AI / SaaS · 前 Google Product Manager</p>
+          </div>
+          <div class="hidden md:flex gap-2">
+            <span class="text-xs bg-teal-50 text-teal-700 font-medium px-2 py-1 rounded-full">AI</span>
+            <span class="text-xs bg-gray-100 text-gray-600 font-medium px-2 py-1 rounded-full">SaaS</span>
+          </div>
+          <svg class="w-4 h-4 text-teal-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+
+        <div class="mentor-row flex items-center gap-4 px-6 py-4 cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center font-bold text-purple-700 text-lg shrink-0">林</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-gray-900">林佩瑩</p>
+            <p class="text-sm text-gray-500 truncate">創業導師 · 生醫科技 · BioTech Startup CEO、前 AstraZeneca</p>
+          </div>
+          <div class="hidden md:flex gap-2">
+            <span class="text-xs bg-purple-50 text-purple-700 font-medium px-2 py-1 rounded-full">生醫</span>
+            <span class="text-xs bg-gray-100 text-gray-600 font-medium px-2 py-1 rounded-full">法規</span>
+          </div>
+          <svg class="w-4 h-4 text-teal-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+
+        <div class="mentor-row flex items-center gap-4 px-6 py-4 cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center font-bold text-orange-700 text-lg shrink-0">王</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-gray-900">王建民</p>
+            <p class="text-sm text-gray-500 truncate">創業導師 · 金融科技 · 天使投資人、前兆豐金融副總</p>
+          </div>
+          <div class="hidden md:flex gap-2">
+            <span class="text-xs bg-orange-50 text-orange-700 font-medium px-2 py-1 rounded-full">FinTech</span>
+            <span class="text-xs bg-gray-100 text-gray-600 font-medium px-2 py-1 rounded-full">資本</span>
+          </div>
+          <svg class="w-4 h-4 text-teal-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+
+        <div class="mentor-row flex items-center gap-4 px-6 py-4 cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center font-bold text-blue-700 text-lg shrink-0">張</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-gray-900">張雅惠</p>
+            <p class="text-sm text-gray-500 truncate">創業導師 · 硬體製造 · 前台達電研發總監</p>
+          </div>
+          <div class="hidden md:flex gap-2">
+            <span class="text-xs bg-blue-50 text-blue-700 font-medium px-2 py-1 rounded-full">硬體</span>
+            <span class="text-xs bg-gray-100 text-gray-600 font-medium px-2 py-1 rounded-full">供應鏈</span>
+          </div>
+          <svg class="w-4 h-4 text-teal-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 8: TESTIMONIAL / QUOTE                    -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-white border-b border-gray-200 px-6 py-6">
+    <div class="max-w-6xl mx-auto mb-4">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">08 — Testimonial / Quote</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto bg-gray-50 rounded-2xl border border-gray-200 px-10 py-14 md:px-20 md:py-16 text-center">
+      <!-- Large teal quotation mark -->
+      <div class="text-teal-600 mb-6" style="font-size:80px; line-height:0.6; font-family: Georgia, serif;">"</div>
+
+      <!-- Quote in Noto Serif TC italic -->
+      <blockquote class="text-gray-900 leading-relaxed max-w-3xl mx-auto mb-8"
+                  style="font-family: 'Noto Serif TC', serif; font-size:22px; font-style:italic; line-height:1.8;">
+        在台大創創的一年，是我創業路上轉折最大的一段。不只是資源，而是那個讓你敢想、敢試的文化——失敗了沒人嘲笑你，成功了大家都替你高興。
+      </blockquote>
+
+      <!-- Attribution -->
+      <div class="flex items-center justify-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center font-bold text-teal-700">李</div>
+        <div class="text-left">
+          <p class="font-semibold text-gray-900 text-sm">李宇翔</p>
+          <p class="text-xs text-gray-500">MedAI Co-founder · 台大加速器第 7 屆</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 9: BUTTON STYLES                          -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-gray-50 border-b border-gray-200 px-6 py-10">
+    <div class="max-w-6xl mx-auto mb-6">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">09 — Button Styles & UI Elements</p>
+    </div>
+    <div class="max-w-6xl mx-auto flex flex-wrap gap-4 items-center">
+      <button class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-8 py-3 rounded-full text-sm transition-colors">
+        Primary — 申請加入
+      </button>
+      <button class="border border-gray-300 hover:border-teal-600 hover:text-teal-600 text-gray-700 font-semibold px-8 py-3 rounded-full text-sm transition-colors">
+        Secondary — 了解更多
+      </button>
+      <button class="text-teal-600 font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+        Text Link — 查看詳情
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+      <span class="text-xs bg-teal-50 text-teal-700 font-semibold px-3 py-1 rounded-full border border-teal-200">Tag / Badge</span>
+      <span class="text-xs bg-gray-100 text-gray-600 font-medium px-3 py-1 rounded-full">Neutral Tag</span>
+      <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2">
+        <div class="w-2 h-2 rounded-full bg-teal-500"></div>
+        <span class="text-xs text-gray-600 font-medium">招募中</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 10: CTA SECTION (Teal BG)                 -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-white border-b border-gray-200 px-6 py-6">
+    <div class="max-w-6xl mx-auto mb-4">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">10 — CTA Section</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto bg-teal-600 rounded-2xl px-8 py-16 text-center overflow-hidden relative">
+      <!-- Subtle decorative rings -->
+      <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full border border-white opacity-10"></div>
+      <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full border border-white opacity-10"></div>
+
+      <p class="text-xs font-bold tracking-widest text-teal-100 uppercase mb-4 relative">開始你的創業旅程</p>
+      <h2 class="font-extrabold text-white mb-4 relative" style="font-size: clamp(28px, 5vw, 44px); line-height: 1.15;">
+        申請加入輔導計畫
+      </h2>
+      <p class="text-teal-100 text-base md:text-lg leading-relaxed max-w-lg mx-auto mb-10 relative">
+        每年名額有限，12 月開放報名。加入超過 600 位校友創業者的社群，
+        讓台大成為你最強大的後盾。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center relative">
+        <button class="bg-white text-teal-600 font-bold px-10 py-4 rounded-full text-base hover:bg-teal-50 transition-colors">
+          立即申請 →
+        </button>
+        <button class="border border-white text-white font-semibold px-10 py-4 rounded-full text-base hover:bg-teal-700 transition-colors">
+          參加說明會
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- SECTION 11: SPACING / SHADOW TOKENS               -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="bg-gray-50 border-b border-gray-200 px-6 py-10">
+    <div class="max-w-6xl mx-auto mb-6">
+      <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">11 — Shadow & Border Tokens</p>
+    </div>
+    <div class="max-w-6xl mx-auto flex flex-wrap gap-6 items-end">
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-28 h-16 bg-white rounded-xl border border-gray-200"></div>
+        <span class="text-xs text-gray-500">border / shadow-none</span>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-28 h-16 bg-white rounded-xl shadow-sm border border-gray-100"></div>
+        <span class="text-xs text-gray-500">shadow-sm</span>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-28 h-16 bg-white rounded-xl shadow-md"></div>
+        <span class="text-xs text-gray-500">shadow-md (hover)</span>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-28 h-16 bg-white rounded-xl shadow-lg"></div>
+        <span class="text-xs text-gray-500">shadow-lg (card hover)</span>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-28 h-16 bg-white rounded-2xl shadow-xl"></div>
+        <span class="text-xs text-gray-500">shadow-xl (modal)</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- FOOTER SUMMARY                                     -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <footer class="bg-gray-900 text-gray-400 px-6 py-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-8 mb-10">
+        <div>
+          <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-3">Style C Key Principles</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> Restraint：最多 2 色（白 + Teal）</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> Type-first：字型層次取代裝飾</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> Whitespace：留白即設計</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> SVG icons：線條簡潔，無 emoji</li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-3">Differentiators vs Style A/B</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> 無漸層背景，純白為主</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> 卡片 hover = 左側色條 + shadow</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> Feature Alternating（非純 grid）</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> 業師列表 vs 業師卡片</li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-bold tracking-widest text-teal-600 uppercase mb-3">Font Stack</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> Primary：Plus Jakarta Sans</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> Chinese：Noto Sans TC</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> Quote only：Noto Serif TC italic</li>
+            <li class="flex items-start gap-2"><span class="text-teal-600 mt-0.5">—</span> Weights：400 / 600 / 700 / 800</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-gray-600">NTUTEC 台大創創中心 — Mood Board Style C · 設計提案用途</p>
+        <p class="text-xs text-gray-600">Generated 2026-04-13 · Plus Jakarta Sans + Tailwind CSS</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
