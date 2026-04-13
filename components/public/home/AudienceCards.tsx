@@ -178,10 +178,10 @@ export default function AudienceCards() {
     <section className="section-spacing bg-white">
       <div className="container">
         <div className="mb-12 max-w-2xl">
-          <p className="micro-label mb-2">Find Your Path</p>
-          <h2>找到你的入口</h2>
+          <p className="micro-label mb-2">Your Next Step</p>
+          <h2>你是哪一種夥伴？</h2>
           <p className="mt-4 text-lg text-slate-muted">
-            無論你是新創團隊、企業或投資人，我們都有為你量身打造的資源與服務。
+            新創、企業、投資人——不同的角色，同一個生態系。找到屬於你的資源。
           </p>
         </div>
 
