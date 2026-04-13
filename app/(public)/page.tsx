@@ -11,6 +11,7 @@ import StatsSection from '@/components/public/home/StatsSection'
 import NewsSection from '@/components/public/home/NewsSection'
 import PartnersSection from '@/components/public/home/PartnersSection'
 import NTUEcosystemSection from '@/components/public/home/NTUEcosystemSection'
+import NtuEcosystemLinks from '@/components/public/NtuEcosystemLinks'
 import Image from 'next/image'
 import { FadeIn } from '@/components/ui/fade-in'
 
@@ -93,6 +94,7 @@ export default function HomePage() {
       <NewsSection />
       <NTUEcosystemSection />
       <PartnersSection />
+      <NtuEcosystemLinks />
     </>
   )
 }

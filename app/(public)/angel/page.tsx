@@ -403,16 +403,14 @@ export default function AngelPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href="/angel-apply"
-                  className={`block w-full rounded-xl py-3 text-center font-semibold transition-colors ${
-                    tier.featured
-                      ? 'bg-teal text-white hover:bg-teal-deep'
-                      : 'bg-charcoal text-white hover:bg-charcoal/90'
-                  }`}
-                >
-                  申請入會審核
-                </Link>
+                {tier.featured && (
+                  <Link
+                    href="/angel-apply"
+                    className="block w-full rounded-xl py-3 text-center font-semibold transition-colors bg-teal text-white hover:bg-teal-deep"
+                  >
+                    申請入會審核
+                  </Link>
+                )}
               </div>
             ))}
           </div>

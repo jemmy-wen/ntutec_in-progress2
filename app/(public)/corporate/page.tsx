@@ -329,14 +329,18 @@ export default function CorporatePage() {
       </div>
 
       {/* CTA */}
-      <section className="section-spacing bg-teal-wash">
-        <div className="container text-center">
-          <h2 className="mb-6">準備開啟合作了嗎？</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/events/demo-day-2025-group.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2] text-center">
+          <h2 className="mb-6 text-white">準備開啟合作了嗎？</h2>
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-white/70">
             無論是探索新技術、尋找創新解決方案，或建立人才管道，台大創創中心都能量身打造合作方案。
           </p>
           <TrackClick eventName="cta_consulting_click" eventParams={{ location: 'corporate_page_cta' }}>
-            <Link href="/consulting" className="btn-pill-outline mr-4">
+            <Link href="/consulting" className="btn-pill-outline !border-white/60 !text-white hover:!bg-white/10 mr-4">
               了解諮詢服務
             </Link>
           </TrackClick>

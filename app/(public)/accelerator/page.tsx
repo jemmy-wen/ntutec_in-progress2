@@ -405,30 +405,27 @@ export default function AcceleratorPage() {
         </div>
       </section>
 
-      {/* Audience diversion */}
-      <section className="py-10 bg-gray-50 text-center border-t">
-        <p className="text-gray-600 mb-6">你是企業或投資人？我們有更適合你的合作方式</p>
-        <div className="flex justify-center gap-4 flex-wrap">
-          <Link href="/corporate" className="btn-pill-outline">企業垂直加速器合作</Link>
-          <Link href="/angel" className="btn-pill-outline">加入天使俱樂部</Link>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="section-spacing bg-stone">
-        <div className="container text-center">
-          <h2 className="mb-4">有興趣加入 2027 梯次？</h2>
-          <p className="mx-auto mb-6 max-w-xl text-lg text-slate-muted">
+      <section className="relative section-spacing overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/photos/ntu-research-cover.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2] text-center">
+          <h2 className="mb-4 text-white">有興趣加入 2027 梯次？</h2>
+          <p className="mx-auto mb-6 max-w-xl text-lg text-white/70">
             提前登記你的團隊，12 月正式申請開放時，我們將第一時間通知你。登記不等同申請，正式申請仍需依流程提交。
           </p>
-          <Link
-            href="/apply"
-            className="btn-pill-primary inline-flex items-center gap-2"
-          >
-            <Send className="h-4 w-4" />
-            預約 2027 梯次通知
-          </Link>
-
+          <div className="flex justify-center gap-4 flex-wrap">
+            <Link
+              href="/apply"
+              className="btn-pill-primary inline-flex items-center gap-2"
+            >
+              <Send className="h-4 w-4" />
+              預約 2027 梯次通知
+            </Link>
+            <Link href="/corporate" className="btn-pill-outline !border-white/60 !text-white hover:!bg-white/10">企業合作方案</Link>
+          </div>
         </div>
       </section>
     </>

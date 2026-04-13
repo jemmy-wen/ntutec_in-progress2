@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
+import NtuEcosystemLinks from '@/components/public/NtuEcosystemLinks'
 import { Plant, LinkSimple, RocketLaunch } from '@phosphor-icons/react/dist/ssr'
 import { FadeIn } from '@/components/ui/fade-in'
 import { CountUp } from '@/components/ui/count-up'
@@ -263,12 +264,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-spacing bg-stone text-center">
-        <div className="container">
-          <h2 className="mb-6">立即探索計畫</h2>
+      <NtuEcosystemLinks />
+
+      <section className="relative section-spacing overflow-hidden text-center">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/photos/ntu-beauty-2.jpg" alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-[#0A192F]/80" />
+        <div className="container relative z-[2]">
+          <h2 className="mb-6 text-white">立即探索計畫</h2>
           <div className="flex justify-center gap-4 flex-wrap">
             <Link href="/apply" className="btn-pill-primary">啟動創業之旅</Link>
-            <Link href="/corporate" className="btn-pill-outline">企業夥伴合作</Link>
+            <Link href="/corporate" className="btn-pill-outline !border-white/60 !text-white hover:!bg-white/10">企業夥伴合作</Link>
           </div>
         </div>
       </section>
