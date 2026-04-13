@@ -286,7 +286,7 @@ export default function AlumniPage() {
               成為下一個里程碑案例
             </Link>
             <Link href="/programs" className="btn-pill-outline">
-              了解計畫方案
+              了解輔導計畫
             </Link>
           </div>
         </div>

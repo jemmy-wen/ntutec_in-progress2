@@ -35,7 +35,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   {
-    label: "計畫方案",
+    label: "輔導計畫",
     children: [
       { label: "台大加速器", href: "/accelerator" },
       { label: "台大車庫", href: "/garage" },
