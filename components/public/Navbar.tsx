@@ -249,6 +249,7 @@ function MobileAccordion({
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [applyOpen, setApplyOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { open: searchOpen, setOpen: setSearchOpen } = useSearchDialog();
   const langSwitch = useLanguageSwitcher();
@@ -359,12 +360,49 @@ export default function Navbar() {
             {langSwitch.label}
           </Link>
 
-          <Link
-            href="/apply"
-            className="hidden xl:inline-flex whitespace-nowrap btn-pill-primary text-xs px-3 py-1.5"
+          {/* Apply dropdown CTA */}
+          <div className="relative hidden xl:block"
+            onMouseEnter={() => setApplyOpen(true)}
+            onMouseLeave={() => setApplyOpen(false)}
           >
-            立即申請
-          </Link>
+            <button
+              onClick={() => setApplyOpen(!applyOpen)}
+              className="whitespace-nowrap btn-pill-primary text-xs px-3 py-1.5 flex items-center gap-1"
+            >
+              立即申請
+              <ChevronDown className={`h-3 w-3 transition-transform ${applyOpen ? "rotate-180" : ""}`} />
+            </button>
+            <AnimatePresence>
+              {applyOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full pt-2 z-50"
+                >
+                  <div className="min-w-[200px] rounded-xl border border-border bg-white p-2 shadow-lg">
+                    {[
+                      { label: "新創投遞 Pitch", href: "/pitch", desc: "提交你的新創案件" },
+                      { label: "企業合作洽談", href: "/corporate#contact", desc: "啟動外部創新" },
+                      { label: "加入天使俱樂部", href: "/angel-apply", desc: "成為天使投資人" },
+                      { label: "預約 2027 輔導計畫", href: "/apply", desc: "加速器・車庫" },
+                    ].map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setApplyOpen(false)}
+                        className="flex flex-col rounded-lg px-3 py-2.5 transition-colors hover:bg-stone"
+                      >
+                        <span className="text-sm font-medium text-charcoal">{item.label}</span>
+                        <span className="text-xs text-slate-muted">{item.desc}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Auth: login button or user avatar dropdown */}
           <NavbarAuthButton />
@@ -398,13 +436,22 @@ export default function Navbar() {
               ))}
 
               <div className="mt-8 flex flex-col gap-3 px-4">
-                <Link
-                  href="/apply"
-                  onClick={() => setMobileOpen(false)}
-                  className="btn-pill-primary text-center"
-                >
-                  立即申請
-                </Link>
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1">立即申請</p>
+                {[
+                  { label: "新創投遞 Pitch", href: "/pitch" },
+                  { label: "企業合作洽談", href: "/corporate#contact" },
+                  { label: "加入天使俱樂部", href: "/angel-apply" },
+                  { label: "預約 2027 輔導計畫", href: "/apply" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="btn-pill-outline text-center text-sm"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
                 <Link
                   href={langSwitch.href}
                   onClick={() => setMobileOpen(false)}
