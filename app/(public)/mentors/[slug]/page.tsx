@@ -31,28 +31,63 @@ const CATEGORY_LABELS: Record<string, { label: string; color: string }> = {
   expert:  { label: "產業專家", color: "bg-teal-100 text-teal-700" },
 };
 
+/** Generate a slug from mentor name (same logic as listing page) */
+function nameToSlug(name: string): string {
+  return name.replace(/\s+/g, "-").toLowerCase();
+}
+
+/** Infer category from specialties */
+function inferCategory(specialties: string[] | null): string {
+  const specs = (specialties || []).join(" ").toLowerCase();
+  if (/投資|募資|vc|angel|創投|天使/.test(specs)) return "vc";
+  if (/創業|創辦|founder|exit|startup/.test(specs)) return "founder";
+  if (/企業|corporate|bd|通路|策略|管理/.test(specs)) return "exec";
+  return "expert";
+}
+
+/** Map DB row to MentorRow interface */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapDbRow(row: any): MentorRow {
+  return {
+    id: row.id,
+    name: row.name,
+    title: row.title,
+    highlight: row.bio,
+    category: inferCategory(row.specialties),
+    photo_url: row.photo_url,
+    social_url: null,
+    bio: row.bio,
+    is_new_2026: false,
+    slug: nameToSlug(row.name),
+    extended_profile: row.extended_profile || {},
+  };
+}
+
 async function getMentor(slug: string): Promise<MentorRow | null> {
   const supabase = await createClient();
+  // DB has no slug column — fetch all active mentors and match by generated slug
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (supabase.from("mentors") as any)
-    .select("id, name, title, highlight, category, photo_url, social_url, bio, is_new_2026, slug, extended_profile")
-    .eq("slug", slug)
-    .eq("is_active", true)
-    .single();
-  return data as MentorRow | null;
+    .select("id, name, title, bio, photo_url, specialties, is_active, extended_profile")
+    .eq("is_active", true);
+  if (!data) return null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const match = data.find((row: any) => nameToSlug(row.name) === slug);
+  return match ? mapDbRow(match) : null;
 }
 
 async function getRelatedMentors(category: string, excludeId: string): Promise<MentorRow[]> {
   const supabase = await createClient();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (supabase.from("mentors") as any)
-    .select("id, name, title, highlight, category, photo_url, social_url, bio, is_new_2026, slug, extended_profile")
+    .select("id, name, title, bio, photo_url, specialties, is_active, extended_profile")
     .eq("is_active", true)
-    .eq("category", category)
-    .neq("id", excludeId)
-    .order("sort_order", { ascending: true })
-    .limit(3);
-  return (data as MentorRow[]) || [];
+    .neq("id", excludeId);
+  if (!data) return [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return data.map((r: any) => mapDbRow(r))
+    .filter((m: MentorRow) => m.category === category)
+    .slice(0, 3);
 }
 
 // generateStaticParams: pre-render all mentor pages at build time.
@@ -63,10 +98,10 @@ export async function generateStaticParams() {
     const db = createAdminClient() as any;
     const { data } = await db
       .from("mentors")
-      .select("slug")
-      .eq("is_active", true)
-      .not("slug", "is", null);
-    return ((data as { slug: string }[]) || []).map((m) => ({ slug: m.slug }));
+      .select("name")
+      .eq("is_active", true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return ((data as { name: string }[]) || []).map((m) => ({ slug: nameToSlug(m.name) }));
   } catch {
     // Supabase unavailable at build time — skip SSG, use ISR
     return [];
@@ -133,7 +168,7 @@ export default async function MentorDetailPage({
     ...(displayTitle ? { jobTitle: displayTitle } : {}),
     ...(mentor.bio ? { description: mentor.bio } : {}),
     ...(mentor.photo_url
-      ? { image: `https://tec.ntu.edu.tw${mentor.photo_url}` }
+      ? { image: mentor.photo_url.startsWith("http") ? mentor.photo_url : `https://tec.ntu.edu.tw${mentor.photo_url}` }
       : {}),
     ...(mentor.social_url ? { sameAs: [mentor.social_url] } : {}),
     worksFor: {
@@ -294,7 +329,7 @@ export default async function MentorDetailPage({
                   return (
                     <Link
                       key={m.id}
-                      href={m.slug ? `/mentors/${m.slug}` : "#"}
+                      href={`/mentors/${m.slug}`}
                       className="card-hover group flex flex-col overflow-hidden rounded-xl border border-stone-warm/50 bg-stone transition-shadow hover:shadow-md"
                     >
                       <div className="relative aspect-[4/5] w-full overflow-hidden bg-stone-warm/40">
