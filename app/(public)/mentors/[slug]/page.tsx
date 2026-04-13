@@ -43,12 +43,12 @@ function mapDbRow(row: any): MentorRow {
     id: row.id,
     name: row.name,
     title: row.title,
-    highlight: row.bio,
+    highlight: row.highlight || row.bio,
     category: row.category || "expert",
     photo_url: row.photo_url,
-    social_url: null,
+    social_url: row.social_url || null,
     bio: row.bio,
-    is_new_2026: false,
+    is_new_2026: row.is_new_2026 || false,
     slug: nameToSlug(row.name),
     extended_profile: row.extended_profile || {},
   };
@@ -59,7 +59,7 @@ async function getMentor(slug: string): Promise<MentorRow | null> {
   // DB has no slug column — fetch all active mentors and match by generated slug
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, category, is_active, extended_profile")
+    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, extended_profile")
     .eq("is_active", true);
   if (!data) return null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -71,7 +71,7 @@ async function getRelatedMentors(category: string, excludeId: string): Promise<M
   const supabase = await createClient();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, category, is_active, extended_profile")
+    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, extended_profile")
     .eq("is_active", true)
     .neq("id", excludeId);
   if (!data) return [];
