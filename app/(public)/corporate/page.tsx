@@ -68,7 +68,7 @@ export default function CorporatePage() {
       />
 
       {/* Why partner with TEC */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Why Partner With Us</p>
@@ -79,7 +79,7 @@ export default function CorporatePage() {
           </div>
           <div className="grid gap-8 md:grid-cols-3">
             {valueProps.map((prop) => (
-              <div key={prop.title} className="card-hover rounded-2xl bg-white p-8">
+              <div key={prop.title} className="card-hover card-elevated rounded-2xl bg-white p-8">
                 <h3 className="mb-4 text-xl font-semibold">{prop.title}</h3>
                 <p className="text-slate-muted leading-relaxed">
                   {prop.description}
@@ -101,7 +101,7 @@ export default function CorporatePage() {
             {collaborationModels.map((model) => (
               <div
                 key={model.title}
-                className="card-hover flex gap-6 rounded-2xl bg-white p-8"
+                className="card-hover card-elevated flex gap-6 rounded-2xl bg-white p-8"
               >
                 <span className="text-4xl">{model.icon}</span>
                 <div>
@@ -161,9 +161,9 @@ export default function CorporatePage() {
               累計 27 期、35 家企業夥伴的深度共創實績，涵蓋科技、媒體、金融等多元產業。
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="mx-auto max-w-2xl">
             {/* Card 1: 宏碁 × 律果科技 */}
-            <div className="rounded-2xl border border-stone-warm p-6">
+            <div className="rounded-2xl border border-stone-warm p-6 card-elevated">
               <div className="mb-4 flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">
                   企業垂直加速器
@@ -194,48 +194,6 @@ export default function CorporatePage() {
               </ul>
               <div className="flex flex-wrap gap-2">
                 {["#LegalTech", "#AI", "#HBR報導", "#宏碁"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-stone px-2.5 py-1 text-xs text-slate-muted"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Card 2: 聯經 × SAT */}
-            <div className="rounded-2xl border border-stone-warm p-6">
-              <div className="mb-4 flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">
-                  企業垂直加速器
-                </span>
-                <span className="rounded-full bg-stone px-3 py-1 text-xs font-semibold text-charcoal">
-                  永續主題
-                </span>
-              </div>
-              <h3 className="mb-1 text-xl font-bold text-charcoal">
-                聯經出版 Linking Publishing × SAT. Knowledge 知識衛星
-              </h3>
-              <p className="mb-4 text-sm font-medium text-teal-deep">
-                出版業老字號 × 線上課程新創，共創藝文教育市場新藍海
-              </p>
-              <ul className="mb-5 space-y-2 text-sm leading-relaxed text-slate-muted">
-                <li className="flex items-start gap-2">
-                  <span className="mt-0.5 text-teal">✓</span>
-                  企業新創互補共生典範案例，達成 NT$1,000 萬營收
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-0.5 text-teal">✓</span>
-                  年度企業外部創新旗艦合作，獲企業高度評價
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-0.5 text-teal">✓</span>
-                  協助聯經拓展數位知識服務版圖，開啟數位轉型新篇章
-                </li>
-              </ul>
-              <div className="flex flex-wrap gap-2">
-                {["#知識科技", "#永續發展", "#外部創新"].map((tag) => (
                   <span
                     key={tag}
                     className="rounded-full bg-stone px-2.5 py-1 text-xs text-slate-muted"

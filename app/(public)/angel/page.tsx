@@ -6,6 +6,7 @@ import TrackClick from '@/components/TrackClick'
 import { ogImageUrl } from '@/lib/og'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 import { Target, ClipboardText, Handshake, TrendUp, DownloadSimple, Flask, ListChecks, Microphone, Scales, Briefcase } from '@phosphor-icons/react/dist/ssr'
+import { FadeIn } from '@/components/ui/fade-in'
 
 export const metadata: Metadata = {
   title: 'NTUTEC ANGELS 台大天使會 | NTUTEC',
@@ -234,13 +235,15 @@ export default function AngelPage() {
       {/* ── Member Benefits ── */}
       <section className="section-spacing bg-warm-stone">
         <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">Member Benefits</p>
-            <h2>加入天使俱樂部的理由</h2>
-          </div>
+          <FadeIn>
+            <div className="mb-12 text-center">
+              <p className="micro-label mb-4">Member Benefits</p>
+              <h2>加入天使俱樂部的理由</h2>
+            </div>
+          </FadeIn>
           <div className="grid gap-8 md:grid-cols-2">
             {highlights.map((benefit) => (
-              <div key={benefit.title} className="card-hover rounded-2xl bg-white p-8">
+              <div key={benefit.title} className="card-hover rounded-2xl bg-white p-8 card-elevated">
                 <span className="mb-4 block text-teal"><benefit.Icon size={40} weight="duotone" /></span>
                 <h3 className="mb-3 text-xl font-semibold">{benefit.title}</h3>
                 <p className="text-slate-muted leading-relaxed">{benefit.description}</p>
@@ -253,11 +256,13 @@ export default function AngelPage() {
       {/* ── Monthly Cycle — horizontal flow ── */}
       <section className="section-spacing bg-stone">
         <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">How It Works</p>
-            <h2 className="mb-4">每月如何運作</h2>
-            <p className="text-lg text-slate-muted">從案源進入到投資決策，每一步都有清楚的流程。</p>
-          </div>
+          <FadeIn>
+            <div className="mb-12 text-center">
+              <p className="micro-label mb-4">How It Works</p>
+              <h2 className="mb-4">每月如何運作</h2>
+              <p className="text-lg text-slate-muted">從案源進入到投資決策，每一步都有清楚的流程。</p>
+            </div>
+          </FadeIn>
 
           {/* Desktop: horizontal flow */}
           <div className="hidden lg:flex items-start gap-0">

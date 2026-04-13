@@ -4,6 +4,8 @@ import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 import { Plant, LinkSimple, RocketLaunch } from '@phosphor-icons/react/dist/ssr'
+import { FadeIn } from '@/components/ui/fade-in'
+import { CountUp } from '@/components/ui/count-up'
 
 export const metadata: Metadata = {
   title: '關於台大創創中心 | NTUTEC',
@@ -94,13 +96,15 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: '600+', label: '輔導新創團隊', sub: '2013 年至今' },
-                { value: '13', label: '年深耕', sub: 'Since 2013' },
-                { value: '35+', label: '企業夥伴', sub: '垂直加速器合作' },
-                { value: '150+', label: '投資人網絡', sub: '含 40+ 天使會員' },
+                { end: 600, suffix: '+', label: '輔導新創團隊', sub: '2013 年至今' },
+                { end: 13, suffix: '', label: '年深耕', sub: 'Since 2013' },
+                { end: 35, suffix: '+', label: '企業夥伴', sub: '垂直加速器合作' },
+                { end: 150, suffix: '+', label: '投資人網絡', sub: '含 40+ 天使會員' },
               ].map((stat) => (
-                <div key={stat.label} className="rounded-2xl bg-teal-wash p-6 text-center">
-                  <div className="text-3xl font-bold text-teal-deep">{stat.value}</div>
+                <div key={stat.label} className="rounded-2xl bg-teal-wash p-6 text-center card-elevated">
+                  <div className="text-3xl font-bold text-teal-deep">
+                    <CountUp end={stat.end} suffix={stat.suffix} />
+                  </div>
                   <div className="mt-1 text-sm font-semibold text-charcoal">{stat.label}</div>
                   <div className="mt-0.5 text-xs text-slate-muted">{stat.sub}</div>
                 </div>
@@ -166,10 +170,12 @@ export default function AboutPage() {
 
       <section className="section-spacing bg-stone">
         <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">History</p>
-            <h2>發展歷程</h2>
-          </div>
+          <FadeIn>
+            <div className="mb-12 text-center">
+              <p className="micro-label mb-4">History</p>
+              <h2>發展歷程</h2>
+            </div>
+          </FadeIn>
           <div className="relative mx-auto max-w-3xl">
             <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-teal/20 md:left-1/2 md:-translate-x-px" />
             <div className="space-y-12">
@@ -269,10 +275,12 @@ export default function AboutPage() {
 
       <section className="section-spacing">
         <div className="container text-center">
-          <p className="micro-label mb-4">Our People</p>
-          <h2 className="mb-6">認識我們的團隊</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">投資經理、輔導經理——每位成員都是新創的第一線戰友，不只給建議，更一起把關鍵路上每個節點走完。</p>
-          <Link href="/team" className="btn-pill-primary">查看完整團隊</Link>
+          <FadeIn>
+            <p className="micro-label mb-4">Our People</p>
+            <h2 className="mb-6">認識我們的團隊</h2>
+            <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">投資經理、輔導經理——每位成員都是新創的第一線戰友，不只給建議，更一起把關鍵路上每個節點走完。</p>
+            <Link href="/team" className="btn-pill-primary">查看完整團隊</Link>
+          </FadeIn>
         </div>
       </section>
     </>

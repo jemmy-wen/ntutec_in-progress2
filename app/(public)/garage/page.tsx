@@ -44,7 +44,7 @@ export default function GaragePage() {
       />
 
       {/* Overview */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
@@ -135,7 +135,7 @@ export default function GaragePage() {
       </section>
 
       {/* Who Can Apply */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="mx-auto max-w-3xl">
             <p className="micro-label mb-4">Eligibility</p>
@@ -165,7 +165,7 @@ export default function GaragePage() {
       <FeaturedAlumni stories={garageAlumni} title="台大車庫校友成就" />
 
       {/* Batch Timeline */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="mx-auto max-w-3xl">
             <div className="mb-8 text-center">

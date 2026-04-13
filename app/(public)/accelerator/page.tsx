@@ -7,6 +7,7 @@ import FeaturedAlumni, { type AlumniStory } from "@/components/public/FeaturedAl
 import Image from "next/image";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import { ogImageUrl } from "@/lib/og";
+import { FadeIn } from "@/components/ui/fade-in";
 
 const acceleratorAlumni: AlumniStory[] = [
   {
@@ -269,10 +270,12 @@ export default function AcceleratorPage() {
       {/* What We Offer */}
       <section className="section-spacing bg-warm-stone">
         <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">Benefits</p>
-            <h2>我們提供的資源</h2>
-          </div>
+          <FadeIn>
+            <div className="mb-12 text-center">
+              <p className="micro-label mb-4">Benefits</p>
+              <h2>我們提供的資源</h2>
+            </div>
+          </FadeIn>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b) => (
               <div key={b.title} className="text-center">
@@ -316,7 +319,9 @@ export default function AcceleratorPage() {
       </section>
 
       {/* Featured Alumni */}
-      <FeaturedAlumni stories={acceleratorAlumni} title="台大加速器校友成就" />
+      <FadeIn>
+        <FeaturedAlumni stories={acceleratorAlumni} title="台大加速器校友成就" />
+      </FadeIn>
 
       {/* Batch Timeline */}
       <section className="section-spacing">

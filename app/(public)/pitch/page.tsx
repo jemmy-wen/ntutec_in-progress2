@@ -180,7 +180,7 @@ export default function PitchPage() {
       </section>
 
       {/* Why pitch here */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="mb-12 text-center">
             <p className="micro-label mb-4">Why NTUTEC ANGELS</p>
@@ -188,7 +188,7 @@ export default function PitchPage() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {whyPitch.map((item) => (
-              <div key={item.title} className="card-hover rounded-2xl bg-white p-8">
+              <div key={item.title} className="card-hover card-elevated rounded-2xl bg-white p-8">
                 <span className="mb-4 block text-4xl">{item.icon}</span>
                 <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
                 <p className="text-slate-muted leading-relaxed">{item.description}</p>
@@ -229,7 +229,7 @@ export default function PitchPage() {
       </section>
 
       {/* Eligibility */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-warm-stone">
         <div className="container">
           <div className="mx-auto max-w-2xl">
             <p className="micro-label mb-4">Eligibility</p>
