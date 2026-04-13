@@ -72,7 +72,7 @@ export default function CorporatePage() {
       <section className="relative min-h-[50vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/events/opening-2026-networking.jpg"
+            src="/images/events/demo-day-2025-group.jpg"
             alt=""
             fill
             priority
