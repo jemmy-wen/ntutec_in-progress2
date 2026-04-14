@@ -47,8 +47,8 @@ const alumniHighlights = [
   {
     name: '配客嘉 PackAge+',
     tag: '循環包裝 × ESG',
-    result: 'A 輪逾 NT$1 億（2025）',
-    detail: '獲國發基金 + 策略投資人入股，將循環包裝帶入台灣主流電商供應鏈。',
+    result: 'Pre-A NT$5,200 萬',
+    detail: '獲國發基金、中信、彰銀入股，合作 200+ 企業，持續拓展東南亞市場。',
   },
   {
     name: '艾斯創生醫 Aistrom',

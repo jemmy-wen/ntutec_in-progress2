@@ -93,20 +93,28 @@ const recentInvestments = [
     sector: "生技醫療 · AI 診斷",
     description:
       "台大醫學院校友 Andrea Wang 創辦，AI 醫療輔助診斷平台，協助醫師縮短 X 光片判讀時間，獲天使俱樂部投資。",
+    sources: [] as { label: string; url: string }[],
   },
   {
     name: "MoBagel 行動貝果",
     round: "2026 Q1",
     sector: "AI · 數據分析",
     description:
-      "鍾哲民創辦的 AI/數據分析平台，服務超過 200 家企業客戶。創辦人為台大車庫與加速器**歷屆校友**，近期接受天使俱樂部投資。",
+      "鍾哲民創辦的 AI/數據分析平台，累計募資 US$21M+，服務 3,000+ 品牌。台大車庫與加速器歷屆校友，2026 Q1 接受天使俱樂部投資。",
+    sources: [
+      { label: "INSIDE 報導", url: "https://www.inside.com.tw/article/27055-mobagel" },
+      { label: "工商時報專訪", url: "https://ctee.com.tw/industrynews/technology/317716.html" },
+    ],
   },
   {
     name: "思輔科技 SAVFE",
     round: "2026 Q1",
     sector: "硬科技 · 手術導航",
     description:
-      "周皓凱創辦的微創手術導航技術公司，以機械式定位技術服務醫療機構。創辦人為台大車庫與加速器**歷屆校友**，完成天使俱樂部投資後積極布局美國市場。",
+      "周皓凱創辦的微創手術導航技術公司，2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲天使俱樂部投資後積極布局美國市場。",
+    sources: [
+      { label: "國家新創獎官方頁", url: "https://innoaward.taiwan-healthcare.org/award_detail.php?REFDOCTYPID=0mge2rck644mcfl0&num=1&REFDOCID=0sq2hwdu6fedv1i8" },
+    ],
   },
 ];
 
@@ -201,6 +209,25 @@ export default function PitchPage() {
                   </div>
                   <h4 className="mb-3 text-lg font-semibold leading-snug text-white">{inv.name}</h4>
                   <p className="text-sm leading-relaxed text-white/60">{inv.description}</p>
+                  {inv.sources && inv.sources.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {inv.sources.map((source) => (
+                        <a
+                          key={source.url}
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-white/40 hover:text-teal underline-offset-2 hover:underline"
+                        >
+                          {source.label}
+                          <svg className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"/>
+                            <path fillRule="evenodd" d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z"/>
+                          </svg>
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

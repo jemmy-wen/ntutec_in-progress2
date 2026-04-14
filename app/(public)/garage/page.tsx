@@ -8,25 +8,46 @@ import { Buildings, Handshake, UsersThree, LinkSimple, GraduationCap } from "@ph
 
 const garageAlumni: AlumniStory[] = [
   {
-    name: "Dapp Pocket",
-    category: "成功 Exit",
-    highlight: "離開車庫後，被 Turn Capital 收購，進入加密貨幣生態系。",
-    sector: "區塊鏈錢包",
-    icon: "exit",
-  },
-  {
-    name: "Botbonnie",
-    category: "成功 Exit",
-    highlight: "從車庫起步，後被日本上市 AI 公司 Appier 收購。",
-    sector: "聊天機器人",
-    icon: "exit",
-  },
-  {
-    name: "KryptoGO",
+    name: "MoBagel 行動貝果",
     category: "大額募資",
-    highlight: "完成 NT$8,970 萬募資，持續成長為區塊鏈合規領域的代表團隊。",
-    sector: "區塊鏈合規",
+    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲天使俱樂部投資。",
+    sector: "AutoML / 企業 AI 數據平台",
     icon: "funding",
+    sources: [
+      { label: "INSIDE A+ 輪報導", url: "https://www.inside.com.tw/article/27055-mobagel" },
+      { label: "工商時報 AI 專訪", url: "https://ctee.com.tw/industrynews/technology/317716.html" },
+    ],
+  },
+  {
+    name: "方格子 vocus",
+    category: "規模化成長",
+    highlight: "月均 200 萬不重複造訪、會員 72 萬、創作者 2 萬+。",
+    sector: "華文內容訂閱平台",
+    icon: "award",
+    sources: [
+      { label: "數位時代報導", url: "https://www.bnext.com.tw/article/63252/vocus-2021" },
+    ],
+  },
+  {
+    name: "3drens 三維人",
+    category: "Pre-A 輪募資",
+    highlight: "募得近 NT$1 億（台杉、活水、廣信領投），客戶含 yoxi、PChome。",
+    sector: "車聯網 × IoT × 大數據",
+    icon: "funding",
+    sources: [
+      { label: "AppWorks 專訪", url: "https://appworks.tw/3drens-interview/" },
+    ],
+  },
+  {
+    name: "Hotcake 夯客",
+    category: "Pre-A 輪募資",
+    highlight: "Pre-A 輪 US$1M+（統一國際開發領投），商家續訂率 98%，2025 拓展日泰。",
+    sector: "美業預約與會員系統",
+    icon: "funding",
+    sources: [
+      { label: "創業小聚 Pre-A 報導", url: "https://meet.bnext.com.tw/articles/view/52246" },
+      { label: "Startup101 報導", url: "https://startup101.biz/en-US/news/240" },
+    ],
   },
 ];
 

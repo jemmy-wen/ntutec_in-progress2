@@ -1,106 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PageHero from "@/components/public/PageHero";
 import Image from "next/image";
+import PageHero from "@/components/public/PageHero";
+import { VINCENT_ALUMNI, CATEGORY_META } from "@/data/vincent-alumni";
 
 export const metadata: Metadata = {
   title: "成功校友 | NTUTEC",
   description:
-    "13 年、逾 600 支團隊從台大起步。這些創業者離開後，在市場上持續創造里程碑——配客嘉、Botbonnie、艾斯創、律果科技...從台大走向世界。",
+    "從台大起步的 15 位代表校友：AmazingTalker、MoBagel、漸強實驗室、知識衛星、配客嘉、Turing Space 等。涵蓋教育、企業服務、永續、Web3、健康五大領域。",
 };
 
-const exitCases = [
-  {
-    company: "Botbonnie",
-    acquirer: "→ Appier",
-    domain: "對話式行銷平台",
-    desc: "被日本上市 AI 公司 Appier 收購",
-    tags: ["#MarTech", "#Exit", "#日本市場"],
-  },
-  {
-    company: "Dapp Pocket",
-    acquirer: "→ Turn Capital",
-    domain: "區塊鏈錢包應用",
-    desc: "被 Turn Capital 收購，進入加密貨幣生態系",
-    tags: ["#Web3", "#Blockchain", "#Exit"],
-  },
-];
+// Helper: external link icon SVG
+function ExternalLinkIcon() {
+  return (
+    <svg className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"/>
+      <path fillRule="evenodd" d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z"/>
+    </svg>
+  );
+}
 
-const milestoneCases = [
-  {
-    company: "配客嘉",
-    companyEn: "PackAge+",
-    domain: "循環經濟 ESG",
-    highlight: "A 輪逾 NT$1 億",
-    desc: "台灣首創循環包裝平台，獲國發基金投資，推動網購零廢棄。",
-    source: "2025年年報",
-  },
-  {
-    company: "艾斯創生醫",
-    companyEn: "Aistrom",
-    domain: "MedTech 骨科",
-    highlight: "SelectUSA MedTech 冠軍 · US$250萬",
-    desc: "骨科微創手術器材，獲美國最大投資促進賽冠軍，完成 250 萬美元募資。",
-    source: "2025年年報",
-  },
-  {
-    company: "真實引擎",
-    companyEn: "Portaly",
-    domain: "ContentTool",
-    highlight: "獲投 US$35萬",
-    desc: "Link-in-bio 數位名片平台，2022 Demo Day Pitch 後獲 AVA Angels 投資。",
-    source: "2022 Demo Day",
-  },
-  {
-    company: "律果科技",
-    companyEn: "LegalSign.ai",
-    domain: "LegalTech AI",
-    highlight: "HBR 哈佛商業評論報導",
-    desc: "AI 合約管理平台，獲《哈佛商業評論》專文，榮獲經濟部白科技獎。",
-    source: "2025年年報",
-  },
-  {
-    company: "股股",
-    companyEn: "GUGU",
-    domain: "FinTech GenZ",
-    highlight: "美股開戶破 2 萬",
-    desc: "Gen Z 美股免手續費平台，已布局新馬港市場。",
-    source: "2024 梯次健診",
-  },
-  {
-    company: "幻控科技",
-    companyEn: "Jmem Tek",
-    domain: "DeepTech 3D顯示",
-    highlight: "Touch Taiwan 友達發明獎冠軍",
-    desc: "裸眼 3D 懸浮顯示技術，與三菱電梯、NEC 展開合作。",
-    source: "2024 梯次健診",
-  },
-];
-
-const moreAlumni = [
-  "媽爹講故事",
-  "水滴",
-  "精拓生技",
-  "SHOWHUE 選優科技",
-  "SURREAL 超現實科技",
-  "Aistrom 艾斯創生醫",
-  "澔心科技",
-  "Encore 安可日子",
-  "Amago Trip",
-  "Applato",
-  "MangaChat 漫話科技",
-  "KOLpass",
-  "ArtzyPlanet 玩藝星球",
-  "發票特務",
-  "UFO pay 優付",
-  "Tracle 垃可",
-  "科學毛怪",
-  "ECOCO",
-  "GUGU 股股",
-  "Jmem Tek 幻控科技",
-  "Portaly 真實引擎",
-  "LegalSign.ai 律果科技",
-];
+// Group alumni by category preserving order
+const categoryOrder = ["edu", "enterprise", "sustainability", "web3", "health"] as const;
+const alumniByCategory = categoryOrder.map((cat) => ({
+  category: cat,
+  meta: CATEGORY_META[cat],
+  alumni: VINCENT_ALUMNI.filter((a) => a.category === cat),
+}));
 
 export default function AlumniPage() {
   return (
@@ -109,18 +35,21 @@ export default function AlumniPage() {
       <PageHero
         title="成功校友"
         subtitle="Success Stories"
-        description="13 年來，逾 600 支團隊從台大起步。以下是**歷屆校友在畢業後**於市場上創造的部分里程碑。"
+        description="13 年來，逾 600 支團隊從台大起步。以下是執行長 Vincent 挑選的 15 位代表校友，每項數據皆附外部來源可供查證。"
       />
 
       {/* Section 2: Stats Banner */}
       <section className="section-spacing bg-teal-wash">
         <div className="container">
+          <p className="mb-6 text-center text-xs text-slate-muted">
+            ※ 以下亮點數據均為歷屆校友於畢業後在市場上的公開里程碑，資料來源可追溯外部公開媒體報導。
+          </p>
           <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
             {[
               { number: "600+", label: "歷年輔導新創團隊" },
-              { number: "NT$1 億+", label: "歷屆校友最高 A 輪（配客嘉）" },
-              { number: "2", label: "歷屆校友國際 Exit 案例" },
-              { number: "US$250萬", label: "校友國際競賽（艾斯創）" },
+              { number: "15", label: "Vincent 欽點代表校友" },
+              { number: "5", label: "涵蓋領域" },
+              { number: "US$21M+", label: "單一校友最高累計募資（MoBagel）" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl font-bold text-teal">{stat.number}</p>
@@ -131,118 +60,95 @@ export default function AlumniPage() {
         </div>
       </section>
 
-      {/* Section 3: Exit 榮譽榜 */}
-      <section className="section-spacing bg-charcoal">
+      {/* Section 3: Alumni cards grouped by category */}
+      <section className="section-spacing">
         <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4 text-white/60">
-              THE ULTIMATE MILESTONE
-            </p>
-            <h2 className="mb-4 text-white">歷屆校友的 Exit &amp; M&amp;A</h2>
-            <p className="mx-auto max-w-2xl text-lg text-white/70">
-              **歷屆台大創業校友**在畢業後的國際併購里程碑。
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
-            {exitCases.map((item) => (
-              <div
-                key={item.company}
-                className="rounded-2xl border border-white/20 bg-white/10 p-6 text-white"
-              >
-                <div className="mb-4 flex items-start gap-3">
-                  <span className="text-2xl text-yellow-400">✦</span>
-                  <div>
-                    <h3 className="text-xl font-semibold">
-                      {item.company}
-                      {item.acquirer && (
-                        <span className="ml-2 text-teal text-base font-normal">
-                          {item.acquirer}
-                        </span>
-                      )}
-                    </h3>
-                    <p className="text-sm text-white/60">{item.domain}</p>
-                  </div>
+          {alumniByCategory.map(({ category, meta, alumni }) => (
+            alumni.length === 0 ? null : (
+              <div key={category} className="mb-16 last:mb-0">
+                {/* Category heading */}
+                <div className="mb-8 flex items-center gap-3">
+                  <span className={`rounded-full border px-3 py-1 text-sm font-semibold ${meta.color}`}>
+                    {meta.label}
+                  </span>
+                  <div className="h-px flex-1 bg-stone-warm/60" />
                 </div>
-                <p className="mb-4 text-white/80">{item.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70"
+
+                {/* Cards grid */}
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {alumni.map((alumnus) => (
+                    <div
+                      key={alumnus.name}
+                      className="flex flex-col rounded-2xl border border-stone-warm/60 bg-white p-6 card-hover"
                     >
-                      {tag}
-                    </span>
+                      {/* Company name + badge */}
+                      <div className="mb-3 flex items-start justify-between gap-2">
+                        <div>
+                          <h3 className="text-lg font-semibold text-charcoal">
+                            {alumnus.companyUrl ? (
+                              <a
+                                href={alumnus.companyUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-teal hover:underline underline-offset-2"
+                              >
+                                {alumnus.name}
+                              </a>
+                            ) : (
+                              alumnus.name
+                            )}
+                          </h3>
+                          {alumnus.nameEn && (
+                            <p className="text-xs text-slate-muted">{alumnus.nameEn}</p>
+                          )}
+                        </div>
+                        <span className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium ${meta.color}`}>
+                          {meta.label}
+                        </span>
+                      </div>
+
+                      {/* Founder info */}
+                      <p className="mb-1 text-sm text-slate-muted">
+                        <span className="font-medium text-charcoal">{alumnus.founder}</span>
+                        {" · "}{alumnus.founderTitle}{" · "}{alumnus.batchYear} 梯次
+                      </p>
+
+                      {/* Sector */}
+                      <p className="mb-3 text-xs text-slate-muted">{alumnus.sector}</p>
+
+                      {/* Highlight */}
+                      <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-muted">
+                        {alumnus.highlight}
+                      </p>
+
+                      {/* Sources */}
+                      {alumnus.sources.length > 0 && (
+                        <div className="mt-auto border-t border-stone-warm/60 pt-3 flex flex-wrap gap-2">
+                          {alumnus.sources.map((source) => (
+                            <a
+                              key={source.url}
+                              href={source.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-slate-muted hover:text-teal underline-offset-2 hover:underline"
+                            >
+                              {source.label}
+                              <ExternalLinkIcon />
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: 募資亮點案例 */}
-      <section className="section-spacing">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <p className="micro-label mb-4">FUNDRAISING MILESTONES</p>
-            <h2 className="mb-4">募資與國際里程碑</h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-muted">
-              從種子輪到 A 輪，從國內競賽到國際舞台，校友們持續突破。
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {milestoneCases.map((item) => (
-              <div
-                key={item.company}
-                className="rounded-2xl border border-stone-warm/60 bg-white p-6 card-hover"
-              >
-                <div className="mb-3 flex items-start justify-between gap-2">
-                  <div>
-                    <h3 className="text-lg font-semibold">{item.company}</h3>
-                    <p className="text-sm text-slate-muted">{item.companyEn}</p>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-stone px-2.5 py-0.5 text-xs font-medium text-charcoal">
-                    {item.domain}
-                  </span>
-                </div>
-                <p className="mb-3 text-2xl font-bold text-teal">
-                  {item.highlight}
-                </p>
-                <p className="mb-4 text-sm leading-relaxed text-slate-muted">
-                  {item.desc}
-                </p>
-                <p className="text-xs text-slate-muted/60">
-                  來源：{item.source}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: 更多校友 */}
-      <section className="section-spacing bg-stone">
-        <div className="container text-center">
-          <p className="micro-label mb-4">More Alumni</p>
-          <h2 className="mb-4">更多輔導校友</h2>
-          <p className="mb-10 text-slate-muted">
-            以下是部分歷屆參與台大加速器與台大車庫的校友團隊：
-          </p>
-          <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-2">
-            {moreAlumni.map((name) => (
-              <span
-                key={name}
-                className="rounded-full border border-stone-warm bg-white px-4 py-2 text-sm text-charcoal"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
+            )
+          ))}
         </div>
       </section>
 
       {/* Demo Day Booth Photos */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-stone">
         <div className="container">
           <div className="mb-8 text-center">
             <p className="micro-label mb-4">Demo Day 2025</p>
@@ -274,7 +180,7 @@ export default function AlumniPage() {
         </div>
       </section>
 
-      {/* Section 6: CTA */}
+      {/* Section CTA */}
       <section className="section-spacing bg-teal-wash">
         <div className="container text-center">
           <h2 className="mb-6">成為下一個成功校友</h2>
