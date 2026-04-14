@@ -114,7 +114,7 @@ export default function CorporatePage() {
               <p className="micro-label mb-4">Why Partner With Us</p>
               <h2>為什麼選擇台大創創中心</h2>
               <p className="mx-auto mt-4 max-w-2xl text-slate-muted">
-                台灣少數直接連結國立臺灣大學頂尖研究技術與人才的企業創新加速平台
+                直接連結國立臺灣大學頂尖研究技術與人才的企業創新加速平台
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
