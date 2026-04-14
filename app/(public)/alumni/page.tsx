@@ -35,7 +35,7 @@ export default function AlumniPage() {
       <PageHero
         title="成功校友"
         subtitle="Success Stories"
-        description="13 年來，逾 600 支團隊從台大起步。以下是執行長 Vincent 挑選的 15 位代表校友，每項數據皆附外部來源可供查證。"
+        description="13 年來，逾 600 支團隊從台大起步。以下精選代表校友，涵蓋教育、企業服務、永續、Web3、健康五大領域。每項里程碑皆附公開資料來源。"
       />
 
       {/* Section 2: Stats Banner */}
@@ -47,7 +47,7 @@ export default function AlumniPage() {
           <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
             {[
               { number: "600+", label: "歷年輔導新創團隊" },
-              { number: "15", label: "Vincent 欽點代表校友" },
+              { number: "15", label: "精選代表校友" },
               { number: "5", label: "涵蓋領域" },
               { number: "US$21M+", label: "單一校友最高累計募資（MoBagel）" },
             ].map((stat) => (
