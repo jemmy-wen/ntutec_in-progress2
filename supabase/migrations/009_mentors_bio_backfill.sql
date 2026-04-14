@@ -1,12 +1,14 @@
 -- ============================================================
--- NTUTEC Platform — Migration 009: Mentors Bio Backfill
+-- NTUTEC Platform — Migration 009 (v2): Mentors Bio Backfill
 -- ============================================================
 -- Date: 2026-04-14
--- Source: WP page 2863 [team_member] shortcode (73 records parsed, 36 matched)
--- Backfills `bio` column for mentors in the `mentors` table.
--- Uses PostgreSQL dollar-quoting for safe bio content (handles quotes/newlines/unicode).
--- Depends on: 008_seed_public_mentors.sql
+-- v2 fix: production mentors table lacks `updated_at` column;
+--   also ensures `bio` column exists (defensive).
+-- Source: WP page 2863 [team_member] shortcode (73 parsed, 35 matched)
 -- ============================================================
+
+-- Defensive: ensure bio column exists before UPDATE
+ALTER TABLE mentors ADD COLUMN IF NOT EXISTS bio TEXT;
 
 BEGIN;
 
@@ -29,7 +31,7 @@ UPDATE mentors SET bio = $bio00$專長項目
 
 熟悉領域
 
-物聯網 / 人工智慧 / 金融科技 / 半導體 / 數位平台 / 智慧零售 / 智慧製造 / 區塊鏈$bio00$, updated_at = NOW() WHERE name = '江進元' AND (bio IS NULL OR bio = '');
+物聯網 / 人工智慧 / 金融科技 / 半導體 / 數位平台 / 智慧零售 / 智慧製造 / 區塊鏈$bio00$ WHERE name = '江進元' AND (bio IS NULL OR bio = '');
 
 -- [vc] 李明哲  (bio 75 chars)
 UPDATE mentors SET bio = $bio01$專長項目
@@ -40,7 +42,7 @@ UPDATE mentors SET bio = $bio01$專長項目
 
 – KKBOX 技術長、營運長、總裁、副董事長
 
-– 文化內容策進院院長$bio01$, updated_at = NOW() WHERE name = '李明哲' AND (bio IS NULL OR bio = '');
+– 文化內容策進院院長$bio01$ WHERE name = '李明哲' AND (bio IS NULL OR bio = '');
 
 -- [vc] 李晃  (bio 324 chars)
 UPDATE mentors SET bio = $bio02$專長項目
@@ -57,7 +59,7 @@ UPDATE mentors SET bio = $bio02$專長項目
 
 熟悉領域
 
-物聯網 / 人工智慧 / 半導體 / 資訊安全 / 數位平台 / 智慧製造$bio02$, updated_at = NOW() WHERE name = '李晃' AND (bio IS NULL OR bio = '');
+物聯網 / 人工智慧 / 半導體 / 資訊安全 / 數位平台 / 智慧製造$bio02$ WHERE name = '李晃' AND (bio IS NULL OR bio = '');
 
 -- [vc] 林文欽  (bio 151 chars)
 UPDATE mentors SET bio = $bio03$專長項目
@@ -78,7 +80,7 @@ UPDATE mentors SET bio = $bio03$專長項目
 
 熟悉領域
 
-新創增長、電子商務、金融科技、品牌營銷$bio03$, updated_at = NOW() WHERE name = '林文欽' AND (bio IS NULL OR bio = '');
+新創增長、電子商務、金融科技、品牌營銷$bio03$ WHERE name = '林文欽' AND (bio IS NULL OR bio = '');
 
 -- [vc] 陳一強  (bio 139 chars)
 UPDATE mentors SET bio = $bio04$專長項目
@@ -93,7 +95,7 @@ UPDATE mentors SET bio = $bio04$專長項目
 
 熟悉領域
 
-高齡,照護 / 健身,運動,健康 / 綠能科技 / 新農業 / 共享經濟 / 循環經濟 / 文化創意 / 教育創新 / 農食創新 / 社會創新$bio04$, updated_at = NOW() WHERE name = '陳一強' AND (bio IS NULL OR bio = '');
+高齡,照護 / 健身,運動,健康 / 綠能科技 / 新農業 / 共享經濟 / 循環經濟 / 文化創意 / 教育創新 / 農食創新 / 社會創新$bio04$ WHERE name = '陳一強' AND (bio IS NULL OR bio = '');
 
 -- [vc] 陳怡如  (bio 393 chars)
 UPDATE mentors SET bio = $bio05$專長
@@ -124,7 +126,7 @@ Manager, Department of Investment, Hotung Venture Capital Group
 
 熟悉領域
 
-生醫/藥/醫材, 高齡/照護, 健身/運動/健康$bio05$, updated_at = NOW() WHERE name = '陳怡如' AND (bio IS NULL OR bio = '');
+生醫/藥/醫材, 高齡/照護, 健身/運動/健康$bio05$ WHERE name = '陳怡如' AND (bio IS NULL OR bio = '');
 
 -- [vc] 蕭一白  (bio 145 chars)
 UPDATE mentors SET bio = $bio06$專長項目
@@ -133,7 +135,7 @@ UPDATE mentors SET bio = $bio06$專長項目
 
 重要經歷
 
-- Founding CEO multiple tech companies, Angel and venture investor, Professor$bio06$, updated_at = NOW() WHERE name = '蕭一白' AND (bio IS NULL OR bio = '');
+- Founding CEO multiple tech companies, Angel and venture investor, Professor$bio06$ WHERE name = '蕭一白' AND (bio IS NULL OR bio = '');
 
 -- [vc] 瞿志豪  (bio 209 chars)
 UPDATE mentors SET bio = $bio07$專長項目
@@ -146,7 +148,7 @@ UPDATE mentors SET bio = $bio07$專長項目
 
 – Executive Vice President / Chief Technology Officer , GigaMedia Limited
 
-– 橡子園創投台灣合夥人$bio07$, updated_at = NOW() WHERE name = '瞿志豪' AND (bio IS NULL OR bio = '');
+– 橡子園創投台灣合夥人$bio07$ WHERE name = '瞿志豪' AND (bio IS NULL OR bio = '');
 
 -- [founder] 任麗玲  (bio 147 chars)
 UPDATE mentors SET bio = $bio08$專長項目
@@ -165,7 +167,7 @@ UPDATE mentors SET bio = $bio08$專長項目
 
 熟悉領域
 
-生醫,藥,醫材 / 健身,運動,健康 / 智慧零售 / 行銷科技$bio08$, updated_at = NOW() WHERE name = '任麗玲' AND (bio IS NULL OR bio = '');
+生醫,藥,醫材 / 健身,運動,健康 / 智慧零售 / 行銷科技$bio08$ WHERE name = '任麗玲' AND (bio IS NULL OR bio = '');
 
 -- [founder] 洪小玲  (bio 213 chars)
 UPDATE mentors SET bio = $bio09$專長項目
@@ -188,7 +190,7 @@ UPDATE mentors SET bio = $bio09$專長項目
 
 熟悉領域
 
-金融科技 / 數位平台 / 電子商務 / 智慧零售 / 共享經濟 / 教育創新 / 行銷科技$bio09$, updated_at = NOW() WHERE name = '洪小玲' AND (bio IS NULL OR bio = '');
+金融科技 / 數位平台 / 電子商務 / 智慧零售 / 共享經濟 / 教育創新 / 行銷科技$bio09$ WHERE name = '洪小玲' AND (bio IS NULL OR bio = '');
 
 -- [founder] 陳宏益  (bio 138 chars)
 UPDATE mentors SET bio = $bio10$專長項目
@@ -207,7 +209,7 @@ CRM / 互聯網 / 大健康管理 / 新創團隊
 
 熟悉領域
 
-高齡,照護 / 數位平台 / 電子商務 / 共享經濟 / 社會創新$bio10$, updated_at = NOW() WHERE name = '陳宏益' AND (bio IS NULL OR bio = '');
+高齡,照護 / 數位平台 / 電子商務 / 共享經濟 / 社會創新$bio10$ WHERE name = '陳宏益' AND (bio IS NULL OR bio = '');
 
 -- [founder] 梁幸堯  (bio 372 chars)
 UPDATE mentors SET bio = $bio11$專長項目
@@ -226,7 +228,7 @@ UPDATE mentors SET bio = $bio11$專長項目
 
 熟悉領域
 
-雲端運算｜高性能運算｜AIGC ｜AR/VR｜傳媒文化科技$bio11$, updated_at = NOW() WHERE name = '梁幸堯' AND (bio IS NULL OR bio = '');
+雲端運算｜高性能運算｜AIGC ｜AR/VR｜傳媒文化科技$bio11$ WHERE name = '梁幸堯' AND (bio IS NULL OR bio = '');
 
 -- [founder] 黃逸甫  (bio 226 chars)
 UPDATE mentors SET bio = $bio12$專長項目
@@ -249,7 +251,7 @@ UPDATE mentors SET bio = $bio12$專長項目
 
 熟悉領域
 
-人工智慧 / 金融科技 / 生醫/藥/醫材 / 文化創意 / 教育創新 / 農食創新 / 社會創新 / 行銷科技$bio12$, updated_at = NOW() WHERE name = '黃逸甫' AND (bio IS NULL OR bio = '');
+人工智慧 / 金融科技 / 生醫/藥/醫材 / 文化創意 / 教育創新 / 農食創新 / 社會創新 / 行銷科技$bio12$ WHERE name = '黃逸甫' AND (bio IS NULL OR bio = '');
 
 -- [founder] 楊立偉  (bio 203 chars)
 UPDATE mentors SET bio = $bio13$專長項目
@@ -270,7 +272,7 @@ UPDATE mentors SET bio = $bio13$專長項目
 
 熟悉領域
 
-人工智慧, 數位平台, 行銷科技, 大數據，資訊管理及應用$bio13$, updated_at = NOW() WHERE name = '楊立偉' AND (bio IS NULL OR bio = '');
+人工智慧, 數位平台, 行銷科技, 大數據，資訊管理及應用$bio13$ WHERE name = '楊立偉' AND (bio IS NULL OR bio = '');
 
 -- [founder] 劉政惠  (bio 279 chars)
 UPDATE mentors SET bio = $bio14$專長項目
@@ -291,7 +293,7 @@ UPDATE mentors SET bio = $bio14$專長項目
 
 熟悉領域
 
-人工智慧 / 數位平台 / 電子商務 / 文化創意 / 教育創新 / 社會創新 / 旅遊創新 / 行銷科技$bio14$, updated_at = NOW() WHERE name = '劉政惠' AND (bio IS NULL OR bio = '');
+人工智慧 / 數位平台 / 電子商務 / 文化創意 / 教育創新 / 社會創新 / 旅遊創新 / 行銷科技$bio14$ WHERE name = '劉政惠' AND (bio IS NULL OR bio = '');
 
 -- [founder] 鍾哲民  (bio 327 chars)
 UPDATE mentors SET bio = $bio15$專長項目
@@ -324,7 +326,7 @@ UPDATE mentors SET bio = $bio15$專長項目
 
 - 新創出海生態圈建立
 
-- AI 產業生態圈建立$bio15$, updated_at = NOW() WHERE name = '鍾哲民' AND (bio IS NULL OR bio = '');
+- AI 產業生態圈建立$bio15$ WHERE name = '鍾哲民' AND (bio IS NULL OR bio = '');
 
 -- [exec] 王同年  (bio 153 chars)
 UPDATE mentors SET bio = $bio16$專長項目
@@ -349,7 +351,7 @@ UPDATE mentors SET bio = $bio16$專長項目
 
 熟悉領域
 
-電子商務 / 智慧零售 / 循環經濟 / 教育創新$bio16$, updated_at = NOW() WHERE name = '王同年' AND (bio IS NULL OR bio = '');
+電子商務 / 智慧零售 / 循環經濟 / 教育創新$bio16$ WHERE name = '王同年' AND (bio IS NULL OR bio = '');
 
 -- [exec] 卓政宏  (bio 352 chars)
 UPDATE mentors SET bio = $bio17$專長項目
@@ -374,7 +376,7 @@ Chairman of the Board, OleMap
 
 -臺灣科技大學電機工程系副教授
 
-Associate Professor , Science and Technology, NTUST$bio17$, updated_at = NOW() WHERE name = '卓政宏' AND (bio IS NULL OR bio = '');
+Associate Professor , Science and Technology, NTUST$bio17$ WHERE name = '卓政宏' AND (bio IS NULL OR bio = '');
 
 -- [exec] 柏健生  (bio 215 chars)
 UPDATE mentors SET bio = $bio18$專長項目
@@ -399,7 +401,7 @@ UPDATE mentors SET bio = $bio18$專長項目
 
 熟悉領域
 
-物聯網, 數位平台, 電子商務, 智慧零售, 綠能科技, 循環經濟$bio18$, updated_at = NOW() WHERE name = '柏健生' AND (bio IS NULL OR bio = '');
+物聯網, 數位平台, 電子商務, 智慧零售, 綠能科技, 循環經濟$bio18$ WHERE name = '柏健生' AND (bio IS NULL OR bio = '');
 
 -- [exec] 張安佐  (bio 160 chars)
 UPDATE mentors SET bio = $bio19$專長項目
@@ -416,7 +418,7 @@ UPDATE mentors SET bio = $bio19$專長項目
 
 熟悉領域
 
-數位平台 / 電子商務 / 智慧零售 / 共享經濟 / 循環經濟 / 文化創意 / 教育創新 / 農食創新 / 社會創新 / 旅遊創新 / 行銷科技$bio19$, updated_at = NOW() WHERE name = '張安佐' AND (bio IS NULL OR bio = '');
+數位平台 / 電子商務 / 智慧零售 / 共享經濟 / 循環經濟 / 文化創意 / 教育創新 / 農食創新 / 社會創新 / 旅遊創新 / 行銷科技$bio19$ WHERE name = '張安佐' AND (bio IS NULL OR bio = '');
 
 -- [exec] 張益肇  (bio 461 chars)
 UPDATE mentors SET bio = $bio20$專長項目
@@ -437,7 +439,7 @@ UPDATE mentors SET bio = $bio20$專長項目
 
 熟悉領域
 
-人工智慧, 金融科技, 高齡/照護, 健身/運動/健康, AR/VR/MR$bio20$, updated_at = NOW() WHERE name = '張益肇' AND (bio IS NULL OR bio = '');
+人工智慧, 金融科技, 高齡/照護, 健身/運動/健康, AR/VR/MR$bio20$ WHERE name = '張益肇' AND (bio IS NULL OR bio = '');
 
 -- [exec] 陶韻智  (bio 314 chars)
 UPDATE mentors SET bio = $bio21$專長項目
@@ -458,7 +460,7 @@ UPDATE mentors SET bio = $bio21$專長項目
 
 熟悉領域
 
-金融科技 / 健身,運動,健康 / 數位平台 / 電子商務 / 共享經濟 / AR,VR,MR$bio21$, updated_at = NOW() WHERE name = '陶韻智' AND (bio IS NULL OR bio = '');
+金融科技 / 健身,運動,健康 / 數位平台 / 電子商務 / 共享經濟 / AR,VR,MR$bio21$ WHERE name = '陶韻智' AND (bio IS NULL OR bio = '');
 
 -- [exec] 楊本豫  (bio 306 chars)
 UPDATE mentors SET bio = $bio22$專長項目
@@ -481,7 +483,7 @@ UPDATE mentors SET bio = $bio22$專長項目
 
 - 友達數位董事長 Chairman, AUO Digitech
 
-- 荷蘭銀行企業金融處協理 AVP, Corporate Banking, ABN AMRO$bio22$, updated_at = NOW() WHERE name = '楊本豫' AND (bio IS NULL OR bio = '');
+- 荷蘭銀行企業金融處協理 AVP, Corporate Banking, ABN AMRO$bio22$ WHERE name = '楊本豫' AND (bio IS NULL OR bio = '');
 
 -- [exec] 盧人瑞  (bio 146 chars)
 UPDATE mentors SET bio = $bio23$專長項目
@@ -502,7 +504,7 @@ UPDATE mentors SET bio = $bio23$專長項目
 
 熟悉領域
 
-行銷科技$bio23$, updated_at = NOW() WHERE name = '盧人瑞' AND (bio IS NULL OR bio = '');
+行銷科技$bio23$ WHERE name = '盧人瑞' AND (bio IS NULL OR bio = '');
 
 -- [exec] 蔡秀麗  (bio 330 chars)
 UPDATE mentors SET bio = $bio24$專長領域：
@@ -521,7 +523,7 @@ UPDATE mentors SET bio = $bio24$專長領域：
 
 熟悉領域
 
-數位平台, 電子商務, 行銷科技, Adtech . media and CRM , Data driven marketing$bio24$, updated_at = NOW() WHERE name = '蔡秀麗' AND (bio IS NULL OR bio = '');
+數位平台, 電子商務, 行銷科技, Adtech . media and CRM , Data driven marketing$bio24$ WHERE name = '蔡秀麗' AND (bio IS NULL OR bio = '');
 
 -- [exec] 羅子亮  (bio 140 chars)
 UPDATE mentors SET bio = $bio25$專長項目
@@ -534,7 +536,7 @@ UPDATE mentors SET bio = $bio25$專長項目
 
 –Zoom 亞太區執行副總
 
-–PChome-Skype 副總經理$bio25$, updated_at = NOW() WHERE name = '羅子亮' AND (bio IS NULL OR bio = '');
+–PChome-Skype 副總經理$bio25$ WHERE name = '羅子亮' AND (bio IS NULL OR bio = '');
 
 -- [exec] 蘇欽豐  (bio 237 chars)
 UPDATE mentors SET bio = $bio26$專長項目
@@ -551,7 +553,7 @@ UPDATE mentors SET bio = $bio26$專長項目
 
 熟悉領域
 
-人工智慧 / 數位平台 / 電子商務$bio26$, updated_at = NOW() WHERE name = '蘇欽豐' AND (bio IS NULL OR bio = '');
+人工智慧 / 數位平台 / 電子商務$bio26$ WHERE name = '蘇欽豐' AND (bio IS NULL OR bio = '');
 
 -- [expert] 孫憶明  (bio 343 chars)
 UPDATE mentors SET bio = $bio27$專長項目
@@ -572,7 +574,7 @@ UPDATE mentors SET bio = $bio27$專長項目
 
 熟悉領域
 
-人工智慧, 電子商務, 智慧零售, 文化創意, 教育創新, 行銷科技$bio27$, updated_at = NOW() WHERE name = '孫憶明' AND (bio IS NULL OR bio = '');
+人工智慧, 電子商務, 智慧零售, 文化創意, 教育創新, 行銷科技$bio27$ WHERE name = '孫憶明' AND (bio IS NULL OR bio = '');
 
 -- [expert] 陳百州  (bio 113 chars)
 UPDATE mentors SET bio = $bio28$專長項目
@@ -587,7 +589,7 @@ sustainable profitable growth / go to market innovation
 
 熟悉領域
 
-智慧零售$bio28$, updated_at = NOW() WHERE name = '陳百州' AND (bio IS NULL OR bio = '');
+智慧零售$bio28$ WHERE name = '陳百州' AND (bio IS NULL OR bio = '');
 
 -- [expert] 陳琚安  (bio 443 chars)
 UPDATE mentors SET bio = $bio29$專長項目
@@ -610,7 +612,7 @@ UPDATE mentors SET bio = $bio29$專長項目
 
 熟悉領域
 
-人工智慧 / 健身/運動/健康 / 數位平台 / 電子商務 / 智慧零售 / 社會創新 / 行銷科技$bio29$, updated_at = NOW() WHERE name = '陳琚安' AND (bio IS NULL OR bio = '');
+人工智慧 / 健身/運動/健康 / 數位平台 / 電子商務 / 智慧零售 / 社會創新 / 行銷科技$bio29$ WHERE name = '陳琚安' AND (bio IS NULL OR bio = '');
 
 -- [expert] 黃世貝  (bio 142 chars)
 UPDATE mentors SET bio = $bio30$專長項目
@@ -629,7 +631,7 @@ UPDATE mentors SET bio = $bio30$專長項目
 
 熟悉領域
 
-生醫,藥,醫材 / 高齡,照護$bio30$, updated_at = NOW() WHERE name = '黃世貝' AND (bio IS NULL OR bio = '');
+生醫,藥,醫材 / 高齡,照護$bio30$ WHERE name = '黃世貝' AND (bio IS NULL OR bio = '');
 
 -- [expert] 黃沛聲  (bio 159 chars)
 UPDATE mentors SET bio = $bio31$專長項目
@@ -646,7 +648,7 @@ UPDATE mentors SET bio = $bio31$專長項目
 
 - BoniO Inc.(幫你優股份有限公司) 董事
 
-- FITI創新創業激勵計畫 / 價創計畫 / Spark計畫 業師$bio31$, updated_at = NOW() WHERE name = '黃沛聲' AND (bio IS NULL OR bio = '');
+- FITI創新創業激勵計畫 / 價創計畫 / Spark計畫 業師$bio31$ WHERE name = '黃沛聲' AND (bio IS NULL OR bio = '');
 
 -- [expert] 曾正忠  (bio 277 chars)
 UPDATE mentors SET bio = $bio32$其他現職
@@ -675,7 +677,7 @@ UPDATE mentors SET bio = $bio32$其他現職
 
 – 工研院 前瞻技術指導委員會委員 &amp; 商業化諮詢委員會委員
 
-– 台大後 EMBA 專班 (E勢泮)講師$bio32$, updated_at = NOW() WHERE name = '曾正忠' AND (bio IS NULL OR bio = '');
+– 台大後 EMBA 專班 (E勢泮)講師$bio32$ WHERE name = '曾正忠' AND (bio IS NULL OR bio = '');
 
 -- [expert] 楊志偉  (bio 181 chars)
 UPDATE mentors SET bio = $bio33$專長項目
@@ -692,7 +694,7 @@ UPDATE mentors SET bio = $bio33$專長項目
 
 熟悉領域
 
-半導體 / 數位平台 / 電子商務 / 共享經濟 / 教育創新 / 行銷科技$bio33$, updated_at = NOW() WHERE name = '楊志偉' AND (bio IS NULL OR bio = '');
+半導體 / 數位平台 / 電子商務 / 共享經濟 / 教育創新 / 行銷科技$bio33$ WHERE name = '楊志偉' AND (bio IS NULL OR bio = '');
 
 -- [expert] 簡榮宗  (bio 102 chars)
 UPDATE mentors SET bio = $bio34$專長項目
@@ -707,12 +709,10 @@ UPDATE mentors SET bio = $bio34$專長項目
 
 – 兩岸暨跨境創新創業交流協會理事長
 
-– 台灣創新法律協會 理事長$bio34$, updated_at = NOW() WHERE name = '簡榮宗' AND (bio IS NULL OR bio = '');
+– 台灣創新法律協會 理事長$bio34$ WHERE name = '簡榮宗' AND (bio IS NULL OR bio = '');
 
 COMMIT;
 
--- ============================================================
--- Verify
--- ============================================================
--- SELECT name, LENGTH(bio) AS bio_len FROM mentors WHERE bio IS NOT NULL AND bio != '' ORDER BY bio_len DESC;
--- Expected: 35 rows updated
+-- Verify:
+-- SELECT COUNT(*) AS with_bio FROM mentors WHERE bio IS NOT NULL AND bio != '';
+-- Expected: 35 rows
