@@ -1,65 +1,173 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
   title: "合作夥伴 | NTUTEC",
   description:
-    "台大創創中心累計 35 家合作企業，含 Nvidia、Synopsys、鴻海等國際大廠。透過企業垂直加速器、技術合作、創新教育等多元模式共創。",
+    "台大創創中心歷年合作的代表企業，透過企業垂直加速器、外部創新顧問、聯合競賽等多元模式共創創新生態系。",
 };
 
 interface Partner {
   name: string;
-  type: string;
+  nameEn?: string;
+  logo: string;
+  w: number;
+  h: number;
+  type: string;                  // 合作類型
+  caseNote: string;              // 一句話合作描述
 }
 
-// Source: ntutec_report_114_annual.md §企業垂直加速器、ntutec_report_113_performance.md
-// 累計 35 家企業合作（包含企業垂直加速器 27 隻 + 其他合作模式）
+// 盤點原則：只列有真實 logo + 有可驗證合作描述的夥伴
+// 資料來源：memory/knowledge/institutional/corporate_partnerships_cases.md
 const partners: Partner[] = [
-  // 國際大廠
-  { name: "Nvidia", type: "國際科技" },
-  { name: "Synopsys 新思科技", type: "半導體" },
-  { name: "鴻海", type: "電子製造" },
-  { name: "跨國康寧", type: "材料科技" },
-  // 金融保險
-  { name: "玉山銀行", type: "金融" },
-  // 電信
-  { name: "遠傳電信", type: "電信" },
-  { name: "北捷", type: "智慧交通" },
-  // 光電/電子
-  { name: "友達光電", type: "光電" },
-  { name: "華碩", type: "資訊" },
-  { name: "宏碁", type: "資訊" },
-  { name: "神達數位", type: "資訊" },
-  { name: "圓展", type: "影音" },
-  // 台積電（創新教育）
-  { name: "台積電", type: "半導體" },
-  // 製造
-  { name: "金元福", type: "製造" },
-  { name: "東源營造（遠雄）", type: "營造" },
-  // 媒體出版
-  { name: "聯合報", type: "媒體" },
-  { name: "天下雜誌", type: "媒體" },
-  { name: "時報出版", type: "出版" },
-  { name: "親子天下", type: "出版" },
-  { name: "東方線上", type: "數據" },
+  // 長期外部創新顧問 + 垂直加速器
+  {
+    name: "聯合報系",
+    nameEn: "UDN",
+    logo: "/images/partners/udn.svg",
+    w: 120,
+    h: 40,
+    type: "外部創新顧問",
+    caseNote: "資深媒體集團第二成長曲線合作（《天下雜誌》專文報導）",
+  },
+  {
+    name: "聯經出版",
+    nameEn: "Linking",
+    logo: "/images/partners/linking-books.png",
+    w: 120,
+    h: 36,
+    type: "外部創新顧問",
+    caseNote: "× 知識衛星 SAT. 六個月深度共創，延伸藝文線上課程市場",
+  },
+  {
+    name: "經濟日報",
+    nameEn: "EDN",
+    logo: "/images/partners/economic-daily.png",
+    w: 100,
+    h: 25,
+    type: "外部創新顧問",
+    caseNote: "長期企業外部創新顧問夥伴（UDN 集團）",
+  },
+  {
+    name: "時報出版",
+    nameEn: "Reading Times",
+    logo: "/images/partners/reading-times.png",
+    w: 100,
+    h: 32,
+    type: "外部創新顧問",
+    caseNote: "出版轉型外部創新顧問 + 垂直加速器夥伴",
+  },
+  {
+    name: "圓展科技",
+    nameEn: "AVer",
+    logo: "/images/partners/aver.svg",
+    w: 100,
+    h: 40,
+    type: "外部創新顧問",
+    caseNote: "影音科技企業的外部創新合作夥伴",
+  },
+
+  // 企業垂直加速器合作企業
+  {
+    name: "友達光電",
+    nameEn: "AUO",
+    logo: "/images/partners/auo.svg",
+    w: 100,
+    h: 40,
+    type: "企業垂直加速器",
+    caseNote: "面板龍頭跨域合作，驗證顯示技術應用場域",
+  },
+  {
+    name: "遠傳電信",
+    nameEn: "FET",
+    logo: "/images/partners/fetnet.png",
+    w: 100,
+    h: 32,
+    type: "企業垂直加速器",
+    caseNote: "電信龍頭企業共創，結合 5G 與新創解決方案",
+  },
+  {
+    name: "玉山銀行",
+    nameEn: "E.SUN Bank",
+    logo: "/images/partners/esun-bank.svg",
+    w: 110,
+    h: 36,
+    type: "企業垂直加速器",
+    caseNote: "金融創新合作夥伴，探索 FinTech 與數位轉型",
+  },
+  {
+    name: "天下雜誌",
+    nameEn: "CommonWealth",
+    logo: "/images/partners/commonwealth.svg",
+    w: 120,
+    h: 36,
+    type: "企業垂直加速器",
+    caseNote: "媒體垂直加速器合作，強化生態系曝光",
+  },
+  {
+    name: "三泰科技",
+    nameEn: "Sunix",
+    logo: "/images/partners/sunix.png",
+    w: 120,
+    h: 33,
+    type: "企業垂直加速器",
+    caseNote: "科技業垂直加速器合作夥伴",
+  },
+  {
+    name: "東方線上",
+    nameEn: "Eastern Online",
+    logo: "/images/partners/eastern-online.png",
+    w: 120,
+    h: 28,
+    type: "企業垂直加速器",
+    caseNote: "市場研究數據賦能新創團隊的市場驗證",
+  },
+  {
+    name: "農純鄉",
+    nameEn: "Nongchunxiang",
+    logo: "/images/partners/nongchunxiang.png",
+    w: 100,
+    h: 40,
+    type: "企業垂直加速器",
+    caseNote: "食品與農業領域的企業垂直加速合作",
+  },
+  {
+    name: "AmazingTalker",
+    logo: "/images/partners/amazingtalker.png",
+    w: 130,
+    h: 18,
+    type: "校友 × 合作夥伴",
+    caseNote: "歷屆台大創創校友，後期成為加速器合作企業",
+  },
+
+  // 加速器贊助夥伴
+  {
+    name: "宏碁 Acer 基金會",
+    nameEn: "Acer Foundation",
+    logo: "/images/partners/acer.svg",
+    w: 90,
+    h: 30,
+    type: "加速器贊助",
+    caseNote: "官方贊助夥伴，曾以企業業師身份共創律果科技案例（HBR 報導）",
+  },
+  {
+    name: "康寧",
+    nameEn: "Corning",
+    logo: "/images/partners/corning.svg",
+    w: 110,
+    h: 32,
+    type: "加速器贊助",
+    caseNote: "國際材料科技大廠，加速器官方贊助夥伴",
+  },
 ];
 
-const badgeColor: Record<string, string> = {
-  國際科技: "bg-teal/10 text-teal-deep",
-  半導體: "bg-amber-100 text-amber-800",
-  電子製造: "bg-emerald-100 text-emerald-800",
-  材料科技: "bg-purple-100 text-purple-800",
-  金融: "bg-blue-100 text-blue-800",
-  電信: "bg-cyan-100 text-cyan-800",
-  智慧交通: "bg-indigo-100 text-indigo-800",
-  光電: "bg-yellow-100 text-yellow-800",
-  資訊: "bg-slate-100 text-slate-700",
-  影音: "bg-pink-100 text-pink-800",
-  製造: "bg-orange-100 text-orange-800",
-  營造: "bg-stone text-charcoal",
-  媒體: "bg-rose-100 text-rose-800",
-  出版: "bg-fuchsia-100 text-fuchsia-800",
-  數據: "bg-lime-100 text-lime-800",
+const TYPE_COLOR: Record<string, string> = {
+  外部創新顧問: "bg-teal/10 text-teal-deep border-teal/30",
+  企業垂直加速器: "bg-amber-50 text-amber-800 border-amber-200",
+  加速器贊助: "bg-purple-50 text-purple-700 border-purple-200",
+  "校友 × 合作夥伴": "bg-stone text-charcoal border-stone-warm",
 };
 
 export default function CorporatePartnersPage() {
@@ -68,35 +176,54 @@ export default function CorporatePartnersPage() {
       <PageHero
         title="合作夥伴"
         subtitle="Our Partners"
-        description="累計 35 家合作企業，透過企業垂直加速器、技術合作、創新教育等模式共創臺灣創新生態系。"
+        description="歷年與台大創創中心深度共創的代表企業，透過外部創新顧問、企業垂直加速器、贊助合作等多元模式，共築臺灣創新生態系。"
       />
 
       <section className="section-spacing">
         <div className="container">
           <p className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-slate-muted">
-            台大創創中心自 2019 年首創企業垂直加速器，累計與 35 家知名企業合作。合作模式涵蓋由企業出題、新創解題的垂直加速器、一對一技術合作、企業創新教育，以及跨國技術驗證等。
+            以下為歷年與中心有具體合作紀錄的夥伴企業（列舉部分）。合作模式涵蓋企業出題 × 新創解題的垂直加速器、長期外部創新顧問服務、一對一技術合作、聯合競賽及加速器贊助等。
           </p>
 
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {partners.map((partner) => (
-              <div key={partner.name} className="card-hover rounded-2xl border bg-white p-6 text-center" aria-label={partner.name}>
-                <div className="mb-4 flex h-16 items-center justify-center rounded-xl bg-stone">
-                  <span className="text-xs text-slate-muted" aria-hidden="true">Logo</span>
+              <div
+                key={partner.name}
+                className="card-elevated flex flex-col rounded-2xl border border-stone-warm/60 bg-white p-6"
+              >
+                <div className="mb-4 flex h-16 items-center justify-center rounded-xl bg-stone/60">
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={partner.w}
+                    height={partner.h}
+                    className="object-contain max-h-10 w-auto"
+                  />
                 </div>
-                <h3 className="mb-2 text-base font-semibold">{partner.name}</h3>
+                <div className="mb-3 flex items-baseline gap-2">
+                  <h3 className="text-base font-semibold text-charcoal">
+                    {partner.name}
+                  </h3>
+                  {partner.nameEn && (
+                    <span className="text-xs text-slate-muted">{partner.nameEn}</span>
+                  )}
+                </div>
                 <span
-                  className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${
-                    badgeColor[partner.type] || "bg-stone text-charcoal"
+                  className={`mb-3 inline-block w-fit rounded-full border px-2.5 py-0.5 text-xs font-medium ${
+                    TYPE_COLOR[partner.type] || "bg-stone text-charcoal"
                   }`}
                 >
                   {partner.type}
                 </span>
+                <p className="text-sm leading-relaxed text-slate-muted">
+                  {partner.caseNote}
+                </p>
               </div>
             ))}
           </div>
 
           <p className="mt-12 text-center text-sm text-slate-muted">
-            * 以上為部分公開合作企業代表，完整 35 家名單請洽中心。
+            ※ 以上為歷年公開合作代表，中心累計合作企業數更廣，視合作方意願揭露。
           </p>
         </div>
       </section>
@@ -107,7 +234,9 @@ export default function CorporatePartnersPage() {
           <p className="mx-auto mb-6 max-w-xl text-slate-muted">
             台大創創中心持續歡迎有意與新創生態系共創的企業夥伴加入合作行列。
           </p>
-          <a href="/corporate" className="btn-pill-primary">了解企業合作方案</a>
+          <Link href="/corporate" className="btn-pill-primary">
+            了解企業合作方案
+          </Link>
         </div>
       </section>
     </>
