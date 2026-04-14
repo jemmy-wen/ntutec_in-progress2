@@ -218,7 +218,7 @@ export default function GaragePage() {
       </section>
 
       {/* Featured Alumni */}
-      <FeaturedAlumni stories={garageAlumni} title="歷屆台大車庫校友" />
+      <FeaturedAlumni stories={garageAlumni} title="歷屆台大車庫校友（列舉部分）" />
 
       {/* Batch Timeline */}
       <section className="section-spacing bg-warm-stone">

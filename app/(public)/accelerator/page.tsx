@@ -324,7 +324,7 @@ export default function AcceleratorPage() {
 
       {/* Featured Alumni */}
       <FadeIn>
-        <FeaturedAlumni stories={acceleratorAlumni} title="歷屆台大加速器校友" />
+        <FeaturedAlumni stories={acceleratorAlumni} title="歷屆台大加速器校友（列舉部分）" />
       </FadeIn>
 
       {/* Batch Timeline */}

@@ -7,7 +7,7 @@ import { VINCENT_ALUMNI, CATEGORY_META } from "@/data/vincent-alumni";
 export const metadata: Metadata = {
   title: "成功校友 | NTUTEC",
   description:
-    "從台大起步的 15 位代表校友：AmazingTalker、MoBagel、漸強實驗室、知識衛星、配客嘉、Turing Space 等。涵蓋教育、企業服務、永續、Web3、健康五大領域。",
+    "13 年來逾 600 支團隊從台大起步。台大創業生態系累計募資超過 NT$20 億，涵蓋教育、企業服務、永續、Web3、健康五大領域。每項里程碑附公開資料來源。",
 };
 
 // Helper: external link icon SVG
@@ -35,7 +35,7 @@ export default function AlumniPage() {
       <PageHero
         title="成功校友"
         subtitle="Success Stories"
-        description="13 年來，逾 600 支團隊從台大起步。以下精選代表校友，涵蓋教育、企業服務、永續、Web3、健康五大領域。每項里程碑皆附公開資料來源。"
+        description="13 年來，逾 600 支團隊從台大起步。台大創業生態系累計公開募資超過 NT$20 億，以下列舉部分代表校友，每項里程碑皆附公開資料來源。"
       />
 
       {/* Section 2: Stats Banner */}
@@ -47,9 +47,9 @@ export default function AlumniPage() {
           <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
             {[
               { number: "600+", label: "歷年輔導新創團隊" },
-              { number: "15", label: "精選代表校友" },
+              { number: "13年", label: "台大創業生態系深耕" },
+              { number: "NT$20億+", label: "歷屆校友累計公開募資" },
               { number: "5", label: "涵蓋領域" },
-              { number: "US$21M+", label: "單一校友最高累計募資（MoBagel）" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl font-bold text-teal">{stat.number}</p>
