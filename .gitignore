@@ -37,3 +37,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# WP salvage intermediate artefacts (2026-04-14 incident)
+public/historical/_logo_map.csv
+public/mentors/wp/_download_map.csv
+public/partners/wp/_download_map.csv
