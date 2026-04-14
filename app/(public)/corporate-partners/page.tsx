@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
+import { createClient } from "@/lib/supabase/server";
+
+export const revalidate = 3600; // ISR refresh hourly
+
+interface LegacyPartner {
+  id: string;
+  name: string;
+  logo_local_path: string;
+  category: string | null;
+}
 
 export const metadata: Metadata = {
   title: "合作夥伴 | NTUTEC",
@@ -170,7 +180,15 @@ const TYPE_COLOR: Record<string, string> = {
   "校友 × 合作夥伴": "bg-stone text-charcoal border-stone-warm",
 };
 
-export default function CorporatePartnersPage() {
+export default async function CorporatePartnersPage() {
+  const supabase = await createClient();
+  const { data: legacyData } = await supabase
+    .from("corporate_partners")
+    .select("id, name, logo_local_path, category")
+    .eq("is_displayed", true)
+    .order("uploaded_at", { ascending: true });
+  const legacyPartners = (legacyData ?? []) as LegacyPartner[];
+
   return (
     <>
       <PageHero
@@ -227,6 +245,41 @@ export default function CorporatePartnersPage() {
           </p>
         </div>
       </section>
+
+      {legacyPartners.length > 0 && (
+        <section className="section-spacing bg-white">
+          <div className="container">
+            <div className="mb-10 text-center">
+              <h2 className="mb-3">歷年合作企業</h2>
+              <p className="mx-auto max-w-2xl text-slate-muted">
+                2019–2024 年間與本中心加速器、競賽、創新顧問合作過的企業與機構夥伴
+                （共 {legacyPartners.length} 家）
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+              {legacyPartners.map((p) => (
+                <div
+                  key={p.id}
+                  className="flex h-24 items-center justify-center rounded-lg border border-slate-200 bg-gray-50 p-4 transition hover:border-teal-300 hover:bg-white hover:shadow-sm"
+                  title={p.name}
+                >
+                  <Image
+                    src={p.logo_local_path}
+                    alt={p.name}
+                    width={160}
+                    height={60}
+                    className="max-h-16 w-auto object-contain opacity-80 transition hover:opacity-100"
+                    unoptimized
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="mt-10 text-center text-xs text-slate-muted">
+              ※ Logo 於 2019-2024 年間陸續建立合作關係；如需下架或更新 logo，請聯繫本中心。
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="section-spacing bg-teal-wash text-center">
         <div className="container">
