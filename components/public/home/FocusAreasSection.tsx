@@ -39,7 +39,7 @@ const focusAreas: FocusArea[] = [
     title: "硬科技",
     description:
       "半導體、先進製造、材料科學、機器人與物聯網。連結台大各工程研究資源與國內半導體產業鏈，提供硬體開發與量產驗證支援。",
-    examples: "歐姆佳科技、Turing Space、3drens 等",
+    examples: "歐姆佳科技、3drens、Datayoo 等",
     accentColor: "from-teal-deep/20 to-teal/10",
   },
   {
