@@ -205,7 +205,7 @@ export default function CorporatePage() {
               累計 27 期、35 家企業夥伴的深度共創實績，涵蓋科技、媒體、金融等多元產業。
             </p>
           </div>
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
             {/* Card 1: 宏碁 × 律果科技 */}
             <div className="rounded-2xl border border-stone-warm p-6 card-elevated">
               <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -238,6 +238,134 @@ export default function CorporatePage() {
               </ul>
               <div className="flex flex-wrap gap-2">
                 {["#LegalTech", "#AI", "#HBR報導", "#宏碁"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-stone px-2.5 py-1 text-xs text-slate-muted"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 2: 聯合報系 UDN — 第二成長曲線 */}
+            <div className="rounded-2xl border border-stone-warm p-6 card-elevated">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">
+                  企業垂直加速器
+                </span>
+                <span className="rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold text-teal-deep">
+                  數位轉型
+                </span>
+              </div>
+              <h3 className="mb-1 text-xl font-bold text-charcoal">
+                聯合報系 UDN × 新創外部創新
+              </h3>
+              <p className="mb-4 text-sm font-medium text-teal-deep">
+                資深媒體集團的第二成長曲線，從內容到新商模的跨域共創
+              </p>
+              <ul className="mb-5 space-y-2 text-sm leading-relaxed text-slate-muted">
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  <span>
+                    《天下雜誌》專文報導「UDN 與新創合作開啟第二成長曲線」
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  旗下聯經出版、經濟日報同步導入外部創新顧問服務
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  2020 年起迄今的長期戰略夥伴
+                </li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["#Media", "#數位轉型", "#天下雜誌報導", "#長期夥伴"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-stone px-2.5 py-1 text-xs text-slate-muted"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 3: 聯經出版 × SAT. 知識衛星 */}
+            <div className="rounded-2xl border border-stone-warm p-6 card-elevated">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">
+                  企業垂直加速器
+                </span>
+                <span className="rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold text-teal-deep">
+                  跨產業共創
+                </span>
+              </div>
+              <h3 className="mb-1 text-xl font-bold text-charcoal">
+                聯經出版 × SAT. 知識衛星
+              </h3>
+              <p className="mb-4 text-sm font-medium text-teal-deep">
+                傳統出版 × 線上課程平台，共築永續發展的知識生態
+              </p>
+              <ul className="mb-5 space-y-2 text-sm leading-relaxed text-slate-muted">
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  六個月深度共創，延伸藝文線上課程未開發市場
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  知識衛星 2024 年營業額突破 NT$7 億
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  外部創新「共生共創」典型示範案例
+                </li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["#EdTech", "#出版轉型", "#永續發展", "#共創"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-stone px-2.5 py-1 text-xs text-slate-muted"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 4: 日月光 × 社會創新競賽 */}
+            <div className="rounded-2xl border border-stone-warm p-6 card-elevated">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-teal px-3 py-1 text-xs font-semibold text-white">
+                  創新競賽
+                </span>
+                <span className="rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold text-teal-deep">
+                  ESG / 社會創新
+                </span>
+              </div>
+              <h3 className="mb-1 text-xl font-bold text-charcoal">
+                日月光 ASE × 社會創新競賽
+              </h3>
+              <p className="mb-4 text-sm font-medium text-teal-deep">
+                半導體龍頭攜手台大創創，用競賽挖掘社會影響力新創
+              </p>
+              <ul className="mb-5 space-y-2 text-sm leading-relaxed text-slate-muted">
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  台大創創協辦完整賽程：初審、面審、新創輔導
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  以社會創新為主題，強化企業 ESG 與新創生態連結
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-teal">✓</span>
+                  獎金 + 企業資源，協助入圍團隊實踐提案
+                </li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["#ASE", "#ESG", "#社會創新", "#競賽"].map((tag) => (
                   <span
                     key={tag}
                     className="rounded-full bg-stone px-2.5 py-1 text-xs text-slate-muted"
