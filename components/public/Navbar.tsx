@@ -39,7 +39,8 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "台大加速器", href: "/accelerator" },
       { label: "台大車庫", href: "/garage" },
-      { label: "校友新創", href: "/alumni" },
+      { label: "代表校友", href: "/alumni" },
+      { label: "歷年校友", href: "/alumni/historical" },
     ],
   },
   {
