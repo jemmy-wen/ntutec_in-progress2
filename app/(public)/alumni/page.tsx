@@ -6,7 +6,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "成功校友 | NTUTEC",
   description:
-    "13 年、逾 600 支團隊，從台大走向世界。配客嘉 A 輪逾 NT$1 億、Botbonnie 被 Appier 收購、艾斯創 SelectUSA 冠軍——見證 NTUTEC 校友的國際里程碑。",
+    "13 年、逾 600 支團隊從台大起步。這些創業者離開後，在市場上持續創造里程碑——配客嘉、Botbonnie、艾斯創、律果科技...從台大走向世界。",
 };
 
 const exitCases = [
@@ -109,7 +109,7 @@ export default function AlumniPage() {
       <PageHero
         title="成功校友"
         subtitle="Success Stories"
-        description="13 年、逾 600 支團隊，從台大走向世界。以下是部分校友里程碑。"
+        description="13 年來，逾 600 支團隊從台大起步。以下是**歷屆校友在畢業後**於市場上創造的部分里程碑。"
       />
 
       {/* Section 2: Stats Banner */}
@@ -118,9 +118,9 @@ export default function AlumniPage() {
           <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
             {[
               { number: "600+", label: "歷年輔導新創團隊" },
-              { number: "NT$1 億+", label: "單筆最高 A 輪募資（配客嘉）" },
-              { number: "2", label: "成功國際 Exit 案例" },
-              { number: "US$250萬", label: "國際競賽冠軍募資（艾斯創）" },
+              { number: "NT$1 億+", label: "歷屆校友最高 A 輪（配客嘉）" },
+              { number: "2", label: "歷屆校友國際 Exit 案例" },
+              { number: "US$250萬", label: "校友國際競賽（艾斯創）" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl font-bold text-teal">{stat.number}</p>
@@ -138,9 +138,9 @@ export default function AlumniPage() {
             <p className="micro-label mb-4 text-white/60">
               THE ULTIMATE MILESTONE
             </p>
-            <h2 className="mb-4 text-white">Exit &amp; M&amp;A 成功退場</h2>
+            <h2 className="mb-4 text-white">歷屆校友的 Exit &amp; M&amp;A</h2>
             <p className="mx-auto max-w-2xl text-lg text-white/70">
-              被國際企業收購，是新創成功的最高驗證。
+              **歷屆台大創業校友**在畢業後的國際併購里程碑。
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">

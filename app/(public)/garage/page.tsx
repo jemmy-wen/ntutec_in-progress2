@@ -10,14 +10,14 @@ const garageAlumni: AlumniStory[] = [
   {
     name: "Dapp Pocket",
     category: "成功 Exit",
-    highlight: "被 Turn Capital 收購，是車庫孵化團隊重要的退場案例。",
+    highlight: "離開車庫後，被 Turn Capital 收購，進入加密貨幣生態系。",
     sector: "區塊鏈錢包",
     icon: "exit",
   },
   {
     name: "Botbonnie",
     category: "成功 Exit",
-    highlight: "被 Appier 收購，展現從車庫起步到策略退場的完整路徑。",
+    highlight: "從車庫起步，後被日本上市 AI 公司 Appier 收購。",
     sector: "聊天機器人",
     icon: "exit",
   },
@@ -197,7 +197,7 @@ export default function GaragePage() {
       </section>
 
       {/* Featured Alumni */}
-      <FeaturedAlumni stories={garageAlumni} title="台大車庫校友成就" />
+      <FeaturedAlumni stories={garageAlumni} title="歷屆台大車庫校友" />
 
       {/* Batch Timeline */}
       <section className="section-spacing bg-warm-stone">

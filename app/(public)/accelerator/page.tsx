@@ -12,7 +12,7 @@ const acceleratorAlumni: AlumniStory[] = [
   {
     name: "配客嘉 PackAge+",
     category: "A 輪募資",
-    highlight: "完成 A 輪募資逾新台幣 1 億元，是 2025 年最大單筆校友募資案例，引領循環包裝產業。",
+    highlight: "離開輔導計畫後，於 2025 年完成 A 輪募資逾新台幣 1 億元，引領台灣循環包裝產業。",
     sector: "循環包裝 · ESG",
     icon: "funding",
   },
@@ -351,7 +351,7 @@ export default function AcceleratorPage() {
 
       {/* Featured Alumni */}
       <FadeIn>
-        <FeaturedAlumni stories={acceleratorAlumni} title="台大加速器校友成就" />
+        <FeaturedAlumni stories={acceleratorAlumni} title="歷屆台大加速器校友" />
       </FadeIn>
 
       {/* Batch Timeline */}

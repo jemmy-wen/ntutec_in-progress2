@@ -115,7 +115,7 @@ export default function StatsSection() {
         <div className="mt-6 flex flex-wrap justify-center gap-6 text-center">
           <div className="flex items-center gap-2 text-sm text-stone/70">
             <span className="text-teal">✦</span>
-            <span>校友最高單筆募資 <strong className="text-white">NT$1 億+</strong></span>
+            <span>歷屆校友最高單筆募資 <strong className="text-white">NT$1 億+</strong></span>
           </div>
           <div className="flex items-center gap-2 text-sm text-stone/70">
             <span className="text-teal">✦</span>
