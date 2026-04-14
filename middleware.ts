@@ -63,6 +63,23 @@ export async function middleware(request: NextRequest) {
   // API routes handle their own auth via withApiHandler
   const isApiRoute = pathname.startsWith('/api/')
 
+  // Defence-in-depth: enforce admin/staff_admin role at the edge for /api/admin/*
+  // Individual endpoints still run their own requireAdmin() check — this is a
+  // second gate so that a future endpoint that forgets to call requireAdmin()
+  // is not silently exposed.
+  if (pathname.startsWith('/api/admin/')) {
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    const { data: roleRows } = await (supabase.from('module_roles') as any)
+      .select('role')
+      .eq('user_id', user.id)
+    const roles: string[] = (roleRows ?? []).map((r: any) => r.role)
+    if (!roles.includes('admin') && !roles.includes('staff_admin')) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+  }
+
   // Redirect unauthenticated users to login (except public pages)
   if (!user && !isPublicRoute && !isApiRoute) {
     const url = request.nextUrl.clone()
