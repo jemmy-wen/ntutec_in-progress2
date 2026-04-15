@@ -9,7 +9,7 @@ import FocusAreasSection from '@/components/public/home/FocusAreasSection'
 import AudienceCards from '@/components/public/home/AudienceCards'
 import StatsSection from '@/components/public/home/StatsSection'
 import NewsSection from '@/components/public/home/NewsSection'
-import PartnersSection from '@/components/public/home/PartnersSection'
+// import PartnersSection from '@/components/public/home/PartnersSection' // 暫時隱藏 — 待確認廠商揭露意願
 import NTUEcosystemSection from '@/components/public/home/NTUEcosystemSection'
 import Image from 'next/image'
 import { FadeIn } from '@/components/ui/fade-in'
@@ -92,7 +92,7 @@ export default function HomePage() {
       </FadeIn>
       <NewsSection />
       <NTUEcosystemSection />
-      <PartnersSection />
+      {/* <PartnersSection /> */} {/* 暫時隱藏 — 待確認廠商揭露意願 */}
     </>
   )
 }
