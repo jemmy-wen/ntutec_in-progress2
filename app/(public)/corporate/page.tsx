@@ -155,7 +155,7 @@ export default function CorporatePage() {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
-                  src="/images/events/opening-2026-02.jpg"
+                  src="/images/events/opening-2026-04.jpg"
                   alt="新創 Pitch 展示成果"
                   fill
                   loading="lazy"
@@ -169,7 +169,7 @@ export default function CorporatePage() {
             <div className="grid gap-12 md:grid-cols-2 items-center">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl order-last md:order-first">
                 <Image
-                  src="/images/events/opening-2026-mentor-session.jpg"
+                  src="/images/events/opening-2026-coaching.jpg"
                   alt="業師輔導現場"
                   fill
                   loading="lazy"

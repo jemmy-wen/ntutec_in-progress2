@@ -191,7 +191,7 @@ export default function AngelPage() {
       <section className="relative min-h-[50vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/events/opening-2026-02.jpg"
+            src="/images/events/opening-2026-audience.jpg"
             alt=""
             fill
             priority
