@@ -51,7 +51,7 @@ const alumniHighlights = [
     detail: '獲國發基金、中信、彰銀入股，合作 200+ 企業，持續拓展東南亞市場。',
   },
   {
-    name: '艾斯創生醫 Aistrom',
+    name: '艾斯創生醫 Astron Medtech',
     tag: '醫療器材 × 國際',
     result: '募資 USD 250 萬（2024）',
     detail: 'SelectUSA MedTech 冠軍，NBA 球隊指定名醫等國際骨科權威投資。',
