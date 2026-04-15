@@ -47,7 +47,7 @@ const NAV_ITEMS: NavItem[] = [
     label: "企業合作",
     children: [
       { label: "合作總覽", href: "/corporate" },
-      { label: "合作夥伴", href: "/corporate-partners" },
+      // { label: "合作夥伴", href: "/corporate-partners" }, // 暫時隱藏 — 待逐家確認 logo 揭露意願
       { label: "聯合活動", href: "/co-events" },
       { label: "諮詢服務", href: "/consulting" },
     ],
