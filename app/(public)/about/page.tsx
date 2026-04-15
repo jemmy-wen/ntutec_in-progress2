@@ -118,7 +118,7 @@ export default function AboutPage() {
       <div className="bg-stone border-b border-stone-warm/60">
         <div className="container py-4 flex items-center gap-3">
           <Image src="/images/partners/ntu.svg" alt="國立臺灣大學校徽" width={32} height={32} className="h-8 w-auto" />
-          <p className="text-sm text-slate-muted">國立臺灣大學創意創業中心 — 校級單位，隸屬研究發展處</p>
+          <p className="text-sm text-slate-muted">國立臺灣大學創意創業中心 — 校級單位</p>
         </div>
       </div>
 
