@@ -76,7 +76,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "消息", href: "/news" },
       { label: "活動", href: "/events" },
       { label: "Demo Day", href: "/demo-day" },
-      // { label: "部落格", href: "/blog" }, // 暫時隱藏 — Ghost 內容尚未填充
+      { label: "部落格", href: "/blog" },
       { label: "TEC Talk Podcast", href: "/podcast" },
     ],
   },
