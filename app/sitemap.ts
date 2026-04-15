@@ -17,7 +17,7 @@ const publicRoutes: Array<{
   { path: '/about', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/team', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/mentors', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/advisory-board', changeFrequency: 'yearly', priority: 0.5 },
+  // { path: '/advisory-board', changeFrequency: 'yearly', priority: 0.5 }, // 暫時隱藏
   { path: '/programs', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/accelerator', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/garage', changeFrequency: 'monthly', priority: 0.8 },

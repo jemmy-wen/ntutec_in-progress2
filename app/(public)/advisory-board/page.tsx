@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "台大創創中心諮詢委員會由產學界重量級人士組成，為中心策略方向提供指引。",
   alternates: { canonical: "https://tec.ntu.edu.tw/advisory-board" },
+  robots: { index: false, follow: false }, // 暫時隱藏
 };
 
 interface Advisor {
@@ -70,6 +72,10 @@ const advisors: Advisor[] = [
 ];
 
 export default function AdvisoryBoardPage() {
+  // 暫時隱藏整頁
+  redirect('/about')
+
+  // eslint-disable-next-line no-unreachable
   return (
     <>
       <PageHero
