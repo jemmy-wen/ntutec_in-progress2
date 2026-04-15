@@ -215,7 +215,6 @@ export default function AngelPage() {
             { num: "150+", label: "投資人網絡" },
             { num: "40+", label: "天使會員" },
             { num: "每月", label: "天使例會" },
-            { num: "NT$2.5億+", label: "累計投資規模" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-2xl font-bold text-teal">{s.num}</div>

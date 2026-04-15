@@ -160,10 +160,9 @@ export default function PitchPage() {
       <FadeIn>
         <section className="border-b border-border/40 bg-white">
           <div className="container">
-            <div className="grid grid-cols-2 divide-x divide-border/40 md:grid-cols-4">
+            <div className="grid grid-cols-3 divide-x divide-border/40">
               {[
                 { num: "150+", label: "投資人網絡" },
-                { num: "NT$2.5億+", label: "累計投資規模" },
                 { num: "每月", label: "天使例會" },
                 { num: "3週", label: "初審回覆" },
               ].map((s) => (
