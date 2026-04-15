@@ -39,7 +39,7 @@ const hi3Model = [
     label: '加速起飛',
     en: 'Ignition',
     Icon: RocketLaunch,
-    description: '舉辦 Demo Day（74 位投資人到場，2025）、閉門投資媒合、天使投資俱樂部，為準備好的團隊引燃第一桶資本，走向市場起飛。',
+    description: '舉辦 Demo Day（74 位投資人到場，2025）、閉門投資媒合、台大天使會，為準備好的團隊引燃第一桶資本，走向市場起飛。',
   },
 ]
 
@@ -91,7 +91,7 @@ export default function AboutPage() {
               <p className="micro-label mb-4">Our Mission</p>
               <h2 className="mb-6">使命與願景</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">台大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，將台大最好的技術能量與人才，轉化為可投資的新創公司。</p>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted"><strong className="text-charcoal">13 年</strong>來，我們累計輔導逾 <strong className="text-charcoal">600+</strong> 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（<strong className="text-charcoal">27 期</strong>、<strong className="text-charcoal">35 家企業</strong>）與天使投資俱樂部（<strong className="text-charcoal">150+</strong> 投資人網絡），我們支持新創從技術驗證走入市場。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted"><strong className="text-charcoal">13 年</strong>來，我們累計輔導逾 <strong className="text-charcoal">600+</strong> 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（<strong className="text-charcoal">27 期</strong>、<strong className="text-charcoal">35 家企業</strong>）與台大天使會（<strong className="text-charcoal">150+</strong> 投資人網絡），我們支持新創從技術驗證走入市場。</p>
               <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈受新創信賴的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 加速起飛）系統性支持新創，深耕台灣 13 年的大學創業基地。</p>
             </div>
             <div className="grid grid-cols-2 gap-4">

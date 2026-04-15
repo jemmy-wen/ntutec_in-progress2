@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
 function typeLabel(type: string): string {
   const labels: Record<string, string> = {
     startup: '新創團隊申請',
-    angel: '天使俱樂部加入',
+    angel: '台大天使會加入',
     mentor: '成為業師',
     partnership: '合作洽談',
     media: '媒體採訪',

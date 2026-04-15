@@ -29,7 +29,7 @@ const focusAreas: FocusArea[] = [
     label: "Biotech & Medical",
     title: "生技醫療",
     description:
-      "醫材、AI 輔助診斷、精準醫療、數位健康與藥物開發。串接台大醫院臨床場域與天使俱樂部生醫投資網絡。",
+      "醫材、AI 輔助診斷、精準醫療、數位健康與藥物開發。串接台大醫院臨床場域與台大天使會生醫投資網絡。",
     examples: "思輔科技、Home心、AHEAD Medicine 等",
     accentColor: "from-teal-wash to-stone-warm",
   },

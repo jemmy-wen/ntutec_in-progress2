@@ -4,7 +4,7 @@ import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 export const metadata: Metadata = {
   title: "常見問題 | NTUTEC",
   description:
-    "關於台大加速器、台大車庫、天使投資俱樂部、企業合作與業師輔導的完整問答。計畫免費、不要求股權；台大加速器不限身分；天使例會每月舉辦。",
+    "關於台大加速器、台大車庫、台大天使會、企業合作與業師輔導的完整問答。計畫免費、不要求股權；台大加速器不限身分；天使例會每月舉辦。",
   alternates: { canonical: "https://tec.ntu.edu.tw/faq" },
 };
 
@@ -42,12 +42,12 @@ export default function FaqLayout({ children }: { children: React.ReactNode }) {
         "name": "天使例會多久舉辦一次？如何參加？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "天使例會每月舉辦一次，為 NTUTEC 天使俱樂部會員專屬活動，需成為天使會員方可出席。"
+          "text": "天使例會每月舉辦一次，為 NTUTEC 台大天使會會員專屬活動，需成為天使會員方可出席。"
         }
       },
       {
         "@type": "Question",
-        "name": "如何成為天使俱樂部會員？",
+        "name": "如何成為台大天使會會員？",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "請至天使入會申請頁面填寫申請表，投資經理將於 3 個工作日內聯繫您說明資格與流程。個人會員年費 NT$50,000，企業會員 NT$100,000。"

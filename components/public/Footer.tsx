@@ -40,7 +40,7 @@ function YouTubeIcon() {
 const FOOTER_LINKS = {
   programs: [
     { label: "企業合作", href: "/corporate" },
-    { label: "天使俱樂部", href: "/angel" },
+    { label: "台大天使會", href: "/angel" },
     { label: "台大加速器", href: "/accelerator" },
     { label: "台大車庫", href: "/garage" },
     { label: "提前登記申請", href: "/apply" },

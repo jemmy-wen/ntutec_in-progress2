@@ -22,8 +22,8 @@ const acceleratorAlumni: AlumniStory[] = [
   },
   {
     name: "MoBagel 行動貝果",
-    category: "天使俱樂部投資",
-    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲天使俱樂部投資。",
+    category: "台大天使會投資",
+    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲台大天使會投資。",
     sector: "AutoML / 企業 AI 數據平台",
     icon: "funding",
     sources: [
@@ -142,7 +142,7 @@ const benefits = [
     Icon: CurrencyCircleDollar,
     title: "募資對接",
     description:
-      "天使投資俱樂部與 300+ 投資人網絡，涵蓋種子輪到 Pre-IPO 的募資機會。",
+      "台大天使會與 300+ 投資人網絡，涵蓋種子輪到 Pre-IPO 的募資機會。",
   },
   {
     Icon: MapPin,
@@ -208,7 +208,7 @@ export default function AcceleratorPage() {
             <p className="micro-label mb-4">Overview</p>
             <h2 className="mb-6">計畫概覽</h2>
             <p className="text-lg leading-relaxed text-slate-muted">
-              台大加速器自 2017 年啟動，專為已完成原型、進入市場驗證階段的成長期新創設計。計畫為期十個月，由 2026 陪跑業師 40+ 位提供一對一深度輔導，背後擁有歷年 80+ 位業師的深厚資料庫，串接企業合作資源、天使投資俱樂部與創投網絡。2026 梯次進行中（3 月 ~ 12 月）。
+              台大加速器自 2017 年啟動，專為已完成原型、進入市場驗證階段的成長期新創設計。計畫為期十個月，由 2026 陪跑業師 40+ 位提供一對一深度輔導，背後擁有歷年 80+ 位業師的深厚資料庫，串接企業合作資源、台大天使會與創投網絡。2026 梯次進行中（3 月 ~ 12 月）。
             </p>
           </div>
         </div>

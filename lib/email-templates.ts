@@ -88,13 +88,13 @@ const TEMPLATES: Record<FormType, (name: string) => EmailTemplate> = {
     subject: '已收到您的天使會員申請 — NTUTEC ANGELS',
     html: wrap(name, `
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
-        感謝您申請加入 NTUTEC ANGELS 台大天使俱樂部！我們已收到您的申請。
+        感謝您申請加入 NTUTEC ANGELS 台大天使會！我們已收到您的申請。
       </p>
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
         投資團隊將盡速安排與您聯繫，進一步說明會員制度與參與方式。
       </p>
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
-        了解天使俱樂部：<a href="https://tec.ntu.edu.tw/angel" style="color:#0d9488;">tec.ntu.edu.tw/angel</a>
+        了解台大天使會：<a href="https://tec.ntu.edu.tw/angel" style="color:#0d9488;">tec.ntu.edu.tw/angel</a>
       </p>
     `),
   }),
@@ -133,13 +133,13 @@ const TEMPLATES: Record<FormType, (name: string) => EmailTemplate> = {
     subject: '已收到您的天使會員申請 — NTUTEC ANGELS',
     html: wrap(name, `
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
-        感謝您申請加入 NTUTEC ANGELS 台大天使俱樂部！我們已收到您的個人會員申請。
+        感謝您申請加入 NTUTEC ANGELS 台大天使會！我們已收到您的個人會員申請。
       </p>
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
         投資團隊將盡速安排與您聯繫，進一步說明會員制度與參與方式。
       </p>
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
-        了解天使俱樂部：<a href="https://tec.ntu.edu.tw/angel" style="color:#0d9488;">tec.ntu.edu.tw/angel</a>
+        了解台大天使會：<a href="https://tec.ntu.edu.tw/angel" style="color:#0d9488;">tec.ntu.edu.tw/angel</a>
       </p>
     `),
   }),
@@ -148,13 +148,13 @@ const TEMPLATES: Record<FormType, (name: string) => EmailTemplate> = {
     subject: '已收到貴公司的天使會員申請 — NTUTEC ANGELS',
     html: wrap(name, `
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
-        感謝貴公司申請加入 NTUTEC ANGELS 台大天使俱樂部！我們已收到貴公司的企業會員申請。
+        感謝貴公司申請加入 NTUTEC ANGELS 台大天使會！我們已收到貴公司的企業會員申請。
       </p>
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
         將由專人與您聯繫，說明企業會員制度及後續流程。
       </p>
       <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.7;">
-        了解天使俱樂部：<a href="https://tec.ntu.edu.tw/angel" style="color:#0d9488;">tec.ntu.edu.tw/angel</a>
+        了解台大天使會：<a href="https://tec.ntu.edu.tw/angel" style="color:#0d9488;">tec.ntu.edu.tw/angel</a>
       </p>
     `),
   }),

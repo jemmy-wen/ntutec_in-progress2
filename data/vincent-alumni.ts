@@ -74,7 +74,7 @@ export const VINCENT_ALUMNI: VincentAlumnus[] = [
     batchYear: 2019,
     category: "enterprise",
     sector: "AutoML / 企業 AI 數據平台",
-    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲天使俱樂部投資。",
+    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲台大天使會投資。",
     sources: [
       { label: "INSIDE A+ 輪報導", url: "https://www.inside.com.tw/article/27055-mobagel" },
       { label: "工商時報 AI 專訪", url: "https://ctee.com.tw/industrynews/technology/317716.html" },
@@ -229,7 +229,7 @@ export const VINCENT_ALUMNI: VincentAlumnus[] = [
     batchYear: 2024,
     category: "health",
     sector: "醫療機器人 × 微創手術導引",
-    highlight: "2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲天使俱樂部投資。",
+    highlight: "2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲台大天使會投資。",
     sources: [
       { label: "國家新創獎官方頁", url: "https://innoaward.taiwan-healthcare.org/award_detail.php?REFDOCTYPID=0mge2rck644mcfl0&num=1&REFDOCID=0sq2hwdu6fedv1i8" },
     ],

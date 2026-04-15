@@ -28,7 +28,7 @@ const leadership: TeamMember[] = [
     initials: "林",
     name: "林文欽 Vincent",
     title: "執行長 CEO",
-    bio: "前騰訊副總經理、京東商城副總裁，台大 EMBA。負責中心日常營運、策略方向與投資決策，主導天使投資俱樂部與新創輔導整體規劃。",
+    bio: "前騰訊副總經理、京東商城副總裁，台大 EMBA。負責中心日常營運、策略方向與投資決策，主導台大天使會與新創輔導整體規劃。",
     photo: "/images/team/vincent-lin.png",
   },
 ];
@@ -45,7 +45,7 @@ const team: TeamMember[] = [
     initials: "江",
     name: "江旻壕 Howard",
     title: "投資經理 Investment Manager",
-    bio: "主責天使投資俱樂部與案源篩選評估，協同企業垂直加速器。輔導小組帶領生技醫療組，負責投資人關係經營與案源評估。",
+    bio: "主責台大天使會與案源篩選評估，協同企業垂直加速器。輔導小組帶領生技醫療組，負責投資人關係經營與案源評估。",
     photo: "/images/brand/ntutec-icon-teal.png",
   },
   {

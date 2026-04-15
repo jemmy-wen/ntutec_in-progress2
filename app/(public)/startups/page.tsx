@@ -159,8 +159,8 @@ export default function StartupsPage() {
             <div className="rounded-2xl bg-white/10 border border-white/20 p-6">
               <Briefcase size={28} weight="duotone" className="mb-2 text-teal mx-auto" />
               <h3 className="mb-2 text-base font-semibold text-white">我是投資人</h3>
-              <p className="mb-4 text-sm text-white/70">了解天使投資俱樂部，參與早期案件媒合</p>
-              <a href="/angel" className="btn-pill-outline text-sm">了解天使俱樂部</a>
+              <p className="mb-4 text-sm text-white/70">了解台大天使會，參與早期案件媒合</p>
+              <a href="/angel" className="btn-pill-outline text-sm">了解台大天使會</a>
             </div>
             <div className="rounded-2xl bg-white/10 border border-white/20 p-6">
               <Buildings size={28} weight="duotone" className="mb-2 text-teal mx-auto" />

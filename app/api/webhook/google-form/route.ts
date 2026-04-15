@@ -102,7 +102,7 @@ export async function POST(req: NextRequest) {
       key_milestone:      str('25. 近期最重要里程碑'),
       monthly_revenue:    monthlyRev,
       other_docs:         str('28. 其他補充文件或連結'),
-      how_did_you_hear:   str('29. 如何得知 NTUTEC 天使俱樂部？'),
+      how_did_you_hear:   str('29. 如何得知 NTUTEC 台大天使會？'),
     }),
   }
 

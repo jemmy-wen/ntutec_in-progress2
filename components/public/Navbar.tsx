@@ -53,9 +53,9 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "天使俱樂部",
+    label: "台大天使會",
     children: [
-      { label: "天使俱樂部總覽", href: "/angel" },
+      { label: "台大天使會總覽", href: "/angel" },
       { label: "申請入會", href: "/angel-apply" },
       { label: "新創投遞", href: "/pitch" },
     ],
@@ -386,7 +386,7 @@ export default function Navbar() {
                     {[
                       { label: "新創投遞 Pitch", href: "/pitch", desc: "提交你的新創案件" },
                       { label: "企業合作洽談", href: "/corporate#contact", desc: "啟動外部創新" },
-                      { label: "加入天使俱樂部", href: "/angel-apply", desc: "成為天使投資人" },
+                      { label: "加入台大天使會", href: "/angel-apply", desc: "成為天使投資人" },
                       { label: "預約 2027 輔導計畫", href: "/apply", desc: "加速器・車庫" },
                     ].map((item) => (
                       <Link
@@ -441,7 +441,7 @@ export default function Navbar() {
                 {[
                   { label: "新創投遞 Pitch", href: "/pitch" },
                   { label: "企業合作洽談", href: "/corporate#contact" },
-                  { label: "加入天使俱樂部", href: "/angel-apply" },
+                  { label: "加入台大天使會", href: "/angel-apply" },
                   { label: "預約 2027 輔導計畫", href: "/apply" },
                 ].map((item) => (
                   <Link

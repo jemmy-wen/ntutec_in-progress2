@@ -20,7 +20,7 @@ export default function MobileNav({ roles }: MobileNavProps) {
   }
   // Angel portal — open for angel_member and admin
   if (roles.includes('angel_member') || roles.includes('admin')) {
-    sections.push({ title: '天使俱樂部', items: ANGEL_NAV })
+    sections.push({ title: '台大天使會', items: ANGEL_NAV })
   }
 
   return (

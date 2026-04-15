@@ -92,7 +92,7 @@ const recentInvestments = [
     round: "2025 Q4",
     sector: "生技醫療 · AI 診斷",
     description:
-      "台大醫學院校友 Andrea Wang 創辦，AI 醫療輔助診斷平台，協助醫師縮短 X 光片判讀時間，獲天使俱樂部投資。",
+      "台大醫學院校友 Andrea Wang 創辦，AI 醫療輔助診斷平台，協助醫師縮短 X 光片判讀時間，獲台大天使會投資。",
     sources: [] as { label: string; url: string }[],
   },
   {
@@ -100,7 +100,7 @@ const recentInvestments = [
     round: "2026 Q1",
     sector: "AI · 數據分析",
     description:
-      "鍾哲民創辦的 AI/數據分析平台，累計募資 US$21M+，服務 3,000+ 品牌。台大車庫與加速器歷屆校友，2026 Q1 接受天使俱樂部投資。",
+      "鍾哲民創辦的 AI/數據分析平台，累計募資 US$21M+，服務 3,000+ 品牌。台大車庫與加速器歷屆校友，2026 Q1 接受台大天使會投資。",
     sources: [
       { label: "INSIDE 報導", url: "https://www.inside.com.tw/article/27055-mobagel" },
       { label: "工商時報專訪", url: "https://ctee.com.tw/industrynews/technology/317716.html" },
@@ -111,7 +111,7 @@ const recentInvestments = [
     round: "2026 Q1",
     sector: "硬科技 · 手術導航",
     description:
-      "周皓凱創辦的微創手術導航技術公司，2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲天使俱樂部投資後積極布局美國市場。",
+      "周皓凱創辦的微創手術導航技術公司，2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲台大天使會投資後積極布局美國市場。",
     sources: [
       { label: "國家新創獎官方頁", url: "https://innoaward.taiwan-healthcare.org/award_detail.php?REFDOCTYPID=0mge2rck644mcfl0&num=1&REFDOCID=0sq2hwdu6fedv1i8" },
     ],
@@ -192,7 +192,7 @@ export default function PitchPage() {
           <div className="container relative z-[2]">
             <div className="mb-12 text-center">
               <p className="mb-4 text-xs font-bold tracking-widest text-teal">TRACK RECORD</p>
-              <h2 className="text-white">天使俱樂部近期投資案例</h2>
+              <h2 className="text-white">台大天使會近期投資案例</h2>
               <p className="mt-3 text-base text-white/60">這是進入天使例會後可能發生的事</p>
             </div>
             <div className="grid gap-6 md:grid-cols-3">
@@ -342,14 +342,14 @@ export default function PitchPage() {
         <div className="container text-center">
           <h3 className="mb-4">還沒準備好投遞？</h3>
           <p className="mb-6 text-slate-muted mx-auto max-w-lg">
-            先加入台大車庫或台大加速器計畫，接受完整輔導後再接觸天使俱樂部，準備更充分。
+            先加入台大車庫或台大加速器計畫，接受完整輔導後再接觸台大天使會，準備更充分。
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/programs" className="btn-pill-outline">
               了解輔導計畫
             </Link>
             <Link href="/angel" className="btn-pill-outline">
-              了解天使俱樂部
+              了解台大天使會
             </Link>
           </div>
         </div>

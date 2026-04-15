@@ -10,7 +10,7 @@ const garageAlumni: AlumniStory[] = [
   {
     name: "MoBagel 行動貝果",
     category: "大額募資",
-    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲天使俱樂部投資。",
+    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲台大天使會投資。",
     sector: "AutoML / 企業 AI 數據平台",
     icon: "funding",
     sources: [
@@ -296,9 +296,9 @@ export default function GaragePage() {
       <section className="section-spacing bg-stone">
         <div className="container text-center">
           <p className="micro-label mb-4">Investor Access</p>
-          <h2 className="mb-4">天使俱樂部優先觀察對象</h2>
-          <p className="mx-auto mb-6 max-w-xl text-lg text-slate-muted">台大車庫孵育的早期新創，為天使投資俱樂部優先觀察與媒合的來源之一。</p>
-          <Link href="/angel" className="btn-pill-outline">了解天使俱樂部</Link>
+          <h2 className="mb-4">台大天使會優先觀察對象</h2>
+          <p className="mx-auto mb-6 max-w-xl text-lg text-slate-muted">台大車庫孵育的早期新創，為台大天使會優先觀察與媒合的來源之一。</p>
+          <Link href="/angel" className="btn-pill-outline">了解台大天使會</Link>
         </div>
       </section>
 
