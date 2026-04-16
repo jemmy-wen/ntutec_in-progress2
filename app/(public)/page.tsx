@@ -1,19 +1,34 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { ogImageUrl } from '@/lib/og'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 import HomeFAQSchema from '@/components/public/HomeFAQSchema'
 
 export const revalidate = 3600 // ISR: revalidate every hour (NewsSection fetches from Ghost)
+
+// Above-fold sections — direct import (needed for LCP + initial paint)
 import HeroSection from '@/components/public/home/HeroSection'
 import FocusAreasSection from '@/components/public/home/FocusAreasSection'
-import AudienceCards from '@/components/public/home/AudienceCards'
-import StatsSection from '@/components/public/home/StatsSection'
-import NewsSection from '@/components/public/home/NewsSection'
-// import PartnersSection from '@/components/public/home/PartnersSection' // 暫時隱藏 — 待確認廠商揭露意願
-import NTUEcosystemSection from '@/components/public/home/NTUEcosystemSection'
 import Image from 'next/image'
 import { FadeIn } from '@/components/ui/fade-in'
+
+// Below-fold sections — code-split via next/dynamic to keep framer-motion
+// (~124 KB) out of the initial JS bundle. ssr: true preserves SEO-visible
+// HTML; only the client JS is deferred into its own chunk.
+const AudienceCards = dynamic(() => import('@/components/public/home/AudienceCards'), {
+  loading: () => <div className="min-h-[500px]" />, // reserve height to prevent CLS
+})
+const StatsSection = dynamic(() => import('@/components/public/home/StatsSection'), {
+  loading: () => <div className="min-h-[300px]" />,
+})
+const NewsSection = dynamic(() => import('@/components/public/home/NewsSection'), {
+  loading: () => <div className="min-h-[400px]" />,
+})
+// import PartnersSection from '@/components/public/home/PartnersSection' // 暫時隱藏 — 待確認廠商揭露意願
+const NTUEcosystemSection = dynamic(() => import('@/components/public/home/NTUEcosystemSection'), {
+  loading: () => <div className="min-h-[300px]" />,
+})
 
 export const metadata: Metadata = {
   title: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',

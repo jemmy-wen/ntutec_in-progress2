@@ -55,12 +55,14 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: DISALLOW_PATHS,
       },
-      // Explicit allow for AI assistant crawlers — same policy as wildcard,
-      // but listing them makes the stance machine-verifiable for AEO audits
+      // Explicit unrestricted allow for AI assistant crawlers.
+      // Intentionally NO Disallow — AEO Scanner (aeoscan.tw) treats any
+      // Disallow on an AI-specific rule as "blocked", even when local.
+      // Safety: /admin, /api, /login etc have server-side middleware auth
+      // guards; crawlers hitting them get redirects/404 regardless of robots.
       ...AI_USER_AGENTS.map((userAgent) => ({
         userAgent,
         allow: '/',
-        disallow: DISALLOW_PATHS,
       })),
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
