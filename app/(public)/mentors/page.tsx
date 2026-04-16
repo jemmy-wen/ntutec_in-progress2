@@ -62,12 +62,12 @@ function mapDbRowToMentor(row: any): Mentor {
     id: row.id,
     name: row.name,
     title: row.title,
-    highlight: row.highlight || row.bio,
+    highlight: row.highlight || row.title,
     photo_url: row.photo_url,
     social_url: row.social_url || null,
     is_new_2026: row.is_new_2026 || false,
     category: row.category || "expert",
-    slug: row.name.replace(/\s+/g, "-").toLowerCase(),
+    slug: row.slug || row.name.replace(/\s+/g, "-").toLowerCase(),
   };
 }
 
@@ -199,8 +199,9 @@ export default async function MentorsPage() {
   // Fetch all active mentors from the mentor-matching schema
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: mentorRows } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active")
+    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug")
     .eq("is_active", true)
+    .order("sort_order", { ascending: true })
     .order("name", { ascending: true });
 
   const allMentors: Mentor[] = (mentorRows || []).map(mapDbRowToMentor);

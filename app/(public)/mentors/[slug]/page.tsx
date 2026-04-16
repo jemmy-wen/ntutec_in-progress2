@@ -43,23 +43,31 @@ function mapDbRow(row: any): MentorRow {
     id: row.id,
     name: row.name,
     title: row.title,
-    highlight: row.highlight || row.bio,
+    highlight: row.highlight || row.title,
     category: row.category || "expert",
     photo_url: row.photo_url,
     social_url: row.social_url || null,
     bio: row.bio,
     is_new_2026: row.is_new_2026 || false,
-    slug: nameToSlug(row.name),
+    slug: row.slug || nameToSlug(row.name),
     extended_profile: row.extended_profile || {},
   };
 }
 
 async function getMentor(slug: string): Promise<MentorRow | null> {
   const supabase = await createClient();
-  // DB has no slug column — fetch all active mentors and match by generated slug
+  // Try direct DB slug lookup first
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: directMatch } = await (supabase.from("mentors") as any)
+    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, extended_profile, slug")
+    .eq("is_active", true)
+    .eq("slug", slug)
+    .single();
+  if (directMatch) return mapDbRow(directMatch);
+  // Fallback: fetch all active mentors and match by generated slug from name
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, extended_profile")
+    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, extended_profile, slug")
     .eq("is_active", true);
   if (!data) return null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -89,10 +97,10 @@ export async function generateStaticParams() {
     const db = createAdminClient() as any;
     const { data } = await db
       .from("mentors")
-      .select("name")
+      .select("name, slug")
       .eq("is_active", true);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return ((data as { name: string }[]) || []).map((m) => ({ slug: nameToSlug(m.name) }));
+    return ((data as { name: string; slug?: string }[]) || []).map((m) => ({ slug: m.slug || nameToSlug(m.name) }));
   } catch {
     // Supabase unavailable at build time — skip SSG, use ISR
     return [];
