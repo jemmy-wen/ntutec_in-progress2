@@ -77,7 +77,57 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Legacy /team singular → canonical /teams
       { source: '/team', destination: '/teams', permanent: true },
+
+      // --- Legacy WP Chinese slugs (Google SERP sitelinks point here; all 404 on new site) ---
+      // SERP-visible (highest priority — sitelinks break without these)
+      { source: '/執行團隊', destination: '/teams', permanent: true },
+      { source: '/業師陣容', destination: '/mentors', permanent: true },
+      { source: '/關於台大創創中心', destination: '/about', permanent: true },
+      { source: '/台大創創新創輔導計畫總覽', destination: '/programs', permanent: true },
+      { source: '/portfolio', destination: '/alumni', permanent: true },
+
+      // Common Chinese 1-word slugs (probed 404 on 2026-04-16)
+      { source: '/團隊', destination: '/teams', permanent: true },
+      { source: '/業師', destination: '/mentors', permanent: true },
+      { source: '/關於', destination: '/about', permanent: true },
+      { source: '/關於我們', destination: '/about', permanent: true },
+      { source: '/聯絡', destination: '/contact', permanent: true },
+      { source: '/聯絡我們', destination: '/contact', permanent: true },
+      { source: '/天使', destination: '/angel', permanent: true },
+      { source: '/天使會', destination: '/angel', permanent: true },
+
+      // Programs / incubation
+      { source: '/輔導計畫', destination: '/programs', permanent: true },
+      { source: '/新創輔導', destination: '/programs', permanent: true },
+      { source: '/新創輔導計畫', destination: '/programs', permanent: true },
+
+      // Corporate / partners
+      { source: '/合作夥伴', destination: '/corporate-partners', permanent: true },
+      { source: '/企業合作', destination: '/corporate', permanent: true },
+      { source: '/企業垂直加速器', destination: '/corporate', permanent: true },
+
+      // Alumni-family (historical teams/startups/portfolio)
+      { source: '/投資組合', destination: '/alumni', permanent: true },
+      { source: '/畢業團隊', destination: '/alumni', permanent: true },
+      { source: '/歷年團隊', destination: '/alumni', permanent: true },
+      { source: '/新創展示', destination: '/startups', permanent: true },
+
+      // News / events / media
+      { source: '/最新動態', destination: '/news', permanent: true },
+      { source: '/媒體報導', destination: '/blog', permanent: true },
+      { source: '/活動紀錄', destination: '/events', permanent: true },
+      { source: '/活動花絮', destination: '/events', permanent: true },
+
+      // English variants
+      { source: '/mentor', destination: '/mentors', permanent: true },
+      { source: '/our-team', destination: '/teams', permanent: true },
+      { source: '/our-mentors', destination: '/mentors', permanent: true },
+      { source: '/partners', destination: '/corporate-partners', permanent: true },
+      { source: '/contact-us', destination: '/contact', permanent: true },
+      { source: '/startup', destination: '/startups', permanent: true },
+      { source: '/demo', destination: '/demo-day', permanent: true },
     ]
   },
   async headers() {

@@ -18,6 +18,13 @@ const notoSansTC = Noto_Sans_TC({
 });
 
 export const metadata: Metadata = {
+  // Anchor all relative URLs (OG images, canonical, sitemap) to the production
+  // domain regardless of which Vercel alias serves the request. Without this,
+  // accidental indexing of *.vercel.app aliases would split SEO weight.
+  metadataBase: new URL('https://tec.ntu.edu.tw'),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: '台大創創中心 NTUTEC | 台大創業生態系',
     template: '%s | 台大創創中心 NTUTEC',
