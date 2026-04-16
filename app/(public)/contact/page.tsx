@@ -25,6 +25,16 @@ export default function ContactPage() {
       ]} />
       <PageHero title="聯絡我們" subtitle="Contact" description="有任何問題或合作提案，歡迎與我們聯繫。" />
 
+      <noscript>
+        <div className="bg-teal-wash border border-teal-deep/20 rounded-lg p-6 my-8 mx-auto max-w-2xl">
+          <h2 className="font-semibold text-charcoal mb-2">請啟用 JavaScript</h2>
+          <p className="text-sm text-slate-muted mb-3">
+            線上表單需要 JavaScript。若無法啟用，請直接寄信至：
+          </p>
+          <a href="mailto:ntutec@ntutec.com" className="text-teal-deep font-medium">ntutec@ntutec.com</a>
+        </div>
+      </noscript>
+
       <section className="section-spacing">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2">

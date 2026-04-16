@@ -84,6 +84,16 @@ export default function ApplyPage() {
         description="加速器與車庫採年度梯次制，非隨時招生。2027 梯次正式申請於 2026 年 12 月開放。"
       />
 
+      <noscript>
+        <div className="bg-teal-wash border border-teal-deep/20 rounded-lg p-6 my-8 mx-auto max-w-2xl">
+          <h2 className="font-semibold text-charcoal mb-2">請啟用 JavaScript</h2>
+          <p className="text-sm text-slate-muted mb-3">
+            線上表單需要 JavaScript。若無法啟用，請直接寄信至：
+          </p>
+          <a href="mailto:ntutec@ntutec.com" className="text-teal-deep font-medium">ntutec@ntutec.com</a>
+        </div>
+      </noscript>
+
       {/* Batch Notice */}
       <section className="section-spacing pb-0">
         <div className="container">

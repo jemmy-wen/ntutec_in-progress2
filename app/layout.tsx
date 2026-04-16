@@ -46,7 +46,10 @@ export default function RootLayout({
   return (
     <html lang="zh-TW" className={cn("font-sans", geist.variable, notoSansTC.variable)}>
       <head>
-        {/* DNS prefetch for third-party services */}
+        {/* Preconnect for third-party services (takes precedence over dns-prefetch) */}
+        <link rel="preconnect" href="https://ntutec.ghost.io" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://axsgvuxcxwjdtnqgmwsf.supabase.co" crossOrigin="anonymous" />
+        {/* DNS prefetch for third-party services (fallback) */}
         <link rel="dns-prefetch" href="https://ntutec.ghost.io" />
         <link rel="dns-prefetch" href="https://axsgvuxcxwjdtnqgmwsf.supabase.co" />
         {/* GEO: machine-readable summary for AI crawlers */}
@@ -54,6 +57,12 @@ export default function RootLayout({
         <OrganizationSchema />
       </head>
       <body className="antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-charcoal focus:px-4 focus:py-2 focus:rounded focus:shadow-lg focus:ring-2 focus:ring-teal-deep"
+        >
+          跳至主要內容 / Skip to main content
+        </a>
         {children}
         <GoogleAnalytics />
       </body>

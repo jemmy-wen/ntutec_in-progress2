@@ -76,7 +76,7 @@ export default function HomePage() {
               alt="2026 輔導計畫開幕式 — 逾 80 位創業者齊聚"
               fill
               className="object-cover"
-              sizes="100vw"
+              sizes="(max-width: 1200px) 100vw, 1200px"
               priority={false}
             />
           </div>
