@@ -98,7 +98,7 @@ export default function NavbarAuthButton({ onNavigate }: NavbarAuthButtonProps) 
 
   const initial = displayName.charAt(0).toUpperCase()
   const isAdmin = roles.includes('admin') || roles.includes('staff_admin') || roles.includes('staff_accelerator')
-  const isAngel = roles.includes('angel_member') || roles.includes('visitor')
+  const isAngel = roles.includes('angel_member')  // visitor excluded — portal requires paid membership
 
   return (
     <div className="relative hidden lg:block" ref={dropdownRef}>

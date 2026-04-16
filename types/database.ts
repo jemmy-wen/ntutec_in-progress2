@@ -360,6 +360,39 @@ export interface Database {
         }
         Update: never
       }
+
+      portal_tokens: {
+        Row: {
+          id: string
+          token: string
+          entity_type: string
+          entity_id: string
+          email: string
+          expires_at: string
+          used_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          token: string
+          entity_type: string
+          entity_id: string
+          email: string
+          expires_at?: string
+          used_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          token?: string
+          entity_type?: string
+          entity_id?: string
+          email?: string
+          expires_at?: string
+          used_at?: string | null
+          created_at?: string
+        }
+      }
     }
 
     Views: {
