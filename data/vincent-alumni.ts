@@ -74,7 +74,7 @@ export const VINCENT_ALUMNI: VincentAlumnus[] = [
     batchYear: 2019,
     category: "enterprise",
     sector: "AutoML / 企業 AI 數據平台",
-    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲天使俱樂部投資。",
+    highlight: "累計募資 US$21M+，服務 3,000+ 品牌（含 Fortune 500），2026 Q1 獲台大天使會投資。",
     sources: [
       { label: "INSIDE A+ 輪報導", url: "https://www.inside.com.tw/article/27055-mobagel" },
       { label: "工商時報 AI 專訪", url: "https://ctee.com.tw/industrynews/technology/317716.html" },
@@ -119,7 +119,6 @@ export const VINCENT_ALUMNI: VincentAlumnus[] = [
     highlight: "Pre-A 輪 US$1M+（統一國際開發領投），商家續訂率 98%，2025 拓展日泰。",
     sources: [
       { label: "創業小聚 Pre-A 報導", url: "https://meet.bnext.com.tw/articles/view/52246" },
-      { label: "Startup101 報導", url: "https://startup101.biz/en-US/news/240" },
     ],
     companyUrl: "https://hotcake.app/",
   },
@@ -161,7 +160,7 @@ export const VINCENT_ALUMNI: VincentAlumnus[] = [
     sector: "電商循環包裝生態系",
     highlight: "Pre-A 輪 NT$5,200 萬（國發基金、中信、彰銀），合作 200+ 企業，拓展東南亞。",
     sources: [
-      { label: "經濟日報 Pre-A 報導", url: "https://money.udn.com/money/story/10860/7050336" },
+      { label: "創業小聚 Pre-A 報導（LINE TODAY 轉載）", url: "https://today.line.me/tw/v2/article/2DrPP1N" },
     ],
     companyUrl: "https://package-plus.com/",
   },
@@ -175,7 +174,7 @@ export const VINCENT_ALUMNI: VincentAlumnus[] = [
     highlight: "服務農地 6,000+ 公頃，與 Qualcomm 完成全球首個農作邊緣晶片；2021 首家與 WFO 合作新創。",
     sources: [
       { label: "經濟部國家產業創新獎", url: "https://service.moea.gov.tw/EE514/tw/niia/290-2492.html" },
-      { label: "經濟日報北菱合作", url: "https://money.udn.com/money/story/11799/8563459" },
+      { label: "Datayoo 官方新聞（北菱電興合作）", url: "https://datayoo.com.tw/news/9107148d-fffb-4364-b5ad-d2cc60bbdfba" },
     ],
     companyUrl: "https://datayoo.com.tw/",
   },
@@ -229,7 +228,7 @@ export const VINCENT_ALUMNI: VincentAlumnus[] = [
     batchYear: 2024,
     category: "health",
     sector: "醫療機器人 × 微創手術導引",
-    highlight: "2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲天使俱樂部投資。",
+    highlight: "2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲台大天使會投資。",
     sources: [
       { label: "國家新創獎官方頁", url: "https://innoaward.taiwan-healthcare.org/award_detail.php?REFDOCTYPID=0mge2rck644mcfl0&num=1&REFDOCID=0sq2hwdu6fedv1i8" },
     ],

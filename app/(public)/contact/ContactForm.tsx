@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 
 const INQUIRY_TYPES = [
   { value: 'startup', label: '新創團隊申請' },
-  { value: 'angel', label: '天使俱樂部加入' },
+  { value: 'angel', label: '台大天使會加入' },
   { value: 'mentor', label: '成為業師' },
   { value: 'partnership', label: '合作洽談' },
   { value: 'media', label: '媒體採訪' },

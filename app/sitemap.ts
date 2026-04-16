@@ -17,7 +17,7 @@ const publicRoutes: Array<{
   { path: '/about', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/team', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/mentors', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/advisory-board', changeFrequency: 'yearly', priority: 0.5 },
+  // { path: '/advisory-board', changeFrequency: 'yearly', priority: 0.5 }, // 暫時隱藏
   { path: '/programs', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/accelerator', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/garage', changeFrequency: 'monthly', priority: 0.8 },
@@ -26,7 +26,7 @@ const publicRoutes: Array<{
   { path: '/angel', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/angel-apply', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/corporate', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/corporate-partners', changeFrequency: 'monthly', priority: 0.6 },
+  // { path: '/corporate-partners', changeFrequency: 'monthly', priority: 0.6 }, // 暫時隱藏 — 待逐家確認 logo 揭露意願
   { path: '/consulting', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/co-events', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/faq', changeFrequency: 'monthly', priority: 0.5 },

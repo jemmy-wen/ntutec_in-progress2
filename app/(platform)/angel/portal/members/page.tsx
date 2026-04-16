@@ -157,7 +157,7 @@ export default function MembersPage() {
       {/* Page header */}
       <div>
         <h1 className="text-2xl font-bold">會員名錄</h1>
-        <p className="text-sm text-gray-500 mt-1">台大天使俱樂部成員列表</p>
+        <p className="text-sm text-gray-500 mt-1">台大天使會成員列表</p>
       </div>
 
       {/* Toolbar */}

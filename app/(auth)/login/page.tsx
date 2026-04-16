@@ -110,7 +110,7 @@ export default function LoginPage() {
           />
         </Link>
         <h1 className="text-lg font-semibold text-gray-900">登入台大創創中心平台</h1>
-        <p className="text-sm text-gray-400 mt-1">天使俱樂部・業師媒合・新創申請</p>
+        <p className="text-sm text-gray-400 mt-1">台大天使會・業師媒合・新創申請</p>
       </div>
 
       {process.env.NODE_ENV === 'development' && debugInfo && (

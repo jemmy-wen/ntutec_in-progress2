@@ -34,7 +34,7 @@ const TYPE_LABELS: Record<string, string> = {
   pitch:                '新創投遞',
   consulting:           '企業諮詢',
   startup:              '新創申請',
-  angel:                '天使俱樂部',
+  angel:                '台大天使會',
   mentor:               '業師申請',
   partnership:          '合作洽談',
   media:                '媒體採訪',

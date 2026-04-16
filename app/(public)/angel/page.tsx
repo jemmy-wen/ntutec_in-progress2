@@ -55,7 +55,7 @@ const recentInvestments = [
     round: '2025 Q4',
     sector: '生技醫療 · AI 診斷',
     description:
-      '台大醫學院校友 Andrea Wang 創辦的 AI 醫療輔助診斷平台，協助醫師縮短 X 光片判讀時間，獲天使俱樂部投資。',
+      '台大醫學院校友 Andrea Wang 創辦的 AI 醫療輔助診斷平台，協助醫師縮短 X 光片判讀時間，獲台大天使會投資。',
     sources: [] as { label: string; url: string }[],
   },
   {
@@ -63,7 +63,7 @@ const recentInvestments = [
     round: '2026 Q1',
     sector: 'AI · 數據分析',
     description:
-      '鍾哲民創辦的 AI/數據分析平台，累計募資 US$21M+，服務 3,000+ 品牌。台大車庫與加速器歷屆校友，2026 Q1 接受天使俱樂部投資。',
+      '鍾哲民創辦的 AI/數據分析平台，累計募資 US$21M+，服務 3,000+ 品牌。台大車庫與加速器歷屆校友，2026 Q1 接受台大天使會投資。',
     sources: [
       { label: 'INSIDE 報導', url: 'https://www.inside.com.tw/article/27055-mobagel' },
       { label: '工商時報專訪', url: 'https://ctee.com.tw/industrynews/technology/317716.html' },
@@ -74,7 +74,7 @@ const recentInvestments = [
     round: '2026 Q1',
     sector: '硬科技 · 手術導航',
     description:
-      '周皓凱創辦的微創手術導航技術公司，2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲天使俱樂部投資。',
+      '周皓凱創辦的微創手術導航技術公司，2025 國家新創獎，亞東醫院場域驗證，2026 Q1 獲台大天使會投資。',
     sources: [
       { label: '國家新創獎官方頁', url: 'https://innoaward.taiwan-healthcare.org/award_detail.php?REFDOCTYPID=0mge2rck644mcfl0&num=1&REFDOCID=0sq2hwdu6fedv1i8' },
     ],
@@ -191,7 +191,7 @@ export default function AngelPage() {
       <section className="relative min-h-[50vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/events/opening-2026-02.jpg"
+            src="/images/events/opening-2026-audience.jpg"
             alt=""
             fill
             priority
@@ -215,7 +215,6 @@ export default function AngelPage() {
             { num: "150+", label: "投資人網絡" },
             { num: "40+", label: "天使會員" },
             { num: "每月", label: "天使例會" },
-            { num: "NT$2.5億+", label: "累計投資規模" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-2xl font-bold text-teal">{s.num}</div>
@@ -279,7 +278,7 @@ export default function AngelPage() {
           <FadeIn>
             <div className="mb-12 text-center">
               <p className="micro-label mb-4">Member Benefits</p>
-              <h2>加入天使俱樂部的理由</h2>
+              <h2>加入台大天使會的理由</h2>
             </div>
           </FadeIn>
           <div className="grid gap-8 md:grid-cols-2">
@@ -494,7 +493,7 @@ export default function AngelPage() {
             <h2 className="mb-4">一年一度的投資媒合盛會</h2>
             <p className="text-lg text-slate-muted">
               每年 12 月在台大校園舉辦年度 Demo Day，精選新創向投資人 Pitch。
-              天使俱樂部會員優先取得名額並參與投後追蹤。
+              台大天使會會員優先取得名額並參與投後追蹤。
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
@@ -547,7 +546,7 @@ export default function AngelPage() {
       {/* ── CTA ── */}
       <section className="section-spacing">
         <div className="container text-center">
-          <h2 className="mb-4">成為天使投資俱樂部的一員</h2>
+          <h2 className="mb-4">成為台大天使會的一員</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
             與台大創業生態系的天使投資人一起，發掘改變未來的早期新創。
             個人會員 NT$50,000/年，企業會員 NT$100,000/年，隨時開放申請，採審核制。

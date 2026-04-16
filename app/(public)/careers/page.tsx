@@ -227,7 +227,7 @@ export default function CareersPage() {
               </div>
               <h3 className="mb-2 text-lg font-bold text-charcoal">投資經理（非生醫領域）</h3>
               <p className="mb-4 text-sm leading-relaxed text-slate-muted">
-                負責天使投資俱樂部的案源開發與評估，聚焦 AI／軟體、硬科技、先進製造與創新商模等領域。主責投資案篩選、盡職調查、天使例會報告準備及投資人關係維護。
+                負責台大天使會的案源開發與評估，聚焦 AI／軟體、硬科技、先進製造與創新商模等領域。主責投資案篩選、盡職調查、天使例會報告準備及投資人關係維護。
               </p>
               <ul className="mb-6 space-y-1 text-sm text-slate-muted">
                 <li>・2 年以上創投、顧問或新創工作經驗</li>

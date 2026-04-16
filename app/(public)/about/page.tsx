@@ -39,7 +39,7 @@ const hi3Model = [
     label: '加速起飛',
     en: 'Ignition',
     Icon: RocketLaunch,
-    description: '舉辦 Demo Day（74 位投資人到場，2025）、閉門投資媒合、天使投資俱樂部，為準備好的團隊引燃第一桶資本，走向市場起飛。',
+    description: '舉辦 Demo Day（74 位投資人到場，2025）、閉門投資媒合、台大天使會，為準備好的團隊引燃第一桶資本，走向市場起飛。',
   },
 ]
 
@@ -51,7 +51,7 @@ const alumniHighlights = [
     detail: '獲國發基金、中信、彰銀入股，合作 200+ 企業，持續拓展東南亞市場。',
   },
   {
-    name: '艾斯創生醫 Aistrom',
+    name: '艾斯創生醫 Astron Medtech',
     tag: '醫療器材 × 國際',
     result: '募資 USD 250 萬（2024）',
     detail: 'SelectUSA MedTech 冠軍，NBA 球隊指定名醫等國際骨科權威投資。',
@@ -72,7 +72,7 @@ const milestones = [
   { year: '2019', title: '企業垂直加速器首創', description: '首創企業垂直加速器，由企業出題、新創解題，累計與鴻海、Nvidia、Synopsys 等 35 家企業深度合作。' },
   { year: '2020', title: '企業創新諮詢服務', description: '推出企業開放式創新諮詢服務（Consulting），協助中大型企業導入新創思維與敏捷創新方法論。' },
   { year: '2022', title: 'Co-Creation Sandbox', description: '推出 Co-Creation Sandbox 會員制度，為新創提供安全的產品與市場驗證場域。' },
-  { year: '2026', title: '四大聚焦領域與三校聯盟', description: '聚焦 AI 軟體、生技醫療、硬科技與創新商模四大領域，攜手臺師大、台科大深化三校聯盟創業生態系。' },
+  { year: '2026', title: '四大聚焦領域與台大學研技術', description: '聚焦 AI 軟體、生技醫療、硬科技與創新商模四大領域，攜手台大創業生態系夥伴深化具有技術壁壘的新創育成。' },
 ]
 
 export default function AboutPage() {
@@ -91,7 +91,7 @@ export default function AboutPage() {
               <p className="micro-label mb-4">Our Mission</p>
               <h2 className="mb-6">使命與願景</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-muted">台大創創中心是台大創業生態系的實戰基地，以「連結台大、連結產業、連結資本」三個連結為核心，將台大最好的技術能量與人才，轉化為可投資的新創公司。</p>
-              <p className="mb-4 text-lg leading-relaxed text-slate-muted"><strong className="text-charcoal">13 年</strong>來，我們累計輔導逾 <strong className="text-charcoal">600+</strong> 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（<strong className="text-charcoal">27 期</strong>、<strong className="text-charcoal">35 家企業</strong>）與天使投資俱樂部（<strong className="text-charcoal">150+</strong> 投資人網絡），我們支持新創從技術驗證走入市場。</p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-muted"><strong className="text-charcoal">13 年</strong>來，我們累計輔導逾 <strong className="text-charcoal">600+</strong> 支新創團隊。透過台大加速器、台大車庫、企業垂直加速器（<strong className="text-charcoal">27 期</strong>、<strong className="text-charcoal">35 家企業</strong>）與台大天使會（<strong className="text-charcoal">150+</strong> 投資人網絡），我們支持新創從技術驗證走入市場。</p>
               <p className="text-lg leading-relaxed text-slate-muted">我們的願景是成為臺灣創業生態圈受新創信賴的校園創業加速器，以 HI3 模型（輔導培育 → 對接整合 → 加速起飛）系統性支持新創，深耕台灣 13 年的大學創業基地。</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -118,7 +118,7 @@ export default function AboutPage() {
       <div className="bg-stone border-b border-stone-warm/60">
         <div className="container py-4 flex items-center gap-3">
           <Image src="/images/partners/ntu.svg" alt="國立臺灣大學校徽" width={32} height={32} className="h-8 w-auto" />
-          <p className="text-sm text-slate-muted">國立臺灣大學創意創業中心 — 校級單位，隸屬研究發展處</p>
+          <p className="text-sm text-slate-muted">國立臺灣大學創意創業中心 — 校級單位</p>
         </div>
       </div>
 

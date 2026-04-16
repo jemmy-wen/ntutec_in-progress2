@@ -98,7 +98,7 @@ const LIFECYCLE_TEMPLATES: Record<MeetingLifecycleEvent, {
   },
   meeting_reminder: {
     title: '⏰ 月會提醒：明天開會',
-    body: '天使俱樂部月會將於明天舉行，請確認出席。',
+    body: '台大天使會月會將於明天舉行，請確認出席。',
     type: 'warning',
     link: '/angel/portal',
     channels: ['in_app', 'email', 'telegram'],
@@ -106,7 +106,7 @@ const LIFECYCLE_TEMPLATES: Record<MeetingLifecycleEvent, {
   },
   meeting_complete: {
     title: '✅ 月會已結束',
-    body: '本月天使俱樂部月會已結束，感謝您的參與。後續追蹤資訊將另行通知。',
+    body: '本月台大天使會月會已結束，感謝您的參與。後續追蹤資訊將另行通知。',
     type: 'success',
     link: '/angel/portal',
     channels: ['in_app', 'email'],
@@ -426,7 +426,7 @@ function buildRecapEmailHtml(pitches: MeetingPitchRow[], meetingDate?: string): 
 <body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:620px;margin:0 auto;padding:20px;">
   <div style="background:#f8fafc;border-radius:12px;padding:28px;border:1px solid #e2e8f0;">
     <h2 style="margin:0 0 6px;color:#1e293b;font-size:20px;">📬 月會投票結果${dateStr}</h2>
-    <p style="margin:0 0 20px;color:#64748b;font-size:14px;">感謝您參與本月天使俱樂部月會，以下為各案件投票統計結果。</p>
+    <p style="margin:0 0 20px;color:#64748b;font-size:14px;">感謝您參與本月台大天使會月會，以下為各案件投票統計結果。</p>
 
     <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;">
       <thead>

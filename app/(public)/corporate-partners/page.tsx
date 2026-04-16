@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import PageHero from "@/components/public/PageHero";
 
 export const metadata: Metadata = {
   title: "合作夥伴 | NTUTEC",
   description:
     "台大創創中心歷年合作的代表企業，透過企業垂直加速器、外部創新顧問、聯合競賽等多元模式共創創新生態系。",
+  robots: { index: false, follow: false }, // 暫時隱藏 — 待逐家確認 logo 揭露意願
 };
 
 interface Partner {
@@ -171,6 +173,10 @@ const TYPE_COLOR: Record<string, string> = {
 };
 
 export default function CorporatePartnersPage() {
+  // 暫時隱藏整頁 — 待逐家確認 logo 揭露意願後再恢復
+  redirect('/corporate')
+
+  // eslint-disable-next-line no-unreachable
   return (
     <>
       <PageHero

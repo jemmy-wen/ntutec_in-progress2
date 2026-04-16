@@ -318,7 +318,7 @@ export default async function MentorsPage() {
             </div>
             <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
               <Image
-                src="/images/events/opening-2026-mentor-session.jpg"
+                src="/images/events/opening-2026-01.jpg"
                 alt="業師輔導現場 — 深度討論"
                 fill
                 loading="lazy"

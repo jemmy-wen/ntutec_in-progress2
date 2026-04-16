@@ -47,15 +47,15 @@ const NAV_ITEMS: NavItem[] = [
     label: "企業合作",
     children: [
       { label: "合作總覽", href: "/corporate" },
-      { label: "合作夥伴", href: "/corporate-partners" },
+      // { label: "合作夥伴", href: "/corporate-partners" }, // 暫時隱藏 — 待逐家確認 logo 揭露意願
       { label: "聯合活動", href: "/co-events" },
       { label: "諮詢服務", href: "/consulting" },
     ],
   },
   {
-    label: "天使俱樂部",
+    label: "台大天使會",
     children: [
-      { label: "天使俱樂部總覽", href: "/angel" },
+      { label: "台大天使會總覽", href: "/angel" },
       { label: "申請入會", href: "/angel-apply" },
       { label: "新創投遞", href: "/pitch" },
     ],
@@ -66,7 +66,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "關於 TEC", href: "/about" },
       { label: "團隊", href: "/team" },
       { label: "業師", href: "/mentors" },
-      { label: "諮詢委員會", href: "/advisory-board" },
+      // { label: "諮詢委員會", href: "/advisory-board" }, // 暫時隱藏
       { label: "加入我們", href: "/careers" },
     ],
   },
@@ -386,7 +386,7 @@ export default function Navbar() {
                     {[
                       { label: "新創投遞 Pitch", href: "/pitch", desc: "提交你的新創案件" },
                       { label: "企業合作洽談", href: "/corporate#contact", desc: "啟動外部創新" },
-                      { label: "加入天使俱樂部", href: "/angel-apply", desc: "成為天使投資人" },
+                      { label: "加入台大天使會", href: "/angel-apply", desc: "成為天使投資人" },
                       { label: "預約 2027 輔導計畫", href: "/apply", desc: "加速器・車庫" },
                     ].map((item) => (
                       <Link
@@ -441,7 +441,7 @@ export default function Navbar() {
                 {[
                   { label: "新創投遞 Pitch", href: "/pitch" },
                   { label: "企業合作洽談", href: "/corporate#contact" },
-                  { label: "加入天使俱樂部", href: "/angel-apply" },
+                  { label: "加入台大天使會", href: "/angel-apply" },
                   { label: "預約 2027 輔導計畫", href: "/apply" },
                 ].map((item) => (
                   <Link
