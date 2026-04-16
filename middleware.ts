@@ -84,8 +84,20 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Redirect unauthenticated users to login (except public pages)
-  if (!user && !isPublicRoute && !isApiRoute) {
+  // Known auth-required paths (allowlist). Everything else is either a public
+  // route (handled above) or an unknown path that should 404 cleanly, not
+  // redirect to /login — stops SEO bots / old WP links from bouncing to login.
+  const authRequiredPrefixes = [
+    '/admin',
+    '/my',
+    '/angel/portal',
+    '/angel/onboarding',
+  ]
+  const requiresAuth = authRequiredPrefixes.some(
+    (p) => pathname === p || pathname.startsWith(p + '/')
+  )
+
+  if (!user && requiresAuth && !isApiRoute) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     url.searchParams.set('redirect', pathname)
