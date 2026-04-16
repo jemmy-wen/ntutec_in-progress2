@@ -34,7 +34,7 @@ const connections: Connection[] = [
     label: "Connect to Industry",
     title: "連結產業",
     description:
-      "累計 35 家企業合作，首創企業垂直加速器，以企業出題、新創解題的模式共創。合作夥伴含 Nvidia、Synopsys、鴻海、玉山銀行、遠傳電信等國內外大廠。",
+      "累計 35 家企業合作，首創企業垂直加速器，以企業出題、新創解題的模式共創。合作夥伴涵蓋科技、製造、金融、媒體等多元產業之國內外企業。",
     proof: "35 家企業合作 · 27 期企業垂直加速器",
     href: "/corporate",
     cta: "探索企業合作",

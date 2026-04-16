@@ -136,7 +136,7 @@ const benefits = [
     Icon: Buildings,
     title: "企業資源",
     description:
-      "35 家合作企業（含 Nvidia、Synopsys、鴻海等），提供技術驗證場域與潛在客戶資源。",
+      "35 家合作企業，涵蓋科技、製造、金融、媒體等多元產業，提供技術驗證場域與潛在客戶資源。",
   },
   {
     Icon: CurrencyCircleDollar,

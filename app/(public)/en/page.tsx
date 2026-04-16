@@ -41,7 +41,7 @@ const connections = [
     label: 'Connect to Industry',
     title: 'Industry Connection',
     description:
-      '35 corporate partnerships and counting. Pioneer of the Corporate Vertical Accelerator — corporations define challenges, startups solve them. Partners include Nvidia, Synopsys, Foxconn, E.SUN Bank, and more.',
+      '35 corporate partnerships and counting. Pioneer of the Corporate Vertical Accelerator — corporations define challenges, startups solve them. Partners span technology, manufacturing, finance, and media sectors.',
     proof: '35 corporate partners · 27 batches of Corporate Vertical Accelerator',
     href: '/corporate',
     cta: 'Explore Corporate Partnerships',

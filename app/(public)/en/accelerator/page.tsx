@@ -60,7 +60,7 @@ const benefits = [
   {
     icon: Buildings,
     title: 'Corporate Resources',
-    description: '35 partner companies (including Nvidia, Synopsys, Foxconn, and others), providing technology validation environments and potential customer resources.',
+    description: '35 partner companies spanning technology, manufacturing, finance, and media sectors, providing technology validation environments and potential customer resources.',
   },
   {
     icon: CurrencyCircleDollar,

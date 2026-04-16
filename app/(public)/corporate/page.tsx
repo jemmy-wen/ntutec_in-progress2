@@ -483,7 +483,7 @@ export default function CorporatePage() {
             ))}
           </div>
           <p className="mt-8 text-sm text-slate-muted">
-            合作對象含 Nvidia、Synopsys、鴻海、台積電、玉山銀行、友達光電等國內外知名企業
+            合作對象涵蓋科技、製造、金融、媒體等多元產業之國內外知名企業
           </p>
           <p className="mt-3 text-xs text-slate-muted/70">
             歷年逾 35 家合作企業，累計啟動 27 期企業垂直加速器（來源：2025年成果報告）
