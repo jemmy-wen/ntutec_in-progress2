@@ -327,12 +327,12 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between xl:h-[72px] xl:max-w-[1400px]">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/images/brand/ntutec-logo-horizontal.png"
-            alt="NTUTEC 台大創創中心"
-            width={160}
-            height={32}
+            src="/images/brand/ntutec-logo-horizontal-zh.png"
+            alt="臺大創創中心 NTUTEC"
+            width={163}
+            height={70}
             priority
-            className="h-7 w-auto"
+            className="h-8 w-auto"
           />
         </Link>
 
