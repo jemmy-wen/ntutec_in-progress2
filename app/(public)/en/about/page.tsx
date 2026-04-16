@@ -291,7 +291,7 @@ export default function EnAboutPage() {
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">
             Investment managers, program managers — every team member is a frontline partner for startups, not just giving advice, but walking through every critical milestone together.
           </p>
-          <Link href="/team" className="btn-pill-primary">View Full Team</Link>
+          <Link href="/teams" className="btn-pill-primary">View Full Team</Link>
         </div>
       </section>
     </>

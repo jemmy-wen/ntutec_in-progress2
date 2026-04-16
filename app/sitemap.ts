@@ -15,7 +15,7 @@ const publicRoutes: Array<{
 }> = [
   { path: '/', changeFrequency: 'weekly', priority: 1.0 },
   { path: '/about', changeFrequency: 'monthly', priority: 0.9 },
-  { path: '/team', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/teams', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/mentors', changeFrequency: 'monthly', priority: 0.7 },
   // { path: '/advisory-board', changeFrequency: 'yearly', priority: 0.5 }, // 暫時隱藏
   { path: '/programs', changeFrequency: 'monthly', priority: 0.8 },

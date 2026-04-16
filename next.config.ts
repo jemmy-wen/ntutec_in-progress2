@@ -75,6 +75,11 @@ const nextConfig: NextConfig = {
     // Extra safety: treat all uploaded images as untrusted
     contentDispositionType: 'attachment',
   },
+  async redirects() {
+    return [
+      { source: '/team', destination: '/teams', permanent: true },
+    ]
+  },
   async headers() {
     return [
       {

@@ -102,7 +102,7 @@ const PAGES: SearchItem[] = [
   {
     title: "我們的團隊",
     description: "台大創創中心核心團隊成員介紹",
-    href: "/team",
+    href: "/teams",
     category: "頁面",
     keywords: ["團隊", "team", "成員", "工作人員"],
   },

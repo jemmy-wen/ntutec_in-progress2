@@ -308,7 +308,7 @@ export default function AboutPage() {
             <p className="micro-label mb-4">Our People</p>
             <h2 className="mb-6">認識我們的團隊</h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-muted">投資經理、輔導經理——每位成員都是新創的第一線戰友，不只給建議，更一起把關鍵路上每個節點走完。</p>
-            <Link href="/team" className="btn-pill-primary">查看完整團隊</Link>
+            <Link href="/teams" className="btn-pill-primary">查看完整團隊</Link>
           </FadeIn>
         </div>
       </section>
