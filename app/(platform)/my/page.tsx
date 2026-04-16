@@ -147,16 +147,28 @@ export default async function MyPage() {
             </Link>
           )}
           {isVisitor && (
-            <a
-              href="mailto:howard.chiang@ntutec.com?subject=申請加入台大天使會"
-              className="flex items-center gap-3 p-4 bg-teal-50 rounded-xl border border-teal-200 hover:border-teal-400 hover:shadow-sm transition-all"
-            >
-              <span className="text-2xl">🔓</span>
-              <div>
-                <p className="font-medium text-teal-800">申請加入天使會</p>
-                <p className="text-xs text-teal-600">聯繫中心升級會員</p>
-              </div>
-            </a>
+            <>
+              <Link
+                href="/blog"
+                className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-teal-400 hover:shadow-sm transition-all"
+              >
+                <span className="text-2xl">✍️</span>
+                <div>
+                  <p className="font-medium text-gray-900">部落格</p>
+                  <p className="text-xs text-gray-500">創業洞察文章</p>
+                </div>
+              </Link>
+              <Link
+                href="/podcast"
+                className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-teal-400 hover:shadow-sm transition-all"
+              >
+                <span className="text-2xl">🎙️</span>
+                <div>
+                  <p className="font-medium text-gray-900">TEC Talk</p>
+                  <p className="text-xs text-gray-500">Podcast 節目</p>
+                </div>
+              </Link>
+            </>
           )}
           {isMentor && (
             <Link
@@ -266,6 +278,29 @@ export default async function MyPage() {
                 {ROLE_LABELS[r as PlatformRole] || r}
               </span>
             ))}
+          </div>
+        </section>
+      )}
+
+      {/* Visitor upgrade CTA */}
+      {isVisitor && (
+        <section className="mb-8">
+          <div className="rounded-2xl bg-gradient-to-br from-teal-50 to-white border border-teal-200 p-6">
+            <div className="flex items-start gap-4">
+              <span className="text-3xl">🔒</span>
+              <div className="flex-1">
+                <h2 className="font-bold text-gray-900 mb-1">成為台大天使會正式會員</h2>
+                <p className="text-sm text-gray-500 mb-4">
+                  會員享有投資摘要、案源瀏覽、例會投票、月刊電子報等完整功能。
+                </p>
+                <a
+                  href="mailto:howard.chiang@ntutec.com?subject=申請加入台大天使會"
+                  className="inline-block px-5 py-2 bg-teal-600 text-white text-sm font-semibold rounded-lg hover:bg-teal-700 transition-colors"
+                >
+                  聯繫申請 →
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       )}
