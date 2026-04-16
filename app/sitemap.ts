@@ -44,6 +44,12 @@ const publicRoutes: Array<{
   { path: '/en', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/en/about', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/en/accelerator', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/en/garage', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/en/programs', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/en/apply', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/en/mentors', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/en/corporate', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/en/faq', changeFrequency: 'monthly', priority: 0.5 },
   { path: '/en/angel', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/en/contact', changeFrequency: 'yearly', priority: 0.5 },
 ]
