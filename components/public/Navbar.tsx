@@ -324,15 +324,15 @@ export default function Navbar() {
       data-navbar-root
       className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/80 backdrop-blur-lg"
     >
-      <div className="container flex h-16 items-center justify-between xl:h-[72px] xl:max-w-[1400px]">
+      <div className="container flex h-20 items-center justify-between xl:h-24 xl:max-w-[1400px]">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/images/brand/ntutec-logo-horizontal-zh.png"
             alt="臺大創創中心 NTUTEC"
-            width={163}
-            height={70}
+            width={326}
+            height={140}
             priority
-            className="h-8 w-auto"
+            className="h-16 w-auto"
           />
         </Link>
 
@@ -426,7 +426,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-16 z-40 bg-white overflow-y-auto xl:hidden"
+            className="fixed inset-0 top-20 z-40 bg-white overflow-y-auto xl:hidden"
           >
             <nav className="container py-6">
               {NAV_ITEMS.map((item) => (

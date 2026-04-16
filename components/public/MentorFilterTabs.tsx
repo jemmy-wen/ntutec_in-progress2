@@ -26,7 +26,7 @@ export default function MentorFilterTabs({ categories, children }: MentorFilterT
   return (
     <>
       {/* Filter tabs */}
-      <div className="sticky top-16 z-30 border-b border-stone-warm/40 bg-white/90 backdrop-blur-md xl:top-[72px]">
+      <div className="sticky top-20 z-30 border-b border-stone-warm/40 bg-white/90 backdrop-blur-md xl:top-24">
         <div className="container">
           <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
             {allCategories.map((cat) => (
