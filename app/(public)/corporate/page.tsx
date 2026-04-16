@@ -493,8 +493,8 @@ export default function CorporatePage() {
 
       {/* Angel investor cross-link */}
       <div className="container pb-4">
-        <div className="mt-8 p-6 bg-gray-50 rounded-lg text-center">
-          <p className="text-gray-600 mb-3">尋找策略性投資機會？</p>
+        <div className="mt-8 p-6 bg-stone rounded-lg text-center">
+          <p className="text-slate-muted mb-3">尋找策略性投資機會？</p>
           <Link href="/angel" className="btn-pill-outline">了解台大天使會</Link>
         </div>
       </div>

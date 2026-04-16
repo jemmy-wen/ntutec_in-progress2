@@ -73,7 +73,7 @@ export default function HomePage() {
           <div className="relative overflow-hidden rounded-2xl" style={{aspectRatio:'21/9'}}>
             <Image
               src="/images/events/opening-2026-biggroup.jpg"
-              alt="2026 輔導計畫開幕式 — 60 位學員大合照"
+              alt="2026 輔導計畫開幕式 — 逾 80 位創業者齊聚"
               fill
               className="object-cover"
               sizes="100vw"

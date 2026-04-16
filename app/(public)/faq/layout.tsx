@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "常見問題 | NTUTEC",
+  title: "常見問題 FAQ | NTUTEC",
   description:
-    "關於台大加速器、台大車庫、台大天使會、企業合作與業師輔導的完整問答。計畫免費、不要求股權；台大加速器不限身分；天使例會每月舉辦。",
+    "台大創創中心常見問題解答：輔導計畫、投資、業師、合作等。計畫免費、不要求股權；台大加速器不限身分；天使例會每月舉辦。",
   alternates: { canonical: "https://tec.ntu.edu.tw/faq" },
 };
 

@@ -60,7 +60,7 @@ const alumniHighlights = [
     name: 'Botbonnie',
     tag: '聊天機器人 × AI',
     result: '被 Appier 收購（2023）',
-    detail: '創辦人為台大創創歷屆校友。公司於離開計畫後持續發展，最終被日本上市 AI 公司 Appier 收購。',
+    detail: '創辦人為台大創創歷屆校友。公司於離開計畫後持續發展，最終被 Appier（台灣創立、東京上市的 AI 公司）收購。',
   },
 ]
 
