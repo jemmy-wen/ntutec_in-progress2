@@ -53,20 +53,11 @@ interface Mentor {
   is_new_2026: boolean;
   category: string;
   slug: string | null;
-  industries: string[];
 }
 
 /** Map DB row to the Mentor interface used by the page */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapDbRowToMentor(row: any): Mentor {
-  const ep = row.extended_profile || {};
-  // industries may be stored as comma-separated string or array
-  let industries: string[] = [];
-  if (Array.isArray(ep.industries)) {
-    industries = ep.industries.slice(0, 3);
-  } else if (typeof ep.industries === "string" && ep.industries) {
-    industries = ep.industries.split(/[,、\/]/).map((s: string) => s.trim()).filter(Boolean).slice(0, 3);
-  }
   return {
     id: row.id,
     name: row.name,
@@ -77,7 +68,6 @@ function mapDbRowToMentor(row: any): Mentor {
     is_new_2026: row.is_new_2026 || false,
     category: row.category || "expert",
     slug: row.slug || row.name.replace(/\s+/g, "-").toLowerCase(),
-    industries,
   };
 }
 
@@ -197,19 +187,6 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
           </p>
         )}
 
-        {/* Industries tags — shown when available */}
-        {mentor.industries.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1">
-            {mentor.industries.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-teal-wash px-2 py-0.5 text-[10px] font-medium text-teal-deep"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
@@ -218,24 +195,14 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
 export default async function MentorsPage() {
   const supabase = await createClient();
 
-  // Fetch all active mentors from the mentor-matching schema
+  // Fetch all active mentors — using only confirmed-safe columns
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let { data: mentorRows, error: mentorError } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug, extended_profile")
+  const { data: mentorRows, error: mentorError } = await (supabase.from("mentors") as any)
+    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug")
     .eq("is_active", true)
-    .order("sort_order", { ascending: true })
     .order("name", { ascending: true });
 
-  // Fallback: if sort_order column doesn't exist, retry ordering by name only
-  if (mentorError) {
-    console.error("[mentors] query error (with sort_order):", mentorError);
-    const fallback = await (supabase.from("mentors") as any)
-      .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug, extended_profile")
-      .eq("is_active", true)
-      .order("name", { ascending: true });
-    mentorRows = fallback.data;
-    if (fallback.error) console.error("[mentors] fallback query error:", fallback.error);
-  }
+  if (mentorError) console.error("[mentors] query error:", mentorError);
 
   const allMentors: Mentor[] = (mentorRows || []).map(mapDbRowToMentor);
 
