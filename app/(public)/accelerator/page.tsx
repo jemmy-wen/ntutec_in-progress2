@@ -142,7 +142,7 @@ const benefits = [
     Icon: CurrencyCircleDollar,
     title: "募資對接",
     description:
-      "台大天使會與 300+ 投資人網絡，涵蓋種子輪到 Pre-IPO 的募資機會。",
+      "台大天使會與 150+ 投資人網絡，涵蓋種子輪到 Pre-IPO 的募資機會。",
   },
   {
     Icon: MapPin,

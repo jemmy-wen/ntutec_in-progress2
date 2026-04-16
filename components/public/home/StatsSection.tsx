@@ -12,7 +12,7 @@ interface Stat {
 
 const stats: Stat[] = [
   { value: 600, prefix: "近 ", suffix: " 支", label: "累計輔導新創團隊" },
-  { value: 300, suffix: "+", label: "投資人與天使網絡" },
+  { value: 150, suffix: "+", label: "投資人與天使網絡" },
   { value: 35, suffix: " 家", label: "企業合作夥伴" },
   { value: 13, suffix: " 年", label: "深耕台大創業生態" },
 ];

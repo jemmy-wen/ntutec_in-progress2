@@ -59,7 +59,11 @@ export async function middleware(request: NextRequest) {
     pathname === '/' ||
     seoAssets.includes(pathname) ||
     publicPaths.some((route) => pathname === route || pathname.startsWith(route + '/')) ||
-    pathname.startsWith('/vote/')
+    pathname.startsWith('/vote/') ||
+    pathname === '/en' ||
+    pathname.startsWith('/en/') ||
+    pathname === '/portal' ||
+    pathname.startsWith('/portal/')
   // API routes handle their own auth via withApiHandler
   const isApiRoute = pathname.startsWith('/api/')
 

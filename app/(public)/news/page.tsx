@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "最新消息 | NTUTEC",
   description:
     "掌握台大創創中心最新消息——輔導計畫錄取公告、Demo Day 報名、天使例會活動與媒體報導，第一時間不錯過。",
+  robots: { index: false, follow: false },
 };
 
 export default async function NewsPage() {
