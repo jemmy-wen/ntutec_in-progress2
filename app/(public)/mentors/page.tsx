@@ -220,11 +220,22 @@ export default async function MentorsPage() {
 
   // Fetch all active mentors from the mentor-matching schema
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: mentorRows } = await (supabase.from("mentors") as any)
+  let { data: mentorRows, error: mentorError } = await (supabase.from("mentors") as any)
     .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug, extended_profile")
     .eq("is_active", true)
     .order("sort_order", { ascending: true })
     .order("name", { ascending: true });
+
+  // Fallback: if sort_order column doesn't exist, retry ordering by name only
+  if (mentorError) {
+    console.error("[mentors] query error (with sort_order):", mentorError);
+    const fallback = await (supabase.from("mentors") as any)
+      .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug, extended_profile")
+      .eq("is_active", true)
+      .order("name", { ascending: true });
+    mentorRows = fallback.data;
+    if (fallback.error) console.error("[mentors] fallback query error:", fallback.error);
+  }
 
   const allMentors: Mentor[] = (mentorRows || []).map(mapDbRowToMentor);
 
