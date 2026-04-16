@@ -5,6 +5,7 @@ import { Noto_Sans_TC } from "next/font/google";
 import { cn } from "@/lib/utils";
 import OrganizationSchema from '@/components/public/OrganizationSchema'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import { Analytics } from '@vercel/analytics/next'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -65,6 +66,7 @@ export default function RootLayout({
         </a>
         {children}
         <GoogleAnalytics />
+        <Analytics />
       </body>
     </html>
   )
