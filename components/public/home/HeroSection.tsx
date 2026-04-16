@@ -1,9 +1,25 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { BackgroundBeams } from '@/components/ui/background-beams'
-import { CursorSpotlight } from '@/components/ui/cursor-spotlight'
-import { MagneticButton } from '@/components/ui/magnetic-button'
+import dynamic from 'next/dynamic'
+
+// Decorative motion-based effects — client-only with ssr: false keeps
+// motion/react out of the initial bundle (~124 KB saved). Background photo
+// + text render via SSR; decorative overlays attach after hydration.
+//
+// NOTE: MagneticButton was removed from CTAs intentionally — it can't be
+// ssr: false (CTAs must be in first paint for LCP + a11y) and keeping it
+// would drag framer-motion back into the initial bundle. Plain Link with
+// btn-pill-primary styling now handles the CTAs; the magnetic hover micro-
+// interaction was purely decorative.
+const BackgroundBeams = dynamic(
+  () => import('@/components/ui/background-beams').then((m) => m.BackgroundBeams),
+  { ssr: false }
+)
+const CursorSpotlight = dynamic(
+  () => import('@/components/ui/cursor-spotlight').then((m) => m.CursorSpotlight),
+  { ssr: false }
+)
 
 export default function HeroSection() {
   return (
@@ -53,19 +69,18 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">
-            <MagneticButton strength={0.4}>
-              <Link href="/apply" className="btn-pill-primary px-8 py-4 text-base block">
-                申請輔導計畫
-              </Link>
-            </MagneticButton>
-            <MagneticButton strength={0.25}>
-              <Link
-                href="/about"
-                className="btn-pill-outline px-8 py-4 text-base block border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white/50"
-              >
-                走進 NTUTEC
-              </Link>
-            </MagneticButton>
+            <Link
+              href="/apply"
+              className="btn-pill-primary px-8 py-4 text-base transition-transform hover:scale-[1.02]"
+            >
+              申請輔導計畫
+            </Link>
+            <Link
+              href="/about"
+              className="btn-pill-outline px-8 py-4 text-base border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white/50 transition-transform hover:scale-[1.02]"
+            >
+              走進 NTUTEC
+            </Link>
           </div>
 
         </div>
