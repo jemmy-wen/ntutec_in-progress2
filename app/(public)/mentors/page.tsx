@@ -53,11 +53,20 @@ interface Mentor {
   is_new_2026: boolean;
   category: string;
   slug: string | null;
+  industries: string[];
 }
 
 /** Map DB row to the Mentor interface used by the page */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapDbRowToMentor(row: any): Mentor {
+  const ep = row.extended_profile || {};
+  // industries may be stored as comma-separated string or array
+  let industries: string[] = [];
+  if (Array.isArray(ep.industries)) {
+    industries = ep.industries.slice(0, 3);
+  } else if (typeof ep.industries === "string" && ep.industries) {
+    industries = ep.industries.split(/[,、\/]/).map((s: string) => s.trim()).filter(Boolean).slice(0, 3);
+  }
   return {
     id: row.id,
     name: row.name,
@@ -68,6 +77,7 @@ function mapDbRowToMentor(row: any): Mentor {
     is_new_2026: row.is_new_2026 || false,
     category: row.category || "expert",
     slug: row.slug || row.name.replace(/\s+/g, "-").toLowerCase(),
+    industries,
   };
 }
 
@@ -119,12 +129,11 @@ const CATEGORY_ORDER = ["vc", "founder", "exec", "expert"];
 
 function MentorCard({ mentor }: { mentor: Mentor }) {
   const initial = mentor.name.charAt(0);
-  // Use highlight as display title if available; fall back to title
   const displayTitle = mentor.highlight || mentor.title;
 
   return (
-    <div className="card-hover group relative flex flex-col overflow-hidden rounded-2xl border border-stone-warm/50 bg-white shadow-sm transition-shadow hover:shadow-md">
-      {/* Photo area — 4:5 portrait ratio */}
+    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-stone-warm/50 bg-white shadow-sm">
+      {/* Photo — 4:5 portrait */}
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-stone">
         {mentor.photo_url ? (
           <Image
@@ -132,15 +141,13 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
             alt={`${mentor.name}${mentor.title ? `，${mentor.title}` : ""}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            className="object-cover object-top"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-teal-wash to-stone">
             <span className="text-5xl font-bold text-teal/40">{initial}</span>
           </div>
         )}
-
-        {/* New badge */}
         {mentor.is_new_2026 && (
           <span className="absolute left-3 top-3 rounded-full bg-teal px-2.5 py-0.5 text-[10px] font-semibold tracking-wide text-white shadow">
             2026 新任
@@ -148,8 +155,9 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
         )}
       </div>
 
-      {/* Info area */}
+      {/* Info */}
       <div className="flex flex-1 flex-col p-4">
+        {/* Name + social icon */}
         <div className="flex items-start justify-between gap-2">
           <h3 className="text-base font-bold leading-snug text-charcoal">
             {mentor.name}
@@ -169,12 +177,10 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
                 }`}
               >
                 {isFacebook ? (
-                  /* Facebook "f" icon */
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
                     <path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
                   </svg>
                 ) : (
-                  /* LinkedIn "in" icon */
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
                     <path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.984V9h3.102v1.561h.046c.431-.818 1.484-1.681 3.054-1.681 3.266 0 3.867 2.149 3.867 4.944v6.627zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm1.556 13.019H3.78V9h3.113v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
@@ -183,10 +189,26 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
             );
           })()}
         </div>
+
+        {/* Title / highlight */}
         {displayTitle && (
-          <p className="mt-1.5 text-xs leading-relaxed text-slate-muted line-clamp-2">
+          <p className="mt-1 text-xs leading-relaxed text-slate-muted line-clamp-2">
             {displayTitle}
           </p>
+        )}
+
+        {/* Industries tags — shown when available */}
+        {mentor.industries.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1">
+            {mentor.industries.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-teal-wash px-2 py-0.5 text-[10px] font-medium text-teal-deep"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         )}
       </div>
     </div>
@@ -199,7 +221,7 @@ export default async function MentorsPage() {
   // Fetch all active mentors from the mentor-matching schema
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: mentorRows } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug")
+    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug, extended_profile")
     .eq("is_active", true)
     .order("sort_order", { ascending: true })
     .order("name", { ascending: true });
