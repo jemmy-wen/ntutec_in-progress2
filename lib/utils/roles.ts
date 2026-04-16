@@ -29,11 +29,25 @@ export const ROLE_LABELS: Record<PlatformRole, string> = {
   vc_partner: '創投夥伴',
 }
 
-/** Route-to-role mapping for middleware/layout guards */
+/**
+ * Route-to-role mapping for server-side guards in platform layout.
+ * Order matters: more specific paths must come BEFORE broader prefixes.
+ * The layout iterates and breaks on the first startsWith() match.
+ *
+ * visitor = auto-assigned on first login (unpaid). Only allowed on:
+ *   /my, /angel/onboarding, /angel/portal/upcoming, /angel/portal/profile
+ * All other /angel/portal/* sub-pages require paid angel_member role.
+ */
 export const ROLE_ROUTE_MAP: Record<string, PlatformRole[]> = {
-  '/angel/onboarding': ['admin', 'angel_member', 'visitor'],
-  '/angel/portal': ['admin', 'angel_member', 'visitor'],
-  '/admin': ['admin', 'staff_admin', 'staff_accelerator'],
+  // ── Visitor-accessible angel paths (must be listed BEFORE /angel/portal) ──
+  '/angel/onboarding':          ['admin', 'staff_admin', 'staff_accelerator', 'angel_member', 'visitor'],
+  '/angel/portal/upcoming':     ['admin', 'staff_admin', 'staff_accelerator', 'angel_member', 'visitor'],
+  '/angel/portal/profile':      ['admin', 'staff_admin', 'staff_accelerator', 'angel_member', 'visitor'],
+  // ── All other angel portal pages: paid members only ──
+  '/angel/portal':              ['admin', 'staff_admin', 'staff_accelerator', 'angel_member'],
+  // ── Admin ──
+  '/admin':                     ['admin', 'staff_admin', 'staff_accelerator'],
+  // ── My page: all authenticated roles ──
   '/my': ['admin', 'staff_admin', 'staff_accelerator', 'angel_member', 'visitor', 'mentor', 'team', 'startup_incubated', 'startup_fundraising', 'vc_partner'],
 }
 
@@ -42,7 +56,8 @@ export function getDefaultRoute(roles: string[]): string {
   if (roles.includes('admin') || roles.includes('staff_admin')) return '/admin/dashboard'
   if (roles.includes('staff_accelerator')) return '/admin/dashboard'
   if (roles.includes('angel_member')) return '/angel/portal/upcoming'
-  if (roles.includes('visitor')) return '/angel/portal/upcoming'
+  // visitor → /my (not portal — avoids redirect loop and keeps portal gated)
+  if (roles.includes('visitor')) return '/my'
   if (roles.includes('mentor')) return '/my'
   if (roles.includes('startup_incubated') || roles.includes('startup_fundraising') || roles.includes('team')) return '/my'
   if (roles.includes('vc_partner')) return '/my'

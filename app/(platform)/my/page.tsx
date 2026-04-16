@@ -88,7 +88,8 @@ export default async function MyPage() {
   }
 
   const isAdmin = roles.includes('admin') || roles.includes('staff_admin') || roles.includes('staff_accelerator')
-  const isAngel = roles.includes('angel_member') || roles.includes('visitor')
+  const isAngel = roles.includes('angel_member')  // visitor excluded — portal requires paid membership
+  const isVisitor = roles.includes('visitor') && !isAngel && !isAdmin
   const isMentor = roles.includes('mentor')
   const isStartup = roles.includes('startup_incubated') || roles.includes('startup_fundraising') || roles.includes('team')
 
@@ -144,6 +145,18 @@ export default async function MyPage() {
                 <p className="text-xs text-gray-500">Angel Portal</p>
               </div>
             </Link>
+          )}
+          {isVisitor && (
+            <a
+              href="mailto:howard.chiang@ntutec.com?subject=申請加入台大天使會"
+              className="flex items-center gap-3 p-4 bg-teal-50 rounded-xl border border-teal-200 hover:border-teal-400 hover:shadow-sm transition-all"
+            >
+              <span className="text-2xl">🔓</span>
+              <div>
+                <p className="font-medium text-teal-800">申請加入天使會</p>
+                <p className="text-xs text-teal-600">聯繫中心升級會員</p>
+              </div>
+            </a>
           )}
           {isMentor && (
             <Link
