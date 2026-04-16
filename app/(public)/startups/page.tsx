@@ -4,10 +4,39 @@ import PageHero from "@/components/public/PageHero";
 import cohort from "@/data/cohort_2026.json";
 import TrackClick from "@/components/TrackClick";
 import { RocketLaunch, Briefcase, Buildings } from "@phosphor-icons/react/dist/ssr";
+import { ogImageUrl } from "@/lib/og";
+
+const teamCount = cohort.teams.length || 43;
 
 export const metadata: Metadata = {
   title: "2026 年度新創團隊 | NTUTEC",
-  description: `2026 年度台大創創中心輔導的 ${cohort.teams.length || 43} 個新創團隊，涵蓋 AI 軟體、生技醫療、硬科技與創新商模四大聚焦領域。`,
+  description: `2026 年度台大創創中心輔導的 ${teamCount} 個新創團隊，涵蓋 AI 軟體、生技醫療、硬科技與創新商模四大聚焦領域。`,
+  openGraph: {
+    title: "2026 年度新創團隊 | NTUTEC",
+    description: `${teamCount} 支新創團隊 · AI 軟體 / 生技醫療 / 硬科技 / 創新商模`,
+    images: [
+      {
+        url: ogImageUrl(
+          "2026 年度新創團隊",
+          `${teamCount} 支團隊 · 四大聚焦領域`,
+          "startup"
+        ),
+        width: 1200,
+        height: 630,
+        alt: "NTUTEC 2026 年度新創團隊",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      ogImageUrl(
+        "2026 年度新創團隊",
+        `${teamCount} 支團隊 · 四大聚焦領域`,
+        "startup"
+      ),
+    ],
+  },
 };
 
 interface Team {

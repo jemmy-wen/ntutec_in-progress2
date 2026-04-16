@@ -60,7 +60,11 @@ export async function GET(
     ])
 
     if (startupRes.error || !startupRes.data) {
-      return NextResponse.json({ error: 'Startup not found' }, { status: 404 })
+      console.error('Pipeline detail: startup lookup failed', {
+        id,
+        error: startupRes.error?.message,
+      })
+      return NextResponse.json({ error: 'Not found' }, { status: 404 })
     }
 
     const startup = startupRes.data
@@ -111,7 +115,7 @@ export async function GET(
       timeline,
     })
   } catch (err) {
-    console.error('Pipeline detail error:', err)
+    console.error('Pipeline detail error:', err instanceof Error ? err.message : err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

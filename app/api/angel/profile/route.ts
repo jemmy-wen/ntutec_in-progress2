@@ -21,7 +21,7 @@ export async function GET(_req: NextRequest) {
     // 1. Base member record (try both user_id and auth_user_id for compatibility)
     const { data: member, error: memberError } = await supabase
       .from('angel_members')
-      .select('id, name, email, phone, organization, title, telegram_chat_id, investment_preferences, focus_sectors, preferred_stages, ticket_min_ntd, ticket_max_ntd, ticket_typical_ntd, angel_tier, joined_at, onboarding_completed, warmth, ntu_alumni, status')
+      .select('id, user_id, auth_user_id, name, email, phone, organization, title, telegram_chat_id, investment_preferences, focus_sectors, preferred_stages, ticket_min_ntd, ticket_max_ntd, ticket_typical_ntd, angel_tier, joined_at, onboarding_completed, warmth, ntu_alumni, status')
       .or(`user_id.eq.${user.id},auth_user_id.eq.${user.id}`)
       .maybeSingle()
 
@@ -30,6 +30,17 @@ export async function GET(_req: NextRequest) {
       return NextResponse.json({ error: 'Failed to fetch member' }, { status: 500 })
     }
     if (!member) return NextResponse.json({ error: '找不到天使會員資料' }, { status: 404 })
+
+    // Defence-in-depth PII guard: the .or() query above should already constrain
+    // to the requesting user's own row, but we re-verify ownership before
+    // returning email/phone/telegram_chat_id in case of query/RLS regressions.
+    if (member.user_id !== user.id && member.auth_user_id !== user.id) {
+      console.error('angel profile ownership mismatch', {
+        requester: user.id,
+        member_id: member.id,
+      })
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
 
     // 2. Membership record (latest active or most recent)
     const { data: membership } = await supabase

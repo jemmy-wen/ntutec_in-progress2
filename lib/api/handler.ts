@@ -39,7 +39,7 @@ export interface ApiContext {
 /** Handler config */
 export interface ApiHandlerConfig {
   roles: PlatformRole[]
-  rateLimit?: 'auth' | 'api' | 'ai' | 'voting' | 'export' | 'invitation'
+  rateLimit?: 'auth' | 'api' | 'ai' | 'voting' | 'export' | 'invitation' | 'contact' | 'chat' | 'webhook' | 'privileged-admin'
   /** Load meeting cycle: 'query' reads from ?cycle_id=, 'body' reads from body.cycle_id */
   requireCycleId?: 'query' | 'body' | false
   /** Phase enforcement action name (checked against cycle status) */

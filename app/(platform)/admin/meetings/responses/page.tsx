@@ -90,6 +90,12 @@ export default function ResponsesPage() {
 
   async function handleNotify(event: NotifyEvent) {
     if (!data) return
+    const recipientCount = data.summary.total_members
+    const eventLabel = EVENT_LABELS[event].label
+    const confirmed = window.confirm(
+      `確定要發送「${eventLabel}」通知給 ${recipientCount} 位會員嗎？\n此操作無法撤回。`
+    )
+    if (!confirmed) return
     setNotifyStatus(prev => ({ ...prev, [event]: 'sending' }))
     try {
       const res = await fetch('/api/admin/meetings/notify', {

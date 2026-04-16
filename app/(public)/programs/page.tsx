@@ -3,12 +3,39 @@ import Link from 'next/link'
 import Image from 'next/image'
 import PageHero from '@/components/public/PageHero'
 import { House, RocketLaunch, ChartBar, Fire, Target, Handshake, Buildings } from '@phosphor-icons/react/dist/ssr'
+import { ogImageUrl } from '@/lib/og'
 
 export const metadata: Metadata = {
   title: '新創輔導計畫 | NTUTEC',
   description: '想把技術變成新創？台大加速器（不限身分）與台大車庫（台大身分優先）提供免費十個月輔導，歷年 80+ 位業師資料庫、2026 陪跑 40+、35 家企業夥伴、150+ 投資人網絡。',
   alternates: {
     canonical: 'https://tec.ntu.edu.tw/programs',
+  },
+  openGraph: {
+    title: '新創輔導計畫 | NTUTEC',
+    description: '台大加速器 × 台大車庫 · 免費 10 個月輔導 · 80+ 位業師 · 35 家企業夥伴 · 150+ 投資人網絡',
+    images: [
+      {
+        url: ogImageUrl(
+          '新創輔導計畫',
+          '台大加速器 × 台大車庫 · 免費 10 個月輔導',
+          'startup'
+        ),
+        width: 1200,
+        height: 630,
+        alt: 'NTUTEC 新創輔導計畫',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [
+      ogImageUrl(
+        '新創輔導計畫',
+        '台大加速器 × 台大車庫 · 免費 10 個月輔導',
+        'startup'
+      ),
+    ],
   },
 }
 

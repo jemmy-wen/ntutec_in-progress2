@@ -73,7 +73,15 @@ export async function GET(request: NextRequest) {
       // - New users → onboarding wizard first
       // - Explicit redirect param → use it (if safe internal path)
       // - Otherwise → role-based default
-      const isExplicitRedirect = redirectParam && redirectParam !== '/' && redirectParam.startsWith('/')
+      //
+      // Open-redirect hardening: only accept paths that are unambiguously internal.
+      // Reject '//evil.com' (protocol-relative), backslash tricks, and 'scheme:' prefixes.
+      const isExplicitRedirect = !!redirectParam
+        && redirectParam !== '/'
+        && redirectParam.startsWith('/')
+        && !redirectParam.startsWith('//')          // prevent protocol-relative URL
+        && !redirectParam.includes('\\')            // prevent backslash bypass
+        && !/^\/[a-z]+:/i.test(redirectParam)       // prevent javascript:, data:, etc
       const targetPath = isNewUser
         ? '/my'
         : isExplicitRedirect ? redirectParam : getDefaultRoute(roles)

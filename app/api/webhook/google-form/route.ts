@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { timingSafeEqual } from 'crypto'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { checkRateLimit, rateLimitResponse } from '@/lib/middleware/rate-limit'
 
 /**
  * POST /api/webhook/google-form
@@ -8,7 +10,12 @@ import { createAdminClient } from '@/lib/supabase/admin'
  * Writes to form_submissions + creates startup draft.
  * Startup gets pipeline_stage = '0_待篩選', source = 'google_form'.
  *
- * Security: x-webhook-secret header must match GOOGLE_FORM_WEBHOOK_SECRET env var.
+ * Security:
+ *  - x-webhook-secret header must match GOOGLE_FORM_WEBHOOK_SECRET env var (constant-time compare).
+ *  - Env secret MUST be set; missing secret → 503 (fail closed).
+ *  - Rate limited to 60 req/min per IP (category 'webhook').
+ *  - Google Forms / Apps Script cannot sign requests with HMAC natively;
+ *    we keep the shared-secret model but require the secret be strong (32+ chars).
  *
  * Apps Script body shape:
  * {
@@ -16,10 +23,32 @@ import { createAdminClient } from '@/lib/supabase/admin'
  *   responses: { [questionTitle: string]: string }
  * }
  */
+
+function safeEqual(a: string, b: string): boolean {
+  const aBuf = Buffer.from(a)
+  const bBuf = Buffer.from(b)
+  if (aBuf.length !== bBuf.length) return false
+  return timingSafeEqual(aBuf, bBuf)
+}
+
 export async function POST(req: NextRequest) {
-  // Verify secret
-  const secret = req.headers.get('x-webhook-secret')
-  if (!secret || secret !== process.env.GOOGLE_FORM_WEBHOOK_SECRET) {
+  // ── Rate limit (60/min per IP) ──
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    || req.headers.get('x-real-ip')
+    || 'unknown'
+  const rate = checkRateLimit(`webhook-google-form:${ip}`, 'webhook')
+  if (!rate.allowed) {
+    return rateLimitResponse(rate.resetAt)
+  }
+
+  // ── Verify secret (fail closed if env missing) ──
+  const expected = process.env.GOOGLE_FORM_WEBHOOK_SECRET
+  if (!expected || expected.length < 32) {
+    console.error('google-form webhook: GOOGLE_FORM_WEBHOOK_SECRET missing or too short; rejecting all requests')
+    return NextResponse.json({ error: 'Service unavailable' }, { status: 503 })
+  }
+  const provided = req.headers.get('x-webhook-secret') || ''
+  if (!safeEqual(provided, expected)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

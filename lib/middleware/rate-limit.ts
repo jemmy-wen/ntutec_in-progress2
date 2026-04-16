@@ -19,14 +19,16 @@ interface RateLimitConfig {
 }
 
 const RATE_LIMITS: Record<string, RateLimitConfig> = {
-  'auth':       { windowMs: 60_000, maxRequests: 10 },
-  'api':        { windowMs: 60_000, maxRequests: 60 },
-  'ai':         { windowMs: 60_000, maxRequests: 5 },
-  'voting':     { windowMs: 60_000, maxRequests: 30 },
-  'export':     { windowMs: 60_000, maxRequests: 3 },
-  'invitation': { windowMs: 60_000, maxRequests: 20 },
-  'contact':    { windowMs: 60_000, maxRequests: 5 },
-  'chat':       { windowMs: 60_000, maxRequests: 10 },
+  'auth':            { windowMs: 60_000, maxRequests: 10 },
+  'api':             { windowMs: 60_000, maxRequests: 60 },
+  'ai':              { windowMs: 60_000, maxRequests: 5 },
+  'voting':          { windowMs: 60_000, maxRequests: 30 },
+  'export':          { windowMs: 60_000, maxRequests: 3 },
+  'invitation':      { windowMs: 60_000, maxRequests: 20 },
+  'contact':         { windowMs: 60_000, maxRequests: 5 },
+  'chat':            { windowMs: 60_000, maxRequests: 10 },
+  'webhook':         { windowMs: 60_000, maxRequests: 60 },
+  'privileged-admin': { windowMs: 60_000, maxRequests: 5 },
 }
 
 export function checkRateLimit(

@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
     }
 
     const today = new Date().toISOString().split('T')[0]
+    const evaluatorId = user.email || user.id
 
     // ─── Map decision to gate result and pipeline stage ───
     const gateResult = decision === 'watch' ? 'borderline' : decision
@@ -86,7 +87,7 @@ export async function POST(req: NextRequest) {
         .update({
           result: gateResult,
           evaluation_date: today,
-          evaluator: 'howard_manual',
+          evaluator: evaluatorId,
           notes: notes || null,
         })
         .eq('id', existingGate.id)
@@ -103,7 +104,7 @@ export async function POST(req: NextRequest) {
           gate_type: 'gate0',
           result: gateResult,
           evaluation_date: today,
-          evaluator: 'howard_manual',
+          evaluator: evaluatorId,
           notes: notes || null,
         })
 
@@ -139,7 +140,7 @@ export async function POST(req: NextRequest) {
         pipeline_stage: pipelineStage,
       },
       metadata: {
-        evaluator: 'howard_manual',
+        evaluator: evaluatorId,
         notes,
       },
     })

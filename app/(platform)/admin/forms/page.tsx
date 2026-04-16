@@ -95,13 +95,17 @@ function TypeBadge({ type }: { type: string }) {
 
 // ─── Component ───────────────────────────────────────────
 
+const PAGE_SIZE = 50
+
 export default function AdminFormsPage() {
   const [submissions, setSubmissions] = useState<FormSubmission[]>([])
   const [newCount, setNewCount] = useState(0)
+  const [totalCount, setTotalCount] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [filterType, setFilterType] = useState('')
   const [filterStatus, setFilterStatus] = useState('')
+  const [page, setPage] = useState(0)
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [updatingId, setUpdatingId] = useState<string | null>(null)
 
@@ -112,23 +116,34 @@ export default function AdminFormsPage() {
       const params = new URLSearchParams()
       if (filterType) params.set('type', filterType)
       if (filterStatus) params.set('status', filterStatus)
-      params.set('limit', '100')
+      params.set('limit', String(PAGE_SIZE))
+      params.set('offset', String(page * PAGE_SIZE))
 
       const res = await fetch(`/api/admin/forms?${params.toString()}`)
       if (!res.ok) throw new Error(`Failed to load (${res.status})`)
       const json = await res.json()
       setSubmissions(json.data || [])
       setNewCount(json.newCount || 0)
+      setTotalCount(json.totalCount || 0)
     } catch (err) {
       setError(err instanceof Error ? err.message : '載入失敗')
     } finally {
       setLoading(false)
     }
-  }, [filterType, filterStatus])
+  }, [filterType, filterStatus, page])
 
   useEffect(() => {
     fetchSubmissions()
   }, [fetchSubmissions])
+
+  // Reset to page 0 when filters change
+  useEffect(() => {
+    setPage(0)
+  }, [filterType, filterStatus])
+
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
+  const hasPrev = page > 0
+  const hasNext = page < totalPages - 1
 
   async function updateStatus(id: string, status: SubmissionStatus) {
     setUpdatingId(id)
@@ -343,9 +358,30 @@ export default function AdminFormsPage() {
             </tbody>
           </table>
 
-          <div className="border-t border-gray-100 px-4 py-3 text-xs text-gray-400">
-            共 {submissions.length} 筆記錄
-            {(filterType || filterStatus) && '（篩選中）'}
+          <div className="border-t border-gray-100 px-4 py-3 flex items-center justify-between flex-wrap gap-3">
+            <div className="text-xs text-gray-400">
+              共 {totalCount} 筆記錄（本頁 {submissions.length} 筆）
+              {(filterType || filterStatus) && '（篩選中）'}
+            </div>
+            <div className="flex items-center gap-2 text-xs">
+              <button
+                onClick={() => setPage((p) => Math.max(0, p - 1))}
+                disabled={!hasPrev || loading}
+                className="rounded border border-gray-200 px-2 py-1 text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                ← 上一頁
+              </button>
+              <span className="text-gray-500">
+                第 {page + 1} 頁 / 共 {totalPages} 頁
+              </span>
+              <button
+                onClick={() => setPage((p) => (hasNext ? p + 1 : p))}
+                disabled={!hasNext || loading}
+                className="rounded border border-gray-200 px-2 py-1 text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                下一頁 →
+              </button>
+            </div>
           </div>
         </div>
       )}

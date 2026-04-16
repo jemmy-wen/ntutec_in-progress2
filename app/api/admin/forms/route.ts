@@ -47,14 +47,14 @@ export async function GET(req: NextRequest) {
 
   let query = db
     .from('form_submissions')
-    .select('id, type, form_type, name, submitter_name, email, submitter_email, status, created_at, updated_at, data, assigned_to')
+    .select('id, type, form_type, name, submitter_name, email, submitter_email, status, created_at, updated_at, data, assigned_to', { count: 'exact' })
     .order('created_at', { ascending: false })
     .range(offset, offset + limit - 1)
 
   if (type) query = query.eq('type', type)
   if (status) query = query.eq('status', status)
 
-  const { data, error } = await query
+  const { data, error, count: totalCount } = await query
 
   if (error) {
     console.error('[admin/forms] fetch error:', error)
@@ -76,7 +76,7 @@ export async function GET(req: NextRequest) {
     .select('id', { count: 'exact', head: true })
     .eq('status', 'new')
 
-  return NextResponse.json({ data: normalized, newCount: newCount ?? 0 })
+  return NextResponse.json({ data: normalized, newCount: newCount ?? 0, totalCount: totalCount ?? normalized.length })
 }
 
 export async function PATCH(req: NextRequest) {

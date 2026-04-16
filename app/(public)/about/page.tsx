@@ -6,6 +6,7 @@ import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 import { Plant, LinkSimple, RocketLaunch } from '@phosphor-icons/react/dist/ssr'
 import { FadeIn } from '@/components/ui/fade-in'
 import { CountUp } from '@/components/ui/count-up'
+import { ogImageUrl } from '@/lib/og'
 
 export const metadata: Metadata = {
   title: '關於台大創創中心 | NTUTEC',
@@ -16,6 +17,30 @@ export const metadata: Metadata = {
       'zh-TW': 'https://tec.ntu.edu.tw/about',
       'en': 'https://tec.ntu.edu.tw/en/about',
     },
+  },
+  openGraph: {
+    title: '關於台大創創中心 | NTUTEC',
+    description: 'HI3 培育模型 · 輔導培育 × 對接整合 × 加速起飛 · 深耕生態系 13 年',
+    images: [
+      {
+        url: ogImageUrl(
+          '關於台大創創中心',
+          'HI3 培育模型 · 深耕台大創業生態系 13 年'
+        ),
+        width: 1200,
+        height: 630,
+        alt: 'NTUTEC 關於台大創創中心',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [
+      ogImageUrl(
+        '關於台大創創中心',
+        'HI3 培育模型 · 深耕台大創業生態系 13 年'
+      ),
+    ],
   },
 }
 

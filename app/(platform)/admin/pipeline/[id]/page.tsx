@@ -422,6 +422,10 @@ function OverviewTab({ startup, enrichment, gates, pitches }: {
 
 function Gate0Tab({ gate }: { gate: GateRecord }) {
   const result = gate.result || gate.screening_result || 'pending'
+  const hasDetail =
+    (gate.fail_reasons && gate.fail_reasons.length > 0) ||
+    (gate.flags && gate.flags.length > 0) ||
+    !!gate.notes
 
   return (
     <div className="space-y-4">
@@ -440,6 +444,12 @@ function Gate0Tab({ gate }: { gate: GateRecord }) {
           <div className="font-medium">{gate.evaluator || '—'}</div>
         </div>
       </div>
+
+      {!hasDetail && (
+        <div className="text-center py-12 text-gray-400">
+          <p>此區塊尚無資料</p>
+        </div>
+      )}
 
       {/* Fail Reasons */}
       {gate.fail_reasons && gate.fail_reasons.length > 0 && (
@@ -575,12 +585,16 @@ function Gate2Tab({ gate }: { gate: GateRecord }) {
         </div>
       </div>
 
-      {gate.notes && (
+      {gate.notes ? (
         <div>
           <h4 className="text-sm font-semibold text-gray-700 mb-2">面審記錄</h4>
           <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg whitespace-pre-wrap leading-relaxed">
             {gate.notes}
           </div>
+        </div>
+      ) : (
+        <div className="text-center py-12 text-gray-400">
+          <p>此區塊尚無資料</p>
         </div>
       )}
     </div>
@@ -959,6 +973,26 @@ function EnrichmentTab({ enrichment }: { enrichment: Enrichment }) {
     risk: 'bg-red-100 text-red-700',
   }
 
+  const sourceEntries = Object.entries(enrichment.sources || {})
+  const hasPositive = enrichment.summary.positive_signals.length > 0
+  const hasRisk = enrichment.summary.risk_signals.length > 0
+
+  if (sourceEntries.length === 0 && !hasPositive && !hasRisk) {
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold">盡調資料 (Enrichment v{enrichment.enrichment_version})</h3>
+          <span className="text-xs text-gray-400">
+            {new Date(enrichment.enriched_at).toLocaleDateString('zh-TW')}
+          </span>
+        </div>
+        <div className="text-center py-12 text-gray-400">
+          <p>此區塊尚無資料</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -970,7 +1004,7 @@ function EnrichmentTab({ enrichment }: { enrichment: Enrichment }) {
 
       {/* Source Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {Object.entries(enrichment.sources).map(([key, src]) => {
+        {sourceEntries.map(([key, src]) => {
           const count = src.patent_count ?? src.case_count ?? src.tender_count ?? src.penalty_count ?? src.grant_count ?? 0
           return (
             <div key={key} className="border border-gray-200 rounded-lg p-4">
@@ -1022,14 +1056,37 @@ function EnrichmentTab({ enrichment }: { enrichment: Enrichment }) {
 
 // ─── Timeline Tab ────────────────────────────────────
 
+const TIMELINE_PAGE_SIZE = 20
+
 function TimelineTab({ timeline }: { timeline: TimelineEntry[] }) {
+  const [visibleCount, setVisibleCount] = useState(TIMELINE_PAGE_SIZE)
+
+  if (timeline.length === 0) {
+    return (
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold">案件時間軸</h3>
+        <div className="text-center py-12 text-gray-400">
+          <p>此區塊尚無資料</p>
+        </div>
+      </div>
+    )
+  }
+
+  const visibleEntries = timeline.slice(0, visibleCount)
+  const remaining = Math.max(0, timeline.length - visibleCount)
+
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold">案件時間軸</h3>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold">案件時間軸</h3>
+        <span className="text-xs text-gray-400">
+          顯示 {visibleEntries.length} / {timeline.length} 筆
+        </span>
+      </div>
       <div className="relative">
         <div className="absolute left-4 top-2 bottom-2 w-0.5 bg-gray-200" />
         <div className="space-y-4">
-          {timeline.map((entry, i) => (
+          {visibleEntries.map((entry, i) => (
             <div key={i} className="flex items-start gap-4 relative">
               <div className="w-8 h-8 rounded-full bg-teal-100 border-2 border-teal-400 flex items-center justify-center text-xs font-bold text-teal-700 shrink-0 z-10">
                 {i + 1}
@@ -1047,6 +1104,16 @@ function TimelineTab({ timeline }: { timeline: TimelineEntry[] }) {
           ))}
         </div>
       </div>
+      {remaining > 0 && (
+        <div className="text-center pt-2">
+          <button
+            onClick={() => setVisibleCount((c) => c + TIMELINE_PAGE_SIZE)}
+            className="px-4 py-2 text-sm text-teal-700 bg-teal-50 hover:bg-teal-100 rounded-lg font-medium transition-colors"
+          >
+            載入更多（剩餘 {remaining} 筆）
+          </button>
+        </div>
+      )}
     </div>
   )
 }
@@ -1072,38 +1139,61 @@ function ResultBadge({ result }: { result: string }) {
 
 function BpDownloadButton({ startupId, uploadedAt }: { startupId: string; uploadedAt: string | null }) {
   const [loading, setLoading] = useState(false)
+  const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   async function handleDownload() {
     setLoading(true)
+    setFeedback(null)
     try {
       const res = await fetch(`/api/admin/pipeline/${startupId}/bp`)
       if (!res.ok) {
-        const err = await res.json()
-        alert(err.error || '下載失敗')
+        const err = await res.json().catch(() => ({ error: '下載失敗' }))
+        setFeedback({ type: 'error', message: err.error || '下載失敗' })
         return
       }
       const { url } = await res.json()
       window.open(url, '_blank')
+      setFeedback({ type: 'success', message: '✅ 已開啟下載連結' })
     } catch {
-      alert('下載失敗')
+      setFeedback({ type: 'error', message: '❌ 下載失敗，請稍後再試' })
     } finally {
       setLoading(false)
+      // Auto-clear success message after 3s
+      setTimeout(() => setFeedback(null), 3000)
     }
   }
 
   return (
-    <div className="flex items-center gap-3">
-      <button
-        onClick={handleDownload}
-        disabled={loading}
-        className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 text-teal-700 rounded-lg text-sm font-medium hover:bg-teal-100 disabled:opacity-50 transition-colors"
-      >
-        <span>{loading ? '⏳' : '📄'}</span>
-        {loading ? '產生連結中...' : '下載 BP'}
-      </button>
-      {uploadedAt && (
-        <span className="text-xs text-gray-400">
-          上傳於 {new Date(uploadedAt).toLocaleDateString('zh-TW')}
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-3">
+        <button
+          onClick={handleDownload}
+          disabled={loading}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 text-teal-700 rounded-lg text-sm font-medium hover:bg-teal-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          {loading ? (
+            <svg className="animate-spin h-4 w-4 text-teal-700" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+            </svg>
+          ) : (
+            <span>📄</span>
+          )}
+          {loading ? '產生連結中...' : '下載 BP'}
+        </button>
+        {uploadedAt && (
+          <span className="text-xs text-gray-400">
+            上傳於 {new Date(uploadedAt).toLocaleDateString('zh-TW')}
+          </span>
+        )}
+      </div>
+      {feedback && (
+        <span
+          role="status"
+          aria-live="polite"
+          className={`text-xs ${feedback.type === 'success' ? 'text-green-600' : 'text-red-600'}`}
+        >
+          {feedback.message}
         </span>
       )}
     </div>

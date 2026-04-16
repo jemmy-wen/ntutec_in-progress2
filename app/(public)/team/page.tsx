@@ -1,11 +1,29 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/public/PageHero";
+import { ogImageUrl } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "執行團隊 | NTUTEC",
   description:
     "台大創創中心執行團隊，由中心主任、CEO、輔導經理與投資經理組成，結合產業經驗、學術視野與創投背景，全力支持新創成長。",
+  openGraph: {
+    title: "執行團隊 | NTUTEC",
+    description:
+      "中心主任 × CEO × 輔導經理 × 投資經理，結合學術視野、產業經驗與創投背景。",
+    images: [
+      {
+        url: ogImageUrl("核心團隊 · Team", "學術視野 × 產業經驗 × 創投背景"),
+        width: 1200,
+        height: 630,
+        alt: "NTUTEC 執行團隊",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [ogImageUrl("核心團隊 · Team", "學術視野 × 產業經驗 × 創投背景")],
+  },
 };
 
 interface TeamMember {

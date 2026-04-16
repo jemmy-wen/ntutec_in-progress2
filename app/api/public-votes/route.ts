@@ -35,13 +35,21 @@ function isRateLimited(ip: string): boolean {
   return entry.count > RATE_LIMIT_MAX
 }
 
-// Valid startup IDs for the 2026-04 cycle
-const VALID_STARTUP_IDS = new Set(['shipeng', 'longlink', 'stellarcell'])
+// Valid startup IDs for the 2026-04 cycle (canonical server-side allowlist).
+// Client-supplied startup_name is IGNORED — we look up the canonical name
+// from this map by startup_id to prevent spoofed display values.
+const STARTUP_CATALOG: Record<string, string> = {
+  shipeng:     '士芃科技',
+  longlink:    '澤龍智能',
+  stellarcell: '星誠細胞生醫',
+}
+const VALID_STARTUP_IDS = new Set(Object.keys(STARTUP_CATALOG))
 const VALID_RECOMMENDATIONS = new Set(['follow_up', 'watch', 'pass'])
 
 interface VotePayload {
   startup_id: string
-  startup_name: string
+  // startup_name accepted but ignored — canonical name looked up server-side
+  startup_name?: string
   score_interest?: number
   recommendation?: string
   comment?: string
@@ -95,9 +103,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Canonical name from server-side allowlist — never trust vote.startup_name
+    const canonicalName = STARTUP_CATALOG[vote.startup_id]
+
     if (!isValidScore(vote.score_interest)) {
       return NextResponse.json(
-        { error: `請為「${vote.startup_name}」評分投資意願` },
+        { error: `請為「${canonicalName}」評分投資意願` },
         { status: 400 }
       )
     }
@@ -112,7 +123,7 @@ export async function POST(request: NextRequest) {
     rows.push({
       meeting_cycle: '2026-04',
       startup_id: vote.startup_id,
-      startup_name: vote.startup_name,
+      startup_name: canonicalName,
       voter_name: `${voter_name.trim()} / ${voter_company.trim()}`,
       is_member: false,
       score_interest: vote.score_interest,

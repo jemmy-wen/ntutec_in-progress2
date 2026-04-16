@@ -14,7 +14,8 @@ const ALLOWED_ROLES = ['visitor', 'angel_member', 'mentor', 'team'] as const
 export const POST = withApiHandler(
   {
     roles: ['admin', 'staff_admin'],
-    rateLimit: 'api',
+    // Privilege-escalation endpoint: 5 req/min per IP
+    rateLimit: 'privileged-admin',
     audit: { action: 'role_change', entityType: 'user' },
   },
   async (ctx) => {
