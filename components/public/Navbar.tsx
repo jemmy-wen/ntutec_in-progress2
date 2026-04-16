@@ -353,13 +353,14 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <SearchButton onClick={() => setSearchOpen(true)} />
 
-          <Link
+          {/* Language switcher hidden — English pages pending content audit */}
+          {/* <Link
             href={langSwitch.href}
             className="hidden xl:inline-flex items-center rounded-full border border-border px-2.5 py-1 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
             aria-label={langSwitch.label === "EN" ? "Switch to English" : "切換至中文"}
           >
             {langSwitch.label}
-          </Link>
+          </Link> */}
 
           {/* Apply dropdown CTA */}
           <div className="relative hidden xl:block"
@@ -453,13 +454,14 @@ export default function Navbar() {
                     {item.label}
                   </Link>
                 ))}
-                <Link
+                {/* Language switcher hidden — English pages pending content audit */}
+                {/* <Link
                   href={langSwitch.href}
                   onClick={() => setMobileOpen(false)}
                   className="btn-pill-outline text-center"
                 >
                   {langSwitch.label}
-                </Link>
+                </Link> */}
 
                 {/* Mobile auth section */}
                 <div className="border-t border-border/60 pt-3">
