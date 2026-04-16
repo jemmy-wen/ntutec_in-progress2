@@ -5,11 +5,24 @@ import { createClient } from '@/lib/supabase/server'
 
 export async function POST(req: NextRequest) {
   try {
-    // Auth check: require logged-in admin
+    // Auth check: require logged-in user with admin module role
     const userClient = await createClient()
     const { data: { user } } = await userClient.auth.getUser()
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const serviceDb = createServiceClient()
+    const { data: role } = await serviceDb
+      .from('module_roles')
+      .select('role')
+      .eq('user_id', user.id)
+      .eq('module', 'admin')
+      .eq('is_active', true)
+      .single()
+
+    if (!role) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
     const body = await req.json()
@@ -28,9 +41,8 @@ export async function POST(req: NextRequest) {
     }
 
     const token = crypto.randomBytes(32).toString('hex')
-    const supabase = createServiceClient()
 
-    const { error } = await supabase.from('portal_tokens').insert({
+    const { error } = await serviceDb.from('portal_tokens').insert({
       token,
       entity_type,
       entity_id,
@@ -44,7 +56,7 @@ export async function POST(req: NextRequest) {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ntutec.com'
     const portal_url = `${baseUrl}/portal?token=${token}`
 
-    return NextResponse.json({ success: true, token, portal_url })
+    return NextResponse.json({ success: true, portal_url })
   } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }

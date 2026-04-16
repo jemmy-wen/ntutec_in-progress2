@@ -20,15 +20,11 @@ export async function GET(req: NextRequest) {
       .single()
 
     if (error || !row) {
-      return NextResponse.json({ valid: false, reason: 'not_found' }, { status: 404 })
+      return NextResponse.json({ valid: false, error: '此連結無效或已過期' }, { status: 410 })
     }
 
-    if (row.used_at) {
-      return NextResponse.json({ valid: false, reason: 'used' }, { status: 410 })
-    }
-
-    if (new Date(row.expires_at) < new Date()) {
-      return NextResponse.json({ valid: false, reason: 'expired' }, { status: 410 })
+    if (row.used_at || new Date(row.expires_at) < new Date()) {
+      return NextResponse.json({ valid: false, error: '此連結無效或已過期' }, { status: 410 })
     }
 
     const table = row.entity_type === 'startup' ? 'historical_startups' : 'mentors'
