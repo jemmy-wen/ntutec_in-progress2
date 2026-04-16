@@ -2,8 +2,8 @@
 
 import { Cpu, HeartPulse, CircuitBoard, Lightbulb } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { motion } from "motion/react";
 import { useInView } from "@/hooks/useInView";
+import { FadeIn } from "@/components/ui/fade-in";
 
 interface FocusArea {
   icon: LucideIcon;
@@ -59,39 +59,26 @@ export default function FocusAreasSection() {
   return (
     <section className="section-spacing bg-stone">
       <div className="container">
-        <motion.div
-          className="mx-auto mb-16 max-w-2xl text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <FadeIn className="mx-auto mb-16 max-w-2xl text-center">
           <p className="micro-label mb-2">Focus Areas</p>
           <h2>2026 四大聚焦領域</h2>
           <p className="mt-4 text-lg text-slate-muted">
             AI 軟體、生技醫療、硬科技、創新商模——結合台大跨院系研究能量與業界合作網絡，陪伴新創從概念走向市場。
           </p>
-        </motion.div>
+        </FadeIn>
 
         <div ref={ref} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {focusAreas.map((area, i) => {
             const Icon = area.icon;
             return (
-              <motion.div
+              <div
                 key={area.label}
-                initial={{ opacity: 0, y: 40, scale: 0.97 }}
-                animate={
-                  isInView
-                    ? { opacity: 1, y: 0, scale: 1 }
-                    : { opacity: 0, y: 40, scale: 0.97 }
-                }
-                transition={{
-                  duration: 0.55,
-                  delay: i * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
+                style={{
+                  opacity: isInView ? 1 : 0,
+                  transform: isInView ? "translateY(0) scale(1)" : "translateY(40px) scale(0.97)",
+                  transition: `opacity 550ms cubic-bezier(0.22,1,0.36,1) ${i * 0.1}s, transform 550ms cubic-bezier(0.22,1,0.36,1) ${i * 0.1}s, box-shadow 300ms ease`,
                 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group cursor-default rounded-2xl border border-stone-warm/60 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="group cursor-default rounded-2xl border border-stone-warm/60 bg-white p-6 shadow-sm hover:shadow-md hover:-translate-y-1 duration-200"
               >
                 {/* Accent gradient top bar */}
                 <div
@@ -117,7 +104,7 @@ export default function FocusAreasSection() {
                     {area.examples}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

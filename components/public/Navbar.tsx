@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import SearchDialog, { useSearchDialog, SearchButton } from "@/components/search/SearchDialog";
 import NavbarAuthButton, { MobileNavbarAuthButton } from "@/components/public/NavbarAuthButton";
@@ -140,42 +139,34 @@ function DesktopDropdown({
         />
       </button>
 
-      <AnimatePresence>
-        {open && item.children && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute left-0 top-full pt-2 z-50"
+      {open && item.children && (
+        <div className="absolute left-0 top-full pt-2 z-50 animate-in fade-in-0 slide-in-from-top-2 duration-200">
+          <div
+            id={menuId}
+            role="menu"
+            aria-label={item.label}
+            className="min-w-[200px] rounded-xl border border-border bg-white p-2 shadow-lg"
           >
-            <div
-              id={menuId}
-              role="menu"
-              aria-label={item.label}
-              className="min-w-[200px] rounded-xl border border-border bg-white p-2 shadow-lg"
-            >
-              {item.children.map((child) => (
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  role="menuitem"
-                  onClick={onClose}
-                  onKeyDown={(e) => {
-                    if (e.key === "Escape") {
-                      e.preventDefault();
-                      onClose();
-                    }
-                  }}
-                  className="block rounded-lg px-4 py-2.5 text-sm text-charcoal/80 hover:bg-teal-wash hover:text-teal focus:bg-teal-wash focus:text-teal focus:outline-none transition-colors"
-                >
-                  {child.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {item.children.map((child) => (
+              <Link
+                key={child.href}
+                href={child.href}
+                role="menuitem"
+                onClick={onClose}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") {
+                    e.preventDefault();
+                    onClose();
+                  }
+                }}
+                className="block rounded-lg px-4 py-2.5 text-sm text-charcoal/80 hover:bg-teal-wash hover:text-teal focus:bg-teal-wash focus:text-teal focus:outline-none transition-colors"
+              >
+                {child.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -217,30 +208,29 @@ function MobileAccordion({
         />
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden"
-          >
-            <div className="pb-2 pl-4">
-              {item.children.map((child) => (
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  onClick={onNavigate}
-                  className="block px-4 py-2.5 text-base text-charcoal/70 hover:text-teal transition-colors"
-                >
-                  {child.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* CSS grid-rows trick for auto height transition */}
+      <div
+        className={`grid overflow-hidden transition-all duration-200 ease-out ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="min-h-0">
+          <div className="pb-2 pl-4">
+            {item.children.map((child) => (
+              <Link
+                key={child.href}
+                href={child.href}
+                onClick={onNavigate}
+                tabIndex={open ? 0 : -1}
+                className="block px-4 py-2.5 text-base text-charcoal/70 hover:text-teal transition-colors"
+              >
+                {child.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -373,36 +363,28 @@ export default function Navbar() {
               立即申請
               <ChevronDown className={`h-3 w-3 transition-transform ${applyOpen ? "rotate-180" : ""}`} />
             </button>
-            <AnimatePresence>
-              {applyOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full pt-2 z-50"
-                >
-                  <div className="min-w-[200px] rounded-xl border border-border bg-white p-2 shadow-lg">
-                    {[
-                      { label: "新創投遞 Pitch", href: "/pitch", desc: "提交你的新創案件" },
-                      { label: "企業合作洽談", href: "/corporate#contact", desc: "啟動外部創新" },
-                      { label: "加入台大天使會", href: "/angel-apply", desc: "成為天使投資人" },
-                      { label: "預約 2027 輔導計畫", href: "/apply", desc: "加速器・車庫" },
-                    ].map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setApplyOpen(false)}
-                        className="flex flex-col rounded-lg px-3 py-2.5 transition-colors hover:bg-stone"
-                      >
-                        <span className="text-sm font-medium text-charcoal">{item.label}</span>
-                        <span className="text-xs text-slate-muted">{item.desc}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {applyOpen && (
+              <div className="absolute right-0 top-full pt-2 z-50 animate-in fade-in-0 slide-in-from-top-2 duration-150">
+                <div className="min-w-[200px] rounded-xl border border-border bg-white p-2 shadow-lg">
+                  {[
+                    { label: "新創投遞 Pitch", href: "/pitch", desc: "提交你的新創案件" },
+                    { label: "企業合作洽談", href: "/corporate#contact", desc: "啟動外部創新" },
+                    { label: "加入台大天使會", href: "/angel-apply", desc: "成為天使投資人" },
+                    { label: "預約 2027 輔導計畫", href: "/apply", desc: "加速器・車庫" },
+                  ].map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setApplyOpen(false)}
+                      className="flex flex-col rounded-lg px-3 py-2.5 transition-colors hover:bg-stone"
+                    >
+                      <span className="text-sm font-medium text-charcoal">{item.label}</span>
+                      <span className="text-xs text-slate-muted">{item.desc}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Auth: login button or user avatar dropdown */}
@@ -418,15 +400,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-20 z-40 bg-white overflow-y-auto xl:hidden"
-          >
+      {mobileOpen && (
+        <div className="fixed inset-0 top-20 z-40 bg-white overflow-y-auto xl:hidden animate-in fade-in-0 duration-200">
             <nav className="container py-6">
               {NAV_ITEMS.map((item) => (
                 <MobileAccordion
@@ -467,9 +442,8 @@ export default function Navbar() {
                 </div>
               </div>
             </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
 
       {/* Site-wide search dialog — rendered inside Navbar so it shares search state */}
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
