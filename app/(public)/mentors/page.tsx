@@ -296,9 +296,7 @@ export default async function MentorsPage() {
               找投資人談融資、找創業家學實戰、找企業高管開通路、找領域專家補深度。
               每位業師皆具備豐富產業實戰經驗，平均逾 20 年深耕，一對一陪跑全程。
             </p>
-            <p className="mt-4 text-base leading-relaxed text-slate-muted">
-              陣容涵蓋 Yahoo VP、微軟研究院副院長、台積電研發主管等頂尖產業領袖，帶來第一手的市場洞察與人脈資源。
-            </p>
+
           </div>
 
           <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
