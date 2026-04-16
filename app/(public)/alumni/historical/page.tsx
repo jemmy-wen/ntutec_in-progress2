@@ -15,6 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import PageHero from "@/components/public/PageHero";
+import { DOMAIN_TAG_STYLE } from "@/lib/classify";
 
 export const metadata: Metadata = {
   title: "歷年新創校友 | NTUTEC",
@@ -33,6 +34,7 @@ interface HistoricalStartup {
   logo_local_path: string | null;
   description: string | null;
   external_link: string | null;
+  tags: string[] | null;
 }
 
 function resolveLogo(s: HistoricalStartup): string | null {
@@ -73,7 +75,7 @@ export default async function HistoricalAlumniPage() {
   const { data, error } = await supabase
     .from("historical_startups")
     .select(
-      "id, year, year_sortable, name, logo_url, logo_local_path, description, external_link"
+      "id, year, year_sortable, name, logo_url, logo_local_path, description, external_link, tags"
     )
     .order("year_sortable", { ascending: false })
     .order("name", { ascending: true });
@@ -225,6 +227,27 @@ export default async function HistoricalAlumniPage() {
                           >
                             {t.description}
                           </p>
+                        )}
+
+                        {t.tags && t.tags.length > 0 && (
+                          <div className="mt-2 flex flex-wrap gap-1">
+                            {t.tags.map((tag) => {
+                              const style = DOMAIN_TAG_STYLE[tag];
+                              return (
+                                <span
+                                  key={tag}
+                                  className="inline-block rounded-full px-2 py-0.5 text-[11px] font-medium"
+                                  style={
+                                    style
+                                      ? { backgroundColor: style.bg, color: style.text }
+                                      : { backgroundColor: "#f1f5f9", color: "#475569" }
+                                  }
+                                >
+                                  {tag}
+                                </span>
+                              );
+                            })}
+                          </div>
                         )}
 
                         {hasLink && (
