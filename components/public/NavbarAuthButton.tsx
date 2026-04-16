@@ -85,7 +85,7 @@ export default function NavbarAuthButton({ onNavigate }: NavbarAuthButtonProps) 
         onClick={onNavigate}
         className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-teal-600 text-teal-600 text-sm font-medium hover:bg-teal-600 hover:text-white transition-colors"
       >
-        登入
+        登入 / 加入
       </Link>
     )
   }
@@ -217,7 +217,7 @@ export function MobileNavbarAuthButton({ onNavigate }: NavbarAuthButtonProps) {
         onClick={onNavigate}
         className="btn-pill-outline text-center"
       >
-        登入
+        登入 / 加入
       </Link>
     )
   }
