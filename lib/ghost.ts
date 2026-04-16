@@ -154,6 +154,67 @@ export async function getPostsByTag(
 }
 
 /**
+ * 取得相關文章（依 primary_tag，排除當前 slug）
+ * 若相同 tag 數量不足，退回最新文章補齊
+ */
+export async function getRelatedPosts(
+  tag: string | null,
+  excludeSlug: string,
+  limit = 3,
+): Promise<GhostPost[]> {
+  const fields =
+    'id,uuid,title,slug,excerpt,feature_image,feature_image_alt,published_at,updated_at,reading_time,meta_title,meta_description,og_image'
+
+  try {
+    const collected: GhostPost[] = []
+    const seen = new Set<string>([excludeSlug])
+
+    if (tag) {
+      const url = ghostApiUrl('posts', {
+        limit: String(limit + 1),
+        include: 'tags,authors',
+        filter: `tag:${tag}`,
+        fields,
+      })
+      const res = await fetch(url, { next: { revalidate: 3600 } })
+      if (res.ok) {
+        const data = await res.json()
+        for (const p of (data.posts ?? []) as GhostPost[]) {
+          if (!seen.has(p.slug)) {
+            collected.push(p)
+            seen.add(p.slug)
+            if (collected.length >= limit) break
+          }
+        }
+      }
+    }
+
+    if (collected.length < limit) {
+      const url = ghostApiUrl('posts', {
+        limit: String(limit + collected.length + 1),
+        include: 'tags,authors',
+        fields,
+      })
+      const res = await fetch(url, { next: { revalidate: 3600 } })
+      if (res.ok) {
+        const data = await res.json()
+        for (const p of (data.posts ?? []) as GhostPost[]) {
+          if (!seen.has(p.slug)) {
+            collected.push(p)
+            seen.add(p.slug)
+            if (collected.length >= limit) break
+          }
+        }
+      }
+    }
+
+    return collected.slice(0, limit)
+  } catch {
+    return []
+  }
+}
+
+/**
  * 取得所有文章 slug（供 generateStaticParams 和 sitemap 使用）
  */
 export async function getAllPostSlugs(): Promise<string[]> {

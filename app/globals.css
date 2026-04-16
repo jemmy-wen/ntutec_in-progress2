@@ -154,10 +154,18 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight text-charcoal;
   }
-  h1 { @apply text-4xl md:text-5xl lg:text-6xl leading-tight; }
-  h2 { @apply text-3xl md:text-4xl leading-tight; }
-  h3 { @apply text-2xl md:text-3xl leading-snug; }
-  h4 { @apply text-xl md:text-2xl leading-snug; }
+  /* Scoped global heading sizes — exclude blog articles which set their own scale for long-form reading */
+  h1:not(.blog-article h1):not(.prose h1) { @apply text-4xl md:text-5xl lg:text-6xl leading-tight; }
+  h2:not(.blog-article h2):not(.prose h2) { @apply text-3xl md:text-4xl leading-tight; }
+  h3:not(.blog-article h3):not(.prose h3) { @apply text-2xl md:text-3xl leading-snug; }
+  h4:not(.blog-article h4):not(.prose h4) { @apply text-xl md:text-2xl leading-snug; }
+}
+
+/* Chinese-optimized prose paragraph rhythm — applied inside .prose containers */
+.prose :where(p):not(:where([class~="not-prose"] *)) {
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5em;
 }
 
 /* ── NTU TEC Public Site Utilities ── */

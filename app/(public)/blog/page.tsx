@@ -8,7 +8,7 @@ import { NotePencil } from '@phosphor-icons/react/dist/ssr'
 export const revalidate = 3600 // ISR: revalidate every hour
 
 export const metadata: Metadata = {
-  title: '部落格 | NTUTEC 台大創創中心',
+  title: '部落格',
   description: '台大創創中心最新消息、新創故事與產業觀點。探索創業生態系的最前線報導。',
   alternates: {
     types: {
@@ -68,7 +68,6 @@ export default async function BlogListPage() {
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        unoptimized
                       />
                     </div>
                   ) : (
