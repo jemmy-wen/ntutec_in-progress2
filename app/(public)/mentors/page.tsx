@@ -6,10 +6,11 @@ import BreadcrumbSchema from "@/components/public/BreadcrumbSchema";
 import MentorFilterTabs from "@/components/public/MentorFilterTabs";
 import { JsonLd } from "@/components/JsonLd";
 import { ogImageUrl } from "@/lib/og";
-import { createClient } from "@/lib/supabase/server";
 import { Target, RocketLaunch, Buildings, Flask } from "@phosphor-icons/react/dist/ssr";
+import { MENTORS_STATIC, type StaticMentor } from "@/lib/data/mentors-static";
 
-export const revalidate = 3600; // ISR: revalidate every hour
+// 靜態頁面：無 DB 查詢，資料直接維護於 lib/data/mentors-static.ts
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "業師陣容 | NTUTEC",
@@ -42,34 +43,6 @@ export const metadata: Metadata = {
     ],
   },
 };
-
-interface Mentor {
-  id: string;
-  name: string;
-  title: string | null;
-  highlight: string | null;
-  photo_url: string | null;
-  social_url: string | null;
-  is_new_2026: boolean;
-  category: string;
-  slug: string | null;
-}
-
-/** Map DB row to the Mentor interface used by the page */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function mapDbRowToMentor(row: any): Mentor {
-  return {
-    id: row.id,
-    name: row.name,
-    title: row.title,
-    highlight: row.highlight || row.title,
-    photo_url: row.photo_url,
-    social_url: row.social_url || null,
-    is_new_2026: row.is_new_2026 || false,
-    category: row.category || "expert",
-    slug: row.slug || row.name.replace(/\s+/g, "-").toLowerCase(),
-  };
-}
 
 interface Category {
   key: string;
@@ -117,7 +90,7 @@ const CATEGORY_META: Record<string, Category> = {
 
 const CATEGORY_ORDER = ["vc", "founder", "exec", "expert"];
 
-function MentorCard({ mentor }: { mentor: Mentor }) {
+function MentorCard({ mentor }: { mentor: StaticMentor }) {
   const initial = mentor.name.charAt(0);
   const displayTitle = mentor.highlight || mentor.title;
 
@@ -186,34 +159,22 @@ function MentorCard({ mentor }: { mentor: Mentor }) {
             {displayTitle}
           </p>
         )}
-
       </div>
     </div>
   );
 }
 
-export default async function MentorsPage() {
-  const supabase = await createClient();
-
-  // Fetch all active mentors — using only confirmed-safe columns
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: mentorRows, error: mentorError } = await (supabase.from("mentors") as any)
-    .select("id, name, title, bio, photo_url, category, highlight, social_url, is_new_2026, is_active, slug")
-    .eq("is_active", true)
-    .order("name", { ascending: true });
-
-  if (mentorError) console.error("[mentors] query error:", mentorError);
-
-  const allMentors: Mentor[] = (mentorRows || []).map(mapDbRowToMentor);
+export default function MentorsPage() {
+  const allMentors = MENTORS_STATIC;
 
   // Group mentors by category
-  const grouped: Record<string, Mentor[]> = {};
+  const grouped: Record<string, StaticMentor[]> = {};
   for (const m of allMentors) {
     if (!grouped[m.category]) grouped[m.category] = [];
     grouped[m.category].push(m);
   }
 
-  // Build categories in fixed order, only include non-empty ones
+  // Build categories in fixed order
   const categories = CATEGORY_ORDER
     .map((key) => ({
       ...CATEGORY_META[key],
@@ -221,7 +182,6 @@ export default async function MentorsPage() {
     }))
     .filter((cat) => cat.mentors.length > 0);
 
-  // Stats
   const totalActive = allMentors.length;
 
   // Build ItemList JSON-LD
@@ -274,7 +234,6 @@ export default async function MentorsPage() {
               找投資人談融資、找創業家學實戰、找企業高管開通路、找領域專家補深度。
               每位業師皆具備豐富產業實戰經驗，平均逾 20 年深耕，一對一陪跑全程。
             </p>
-
           </div>
 
           <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
@@ -364,22 +323,13 @@ export default async function MentorsPage() {
 
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {cat.mentors.map((mentor) => (
-                  <MentorCard key={mentor.id} mentor={mentor} />
+                  <MentorCard key={mentor.slug} mentor={mentor} />
                 ))}
               </div>
             </div>
           </section>
         ))}
       </MentorFilterTabs>
-
-      {/* Empty state */}
-      {categories.length === 0 && (
-        <section className="section-spacing">
-          <div className="container">
-            <p className="text-center text-slate-muted">業師資料載入中，請稍後再試。</p>
-          </div>
-        </section>
-      )}
 
       {/* Mentor CTA */}
       <section className="section-spacing bg-charcoal text-white">
