@@ -18,8 +18,11 @@ const notoSansTC = Noto_Sans_TC({
 });
 
 export const metadata: Metadata = {
-  title: 'NTUTEC Platform',
-  description: '台大創創中心統一平台 — 台大天使會、業師健診、新創服務',
+  title: {
+    default: '台大創創中心 NTUTEC | 台大創業生態系',
+    template: '%s | 台大創創中心 NTUTEC',
+  },
+  description: '13 年累計輔導 600+ 新創團隊。台大加速器、台大車庫、企業垂直加速器、台大天使會——連結台大、連結產業、連結資本。',
   robots: {
     index: true,
     follow: true,
