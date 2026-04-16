@@ -81,44 +81,51 @@ const nextConfig: NextConfig = {
       { source: '/team', destination: '/teams', permanent: true },
 
       // --- Legacy WP Chinese slugs (Google SERP sitelinks point here; all 404 on new site) ---
+      //
+      // NOTE: Next.js redirects() `source` does NOT decode incoming request paths
+      // before matching, so a raw Chinese `source` never matches the request
+      // (which arrives percent-encoded). Tested 2026-04-16 on production — raw
+      // Chinese fails, percent-encoded succeeds. Keep the decoded form only in
+      // the trailing `//` comment for human readability.
+
       // SERP-visible (highest priority — sitelinks break without these)
-      { source: '/執行團隊', destination: '/teams', permanent: true },
-      { source: '/業師陣容', destination: '/mentors', permanent: true },
-      { source: '/關於台大創創中心', destination: '/about', permanent: true },
-      { source: '/台大創創新創輔導計畫總覽', destination: '/programs', permanent: true },
+      { source: '/%E5%9F%B7%E8%A1%8C%E5%9C%98%E9%9A%8A', destination: '/teams', permanent: true },                                                                  // /執行團隊
+      { source: '/%E6%A5%AD%E5%B8%AB%E9%99%A3%E5%AE%B9', destination: '/mentors', permanent: true },                                                                 // /業師陣容
+      { source: '/%E9%97%9C%E6%96%BC%E5%8F%B0%E5%A4%A7%E5%89%B5%E5%89%B5%E4%B8%AD%E5%BF%83', destination: '/about', permanent: true },                              // /關於台大創創中心
+      { source: '/%E5%8F%B0%E5%A4%A7%E5%89%B5%E5%89%B5%E6%96%B0%E5%89%B5%E8%BC%94%E5%B0%8E%E8%A8%88%E7%95%AB%E7%B8%BD%E8%A6%BD', destination: '/programs', permanent: true }, // /台大創創新創輔導計畫總覽
       { source: '/portfolio', destination: '/alumni', permanent: true },
 
       // Common Chinese 1-word slugs (probed 404 on 2026-04-16)
-      { source: '/團隊', destination: '/teams', permanent: true },
-      { source: '/業師', destination: '/mentors', permanent: true },
-      { source: '/關於', destination: '/about', permanent: true },
-      { source: '/關於我們', destination: '/about', permanent: true },
-      { source: '/聯絡', destination: '/contact', permanent: true },
-      { source: '/聯絡我們', destination: '/contact', permanent: true },
-      { source: '/天使', destination: '/angel', permanent: true },
-      { source: '/天使會', destination: '/angel', permanent: true },
+      { source: '/%E5%9C%98%E9%9A%8A', destination: '/teams', permanent: true },                         // /團隊
+      { source: '/%E6%A5%AD%E5%B8%AB', destination: '/mentors', permanent: true },                       // /業師
+      { source: '/%E9%97%9C%E6%96%BC', destination: '/about', permanent: true },                         // /關於
+      { source: '/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91', destination: '/about', permanent: true },       // /關於我們
+      { source: '/%E8%81%AF%E7%B5%A1', destination: '/contact', permanent: true },                       // /聯絡
+      { source: '/%E8%81%AF%E7%B5%A1%E6%88%91%E5%80%91', destination: '/contact', permanent: true },     // /聯絡我們
+      { source: '/%E5%A4%A9%E4%BD%BF', destination: '/angel', permanent: true },                         // /天使
+      { source: '/%E5%A4%A9%E4%BD%BF%E6%9C%83', destination: '/angel', permanent: true },                // /天使會
 
       // Programs / incubation
-      { source: '/輔導計畫', destination: '/programs', permanent: true },
-      { source: '/新創輔導', destination: '/programs', permanent: true },
-      { source: '/新創輔導計畫', destination: '/programs', permanent: true },
+      { source: '/%E8%BC%94%E5%B0%8E%E8%A8%88%E7%95%AB', destination: '/programs', permanent: true },                                     // /輔導計畫
+      { source: '/%E6%96%B0%E5%89%B5%E8%BC%94%E5%B0%8E', destination: '/programs', permanent: true },                                     // /新創輔導
+      { source: '/%E6%96%B0%E5%89%B5%E8%BC%94%E5%B0%8E%E8%A8%88%E7%95%AB', destination: '/programs', permanent: true },                  // /新創輔導計畫
 
       // Corporate / partners
-      { source: '/合作夥伴', destination: '/corporate-partners', permanent: true },
-      { source: '/企業合作', destination: '/corporate', permanent: true },
-      { source: '/企業垂直加速器', destination: '/corporate', permanent: true },
+      { source: '/%E5%90%88%E4%BD%9C%E5%A4%A5%E4%BC%B4', destination: '/corporate-partners', permanent: true },                          // /合作夥伴
+      { source: '/%E4%BC%81%E6%A5%AD%E5%90%88%E4%BD%9C', destination: '/corporate', permanent: true },                                    // /企業合作
+      { source: '/%E4%BC%81%E6%A5%AD%E5%9E%82%E7%9B%B4%E5%8A%A0%E9%80%9F%E5%99%A8', destination: '/corporate', permanent: true },        // /企業垂直加速器
 
       // Alumni-family (historical teams/startups/portfolio)
-      { source: '/投資組合', destination: '/alumni', permanent: true },
-      { source: '/畢業團隊', destination: '/alumni', permanent: true },
-      { source: '/歷年團隊', destination: '/alumni', permanent: true },
-      { source: '/新創展示', destination: '/startups', permanent: true },
+      { source: '/%E6%8A%95%E8%B3%87%E7%B5%84%E5%90%88', destination: '/alumni', permanent: true },                                       // /投資組合
+      { source: '/%E7%95%A2%E6%A5%AD%E5%9C%98%E9%9A%8A', destination: '/alumni', permanent: true },                                       // /畢業團隊
+      { source: '/%E6%AD%B7%E5%B9%B4%E5%9C%98%E9%9A%8A', destination: '/alumni', permanent: true },                                       // /歷年團隊
+      { source: '/%E6%96%B0%E5%89%B5%E5%B1%95%E7%A4%BA', destination: '/startups', permanent: true },                                     // /新創展示
 
       // News / events / media
-      { source: '/最新動態', destination: '/news', permanent: true },
-      { source: '/媒體報導', destination: '/blog', permanent: true },
-      { source: '/活動紀錄', destination: '/events', permanent: true },
-      { source: '/活動花絮', destination: '/events', permanent: true },
+      { source: '/%E6%9C%80%E6%96%B0%E5%8B%95%E6%85%8B', destination: '/news', permanent: true },                                         // /最新動態
+      { source: '/%E5%AA%92%E9%AB%94%E5%A0%B1%E5%B0%8E', destination: '/blog', permanent: true },                                         // /媒體報導
+      { source: '/%E6%B4%BB%E5%8B%95%E7%B4%80%E9%8C%84', destination: '/events', permanent: true },                                       // /活動紀錄
+      { source: '/%E6%B4%BB%E5%8B%95%E8%8A%B1%E7%B5%AE', destination: '/events', permanent: true },                                       // /活動花絮
 
       // English variants
       { source: '/mentor', destination: '/mentors', permanent: true },
