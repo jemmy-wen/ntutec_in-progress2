@@ -5,7 +5,7 @@ import type { NextConfig } from 'next'
 // TODO: migrate to nonce-based CSP via middleware injection in next sprint.
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://luma.com https://www.googletagmanager.com https://www.google-analytics.com",
+  "script-src 'self' 'unsafe-inline' https://luma.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.tailwindcss.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: https: https://ntutec.ghost.io https://*.ghost.io https://www.google-analytics.com",
   "font-src 'self' https://fonts.gstatic.com",
