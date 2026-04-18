@@ -35,6 +35,9 @@ npm run dev
 
 ## 設計改版分工（2026-04-18 導入外部合作）
 
+> **Holden 專責美術設計**——元件視覺、版面配置、動畫、字型 rhythm、互動 micro-animation。
+> **Holden 不做**：文案生成、內容策略、數字核對、DB 變更、SEO 策略。設計稿用 `{{placeholder}}` 或 lorem ipsum 填充，Howard 後期接 [`docs/reference/`](docs/reference/) 真實內容。
+
 ### 🟢 設計師（時行創意 / Holden）可自由改
 
 - **`app/globals.css` `@theme inline`**：色票 / radius / 字型 variable
@@ -82,7 +85,7 @@ npm run dev
 - [ ] Noto Sans TC / Geist `next/font` preload 未動
 - [ ] 電話號碼未出現在新頁面（硬規則：官網/JSON-LD/schema 一律不放）
 - [ ] 品牌名「台大車庫 / 台大加速器 / 企業垂直加速器」正確，不用「車庫孵化器」「加速器」裸稱
-- [ ] 對外數字以 `docs/content-sot/brand-highlights.md` 為準（600+ / 35 / 27 等）
+- [ ] 對外數字以 [`docs/reference/brand-highlights.md`](docs/reference/brand-highlights.md) 為準（600+ / 35 / 27 等）
 
 ## 常見錯誤與解法
 
@@ -100,7 +103,10 @@ npm run dev
 ```
 docs/
 ├── DESIGN_HANDOFF.md           ← 設計交接入口（必讀）
-├── content-sot/                ← 內容 SOT
+├── components-inventory.md     ← ⭐ Tier 1：現有 22 元件 + 8 新增 ROI
+├── user-journeys.md            ← ⭐ Tier 1：5 類受眾路徑 + CTA 總清單
+├── assets-exposure.md          ← ⭐ Tier 1：可曝光素材（Logo / 照片 / 數字 / 獎項）
+├── reference/                  ← Tier 3：內容填充才需查
 │   ├── README.md
 │   ├── brand-highlights.md     ← 7 項權威數字 + 6 校友案例
 │   ├── alumni.md               ← 15 位代表校友（Vincent 挑選）

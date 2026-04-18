@@ -26,7 +26,7 @@
 - Vercel preview: <!-- 自動生成後貼這裡 -->
 - 截圖：
 
-## Lighthouse 成績（mobile）
+## Lighthouse 成績（mobile，若視覺改動）
 
 | 頁面 | Before | After |
 |------|--------|-------|
@@ -34,7 +34,7 @@
 | `/apply` | | |
 | `/mentors` | | |
 
-## 禁區 Checklist（9 條，必過）
+## 🔴 Technical Forbidden Zone Checklist（7 條，每 PR 必過）
 
 - [ ] Lighthouse mobile ≥ 70（home / apply / mentors 三頁）
 - [ ] FAQPage JSON-LD 保留在首頁
@@ -42,9 +42,13 @@
 - [ ] 35 條 `next.config.ts` redirects 未動
 - [ ] `middleware.ts` 公開路由清單未動（若新增頁面請在本 PR body 標註）
 - [ ] Noto Sans TC / Geist `next/font` preload 未動
-- [ ] 電話號碼未出現在新頁面（硬規則：官網/JSON-LD/schema 一律不放）
-- [ ] 品牌名「台大車庫 / 台大加速器 / 企業垂直加速器」正確
-- [ ] 對外數字以 `docs/content-sot/brand-highlights.md` 為準
+- [ ] 電話號碼未出現在新頁面（硬規則：官網 / JSON-LD / schema 一律不放）
+
+## 📝 Content Accuracy（若 PR 涉及真實內容；純 placeholder 不用勾）
+
+- [ ] 品牌名正確：「台大車庫 / 台大加速器 / 企業垂直加速器」（不用「車庫孵化器」「加速器」裸稱）
+- [ ] 對外數字查 [`docs/reference/brand-highlights.md`](../docs/reference/brand-highlights.md)（600+ / 35 / 27 等）
+- [ ] 校友敘事查 [`docs/reference/alumni.md`](../docs/reference/alumni.md)（避免「我們輔導的公司上市」等措辭）
 
 ## 其他 reviewer 需要知道的
 
