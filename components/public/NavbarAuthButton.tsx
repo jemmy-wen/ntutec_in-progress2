@@ -37,6 +37,7 @@ const MobileInner = dynamic(
 
 interface NavbarAuthButtonProps {
   onNavigate?: () => void
+  transparent?: boolean
 }
 
 export default function NavbarAuthButton(props: NavbarAuthButtonProps) {

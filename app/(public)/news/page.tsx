@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/public/PageHero";
-import { getPostsByTag } from "@/lib/ghost";
-
-export const revalidate = 3600; // ISR: revalidate every hour
 
 export const metadata: Metadata = {
   title: "最新消息 | NTUTEC",
@@ -12,22 +9,47 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function NewsPage() {
-  let posts: Awaited<ReturnType<typeof getPostsByTag>>["posts"] = [];
-  let pagination: Awaited<ReturnType<typeof getPostsByTag>>["pagination"] = {
-    page: 1,
-    limit: 12,
-    pages: 1,
-    total: 0,
-  };
+const MOCK_NEWS = [
+  {
+    id: '1', slug: '2026-accelerator-open',
+    title: '【錄取公告】2026 台大加速器 20 組新創正式入選',
+    excerpt: '2026 梯次台大加速器錄取結果公告，共 20 組新創入選，3 月正式開跑十個月深度輔導。',
+    published_at: '2026-03-01T08:00:00Z',
+    primary_tag: { name: '計畫公告' },
+  },
+  {
+    id: '2', slug: 'demo-day-2025-recap',
+    title: '【活動報導】2025 Demo Day 圓滿落幕，74 位投資人到場',
+    excerpt: '年度 Demo Day 於 12 月舉行，12 組新創路演，達成 51 件媒合意向，創歷年新高。',
+    published_at: '2025-12-20T08:00:00Z',
+    primary_tag: { name: '活動報導' },
+  },
+  {
+    id: '3', slug: '2027-garage-apply',
+    title: '【申請開放】2027 台大車庫申請即將開放，12 月起受理',
+    excerpt: '2027 梯次台大車庫將於 12 月至 1 月開放申請，歡迎具台大身分的早期創業團隊報名。',
+    published_at: '2025-11-15T08:00:00Z',
+    primary_tag: { name: '申請公告' },
+  },
+  {
+    id: '4', slug: 'angel-monthly-nov2025',
+    title: '【天使例會】11 月天使例會報名開放，3 組新創上台路演',
+    excerpt: '11 月天使例會將於台大水源校區卓越研究大樓舉行，本期共 3 組優質新創上台，歡迎會員出席。',
+    published_at: '2025-10-28T08:00:00Z',
+    primary_tag: { name: '天使例會' },
+  },
+  {
+    id: '5', slug: 'media-coverage-oct2025',
+    title: '【媒體報導】台大創創中心獲《數位時代》專題報導，深耕 13 年生態系成果獲肯定',
+    excerpt: '《數位時代》特別企劃專訪台大創創中心執行長林文欽，深度剖析中心如何在 13 年間輔導 600+ 新創、建立三方生態系。',
+    published_at: '2025-10-10T08:00:00Z',
+    primary_tag: { name: '媒體報導' },
+  },
+]
 
-  try {
-    const result = await getPostsByTag("news", 1, 12);
-    posts = result.posts;
-    pagination = result.pagination;
-  } catch {
-    // Ghost may be unreachable — show empty state
-  }
+export default async function NewsPage() {
+  const posts = MOCK_NEWS;
+  const pagination = { page: 1, pages: 1, total: posts.length };
 
   return (
     <>

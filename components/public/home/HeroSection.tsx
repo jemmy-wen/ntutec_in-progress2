@@ -1,93 +1,60 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
-
-// Decorative motion-based effects — client-only with ssr: false keeps
-// motion/react out of the initial bundle (~124 KB saved). Background photo
-// + text render via SSR; decorative overlays attach after hydration.
-//
-// NOTE: MagneticButton was removed from CTAs intentionally — it can't be
-// ssr: false (CTAs must be in first paint for LCP + a11y) and keeping it
-// would drag framer-motion back into the initial bundle. Plain Link with
-// btn-pill-primary styling now handles the CTAs; the magnetic hover micro-
-// interaction was purely decorative.
-const BackgroundBeams = dynamic(
-  () => import('@/components/ui/background-beams').then((m) => m.BackgroundBeams),
-  { ssr: false }
-)
-const CursorSpotlight = dynamic(
-  () => import('@/components/ui/cursor-spotlight').then((m) => m.CursorSpotlight),
-  { ssr: false }
-)
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[80vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center overflow-hidden">
-      {/* Background: NTU campus photo */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/photos/ntu-about-cover.jpg"
-          alt="台大校園 — 椰林大道與圖書館"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
-      </div>
-
-      {/* Dark gradient overlay */}
-      {/* Lighter overlay — let the campus photo show through clearly */}
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-[#0A192F]/70 via-[#0A192F]/50 to-[#0A192F]/30" />
-
-      {/* Subtle background beams */}
-      <BackgroundBeams className="z-[3] opacity-20" />
-      <CursorSpotlight />
-
-      <div className="container relative z-[5] py-24">
-        <div className="max-w-2xl">
-
-          {/* Label */}
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-[#14B8A6] animate-[fadeUp_0.6s_ease-out_both] drop-shadow-md">
-            NTU TAIDAH ENTREPRENEURSHIP CENTER
-          </p>
-
-          {/* Headline */}
-          <h1 className="animate-[fadeUp_0.6s_ease-out_0.1s_both]">
-            <span className="block text-5xl font-extrabold tracking-tight text-white drop-shadow-lg sm:text-6xl lg:text-7xl" style={{ letterSpacing: '-0.03em' }}>
-              台大創創中心
-            </span>
-            <span className="mt-4 block text-xl font-medium tracking-wide text-white/90 drop-shadow-md sm:text-2xl lg:text-3xl">
-              Bridging NTU Innovation to Global Impact
-            </span>
+    <section className="bg-[#00aa95]">
+      {/* Text block — two columns, 20px side margin, space-between */}
+      <div className="flex items-end justify-between px-5 pt-10 pb-8 gap-8">
+        {/* Left: main title */}
+        <div className="shrink-0">
+          <h1 className="text-5xl font-bold text-white leading-tight md:text-6xl lg:text-[72px]" style={{ letterSpacing: '-0.03em' }}>
+            台大創創中心
           </h1>
+          <p className="mt-3 text-lg font-medium text-white/80 md:text-xl lg:text-2xl">
+            Bridging NTU Innovation to Global Impact
+          </p>
+        </div>
 
-          {/* Sub-subtitle */}
-          <p className="mt-6 text-lg leading-relaxed text-white/80 drop-shadow-md animate-[fadeUp_0.6s_ease-out_0.2s_both] lg:text-xl">
+        {/* Right: label + description + CTAs */}
+        <div className="max-w-xs lg:max-w-sm shrink-0 text-right">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60 leading-relaxed">
+            NTU TAIDAH<br />ENTREPRENEURSHIP CENTER
+          </p>
+          <p className="mt-3 text-base text-white/80 leading-relaxed lg:text-lg">
             從台大出發。連結產業。走向市場。
           </p>
-
-          {/* CTAs */}
-          <div className="mt-10 flex flex-wrap gap-4 animate-[fadeUp_0.6s_ease-out_0.3s_both]">
+          <div className="mt-4 flex flex-wrap justify-end gap-3">
             <Link
               href="/apply"
-              className="btn-pill-primary px-8 py-4 text-base transition-transform hover:scale-[1.02]"
+              className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#00aa95] transition-all hover:bg-white/90 hover:scale-[1.02]"
             >
               申請輔導計畫
             </Link>
             <Link
               href="/about"
-              className="btn-pill-outline px-8 py-4 text-base border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white/50 transition-transform hover:scale-[1.02]"
+              className="rounded-full border-2 border-white/40 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/10 hover:border-white/70 hover:scale-[1.02]"
             >
               走進 NTUTEC
             </Link>
           </div>
-
         </div>
       </div>
 
-      {/* Bottom white gradient fade */}
-      <div className="absolute inset-x-0 bottom-0 z-[4] h-32 bg-gradient-to-t from-white to-transparent" />
+      {/* Photo block — 20px margin all sides */}
+      <div className="mx-5 mb-5">
+        <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: '1404/455' }}>
+          <Image
+            src="/images/photos/ntu-about-cover.jpg"
+            alt="台大校園 — 椰林大道與圖書館"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="calc(100vw - 40px)"
+          />
+        </div>
+      </div>
     </section>
   )
 }

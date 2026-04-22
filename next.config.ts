@@ -3,9 +3,11 @@ import type { NextConfig } from 'next'
 // Content Security Policy — hardened 2026-04-15 for 計中 security review
 // Known gap: `script-src 'unsafe-inline'` required by Next.js App Router hydration.
 // TODO: migrate to nonce-based CSP via middleware injection in next sprint.
+const isDev = process.env.NODE_ENV === 'development'
+
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://luma.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.tailwindcss.com",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://luma.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.tailwindcss.com`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: https: https://ntutec.ghost.io https://*.ghost.io https://www.google-analytics.com",
   "font-src 'self' https://fonts.gstatic.com",

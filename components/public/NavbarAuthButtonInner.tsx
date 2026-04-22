@@ -9,9 +9,10 @@ import { LogOut, User as UserIcon, LayoutDashboard, Star } from 'lucide-react'
 
 interface NavbarAuthButtonProps {
   onNavigate?: () => void
+  transparent?: boolean
 }
 
-export default function NavbarAuthButtonInner({ onNavigate }: NavbarAuthButtonProps) {
+export default function NavbarAuthButtonInner({ onNavigate, transparent }: NavbarAuthButtonProps) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [roles, setRoles] = useState<string[]>([])
@@ -83,7 +84,11 @@ export default function NavbarAuthButtonInner({ onNavigate }: NavbarAuthButtonPr
       <Link
         href="/login"
         onClick={onNavigate}
-        className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-teal-600 text-teal-600 text-sm font-medium hover:bg-teal-600 hover:text-white transition-colors"
+        className={`hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${
+          transparent
+            ? "border-white/50 text-white hover:border-white hover:bg-white/10"
+            : "border-[#00aa95] text-[#00aa95] hover:bg-[#00aa95] hover:text-white"
+        }`}
       >
         登入 / 加入
       </Link>

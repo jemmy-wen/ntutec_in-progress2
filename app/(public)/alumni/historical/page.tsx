@@ -13,7 +13,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
 import PageHero from "@/components/public/PageHero";
 import { DOMAIN_TAG_STYLE } from "@/lib/classify";
 
@@ -23,7 +22,23 @@ export const metadata: Metadata = {
     "台大創創中心 2016–2025 累積輔導的歷年新創團隊，涵蓋 AI、生醫、硬科技與創新商模。",
 };
 
-export const revalidate = 3600;
+const MOCK_HISTORICAL: HistoricalStartup[] = [
+  { id:'1', year:'2024', year_sortable:2024, name:'思輔科技 SAVFE', logo_url:null, logo_local_path:null, description:'醫療機器人×微創手術導引，2025 國家新創獎得主', external_link:'https://savfe.com', tags:['生醫'] },
+  { id:'2', year:'2021', year_sortable:2021, name:'ECOCO 宜可可', logo_url:null, logo_local_path:null, description:'智慧回收×循環經濟，Pre-A 億元融資（台塑生醫領投），AI 回收再生率 95%', external_link:'https://www.ecoco.com.tw', tags:['永續'] },
+  { id:'3', year:'2021', year_sortable:2021, name:'配客嘉 PackAge+', logo_url:null, logo_local_path:null, description:'電商循環包裝生態系，Pre-A NT$5,200 萬，合作 200+ 企業', external_link:'https://www.package-plus.com', tags:['永續'] },
+  { id:'4', year:'2021', year_sortable:2021, name:'Datayoo 悠由數據', logo_url:null, logo_local_path:null, description:'農業×AI×氣候韌性，服務 6,000+ 公頃農地，與 Qualcomm 合作', external_link:null, tags:['AI軟體'] },
+  { id:'5', year:'2021', year_sortable:2021, name:'歐姆佳科技 OhmyAnt', logo_url:null, logo_local_path:null, description:'高速 RF 射頻測量技術，A 輪 NT$6,000 萬，2025 新北市新創之星首獎', external_link:null, tags:['硬科技'] },
+  { id:'6', year:'2020', year_sortable:2020, name:'AmazingTalker', logo_url:null, logo_local_path:null, description:'線上語言家教平台，A 輪 NT$4.3 億，年營收 NT$10 億+，用戶 190+ 國', external_link:'https://www.amazingtalker.com', tags:['教育'] },
+  { id:'7', year:'2020', year_sortable:2020, name:'知識衛星 SAT.', logo_url:null, logo_local_path:null, description:'精品大師線上課程，2024 年營業額 NT$7 億，2025 高峰會 1,500 人', external_link:null, tags:['教育'] },
+  { id:'8', year:'2020', year_sortable:2020, name:'KryptoGO 重量科技', logo_url:null, logo_local_path:null, description:'虛擬資產監理科技（RegTech），客戶含 40+ 銀行/政府/虛擬資產業者', external_link:'https://www.kryptogo.com', tags:['Web3'] },
+  { id:'9', year:'2020', year_sortable:2020, name:'Turing Space', logo_url:null, logo_local_path:null, description:'數位身份×區塊鏈信任科技，策略輪 NT$1 億+，WHO 委託開發 160 國數位國際青年證', external_link:null, tags:['Web3'] },
+  { id:'10', year:'2020', year_sortable:2020, name:'Home心', logo_url:null, logo_local_path:null, description:'醫院看護×居家照護媒合，3,000+ 照服員、10,000+ 媒合案件', external_link:null, tags:['生醫'] },
+  { id:'11', year:'2020', year_sortable:2020, name:'Hotcake 夯客', logo_url:null, logo_local_path:null, description:'美業預約與會員系統，Pre-A US$1M+，商家續訂率 98%', external_link:null, tags:['創新商模'] },
+  { id:'12', year:'2019', year_sortable:2019, name:'MoBagel 行動貝果', logo_url:null, logo_local_path:null, description:'AutoML/企業 AI 數據平台，累計 US$21M+，3,000+ 品牌含 Fortune 500', external_link:'https://mobagel.com', tags:['AI軟體'] },
+  { id:'13', year:'2019', year_sortable:2019, name:'漸強實驗室 Crescendo Lab', logo_url:null, logo_local_path:null, description:'AI 對話雲平台、行銷科技，服務 700+ 亞洲品牌（H&M、IKEA、Rakuten）', external_link:null, tags:['AI軟體'] },
+  { id:'14', year:'2019', year_sortable:2019, name:'方格子 vocus', logo_url:null, logo_local_path:null, description:'華文內容訂閱平台，月均 200 萬不重複造訪、會員 72 萬', external_link:'https://vocus.cc', tags:['創新商模'] },
+  { id:'15', year:'2019', year_sortable:2019, name:'3drens 三維人', logo_url:null, logo_local_path:null, description:'車聯網×IoT×大數據，近 NT$1 億融資', external_link:null, tags:['硬科技'] },
+]
 
 interface HistoricalStartup {
   id: string;
@@ -71,20 +86,7 @@ function fallbackBg(name: string): string {
 }
 
 export default async function HistoricalAlumniPage() {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("historical_startups")
-    .select(
-      "id, year, year_sortable, name, logo_url, logo_local_path, description, external_link, tags"
-    )
-    .order("year_sortable", { ascending: false })
-    .order("name", { ascending: true });
-
-  if (error) {
-    console.error("[historical] query failed", error);
-  }
-
-  const rows = (data ?? []) as HistoricalStartup[];
+  const rows = MOCK_HISTORICAL;
 
   // Group by year, preserve DESC order from query
   const buckets = new Map<string, HistoricalStartup[]>();

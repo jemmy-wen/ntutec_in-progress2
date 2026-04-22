@@ -1,11 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { getPosts } from '@/lib/ghost'
 import PageHero from '@/components/public/PageHero'
 import { NotePencil } from '@phosphor-icons/react/dist/ssr'
-
-export const revalidate = 3600 // ISR: revalidate every hour
 
 export const metadata: Metadata = {
   title: '部落格',
@@ -17,22 +14,78 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function BlogListPage() {
-  let posts: Awaited<ReturnType<typeof getPosts>>['posts'] = []
-  let pagination: Awaited<ReturnType<typeof getPosts>>['pagination'] = {
-    page: 1,
-    limit: 12,
-    pages: 1,
-    total: 0,
-  }
+const MOCK_POSTS = [
+  {
+    id: '1', slug: 'amazingtalker-a-round',
+    title: 'AmazingTalker 完成 A 輪 NT$4.3 億融資，用戶遍及 190+ 國家',
+    excerpt: '台大創創中心 2020 年輔導校友 AmazingTalker，成功完成 A 輪 NT$4.3 億（US$15.5M）融資，年營收突破 NT$10 億，成為台灣教育科技代表性案例。',
+    feature_image: null,
+    feature_image_alt: null,
+    published_at: '2026-03-15T08:00:00Z',
+    reading_time: 4,
+    primary_tag: { name: '新創故事' },
+    primary_author: { name: 'NTUTEC 編輯部' },
+  },
+  {
+    id: '2', slug: 'demo-day-2025-recap',
+    title: '2025 Demo Day 圓滿落幕：74 位投資人到場、51 件媒合意向',
+    excerpt: '台大創創中心年度最重磅活動 Demo Day 於 12 月盛大舉行，12 組新創登台路演，吸引 74 位投資人到場，現場達成 51 件媒合意向，創歷年新高。',
+    feature_image: null,
+    feature_image_alt: null,
+    published_at: '2025-12-20T08:00:00Z',
+    reading_time: 5,
+    primary_tag: { name: '活動報導' },
+    primary_author: { name: 'NTUTEC 編輯部' },
+  },
+  {
+    id: '3', slug: 'ecoco-pre-a',
+    title: 'ECOCO 宜可可完成 Pre-A 億元融資，台塑生醫領投',
+    excerpt: '2021 年輔導校友 ECOCO 宜可可，專注智慧回收與循環經濟，AI 回收再生率達 95%，日前宣布完成億元 Pre-A 融資，由台塑生醫領投，合作品牌超過 70 家。',
+    feature_image: null,
+    feature_image_alt: null,
+    published_at: '2025-11-10T08:00:00Z',
+    reading_time: 3,
+    primary_tag: { name: '新創故事' },
+    primary_author: { name: 'NTUTEC 編輯部' },
+  },
+  {
+    id: '4', slug: '2026-accelerator-open',
+    title: '2026 台大加速器開跑：20 組新創確認入選，展開十個月深度輔導',
+    excerpt: '台大加速器 2026 梯次正式開跑，共錄取 20 組來自 AI、生醫、硬科技與創新商模的新創團隊，即日起展開為期十個月的業師陪跑輔導旅程。',
+    feature_image: null,
+    feature_image_alt: null,
+    published_at: '2026-03-01T08:00:00Z',
+    reading_time: 3,
+    primary_tag: { name: '計畫公告' },
+    primary_author: { name: 'NTUTEC 編輯部' },
+  },
+  {
+    id: '5', slug: 'turing-space-who-digital-id',
+    title: 'Turing Space 獲 WHO 委託，開發 160 國數位國際青年證',
+    excerpt: '台大創創中心校友 Turing Space 胡耀傑團隊，在區塊鏈數位身份領域深耕多年，近日獲世界衛生組織（WHO）委託，主導開發覆蓋 160 國的數位國際青年證系統。',
+    feature_image: null,
+    feature_image_alt: null,
+    published_at: '2025-10-05T08:00:00Z',
+    reading_time: 4,
+    primary_tag: { name: '新創故事' },
+    primary_author: { name: 'NTUTEC 編輯部' },
+  },
+  {
+    id: '6', slug: 'angel-club-portfolio-2026q1',
+    title: '台大天使會 2026 Q1 投資回顧：三案出手，聚焦 AI 醫療與微創手術',
+    excerpt: '台大天使會在 2026 年第一季完成三筆投資，分別是 AHEAD Medicine、MoBagel 及思輔科技，聚焦 AI 醫療診斷、數據平台與微創手術導航等高潛力賽道。',
+    feature_image: null,
+    feature_image_alt: null,
+    published_at: '2026-04-01T08:00:00Z',
+    reading_time: 5,
+    primary_tag: { name: '天使投資' },
+    primary_author: { name: 'NTUTEC 編輯部' },
+  },
+]
 
-  try {
-    const result = await getPosts(1, 12)
-    posts = result.posts
-    pagination = result.pagination
-  } catch {
-    // Ghost may be unreachable — show empty state
-  }
+export default async function BlogListPage() {
+  const posts = MOCK_POSTS
+  const pagination = { page: 1, pages: 1, total: posts.length }
 
   return (
     <>

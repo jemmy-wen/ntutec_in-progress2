@@ -90,6 +90,7 @@ function DesktopDropdown({
   onLeave,
   onToggle,
   onClose,
+  transparent = false,
 }: {
   item: NavItem;
   open: boolean;
@@ -97,15 +98,19 @@ function DesktopDropdown({
   onLeave: () => void;
   onToggle: () => void;
   onClose: () => void;
+  transparent?: boolean;
 }) {
   const menuId = `menu-${item.label}`;
+  const textCls = transparent
+    ? "text-white/90 hover:text-white"
+    : "text-charcoal/80 hover:text-teal";
 
   // Simple link (no children) — render as direct Link
   if (!item.children && item.href) {
     return (
       <Link
         href={item.href}
-        className="whitespace-nowrap px-2.5 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
+        className={`whitespace-nowrap px-2.5 py-2 text-sm font-medium transition-colors ${textCls}`}
       >
         {item.label}
       </Link>
@@ -130,7 +135,7 @@ function DesktopDropdown({
             if (!open) onToggle();
           }
         }}
-        className="flex items-center gap-0.5 whitespace-nowrap px-2.5 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
+        className={`flex items-center gap-0.5 whitespace-nowrap px-2.5 py-2 text-sm font-medium transition-colors ${textCls}`}
       >
         {item.label}
         <ChevronDown
@@ -241,9 +246,22 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [applyOpen, setApplyOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { open: searchOpen, setOpen: setSearchOpen } = useSearchDialog();
   const langSwitch = useLanguageSwitcher();
+  const pathname = usePathname();
+  const isHome = pathname === "/" || pathname === "/en";
+
+  useEffect(() => {
+    if (!isHome) return;
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
+
+  const transparent = isHome && !scrolled;
 
   useEffect(() => {
     const onResize = () => {
@@ -312,17 +330,21 @@ export default function Navbar() {
   return (
     <header
       data-navbar-root
-      className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/80 backdrop-blur-lg"
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        transparent
+          ? "bg-transparent border-b border-white/10"
+          : "bg-white/90 backdrop-blur-lg border-b border-border/40"
+      }`}
     >
-      <div className="container flex h-20 items-center justify-between xl:h-24 xl:max-w-[1400px]">
+      <div className="container flex h-16 items-center justify-between xl:h-20 xl:max-w-[1400px]">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/images/brand/ntutec-logo-horizontal-zh.png"
+            src={transparent ? "/images/brand/ntutec-logo-horizontal.png" : "/images/brand/ntutec-logo-horizontal-zh.png"}
             alt="臺大創創中心 NTUTEC"
             width={326}
             height={140}
             priority
-            className="h-16 w-auto"
+            className="h-10 w-auto xl:h-12"
           />
         </Link>
 
@@ -336,6 +358,7 @@ export default function Navbar() {
               onLeave={handleDropdownLeave}
               onToggle={() => handleDropdownToggle(item.label)}
               onClose={handleDropdownClose}
+              transparent={transparent}
             />
           ))}
         </nav>
@@ -345,7 +368,11 @@ export default function Navbar() {
 
           <Link
             href={langSwitch.href}
-            className="hidden xl:inline-flex items-center rounded-full border border-border px-2.5 py-1 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
+            className={`hidden xl:inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors ${
+              transparent
+                ? "border-white/50 text-white hover:border-white"
+                : "border-border text-charcoal hover:border-teal hover:text-teal"
+            }`}
             aria-label={langSwitch.label === "EN" ? "Switch to English" : "切換至中文"}
           >
             {langSwitch.label}
@@ -358,7 +385,11 @@ export default function Navbar() {
           >
             <button
               onClick={() => setApplyOpen(!applyOpen)}
-              className="whitespace-nowrap btn-pill-primary text-xs px-3 py-1.5 flex items-center gap-1"
+              className={`whitespace-nowrap text-xs px-4 py-2 rounded-full flex items-center gap-1 font-semibold transition-colors ${
+                transparent
+                  ? "bg-white text-[#00aa95] hover:bg-white/90"
+                  : "bg-[#00aa95] text-white hover:bg-[#009985]"
+              }`}
             >
               立即申請
               <ChevronDown className={`h-3 w-3 transition-transform ${applyOpen ? "rotate-180" : ""}`} />
@@ -388,7 +419,7 @@ export default function Navbar() {
           </div>
 
           {/* Auth: login button or user avatar dropdown */}
-          <NavbarAuthButton />
+          <NavbarAuthButton transparent={transparent} />
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
