@@ -1,114 +1,137 @@
-"use client";
+'use client'
 
-import { Cpu, HeartPulse, CircuitBoard, Lightbulb } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { useInView } from "@/hooks/useInView";
-import { FadeIn } from "@/components/ui/fade-in";
+import { useState } from 'react'
+import Image from 'next/image'
+import { motion } from 'motion/react'
 
-interface FocusArea {
-  icon: LucideIcon;
-  label: string;
-  title: string;
-  description: string;
-  examples: string;
-  accentColor: string;
-}
-
-const focusAreas: FocusArea[] = [
+const AREAS = [
   {
-    icon: Cpu,
-    label: "AI Software",
-    title: "AI 軟體",
+    key: 'ai',
+    label: 'AI SOFTWARE',
+    title: 'AI 軟體',
     description:
-      "從基礎模型到垂直應用，涵蓋企業生成式 AI、Agent、資料基礎設施與 SaaS 平台。連結台大各院系研究能量與產業應用場域。",
-    examples: "MoBagel、漸強實驗室、AmazingTalker 等",
-    accentColor: "from-teal/30 to-teal-deep/10",
+      '從基礎模型到垂直應用，涵蓋企業生成式 AI、Agent、資料基礎設施與 SaaS 平台。連結台大各院系研究能量與產業應用場域。',
+    cases: 'MoBagel、漸強實驗室、AmazingTalker 等',
+    bg: '/images/photos/ntu-research-cover.jpg',
   },
   {
-    icon: HeartPulse,
-    label: "Biotech & Medical",
-    title: "生技醫療",
+    key: 'biotech',
+    label: 'BIOTECH & MEDICAL',
+    title: '生技醫療',
     description:
-      "醫材、AI 輔助診斷、精準醫療、數位健康與藥物開發。串接台大醫院臨床場域與台大天使會生醫投資網絡。",
-    examples: "思輔科技、Home心、AHEAD Medicine 等",
-    accentColor: "from-teal-wash to-stone-warm",
+      '結合台大醫學院、生命科學院與工學院的跨域研究，聚焦醫療器材、精準醫療與數位健康應用。',
+    cases: '思輔科技、Home心 等',
+    bg: '/images/photos/ntu-campus-aerial.jpg',
   },
   {
-    icon: CircuitBoard,
-    label: "Deep Tech",
-    title: "硬科技",
+    key: 'deeptech',
+    label: 'DEEP TECH',
+    title: '硬科技',
     description:
-      "半導體、先進製造、材料科學、機器人與物聯網。連結台大各工程研究資源與國內半導體產業鏈，提供硬體開發與量產驗證支援。",
-    examples: "歐姆佳科技、3drens、Datayoo 等",
-    accentColor: "from-teal-deep/20 to-teal/10",
+      '半導體、光電、材料科學與先進製造——台大理工研究能量直接轉化為可投資的硬科技新創。',
+    cases: '歐姆佳科技、3drens 等',
+    bg: '/images/photos/ntu-library-bright.jpg',
   },
   {
-    icon: Lightbulb,
-    label: "New Business Models",
-    title: "創新商模",
+    key: 'newbiz',
+    label: 'NEW BUSINESS MODELS',
+    title: '創新商模',
     description:
-      "永續、循環經濟、ESG、社會創新與平台經濟。以創新商業模式解決產業痛點，接軌企業垂直加速器出題場域。",
-    examples: "配客嘉、ECOCO、知識衛星 等",
-    accentColor: "from-stone-warm to-stone",
+      '電商、循環經濟、訂閱制與平台模式——以商業模式創新驅動市場與社會影響力。',
+    cases: '配客嘉、方格子、Hotcake 等',
+    bg: '/images/photos/ntu-gate-bright.jpg',
   },
-];
+]
 
 export default function FocusAreasSection() {
-  const { ref, isInView } = useInView();
+  const [active, setActive] = useState('ai')
 
   return (
-    <section className="section-spacing bg-stone">
+    <section className="bg-white py-14 md:py-20">
       <div className="container">
-        <FadeIn className="mx-auto mb-16 max-w-2xl text-center">
-          <p className="micro-label mb-2">Focus Areas</p>
-          <h2>2026 四大聚焦領域</h2>
-          <p className="mt-4 text-lg text-slate-muted">
+
+        {/* Header row */}
+        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#00aa95]">
+              Focus Areas
+            </p>
+            <h2 className="text-3xl font-bold text-[#181614] md:text-4xl">
+              2026 四大聚焦領域
+            </h2>
+          </div>
+          <p className="max-w-md text-base leading-relaxed text-slate-500 lg:mt-8">
             AI 軟體、生技醫療、硬科技、創新商模——結合台大跨院系研究能量與業界合作網絡，陪伴新創從概念走向市場。
           </p>
-        </FadeIn>
+        </div>
 
-        <div ref={ref} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {focusAreas.map((area, i) => {
-            const Icon = area.icon;
+        {/* Accordion cards — desktop horizontal fan, mobile vertical stack */}
+        <div className="hidden gap-3 md:flex" style={{ height: '480px' }}>
+          {AREAS.map((area) => {
+            const isActive = active === area.key
             return (
-              <div
-                key={area.label}
-                style={{
-                  opacity: isInView ? 1 : 0,
-                  transform: isInView ? "translateY(0) scale(1)" : "translateY(40px) scale(0.97)",
-                  transition: `opacity 550ms cubic-bezier(0.22,1,0.36,1) ${i * 0.1}s, transform 550ms cubic-bezier(0.22,1,0.36,1) ${i * 0.1}s, box-shadow 300ms ease`,
-                }}
-                className="group cursor-default rounded-2xl border border-stone-warm/60 bg-white p-6 shadow-sm hover:shadow-md hover:-translate-y-1 duration-200"
+              <motion.div
+                key={area.key}
+                className="relative overflow-hidden rounded-2xl cursor-pointer flex-shrink-0"
+                animate={{ flexGrow: isActive ? 3 : 1 }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                onHoverStart={() => setActive(area.key)}
               >
-                {/* Accent gradient top bar */}
-                <div
-                  className={`-mx-6 -mt-6 mb-5 h-1.5 rounded-t-2xl bg-gradient-to-r ${area.accentColor} opacity-70`}
+                <Image
+                  src={area.bg}
+                  alt={area.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
                 />
+                <div className="absolute inset-0 bg-black/45" />
 
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-wash text-teal-deep transition-transform duration-300 group-hover:scale-110">
-                  <Icon className="h-6 w-6" />
+                <div className="absolute inset-0 flex flex-col justify-between p-6">
+                  <div>
+                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
+                      {area.label}
+                    </p>
+                    <h3 className="text-2xl font-bold text-white">{area.title}</h3>
+                  </div>
+
+                  <motion.div
+                    animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 10 }}
+                    transition={{ duration: 0.25, delay: isActive ? 0.2 : 0 }}
+                  >
+                    <p className="text-sm leading-relaxed text-white/80">{area.description}</p>
+                    <div className="my-4 border-t border-white/20" />
+                    <p className="text-sm text-white/70">
+                      <span className="font-semibold text-white">代表案例：</span>
+                      {area.cases}
+                    </p>
+                  </motion.div>
                 </div>
-
-                <p className="micro-label text-teal mb-2">{area.label}</p>
-                <h3 className="mb-3 text-xl font-bold text-charcoal">
-                  {area.title}
-                </h3>
-
-                <p className="mb-4 text-sm leading-relaxed text-slate-muted">
-                  {area.description}
-                </p>
-
-                <div className="border-t border-stone-warm/60 pt-3">
-                  <p className="text-xs text-slate-muted">
-                    <span className="font-semibold text-charcoal">代表案例：</span>
-                    {area.examples}
-                  </p>
-                </div>
-              </div>
-            );
+              </motion.div>
+            )
           })}
         </div>
+
+        {/* Mobile: vertical stack */}
+        <div className="flex flex-col gap-4 md:hidden">
+          {AREAS.map((area) => (
+            <div key={area.key} className="relative h-48 overflow-hidden rounded-2xl">
+              <Image src={area.bg} alt={area.title} fill className="object-cover" loading="lazy" sizes="100vw" />
+              <div className="absolute inset-0 bg-black/45" />
+              <div className="absolute inset-0 flex flex-col justify-between p-5">
+                <div>
+                  <p className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-white/60">{area.label}</p>
+                  <h3 className="text-xl font-bold text-white">{area.title}</h3>
+                </div>
+                <p className="text-xs text-white/70">
+                  <span className="font-semibold text-white">代表案例：</span>{area.cases}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
-  );
+  )
 }

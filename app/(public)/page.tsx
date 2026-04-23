@@ -1,34 +1,16 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import { ogImageUrl } from '@/lib/og'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 import HomeFAQSchema from '@/components/public/HomeFAQSchema'
-
-export const revalidate = 3600 // ISR: revalidate every hour (NewsSection fetches from Ghost)
-
-// Above-fold sections — direct import (needed for LCP + initial paint)
 import HeroSection from '@/components/public/home/HeroSection'
+import NTUEcosystemSection from '@/components/public/home/NTUEcosystemSection'
+import CommunitySection from '@/components/public/home/CommunitySection'
 import FocusAreasSection from '@/components/public/home/FocusAreasSection'
-import Image from 'next/image'
-import { FadeIn } from '@/components/ui/fade-in'
+import StatsSection from '@/components/public/home/StatsSection'
+import AudienceCards from '@/components/public/home/AudienceCards'
+import NewsSection from '@/components/public/home/NewsSection'
 
-// Below-fold sections — code-split via next/dynamic to keep framer-motion
-// (~124 KB) out of the initial JS bundle. ssr: true preserves SEO-visible
-// HTML; only the client JS is deferred into its own chunk.
-const AudienceCards = dynamic(() => import('@/components/public/home/AudienceCards'), {
-  loading: () => <div className="min-h-[500px]" />, // reserve height to prevent CLS
-})
-const StatsSection = dynamic(() => import('@/components/public/home/StatsSection'), {
-  loading: () => <div className="min-h-[300px]" />,
-})
-const NewsSection = dynamic(() => import('@/components/public/home/NewsSection'), {
-  loading: () => <div className="min-h-[400px]" />,
-})
-// import PartnersSection from '@/components/public/home/PartnersSection' // 暫時隱藏 — 待確認廠商揭露意願
-const NTUEcosystemSection = dynamic(() => import('@/components/public/home/NTUEcosystemSection'), {
-  loading: () => <div className="min-h-[300px]" />,
-})
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',
@@ -49,10 +31,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: ogImageUrl(
-          '台大創創中心 NTUTEC',
-          '13 年輔導逾 600 支新創，連結台大、產業、資本'
-        ),
+        url: ogImageUrl('台大創創中心 NTUTEC', '13 年輔導逾 600 支新創，連結台大、產業、資本'),
         width: 1200,
         height: 630,
         alt: '台大創創中心 NTUTEC — 台大創業生態系實戰基地',
@@ -61,55 +40,37 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: [
-      ogImageUrl(
-        '台大創創中心 NTUTEC',
-        '13 年輔導逾 600 支新創，連結台大、產業、資本'
-      ),
-    ],
+    images: [ogImageUrl('台大創創中心 NTUTEC', '13 年輔導逾 600 支新創，連結台大、產業、資本')],
   },
 }
 
 export default function HomePage() {
   return (
     <>
-      <BreadcrumbSchema items={[
-        { name: '首頁', url: 'https://tec.ntu.edu.tw' },
-      ]} />
+      <BreadcrumbSchema items={[{ name: '首頁', url: 'https://tec.ntu.edu.tw' }]} />
       <HomeFAQSchema />
+
+      {/* 1. Hero */}
       <HeroSection />
 
-      {/* Activity Highlight */}
-      <section className="section-spacing bg-warm-stone">
-        <div className="container">
-          <FadeIn className="mb-8 text-center">
-            <p className="micro-label mb-4">Community</p>
-            <h2 className="mb-4">讓好想法，長出改變世界的力量</h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-muted">2026 輔導計畫開幕式，逾 80 位創業者與輔導業師齊聚台大，展開為期十個月的創業加速之旅。</p>
-          </FadeIn>
-          <div className="relative overflow-hidden rounded-2xl" style={{aspectRatio:'21/9'}}>
-            <Image
-              src="/images/events/opening-2026-biggroup.jpg"
-              alt="2026 輔導計畫開幕式 — 逾 80 位創業者齊聚"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              priority={false}
-            />
-          </div>
-        </div>
-      </section>
+      {/* 2. Community */}
+      <CommunitySection />
 
-      <FadeIn>
-        <FocusAreasSection />
-      </FadeIn>
+      {/* 4. Focus Areas */}
+      <FocusAreasSection />
+
+      {/* 5. Stats */}
+      <StatsSection />
+
+      {/* 6. Audience */}
       <AudienceCards />
-      <FadeIn>
-        <StatsSection />
-      </FadeIn>
-      <NewsSection />
+
+      {/* 7. 台大創新生態系 */}
       <NTUEcosystemSection />
-      {/* <PartnersSection /> */} {/* 暫時隱藏 — 待確認廠商揭露意願 */}
+
+      {/* 8. News */}
+      <NewsSection />
+
     </>
   )
 }
