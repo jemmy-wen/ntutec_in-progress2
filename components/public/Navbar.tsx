@@ -177,7 +177,6 @@ function MegaMenu({
   onLeave,
   onToggle,
   onClose,
-  scrolled,
 }: {
   item: NavItem;
   open: boolean;
@@ -185,15 +184,12 @@ function MegaMenu({
   onLeave: () => void;
   onToggle: () => void;
   onClose: () => void;
-  scrolled: boolean;
 }) {
   if (!item.children && item.href) {
     return (
       <Link
         href={item.href}
-        className={`whitespace-nowrap px-2.5 py-2 text-sm font-medium transition-colors ${
-          scrolled ? "text-charcoal/80 hover:text-teal" : "text-white/90 hover:text-white"
-        }`}
+        className="whitespace-nowrap px-2.5 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
       >
         {item.label}
       </Link>
@@ -212,9 +208,7 @@ function MegaMenu({
           if (e.key === "ArrowDown") { e.preventDefault(); if (!open) onToggle(); }
         }}
         className={`flex items-center gap-0.5 whitespace-nowrap px-2.5 py-2 text-sm font-medium transition-colors ${
-          scrolled
-            ? (open ? "text-teal" : "text-charcoal/80 hover:text-teal")
-            : (open ? "text-white" : "text-white/90 hover:text-white")
+          open ? "text-teal" : "text-charcoal/80 hover:text-teal"
         }`}
       >
         {item.label}
@@ -433,7 +427,7 @@ export default function Navbar() {
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
           ? "bg-transparent border-transparent py-2"
-          : "bg-transparent border-transparent"
+          : "bg-white/90 backdrop-blur-lg border-b border-border/40"
       }`}
     >
       <div
@@ -450,7 +444,7 @@ export default function Navbar() {
             width={326}
             height={140}
             priority
-            className={`h-16 w-auto transition-all duration-300 ${scrolled ? "" : "brightness-0 invert"}`}
+            className="h-16 w-auto"
           />
         </Link>
 
@@ -464,23 +458,16 @@ export default function Navbar() {
               onLeave={leave}
               onToggle={() => toggle(item.label)}
               onClose={close}
-              scrolled={scrolled}
             />
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className={!scrolled ? "[&_button]:border-white/30 [&_button]:bg-white/10 [&_button]:text-white/70 [&_button:hover]:border-white [&_button:hover]:text-white" : ""}>
-            <SearchButton onClick={() => setSearchOpen(true)} />
-          </div>
+          <SearchButton onClick={() => setSearchOpen(true)} />
 
           <Link
             href={langSwitch.href}
-            className={`hidden xl:inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors ${
-              scrolled
-                ? "border-border text-charcoal hover:border-teal hover:text-teal"
-                : "border-white/60 text-white hover:border-white hover:text-white/80"
-            }`}
+            className="hidden xl:inline-flex items-center rounded-full border border-border px-2.5 py-1 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
             aria-label={langSwitch.label === "EN" ? "Switch to English" : "切換至中文"}
           >
             {langSwitch.label}
@@ -494,11 +481,7 @@ export default function Navbar() {
           >
             <button
               onClick={() => setApplyOpen(!applyOpen)}
-              className={`whitespace-nowrap text-xs px-3 py-1.5 flex items-center gap-1 rounded-full font-semibold transition-colors ${
-                scrolled
-                  ? "btn-pill-primary"
-                  : "bg-white/20 text-white border border-white/40 hover:bg-white/30"
-              }`}
+              className="whitespace-nowrap btn-pill-primary text-xs px-3 py-1.5 flex items-center gap-1"
             >
               立即申請
               <ChevronDown className={`h-3 w-3 transition-transform ${applyOpen ? "rotate-180" : ""}`} />
@@ -574,7 +557,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <NavbarAuthButton transparent={!scrolled} />
+          <NavbarAuthButton />
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
