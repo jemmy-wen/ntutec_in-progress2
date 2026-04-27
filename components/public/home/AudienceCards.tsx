@@ -77,7 +77,7 @@ export default function AudienceCards() {
         </div>
 
         {/* ══════════════ MOBILE layout (< md) ══════════════ */}
-        <div ref={ref} className="md:hidden flex flex-col gap-5 relative">
+        <div className="md:hidden flex flex-col gap-5 relative">
 
           {/* Thunder — top-left of section */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -155,6 +155,7 @@ export default function AudienceCards() {
 
         {/* ══════════════ DESKTOP layout (≥ md) ══════════════ */}
         <div
+          ref={ref}
           className="hidden md:block relative mx-auto"
           style={{ width: STAGE_W, height: STAGE_H }}
         >
