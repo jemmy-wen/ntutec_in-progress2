@@ -40,7 +40,7 @@ export default async function NewsSection() {
       }))
 
   return (
-    <section className="bg-[#e8f7f5] py-16 md:py-24">
+    <section className="bg-[#F6F5F1] py-16 md:py-24">
       <div className="container">
 
         <div className="mb-10 flex items-end justify-between">

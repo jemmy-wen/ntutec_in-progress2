@@ -55,16 +55,18 @@ function StatItem({ value, suffix = '', unit, label, delay = 0 }: StatItemProps)
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
     >
+      {/* 數字 + 符號 + 單位 */}
       <div className="flex items-baseline gap-1 leading-none">
-        <span className="text-[56px] font-bold tabular-nums text-white">
+        <span className="text-[56px] font-bold tabular-nums text-[#1a1a1a]">
           {count}
         </span>
         {suffix && (
-          <span className="text-[28px] font-bold text-white">{suffix}</span>
+          <span className="text-[28px] font-bold text-[#1a1a1a]">{suffix}</span>
         )}
-        <span className="text-[15px] text-white/60 ml-1">{unit}</span>
+        <span className="text-[15px] text-[#888] ml-1">{unit}</span>
       </div>
-      <p className="text-[13px] text-white/60">{label}</p>
+      {/* 標籤 */}
+      <p className="text-[13px] text-[#888]">{label}</p>
     </motion.div>
   )
 }
@@ -79,32 +81,35 @@ const STATS: StatItemProps[] = [
 
 export default function StatsSection() {
   return (
-    <section className="bg-[#00AA95] py-14 md:py-18">
+    <section className="bg-white py-14 md:py-18">
       <div className="container mx-auto px-8 lg:px-16">
 
-        <div className="border-t border-white/20 mb-12" />
+        {/* 水平分隔線 */}
+        <div className="border-t border-[#e5e5e5] mb-12" />
 
         <div className="flex flex-col sm:flex-row sm:items-start gap-10 sm:gap-0">
 
+          {/* 左：四組數字，用豎線分隔 */}
           <div className="flex flex-col sm:flex-row flex-1 gap-8 sm:gap-0">
             {STATS.map((s, i) => (
               <div key={s.label} className="flex items-center gap-0">
                 <StatItem {...s} delay={i * 0.1} />
                 {i < STATS.length - 1 && (
-                  <div className="hidden sm:block w-px h-12 bg-white/20 mx-8 lg:mx-12 self-center" />
+                  <div className="hidden sm:block w-px h-12 bg-[#e0e0e0] mx-8 lg:mx-12 self-center" />
                 )}
               </div>
             ))}
           </div>
 
+          {/* 右：黑體標題 */}
           <motion.div
-            className="sm:pl-10 sm:border-l sm:border-white/20 sm:max-w-[180px] self-center"
+            className="sm:pl-10 sm:border-l sm:border-[#e0e0e0] sm:max-w-[180px] self-center"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-[17px] font-bold leading-snug text-white">
+            <p className="text-[17px] font-bold leading-snug text-[#1a1a1a]">
               打造支持創新，<br />放大影響力的生態系
             </p>
           </motion.div>

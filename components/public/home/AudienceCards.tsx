@@ -55,7 +55,7 @@ export default function AudienceCards() {
   const inView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section className="bg-[#f0faf9] py-14 md:py-24">
+    <section className="bg-white py-14 md:py-24">
       <div className="container mx-auto px-6 md:px-8 lg:px-16">
 
         {/* ── Header ── */}

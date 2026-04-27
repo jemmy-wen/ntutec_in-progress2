@@ -86,7 +86,7 @@ export default function FocusAreasSection() {
   const activeArea = activeIdx !== null ? AREAS[activeIdx] : null
 
   return (
-    <section ref={sectionRef} className="relative bg-[#f0faf9] py-14 md:py-20 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-white py-14 md:py-20 overflow-hidden">
       <div className="container mx-auto px-8 lg:px-16">
 
         {/* ── Header ── */}
