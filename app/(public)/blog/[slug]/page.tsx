@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getPostBySlug, getAllPostSlugs, getRelatedPosts } from '@/lib/ghost'
+import { getMockPostBySlug, MOCK_POSTS } from '@/lib/mock-posts'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 import { ShareButtons } from '@/components/public/blog/ShareButtons'
 
@@ -11,8 +12,10 @@ export const revalidate = 3600 // ISR: revalidate every hour
 type Params = Promise<{ slug: string }>
 
 export async function generateStaticParams() {
-  const slugs = await getAllPostSlugs()
-  return slugs.map((slug) => ({ slug }))
+  const slugs = await getAllPostSlugs().catch(() => [])
+  const mockSlugs = MOCK_POSTS.map((p) => p.slug)
+  const all = [...new Set([...slugs, ...mockSlugs])]
+  return all.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
@@ -102,13 +105,25 @@ function processPostHtml(html: string): { html: string; toc: TocItem[] } {
 
 export default async function BlogPostPage({ params }: { params: Params }) {
   const { slug } = await params
-  const post = await getPostBySlug(slug)
+
+  let post = await getPostBySlug(slug).catch(() => null)
+  if (!post) {
+    const mock = getMockPostBySlug(slug)
+    if (!mock) notFound()
+    post = {
+      ...mock,
+      og_image: null,
+      meta_title: null,
+      meta_description: null,
+      updated_at: mock.published_at,
+    } as Awaited<ReturnType<typeof getPostBySlug>>
+  }
   if (!post) notFound()
 
   const { html: articleHtml, toc } = processPostHtml(post.html)
   const showToc = toc.length >= 3
 
-  const relatedPosts = await getRelatedPosts(post.primary_tag?.slug ?? null, post.slug, 3)
+  const relatedPosts = await getRelatedPosts(post.primary_tag?.slug ?? null, post.slug, 3).catch(() => [])
   const canonicalUrl = `https://tec.ntu.edu.tw/blog/${post.slug}`
 
   return (

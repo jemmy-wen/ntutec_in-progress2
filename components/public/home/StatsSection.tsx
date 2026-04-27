@@ -1,197 +1,115 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { useInView } from '@/hooks/useInView'
+import { useEffect, useRef, useState } from 'react'
+import { motion } from 'motion/react'
 
-const STATS = [
-  { label: 'STARTUPS', value: '510', suffix: '+', unit: '支', desc: '累計輔導新創團隊' },
-  { label: 'INVESTORS', value: '127', suffix: '+', unit: '位', desc: '投資人與天使網絡' },
-  { label: 'PARTNERS', value: '29', suffix: '', unit: '家', desc: '企業合作夥伴' },
-  { label: 'YEARS', value: '11', suffix: '', unit: '年', desc: '深耕台大創業生態' },
-]
-
-const PILLS = [
-  'Demo Day 2025 投資人到場 74 位',
-  '510+ 支新創團隊',
-  '歷屆校友最高單筆募資 NT$1 億+',
-  '企業垂直加速器累計 27 期',
-]
-
-const PILL_HEIGHT = 42
-const WALL_T = 60 // wall thickness
-
-function PhysicsPills() {
-  const { ref: containerRef, isInView } = useInView()
-  const pillRefs = useRef<(HTMLDivElement | null)[]>([])
-  const engineRef = useRef<unknown>(null)
+/* ── count-up hook ─────────────────────────────────────────────────── */
+function useCountUp(target: number, duration = 1.6, start = false) {
+  const [value, setValue] = useState(0)
   const rafRef = useRef<number | null>(null)
-  const startedRef = useRef(false)
+  useEffect(() => {
+    if (!start) return
+    const t0 = performance.now()
+    const tick = (now: number) => {
+      const p = Math.min((now - t0) / 1000 / duration, 1)
+      setValue(Math.round((1 - Math.pow(1 - p, 3)) * target))
+      if (p < 1) rafRef.current = requestAnimationFrame(tick)
+    }
+    rafRef.current = requestAnimationFrame(tick)
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
+  }, [start, target, duration])
+  return value
+}
+
+/* ── single stat item ──────────────────────────────────────────────── */
+interface StatItemProps {
+  value: number
+  suffix?: string
+  unit: string
+  label: string
+  delay?: number
+}
+
+function StatItem({ value, suffix = '', unit, label, delay = 0 }: StatItemProps) {
+  const [triggered, setTriggered] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const count = useCountUp(value, 1.6, triggered)
 
   useEffect(() => {
-    if (!isInView || startedRef.current) return
-    startedRef.current = true
-
-    const container = containerRef.current
-    if (!container) return
-
-    import('matter-js').then((Matter) => {
-      const { Engine, Runner, Bodies, Composite } = Matter
-
-      const W = container.offsetWidth
-      const H = container.offsetHeight
-
-      const engine = Engine.create({ gravity: { x: 0, y: 2 } })
-      engineRef.current = engine
-
-      // Static walls: floor + left + right
-      const floor = Bodies.rectangle(W / 2, H + WALL_T / 2, W + 200, WALL_T, { isStatic: true })
-      const wallL = Bodies.rectangle(-WALL_T / 2, H / 2, WALL_T, H * 2, { isStatic: true })
-      const wallR = Bodies.rectangle(W + WALL_T / 2, H / 2, WALL_T, H * 2, { isStatic: true })
-      Composite.add(engine.world, [floor, wallL, wallR])
-
-      // Spread pills horizontally so they land in different columns, not stacked
-      // X positions: left-center, right-center, far-left, far-right (as fractions of W)
-      const xFractions = [0.28, 0.72, 0.18, 0.62]
-      const bodies = pillRefs.current.map((el, i) => {
-        const w = el ? el.offsetWidth : 180
-        const startX = W * xFractions[i]
-        const startY = -(PILL_HEIGHT / 2) - i * 60
-        const body = Bodies.rectangle(startX, startY, w, PILL_HEIGHT, {
-          restitution: 0.25,  // slight bounce
-          friction: 0.6,
-          frictionAir: 0.02,
-          label: `pill-${i}`,
-        })
-        return body
-      })
-
-      // Add all pills at once
-      Composite.add(engine.world, bodies)
-
-      const runner = Runner.create()
-      Runner.run(runner, engine)
-
-      // Sync DOM elements to physics bodies each frame
-      const tick = () => {
-        bodies.forEach((body, i) => {
-          const el = pillRefs.current[i]
-          if (!el) return
-          const { x, y } = body.position
-          const angle = body.angle
-          const w = el.offsetWidth
-          el.style.transform = `translate(${x - w / 2}px, ${y - PILL_HEIGHT / 2}px) rotate(${angle}rad)`
-          el.style.opacity = '1'
-        })
-        rafRef.current = requestAnimationFrame(tick)
-      }
-      rafRef.current = requestAnimationFrame(tick)
-
-      // Stop micro-movements after 4s (settle phase)
-      setTimeout(() => {
-        if (rafRef.current) cancelAnimationFrame(rafRef.current)
-        // one final sync
-        bodies.forEach((body, i) => {
-          const el = pillRefs.current[i]
-          if (!el) return
-          const { x, y } = body.position
-          const angle = body.angle
-          const w = el.offsetWidth
-          el.style.transform = `translate(${x - w / 2}px, ${y - PILL_HEIGHT / 2}px) rotate(${angle}rad)`
-        })
-        Runner.stop(runner)
-        Engine.clear(engine)
-      }, 5000)
-
-      return () => {
-        Runner.stop(runner)
-        Engine.clear(engine)
-        if (rafRef.current) cancelAnimationFrame(rafRef.current)
-      }
-    })
-  }, [isInView])
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setTriggered(true); io.unobserve(el) } },
+      { threshold: 0.4 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   return (
-    <div
-      ref={containerRef}
-      className="relative mt-16 w-full overflow-hidden"
-      style={{ height: '180px' }}
+    <motion.div
+      ref={ref}
+      className="flex flex-col gap-2"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
     >
-      {PILLS.map((pill, i) => (
-        <div
-          key={pill}
-          ref={(el) => { pillRefs.current[i] = el }}
-          className="absolute left-0 top-0 flex items-center gap-2 rounded-full bg-[#00aa95] px-5 py-2.5 text-sm font-medium text-white shadow-md"
-          style={{
-            height: `${PILL_HEIGHT}px`,
-            opacity: 0,
-            willChange: 'transform',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          <span className="text-[10px] leading-none">♦</span>
-          {pill}
-        </div>
-      ))}
-    </div>
+      <div className="flex items-baseline gap-1 leading-none">
+        <span className="text-[56px] font-bold tabular-nums text-white">
+          {count}
+        </span>
+        {suffix && (
+          <span className="text-[28px] font-bold text-white">{suffix}</span>
+        )}
+        <span className="text-[15px] text-white/60 ml-1">{unit}</span>
+      </div>
+      <p className="text-[13px] text-white/60">{label}</p>
+    </motion.div>
   )
 }
 
+/* ── section ───────────────────────────────────────────────────────── */
+const STATS: StatItemProps[] = [
+  { value: 600, suffix: '+', unit: '支', label: '新創團隊加速'     },
+  { value: 350, suffix: '+', unit: '位', label: '投資人網路'       },
+  { value: 35,  suffix: '+', unit: '家', label: '企業夥伴'         },
+  { value: 13,               unit: '年', label: '深耕台大創業生態' },
+]
+
 export default function StatsSection() {
   return (
-    <section className="bg-[#F6F5F1] py-20 md:py-28">
-      <div className="container">
+    <section className="bg-[#00AA95] py-14 md:py-18">
+      <div className="container mx-auto px-8 lg:px-16">
 
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#00aa95]">
-            Social Proof
-          </p>
-          <h2 className="text-2xl font-bold text-[#181614] sm:text-3xl md:text-[2.75rem] md:leading-tight">
-            數字，見證我們的影響力。
-          </h2>
-        </div>
+        <div className="border-t border-white/20 mb-12" />
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4 md:gap-x-8">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center text-center">
-              <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                {stat.label}
-              </p>
-              <div className="flex items-baseline gap-1">
-                <span className="text-[40px] font-bold leading-none text-[#00aa95] md:text-[60px] lg:text-[80px]">
-                  {stat.value}
-                </span>
-                {stat.suffix && (
-                  <span className="text-[28px] font-bold leading-none text-[#00aa95] md:text-[42px] lg:text-[56px]">
-                    {stat.suffix}
-                  </span>
+        <div className="flex flex-col sm:flex-row sm:items-start gap-10 sm:gap-0">
+
+          <div className="flex flex-col sm:flex-row flex-1 gap-8 sm:gap-0">
+            {STATS.map((s, i) => (
+              <div key={s.label} className="flex items-center gap-0">
+                <StatItem {...s} delay={i * 0.1} />
+                {i < STATS.length - 1 && (
+                  <div className="hidden sm:block w-px h-12 bg-white/20 mx-8 lg:mx-12 self-center" />
                 )}
-                <span className="ml-1 text-base text-slate-500 md:text-lg">{stat.unit}</span>
               </div>
-              <p className="mt-3 text-sm text-slate-500 md:text-base">{stat.desc}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Mobile: static pill row — physics doesn't work well on narrow screens */}
-        <div className="md:hidden mt-10 flex flex-wrap justify-center gap-2">
-          {PILLS.map((pill) => (
-            <div
-              key={pill}
-              className="flex items-center gap-2 rounded-full bg-[#00aa95] px-4 py-2 text-xs font-medium text-white shadow-md"
-            >
-              <span className="text-[9px] leading-none">♦</span>
-              {pill}
-            </div>
-          ))}
-        </div>
+          <motion.div
+            className="sm:pl-10 sm:border-l sm:border-white/20 sm:max-w-[180px] self-center"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="text-[17px] font-bold leading-snug text-white">
+              打造支持創新，<br />放大影響力的生態系
+            </p>
+          </motion.div>
 
-        {/* Desktop: Physics pills */}
-        <div className="hidden md:block">
-          <PhysicsPills />
         </div>
-
       </div>
     </section>
   )

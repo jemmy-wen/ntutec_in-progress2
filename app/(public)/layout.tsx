@@ -42,7 +42,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         跳至主要內容
       </a>
       <Navbar />
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 relative z-0">
         {children}
       </main>
       <Footer />

@@ -84,7 +84,7 @@ export default function NavbarAuthButtonInner({ onNavigate, transparent }: Navba
       <Link
         href="/login"
         onClick={onNavigate}
-        className={`hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${
+        className={`hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-colors ${
           transparent
             ? "border-white/50 text-white hover:border-white hover:bg-white/10"
             : "border-[#00aa95] text-[#00aa95] hover:bg-[#00aa95] hover:text-white"

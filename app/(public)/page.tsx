@@ -56,17 +56,17 @@ export default function HomePage() {
       {/* 2. Community */}
       <CommunitySection />
 
-      {/* 4. Focus Areas */}
-      <FocusAreasSection />
-
-      {/* 5. Stats */}
+      {/* 3. Stats */}
       <StatsSection />
+
+      {/* 4. 台大創新生態系 */}
+      <NTUEcosystemSection />
+
+      {/* 5. Focus Areas */}
+      <FocusAreasSection />
 
       {/* 6. Audience */}
       <AudienceCards />
-
-      {/* 7. 台大創新生態系 */}
-      <NTUEcosystemSection />
 
       {/* 8. News */}
       <NewsSection />

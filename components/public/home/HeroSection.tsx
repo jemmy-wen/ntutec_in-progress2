@@ -1,116 +1,135 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'motion/react'
+
+/**
+ * Photo bounding boxes and clip-paths — derived from Frame 13.svg (viewBox 0 0 822 562).
+ *
+ * Each photo <div> is absolutely positioned to its polygon's bounding box,
+ * then clip-path is recalculated relative to that bounding box so the image
+ * fills it at the right scale (object-fit: cover).
+ *
+ * Large frame (F5F5F4, line 711):
+ *   bbox: left=20.5% top=6.4% width=70.1% height=77.8%
+ *
+ * Small frame (D9D9D9, line 1255):
+ *   bbox: left=5.4% top=52.6% width=39.6% height=42.8%
+ */
+
+const LARGE_FRAME = {
+  style: {
+    left: '20.5%',
+    top: '6.4%',
+    width: '70.1%',
+    height: '77.8%',
+    clipPath:
+      'polygon(0% 10.0%, 4.9% 0%, 19.0% 0%, 27.2% 3.7%, 87.4% 3.7%, 100% 21.3%, 100% 90.0%, 87.4% 96.6%, 37.5% 100%, 39.0% 86.7%, 0% 63.1%, 0% 59.4%)',
+  },
+}
+
+const SMALL_FRAME = {
+  style: {
+    left: '5.4%',
+    top: '52.6%',
+    width: '39.6%',
+    height: '42.8%',
+    clipPath:
+      'polygon(10.6% 0%, 15.4% 3.0%, 100% 56.8%, 94.9% 96.7%, 88.1% 100%, 0% 90.0%)',
+  },
+}
 
 export default function HeroSection() {
   return (
-    <section className="bg-white px-3 pb-3 sm:px-6 sm:pb-6">
-      <div
-        className="relative overflow-hidden rounded-2xl sm:rounded-3xl"
-        style={{ height: 'calc(100svh - 5rem - 12px)', minHeight: '480px' }}
-      >
-        {/* 1. Image fades in first */}
-        <motion.div
-          className="absolute inset-0"
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+    <section className="relative bg-white h-[calc(100svh-4rem)] md:h-[calc(100svh-5rem)] flex items-center overflow-hidden">
+      <div className="w-full px-8 lg:px-16 grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 lg:gap-0 items-center">
+
+        {/* ── Left column: text ─────────────────────────────────────────── */}
+        <div className="flex flex-col gap-5 z-10">
+          <h1
+            className="text-[40px] lg:text-[52px] xl:text-[58px] leading-[1.2] font-bold text-[#1a1a1a]"
+            style={{ fontFamily: "'Noto Serif TC', 'GenWanMin2 TW', serif" }}
+          >
+            從台大出發，<br />
+            連結產業、走向市場。
+          </h1>
+
+          <p
+            className="text-[20px] lg:text-[23px] text-[#00AA95] italic leading-tight"
+            style={{ fontFamily: "'Permanent Marker', cursive" }}
+          >
+            Bridging NTU Innovation<br />
+            to Global Impact
+          </p>
+
+          <p className="text-[14px] text-[#666] leading-relaxed" style={{ maxWidth: '22em' }}>
+            台大創創中心串連學術能量、產業資源與國際網路，協助新創團隊從想法到市場，創造正面影響力
+          </p>
+
+          <div className="flex flex-wrap gap-4 mt-1">
+            <Link
+              href="/apply"
+              className="rounded-full bg-[#00AA95] px-7 py-3 text-sm font-semibold text-white transition-all hover:bg-[#009985] hover:scale-[1.02]"
+            >
+              申請輔導計畫
+            </Link>
+            <Link
+              href="/about"
+              className="rounded-full border-2 border-[#1a1a1a] px-7 py-3 text-sm font-semibold text-[#1a1a1a] transition-all hover:bg-[#1a1a1a]/5 hover:scale-[1.02]"
+            >
+              走進 NTUTEC
+            </Link>
+          </div>
+        </div>
+
+        {/* ── Right column: SVG illustration + photo overlays ───────────── */}
+        <div className="relative w-full hidden lg:block">
+          {/* Wrapper maintains SVG's native aspect ratio */}
+          <div className="relative w-full" style={{ aspectRatio: '822 / 562' }}>
+            {/* Base SVG illustration */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/svg/Frame 13.svg"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full"
+            />
+
+            {/* Large photo frame */}
+            <div className="absolute" style={LARGE_FRAME.style}>
+              <Image
+                src="/images/photos/new hero.png"
+                alt="台大創創中心"
+                fill
+                priority
+                className="object-cover"
+                sizes="(min-width: 1024px) 42vw, 100vw"
+              />
+            </div>
+
+            {/* Small photo frame */}
+            <div className="absolute" style={SMALL_FRAME.style}>
+              <Image
+                src="/images/events/opening-2026-coaching.jpg"
+                alt="輔導計畫開幕"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 24vw, 60vw"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── SCROLL indicator (right edge) ─────────────────────────────────── */}
+      <div className="absolute right-6 bottom-10 hidden lg:flex flex-col items-center gap-2">
+        <span
+          className="text-[10px] tracking-[0.2em] text-[#352B2B] uppercase"
+          style={{ writingMode: 'vertical-rl' }}
         >
-          <Image
-            src="/images/photos/new hero.png"
-            alt="台大創創中心"
-            fill
-            className="object-cover object-center"
-            priority
-            sizes="calc(100vw - 24px)"
-          />
-        </motion.div>
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20" />
-
-        {/* Mobile: 垂直堆疊，文字全在左下 */}
-        <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-8 lg:hidden">
-          {/* 2. Left text */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <h1
-              className="text-2xl font-bold leading-tight text-white sm:text-3xl"
-              style={{ letterSpacing: '-0.02em' }}
-            >
-              從台大出發。<br />連結產業、走向市場。
-            </h1>
-            <p className="mt-2 text-sm text-white/75">
-              Bridging NTU Innovation to Global Impact
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Link
-                href="/apply"
-                className="rounded-full bg-[#00aa95] px-5 py-2.5 text-sm font-semibold text-white"
-              >
-                申請輔導計畫
-              </Link>
-              <Link
-                href="/about"
-                className="rounded-full border-2 border-white/50 px-5 py-2.5 text-sm font-semibold text-white"
-              >
-                走進 NTUTEC
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Desktop: 左右兩欄 */}
-        <div className="relative z-10 hidden h-full items-end justify-between gap-8 p-10 lg:flex lg:p-14">
-          {/* 2. Left text */}
-          <motion.div
-            className="max-w-xl"
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <h1
-              className="text-[52px] font-bold leading-tight text-white"
-              style={{ letterSpacing: '-0.02em' }}
-            >
-              從台大出發。<br />連結產業、走向市場。
-            </h1>
-            <p className="mt-3 text-lg text-white/80">
-              Bridging NTU Innovation to Global Impact
-            </p>
-          </motion.div>
-
-          {/* 3. Right text */}
-          <motion.div
-            className="shrink-0 text-right"
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="text-base font-bold text-white">台大創創中心</p>
-            <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/70">
-              NTU TAIDAH<br />ENTREPRENEURSHIP CENTER
-            </p>
-            <div className="mt-5 flex flex-wrap justify-end gap-3">
-              <Link
-                href="/apply"
-                className="rounded-full bg-[#00aa95] px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#009985] hover:scale-[1.02]"
-              >
-                申請輔導計畫
-              </Link>
-              <Link
-                href="/about"
-                className="rounded-full border-2 border-white/50 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/10 hover:border-white/80 hover:scale-[1.02]"
-              >
-                走進 NTUTEC
-              </Link>
-            </div>
-          </motion.div>
-        </div>
+          SCROLL
+        </span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/svg/Frame 12.svg" alt="" aria-hidden="true" className="w-5 h-auto" />
       </div>
     </section>
   )

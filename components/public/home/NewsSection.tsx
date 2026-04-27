@@ -40,7 +40,7 @@ export default async function NewsSection() {
       }))
 
   return (
-    <section className="bg-[#F6F5F1] py-16 md:py-24">
+    <section className="bg-[#e8f7f5] py-16 md:py-24">
       <div className="container">
 
         <div className="mb-10 flex items-end justify-between">
@@ -48,7 +48,7 @@ export default async function NewsSection() {
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-teal">
               Latest Updates
             </p>
-            <h2 className="text-3xl font-bold text-[#181614] md:text-4xl">最新動態</h2>
+            <h2 className="text-2xl font-bold text-[#181614] md:text-3xl lg:text-4xl">最新動態</h2>
           </div>
           <Link
             href="/news"

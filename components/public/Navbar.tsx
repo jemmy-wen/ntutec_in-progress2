@@ -383,7 +383,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth >= 1280) setMobileOpen(false); };
+    const onResize = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
@@ -422,19 +422,20 @@ export default function Navbar() {
   };
 
   return (
+    <>
     <header
       data-navbar-root
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`sticky top-0 z-[150] w-full transition-all duration-300 ${
         scrolled
           ? "bg-transparent border-transparent py-2"
           : "bg-white/90 backdrop-blur-lg border-b border-border/40"
       }`}
     >
       <div
-        className={`flex h-16 items-center justify-between transition-all duration-300 xl:h-20 ${
+        className={`flex h-16 items-center justify-between transition-all duration-300 md:h-20 ${
           scrolled
-            ? "mx-4 xl:mx-8 rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg shadow-black/8 border border-border/30 px-4 xl:px-6"
-            : "container xl:max-w-[1400px]"
+            ? "mx-4 md:mx-8 rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg shadow-black/8 border border-border/30 px-4 md:px-6"
+            : "container md:max-w-[1400px]"
         }`}
       >
         <Link href="/" className="flex items-center gap-2.5">
@@ -448,7 +449,7 @@ export default function Navbar() {
           />
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-0.5">
+        <nav className="hidden md:flex items-center gap-0.5">
           {NAV_ITEMS.map((item) => (
             <MegaMenu
               key={item.label}
@@ -467,7 +468,7 @@ export default function Navbar() {
 
           <Link
             href={langSwitch.href}
-            className="hidden xl:inline-flex items-center rounded-full border border-border px-2.5 py-1 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
+            className="hidden md:inline-flex items-center rounded-full border border-border px-2.5 py-1 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
             aria-label={langSwitch.label === "EN" ? "Switch to English" : "切換至中文"}
           >
             {langSwitch.label}
@@ -475,7 +476,7 @@ export default function Navbar() {
 
           {/* Apply mega CTA */}
           <div
-            className="relative hidden xl:block"
+            className="relative hidden md:block"
             onMouseEnter={() => setApplyOpen(true)}
             onMouseLeave={() => setApplyOpen(false)}
           >
@@ -561,7 +562,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="xl:hidden p-2 text-charcoal"
+            className="md:hidden p-2 text-charcoal"
             aria-label={mobileOpen ? "關閉選單" : "開啟選單"}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -579,9 +580,12 @@ export default function Navbar() {
         scrolled={scrolled}
       />
 
-      {/* Mobile full-screen menu */}
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
+    </header>
+
+      {/* Mobile full-screen menu — outside <header> so z-index competes at root level */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col bg-white xl:hidden animate-in fade-in-0 duration-200">
+        <div className="fixed inset-0 z-[200] flex flex-col bg-white md:hidden animate-in fade-in-0 duration-200">
 
           {/* Menu header — mirrors the real header */}
           <div className="flex h-16 shrink-0 items-center justify-between px-4 border-b border-border/40">
@@ -663,8 +667,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
-      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
-    </header>
+    </>
   );
 }

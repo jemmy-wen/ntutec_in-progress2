@@ -48,22 +48,34 @@ const PARTNERS = [
 
 export default function NTUEcosystemSection() {
   return (
-    <section className="bg-white py-16 md:py-24">
-      <div className="container">
+    <section className="bg-white py-20 md:py-28">
+      <div className="container mx-auto px-8 lg:px-16">
 
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-teal">
-            Ecosystem
-          </p>
-          <h2 className="text-3xl font-bold text-[#181614] md:text-4xl">台大創新生態系</h2>
-          <p className="mt-4 mx-auto max-w-lg text-base leading-relaxed text-slate-500">
-            NTUTEC 與台大各創新單位緊密協作，共同構建校園創業生態，連結研究能量與市場資本。
+        {/* 置中標題區 */}
+        <div className="flex flex-col items-center text-center mb-16">
+          <h2
+            className="text-[40px] md:text-[48px] font-bold text-[#1a1a1a] leading-tight"
+            style={{ fontFamily: "'Noto Serif TC', 'GenWanMin2 TW', serif" }}
+          >
+            台大創新生態系
+          </h2>
+
+          {/* 底線 SVG — 與 Community 區塊同款 */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/svg/Vector2.svg"
+            alt=""
+            aria-hidden="true"
+            className="mt-3 h-4 w-auto"
+          />
+
+          <p className="mt-6 max-w-lg text-[15px] text-[#888] leading-relaxed">
+            NTUTEC 與台大各創新單位緊密協作，共同構建校園創業生態系
           </p>
         </div>
 
-        {/* Logo row — no background, direct on section bg */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+        {/* Logo 列 — 6 個均分，置中 */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-6 items-start">
           {PARTNERS.map((p) => (
             <Link
               key={p.label}
@@ -80,10 +92,10 @@ export default function NTUEcosystemSection() {
                   width={p.width}
                   height={p.height}
                   loading="lazy"
-                  className="max-h-12 w-auto object-contain opacity-60 transition-opacity group-hover:opacity-100"
+                  className="max-h-12 w-auto object-contain opacity-70 transition-opacity group-hover:opacity-100"
                 />
               </div>
-              <span className="text-center text-xs text-slate-400 transition-colors group-hover:text-teal">
+              <span className="text-center text-[12px] text-[#888] transition-colors group-hover:text-[#00AA95]">
                 {p.label}
               </span>
             </Link>

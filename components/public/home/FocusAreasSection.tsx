@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import Image from 'next/image'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 
+/* ── Data ───────────────────────────────────────────────────────────── */
 const AREAS = [
   {
     key: 'ai',
@@ -43,95 +44,213 @@ const AREAS = [
   },
 ]
 
+/* ── Dimensions ─────────────────────────────────────────────────────── */
+const CARD_W = 320
+const CARD_H = Math.round((409 / 366) * CARD_W) // ≈ 358
+const CARD_STEP = 235  // step between card left edges (~73% visible per card)
+
+/* ── Mouse-cursor SVG icon ──────────────────────────────────────────── */
+function CursorIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 22" fill="none" aria-hidden>
+      <path
+        d="M1 1L1 17L5.5 13L8.5 20L10.5 19L7.5 12H13L1 1Z"
+        fill="#1a1a1a"
+        stroke="#1a1a1a"
+        strokeWidth="1.2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+/* ── Section ────────────────────────────────────────────────────────── */
 export default function FocusAreasSection() {
-  const [active, setActive] = useState('ai')
+  const [activeIdx, setActiveIdx] = useState<number | null>(null)
+  const [tilts, setTilts] = useState(AREAS.map(() => ({ x: 0, y: 0 })))
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  const onMouseMove = useCallback((i: number, e: React.MouseEvent<HTMLDivElement>) => {
+    if (activeIdx !== null) return
+    const r = e.currentTarget.getBoundingClientRect()
+    const tx = (e.clientX - r.left - r.width / 2) / (r.width / 2)
+    const ty = (e.clientY - r.top - r.height / 2) / (r.height / 2)
+    setTilts(prev => prev.map((t, idx) => idx === i ? { x: tx, y: ty } : t))
+  }, [activeIdx])
+
+  const onMouseLeave = useCallback((i: number) => {
+    setTilts(prev => prev.map((t, idx) => idx === i ? { x: 0, y: 0 } : t))
+  }, [])
+
+  const totalW = CARD_W + CARD_STEP * (AREAS.length - 1)
+  const activeArea = activeIdx !== null ? AREAS[activeIdx] : null
 
   return (
-    <section className="bg-white py-14 md:py-20">
-      <div className="container">
+    <section ref={sectionRef} className="relative bg-[#f0faf9] py-14 md:py-20 overflow-hidden">
+      <div className="container mx-auto px-8 lg:px-16">
 
-        {/* Header row */}
-        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#00aa95]">
-              Focus Areas
-            </p>
-            <h2 className="text-3xl font-bold text-[#181614] md:text-4xl">
-              2026 四大聚焦領域
-            </h2>
-          </div>
-          <p className="max-w-md text-base leading-relaxed text-slate-500 lg:mt-8">
+        {/* ── Header ── */}
+        <div className="mb-12">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#00AA95]">
+            Focus Areas
+          </p>
+          <h2
+            className="text-[32px] lg:text-[38px] font-bold text-[#1a1a1a] leading-tight"
+            style={{ fontFamily: "'Noto Serif TC', 'GenWanMin2 TW', serif" }}
+          >
+            關注的創新方向
+          </h2>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/svg/Vector.svg" alt="" aria-hidden="true" className="mt-2 h-4 w-auto" />
+          <p className="mt-4 text-[14px] text-[#666] leading-relaxed" style={{ maxWidth: '28em' }}>
             AI 軟體、生技醫療、硬科技、創新商模——結合台大跨院系研究能量與業界合作網絡，陪伴新創從概念走向市場。
           </p>
         </div>
 
-        {/* Accordion cards — desktop horizontal fan, mobile vertical stack */}
-        <div className="hidden gap-3 md:flex" style={{ height: '480px' }}>
-          {AREAS.map((area) => {
-            const isActive = active === area.key
+        {/* ── Cards row ── */}
+        <div
+          className="relative mx-auto"
+          style={{ width: totalW, height: CARD_H + 32 }}
+        >
+          {AREAS.map((area, i) => {
+            const isActive = activeIdx === i
+            const t = tilts[i]
+
             return (
               <motion.div
                 key={area.key}
-                className="relative overflow-hidden rounded-2xl cursor-pointer flex-shrink-0"
-                animate={{ flexGrow: isActive ? 3 : 1 }}
-                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                onHoverStart={() => setActive(area.key)}
+                className="absolute top-0"
+                style={{
+                  left: i * CARD_STEP,
+                  width: CARD_W,
+                  height: CARD_H,
+                  zIndex: isActive ? 1 : i + 1,  // active card stays in row (invisible), expanded card is in overlay
+                  cursor: 'pointer',
+                  transformStyle: 'preserve-3d',
+                  perspective: '500px',
+                }}
+                animate={{
+                  rotateY: activeIdx !== null ? 0 : t.x * 18,
+                  rotateX: activeIdx !== null ? 0 : -t.y * 13,
+                  opacity: activeIdx !== null && !isActive ? 0.3 : isActive ? 0 : 1,
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                onMouseMove={e => onMouseMove(i, e)}
+                onMouseLeave={() => onMouseLeave(i)}
+                onClick={() => setActiveIdx(i)}
               >
-                <Image
-                  src={area.bg}
-                  alt={area.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/45" />
+                {/* Card shape — mask uses the actual Vector 11.svg */}
+                <div
+                  className="relative w-full h-full"
+                  style={{
+                    WebkitMaskImage: "url('/svg/Vector 11.svg')",
+                    maskImage:        "url('/svg/Vector 11.svg')",
+                    WebkitMaskSize:   '100% 100%',
+                    maskSize:         '100% 100%',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat:       'no-repeat',
+                  }}
+                >
+                  <Image
+                    src={area.bg}
+                    alt={area.title}
+                    fill
+                    className="object-cover"
+                    sizes="320px"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/25" />
+                </div>
 
-                <div className="absolute inset-0 flex flex-col justify-between p-6">
-                  <div>
-                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
-                      {area.label}
-                    </p>
-                    <h3 className="text-2xl font-bold text-white">{area.title}</h3>
-                  </div>
-
-                  <motion.div
-                    animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 10 }}
-                    transition={{ duration: 0.25, delay: isActive ? 0.2 : 0 }}
-                  >
-                    <p className="text-sm leading-relaxed text-white/80">{area.description}</p>
-                    <div className="my-4 border-t border-white/20" />
-                    <p className="text-sm text-white/70">
-                      <span className="font-semibold text-white">代表案例：</span>
-                      {area.cases}
-                    </p>
-                  </motion.div>
+                {/* Cursor + pill — outside bottom-left of card */}
+                <div
+                  className="absolute flex items-center gap-2"
+                  style={{ bottom: -4, left: -4 }}
+                >
+                  <CursorIcon />
+                  <span className="rounded-full border border-[#1a1a1a] bg-white px-4 py-1.5 text-[15px] font-semibold text-[#1a1a1a] whitespace-nowrap">
+                    {area.title}
+                  </span>
                 </div>
               </motion.div>
             )
           })}
-        </div>
 
-        {/* Mobile: vertical stack */}
-        <div className="flex flex-col gap-4 md:hidden">
-          {AREAS.map((area) => (
-            <div key={area.key} className="relative h-48 overflow-hidden rounded-2xl">
-              <Image src={area.bg} alt={area.title} fill className="object-cover" loading="lazy" sizes="100vw" />
-              <div className="absolute inset-0 bg-black/45" />
-              <div className="absolute inset-0 flex flex-col justify-between p-5">
-                <div>
-                  <p className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-white/60">{area.label}</p>
-                  <h3 className="text-xl font-bold text-white">{area.title}</h3>
+          {/* ── Expanded card — floats above row ── */}
+          <AnimatePresence>
+            {activeArea && activeIdx !== null && (
+              <motion.div
+                key="expanded"
+                className="absolute overflow-hidden rounded-2xl"
+                style={{
+                  // Start from the clicked card's position
+                  top: 0,
+                  left: activeIdx * CARD_STEP,
+                  zIndex: 30,
+                  cursor: 'pointer',
+                }}
+                initial={{
+                  width: CARD_W,
+                  height: CARD_H,
+                  x: 0,
+                  y: 0,
+                  opacity: 0,
+                  scale: 0.92,
+                }}
+                animate={{
+                  width: 580,
+                  height: 380,
+                  x: totalW / 2 - activeIdx * CARD_STEP - 290,
+                  y: (CARD_H - 380) / 2,
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.92,
+                }}
+                transition={{ type: 'spring', stiffness: 240, damping: 28 }}
+                onClick={() => setActiveIdx(null)}
+              >
+                <Image
+                  src={activeArea.bg}
+                  alt={activeArea.title}
+                  fill
+                  className="object-cover"
+                  sizes="580px"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/20" />
+
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-8">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/55 mb-2">
+                    {activeArea.label}
+                  </p>
+                  <h3 className="text-[30px] font-bold text-white mb-3">
+                    {activeArea.title}
+                  </h3>
+                  <p className="text-[13px] text-white/80 leading-relaxed mb-3">
+                    {activeArea.description}
+                  </p>
+                  <p className="text-[12px] text-white/55">
+                    代表案例：{activeArea.cases}
+                  </p>
                 </div>
-                <p className="text-xs text-white/70">
-                  <span className="font-semibold text-white">代表案例：</span>{area.cases}
-                </p>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
       </div>
+
+      {/* Click outside to close */}
+      {activeIdx !== null && (
+        <div
+          className="fixed inset-0 z-20"
+          onClick={() => setActiveIdx(null)}
+        />
+      )}
     </section>
   )
 }
