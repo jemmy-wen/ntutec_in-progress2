@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
-import CorporatePageClient from './CorporatePageClient'
+import CorporatePageClient from '@/components/public/corporate/CorporatePageClient'
 
 export const metadata: Metadata = {
   title: '企業合作方案 | NTUTEC',
