@@ -64,6 +64,8 @@ export default function CommunitySection() {
           >
             讓好想法，長出改變世界的力量
           </motion.h2>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/svg/Vector.svg" alt="" aria-hidden="true" className="mt-3 h-4 w-auto mx-auto" />
           <motion.p
             className="mt-4 mx-auto max-w-lg text-base leading-relaxed text-slate-500"
             initial={{ opacity: 0, y: 12 }}
