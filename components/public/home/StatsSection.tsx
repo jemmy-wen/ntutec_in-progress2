@@ -87,33 +87,15 @@ export default function StatsSection() {
         {/* 水平分隔線 */}
         <div className="border-t border-[#e5e5e5] mb-12" />
 
-        <div className="flex flex-col sm:flex-row sm:items-start gap-10 sm:gap-0">
-
-          {/* 左：四組數字，用豎線分隔 */}
-          <div className="flex flex-col sm:flex-row flex-1 gap-8 sm:gap-0">
-            {STATS.map((s, i) => (
-              <div key={s.label} className="flex items-center gap-0">
-                <StatItem {...s} delay={i * 0.1} />
-                {i < STATS.length - 1 && (
-                  <div className="hidden sm:block w-px h-12 bg-[#e0e0e0] mx-8 lg:mx-12 self-center" />
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* 右：黑體標題 */}
-          <motion.div
-            className="sm:pl-10 sm:border-l sm:border-[#e0e0e0] sm:max-w-[180px] self-center"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="text-[17px] font-bold leading-snug text-[#1a1a1a]">
-              打造支持創新，<br />放大影響力的生態系
-            </p>
-          </motion.div>
-
+        <div className="flex flex-col sm:flex-row sm:items-start gap-8 sm:gap-0">
+          {STATS.map((s, i) => (
+            <div key={s.label} className="flex items-center gap-0">
+              <StatItem {...s} delay={i * 0.1} />
+              {i < STATS.length - 1 && (
+                <div className="hidden sm:block w-px h-12 bg-[#e0e0e0] mx-8 lg:mx-12 self-center" />
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>

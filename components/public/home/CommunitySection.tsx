@@ -157,6 +157,27 @@ export default function CommunitySection() {
           ))}
         </motion.div>
 
+        {/* Stats row */}
+        <div className="mt-10 flex justify-center gap-14">
+          {[
+            { value: '80+', label: '創業者參與' },
+            { value: '40+', label: '輔導業師' },
+            { value: '10',  label: '個月加速' },
+          ].map((s, i) => (
+            <motion.div
+              key={s.label}
+              className="flex flex-col items-center"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
+            >
+              <span className="text-3xl font-bold text-[#181614] md:text-4xl lg:text-5xl">{s.value}</span>
+              <span className="mt-1 text-xs text-slate-400">{s.label}</span>
+            </motion.div>
+          ))}
+        </div>
+
         {/* Tag pills row */}
         <motion.div
           className="mt-10 flex flex-wrap justify-center gap-2"
