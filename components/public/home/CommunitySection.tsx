@@ -158,11 +158,12 @@ export default function CommunitySection() {
         </motion.div>
 
         {/* Stats row */}
-        <div className="mt-10 flex justify-center gap-14">
+        <div className="mt-10 flex flex-wrap justify-center gap-10 sm:gap-16">
           {[
-            { value: '80+', label: '創業者參與' },
-            { value: '40+', label: '輔導業師' },
-            { value: '10',  label: '個月加速' },
+            { value: '600+', unit: '支', label: '新創團隊加速' },
+            { value: '350+', unit: '位', label: '投資人網路' },
+            { value: '35+',  unit: '家', label: '企業夥伴' },
+            { value: '13',   unit: '年', label: '深耕台大創業生態' },
           ].map((s, i) => (
             <motion.div
               key={s.label}
@@ -172,7 +173,10 @@ export default function CommunitySection() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
             >
-              <span className="text-3xl font-bold text-[#181614] md:text-4xl lg:text-5xl">{s.value}</span>
+              <div className="flex items-baseline gap-0.5">
+                <span className="text-3xl font-bold text-[#181614] md:text-4xl lg:text-5xl">{s.value}</span>
+                <span className="text-sm text-slate-400 ml-1">{s.unit}</span>
+              </div>
               <span className="mt-1 text-xs text-slate-400">{s.label}</span>
             </motion.div>
           ))}

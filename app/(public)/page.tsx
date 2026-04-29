@@ -6,7 +6,6 @@ import HeroSection from '@/components/public/home/HeroSection'
 import NTUEcosystemSection from '@/components/public/home/NTUEcosystemSection'
 import CommunitySection from '@/components/public/home/CommunitySection'
 import FocusAreasSection from '@/components/public/home/FocusAreasSection'
-import StatsSection from '@/components/public/home/StatsSection'
 import AudienceCards from '@/components/public/home/AudienceCards'
 import NewsSection from '@/components/public/home/NewsSection'
 
@@ -56,10 +55,7 @@ export default function HomePage() {
       {/* 2. Community */}
       <CommunitySection />
 
-      {/* 3. Stats */}
-      <StatsSection />
-
-      {/* 4. 台大創新生態系 */}
+      {/* 3. 台大創新生態系 */}
       <NTUEcosystemSection />
 
       {/* 5. Focus Areas */}
