@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'motion/react'
 import TrackClick from '@/components/TrackClick'
-import { RocketLaunch, Trophy, Microphone, Lightbulb, Target, Handshake, ChartBar } from '@phosphor-icons/react/dist/ssr'
+import { RocketLaunch, Trophy, Microphone, Lightbulb, Target, Handshake, ChartBar } from '@phosphor-icons/react'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
