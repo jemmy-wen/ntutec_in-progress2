@@ -96,7 +96,7 @@ export default function CorporatePageClient() {
 
       {/* ── 1. Hero bento (two 50% blocks, 32px margin all around) ── */}
       <div className="p-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-auto md:h-[520px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-auto md:h-screen">
 
           {/* Left: solid bg + text */}
           <motion.div
@@ -201,7 +201,7 @@ export default function CorporatePageClient() {
           為什麼選擇台大創創中心
         </motion.h2>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {[
             {
               num: '01',
@@ -289,7 +289,7 @@ export default function CorporatePageClient() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeModel}
-            className="grid grid-cols-1 gap-4 md:grid-cols-2"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
@@ -348,7 +348,7 @@ export default function CorporatePageClient() {
           企業合作成功案例
         </motion.h2>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {cases.map((c, i) => (
             <motion.div
               key={c.title}
@@ -400,7 +400,7 @@ export default function CorporatePageClient() {
 
       {/* ── 5. How we help + Success story bento (side by side) ── */}
       <div className="px-8 py-4">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
 
           {/* How we help */}
           <motion.div
@@ -478,7 +478,7 @@ export default function CorporatePageClient() {
 
       {/* ── 6. Impact + CTA bento ── */}
       <div className="p-8 pt-4">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
 
           {/* Impact stats */}
           {[
@@ -504,7 +504,7 @@ export default function CorporatePageClient() {
         </div>
 
         {/* Angel crosslink + CTA row */}
-        <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
 
           {/* Angel crosslink */}
           <motion.div
@@ -529,7 +529,7 @@ export default function CorporatePageClient() {
 
           {/* CTA */}
           <motion.div
-            className="relative overflow-hidden rounded-3xl"
+            className="relative overflow-hidden rounded-3xl min-h-[280px]"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
