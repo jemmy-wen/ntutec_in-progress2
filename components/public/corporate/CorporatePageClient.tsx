@@ -96,7 +96,7 @@ export default function CorporatePageClient() {
 
       {/* ── 1. Hero bento (two 50% blocks, 32px margin all around) ── */}
       <div className="p-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-auto md:h-screen">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-auto" style={{ minHeight: 'calc(100vh - 80px)' }}>
 
           {/* Left: solid bg + text */}
           <motion.div
@@ -180,7 +180,7 @@ export default function CorporatePageClient() {
       </div>
 
       {/* ── 2. Value props bento ── */}
-      <div className="px-8 pb-4">
+      <div className="px-8 py-20">
         <motion.p
           className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-teal"
           initial={{ opacity: 0 }}
@@ -246,7 +246,7 @@ export default function CorporatePageClient() {
       </div>
 
       {/* ── 3. Collaboration models (tab switcher) ── */}
-      <div className="px-8 py-4">
+      <div className="px-8 py-20">
         <motion.p
           className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-teal"
           initial={{ opacity: 0 }}
@@ -327,7 +327,7 @@ export default function CorporatePageClient() {
       </div>
 
       {/* ── 4. Featured cases bento ── */}
-      <div id="cases" className="px-8 py-4">
+      <div id="cases" className="px-8 py-20">
         <motion.p
           className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-teal"
           initial={{ opacity: 0 }}
@@ -399,7 +399,7 @@ export default function CorporatePageClient() {
       </div>
 
       {/* ── 5. How we help + Success story bento (side by side) ── */}
-      <div className="px-8 py-4">
+      <div className="px-8 py-20">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
 
           {/* How we help */}
@@ -477,7 +477,7 @@ export default function CorporatePageClient() {
       </div>
 
       {/* ── 6. Impact + CTA bento ── */}
-      <div className="p-8 pt-4">
+      <div className="px-8 py-20 pb-16">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
 
           {/* Impact stats */}
@@ -504,7 +504,7 @@ export default function CorporatePageClient() {
         </div>
 
         {/* Angel crosslink + CTA row */}
-        <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
 
           {/* Angel crosslink */}
           <motion.div
