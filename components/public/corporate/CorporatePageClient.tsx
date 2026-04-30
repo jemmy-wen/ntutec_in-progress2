@@ -56,83 +56,66 @@ export default function CorporatePageClient() {
   return (
     <div className="bg-white">
 
-      {/* ══ 1. HERO ══════════════════════════════════════════════════
-          Grid columns background + big title left / desc+CTA right  */}
+      {/* ══ 1. HERO — 100vh, 文字 50% + 照片 50% ═══════════════════ */}
       <section
-        className="relative border-b border-[#e0ddd8]"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #e0ddd8 1px, transparent 1px)',
-          backgroundSize: '12.5% 100%',
-        }}
+        className="flex border-b border-[#e0ddd8]"
+        style={{ height: 'calc(100vh - 80px)' }}
       >
-        {/* Inner layout: constrained, tall */}
-        <div
-          className="mx-auto max-w-screen-xl px-8"
-          style={{ minHeight: 'calc(100vh - 80px)' }}
-        >
-          {/* Two-column: title left, aside right */}
-          <div className="grid grid-cols-1 gap-0 md:grid-cols-2" style={{ minHeight: 'calc(100vh - 80px)' }}>
-
-            {/* Left: big title */}
-            <div className="flex flex-col justify-center border-r border-[#e0ddd8] py-24 pr-16">
-              <motion.p
-                className="mb-6 text-xs font-semibold uppercase tracking-[0.22em] text-teal"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                Corporate Innovation
-              </motion.p>
-              <motion.h1
-                className="text-5xl font-bold leading-[1.08] text-[#181614] lg:text-6xl xl:text-7xl"
-                style={{ fontFamily: "'Noto Serif TC', serif" }}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, delay: 0.08, ease: EASE }}
-              >
-                企業合作方案
-              </motion.h1>
-            </div>
-
-            {/* Right: description + CTA */}
-            <div className="flex flex-col justify-end py-24 pl-16">
-              <motion.p
-                className="mb-8 max-w-xs text-base leading-relaxed text-slate-500"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.2, ease: EASE }}
-              >
-                與台大創創中心攜手，共同推動企業創新轉型，對接最前沿的技術與人才。
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.32, ease: EASE }}
-              >
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-3 rounded-full bg-teal px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-                >
-                  <ArrowRight size={14} weight="bold" />
-                  聯繫我們，開啟合作
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 2. HERO PHOTO ════════════════════════════════════════════
-          Full-width, tall image                                      */}
-      <section>
+        {/* Left 50%: grid texture + text */}
         <motion.div
-          className="relative w-full overflow-hidden"
-          style={{ height: '60vw', maxHeight: 720 }}
+          className="relative flex w-1/2 flex-col justify-between border-r border-[#e0ddd8] px-12 py-16"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, #e0ddd8 1px, transparent 1px)',
+            backgroundSize: '25% 100%',
+          }}
+          initial={{ opacity: 0, x: -16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: EASE }}
+        >
+          <motion.p
+            className="text-xs font-semibold uppercase tracking-[0.22em] text-teal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Corporate Innovation
+          </motion.p>
+
+          <motion.h1
+            className="text-5xl font-bold leading-[1.08] text-[#181614] lg:text-6xl xl:text-7xl"
+            style={{ fontFamily: "'Noto Serif TC', serif" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.12, ease: EASE }}
+          >
+            企業合作方案
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.28, ease: EASE }}
+          >
+            <p className="mb-6 text-sm leading-relaxed text-slate-500">
+              與台大創創中心攜手，共同推動企業<br />創新轉型，對接最前沿的技術與人才。
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-teal px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+            >
+              <ArrowRight size={14} weight="bold" />
+              聯繫我們，開啟合作
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Right 50%: photo */}
+        <motion.div
+          className="relative w-1/2 overflow-hidden"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
           <Image
             src="/images/events/demo-day-2025-group.jpg"
@@ -140,7 +123,7 @@ export default function CorporatePageClient() {
             fill
             priority
             className="object-cover"
-            sizes="100vw"
+            sizes="50vw"
           />
         </motion.div>
       </section>
