@@ -177,6 +177,7 @@ function MegaMenu({
   onLeave,
   onToggle,
   onClose,
+  transparent,
 }: {
   item: NavItem;
   open: boolean;
@@ -184,12 +185,17 @@ function MegaMenu({
   onLeave: () => void;
   onToggle: () => void;
   onClose: () => void;
+  transparent?: boolean;
 }) {
+  const baseText = transparent
+    ? "text-white/90 hover:text-white"
+    : "text-charcoal/80 hover:text-teal"
+
   if (!item.children && item.href) {
     return (
       <Link
         href={item.href}
-        className="whitespace-nowrap px-2.5 py-2 text-sm font-medium text-charcoal/80 hover:text-teal transition-colors"
+        className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-colors ${baseText}`}
       >
         {item.label}
       </Link>
@@ -207,8 +213,8 @@ function MegaMenu({
           if (e.key === "Escape") { e.preventDefault(); onClose(); }
           if (e.key === "ArrowDown") { e.preventDefault(); if (!open) onToggle(); }
         }}
-        className={`flex items-center gap-0.5 whitespace-nowrap px-2.5 py-2 text-sm font-medium transition-colors ${
-          open ? "text-teal" : "text-charcoal/80 hover:text-teal"
+        className={`flex items-center gap-0.5 whitespace-nowrap px-3 py-2 text-sm font-medium transition-colors ${
+          open ? (transparent ? "text-white" : "text-teal") : baseText
         }`}
       >
         {item.label}
@@ -217,6 +223,70 @@ function MegaMenu({
           aria-hidden="true"
         />
       </button>
+
+      {/* Dropdown panel — follows button position */}
+      {item.children && (
+      <div
+        className={`absolute right-0 top-full z-50 pt-2 transition-all duration-200 ${
+          open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"
+        }`}
+      >
+        <div className="rounded-2xl border border-border/60 bg-white shadow-xl shadow-black/5 overflow-hidden w-[780px]">
+          <div className="flex gap-0 p-6">
+            {/* Left: links */}
+            <div className="w-40 shrink-0">
+              <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                {item.label}
+              </p>
+              <div className="flex flex-col gap-0.5">
+                {item.children.map((child) => (
+                  <Link
+                    key={child.href}
+                    href={child.href}
+                    onClick={onClose}
+                    className="rounded-lg px-3 py-2 text-sm font-medium text-charcoal/80 hover:bg-[#F6F5F1] hover:text-teal transition-colors"
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Featured cards */}
+            {item.featured && (
+              <>
+                <div className="mx-4 w-px self-stretch bg-border/50 shrink-0" />
+                <div className="flex flex-1 gap-3">
+                  {item.featured.map((card, idx) => (
+                    <Link
+                      key={idx}
+                      href={card.href}
+                      onClick={onClose}
+                      className="group flex-1 overflow-hidden rounded-xl bg-[#F6F5F1] hover:bg-[#EEEDEA] transition-colors"
+                    >
+                      <div className="relative h-28 overflow-hidden">
+                        <Image
+                          src={card.photo}
+                          alt={card.photoAlt}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          sizes="180px"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-3">
+                        <p className="font-semibold text-xs text-[#181614] group-hover:text-teal transition-colors line-clamp-1">{card.title}</p>
+                        <p className="mt-1 text-[11px] leading-relaxed text-slate-500 line-clamp-2">{card.desc}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+      )}
     </div>
   );
 }
@@ -377,7 +447,7 @@ export default function Navbar() {
   const activeItem = NAV_ITEMS.find((i) => i.label === activeMenu) ?? null;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -425,19 +495,13 @@ export default function Navbar() {
     <>
     <header
       data-navbar-root
-      className={`sticky top-0 z-[150] w-full transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-14 z-[150] transition-all duration-300 ${
         scrolled
-          ? "bg-transparent border-transparent py-2"
-          : "bg-white/90 backdrop-blur-lg border-b border-border/40"
+          ? "bg-white/90 backdrop-blur-lg border-b border-border/40 shadow-sm"
+          : "bg-transparent"
       }`}
     >
-      <div
-        className={`flex h-16 items-center justify-between transition-all duration-300 md:h-20 ${
-          scrolled
-            ? "mx-4 md:mx-8 rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg shadow-black/8 border border-border/30 px-4 md:px-6"
-            : "container md:max-w-[1400px]"
-        }`}
-      >
+      <div className="flex h-16 items-center justify-between container md:max-w-[1400px] md:h-20">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/images/brand/ntutec-logo-horizontal-zh.png"
@@ -445,11 +509,12 @@ export default function Navbar() {
             width={326}
             height={140}
             priority
-            className="h-16 w-auto"
+            className={`h-16 w-auto transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-0.5">
+        {/* Nav items — centered */}
+        <nav className="hidden md:flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
             <MegaMenu
               key={item.label}
@@ -459,126 +524,20 @@ export default function Navbar() {
               onLeave={leave}
               onToggle={() => toggle(item.label)}
               onClose={close}
+              transparent={!scrolled}
             />
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <SearchButton onClick={() => setSearchOpen(true)} />
-
-          <Link
-            href={langSwitch.href}
-            className="hidden md:inline-flex items-center rounded-full border border-border px-2.5 py-1 text-xs font-semibold text-charcoal hover:border-teal hover:text-teal transition-colors"
-            aria-label={langSwitch.label === "EN" ? "Switch to English" : "切換至中文"}
-          >
-            {langSwitch.label}
-          </Link>
-
-          {/* Apply mega CTA */}
-          <div
-            className="relative hidden md:block"
-            onMouseEnter={() => setApplyOpen(true)}
-            onMouseLeave={() => setApplyOpen(false)}
-          >
-            <button
-              onClick={() => setApplyOpen(!applyOpen)}
-              className="whitespace-nowrap btn-pill-primary text-xs px-3 py-1.5 flex items-center gap-1"
-            >
-              立即申請
-              <ChevronDown className={`h-3 w-3 transition-transform ${applyOpen ? "rotate-180" : ""}`} />
-            </button>
-
-            {/* Apply mega panel — right-aligned, with gap matching other menus */}
-            <div
-              className={`absolute right-0 top-full z-50 pt-2 transition-all duration-200 ${
-                applyOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"
-              }`}
-            >
-              <div className="w-[560px] rounded-2xl border border-border/60 bg-white shadow-xl shadow-black/5 overflow-hidden">
-                <div className="flex gap-0 p-6">
-
-                  {/* Left: CTA options */}
-                  <div className="flex-1">
-                    <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                      立即申請
-                    </p>
-                    <div className="flex flex-col gap-0.5">
-                      {[
-                        { label: "預約 2027 輔導計畫", href: "/apply", desc: "台大加速器・台大車庫" },
-                        { label: "新創投遞 Pitch", href: "/pitch", desc: "提交你的新創案件給天使會" },
-                        { label: "企業合作洽談", href: "/corporate#contact", desc: "啟動外部創新合作" },
-                        { label: "加入台大天使會", href: "/angel-apply", desc: "成為早期天使投資人" },
-                      ].map((opt) => (
-                        <Link
-                          key={opt.href}
-                          href={opt.href}
-                          onClick={() => setApplyOpen(false)}
-                          className="group rounded-lg px-3 py-2.5 hover:bg-[#F6F5F1] transition-colors"
-                        >
-                          <p className="text-sm font-medium text-charcoal group-hover:text-teal transition-colors">{opt.label}</p>
-                          <p className="text-xs text-slate-400">{opt.desc}</p>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Divider */}
-                  <div className="mx-5 w-px self-stretch bg-border/50 shrink-0" />
-
-                  {/* Right: single featured card */}
-                  <div className="w-40 shrink-0">
-                    <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                      最新計畫
-                    </p>
-                    <Link
-                      href="/blog/2026-accelerator-opening"
-                      onClick={() => setApplyOpen(false)}
-                      className="group block overflow-hidden rounded-xl bg-[#F6F5F1] hover:bg-[#EEEDEA] transition-colors"
-                    >
-                      <div className="relative h-24 overflow-hidden">
-                        <Image
-                          src="/images/events/opening-2026-biggroup.jpg"
-                          alt="2026 輔導計畫開幕式"
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          sizes="160px"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="p-2.5">
-                        <p className="text-xs font-semibold text-[#181614] group-hover:text-teal transition-colors line-clamp-2">
-                          2026 輔導計畫開幕式紀實
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <NavbarAuthButton />
-
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-charcoal"
-            aria-label={mobileOpen ? "關閉選單" : "開啟選單"}
-          >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+        {/* Mobile hamburger only — desktop controls moved to RightSidebar */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className={`md:hidden p-2 transition-colors ${!scrolled ? "text-white" : "text-charcoal"}`}
+          aria-label={mobileOpen ? "關閉選單" : "開啟選單"}
+        >
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
-
-      {/* Mega panel — full-width, below the nav bar */}
-      <MegaPanel
-        item={activeItem}
-        open={!!activeMenu && !!activeItem?.children}
-        onClose={close}
-        onEnter={() => { if (timeoutRef.current) clearTimeout(timeoutRef.current); }}
-        onLeave={leave}
-        scrolled={scrolled}
-      />
 
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </header>

@@ -1,256 +1,101 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion } from 'motion/react'
 
-/* ── Data ───────────────────────────────────────────────────────────── */
+const EASE = [0.22, 1, 0.36, 1] as const
+
 const AREAS = [
   {
     key: 'ai',
-    label: 'AI SOFTWARE',
     title: 'AI 軟體',
-    description:
-      '從基礎模型到垂直應用，涵蓋企業生成式 AI、Agent、資料基礎設施與 SaaS 平台。連結台大各院系研究能量與產業應用場域。',
-    cases: 'MoBagel、漸強實驗室、AmazingTalker 等',
-    bg: '/images/photos/ntu-research-cover.jpg',
+    description: '從基礎模型到垂直應用，涵蓋企業生成式 AI、Agent、資料基礎設施與 SaaS 平台。連結台大各院系研究能量與產業應用場域。',
+    bg: '/images/events/opening-2026-coaching.jpg',
   },
   {
     key: 'biotech',
-    label: 'BIOTECH & MEDICAL',
     title: '生技醫療',
-    description:
-      '結合台大醫學院、生命科學院與工學院的跨域研究，聚焦醫療器材、精準醫療與數位健康應用。',
-    cases: '思輔科技、Home心 等',
-    bg: '/images/photos/ntu-campus-aerial.jpg',
+    description: '結合台大醫學院、生命科學院與工學院的跨域研究，聚焦醫療器材、精準醫療與數位健康應用。',
+    bg: '/images/events/opening-2026-audience.jpg',
   },
   {
     key: 'deeptech',
-    label: 'DEEP TECH',
     title: '硬科技',
-    description:
-      '半導體、光電、材料科學與先進製造——台大理工研究能量直接轉化為可投資的硬科技新創。',
-    cases: '歐姆佳科技、3drens 等',
-    bg: '/images/photos/ntu-library-bright.jpg',
+    description: '半導體、光電、材料科學與先進製造——台大理工研究能量直接轉化為可投資的硬科技新創。',
+    bg: '/images/events/opening-2026-mentoring.jpg',
   },
   {
     key: 'newbiz',
-    label: 'NEW BUSINESS MODELS',
     title: '創新商模',
-    description:
-      '電商、循環經濟、訂閱制與平台模式——以商業模式創新驅動市場與社會影響力。',
-    cases: '配客嘉、方格子、Hotcake 等',
-    bg: '/images/photos/ntu-gate-bright.jpg',
+    description: '電商、循環經濟、訂閱制與平台模式——以商業模式創新驅動市場與社會影響力。',
+    bg: '/images/events/opening-2026-pitching.jpg',
   },
 ]
 
-/* ── Dimensions ─────────────────────────────────────────────────────── */
-const CARD_W = 320
-const CARD_H = Math.round((409 / 366) * CARD_W) // ≈ 358
-const CARD_STEP = 235  // step between card left edges (~73% visible per card)
-
-/* ── Mouse-cursor SVG icon ──────────────────────────────────────────── */
-function CursorIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 22" fill="none" aria-hidden>
-      <path
-        d="M1 1L1 17L5.5 13L8.5 20L10.5 19L7.5 12H13L1 1Z"
-        fill="#1a1a1a"
-        stroke="#1a1a1a"
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-/* ── Section ────────────────────────────────────────────────────────── */
 export default function FocusAreasSection() {
-  const [activeIdx, setActiveIdx] = useState<number | null>(null)
-  const [tilts, setTilts] = useState(AREAS.map(() => ({ x: 0, y: 0 })))
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  const onMouseMove = useCallback((i: number, e: React.MouseEvent<HTMLDivElement>) => {
-    if (activeIdx !== null) return
-    const r = e.currentTarget.getBoundingClientRect()
-    const tx = (e.clientX - r.left - r.width / 2) / (r.width / 2)
-    const ty = (e.clientY - r.top - r.height / 2) / (r.height / 2)
-    setTilts(prev => prev.map((t, idx) => idx === i ? { x: tx, y: ty } : t))
-  }, [activeIdx])
-
-  const onMouseLeave = useCallback((i: number) => {
-    setTilts(prev => prev.map((t, idx) => idx === i ? { x: 0, y: 0 } : t))
-  }, [])
-
-  const totalW = CARD_W + CARD_STEP * (AREAS.length - 1)
-  const activeArea = activeIdx !== null ? AREAS[activeIdx] : null
-
   return (
-    <section ref={sectionRef} className="relative bg-white py-14 md:py-20 overflow-hidden">
-      <div className="container mx-auto px-8 lg:px-16">
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-screen-xl px-8 lg:px-16">
 
-        {/* ── Header ── */}
-        <div className="mb-12">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#00AA95]">
-            Focus Areas
-          </p>
-          <h2
-            className="text-[32px] lg:text-[38px] font-bold text-[#1a1a1a] leading-tight"
-            style={{ fontFamily: "'Noto Serif TC', 'GenWanMin2 TW', serif" }}
-          >
-            關注的創新方向
-          </h2>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/svg/Vector.svg" alt="" aria-hidden="true" className="mt-2 h-4 w-auto" />
-          <p className="mt-4 text-[14px] text-[#666] leading-relaxed" style={{ maxWidth: '28em' }}>
+        {/* Header — label + title left, description right */}
+        <div className="mb-14 flex items-end justify-between gap-16">
+          <div>
+            <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#00AA95]">
+              <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3" aria-hidden="true">
+                <circle cx="3" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="8" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="13" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="3" cy="8" r="1.5" fill="currentColor"/>
+                <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+                <circle cx="13" cy="8" r="1.5" fill="currentColor"/>
+                <circle cx="3" cy="13" r="1.5" fill="currentColor"/>
+                <circle cx="8" cy="13" r="1.5" fill="currentColor"/>
+                <circle cx="13" cy="13" r="1.5" fill="currentColor"/>
+              </svg>
+              Focus Areas
+            </p>
+            <h2 className="text-3xl font-bold text-[#181614] lg:text-4xl">
+              2026 四大聚焦領域
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-[#181614]/50">
             AI 軟體、生技醫療、硬科技、創新商模——結合台大跨院系研究能量與業界合作網絡，陪伴新創從概念走向市場。
           </p>
         </div>
 
-        {/* ── Cards row ── */}
-        <div
-          className="relative mx-auto"
-          style={{ width: totalW, height: CARD_H + 32 }}
-        >
-          {AREAS.map((area, i) => {
-            const isActive = activeIdx === i
-            const t = tilts[i]
+        {/* Cards grid */}
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4 items-stretch">
+          {AREAS.map((area, i) => (
+            <motion.div
+              key={area.key}
+              className="flex flex-col h-full"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: EASE, delay: i * 0.08 }}
+            >
+              {/* Text block with left accent — fixed height so all cards align */}
+              <div className="border-l-2 border-[#00AA95] pl-4 pb-6 min-h-[160px]">
+                <h3 className="mb-3 text-base font-bold text-[#181614]">{area.title}</h3>
+                <p className="text-xs leading-relaxed text-[#181614]/55">{area.description}</p>
+              </div>
 
-            return (
-              <motion.div
-                key={area.key}
-                className="absolute top-0"
-                style={{
-                  left: i * CARD_STEP,
-                  width: CARD_W,
-                  height: CARD_H,
-                  zIndex: isActive ? 1 : i + 1,  // active card stays in row (invisible), expanded card is in overlay
-                  cursor: 'pointer',
-                  transformStyle: 'preserve-3d',
-                  perspective: '500px',
-                }}
-                animate={{
-                  rotateY: activeIdx !== null ? 0 : t.x * 18,
-                  rotateX: activeIdx !== null ? 0 : -t.y * 13,
-                  opacity: activeIdx !== null && !isActive ? 0.3 : isActive ? 0 : 1,
-                }}
-                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                onMouseMove={e => onMouseMove(i, e)}
-                onMouseLeave={() => onMouseLeave(i)}
-                onClick={() => setActiveIdx(i)}
-              >
-                {/* Card shape — mask uses the actual Vector 11.svg */}
-                <div
-                  className="relative w-full h-full"
-                  style={{
-                    WebkitMaskImage: "url('/svg/Vector 11.svg')",
-                    maskImage:        "url('/svg/Vector 11.svg')",
-                    WebkitMaskSize:   '100% 100%',
-                    maskSize:         '100% 100%',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskRepeat:       'no-repeat',
-                  }}
-                >
-                  <Image
-                    src={area.bg}
-                    alt={area.title}
-                    fill
-                    className="object-cover"
-                    sizes="320px"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/25" />
-                </div>
-
-                {/* Cursor + pill — outside bottom-left of card */}
-                <div
-                  className="absolute flex items-center gap-2"
-                  style={{ bottom: -4, left: -4 }}
-                >
-                  <CursorIcon />
-                  <span className="rounded-full border border-[#1a1a1a] bg-white px-4 py-1.5 text-[15px] font-semibold text-[#1a1a1a] whitespace-nowrap">
-                    {area.title}
-                  </span>
-                </div>
-              </motion.div>
-            )
-          })}
-
-          {/* ── Expanded card — floats above row ── */}
-          <AnimatePresence>
-            {activeArea && activeIdx !== null && (
-              <motion.div
-                key="expanded"
-                className="absolute overflow-hidden rounded-2xl"
-                style={{
-                  // Start from the clicked card's position
-                  top: 0,
-                  left: activeIdx * CARD_STEP,
-                  zIndex: 30,
-                  cursor: 'pointer',
-                }}
-                initial={{
-                  width: CARD_W,
-                  height: CARD_H,
-                  x: 0,
-                  y: 0,
-                  opacity: 0,
-                  scale: 0.92,
-                }}
-                animate={{
-                  width: 580,
-                  height: 380,
-                  x: totalW / 2 - activeIdx * CARD_STEP - 290,
-                  y: (CARD_H - 380) / 2,
-                  opacity: 1,
-                  scale: 1,
-                }}
-                exit={{
-                  opacity: 0,
-                  scale: 0.92,
-                }}
-                transition={{ type: 'spring', stiffness: 240, damping: 28 }}
-                onClick={() => setActiveIdx(null)}
-              >
+              {/* Photo — flex-1 fills remaining space */}
+              <div className="relative flex-1 overflow-hidden" style={{ minHeight: '200px' }}>
                 <Image
-                  src={activeArea.bg}
-                  alt={activeArea.title}
+                  src={area.bg}
+                  alt={area.title}
                   fill
-                  className="object-cover"
-                  sizes="580px"
-                  priority
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/20" />
-
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/55 mb-2">
-                    {activeArea.label}
-                  </p>
-                  <h3 className="text-[30px] font-bold text-white mb-3">
-                    {activeArea.title}
-                  </h3>
-                  <p className="text-[13px] text-white/80 leading-relaxed mb-3">
-                    {activeArea.description}
-                  </p>
-                  <p className="text-[12px] text-white/55">
-                    代表案例：{activeArea.cases}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
       </div>
-
-      {/* Click outside to close */}
-      {activeIdx !== null && (
-        <div
-          className="fixed inset-0 z-20"
-          onClick={() => setActiveIdx(null)}
-        />
-      )}
     </section>
   )
 }

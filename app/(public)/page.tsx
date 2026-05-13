@@ -3,10 +3,12 @@ import { ogImageUrl } from '@/lib/og'
 import BreadcrumbSchema from '@/components/public/BreadcrumbSchema'
 import HomeFAQSchema from '@/components/public/HomeFAQSchema'
 import HeroSection from '@/components/public/home/HeroSection'
+import FeaturedProgramSection from '@/components/public/home/FeaturedProgramSection'
 import NTUEcosystemSection from '@/components/public/home/NTUEcosystemSection'
 import CommunitySection from '@/components/public/home/CommunitySection'
 import FocusAreasSection from '@/components/public/home/FocusAreasSection'
-import AudienceCards from '@/components/public/home/AudienceCards'
+import FeaturedCasesSection from '@/components/public/home/FeaturedCasesSection'
+import CTASection from '@/components/public/home/CTASection'
 import NewsSection from '@/components/public/home/NewsSection'
 
 export const revalidate = 3600
@@ -52,20 +54,26 @@ export default function HomePage() {
       {/* 1. Hero */}
       <HeroSection />
 
-      {/* 2. Community */}
+      {/* 2. Featured Program */}
+      <FeaturedProgramSection />
+
+      {/* 3. Community */}
       <CommunitySection />
 
-      {/* 3. 台大創新生態系 */}
-      <NTUEcosystemSection />
-
-      {/* 5. Focus Areas */}
+      {/* 4. Focus Areas */}
       <FocusAreasSection />
 
-      {/* 6. Audience */}
-      <AudienceCards />
+      {/* 5. Featured Cases */}
+      <FeaturedCasesSection />
 
-      {/* 8. News */}
+      {/* 6. 台大創新生態系 */}
+      <NTUEcosystemSection />
+
+      {/* 7. News */}
       <NewsSection />
+
+      {/* 8. CTA */}
+      <CTASection />
 
     </>
   )

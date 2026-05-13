@@ -40,59 +40,71 @@ export default async function NewsSection() {
       }))
 
   return (
-    <section className="bg-[#F6F5F1] py-16 md:py-24">
-      <div className="container">
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-screen-xl px-8 lg:px-16">
 
         <div className="mb-10 flex items-end justify-between">
           <div>
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-teal">
+            <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#00AA95]">
+              <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3" aria-hidden="true">
+                <circle cx="3" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="8" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="13" cy="3" r="1.5" fill="currentColor"/>
+                <circle cx="3" cy="8" r="1.5" fill="currentColor"/>
+                <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+                <circle cx="13" cy="8" r="1.5" fill="currentColor"/>
+                <circle cx="3" cy="13" r="1.5" fill="currentColor"/>
+                <circle cx="8" cy="13" r="1.5" fill="currentColor"/>
+                <circle cx="13" cy="13" r="1.5" fill="currentColor"/>
+              </svg>
               Latest Updates
             </p>
-            <h2 className="text-2xl font-bold text-[#181614] md:text-3xl lg:text-4xl">最新動態</h2>
+            <h2 className="text-3xl font-bold text-[#181614] lg:text-4xl">最新動態</h2>
           </div>
           <Link
             href="/news"
-            className="hidden items-center gap-1.5 text-sm font-medium text-teal transition-colors hover:text-teal-deep sm:inline-flex"
+            className="hidden items-center gap-1.5 text-sm font-medium text-[#00AA95] transition-colors hover:opacity-70 sm:inline-flex"
           >
             查看全部 <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        {/* Cards — no gap, no rounded corners, divided by border */}
+        <div className="grid grid-cols-1 divide-x divide-[#e0ddd8] border border-[#e0ddd8] md:grid-cols-3">
           {displayPosts.map((post) => (
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
-              className="group block overflow-hidden rounded-[20px] bg-white transition-all hover:-translate-y-0.5 hover:shadow-md"
+              className="group block bg-white transition-colors hover:bg-[#f9f8f6]"
             >
               {post.feature_image ? (
-                <div className="aspect-[16/9] overflow-hidden">
+                <div className="relative h-60 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={post.feature_image}
                     alt={post.title}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
               ) : (
-                <div className="aspect-[16/9] bg-stone" />
+                <div className="h-60 bg-[#e0ddd8]" />
               )}
 
               <div className="p-6">
-                {post.primary_tag && (
-                  <span className="inline-block rounded-full bg-teal-light px-2.5 py-0.5 text-[10px] font-semibold text-teal">
-                    {post.primary_tag.name}
-                  </span>
-                )}
-                <h3 className="mt-3 font-semibold leading-snug text-[#181614] transition-colors group-hover:text-teal line-clamp-2">
+                <p className="mb-3 text-xs text-[#181614]/40">{formatDate(post.published_at)}</p>
+                <h3 className="mb-3 text-base font-bold leading-snug text-[#181614] transition-colors group-hover:text-[#00AA95] line-clamp-2">
                   {post.title}
                 </h3>
-                <p className="mt-1.5 text-xs text-slate-400">{formatDate(post.published_at)}</p>
                 {post.excerpt && (
-                  <p className="mt-2 text-sm leading-relaxed text-slate-500 line-clamp-2">
+                  <p className="mb-4 text-sm leading-relaxed text-[#181614]/50 line-clamp-2">
                     {post.excerpt}
                   </p>
+                )}
+                {post.primary_tag && (
+                  <span className="inline-block rounded-full bg-[#00AA95]/10 px-3 py-0.5 text-[10px] font-semibold text-[#00AA95]">
+                    {post.primary_tag.name}
+                  </span>
                 )}
               </div>
             </Link>
@@ -100,7 +112,7 @@ export default async function NewsSection() {
         </div>
 
         <div className="mt-8 text-center sm:hidden">
-          <Link href="/news" className="inline-flex items-center gap-1.5 text-sm font-medium text-teal">
+          <Link href="/news" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#00AA95]">
             查看全部 <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

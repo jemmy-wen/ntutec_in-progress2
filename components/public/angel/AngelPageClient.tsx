@@ -167,8 +167,16 @@ export default function AngelPageClient() {
       </section>
 
       {/* 3-gate screening */}
-      <section className="border-b border-[#e0ddd8]">
-        <div className="mx-auto max-w-screen-xl px-8">
+      <section className="relative border-b border-[#e0ddd8] overflow-hidden">
+        {/* Slanted background */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/svg/Rectangle 36.svg"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-left"
+        />
+        <div className="relative mx-auto max-w-screen-xl px-8">
           <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
             <div className="border-r border-[#e0ddd8] py-24 pr-16">
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#00AA95]">Screening Process</p>
@@ -189,6 +197,7 @@ export default function AngelPageClient() {
       </section>
 
       {/* Membership tiers */}
+
       <section className="border-b border-[#e0ddd8] bg-[#f9f8f6]">
         <div className="mx-auto max-w-screen-xl px-8 py-24">
           <div className="mb-16 text-center">

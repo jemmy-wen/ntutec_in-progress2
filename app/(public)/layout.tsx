@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Navbar from '@/components/public/Navbar'
 import Footer from '@/components/public/Footer'
+import RightSidebar from '@/components/public/RightSidebar'
 // AI 客服凍結中（2026-04-13）— 待上線數月後考慮啟用
 // import ChatProvider from '@/components/chat/ChatProvider'
 
@@ -42,7 +43,8 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         跳至主要內容
       </a>
       <Navbar />
-      <main id="main-content" className="flex-1 relative z-0">
+      <RightSidebar />
+      <main id="main-content" className="flex-1 relative z-0 pr-14">
         {children}
       </main>
       <Footer />
